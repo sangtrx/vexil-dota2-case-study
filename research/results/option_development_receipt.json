@@ -1,0 +1,18 @@
+{
+  "PIT_checks": 2754,
+  "bootstrap": 5000,
+  "candidate": "M4_option_value",
+  "features": [
+    "aegis_claim5",
+    "buyback_commitment5",
+    "unconverted_gold_k"
+  ],
+  "http_calls": 0,
+  "note": "exploratory because historical validation outcomes were previously examined",
+  "original_test_games_used": 0,
+  "previous_forward_games_used": 0,
+  "screening_gate_passed": false,
+  "seed": 20261113,
+  "training_games": 291,
+  "validation_games": 103
+}

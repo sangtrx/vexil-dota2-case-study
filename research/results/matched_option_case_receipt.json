@@ -1,0 +1,38 @@
+{
+  "caveat": "Descriptive in-sample pair. Aegis claim is not evidence of unconsumed possession. No causal or independent predictive claim.",
+  "cohort": "original TRAIN games only",
+  "games": [
+    {
+      "aegis_claim5": 0.9299999999999999,
+      "buyback_commitment5": 0.0,
+      "case": "recent_radiant_aegis_claim",
+      "gold": 1901.0,
+      "match_id": 8739246794,
+      "observed_radiant_win": true,
+      "patch": "59",
+      "series_id": 1077539,
+      "start_time": 1774176945,
+      "unconverted_gold_k": 0.0,
+      "xp": 6964.0
+    },
+    {
+      "aegis_claim5": 0.0,
+      "buyback_commitment5": 0.0,
+      "case": "no_recent_claim",
+      "gold": 1929.0,
+      "match_id": 8739992397,
+      "observed_radiant_win": true,
+      "patch": "59",
+      "series_id": 1077808,
+      "start_time": 1774209403,
+      "unconverted_gold_k": 1.929,
+      "xp": 6862.0
+    }
+  ],
+  "gold_diff": 28.0,
+  "method": "Fixed minute25, same patch, same gold-lead sign; distinct match and series; latest Aegis claim contrast; closest gold/XP under preset tolerance ladder",
+  "minute": 25,
+  "outcome_used_in_selection": false,
+  "selected_tolerance_tier": 1,
+  "xp_diff": 102.0
+}

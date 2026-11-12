@@ -28,3 +28,6 @@ output/
 .local/
 *.bak.*
 *.log
+
+# Reproducible derived results in the independent option-value research appendix
+!research/results/**/*.csv

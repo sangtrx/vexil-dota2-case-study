@@ -1,0 +1,36 @@
+{
+  "datasets": {
+    "first_forward200": {
+      "all_gold_advantages_equal_player_gold_sums": true,
+      "all_gold_xp_lh_lengths_match": true,
+      "all_time_axes_start_at_zero_and_step60": true,
+      "games": 200,
+      "manifest_sha256": "1761bac60c1c182ac4ab4315f37495f4420d1854489aeae06e5de69519182020",
+      "minute_gold_sum_and_actual_clock_checks": 6970,
+      "players_checked": 2000
+    },
+    "original500": {
+      "all_gold_advantages_equal_player_gold_sums": true,
+      "all_gold_xp_lh_lengths_match": true,
+      "all_time_axes_start_at_zero_and_step60": true,
+      "games": 500,
+      "manifest_sha256": "93b31cef82b96b30fb44e458717f3da45b04794403c108bbc9a2cfc12ec65bc4",
+      "minute_gold_sum_and_actual_clock_checks": 18308,
+      "players_checked": 5000
+    },
+    "second_forward200": {
+      "all_gold_advantages_equal_player_gold_sums": true,
+      "all_gold_xp_lh_lengths_match": true,
+      "all_time_axes_start_at_zero_and_step60": true,
+      "games": 200,
+      "manifest_sha256": "afd6c0e63d9795ef74369a025c2cb8d714f7b5ed83134db2078368e7b5ed8bca",
+      "minute_gold_sum_and_actual_clock_checks": 6828,
+      "players_checked": 2000
+    }
+  },
+  "network_requests": 0,
+  "point_in_time_caveat": "retrospective parse not evidence of physical streaming availability",
+  "scope": "historically parsed OpenDota match-clock integrity, not wall-clock receipt latency",
+  "total_matches": 900,
+  "total_minute_checks": 32106
+}

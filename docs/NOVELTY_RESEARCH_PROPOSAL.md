@@ -9,13 +9,13 @@ At the same minute and net-gold advantage, professional Dota teams can occupy st
 
 ### 1. Research gap and precise novelty
 
-Existing peer-reviewed and open-source work covers Dota in-play prediction, hero drafts, gold/XP trajectories, generic event counts, LSTMs, Transformers and phase segmentation (bibliography: `OPEN_SOURCE_PRIOR_ART.md`). Therefore this project does NOT claim first use of Dota probabilities, objectives, time dependence or neural sequence models. Its narrower, falsifiable distinction is:
+Existing peer-reviewed and open-source work covers Dota in-play prediction, hero drafts, gold/XP trajectories, generic event counts, LSTMs, Transformers, phase segmentation and win-condition reasoning (Chitayat et al., ACM CHI PLAY 2024) (bibliography: `OPEN_SOURCE_PRIOR_ART.md`). Therefore this project does NOT claim first use of Dota probabilities, objectives, time dependence or neural sequence models. Its narrower, falsifiable distinction is:
 
 **C1 — two-timescale option-state features:** An observable Aegis *claim* has an approximately five-minute upper-bound validity window, but the replay does NOT prove the item was retained after death. A buyback is a dated commitment, not simply another kill. Tower/barracks losses are persistent. Encode these with honest, timestamp-bounded event functions rather than cumulative tallies with fictitious state persistence.
 
 **C2 — economic/structural disagreement:** A gold lead does not guarantee objective control. Introduce a single sign-equivariant measure of whether the current economic leader is simultaneously the structural laggard. Distinguish *measured discrepancy* from causal reasons for winning.
 
-**C3 — forecast-path coherence:** If p_t is the true conditional probability of a fixed terminal result Y given information F_t, then {p_t} is a bounded martingale. Assess whether the forecast has *predictable conditional drift*, using series-blocked confidence intervals and game-ending absorption. This diagnoses temporal consistency; it is not a claim that all realized paths must be smooth or that p_t=p_(t+1).
+**C3 — forecast-path coherence:** This is an application of existing probability theory, NOT a newly discovered martingale theorem. Wilkinson & Ferro (arXiv:2606.31621, 2026) already study sequential probability calibration. If p_t is the true conditional probability of a fixed terminal result Y given information F_t, then {p_t} is a bounded martingale. Assess whether the forecast has *predictable conditional drift*, using series-blocked confidence intervals and game-ending absorption. This diagnoses temporal consistency; it is not a claim that all realized paths must be smooth or that p_t=p_(t+1).
 
 The **combination and test protocol** constitute a proposed original analytical contribution in this project. They have not yet been demonstrated to outperform M1. Do not present them as a globally first-of-kind published invention.
 
