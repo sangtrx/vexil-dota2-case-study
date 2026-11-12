@@ -1,0 +1,19 @@
+{
+  "all_decisions_hold": true,
+  "calibration_phase_rows": 145,
+  "files": {
+    "all_28_candidate_scores.csv": "1933f3d472eda1f8d28307908e324d8e6b3416c78287ce5962bef88753247e0f",
+    "calibration_and_phase_scores.csv": "bd95a9b42d34d66a6c697375c0cdb7ebd445db86a8b36624d83267ee873730cd",
+    "dev_validation_predictions_28.csv": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
+    "familywise_simultaneous_ci.csv": "139af021069bc13d253edbb37ddbbee554827681d6011aa8bbd51632324c78a8",
+    "screen_consumed.lock.json": "f7b6e48e3a219103d3ba796b3db0d494f4b03ff2a7cf060cd21d43aaf432cf51",
+    "screen_receipt.json": "cb4a50a2ae2b23f153562db0411f8025684495a4347978f57748c1bcdf3c5c15",
+    "train_only_3fold_scores.csv": "a1e9186c079df47bf737414652e044ccd1e72a8b489f116ea022c7f366941e53"
+  },
+  "fold_rows": 87,
+  "num_outcome_cards": 28,
+  "probability_rows": 3784,
+  "registered_git_head": "bc134daa6f8db0ad8e090f2102d694b700eb5f67",
+  "results_document_sha256": "249b4bc3dd802df495cc9842e012aedb914e6f470f9ab35c45fd062eaa31d089",
+  "score_rows": 29
+}

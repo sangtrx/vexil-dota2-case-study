@@ -28,3 +28,6 @@ output/
 .local/
 *.bak.*
 *.log
+
+# Versioned, audited finite-hypothesis results, from permitted development only.
+!research/results/**/*.csv

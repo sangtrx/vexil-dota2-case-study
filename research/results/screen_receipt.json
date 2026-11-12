@@ -1,0 +1,21 @@
+{
+  "candidate_count": 28,
+  "comment": "Registration and original source frozen. Dev screen exploratory only. No blind-test scores examined for 28 new candidates.",
+  "familywise_bootstrap": 5000,
+  "feature_sha256": "8dc12a63b08c5a2b2c8a8888a9768bee7def9fd4abff7ca48d8f36977c3b661d",
+  "first_forward_test_games_accessed": 0,
+  "fold_count": 3,
+  "independent_holdout_reused": false,
+  "num_passed": 0,
+  "original_test_games_accessed": 0,
+  "pit_checks": 4154,
+  "practical_absolute_improvement_required": 0.005,
+  "registry_sha256": "650819d80fef51aaa7a9f1057639f06e2de169a698f8975bea36bf001e95a525",
+  "second_forward_test_games_accessed": 0,
+  "selected_for_fresh_confirmation": null,
+  "series_clusters": 53,
+  "source_git_head": "bc134daa6f8db0ad8e090f2102d694b700eb5f67",
+  "train_games": 291,
+  "validation_games": 103,
+  "validation_labels_already_seen_in_prior_work": true
+}
