@@ -250,5 +250,25 @@ class NotebookContractsTest(unittest.TestCase):
         N["assert_same_features"](at20,N["snapshot_features"](N["prefix_truncated"](m,20),20))
 
 
+    def test_kaggle_detection_overrides_colab_release_tag(self):
+        # The real Kaggle Python 3.13 base image sets COLAB_RELEASE_TAG as well
+        # as KAGGLE_KERNEL_RUN_TYPE; installing a new NumPy in that live kernel
+        # caused an actual binary ABI failure during the first execution.
+        import os
+        from unittest.mock import patch
+        prelude = source_at(2).split("PINS = (")[0]
+        with patch.dict(os.environ, {"KAGGLE_KERNEL_RUN_TYPE": "Script",
+                                         "COLAB_RELEASE_TAG": "true"}, clear=False):
+            env = {}
+            exec(prelude,env)
+            self.assertTrue(env["ON_KAGGLE"])
+            self.assertFalse(env["COLAB"])
+        with patch.dict(os.environ, {"COLAB_RELEASE_TAG": "true"}, clear=True):
+            env = {}
+            exec(prelude,env)
+            self.assertTrue(env["COLAB"])
+            self.assertFalse(env["ON_KAGGLE"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -30,3 +30,9 @@ Once the final candidate is selected on validation, do not tune it or rerun feat
 - The private CPU job was accepted and executed, but aborted during Setup: in-kernel pin replacement caused `AttributeError: 'numpy.ufunc' object has no attribute '__module__'` while importing scikit-learn/SciPy.
 - This is an execution-environment failure, not a model outcome. No data selection or holdout evidence is claimed from that run.
 - Correction: skip binary dependency replacement in an already-running Kaggle kernel; record actual package versions instead. Retry must use the same predeclared model and evaluation design.
+
+### Kaggle environment diagnosis — 2026-11-13
+
+- Second attempt failed at Setup because Kaggle reported `COLAB_RELEASE_TAG`, incorrectly activating Colab package installation.
+- Isolated private Kaggle environment smoke test showed both Kaggle and Colab flags, base versions numpy 2.1.3 / scipy 1.16.3 / sklearn 1.6.1, and OpenDota HTTP 200.
+- Added explicit Kaggle-first detection and a regression test, without changing any data, features, models, split or evaluation logic.

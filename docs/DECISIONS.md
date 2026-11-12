@@ -43,3 +43,9 @@
 **Observed failure:** first full Kaggle run reached Setup but failed with a NumPy/SciPy binary mismatch after `pip install` replaced packages inside Kaggle Python 3.13. No 500-match empirical evaluation occurred.
 **Decision:** use Kaggle's preinstalled scientific stack and record its actual versions. Colab installs the notebook's inline-pinned analysis requirements; local installs `requirements.txt`. Do not claim bitwise numerical identity across different cloud base images until verified.
 **Status:** corrected in notebook; real Kaggle retry pending.
+
+## ADR-009 — Kaggle runtime detection takes precedence over Colab release tag (2026-11-13)
+**Observed evidence:** the Kaggle Python 3.13 kernel sets both `KAGGLE_KERNEL_RUN_TYPE` and `COLAB_RELEASE_TAG`. The latter is not a reliable discriminator for Colab. Clean Kaggle environment imported numpy 2.1.3 / scipy 1.16.3 / sklearn 1.6.1 and fetched OpenDota correctly.
+**Decision:** detect Kaggle first; only treat the environment as Colab when Kaggle detection is false. This prevents in-kernel binary reinstallation in Kaggle while preserving Colab's separate setup logic.
+**Test:** `test_kaggle_detection_overrides_colab_release_tag` includes the contradictory flags from the actual environment.
+**Status:** corrected and offline-verified; full Kaggle rerun pending.
