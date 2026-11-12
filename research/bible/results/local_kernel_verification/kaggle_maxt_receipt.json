@@ -1,0 +1,21 @@
+{
+  "mode": "maxt",
+  "no_model_fit": true,
+  "not_new_blind_data": true,
+  "numpy_version": "2.2.6",
+  "pandas_version": "2.3.3",
+  "python_version": "3.12.3",
+  "results": {
+    "all_28_ci_parity": true,
+    "bootstrap_draws": 5000,
+    "independence_of_38_trials_not_claimed": true,
+    "known_trial_attempts": 38,
+    "model_familywise95_multiplier": 3.07903357469895,
+    "verified_comparisons": 28
+  },
+  "run_location": "local",
+  "seed": 20261113,
+  "source_known_trial_ledger_sha256": "2f2668c0c1d94b17499a7d0db1f154e6c8597778a5318f038e3220b5fe0429cd",
+  "source_prediction_sha256": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
+  "status": "PASS"
+}

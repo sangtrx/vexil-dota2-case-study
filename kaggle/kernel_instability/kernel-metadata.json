@@ -1,0 +1,16 @@
+{
+  "code_file": "vexil-bible-selection-instability-20261113.ipynb",
+  "competition_sources": [],
+  "dataset_sources": [
+    "sangtruong/vexil-bible-development-qa-20261113"
+  ],
+  "enable_gpu": "false",
+  "enable_internet": "false",
+  "id": "sangtruong/vexil-bible-selection-instability-20261113",
+  "is_private": "true",
+  "kernel_sources": [],
+  "kernel_type": "notebook",
+  "language": "python",
+  "model_sources": [],
+  "title": "Vexil Bible Selection Instability 20261113"
+}

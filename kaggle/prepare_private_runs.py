@@ -25,8 +25,8 @@ MODES={
 def sha(x):
     return hashlib.sha256(x.read_bytes()).hexdigest()
 
-def cell(source,kind="code"):
-    base={"cell_type":kind,"metadata":{},"source":source.splitlines(keepends=True)}
+def cell(source,kind="code",cell_id="audit"):
+    base={"cell_type":kind,"id":cell_id,"metadata":{},"source":source.splitlines(keepends=True)}
     if kind=="code":
         base.update(execution_count=None,outputs=[])
     return base
@@ -65,7 +65,7 @@ assert receipt["source_prediction_sha256"] == sha256
 print(json.dumps(receipt, indent=2, sort_keys=True))
 """
     return {
-        "cells":[cell(intro,"markdown"),cell(code)],
+        "cells":[cell(intro,"markdown",mode+"-intro"),cell(code,cell_id=mode+"-audit")],
         "metadata":{"kernelspec":{"display_name":"Python 3","language":"python","name":"python3"},
                     "language_info":{"name":"python","version":"3.12"}},
         "nbformat":4,"nbformat_minor":5

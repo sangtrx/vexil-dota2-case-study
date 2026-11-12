@@ -1,0 +1,23 @@
+{
+  "mode": "scores",
+  "no_model_fit": true,
+  "not_new_blind_data": true,
+  "numpy_version": "2.2.6",
+  "pandas_version": "2.3.3",
+  "python_version": "3.12.3",
+  "results": {
+    "M1_ll": 0.5193456503081975,
+    "P20_ll": 0.5140978227902169,
+    "P20_minus_M1": -0.005247827517980682,
+    "minute_rows": 3784,
+    "original_validation_matches": 103,
+    "verified_model_scores": 58,
+    "verified_models": 29,
+    "verified_phase_rows": 145
+  },
+  "run_location": "local",
+  "seed": 20261113,
+  "source_known_trial_ledger_sha256": "2f2668c0c1d94b17499a7d0db1f154e6c8597778a5318f038e3220b5fe0429cd",
+  "source_prediction_sha256": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
+  "status": "PASS"
+}

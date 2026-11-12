@@ -1,0 +1,14 @@
+{
+  "disclaimer": "Includes overlapping/repeated families and reused validation. Not an estimate of N_eff; does not certify all historical attempts.",
+  "documented_trial_evaluation_records": 38,
+  "independent_trials_estimated": null,
+  "not_a_closed_search_family": true,
+  "sources": [
+    "https://github.com/sangtrx/vexil-dota2-win-probability/pull/3",
+    "https://github.com/sangtrx/vexil-dota2-win-probability/pull/4",
+    "https://github.com/sangtrx/vexil-dota2-win-probability/pull/5",
+    "https://github.com/sangtrx/vexil-dota2-win-probability/pull/4",
+    "https://github.com/sangtrx/vexil-dota2-win-probability/pull/6"
+  ],
+  "unknown_unrecorded_trials": true
+}
