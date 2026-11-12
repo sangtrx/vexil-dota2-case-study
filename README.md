@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** research and repository setup (not submission-ready yet). The final deliverable will be a single fully executed notebook and a report of at most four pages.
+**Status:** notebook implementation and 11 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
 
 ## Submission contract
 
@@ -27,13 +27,17 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (~50/minute), and caches fetched payloads during execution. No credentials or local data files are required. A fresh run is expected to take materially longer than subsequent cells because of API pacing.
 
+## Offline checks
+
+Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local environment to verify point-in-time invariance, split boundaries and paired match-bootstrap behavior without network calls. The notebook has additionally passed a separate end-to-end synthetic integration smoke test. Neither establishes model quality on real matches.
+
 ## Kaggle execution
 
-Kaggle is the primary experiment runtime, but **GitHub is authoritative for source and review history**. A private Kaggle kernel will be configured with **internet enabled** and CPU execution; the OpenDota API reachability must pass a smoke test before any full pull. Syncing is done with `kaggle kernels push` / `pull`; only vetted notebook checkpoints are committed to GitHub. No GPU is required.
+Kaggle is the primary experiment runtime, but **GitHub is authoritative for source and review history**. A private Kaggle CPU kernel using one authorized account successfully fetched an OpenDota pro-match page over the Internet (HTTP 200, 100 matches). A 500-match job has been submitted for initial collection; its result remains unverified until execution completes. Syncing is done with `kaggle kernels push` / `pull`; only vetted notebook checkpoints are committed to GitHub. No GPU is required.
 
 ## Research design
 
-See [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md), [docs/DECISIONS.md](docs/DECISIONS.md), and [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md).
+See [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md), [docs/DECISIONS.md](docs/DECISIONS.md), [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md), and [docs/REVIEW_NOTES.md](docs/REVIEW_NOTES.md).
 
 **Submission deadline:** Thursday, 19 November 2026. Questions or extension requests: Long at long@vexil.capital.
 

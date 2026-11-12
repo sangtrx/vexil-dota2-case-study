@@ -14,7 +14,7 @@ Only call:
 - https://api.opendota.com/api/proMatches, with less_than_match_id pagination
 - https://api.opendota.com/api/matches/{match_id}
 
-A match is usable when radiant_gold_adv exists and match duration is at least 600 seconds. Fetch enough candidates to retain exactly 500 usable matches. Record all exclusions and API retries. Validate labels, timestamps, per-minute lengths, patch and series_id. Select matches spanning at least one patch boundary. Display the full (match_id, start_time, patch) manifest in the notebook.
+A match is usable when radiant_gold_adv exists and match duration is at least 600 seconds. Fetch enough candidates to retain exactly 500 usable matches. Record all exclusions and API retries. Validate labels, timestamps, per-minute lengths, patch and series_id. Select a contiguous 500-usable-match window spanning at least two known patches, with at least 20 matches in each of two patches, without conditioning on the winner. The collection code pages backward until such a window exists; this minimum is a pre-results representativeness rule, not a Vexil requirement. Display the full (match_id, start_time, patch) manifest in the notebook.
 
 Rate-limit globally to approximately 50 calls/minute without an API key, handle 429 / 5xx with bounded exponential backoff and jitter, and memoize requests in RAM or temporary runtime disk. Never commit raw match payloads. Because /proMatches is a moving recent-match feed, after the initial discovery freeze an upper-bound match-ID cursor and a deterministic match-ID manifest **inside the notebook source**. On rerun, still use the two OpenDota endpoints to verify provenance and fetch payloads; no external data file. Document potential server-side reparse/backfill drift rather than promise impossible bitwise reproducibility.
 
@@ -26,7 +26,7 @@ Define t as integer game minute, with snapshot at 60*t seconds. At minute t:
 - Do NOT use final net worth, final kills/tower kills, future objectives, win result as a feature, or full-match duration as a predictor.
 - Use final duration only to know which minute snapshots exist; never supply it to the model.
 
-Candidate snapshot features: gold lead (thousands), XP lead (thousands), minute, signed 5-minute gold/XP change, lagged gold lead, tower and barracks differential from observed objective events, Roshan differential and recency, kill-event differential. Respect missing-field policy; never fill a missing value from future game state. If objective event schema is inconsistent, exclude that feature or document a fixed time-safe fallback, not ad-hoc manual editing.
+Candidate snapshot features implemented in the notebook: gold lead (thousands), XP lead (thousands), minute, gold × log elapsed time, five-minute gold/XP changes, timestamp-filtered tower/barracks differential, Roshan differential and kill-log differential. Respect missing-field policy; never fill a missing value from future game state. If objective event schema is inconsistent, exclude that feature or document a fixed time-safe fallback, not ad-hoc manual editing.
 
 Invariants to test:
 1. Truncating all series after t and filtering all events after t does not change the feature row at t.
@@ -45,7 +45,7 @@ Document actual match and row counts, unique series, win rates, duration and pat
 
 **Required baseline:** regularized logistic regression with ONLY current gold lead as an input. Feature scaling is allowed. Do not include minute or derived features in the baseline.
 
-**Proposed model:** small, interpretable regularized logistic regression with predeclared time-safe features and an optional gold-lead x game-time interaction. Favor a controlled research ladder over a large model:
+**Proposed model:** small, interpretable regularized logistic regression with predeclared time-safe features and a gold-lead x game-time interaction. Favor a controlled research ladder over a large model:
 - M0: gold-only baseline
 - M1: gold + elapsed time and interaction (is an equal gold lead worth the same at minute 10 and minute 40?)
 - M2: M1 + XP and 5-minute gold/XP momentum (does economic velocity signal fragility/comebacks?)
@@ -103,3 +103,7 @@ Root-level notebook path: live_dota2_win_probability.ipynb. The setup cell handl
 - Kaggle kernel metadata: https://github.com/Kaggle/kaggle-cli/blob/main/docs/kernels_metadata.md
 - Kaggle notebooks: https://www.kaggle.com/docs/notebooks
 - scikit-learn calibration: https://scikit-learn.org/stable/modules/calibration
+
+## Source-informed methodological scope (Bible v1.4.1)
+
+This project estimates *conditional game-win probabilities*, not returns, market prices, executable fills or a betting strategy. Following Bible §§1.2–1.4 and 12.1, freeze a small null/alternative family and preserve negative ablations. Bible §§3.1–3.7 and 13.2 motivate prefix and poisoned-future invariance checks, with a caveat: retrospective OpenDota event timestamps do not prove historical network receipt times. Bible §§4.3, 5.1–5.6 and 6.5 motivate chronological, series-safe splitting and whole-match paired bootstrap. Bible §§7.2–7.7 motivate reliability curves alongside proper loss scores. Theory Reading Paths: choose the null and falsifier before the model. The private reference is used as methodology, not copied as implementation.
