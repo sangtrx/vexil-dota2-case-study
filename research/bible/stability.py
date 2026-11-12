@@ -201,6 +201,19 @@ def main():
     ranking,llmatch,brmatch=weighted_metrics(data,ll,br)
     blocks=block_stability(llmatch,group)
     cscv=cscv_style_rank_reversal(llmatch)
+    # 20 directional folds are only TEN complementary pairs.
+    # Pair label is canonical: earlier of the two 3-block masks.
+    def pair_key(block_text):
+        selected=tuple(sorted(int(x) for x in block_text.split(",")))
+        other=tuple(sorted(set(range(1,7))-set(selected)))
+        return ",".join(map(str,min(selected,other)))
+    cscv["complement_pair"]=cscv.in_sample_blocks.map(pair_key)
+    pairs=cscv.groupby("complement_pair",sort=True).agg(
+        directions=("split","size"),
+        directions_selected_worse_M1=("OOS_winner_minus_M1",lambda x:int((x>0).sum())),
+        directions_rank_below_median=("worse_than_panel_median","sum")
+    ).reset_index()
+    assert len(pairs)==10 and pairs.directions.eq(2).all()
     oob=oob_stability(data,ll)
     per_match,per_series,phases=p20_influence(data,ll,br)
     assert len(cscv)==20 and len(oob)==BOOT and len(ranking)==29
@@ -213,6 +226,7 @@ def main():
         "time_blocks.csv":group,
         "block_model_scores.csv":blocks,
         "cscv_20_selections.csv":cscv,
+        "cscv_10_complementary_pairs.csv":pairs,
         "series_oob_3000_selection.csv":oob,
         "p20_match_influence.csv":per_match,
         "p20_series_influence.csv":per_series,
@@ -231,11 +245,24 @@ def main():
         "seed":SEED,"group_bootstrap_draws":BOOT,"models":len(MODEL_IDS),
         "validation_games":data.match_id.nunique(),"validation_series":len(group),
         "validation_minute_rows":len(data),
+        "audit_source_sha256":sha(Path(__file__)),
         "cscv_style_split_count":len(cscv),
+        "cscv_complementary_pair_count":len(pairs),
         "cscv_style_worse_half_count":int(cscv.worse_than_panel_median.sum()),
         "cscv_style_worse_half_fraction":float(cscv.worse_than_panel_median.mean()),
         "cscv_style_selected_worse_than_m1_fraction":float((cscv.OOS_winner_minus_M1>0).mean()),
         "oob_selected_worse_than_m1_fraction":float(oob.OOB_winner_worse_M1.mean()),
+        "oob_selected_worse_given_non_m1":float(
+            oob.loc[oob.winner_IS!="M1_time_value","OOB_winner_worse_M1"].mean()),
+        "oob_m1_selected_count":int((oob.winner_IS=="M1_time_value").sum()),
+        "oob_non_m1_selection_count":int((oob.winner_IS!="M1_time_value").sum()),
+        "oob_delta_ll_mean":float(oob.OOB_winner_minus_M1.mean()),
+        "oob_delta_ll_median":float(oob.OOB_winner_minus_M1.median()),
+        "oob_delta_ll_q05":float(oob.OOB_winner_minus_M1.quantile(.05)),
+        "oob_delta_ll_q95":float(oob.OOB_winner_minus_M1.quantile(.95)),
+        "oob_conditional_rate_naive_mc_se_not_population_se":float(
+            np.sqrt(oob.OOB_winner_worse_M1.mean()*
+                    (1-oob.OOB_winner_worse_M1.mean())/len(oob))),
         "oob_p20_is_selected_frequency":float((oob.winner_IS=="P20").mean()),
         "oob_m1_is_selected_frequency":float((oob.winner_IS=="M1_time_value").mean()),
         "p20_leave_one_series_out_dll_min":float(per_series.leave_series_out_dll.min()),
