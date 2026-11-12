@@ -52,8 +52,8 @@ Candidate M1 + both features (5 features).
 S3, LEAD FRAGILITY / PATH DEPENDENCE:
   relative_shock5 = (gold_adv[t]-gold_adv[max(0,t-5)])/
                     (abs(gold_adv[t])+3000)
-  gold_lead_stability10 = sign(gold_adv[t])*mean(sign(gold_adv[s]))
-                         for s in [max(0,t-9),...,t]
+  signed_lead_persistence10 = mean(sign(gold_adv[s]))
+                              for s in [max(0,t-9),...,t]
 A persistent lead differs from a recently reversed or contested lead,
 even at the same point estimate. The normalization prevents larger economic
 states from mechanically generating larger shocks. Candidate M1 + both (5).
