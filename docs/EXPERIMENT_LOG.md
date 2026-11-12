@@ -21,9 +21,9 @@ Once the final candidate is selected on validation, do not tune it or rerun feat
 
 ### Engineering verification checkpoint — 2026-11-13
 
-- 11/14 offline contract tests passed; synthetic end-to-end smoke passed. Synthetic loss numbers are not retained as empirical evidence.
+- 16/16 offline contract tests passed; synthetic end-to-end smoke passed. Synthetic loss numbers are not retained as empirical evidence.
 - Private Kaggle CPU smoke on one account printed `OPEN_DOTA_KAGGLE_SMOKE_PASS 200 100`.
-- The complete 500-match run was launched on Kaggle, with final eligibility/patch manifest and held-out metrics pending; no claim of model superiority is justified yet.
+- The first full-payload scan was interrupted before it produced empirical results; the patch-metadata-only preflight justified a more API-efficient sample definition.
 
 ### Environment incident — first full Kaggle attempt
 
@@ -36,3 +36,9 @@ Once the final candidate is selected on validation, do not tune it or rerun feat
 - Second attempt failed at Setup because Kaggle reported `COLAB_RELEASE_TAG`, incorrectly activating Colab package installation.
 - Isolated private Kaggle environment smoke test showed both Kaggle and Colab flags, base versions numpy 2.1.3 / scipy 1.16.3 / sklearn 1.6.1, and OpenDota HTTP 200.
 - Added explicit Kaggle-first detection and a regression test, without changing any data, features, models, split or evaluation logic.
+
+### Patch metadata discovery — 2026-11-13, before model outcomes
+- A bounded page scan of 30 proMatches pages sampled patch 60 throughout June–November 2026; the last 500 games would not cover a patch transition.
+- Stopped our original exploratory Kaggle run and removed its scratch kernel before seeing results. The earlier plan would have fetched thousands of unnecessary full matches.
+- Recorded a preregistered, label-blind 250/250 patch-boundary cohort instead, preserving model candidates and held-out protocol. The resulting selection does **not** estimate performance over all contemporary professional matches.
+- Unit tests for bounded discovery, exact equal patch counts and eligibility passed. Real dataset construction remains unverified.

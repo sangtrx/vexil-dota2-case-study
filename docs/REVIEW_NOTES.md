@@ -4,7 +4,7 @@ Status: development protocol and synthetic smoke tests complete; no 500-match re
 
 ## Priority 0 — block submission
 
-1. **Deterministic dataset:** verify 500 eligible parsed professional matches, span at least two patches (at least 20 matches on each of two patches), freeze all 500 IDs in notebook source, and rerun once from a clean cache. Retain exclusions and source-drift caveats. A moving recent-match feed cannot support exact reproducibility. *Methodology: Bible v1.4.1 §§3.1–3.6, 14.1–14.2.*
+1. **Deterministic dataset:** verify 500 eligible parsed professional matches, span two adjacent patch cohorts of 250 eligible games each, freeze all 500 IDs in notebook source, and rerun once from a clean cache. Retain exclusions and source-drift caveats. A moving recent-match feed cannot support exact reproducibility. *Methodology: Bible v1.4.1 §§3.1–3.6, 14.1–14.2.*
 2. **Information-time semantics:** run prefix truncation and poisoned-future checks on real matches; confirm event types and side conventions from raw objective examples; never use final totals, result or duration as a feature. OpenDota retrospective event times meet the brief's stated information convention but do not establish true historical network receive times. *Methodology: §§3.1–3.3, 13.2, 14.3.*
 3. **Series-aware chronology:** ensure no match or series crosses partitions and only train fits transforms. The late holdout stays inaccessible to model selection. *Methodology: §§4.3, 5.1–5.6.*
 4. **Live notebook execution:** prove one-account Kaggle CPU/private Internet reachability and then run the exact notebook with output saved. Fresh Colab and laptop Run All must also work, using only allowed API endpoints and no existing cache, keys or local data files. *Methodology: §§14.1–14.2, 14.8.*
@@ -25,8 +25,8 @@ Status: development protocol and synthetic smoke tests complete; no 500-match re
 
 - OpenDota smoke: two permitted endpoints return data. The latest pro match was unparsed; a neighboring parsed match contained gold/XP arrays and heterogeneous objective events. This demonstrates why eligibility filtering and event schema tests are mandatory.
 - An offline synthetic end-to-end execution covered feature extraction, 3-way series-safe split, four predeclared models, log loss/Brier, paired cluster bootstrap and both reliability plots. **Synthetic metrics are not empirical results** and are excluded from the report.
-- 14 offline contract tests pass, including pre-horn and exact-minute event boundaries, counterfactual future-data poisoning, label changes, allowed endpoints, split disjointness, baseline feature count, paired bootstrap and requirements parity.
-- Remaining blockers: frozen real 500-match manifest, Kaggle in-kernel network smoke, real held-out scores, saved real outputs, fresh Colab/laptop acceptance and final report.
+- 16 offline contract tests pass, including pre-horn and exact-minute event boundaries, counterfactual future-data poisoning, label changes, allowed endpoints, split disjointness, baseline feature count, paired bootstrap and requirements parity.
+- Remaining blockers: frozen real 500-match manifest, Kaggle final 500-match execution, real held-out scores, saved real outputs, fresh Colab/laptop acceptance and final report.
 
 ## References
 

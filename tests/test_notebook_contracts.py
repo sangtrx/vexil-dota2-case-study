@@ -45,7 +45,7 @@ def load_definitions() -> dict:
                 nodes.append(node)
             elif isinstance(node, ast.Assign):
                 names = [t.id for t in node.targets if isinstance(t, ast.Name)]
-                if any(n in {"BASE_URL", "N_MATCHES", "MIN_PATCH_COUNT",
+                if any(n in {"BASE_URL", "N_MATCHES", "COHORT_N",
                              "MAX_PRO_PAGES", "FROZEN_MATCH_IDS",
                              "FEATURE_COLUMNS", "SETS"} for n in names):
                     nodes.append(node)
@@ -107,11 +107,12 @@ class NotebookContractsTest(unittest.TestCase):
         required = set((ROOT/"requirements.txt").read_text().split())
         self.assertTrue(pins.issubset(required))
 
-    def test_patch_coverage_requires_two_supported_patches(self):
+    def test_patch_coverage_requires_exact_two_equal_cohorts(self):
         f=N["patch_coverage_ok"]
         self.assertFalse(f([{"patch":60}]*499 + [{"patch":59}]))
-        self.assertTrue(f([{"patch":60}]*480 + [{"patch":59}]*20))
-        self.assertTrue(f([{"patch":60}]*479 + [{"patch":59}]*20 + [{"patch":58}]))
+        self.assertFalse(f([{"patch":60}]*480 + [{"patch":59}]*20))
+        self.assertTrue(f([{"patch":60}]*250 + [{"patch":59}]*250))
+        self.assertFalse(f([{"patch":60}]*200 + [{"patch":59}]*200 + [{"patch":58}]*100))
 
     def test_forbidden_endpoint_is_rejected_pre_network(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -226,21 +227,58 @@ class NotebookContractsTest(unittest.TestCase):
             self.assertEqual(api.cache_hits,1)
 
     def test_unparsed_matches_are_excluded_before_selection(self):
-        old_n, old_min = N["N_MATCHES"], N["MIN_PATCH_COUNT"]
-        N["N_MATCHES"], N["MIN_PATCH_COUNT"] = 4, 1
+        old_n, old_cohort = N["N_MATCHES"], N["COHORT_N"]
+        N["N_MATCHES"], N["COHORT_N"] = 4, 2
         class FakeApi:
+            def __init__(self):
+                self.calls = 0
+                self.details_seen = []
             def get(self, path, params=None):
-                if path == "/proMatches": return [{"match_id":i} for i in (7,6,5,4,3)]
+                self.calls += 1
+                if path == "/proMatches":
+                    if not params:
+                        return [{"match_id":i} for i in (9,8,7)]
+                    return [{"match_id":i} for i in (6,5,4,3)]
                 i = int(path.rsplit("/",1)[-1])
-                if i == 7: return {"match_id":7, "duration":1800, "radiant_win":True, "radiant_gold_adv":None}
+                self.details_seen.append(i)
+                if i == 6:
+                    return {"match_id":6, "duration":1800, "radiant_win":True, "radiant_gold_adv":None}
                 return {"match_id":i,"duration":1800,"radiant_win":bool(i%2),
-                        "radiant_gold_adv":[0,100],"patch":60 if i in (6,5) else 59}
+                        "radiant_gold_adv":[0,100], "patch":60 if i>=7 else 59}
         try:
-            selected, exclusions = N["collect_matches"](FakeApi())
-            self.assertEqual([m["match_id"] for m in selected], [6,5,4,3])
-            self.assertEqual(exclusions, [(7,"unparsed_or_too_short")])
+            api=FakeApi()
+            selected, exclusions = N["collect_matches"](api)
+            self.assertEqual(set(m["match_id"] for m in selected), {4,5,7,8})
+            self.assertTrue(any(mid == 6 for mid,reason in exclusions))
+            self.assertTrue(N["patch_coverage_ok"](selected))
+            # Discovery probes only the first valid match per page (or at most 3).
+            self.assertLessEqual(api.calls, 12)
         finally:
-            N["N_MATCHES"], N["MIN_PATCH_COUNT"] = old_n, old_min
+            N["N_MATCHES"], N["COHORT_N"] = old_n, old_cohort
+
+    def test_patch_discovery_avoids_full_payload_scan(self):
+        old_n, old_cohort = N["N_MATCHES"], N["COHORT_N"]
+        N["N_MATCHES"], N["COHORT_N"] = 4, 2
+        class FakeApi:
+            def __init__(self): self.details_seen=[]; self.calls=0
+            def get(self,path,params=None):
+                self.calls += 1
+                if path=="/proMatches":
+                    if not params:
+                        return [{"match_id":i} for i in range(200,100,-1)]
+                    return [{"match_id":i} for i in range(100,0,-1)]
+                i=int(path.rsplit("/",1)[-1])
+                self.details_seen.append(i)
+                return {"match_id":i,"duration":1200,"radiant_win":bool(i%2),
+                        "radiant_gold_adv":[0,10],"patch":60 if i>100 else 59}
+        try:
+            api=FakeApi()
+            selected,_=N["collect_matches"](api)
+            self.assertEqual(set(m["patch"] for m in selected),{59,60})
+            self.assertLess(len(api.details_seen),20)
+        finally:
+            N["N_MATCHES"], N["COHORT_N"] = old_n, old_cohort
+
 
     def test_short_gold_array_uses_only_last_available_past_snapshot(self):
         m = match_fixture()

@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** notebook implementation and 14 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
+**Status:** notebook implementation and 16 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
 
 ## Submission contract
 
@@ -33,7 +33,7 @@ Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local enviro
 
 ## Kaggle execution
 
-Kaggle is the primary experiment runtime, but **GitHub is authoritative for source and review history**. A private Kaggle CPU kernel using one authorized account successfully fetched an OpenDota pro-match page over the Internet (HTTP 200, 100 matches). A 500-match job has been submitted for initial collection; its result remains unverified until execution completes. Syncing is done with `kaggle kernels push` / `pull`; only vetted notebook checkpoints are committed to GitHub. No GPU is required.
+Kaggle is the primary experiment runtime, but **GitHub is authoritative for source and review history**. A private Kaggle CPU kernel using one authorized account successfully fetched an OpenDota pro-match page over the Internet (HTTP 200, 100 matches). An initial full-payload crawl was stopped before reaching the patch boundary. The revised implementation identifies the boundary from a few label-blind probes per page and then fetches a balanced 250/250 two-patch cohort. Its real run is not yet verified. Syncing is done with `kaggle kernels push` / `pull`; only vetted notebook checkpoints are committed to GitHub. No GPU is required.
 
 ## Research design
 

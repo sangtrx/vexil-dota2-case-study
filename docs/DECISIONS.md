@@ -4,7 +4,7 @@
 **Decision:** one source notebook in GitHub; private Kaggle kernel is an execution mirror. No copy-paste forks, cloud-only changes, or GPU dependency.
 **Why:** the evaluator receives GitHub with outputs and must be able to rerun on Colab/local. Kaggle version history is not a substitute for reviewable Git commits.
 **Verification:** Kaggle Internet/API smoke test is mandatory before the 500-match pull.
-**Status:** implemented; one-authorized-account Kaggle CPU/Internet smoke passed; full 500-match run still in progress.
+**Status:** implemented; one-account Kaggle CPU/Internet smoke passed; original full scan stopped, revised collection pending.
 
 ## ADR-002 — Series-purged chronological holdout (2026-11-13)
 **Decision:** hold out the most recent roughly 100 matches; tune on preceding ~100; train on earliest ~300; never split a best-of series.
@@ -19,7 +19,7 @@
 **Status:** planned.
 
 ## ADR-004 — Deterministic upstream selection (2026-11-13)
-**Decision:** freeze 500 selected match IDs in notebook source after an initial patch-aware contiguous-window pull (at least 20 matches in each of two known patches); still fetch data through only two allowed OpenDota endpoints.
+**Decision:** freeze 500 selected match IDs in notebook source after selecting 250 eligible matches from each of two chronologically adjacent patch cohorts around the first observed patch transition; only the two allowed OpenDota endpoints are used.
 **Why:** live recent-match pagination changes as new matches arrive. Reproducibility cannot rely on 'the most recent 500' changing daily.
 **Caveat:** OpenDota may reparse matches; document source drift and content checksums if feasible.
 **Status:** planned, contingent on initial collection.
@@ -49,3 +49,10 @@
 **Decision:** detect Kaggle first; only treat the environment as Colab when Kaggle detection is false. This prevents in-kernel binary reinstallation in Kaggle while preserving Colab's separate setup logic.
 **Test:** `test_kaggle_detection_overrides_colab_release_tag` includes the contradictory flags from the actual environment.
 **Status:** corrected and offline-verified; full Kaggle rerun pending.
+
+## ADR-010 — Patch boundary discovery before payload collection (2026-11-13)
+**Evidence:** A 30-page proMatches metadata preflight, covering roughly 3,000 recent professional games from June–November 2026, still sampled patch 60. We did not use outcomes or model scores.
+**Decision:** find the first observed transition using up to three parsed-match detail probes per page. Then select the nearest 250 eligible matches on each side of two adjacent patch cohorts. This is an outcome-blind patch-transition sample, **not a representative random sample of present-day pro games**; report that limitation.
+**Recovery:** deleted only our scratch Kaggle kernel for the unproductive full-payload scan before it produced model results, avoiding unnecessary unauthenticated OpenDota API requests.
+**Verification:** 16 offline tests include patch discovery and bounded detail calls. Full 500-match acceptance pending.
+**Bible:** v1.4.1 §§1.2–1.4, 3.1–3.6, 5.1–5.6, 14.1.
