@@ -208,5 +208,47 @@ class NotebookContractsTest(unittest.TestCase):
         self.assertAlmostEqual(model["log_loss"], 0.3)
         self.assertAlmostEqual(baseline["log_loss"], 0.4)
 
+    def test_cache_reuses_payload_without_second_http_call(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api = N["OpenDota"](cache_dir=tmp, interval=0)
+            calls = []
+            class Response:
+                status_code = 200
+                def raise_for_status(self): pass
+                def json(self): return [{"match_id": 123}]
+            def fake_get(url, params, timeout):
+                calls.append((url,params))
+                return Response()
+            api.session.get = fake_get
+            self.assertEqual(api.get("/proMatches"), [{"match_id":123}])
+            self.assertEqual(api.get("/proMatches"), [{"match_id":123}])
+            self.assertEqual(len(calls),1)
+            self.assertEqual(api.cache_hits,1)
+
+    def test_unparsed_matches_are_excluded_before_selection(self):
+        old_n, old_min = N["N_MATCHES"], N["MIN_PATCH_COUNT"]
+        N["N_MATCHES"], N["MIN_PATCH_COUNT"] = 4, 1
+        class FakeApi:
+            def get(self, path, params=None):
+                if path == "/proMatches": return [{"match_id":i} for i in (7,6,5,4,3)]
+                i = int(path.rsplit("/",1)[-1])
+                if i == 7: return {"match_id":7, "duration":1800, "radiant_win":True, "radiant_gold_adv":None}
+                return {"match_id":i,"duration":1800,"radiant_win":bool(i%2),
+                        "radiant_gold_adv":[0,100],"patch":60 if i in (6,5) else 59}
+        try:
+            selected, exclusions = N["collect_matches"](FakeApi())
+            self.assertEqual([m["match_id"] for m in selected], [6,5,4,3])
+            self.assertEqual(exclusions, [(7,"unparsed_or_too_short")])
+        finally:
+            N["N_MATCHES"], N["MIN_PATCH_COUNT"] = old_n, old_min
+
+    def test_short_gold_array_uses_only_last_available_past_snapshot(self):
+        m = match_fixture()
+        m["radiant_gold_adv"] = m["radiant_gold_adv"][:11]
+        at20 = N["snapshot_features"](m,20)
+        self.assertEqual(at20["gold_k"],1.2)
+        N["assert_same_features"](at20,N["snapshot_features"](N["prefix_truncated"](m,20),20))
+
+
 if __name__ == "__main__":
     unittest.main()
