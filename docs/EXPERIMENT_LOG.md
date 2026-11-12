@@ -54,4 +54,14 @@ Fixed game minute 20 and |gold lead| >=3,000. Compare eventual leader-loss rates
 - The unfrozen data-selection run on Kaggle is a development-only run. Accept/reject the final model only under the previously specified validation protocol.
 
 ### PIT missingness invariant repair — 2026-11-13
-Independent review identified a potential data-quality problem. The feature extractor already represented missing event logs as unknown (NaN), but the adversarial prefix test fabricated empty lists for those missing fields. The test oracle is now semantically consistent; a new negative fixture proves that missing event data remains missing after past-only truncation. 24 offline tests pass. This is a correctness repair and not a model trial.
+Independent review identified a potential data-quality problem. The feature extractor already represented missing event logs as unknown (NaN), but the adversarial prefix test fabricated empty lists for those missing fields. The test oracle is now semantically consistent; a new negative fixture proves that missing event data remains missing after past-only truncation. 26 offline tests pass. This is a correctness repair and not a model trial.
+
+
+### E01 — Frozen data manifest, 2026-11-13 (before viewing held-out results)
+- Outcome-blind first patch boundary at proMatches page approximately 93, patches 59 → 60.
+- 500 usable distinct games; patch 59: 250 games dated 2026-03-21 through 2026-03-24; patch 60: 250 games dated 2026-03-24 through 2026-03-26.
+- 256 distinct positive series IDs across the 500 matches.
+- API calls 705 (49 cache hits), 46 nonselected candidates: 45 wrong-patch and one unparsed/short. No selection based on winner.
+- Ordered-ID SHA256: f2be53e16ae29df1f62aa9907187fdba846d9af9fb7a3f69e7dd7504be43b776.
+- All 500 IDs embedded in the notebook. 26 offline contract tests passed BEFORE any held-out metric was inspected.
+- Result and report remain pending. The March 2026 patch-transition sample is a specific historical evaluation, not an estimate for November 2026 professional games.

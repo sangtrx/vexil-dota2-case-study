@@ -62,7 +62,7 @@
 **Decision:** objectives=None produces NaN tower/barracks/Roshan features; missing player kill logs produce NaN kill differential. A present empty log is an observed zero. Keep the required gold-only baseline untouched; impute optional proposed-model columns only on training data.
 **Evidence:** an independent code audit identified silent zero-filling; new offline fixtures verify the distinction. A per-patch data-quality table reports optional-log coverage and the staleness of gold array tails.
 **Bible:** §§3.1–3.6 and 14.2.
-**Status:** 24 offline tests pass; still awaiting real-data coverage.
+**Status:** 26 offline tests pass; still awaiting real-data coverage.
 
 ## ADR-012 — Evaluate terminal sensitivity without changing the primary estimand (2026-11-13)
 **Decision:** score all requested minute snapshots as primary, and score again after excluding the last two recorded minutes of each held-out match as a labeled robustness analysis. Keep match-level paired bootstrap, no model refitting or tuning based on the sensitivity.
@@ -73,7 +73,7 @@
 ## ADR-013 — Missing-data semantics must survive the leakage oracle (2026-11-13)
 **Problem:** initial prefix truncation converted objectives=None and kills_log=None to empty arrays, which falsely changed absent information into observed-zero events. The PIT checker therefore used different missingness semantics from the production feature engine.
 **Change:** prefix truncation now filters only existing event lists, preserving None. Added a regression test asserting feature invariance for missing objectives/player-kill logs.
-**Evidence:** 24/24 offline tests pass. No model family, split boundary or data sample was altered.
+**Evidence:** 26/26 offline tests pass. No model family, split boundary or data sample was altered.
 **Bible:** §§3.1–3.6, 14.3.
 
 ## ADR-014 — Hash source payloads separately from the ID manifest (2026-11-13)
@@ -81,3 +81,17 @@
 **Why:** OpenDota may reparse an unchanged match ID, changing the feature values. A frozen manifest alone does not prove identical input data; a payload hash makes such changes observable.
 **Tests:** synthetic end-to-end Run All executes the hash code and produces a valid 64-character digest. Real-data acceptance remains pending.
 **Bible:** §§3.1–3.2, 14.1–14.2.
+
+
+## ADR-015 — Conservative one-account free API pacing (2026-11-13)
+**Observation:** the initial Kaggle bulk attempt exhausted bounded retries on one match, but a later Kaggle and BigLinux request for the same match returned HTTP 200. The cause could be a transient/shared-IP limit; no definitive HTTP 429 trace was retained.
+**Decision:** set the notebook to at most one request every 1.6 seconds (37.5/minute) and seven bounded retries, below the brief's approximate 50/minute guidance. Missing/unparsed snapshots are not permanently cached. This affects fetch reliability only, not sample rules, features or estimators.
+**Status:** implementation and unit tests pass; full frozen run remains to be verified.
+
+
+## ADR-016 — Frozen patch-boundary manifest accepted (2026-11-13)
+**Evidence:** A 500-unique-ID outcome-blind cohort from patches 59 (250) and 60 (250), spanning March 21–26, 2026, was verified and embedded in source before viewing held-out scores. This historical transition-focused sample does not represent the current professional match population.
+**Deterministic identity:** SHA256 f2be53e16ae29df1f62aa9907187fdba846d9af9fb7a3f69e7dd7504be43b776 over the ordered JSON match-ID list. The notebook separately records a content digest of the fetched payloads.
+**Selection accounting:** 705 API calls, 49 cache hits, 46 candidate exclusions (wrong patch 45, unparsed/short 1).
+**Code contract:** Frozen mode calls /matches/{id} only and refuses silent resampling when any match becomes unparseable. Two new offline tests establish this.
+**Status:** Accepted for test, but not submission-ready; independent Kaggle/Colab execution and report still pending.

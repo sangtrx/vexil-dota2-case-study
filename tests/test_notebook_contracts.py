@@ -397,6 +397,45 @@ class NotebookContractsTest(unittest.TestCase):
         finally:
             N["N_MATCHES"],N["COHORT_N"]=old_n,old_cohort
 
+    def test_frozen_manifest_fetches_only_500_named_matches_and_no_recent_feed(self):
+        old_n, old_cohort = N["N_MATCHES"], N["COHORT_N"]
+        N["N_MATCHES"], N["COHORT_N"] = 4, 2
+        class FrozenAPI:
+            def __init__(self):
+                self.paths = []
+            def get(self, path, params=None):
+                self.paths.append(path)
+                if path == "/proMatches":
+                    raise AssertionError("Frozen manifest must never page through a moving feed")
+                mid = int(path.rsplit("/", 1)[-1])
+                return {"match_id":mid, "duration":1200, "radiant_win":bool(mid%2),
+                        "radiant_gold_adv":[0, 10], "patch":59 if mid in (11,12) else 60}
+        try:
+            api=FrozenAPI()
+            matches, exclusions=N["collect_matches"](api, (11,12,13,14))
+            self.assertEqual(len(matches),4)
+            self.assertEqual(exclusions,[])
+            self.assertEqual(api.paths,["/matches/11","/matches/12","/matches/13","/matches/14"])
+            with self.assertRaises(ValueError):
+                N["collect_matches"](FrozenAPI(),(11,11,13,14))
+        finally:
+            N["N_MATCHES"], N["COHORT_N"] = old_n, old_cohort
+
+    def test_frozen_manifest_refuses_silent_replacement_of_unparsed_match(self):
+        old_n, old_cohort = N["N_MATCHES"], N["COHORT_N"]
+        N["N_MATCHES"], N["COHORT_N"] = 4, 2
+        class PartialAPI:
+            def get(self, path, params=None):
+                mid=int(path.rsplit("/",1)[-1])
+                return {"match_id":mid, "duration":1800, "radiant_win":bool(mid%2),
+                        "radiant_gold_adv":None if mid==12 else [0,50],
+                        "patch":59 if mid in (11,12) else 60}
+        try:
+            with self.assertRaisesRegex(ValueError, "unusable"):
+                N["collect_matches"](PartialAPI(),(11,12,13,14))
+        finally:
+            N["N_MATCHES"], N["COHORT_N"] = old_n, old_cohort
+
     def test_short_gold_array_uses_only_last_available_past_snapshot(self):
         m = match_fixture()
         m["radiant_gold_adv"] = m["radiant_gold_adv"][:11]
