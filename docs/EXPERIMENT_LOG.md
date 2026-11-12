@@ -91,3 +91,7 @@ After freezing the manifest and selecting the model, I ran a **feature-only** st
 
 ### E05 — Independent Kaggle scientific-output replication (2026-11-13)
 A private one-account Kaggle CPU Run All completed from a cold keyless OpenDota fetch on the fixed 500-ID manifest. Python 3.13.18 / numpy 2.1.3 / sklearn 1.6.1 reproduced all 3,837 held-out predictions to max absolute 4.44e-16 against the pinned BigLinux Python 3.12.3 / numpy 2.2.6 / sklearn 1.7.2 run. Validation (4 models), held-out bootstrap/phase scores (10 rows), terminal sensitivity (2 rows), comeback (2 rows) and match manifest (500 rows) also numerically matched to floating-point precision. The identical source-ID manifest hash was confirmed. The complete raw API JSON digest changed; a 10-match spot check observed auxiliary players.computed_mmr changes and stable gold/objective fields. We explicitly **do not** claim exact raw JSON identity. This audit did not alter any training, features, model selection or held-out results.
+
+
+### E06 — Report render-and-readability check (2026-11-13)
+Rendered the byte-identical committed REPORT.md to an A4 PDF for page-budget QA. Verified three readable pages, both analysis tables intact, section breaks and extracted numerical values consistent with the source. No scientific content or model result was altered. The preview remains external to the repository, not a substitute for the source report. Actual human work-time and hosted Colab acceptance remain outstanding.
