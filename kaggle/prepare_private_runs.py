@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import subprocess
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -19,7 +20,8 @@ EXPECTED_SHA="aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4"
 MODES={
     "scores":("Vexil Bible Proper Scores 20261113","vexil-bible-proper-scores-20261113"),
     "instability":("Vexil Bible Selection Instability 20261113","vexil-bible-selection-instability-20261113"),
-    "maxt":("Vexil Bible Familywise Audit 20261113","vexil-bible-familywise-audit-20261113")
+    "maxt":("Vexil Bible Familywise Audit 20261113","vexil-bible-familywise-audit-20261113"),
+    "chronology":("Vexil Bible Chronology Audit 20261113","vexil-bible-chronology-audit-20261113")
 }
 
 def sha(x):
@@ -31,7 +33,7 @@ def cell(source,kind="code",cell_id="audit"):
         base.update(execution_count=None,outputs=[])
     return base
 
-def notebook_for(mode):
+def notebook_for(mode,manifest_sha):
     title,slug=MODES[mode]
     intro=f"""# {title}
 
@@ -42,8 +44,8 @@ Source: private frozen dataset, original 291 train/103 validation split.
 All 28 new models failed the precommitted selection screen. Original
 M1 remains the take-home model.
 
-Quant Research Bible v1.4.1, reference commit:
-8e6374c8ac8c62da6611104555ce98f1cf40a528
+Numeric source and executable code are pinned by SHA-256.
+Not a hosted completion receipt until Kaggle reports COMPLETE.
 """
     code=f"""import hashlib, json, os, subprocess, sys
 from pathlib import Path
@@ -54,6 +56,13 @@ assert data.is_dir(), f"Attach PRIVATE Kaggle dataset {DATA_ID}, found {{data}}"
 src = data / "dev_validation_predictions_28.csv"
 sha256 = hashlib.sha256(src.read_bytes()).hexdigest()
 assert sha256 == {EXPECTED_SHA!r}, "Wrong data version; refuse to score"
+pack = data / "dataset_files_sha256.json"
+assert pack.is_file() and hashlib.sha256(pack.read_bytes()).hexdigest() == {manifest_sha!r}, "Dataset manifest drift"
+bundle = json.loads(pack.read_text())
+for filename, meta in bundle["files"].items():
+    item = data / filename
+    assert item.is_file(), f"Missing frozen source: {{filename}}"
+    assert hashlib.sha256(item.read_bytes()).hexdigest() == meta["sha256"], f"Source drift: {{filename}}"
 out = Path("/kaggle/working") if Path("/kaggle/working").is_dir() else Path(os.environ.get("VEXIL_BIBLE_OUTPUT", "/tmp/vexil-bible-qa"))
 out.mkdir(parents=True,exist_ok=True)
 script = data / "verify_bible.py"
@@ -85,6 +94,15 @@ def main():
         "series_oob_3000_selection.csv":ROOT/"research/bible/results/series_oob_3000_selection.csv",
         "validation_manifest_for_kaggle.csv":ROOT/"research/bible/results/validation_manifest_for_kaggle.csv",
         "known_trial_ledger.csv":ROOT/"research/bible/results/known_trial_ledger.csv",
+        "stability_receipt.json":ROOT/"research/bible/results/stability_receipt.json",
+        "stability.py":ROOT/"research/bible/stability.py",
+        "chronology_receipt.json":ROOT/"research/bible/results/chronology_receipt.json",
+        "time_blocks.csv":ROOT/"research/bible/results/time_blocks.csv",
+        "validation_approx_intervals.csv":ROOT/"research/bible/results/validation_approx_intervals.csv",
+        "series_approx_intervals.csv":ROOT/"research/bible/results/series_approx_intervals.csv",
+        "chronology_components.csv":ROOT/"research/bible/results/chronology_components.csv",
+        "old_six_bucket_overlap_audit.csv":ROOT/"research/bible/results/old_six_bucket_overlap_audit.csv",
+        "chronology_4component_scores.csv":ROOT/"research/bible/results/chronology_4component_scores.csv",
         "verify_bible.py":ROOT/"kaggle/verify_bible.py"
     }
     manifest={}
@@ -94,6 +112,17 @@ def main():
         shutil.copy2(src,dest)
         manifest[name]={"size":dest.stat().st_size,"sha256":sha(dest)}
     assert manifest["dev_validation_predictions_28.csv"]["sha256"]==EXPECTED_SHA
+    package={
+        "data_version":1,
+        "files":manifest,
+        "source_repository_head_at_packaging":subprocess.check_output(
+            ["git","-C",str(ROOT),"rev-parse","HEAD"],text=True).strip(),
+        "quant_bible_reference_head":"8e6374c8ac8c62da6611104555ce98f1cf40a528",
+        "claim":"retrospective previously-inspected development QA only"
+    }
+    packfile=dataset/"dataset_files_sha256.json"
+    packfile.write_text(json.dumps(package,sort_keys=True,indent=2)+"\n")
+    package_sha=sha(packfile)
     metadata={
         "title":"Vexil Bible Development QA 20261113",
         "subtitle":"Reproducibility evidence for a Dota research project",
@@ -107,7 +136,7 @@ def main():
         d=ROOT/"kaggle"/("kernel_"+mode)
         d.mkdir(parents=True,exist_ok=True)
         filename=slug+".ipynb"
-        (d/filename).write_text(json.dumps(notebook_for(mode),indent=1,ensure_ascii=False)+"\n")
+        (d/filename).write_text(json.dumps(notebook_for(mode,package_sha),indent=1,ensure_ascii=False)+"\n")
         km={
             "id":"sangtruong/"+slug,"title":title,
             "code_file":filename,
@@ -117,13 +146,17 @@ def main():
             "kernel_sources":[],"model_sources":[]
         }
         (d/"kernel-metadata.json").write_text(json.dumps(km,indent=2,sort_keys=True)+"\n")
-        out.append({"mode":mode,"kernel_slug":km["id"],"source_file":filename})
+        out.append({"mode":mode,"kernel_slug":km["id"],"source_file":filename,
+                    "notebook_sha256":sha(d/filename)})
     (stage/"dataset_files_sha256.json").write_text(json.dumps(manifest,indent=2,sort_keys=True)+"\n")
     (ROOT/"kaggle/hosted_run_manifest.json").write_text(json.dumps({
         "state":"PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED",
         "dataset":DATA_ID,"private":True,
         "enable_internet":False,"enable_gpu":False,
         "expected_source_prediction_sha256":EXPECTED_SHA,
+        "dataset_manifest_sha256":package_sha,
+        "packaged_from_git_head":package["source_repository_head_at_packaging"],
+        "verification_script_sha256":sha(ROOT/"kaggle/verify_bible.py"),
         "kernels":out,
         "local_stage":str(stage),
         "requires_new_user_authenticated_kaggle_cli":True,

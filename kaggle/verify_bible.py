@@ -10,6 +10,7 @@ import hashlib
 import itertools
 import json
 import platform
+import os
 import sys
 from pathlib import Path
 import numpy as np
@@ -24,6 +25,19 @@ def digest(p):
 
 def write_json(p,obj):
     Path(p).write_text(json.dumps(obj,sort_keys=True,indent=2)+"\n")
+
+def verify_bundle(path):
+    metadata=path/"dataset_files_sha256.json"
+    assert metadata.is_file(),"Missing immutable input manifest"
+    b=json.loads(metadata.read_text())
+    assert len(b["files"])>=10
+    for name,details in b["files"].items():
+        f=path/name
+        assert f.is_file(),name
+        assert digest(f)==details["sha256"],("input drift",name)
+    stability=json.loads((path/"stability_receipt.json").read_text())
+    assert stability["input_predictions_sha256"]==digest(path/"dev_validation_predictions_28.csv")
+    return b
 
 def load(path):
     df=pd.read_csv(path/"dev_validation_predictions_28.csv")
@@ -176,18 +190,86 @@ def maxt_mode(source,out):
                 all_28_ci_parity=True,known_trial_attempts=38,
                 independence_of_38_trials_not_claimed=True)
 
+def chronology_mode(source,out):
+    # Recompute the group/time overlap check from frozen 103-match
+    # metadata; no network, training or external test dataset.
+    matches=pd.read_csv(source/"validation_approx_intervals.csv")
+    series=pd.read_csv(source/"series_approx_intervals.csv")
+    expected_comp=pd.read_csv(source/"chronology_components.csv")
+    overlap=pd.read_csv(source/"old_six_bucket_overlap_audit.csv")
+    prior_scores=pd.read_csv(source/"chronology_4component_scores.csv")
+    timeblocks=pd.read_csv(source/"time_blocks.csv")
+    assert len(matches)==103 and len(series)==53
+    assert matches.match_id.nunique()==103 and len(expected_comp)==4
+    assert sorted(expected_comp.games.astype(int).tolist())==[2,3,36,62]
+    recompute=matches.groupby("key").agg(
+        first_start=("start_time","min"),
+        last_approx_end=("approx_end","max"),
+        games=("match_id","size")).reset_index()
+    for key in ("first_start","last_approx_end","games"):
+        aligned=recompute.set_index("key")[key].sort_index()
+        original=series.set_index("key")[key].sort_index()
+        assert np.array_equal(aligned.to_numpy(),original.to_numpy())
+    ordered=series.sort_values(["first_start","key"],kind="mergesort")
+    cid=[];last=-1;counter=0
+    for row in ordered.itertuples():
+        if row.first_start>last:
+            counter+=1
+        last=max(last,row.last_approx_end)
+        cid.append(counter)
+    assert counter==4
+    assert np.array_equal(np.asarray(cid),ordered.component.astype(int).to_numpy())
+    joined=series.merge(timeblocks[["key","block"]],on="key",validate="one_to_one")
+    overlaps=[]
+    for k in range(1,6):
+        prev=joined[joined.block==k]
+        later=joined[joined.block==k+1]
+        overlaps.append(int(prev.last_approx_end.max()>later.first_start.min()))
+    assert sum(overlaps)==4
+    assert np.array_equal(np.asarray(overlaps),overlap.intervals_overlap.astype(int))
+    df,_,ll,_=load(source)
+    vals=df.merge(matches[["match_id","key"]],on="match_id",validate="many_to_one")
+    vals=vals.merge(series[["key","component"]],on="key",validate="many_to_one")
+    assert len(vals)==3784
+    audited=[]
+    old=prior_scores.set_index(["component","model"])
+    for component in sorted(vals.component.unique()):
+        mask=(vals.component.to_numpy()==component)
+        current=ll[mask].mean(axis=0)
+        for j,model in enumerate(MODEL_IDS):
+            row=old.loc[(component,model)]
+            assert abs(row.logloss-current[j])<1e-12
+            assert row.games==vals.loc[mask,"match_id"].nunique()
+            audited.append(dict(component=int(component),model=model,
+                                games=int(row.games),logloss=float(current[j])))
+    pd.DataFrame(audited).to_csv(out/"k4_chronology_116_scores.csv",index=False)
+    return dict(verified_match_intervals=103,verified_series=53,
+                approximate_disjoint_components=4,
+                approximate_component_games=[62,2,3,36],
+                overlapping_boundaries_in_prior_six_buckets=4,
+                out_of_5_boundaries=5,
+                verified_component_model_scores=116,
+                actual_wallclock_end_times_not_available=True)
+
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument("--mode",required=True,choices=["scores","instability","maxt"])
+    p.add_argument("--mode",required=True,choices=["scores","instability","maxt","chronology"])
     p.add_argument("--input-dir",required=True)
     p.add_argument("--output-dir",required=True)
     a=p.parse_args()
     source=Path(a.input_dir)
+    bundle=verify_bundle(source)
     out=Path(a.output_dir);out.mkdir(parents=True,exist_ok=True)
-    cases={"scores":scores_mode,"instability":instability_mode,"maxt":maxt_mode}
+    cases={"scores":scores_mode,"instability":instability_mode,"maxt":maxt_mode,"chronology":chronology_mode}
     result=cases[a.mode](source,out)
     receipt={
-        "mode":a.mode,"status":"PASS","run_location":"kaggle" if Path("/kaggle/working").is_dir() else "local",
+        "mode":a.mode,"status":"PASS","run_location":"kaggle" if
+            (Path("/kaggle/working").is_dir() and bool(os.environ.get("KAGGLE_KERNEL_RUN_TYPE"))) else "local",
+        "kaggle_execution_env_detected":bool(os.environ.get("KAGGLE_KERNEL_RUN_TYPE")),
+        "dataset_manifest_sha256":digest(source/"dataset_files_sha256.json"),
+        "verification_script_sha256":digest(Path(__file__)),
+        "stability_source_sha256":digest(source/"stability.py"),
+        "packaged_from_source_head":bundle["source_repository_head_at_packaging"],
         "numpy_version":np.__version__,"pandas_version":pd.__version__,
         "python_version":platform.python_version(),
         "seed":SEED,
