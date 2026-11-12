@@ -25,7 +25,7 @@ Status: development protocol and synthetic smoke tests complete; no 500-match re
 
 - OpenDota smoke: two permitted endpoints return data. The latest pro match was unparsed; a neighboring parsed match contained gold/XP arrays and heterogeneous objective events. This demonstrates why eligibility filtering and event schema tests are mandatory.
 - An offline synthetic end-to-end execution covered feature extraction, 3-way series-safe split, four predeclared models, log loss/Brier, paired cluster bootstrap and both reliability plots. **Synthetic metrics are not empirical results** and are excluded from the report.
-- 17 offline contract tests pass, including pre-horn and exact-minute event boundaries, counterfactual future-data poisoning, label changes, allowed endpoints, split disjointness, baseline feature count, paired bootstrap and requirements parity.
+- 23 offline contract tests pass, including pre-horn and exact-minute event boundaries, counterfactual future-data poisoning, label changes, allowed endpoints, split disjointness, baseline feature count, paired bootstrap and requirements parity.
 - Remaining blockers: frozen real 500-match manifest, Kaggle final 500-match execution, real held-out scores, saved real outputs, fresh Colab/laptop acceptance and final report.
 
 ## References
@@ -35,3 +35,15 @@ Status: development protocol and synthetic smoke tests complete; no 500-match re
 - Public implementation: OpenDota API documentation and scikit-learn probability calibration guide (linked from the research plan).
 
 - Notebook now exports derived run artifacts (CSV, calibration PNG, versioned receipt) for audit and report preparation. Synthetic end-to-end verification confirmed valid exports; real outputs still pending.
+
+
+## Independent code review disposition — 2026-11-13
+- **P0 retained:** the 500 real-match IDs are not yet frozen in notebook source. No claim of reproducibility across runs or readiness to submit.
+- **P0 fixed:** cache no longer preserves transient unparsed matches; corrupted cached JSON is refetched; only a genuine HTTP 404 is marked not found; malformed JSON/transport failures retry within a bounded budget.
+- **P1 fixed:** the boundary page selection includes qualifying older-patch matches at the tail of the preceding page, without downloading that full page of current-patch payloads. Avoid claiming that patch IDs must be consecutive.
+- **P1 fixed:** missing objective/kill event logs yield NaN, not an observed zero. Gold-series tail staleness and missing log rates are audited by patch.
+- **P1 addressed:** required all-minute scores remain the primary evaluation; excluding the final two minutes is a whole-match paired-bootstrap sensitivity, not a second model-selection target.
+- **P1 documented:** 250/250 patch cohorts imply that the held-out population may contain only the newer patch. The split crosstab and inferential limits must be prominent in the report. Do not claim cross-patch causality.
+- **P2 deferred:** phase-faceted reliability and recalibration slopes are optional given small held-out bins. Fixed-bin overall reliability with counts, plus mandatory phase log loss/Brier/whole-match CIs, remains primary.
+- **P1 outstanding:** fresh Colab ABI/package compatibility, final 500-game Run All, executed outputs and report still require evidence.
+No model candidate or cutoff was changed in response to a held-out score.

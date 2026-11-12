@@ -26,7 +26,7 @@ Define t as integer game minute, with snapshot at 60*t seconds. At minute t:
 - Do NOT use final net worth, final kills/tower kills, future objectives, win result as a feature, or full-match duration as a predictor.
 - Use final duration only to know which minute snapshots exist; never supply it to the model.
 
-Candidate snapshot features implemented in the notebook: gold lead (thousands), XP lead (thousands), minute, gold × log elapsed time, five-minute gold/XP changes, timestamp-filtered tower/barracks differential, Roshan differential and kill-log differential. Respect missing-field policy; never fill a missing value from future game state. If objective event schema is inconsistent, exclude that feature or document a fixed time-safe fallback, not ad-hoc manual editing.
+Candidate snapshot features implemented in the notebook: gold lead (thousands), XP lead (thousands), minute, gold × log elapsed time, five-minute gold/XP changes, timestamp-filtered tower/barracks differential, Roshan differential and kill-log differential. Respect missing-field policy; never fill a missing value from future game state. Missing objectives/kill logs are represented as NaN rather than false zero, with training-only imputation. The notebook audits log coverage and short gold-array tails by patch. If objective event schema is inconsistent, exclude that feature or document a fixed time-safe fallback, not ad-hoc manual editing.
 
 Invariants to test:
 1. Truncating all series after t and filtering all events after t does not change the feature row at t.
@@ -62,7 +62,7 @@ On held-out matches report model and baseline:
 - Paired bootstrap 95% confidence intervals for model-minus-baseline differences using the same sampled match IDs.
 - Reliability diagrams/calibration curves for both models; include bin counts (small bins are noisy).
 - Prediction table with match_id, minute, p_model, p_baseline, radiant_win.
-- Full-match minute-weighted (per-row) primary score and an equal-match-weighted sensitivity check, because longer games contribute more rows.
+- Full-match minute-weighted (per-row) primary score and an equal-match-weighted sensitivity check, because longer games contribute more rows.\n- Predeclared robustness: exclude the final two recorded minutes per match from a sensitivity score only, leaving the required all-minute primary evaluation unchanged.
 
 Do not report last-minute accuracy. Explain the relationship between calibration, discrimination and proper scoring rules; a lower Brier score alone does not establish perfect calibration. Treat correlated minute rows as one cluster for uncertainty calculations.
 

@@ -54,5 +54,18 @@
 **Evidence:** A 30-page proMatches metadata preflight, covering roughly 3,000 recent professional games from June–November 2026, still sampled patch 60. We did not use outcomes or model scores.
 **Decision:** find the first observed transition using up to three parsed-match detail probes per page. Then select the nearest 250 eligible matches on each side of two adjacent patch cohorts. This is an outcome-blind patch-transition sample, **not a representative random sample of present-day pro games**; report that limitation.
 **Recovery:** deleted only our scratch Kaggle kernel for the unproductive full-payload scan before it produced model results, avoiding unnecessary unauthenticated OpenDota API requests.
-**Verification:** 17 offline tests include patch discovery and bounded detail calls. Full 500-match acceptance pending.
+**Verification:** 23 offline tests include patch discovery and bounded detail calls. Full 500-match acceptance pending.
 **Bible:** v1.4.1 §§1.2–1.4, 3.1–3.6, 5.1–5.6, 14.1.
+
+
+## ADR-011 — Do not confuse unavailable events with true zero events (2026-11-13)
+**Decision:** objectives=None produces NaN tower/barracks/Roshan features; missing player kill logs produce NaN kill differential. A present empty log is an observed zero. Keep the required gold-only baseline untouched; impute optional proposed-model columns only on training data.
+**Evidence:** an independent code audit identified silent zero-filling; new offline fixtures verify the distinction. A per-patch data-quality table reports optional-log coverage and the staleness of gold array tails.
+**Bible:** §§3.1–3.6 and 14.2.
+**Status:** 23 offline tests pass; still awaiting real-data coverage.
+
+## ADR-012 — Evaluate terminal sensitivity without changing the primary estimand (2026-11-13)
+**Decision:** score all requested minute snapshots as primary, and score again after excluding the last two recorded minutes of each held-out match as a labeled robustness analysis. Keep match-level paired bootstrap, no model refitting or tuning based on the sensitivity.
+**Why:** near-terminal outcomes are nearly determined; excluding them entirely would violate the brief's all-minute evaluation. Sensitivity isolates their influence without erasing them.
+**Bible:** §§4.3, 6.5, 7.2–7.7.
+**Status:** code and synthetic tests pass; no held-out evidence yet.

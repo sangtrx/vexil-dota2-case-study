@@ -33,7 +33,7 @@ def load_definitions() -> dict:
         np=np, pd=pd, requests=requests, re=re, math=math, json=json,
         Counter=Counter, Path=Path, tempfile=tempfile, SEED=SEED,
         hashlib=__import__("hashlib"), gzip=__import__("gzip"),
-        time=__import__("time"), copy=copy,
+        time=__import__("time"), copy=copy, os=__import__("os"),
         Pipeline=Pipeline, SimpleImputer=SimpleImputer,
         StandardScaler=StandardScaler, LogisticRegression=LogisticRegression,
     )
@@ -148,6 +148,26 @@ class NotebookContractsTest(unittest.TestCase):
             for player in altered["players"]:
                 player["net_worth"]=9000000
             N["assert_same_features"](original,N["snapshot_features"](altered,t))
+
+    def test_missing_event_logs_are_unknown_not_false_zero(self):
+        m=match_fixture()
+        no_objectives=copy.deepcopy(m)
+        no_objectives["objectives"]=None
+        x=N["snapshot_features"](no_objectives,10)
+        self.assertTrue(math.isnan(x["tower_delta"]))
+        self.assertTrue(math.isnan(x["barracks_delta"]))
+        self.assertTrue(math.isnan(x["roshan_delta"]))
+        present_but_empty=copy.deepcopy(m)
+        present_but_empty["objectives"]=[]
+        zero=N["snapshot_features"](present_but_empty,10)
+        self.assertEqual(zero["tower_delta"],0)
+        self.assertEqual(zero["roshan_delta"],0)
+        missing_kills=copy.deepcopy(m)
+        missing_kills["players"][0]["kills_log"]=None
+        self.assertTrue(math.isnan(N["snapshot_features"](missing_kills,10)["kill_delta"]))
+        no_players=copy.deepcopy(m)
+        no_players["players"]=None
+        self.assertTrue(math.isnan(N["snapshot_features"](no_players,10)["kill_delta"]))
 
     def test_missing_xp_carries_nan_but_never_future(self):
         m=match_fixture()
@@ -280,6 +300,91 @@ class NotebookContractsTest(unittest.TestCase):
             N["N_MATCHES"], N["COHORT_N"] = old_n, old_cohort
 
 
+    def test_transient_unparsed_response_is_not_cached(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api = N["OpenDota"](cache_dir=tmp, interval=0)
+            calls = []
+            class Response:
+                status_code=200
+                def raise_for_status(self): pass
+                def json(self):
+                    return {"match_id": 123, "duration": 1500, "radiant_win": True,
+                            "radiant_gold_adv": [0, 100] if len(calls) >= 2 else None}
+            def fake_get(url, params, timeout):
+                calls.append(url)
+                return Response()
+            api.session.get = fake_get
+            self.assertIsNone(api.get("/matches/123")["radiant_gold_adv"])
+            self.assertEqual(api.get("/matches/123")["radiant_gold_adv"], [0,100])
+            self.assertEqual(api.get("/matches/123")["radiant_gold_adv"], [0,100])
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(api.cache_hits, 1)
+
+    def test_corrupt_cache_is_replaced_by_fresh_payload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api = N["OpenDota"](cache_dir=tmp, interval=0)
+            calls = []
+            class Response:
+                status_code=200
+                def raise_for_status(self): pass
+                def json(self): return [{"match_id": 123}]
+            def fake_get(url, params, timeout):
+                calls.append(url)
+                return Response()
+            api.session.get=fake_get
+            api.get("/proMatches")
+            files=list(Path(tmp).glob("*.json.gz"))
+            self.assertEqual(len(files),1)
+            files[0].write_bytes(b"not a gzip file")
+            self.assertEqual(api.get("/proMatches"),[{"match_id":123}])
+            self.assertEqual(len(calls),2)
+
+    def test_only_http404_is_missing_match_and_decode_failure_retries(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api=N["OpenDota"](cache_dir=tmp, interval=0, max_retries=2)
+            class Response:
+                status_code=404
+                def raise_for_status(self): pass
+                def json(self): return {}
+            api.session.get=lambda url,params,timeout: Response()
+            with self.assertRaises(N["MatchNotFound"]):
+                api.get("/matches/123")
+            attempts=[]
+            class BadResponse:
+                status_code=200
+                def raise_for_status(self): pass
+                def json(self):
+                    attempts.append(1)
+                    if len(attempts)==1: raise ValueError("truncated 200 response")
+                    return [{"match_id":1}]
+            api.session.get=lambda url,params,timeout: BadResponse()
+            from unittest.mock import patch
+            with patch.object(N["time"], "sleep", return_value=None):
+                self.assertEqual(api.get("/proMatches"),[{"match_id":1}])
+            self.assertEqual(len(attempts),2)
+
+    def test_older_patch_tail_in_previous_page_is_selected(self):
+        old_n, old_cohort=N["N_MATCHES"],N["COHORT_N"]
+        N["N_MATCHES"],N["COHORT_N"]=4,2
+        class FakeApi:
+            def __init__(self): self.calls=0
+            def get(self,path,params=None):
+                self.calls+=1
+                if path=="/proMatches":
+                    return ([{"match_id":i} for i in (9,8,7)] if not params
+                            else [{"match_id":i} for i in (6,5,4,3)])
+                mid=int(path.rsplit("/",1)[-1])
+                return {"match_id":mid,"duration":1500,"radiant_win":bool(mid%2),
+                        "radiant_gold_adv":[0,100],"patch":60 if mid>=8 else 59}
+        try:
+            api=FakeApi()
+            selected,_=N["collect_matches"](api)
+            self.assertEqual(set(m["match_id"] for m in selected),{6,7,8,9})
+            self.assertTrue(N["patch_coverage_ok"](selected))
+            self.assertLess(api.calls,15)
+        finally:
+            N["N_MATCHES"],N["COHORT_N"]=old_n,old_cohort
+
     def test_short_gold_array_uses_only_last_available_past_snapshot(self):
         m = match_fixture()
         m["radiant_gold_adv"] = m["radiant_gold_adv"][:11]
@@ -307,6 +412,20 @@ class NotebookContractsTest(unittest.TestCase):
             self.assertTrue(env["COLAB"])
             self.assertFalse(env["ON_KAGGLE"])
 
+
+    def test_excluding_terminal_minutes_uses_each_match_own_clock(self):
+        cell=next(c for c in NB["cells"] if c.get("id")=="vexil-terminal-code")
+        tree=ast.parse("".join(cell["source"]))
+        fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=="exclude_terminal_minutes")
+        scope={"pd":pd}
+        exec(compile(ast.Module(body=[fn],type_ignores=[]),"<terminal-test>","exec"),scope)
+        frame=pd.DataFrame({"match_id":[1]*5+[2]*3,"minute":list(range(5))+list(range(3))})
+        kept=scope["exclude_terminal_minutes"](frame,n=2)
+        self.assertEqual(kept.groupby("match_id").minute.max().to_dict(),{1:2,2:0})
+        self.assertEqual(len(kept),4)
+        self.assertEqual(len(frame),8)
+        with self.assertRaises(ValueError):
+            scope["exclude_terminal_minutes"](frame,n=-1)
 
     def test_wilson_interval_bounds_and_extremes(self):
         cell = next(c for c in NB["cells"] if c.get("id") == "vexil-comeback-data")

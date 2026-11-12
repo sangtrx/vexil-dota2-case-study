@@ -21,7 +21,7 @@ Once the final candidate is selected on validation, do not tune it or rerun feat
 
 ### Engineering verification checkpoint — 2026-11-13
 
-- 16/17 offline contract tests passed; synthetic end-to-end smoke passed. Synthetic loss numbers are not retained as empirical evidence.
+- 16/23 offline contract tests passed; synthetic end-to-end smoke passed. Synthetic loss numbers are not retained as empirical evidence.
 - Private Kaggle CPU smoke on one account printed `OPEN_DOTA_KAGGLE_SMOKE_PASS 200 100`.
 - The first full-payload scan was interrupted before it produced empirical results; the patch-metadata-only preflight justified a more API-efficient sample definition.
 
@@ -45,3 +45,10 @@ Once the final candidate is selected on validation, do not tune it or rerun feat
 
 ### Preregistered descriptive diagnostic — before held-out outcomes
 Fixed game minute 20 and |gold lead| >=3,000. Compare eventual leader-loss rates in held-out matches with declining vs stable/improving five-minute gold momentum; report numerator, denominator and Wilson interval. This analysis does not select any model or feature and cannot support causal conclusions.
+
+
+### Audit repairs — 2026-11-13, before any held-out result
+- Independent review found stale unparsed-cache, error-classification, optional-event missingness and boundary-page selection risks. Repaired each with targeted tests; the finite model family is unchanged.
+- Added a data-quality table (per-patch missing logs and short gold-series tails), and paired whole-match sensitivity excluding the last two recorded minutes.
+- Synthetic Run All now executes 14 code cells and produces four figures plus derived audit files; **its losses and predictions are synthetic and not scientific evidence**.
+- The unfrozen data-selection run on Kaggle is a development-only run. Accept/reject the final model only under the previously specified validation protocol.

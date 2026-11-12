@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** notebook implementation and 17 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
+**Status:** notebook implementation and 23 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
 
 ## Submission contract
 
@@ -33,7 +33,7 @@ Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local enviro
 
 ## Derived outputs
 
-After Run All, the notebook exports the frozen match manifest, validation ablations, held-out metrics and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions and manifest hash. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
+After Run All, the notebook exports the frozen match manifest, validation ablations, held-out metrics, terminal-minute sensitivity and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions and manifest hash. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
 
 ## Kaggle execution
 
