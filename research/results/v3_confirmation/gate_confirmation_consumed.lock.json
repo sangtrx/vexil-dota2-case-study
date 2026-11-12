@@ -1,0 +1,6 @@
+{
+  "criterion": "frozen gate vs both existing baselines",
+  "full_manifest_sha256": "afd6c0e63d9795ef74369a025c2cb8d714f7b5ed83134db2078368e7b5ed8bca",
+  "note": "Do not delete without documenting independent adjudication",
+  "repo_head": "4c11b4813dc497ca1146a985634d810c3cc43970"
+}

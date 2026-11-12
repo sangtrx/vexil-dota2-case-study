@@ -1,0 +1,16 @@
+{
+  "bootstrap_repetitions": 2000,
+  "developer_game_count": 394,
+  "models_considered": [
+    "M1_time_value",
+    "S1_econ_leverage",
+    "S2_core_allocation",
+    "S3_lead_fragility",
+    "S4_joint_state"
+  ],
+  "qualified_incremental_edge": false,
+  "refit_data": "original full 500, once selected",
+  "rules": "delta logloss <= -0.005 and 95 percent whole-match bootstrap upper <0",
+  "seed": 20261113,
+  "selection": "M1_time_value"
+}

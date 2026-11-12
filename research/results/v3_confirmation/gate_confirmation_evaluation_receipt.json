@@ -1,0 +1,24 @@
+{
+  "criterion": "gate must improve log loss by >=0.005 with both simultaneous 95% series-clustered upper bounds <0 and Brier nonworse vs M0 and full M1",
+  "evaluation_code_head": "4c11b4813dc497ca1146a985634d810c3cc43970",
+  "full_manifest_sha256": "afd6c0e63d9795ef74369a025c2cb8d714f7b5ed83134db2078368e7b5ed8bca",
+  "holdout_manifest_sha256": "d521e046352ec98b8cdfef92c3e6deeb8b984a36a07263232901f1b7d9a3b2ae",
+  "http_calls": 0,
+  "hypothesis_registered_commit": "40d8961",
+  "model_decision": "HOLD",
+  "original_training_games": 500,
+  "pit_checks": 2112,
+  "prior_exploration_games_not_used_in_training": 200,
+  "source_sha256": {
+    "research/evaluate_regime_gate.py": "24eaf489b375291622b8f722f4a91c5f8e64734a94a040cd9dc908a2ec2b04db",
+    "research/fetch_gate_confirmation.py": "796d34644642df15cc840b3de9bf0c150fe2b6a4e6401d57baffd5e3a44df5f5",
+    "research/regime_gate.py": "a5f3eeb6dc4a6e1a43e888d11ea9bb0e10814dd305552d53bb4b228950366044"
+  },
+  "third_holdout_games": 200,
+  "third_holdout_minute_rows": 6827,
+  "versions": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.7.2"
+  }
+}

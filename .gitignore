@@ -28,3 +28,6 @@ output/
 .local/
 *.bak.*
 *.log
+
+# Audited, derived, non-secret outputs for the independent research PR only
+!research/results/**/*.csv

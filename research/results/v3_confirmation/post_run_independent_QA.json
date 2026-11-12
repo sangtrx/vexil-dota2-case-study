@@ -1,0 +1,12 @@
+{
+  "accepted": false,
+  "evaluation_head": "4c11b4813dc497ca1146a985634d810c3cc43970",
+  "full_manifest_sha256": "afd6c0e63d9795ef74369a025c2cb8d714f7b5ed83134db2078368e7b5ed8bca",
+  "gate_mix_max_abs_roundtrip_error": 2.220446049250313e-16,
+  "http_calls": 0,
+  "matches": 200,
+  "model_decision": "HOLD",
+  "pit_checks": 2112,
+  "rows": 6827,
+  "series_clusters": 97
+}

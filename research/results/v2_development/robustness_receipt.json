@@ -1,0 +1,12 @@
+{
+  "candidate_family": [
+    "M1_time_value",
+    "S1_econ_leverage",
+    "S2_core_allocation",
+    "S3_lead_fragility",
+    "S4_joint_state"
+  ],
+  "data": "original 291 train +103 validation; old 106 heldout excluded",
+  "n_boot": 4000,
+  "seed": 20261113
+}

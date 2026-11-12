@@ -1,0 +1,16 @@
+{
+  "bootstrap": 2000,
+  "equal_match_deltas": {
+    "brier": -0.0032698242341611607,
+    "logloss": -0.009165327819666594
+  },
+  "external_games": 200,
+  "forward_manifest_sha256": "365c45ec54c818153a388ff645576b9582ebec4fe0fbb4a148588acf5f173788",
+  "forward_minute_rows": 6969,
+  "http_calls": 0,
+  "model_selected_before_external_labels": "M1_time_value",
+  "not_new_structural_candidate": "M1_time_value_vs_M0_gold_only_only",
+  "pit_checks": 1198,
+  "prior_games": 500,
+  "seed": 20261113
+}

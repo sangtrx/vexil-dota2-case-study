@@ -83,6 +83,28 @@ train-only folds then fails in validation; it illustrates why rolling
 CV and one later validation are both necessary. Do not reinterpret a
 sign flip as a new trading strategy.
 
+## Follow-up: stage-gate confirmation is complete (2026-11-13)
+
+The independently registered stage-gate hypothesis was tested ONCE
+on a third disjoint, chronological 200-game cohort (March 30 to
+April 2). The registered 10–20-minute shrinkage gate failed its
+required improvement relative to BOTH M0 and M1. Overall log loss:
+M0 0.545075, M1 0.533704, stage gate 0.539850. The gate's series-
+clustered simultaneous 95% interval for gate minus M1 includes zero,
+and the gate's Brier point estimate is worse than M1.
+
+This outcome does not invalidate the original time-value feature or
+prove all regime gates fail. It rejects promotion of THIS fixed gate
+under its precommitted practical and statistical acceptance criteria.
+No structural S1–S4 feature model was reselected or evaluated on
+either forward-time confirmation cohort. No further test optimization
+is justified using the consumed 200-game cohort.
+
+See REGIME_GATE_PROTOCOL.md, REGIME_GATE_REDTEAM.md and
+REGIME_GATE_RESULTS.md; machine-checkable prediction and CI CSVs
+are under research/results/v3_confirmation/. The original PR #3
+and its take-home outputs remain unchanged.
+
 ## Decision and further hypotheses (not tested here)
 
 **Decision: HOLD for the incremental structural model.** Keep the
