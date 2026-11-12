@@ -28,6 +28,17 @@ class StageGateContracts(unittest.TestCase):
         flipped=gate(1-p1,1-p0,t)
         np.testing.assert_allclose(original+flipped,1.)
 
+    def test_gate_logloss_obeys_probability_convexity(self):
+        # Jensen's inequality holds rowwise for binary log loss.
+        p0=np.array([.1,.7,.25,.91,.5])
+        p1=np.array([.4,.6,.8,.3,.8])
+        minutes=np.array([5,11,15,19,35])
+        y=np.array([1,0,1,0,1])
+        out=gate(p1,p0,minutes)
+        w=weight(minutes)
+        ll=lambda q: -(y*np.log(q)+(1-y)*np.log1p(-q))
+        self.assertTrue(np.all(ll(out)<=w*ll(p1)+(1-w)*ll(p0)+1e-12))
+
     def test_bad_forecasts_fail_closed(self):
         with self.assertRaises(ValueError):
             gate(np.array([np.nan]),np.array([.5]),np.array([10]))
@@ -35,6 +46,8 @@ class StageGateContracts(unittest.TestCase):
             gate(np.array([1.1]),np.array([.5]),np.array([10]))
         with self.assertRaises(ValueError):
             gate(np.array([.5]),np.array([.5]),np.array([-1]))
+        with self.assertRaises(ValueError):
+            gate(np.array([.5]),np.array([.5]),np.array([10.5]))
 
 if __name__=="__main__":
     unittest.main()

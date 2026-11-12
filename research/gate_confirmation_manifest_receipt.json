@@ -1,0 +1,20 @@
+{
+  "after_start": 1774832475,
+  "cache_hits": 2,
+  "calls": 202,
+  "cohort_size": 200,
+  "excluded_by_reason": {},
+  "first_time_utc": "2026-03-30T01:39:07+00:00",
+  "full_manifest_sha256": "afd6c0e63d9795ef74369a025c2cb8d714f7b5ed83134db2078368e7b5ed8bca",
+  "last_time_utc": "2026-04-02T08:57:16+00:00",
+  "metadata_cache_audit": {
+    "conflicting_repeated_ids": 0,
+    "pro_pages": 95,
+    "selected_ids_inconsistent_with_pro_metadata": 0,
+    "total_unique_pro_ids": 9500
+  },
+  "ordered_id_sha256": "d521e046352ec98b8cdfef92c3e6deeb8b984a36a07263232901f1b7d9a3b2ae",
+  "original_500_id_hash": "f2be53e16ae29df1f62aa9907187fdba846d9af9fb7a3f69e7dd7504be43b776",
+  "patch": "60",
+  "selection": "first 200 eligible parsed patch60 professional games strictly after previous 200, excluding all earlier positive series"
+}

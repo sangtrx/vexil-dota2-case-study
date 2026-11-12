@@ -18,9 +18,9 @@ where the minute clock is an integer:
   w(t) = (20-t)/10        if 10 < t < 20
   w(t) = 0                if t >= 20
 
-The transition is continuous at its discrete boundaries, always a
-convex combination of two already-existing probabilities, and cannot
-access any extra data or fields. Its 10/20 breakpoints were chosen once
+The weight is a fixed piecewise-linear function evaluated at integer
+minutes, always a convex combination of two existing probabilities.
+It cannot access new data or fields. Its 10/20 breakpoints were chosen once
 from the already observed early/medium phase pattern, NOT learned on
 the new confirmatory cohort. This is a post-hoc research hypothesis,
 not a preregistered result of the original take-home.
@@ -46,7 +46,10 @@ M0, M1 and the SINGLE gated mixture once, no candidate selection.
 Primary metric: minute-weighted log loss, gate vs M0 AND gate vs M1.
 Both comparisons are required; not just an easy baseline. Use the same
 series-cluster, paired resampling indices to compute a simultaneous
-95% max-t CI over the two comparisons (2000 resamples fixed seed).
+95% two-sided max-|t| CI over the two comparisons (10,000 fixed-seed,
+paired series-cluster resamples). This is conservative for two one-sided
+improvement criteria; failing this gate means 'not demonstrated at this
+precommitted effect size and power', NOT scientific refutation.
 Also print whole-match 95% CI and descriptive Brier/calibration/accuracy
 by phase. Practical gain threshold: >=0.005 absolute log loss versus
 BOTH existing alternatives, BOTH simultaneous upper bounds <0, AND no
