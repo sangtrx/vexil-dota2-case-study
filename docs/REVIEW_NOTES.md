@@ -72,3 +72,21 @@ A read-only Sonnet review checked the completed report against the brief and hig
 
 ## All-500-match leakage acceptance — 2026-11-13
 The full cohort of 500 selected parsed games passed **3,342** adversarial PIT prefix checks (patch 59: 1,667; patch 60: 1,675) without making API requests. The previously reported 128-game/512-check audit was a smaller pre-freeze smoke test and is superseded by the complete result. This is feature-logic evidence only, not proof of live network-time delivery or model superiority.
+
+
+## Independent Kaggle scientific-output acceptance — 2026-11-13
+
+**Result: PASS for the scientific outputs; raw JSON identity is NOT established.**
+The private Kaggle CPU kernel sangtruong/vexil-dota2-patch-cohorts-20261113 completed its full 500-ID live OpenDota fetch and generated all derived files. The Kaggle log reports no Python exception, shows patch counts 250/250, PIT sample checks 72 across both patches, M1 selected on validation, and 3,837 held-out predictions. BigLinux and Kaggle agree on the source match-manifest digest e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea, 500 matches, 18,304 minute rows and 291/103/106 match split.
+
+The independent comparison aligned primary keys and compared every numeric column in five CSV result files:
+- Held-out predictions: 3,837 rows, **max absolute difference 4.440892098500626e-16**.
+- Validation ablations: 4 model rows, max difference 3.0531133177191805e-16.
+- Held-out metric/CIs: 10 rows, max difference 1.9992688060632702e-16.
+- Terminal-minute sensitivity: 2 rows, max difference 1.1102230246251565e-16.
+- Minute-20 comeback: 2 rows, zero difference.
+- Match-manifest CSV: 500 rows, identical.
+
+**Important limitation:** raw OpenDota JSON payload digests differed between the local cached inputs and Kaggle's later live request (local 7328f1f8df8f3925765e390f997168a084aa6bded1c1bb031da81e8e8092281b; Kaggle 25ad644bcd0c8d9d045be2d7de789de44d91daa3c455c6b83fcb15cfe3c70ddf). A separate low-rate live-vs-cache inspection of 10 selected IDs observed changes in the players field for two games; a deeper inspection identified computed_mmr values as a changed auxiliary field in one such game. Computed MMR is never accessed by snapshot features. The checks support numerical reproducibility of the selected 500-match study across these two executions, **not exact identity of every upstream JSON field**.
+
+Local Python 3.12.3 with numpy 2.2.6 and sklearn 1.7.2 differed from Kaggle Python 3.13.18 with numpy 2.1.3 and sklearn 1.6.1. All 26 offline contract tests and 3,342 full-cohort PIT checks passed separately. A fresh hosted Google Colab run has not been verified; the Colab codepath was only emulated on BigLinux. Candidate-supplied actual human time is still required.
