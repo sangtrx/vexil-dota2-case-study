@@ -1,0 +1,28 @@
+{
+  "dataset": "sangtruong/vexil-bible-development-qa-20261113",
+  "do_not_claim_completed_kaggle_runs": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "expected_source_prediction_sha256": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
+  "kernels": [
+    {
+      "kernel_slug": "sangtruong/vexil-bible-proper-scores-20261113",
+      "mode": "scores",
+      "source_file": "vexil-bible-proper-scores-20261113.ipynb"
+    },
+    {
+      "kernel_slug": "sangtruong/vexil-bible-selection-instability-20261113",
+      "mode": "instability",
+      "source_file": "vexil-bible-selection-instability-20261113.ipynb"
+    },
+    {
+      "kernel_slug": "sangtruong/vexil-bible-familywise-audit-20261113",
+      "mode": "maxt",
+      "source_file": "vexil-bible-familywise-audit-20261113.ipynb"
+    }
+  ],
+  "local_stage": "/home/ai-agent/.cache/vexil-bible-kaggle-stage-20261113",
+  "private": true,
+  "requires_new_user_authenticated_kaggle_cli": true,
+  "state": "PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED"
+}
