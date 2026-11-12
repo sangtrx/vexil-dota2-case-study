@@ -194,27 +194,46 @@ contracts, deterministic PIT snapshots, reproducible
 prediction receipts and near-instant lookup of already
 computed model outputs, not a visually ornate dashboard.
 
-## Kaggle verification status (important)
+## Kaggle verification: FOUR real hosted runs COMPLETE
 
-Four PRIVATE Kaggle-ready CPU notebooks have been generated:
-proper scores, selection stability, 28-way familywise
-bootstrap and chronology correction. All four were **executed locally** with a Jupyter
-kernel (not just imported), and their independent calculations
-passed all numeric parity checks. In local environment:
-Python 3.12.3, NumPy 2.2.6, pandas 2.3.3.
+**13 November 2026: all four PRIVATE Kaggle CPU-only kernels finished
+with `KernelWorkerStatus.COMPLETE`, Internet OFF.** This is no longer
+a local-only or unverified Kaggle exercise. The original cloud failures
+were traced to a wrong dataset mount path. A separate private diagnostic
+kernel confirmed the real location:
+`/kaggle/input/datasets/sangtruong/vexil-bible-development-qa-20261113`.
+After correcting only the mount path, four new notebook versions were
+uploaded through the established `kaggle_01` pool slot (account
+`sangtruong`). No interactive OAuth or credential copies were required.
 
-**New hosted Kaggle runs: 0.** The BigLinux Kaggle CLI
-currently reports no authentication, and neither a private
-dataset nor these four notebooks has been uploaded or run
-in Kaggle cloud. Earlier independent Kaggle run of the
-original 500-match notebook was verified in PR #3 and
-is a different experiment.
+The private Kaggle dataset reported `ready`. All four executed notebooks
+were downloaded from Kaggle and checked for source-cell equality against
+the versioned repository and for private, CPU-only metadata. The actual
+cloud-generated JSON receipts and all five numerical output CSVs were
+downloaded and compared to local with absolute tolerance `1e-11`:
 
-When Kaggle login is restored, follow kaggle/README.md:
-create a new PRIVATE dataset once; run four PRIVATE kernels
-with internet/GPU OFF; download hosted receipts and verify
-numerical parity. Do not label a launch as COMPLETE before
-the hosted outputs and source hashes are checked.
+| Kernel | Verified hosted computation |
+|---|---|
+| K1 proper scores | 29 models, 58 total proper scores and 145 phase rows |
+| K2 selection fragility | 20 directional/10 paired ordered-series splits; 3,000 series OOB draws |
+| K3 multiplicity | 28 approximate simultaneous intervals; 5,000 grouped bootstrap draws |
+| K4 chronology | 4 overlapping-time components of 62/2/3/36 games, 4/5 former bucket-boundary overlaps, 116 scores |
+
+**4/4 hosted status COMPLETE and 4/4 numerical/source parity PASS.**
+Kaggle ran NumPy 2.1.3 and pandas 2.3.3; local used NumPy 2.2.6 and
+pandas 2.3.3. The private dataset SHA-256 manifest is
+`c9155ee8820fac43f4432ac1f1362226c6c16af7868080b105bd45b30767dc8b`;
+the frozen input prediction CSV SHA-256 is
+`aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4`.
+
+Proof is committed as `kaggle/hosted_run_verification_20261113.json`
+and `research/bible/results/hosted_kaggle_20261113/` (all four output
+receipts and all five CSVs), with a reproducible private pool gateway in
+`kaggle/pool_gateway.py`. The four Kaggle URLs are documented in those
+receipts. **These hosted computations are independent ENVIRONMENT
+reproductions of already examined results, not independent NEW outcome
+samples, a proof of alpha or a reason to promote P20.** Original M1
+remains the take-home model.
 
 ## Machine-verifiable assets
 
@@ -231,16 +250,18 @@ the hosted outputs and source hashes are checked.
 - kaggle/verify_bible.py — four reproducible, same-method parity checks.
 - kaggle/kernel_scores/, kernel_instability/, kernel_maxt/, kernel_chronology/
   — private notebook and metadata files.
-- kaggle/prepare_private_runs.py, run_private_kernels.sh,
-  verify_hosted_kernels.sh and verify_hosted_receipts.py
-  — data packaging, private execution and numeric parity.
+- kaggle/prepare_private_runs.py, pool_gateway.py,
+  run_private_kernels.sh, verify_hosted_kernels.sh,
+  archive_hosted_runs.py and verify_hosted_receipts.py
+  — immutable private dataset packaging, API-key-pool execution,
+  cloud source comparison, numerical parity and final receipts.
 - Original PR #3 notebooks, REPORT.md and main remain unchanged.
 
 ### Verification
 
-**All results are post-hoc on consumed development labels;
-reproduction is not new evidence; no fresh OOS, formal PBO,
-PnL or hosted-run claim is made.** These four notebooks
+**All model-selection results remain post-hoc on consumed development
+labels. The four hosted Kaggle runs verify computing reproducibility,
+not fresh OOS performance, formal PBO, PnL or any trading edge.** These four notebooks
 replicate fixed-seed arithmetic and original inputs, not
 an independently conceived statistical estimator.
 

@@ -25,3 +25,13 @@ negative-research archive, not evidence of a novel winning
 model or tradable edge.** The independent reviewer does NOT
 certify the final bytes, and older forward cohorts were not
 reused as blind tests.
+
+## Later hosted verification (not part of the reviewer inspection)
+
+On 13 November 2026 the four private Kaggle kernels were run using the
+existing 25-slot credential pool, all returned COMPLETE, and their
+source/receipt/numerical outputs passed local-to-cloud checks. The
+original read-only Sonnet review occurred BEFORE these runs; it should
+not be represented as reviewing the final hosted bytes. Verified
+metadata and receipts are in `kaggle/hosted_run_verification_20261113.json`.
+This updates an operations gate, not model-selection evidence.

@@ -2,10 +2,12 @@
   "credential_lane": "woodsbot kaggle pool, slot kaggle_01; no raw key copied",
   "dataset": "sangtruong/vexil-bible-development-qa-20261113",
   "dataset_manifest_sha256": "c9155ee8820fac43f4432ac1f1362226c6c16af7868080b105bd45b30767dc8b",
-  "do_not_claim_completed_kaggle_runs": true,
+  "do_not_claim_completed_kaggle_runs": false,
   "enable_gpu": false,
   "enable_internet": false,
   "expected_source_prediction_sha256": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
+  "hosted_verification_receipt": "kaggle/hosted_run_verification_20261113.json",
+  "hosted_verified_utc": "2026-11-12T23:13:51.771447+00:00",
   "kernels": [
     {
       "kernel_slug": "sangtruong/vexil-bible-proper-scores-20261113",
@@ -36,6 +38,6 @@
   "packaged_from_git_head": "91241c9f050986bee1ad69f1e966870827bf5292",
   "private": true,
   "requires_new_user_authenticated_kaggle_cli": false,
-  "state": "PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED",
+  "state": "HOSTED_COMPLETE_NUMERICALLY_VERIFIED",
   "verification_script_sha256": "9f4d4ce899518552ff28a7724714a28f41ed1b32eebfe898336f5703a71eee0d"
 }

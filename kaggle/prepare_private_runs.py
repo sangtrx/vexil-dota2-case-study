@@ -157,7 +157,8 @@ def main():
         out.append({"mode":mode,"kernel_slug":km["id"],"source_file":filename,
                     "notebook_sha256":sha(d/filename)})
     (stage/"dataset_files_sha256.json").write_text(json.dumps(manifest,indent=2,sort_keys=True)+"\n")
-    (ROOT/"kaggle/hosted_run_manifest.json").write_text(json.dumps({
+    final_manifest_path=ROOT/"kaggle/hosted_run_manifest.json"
+    staged_manifest={
         "state":"PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED",
         "dataset":DATA_ID,"private":True,
         "enable_internet":False,"enable_gpu":False,
@@ -170,7 +171,28 @@ def main():
         "requires_new_user_authenticated_kaggle_cli":False,
         "credential_lane":"woodsbot kaggle pool, slot kaggle_01; no raw key copied",
         "do_not_claim_completed_kaggle_runs":True
-    },indent=2,sort_keys=True)+"\n")
+    }
+    if final_manifest_path.is_file():
+        previous=json.loads(final_manifest_path.read_text())
+        if previous.get("state")=="HOSTED_COMPLETE_NUMERICALLY_VERIFIED":
+            # A reproducibility package must NOT erase a verified cloud
+            # receipt when its source hash and four notebooks are unchanged.
+            for field in ("dataset","dataset_manifest_sha256",
+                          "verification_script_sha256","kernels",
+                          "expected_source_prediction_sha256"):
+                assert previous[field]==staged_manifest[field],(
+                    "Previously verified Kaggle source changed",field)
+            verified=ROOT/previous["hosted_verification_receipt"]
+            assert verified.is_file(),"Hosted verified state without actual receipts"
+            result=json.loads(verified.read_text())
+            assert result["all_4_numeric_and_source_parity_pass"]
+            staged_manifest.update({
+                "state":"HOSTED_COMPLETE_NUMERICALLY_VERIFIED",
+                "do_not_claim_completed_kaggle_runs":False,
+                "hosted_verification_receipt":previous["hosted_verification_receipt"],
+                "hosted_verified_utc":previous["hosted_verified_utc"]
+            })
+    final_manifest_path.write_text(json.dumps(staged_manifest,indent=2,sort_keys=True)+"\n")
     print("PRIVATE_KAGGLE_RUNS_PREPARED",json.dumps({
        "dataset":DATA_ID,"private_kernels":[x["kernel_slug"] for x in out],
        "input_files":len(files),"data_bytes":sum(v["size"] for v in manifest.values()),

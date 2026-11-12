@@ -1,0 +1,128 @@
+{
+  "account": "sangtruong",
+  "all_4_numeric_and_source_parity_pass": true,
+  "dataset_id": "sangtruong/vexil-bible-development-qa-20261113",
+  "dataset_manifest_sha256": "c9155ee8820fac43f4432ac1f1362226c6c16af7868080b105bd45b30767dc8b",
+  "dataset_package_source_commit": "91241c9f050986bee1ad69f1e966870827bf5292",
+  "dataset_status_verified": "ready",
+  "hosted_run_complete_count": 4,
+  "initial_cloud_error": "Old input path was incorrect; revised notebooks use /kaggle/input/datasets/sangtruong/...",
+  "local_to_cloud_numeric_tolerance": 1e-11,
+  "modes": {
+    "chronology": {
+      "code_cell_matches_checked_in_source": true,
+      "hosted_numpy_version": "2.1.3",
+      "hosted_pandas_version": "2.3.3",
+      "hosted_python_version": "3.13.18",
+      "hosted_results": {
+        "actual_wallclock_end_times_not_available": true,
+        "approximate_component_games": [
+          62,
+          2,
+          3,
+          36
+        ],
+        "approximate_disjoint_components": 4,
+        "out_of_5_boundaries": 5,
+        "overlapping_boundaries_in_prior_six_buckets": 4,
+        "verified_component_model_scores": 116,
+        "verified_match_intervals": 103,
+        "verified_series": 53
+      },
+      "private_metadata_verified": true,
+      "receipt_and_output_sha256": {
+        "k4_chronology_116_scores.csv": "5734284d4e45d7ea7858ba71af69f8acbf659ffd538087a423c17fdc6d57dd1e",
+        "kaggle_chronology_receipt.json": "3a553ae195605e0a80ec3d42dbf68ba6ae9cd967a4de222a74423c9143bf6f0c"
+      },
+      "remote_status": "KernelWorkerStatus.COMPLETE",
+      "remote_url": "https://www.kaggle.com/code/sangtruong/vexil-bible-chronology-audit-20261113",
+      "verified_csv_rows": {
+        "k4_chronology_116_scores.csv": 116
+      }
+    },
+    "instability": {
+      "code_cell_matches_checked_in_source": true,
+      "hosted_numpy_version": "2.1.3",
+      "hosted_pandas_version": "2.3.3",
+      "hosted_python_version": "3.13.18",
+      "hosted_results": {
+        "P20_selection_frac": 0.4543333333333333,
+        "chosen_worse_m1_cscv_frac": 0.5,
+        "chosen_worse_m1_oob_frac": 0.5146666666666667,
+        "confirmed_bootstrap_draws": 3000,
+        "confirmed_cscv_splits": 20,
+        "rank_reversal_frac": 0.3
+      },
+      "private_metadata_verified": true,
+      "receipt_and_output_sha256": {
+        "k2_cscv_20.csv": "b1a9134dafea5b4911b84653950ff9f967b6c234957d84cd1b7df7b7a3ad0eeb",
+        "k2_oob_3000.csv": "1b51212e1ddc3eddfed7f1c9dae5d5ba7e632bf5fdc1921e44ffa1ed5527ffe7",
+        "kaggle_instability_receipt.json": "96f928c0962c15232da6c42075f6d57875b42e6ee09ea4a23db92dff8c0c9735"
+      },
+      "remote_status": "KernelWorkerStatus.COMPLETE",
+      "remote_url": "https://www.kaggle.com/code/sangtruong/vexil-bible-selection-instability-20261113",
+      "verified_csv_rows": {
+        "k2_cscv_20.csv": 20,
+        "k2_oob_3000.csv": 3000
+      }
+    },
+    "maxt": {
+      "code_cell_matches_checked_in_source": true,
+      "hosted_numpy_version": "2.1.3",
+      "hosted_pandas_version": "2.3.3",
+      "hosted_python_version": "3.13.18",
+      "hosted_results": {
+        "all_28_ci_parity": true,
+        "bootstrap_draws": 5000,
+        "independence_of_38_trials_not_claimed": true,
+        "known_trial_attempts": 38,
+        "model_familywise95_multiplier": 3.07903357469895,
+        "verified_comparisons": 28
+      },
+      "private_metadata_verified": true,
+      "receipt_and_output_sha256": {
+        "k3_maxt_28_ci.csv": "8cbc893d46a7099c0268108a1565418dfd3c9e670e6eff7d43b4680301b1bc0f",
+        "kaggle_maxt_receipt.json": "17f94a97f4a3cf8beb512774ea7d7cb5a72be6aae4657ae068a940af923da7d6"
+      },
+      "remote_status": "KernelWorkerStatus.COMPLETE",
+      "remote_url": "https://www.kaggle.com/code/sangtruong/vexil-bible-familywise-audit-20261113",
+      "verified_csv_rows": {
+        "k3_maxt_28_ci.csv": 28
+      }
+    },
+    "scores": {
+      "code_cell_matches_checked_in_source": true,
+      "hosted_numpy_version": "2.1.3",
+      "hosted_pandas_version": "2.3.3",
+      "hosted_python_version": "3.13.18",
+      "hosted_results": {
+        "M1_ll": 0.5193456503081975,
+        "P20_ll": 0.5140978227902169,
+        "P20_minus_M1": -0.0052478275179806836,
+        "minute_rows": 3784,
+        "original_validation_matches": 103,
+        "verified_model_scores": 58,
+        "verified_models": 29,
+        "verified_phase_rows": 145
+      },
+      "private_metadata_verified": true,
+      "receipt_and_output_sha256": {
+        "k1_recomputed_145_phase_metrics.csv": "450738c7e4d4d12158296e240af0b4bcca07877bb660dedc933b7a1696fb89c4",
+        "kaggle_scores_receipt.json": "2991797dbfff23e93d5e4a59aa0c308551e5022c26eb3242c6f1552764df92e3"
+      },
+      "remote_status": "KernelWorkerStatus.COMPLETE",
+      "remote_url": "https://www.kaggle.com/code/sangtruong/vexil-bible-proper-scores-20261113",
+      "verified_csv_rows": {
+        "k1_recomputed_145_phase_metrics.csv": 145
+      }
+    }
+  },
+  "no_model_retrained": true,
+  "no_new_holdout_scored": true,
+  "pool_slot": "kaggle_01",
+  "prediction_data_sha256": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
+  "private_cpu_internet_off": true,
+  "selection_decision": "HOLD all P01-P28, retain M1 gold/time",
+  "source_code_sha256": "9f4d4ce899518552ff28a7724714a28f41ed1b32eebfe898336f5703a71eee0d",
+  "verification_timestamp_utc": "2026-11-12T23:13:51.771447+00:00"
+}

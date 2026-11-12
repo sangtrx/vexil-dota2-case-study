@@ -91,14 +91,37 @@ class BibleExperimentContracts(unittest.TestCase):
         self.assertEqual(len(m["verification_script_sha256"]),64)
         self.assertTrue(all(len(k["notebook_sha256"])==64 for k in m["kernels"]))
 
-    def test_hosted_kaggle_not_falsely_complete(self):
+    def test_hosted_kaggle_four_complete(self):
         m=json.loads((ROOT/"kaggle/hosted_run_manifest.json").read_text())
+        receipt=json.loads((ROOT/"kaggle/hosted_run_verification_20261113.json").read_text())
         self.assertEqual(len(m["kernels"]),4)
         self.assertTrue(m["private"])
         self.assertFalse(m["enable_internet"])
         self.assertFalse(m["enable_gpu"])
-        self.assertTrue(m["do_not_claim_completed_kaggle_runs"])
-        self.assertEqual(m["state"],"PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED")
+        self.assertFalse(m["do_not_claim_completed_kaggle_runs"])
+        self.assertEqual(m["state"],"HOSTED_COMPLETE_NUMERICALLY_VERIFIED")
+        self.assertEqual(receipt["hosted_run_complete_count"],4)
+        self.assertTrue(receipt["all_4_numeric_and_source_parity_pass"])
+        self.assertTrue(receipt["no_new_holdout_scored"])
+        self.assertTrue(receipt["no_model_retrained"])
+        self.assertEqual(receipt["dataset_manifest_sha256"],m["dataset_manifest_sha256"])
+        self.assertEqual(receipt["source_code_sha256"],m["verification_script_sha256"])
+
+    def test_all_hosted_output_receipts_are_versioned(self):
+        p=json.loads((ROOT/"kaggle/hosted_run_verification_20261113.json").read_text())
+        expected={"scores","instability","maxt","chronology"}
+        self.assertEqual(set(p["modes"]),expected)
+        count=0
+        for mode,r in p["modes"].items():
+            self.assertEqual(r["remote_status"],"KernelWorkerStatus.COMPLETE")
+            self.assertTrue(r["private_metadata_verified"])
+            self.assertTrue(r["code_cell_matches_checked_in_source"])
+            for filename,checksum in r["receipt_and_output_sha256"].items():
+                file=ROOT/"research/bible/results/hosted_kaggle_20261113"/mode/filename
+                self.assertTrue(file.is_file(),str(file))
+                self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(),checksum)
+                count+=1
+        self.assertEqual(count,9)  # four JSON receipts plus five numeric CSVs
 
 if __name__=="__main__":
     unittest.main()
