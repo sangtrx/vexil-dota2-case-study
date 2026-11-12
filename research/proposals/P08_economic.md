@@ -1,6 +1,9 @@
 # P08: Support and farming topology
 
-**Status:** REGISTERED, UNTESTED at file-creation time. Research / exploratory only.
+**Status:** Registered for this finite, exploratory factory run.
+Several individual signal ideas (gold velocity, relative wealth, Aegis,
+buyback, structural mismatch) were already explored in earlier
+research branches; this is NOT an independent first test of them.
 
 **Scientific mechanism.** Low-income support weakness may affect access to objectives despite equal gold.
 

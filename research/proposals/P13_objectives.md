@@ -1,6 +1,9 @@
 # P13: Weighted map structure
 
-**Status:** REGISTERED, UNTESTED at file-creation time. Research / exploratory only.
+**Status:** Registered for this finite, exploratory factory run.
+Several individual signal ideas (gold velocity, relative wealth, Aegis,
+buyback, structural mismatch) were already explored in earlier
+research branches; this is NOT an independent first test of them.
 
 **Scientific mechanism.** Destroying later-tier towers is more valuable than the same count of outer towers.
 

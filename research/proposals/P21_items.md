@@ -1,6 +1,9 @@
 # P21: Recent item investment impulse
 
-**Status:** REGISTERED, UNTESTED at file-creation time. Research / exploratory only.
+**Status:** Registered for this finite, exploratory factory run.
+Several individual signal ideas (gold velocity, relative wealth, Aegis,
+buyback, structural mismatch) were already explored in earlier
+research branches; this is NOT an independent first test of them.
 
 **Scientific mechanism.** Simultaneous non-consumable purchases may mark a team-wide timing window.
 

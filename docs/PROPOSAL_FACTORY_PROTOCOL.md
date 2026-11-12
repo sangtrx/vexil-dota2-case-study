@@ -14,6 +14,12 @@ lead persistence and realized volatility; objective conversion
 and team-fight histories; Aegis/buyback/item/event windows;
 draft-side priors; and restricted-capacity nonlinear alternatives.
 These are NOT 28 claims of algorithmic originality.
+Several individual signals overlap earlier negative exploratory
+experiments in draft PRs #4 and #5; repeating them within this
+finite family does not provide independent evidence of novelty
+or a second untouched validation sample. Treat all 28 screens
+as exploratory model-development comparisons, not 28 independent
+discoveries.
 
 ## Scope, cutoff and rules
 
