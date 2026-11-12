@@ -1,0 +1,16 @@
+{
+  "after_original_last_start": 1774555382,
+  "api_calls": 203,
+  "cache_hits": 3,
+  "cohort_size": 200,
+  "excluded_by_reason": {
+    "unparsed_or_short": 1
+  },
+  "first_start": 1774560177,
+  "first_time_utc": "2026-03-26T21:22:57+00:00",
+  "last_start": 1774832475,
+  "last_time_utc": "2026-03-30T01:01:15+00:00",
+  "ordered_id_sha256": "365c45ec54c818153a388ff645576b9582ebec4fe0fbb4a148588acf5f173788",
+  "patch": "60",
+  "selection_rule": "first 200 parsed patch-60 proMatches strictly after original 500 max start, no original series overlap, no label selection"
+}

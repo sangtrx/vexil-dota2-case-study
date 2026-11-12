@@ -1,0 +1,1402 @@
+[
+  {
+    "match_id": 8745257904,
+    "start_time": 1774560177,
+    "series_id": 1079405,
+    "patch": "60",
+    "duration": 1678
+  },
+  {
+    "match_id": 8745289466,
+    "start_time": 1774563144,
+    "series_id": 1079405,
+    "patch": "60",
+    "duration": 1636
+  },
+  {
+    "match_id": 8745321886,
+    "start_time": 1774565706,
+    "series_id": 1079418,
+    "patch": "60",
+    "duration": 1765
+  },
+  {
+    "match_id": 8745353837,
+    "start_time": 1774569357,
+    "series_id": 1079418,
+    "patch": "60",
+    "duration": 2045
+  },
+  {
+    "match_id": 8745377746,
+    "start_time": 1774572184,
+    "series_id": 1079436,
+    "patch": "60",
+    "duration": 1926
+  },
+  {
+    "match_id": 8745398775,
+    "start_time": 1774574739,
+    "series_id": 1079436,
+    "patch": "60",
+    "duration": 1738
+  },
+  {
+    "match_id": 8745420395,
+    "start_time": 1774576976,
+    "series_id": 1079436,
+    "patch": "60",
+    "duration": 2166
+  },
+  {
+    "match_id": 8745511760,
+    "start_time": 1774586244,
+    "series_id": 1079497,
+    "patch": "60",
+    "duration": 1704
+  },
+  {
+    "match_id": 8745528506,
+    "start_time": 1774588060,
+    "series_id": 1079501,
+    "patch": "60",
+    "duration": 1787
+  },
+  {
+    "match_id": 8745535208,
+    "start_time": 1774588530,
+    "series_id": 1079497,
+    "patch": "60",
+    "duration": 1906
+  },
+  {
+    "match_id": 8745555592,
+    "start_time": 1774590524,
+    "series_id": 1079501,
+    "patch": "60",
+    "duration": 2106
+  },
+  {
+    "match_id": 8745564197,
+    "start_time": 1774591401,
+    "series_id": 1079497,
+    "patch": "60",
+    "duration": 1929
+  },
+  {
+    "match_id": 8745568093,
+    "start_time": 1774591868,
+    "series_id": 1079511,
+    "patch": "60",
+    "duration": 1979
+  },
+  {
+    "match_id": 8745586194,
+    "start_time": 1774593472,
+    "series_id": 1079513,
+    "patch": "60",
+    "duration": 2435
+  },
+  {
+    "match_id": 8745603372,
+    "start_time": 1774594941,
+    "series_id": 1079511,
+    "patch": "60",
+    "duration": 1653
+  },
+  {
+    "match_id": 8745593344,
+    "start_time": 1774594979,
+    "series_id": 1079516,
+    "patch": "60",
+    "duration": 2109
+  },
+  {
+    "match_id": 8745620592,
+    "start_time": 1774596453,
+    "series_id": 1079513,
+    "patch": "60",
+    "duration": 1632
+  },
+  {
+    "match_id": 8745635210,
+    "start_time": 1774597600,
+    "series_id": 1079516,
+    "patch": "60",
+    "duration": 1783
+  },
+  {
+    "match_id": 8745637798,
+    "start_time": 1774597849,
+    "series_id": 1079526,
+    "patch": "60",
+    "duration": 1292
+  },
+  {
+    "match_id": 8745647290,
+    "start_time": 1774598569,
+    "series_id": 1079513,
+    "patch": "60",
+    "duration": 2303
+  },
+  {
+    "match_id": 8745669040,
+    "start_time": 1774600661,
+    "series_id": 1079531,
+    "patch": "60",
+    "duration": 2247
+  },
+  {
+    "match_id": 8745687860,
+    "start_time": 1774601790,
+    "series_id": 1079535,
+    "patch": "60",
+    "duration": 1902
+  },
+  {
+    "match_id": 8745724916,
+    "start_time": 1774604231,
+    "series_id": 1079543,
+    "patch": "60",
+    "duration": 2596
+  },
+  {
+    "match_id": 8745725618,
+    "start_time": 1774604307,
+    "series_id": 1079535,
+    "patch": "60",
+    "duration": 2370
+  },
+  {
+    "match_id": 8745739244,
+    "start_time": 1774606021,
+    "series_id": 1079544,
+    "patch": "60",
+    "duration": 3436
+  },
+  {
+    "match_id": 8745771816,
+    "start_time": 1774607327,
+    "series_id": 1079535,
+    "patch": "60",
+    "duration": 1498
+  },
+  {
+    "match_id": 8745797560,
+    "start_time": 1774609380,
+    "series_id": 1079555,
+    "patch": "60",
+    "duration": 2449
+  },
+  {
+    "match_id": 8745822216,
+    "start_time": 1774610337,
+    "series_id": 1079557,
+    "patch": "60",
+    "duration": 1933
+  },
+  {
+    "match_id": 8745841573,
+    "start_time": 1774611336,
+    "series_id": 1079544,
+    "patch": "60",
+    "duration": 2738
+  },
+  {
+    "match_id": 8745834843,
+    "start_time": 1774612799,
+    "series_id": 1079559,
+    "patch": "60",
+    "duration": 1981
+  },
+  {
+    "match_id": 8745869043,
+    "start_time": 1774612809,
+    "series_id": 1079557,
+    "patch": "60",
+    "duration": 1972
+  },
+  {
+    "match_id": 8745871069,
+    "start_time": 1774612900,
+    "series_id": 1079570,
+    "patch": "60",
+    "duration": 1866
+  },
+  {
+    "match_id": 8745878417,
+    "start_time": 1774613236,
+    "series_id": 1079571,
+    "patch": "60",
+    "duration": 2905
+  },
+  {
+    "match_id": 8745921397,
+    "start_time": 1774615271,
+    "series_id": 1079570,
+    "patch": "60",
+    "duration": 1658
+  },
+  {
+    "match_id": 8745919736,
+    "start_time": 1774615542,
+    "series_id": 1079544,
+    "patch": "60",
+    "duration": 2146
+  },
+  {
+    "match_id": 8745947296,
+    "start_time": 1774616697,
+    "series_id": 1079559,
+    "patch": "60",
+    "duration": 2506
+  },
+  {
+    "match_id": 8745975995,
+    "start_time": 1774617640,
+    "series_id": 1079608,
+    "patch": "60",
+    "duration": 2022
+  },
+  {
+    "match_id": 8745992471,
+    "start_time": 1774618390,
+    "series_id": 1079610,
+    "patch": "60",
+    "duration": 2210
+  },
+  {
+    "match_id": 8746035381,
+    "start_time": 1774620093,
+    "series_id": 1079608,
+    "patch": "60",
+    "duration": 1823
+  },
+  {
+    "match_id": 8746039009,
+    "start_time": 1774620467,
+    "series_id": 1079626,
+    "patch": "60",
+    "duration": 3935
+  },
+  {
+    "match_id": 8746052384,
+    "start_time": 1774621020,
+    "series_id": 1079559,
+    "patch": "60",
+    "duration": 2847
+  },
+  {
+    "match_id": 8746092219,
+    "start_time": 1774622234,
+    "series_id": 1079610,
+    "patch": "60",
+    "duration": 1657
+  },
+  {
+    "match_id": 8746100664,
+    "start_time": 1774622600,
+    "series_id": 1079636,
+    "patch": "60",
+    "duration": 1721
+  },
+  {
+    "match_id": 8746135052,
+    "start_time": 1774623964,
+    "series_id": 1079647,
+    "patch": "60",
+    "duration": 1673
+  },
+  {
+    "match_id": 8746165195,
+    "start_time": 1774625117,
+    "series_id": 1079636,
+    "patch": "60",
+    "duration": 1667
+  },
+  {
+    "match_id": 8746211447,
+    "start_time": 1774626875,
+    "series_id": 1079626,
+    "patch": "60",
+    "duration": 2609
+  },
+  {
+    "match_id": 8746219838,
+    "start_time": 1774627241,
+    "series_id": 1079636,
+    "patch": "60",
+    "duration": 2307
+  },
+  {
+    "match_id": 8746216605,
+    "start_time": 1774627300,
+    "series_id": 1079664,
+    "patch": "60",
+    "duration": 2080
+  },
+  {
+    "match_id": 8746223990,
+    "start_time": 1774627373,
+    "series_id": 1079647,
+    "patch": "60",
+    "duration": 2222
+  },
+  {
+    "match_id": 8746231075,
+    "start_time": 1774627823,
+    "series_id": 1079670,
+    "patch": "60",
+    "duration": 1545
+  },
+  {
+    "match_id": 8746308850,
+    "start_time": 1774630866,
+    "series_id": 1079670,
+    "patch": "60",
+    "duration": 1573
+  },
+  {
+    "match_id": 8746310653,
+    "start_time": 1774631138,
+    "series_id": 1079626,
+    "patch": "60",
+    "duration": 1911
+  },
+  {
+    "match_id": 8746313247,
+    "start_time": 1774631338,
+    "series_id": 1079664,
+    "patch": "60",
+    "duration": 1904
+  },
+  {
+    "match_id": 8746401916,
+    "start_time": 1774634965,
+    "series_id": 1079626,
+    "patch": "60",
+    "duration": 3265
+  },
+  {
+    "match_id": 8746404665,
+    "start_time": 1774635121,
+    "series_id": 1079723,
+    "patch": "60",
+    "duration": 2484
+  },
+  {
+    "match_id": 8746446635,
+    "start_time": 1774638306,
+    "series_id": 1079736,
+    "patch": "60",
+    "duration": 2525
+  },
+  {
+    "match_id": 8746490111,
+    "start_time": 1774639175,
+    "series_id": 1079747,
+    "patch": "60",
+    "duration": 3213
+  },
+  {
+    "match_id": 8746511263,
+    "start_time": 1774640318,
+    "series_id": 1079626,
+    "patch": "60",
+    "duration": 2451
+  },
+  {
+    "match_id": 8746541961,
+    "start_time": 1774641702,
+    "series_id": 1079761,
+    "patch": "60",
+    "duration": 1820
+  },
+  {
+    "match_id": 8746557862,
+    "start_time": 1774642740,
+    "series_id": 1079736,
+    "patch": "60",
+    "duration": 2500
+  },
+  {
+    "match_id": 8746589986,
+    "start_time": 1774644193,
+    "series_id": 1079761,
+    "patch": "60",
+    "duration": 1931
+  },
+  {
+    "match_id": 8746592208,
+    "start_time": 1774644330,
+    "series_id": 1079774,
+    "patch": "60",
+    "duration": 1438
+  },
+  {
+    "match_id": 8746634226,
+    "start_time": 1774646710,
+    "series_id": 1079761,
+    "patch": "60",
+    "duration": 1943
+  },
+  {
+    "match_id": 8746649774,
+    "start_time": 1774647899,
+    "series_id": 1079736,
+    "patch": "60",
+    "duration": 4397
+  },
+  {
+    "match_id": 8746677034,
+    "start_time": 1774649557,
+    "series_id": 1079792,
+    "patch": "60",
+    "duration": 1737
+  },
+  {
+    "match_id": 8746708010,
+    "start_time": 1774652020,
+    "series_id": 1079792,
+    "patch": "60",
+    "duration": 1555
+  },
+  {
+    "match_id": 8746733146,
+    "start_time": 1774654440,
+    "series_id": 1079802,
+    "patch": "60",
+    "duration": 1667
+  },
+  {
+    "match_id": 8746757013,
+    "start_time": 1774656711,
+    "series_id": 1079802,
+    "patch": "60",
+    "duration": 1966
+  },
+  {
+    "match_id": 8746784326,
+    "start_time": 1774659521,
+    "series_id": 1079817,
+    "patch": "60",
+    "duration": 1791
+  },
+  {
+    "match_id": 8746809299,
+    "start_time": 1774661995,
+    "series_id": 1079817,
+    "patch": "60",
+    "duration": 1863
+  },
+  {
+    "match_id": 8746835631,
+    "start_time": 1774664378,
+    "series_id": 1079817,
+    "patch": "60",
+    "duration": 1686
+  },
+  {
+    "match_id": 8746932153,
+    "start_time": 1774672673,
+    "series_id": 1079861,
+    "patch": "60",
+    "duration": 1877
+  },
+  {
+    "match_id": 8746964633,
+    "start_time": 1774675266,
+    "series_id": 1079861,
+    "patch": "60",
+    "duration": 1620
+  },
+  {
+    "match_id": 8746994454,
+    "start_time": 1774677567,
+    "series_id": 1079861,
+    "patch": "60",
+    "duration": 1692
+  },
+  {
+    "match_id": 8747007006,
+    "start_time": 1774678467,
+    "series_id": 1079874,
+    "patch": "60",
+    "duration": 1792
+  },
+  {
+    "match_id": 8747027812,
+    "start_time": 1774680150,
+    "series_id": 1079875,
+    "patch": "60",
+    "duration": 1890
+  },
+  {
+    "match_id": 8747049674,
+    "start_time": 1774681378,
+    "series_id": 1079874,
+    "patch": "60",
+    "duration": 1450
+  },
+  {
+    "match_id": 8747069956,
+    "start_time": 1774682751,
+    "series_id": 1079875,
+    "patch": "60",
+    "duration": 1384
+  },
+  {
+    "match_id": 8747087851,
+    "start_time": 1774683942,
+    "series_id": 1079874,
+    "patch": "60",
+    "duration": 2045
+  },
+  {
+    "match_id": 8747105300,
+    "start_time": 1774684981,
+    "series_id": 1079893,
+    "patch": "60",
+    "duration": 1726
+  },
+  {
+    "match_id": 8747149373,
+    "start_time": 1774687448,
+    "series_id": 1079893,
+    "patch": "60",
+    "duration": 1568
+  },
+  {
+    "match_id": 8747179150,
+    "start_time": 1774689071,
+    "series_id": 1079917,
+    "patch": "60",
+    "duration": 2271
+  },
+  {
+    "match_id": 8747195737,
+    "start_time": 1774690062,
+    "series_id": 1079930,
+    "patch": "60",
+    "duration": 1801
+  },
+  {
+    "match_id": 8747241875,
+    "start_time": 1774692503,
+    "series_id": 1079917,
+    "patch": "60",
+    "duration": 2958
+  },
+  {
+    "match_id": 8747254451,
+    "start_time": 1774693375,
+    "series_id": 1079930,
+    "patch": "60",
+    "duration": 1618
+  },
+  {
+    "match_id": 8747301386,
+    "start_time": 1774695637,
+    "series_id": 1079930,
+    "patch": "60",
+    "duration": 1680
+  },
+  {
+    "match_id": 8747345967,
+    "start_time": 1774697915,
+    "series_id": 1079977,
+    "patch": "60",
+    "duration": 2318
+  },
+  {
+    "match_id": 8747354565,
+    "start_time": 1774699178,
+    "series_id": 1079981,
+    "patch": "60",
+    "duration": 2756
+  },
+  {
+    "match_id": 8747430390,
+    "start_time": 1774701493,
+    "series_id": 1080012,
+    "patch": "60",
+    "duration": 2306
+  },
+  {
+    "match_id": 8747486863,
+    "start_time": 1774703996,
+    "series_id": 1079981,
+    "patch": "60",
+    "duration": 1841
+  },
+  {
+    "match_id": 8747525830,
+    "start_time": 1774705191,
+    "series_id": 1080046,
+    "patch": "60",
+    "duration": 2504
+  },
+  {
+    "match_id": 8747634932,
+    "start_time": 1774709090,
+    "series_id": 1080046,
+    "patch": "60",
+    "duration": 3674
+  },
+  {
+    "match_id": 8747660830,
+    "start_time": 1774711855,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2648
+  },
+  {
+    "match_id": 8747789593,
+    "start_time": 1774714875,
+    "series_id": 1080123,
+    "patch": "60",
+    "duration": 2211
+  },
+  {
+    "match_id": 8747822091,
+    "start_time": 1774716418,
+    "series_id": 1080088,
+    "patch": "60",
+    "duration": 1501
+  },
+  {
+    "match_id": 8747893642,
+    "start_time": 1774719306,
+    "series_id": 1080157,
+    "patch": "60",
+    "duration": 1342
+  },
+  {
+    "match_id": 8747972285,
+    "start_time": 1774722644,
+    "series_id": 1080180,
+    "patch": "60",
+    "duration": 1610
+  },
+  {
+    "match_id": 8748008577,
+    "start_time": 1774724358,
+    "series_id": 1080194,
+    "patch": "60",
+    "duration": 1333
+  },
+  {
+    "match_id": 8748017712,
+    "start_time": 1774724677,
+    "series_id": 1080198,
+    "patch": "60",
+    "duration": 1850
+  },
+  {
+    "match_id": 8748020535,
+    "start_time": 1774724764,
+    "series_id": 1080201,
+    "patch": "60",
+    "duration": 1359
+  },
+  {
+    "match_id": 8748032480,
+    "start_time": 1774725250,
+    "series_id": 1080205,
+    "patch": "60",
+    "duration": 2580
+  },
+  {
+    "match_id": 8748080084,
+    "start_time": 1774727699,
+    "series_id": 1080194,
+    "patch": "60",
+    "duration": 2869
+  },
+  {
+    "match_id": 8748097177,
+    "start_time": 1774728183,
+    "series_id": 1080201,
+    "patch": "60",
+    "duration": 1435
+  },
+  {
+    "match_id": 8748105023,
+    "start_time": 1774728593,
+    "series_id": 1080234,
+    "patch": "60",
+    "duration": 2551
+  },
+  {
+    "match_id": 8748115138,
+    "start_time": 1774729072,
+    "series_id": 1080239,
+    "patch": "60",
+    "duration": 1122
+  },
+  {
+    "match_id": 8748176080,
+    "start_time": 1774732675,
+    "series_id": 1080194,
+    "patch": "60",
+    "duration": 2037
+  },
+  {
+    "match_id": 8748183371,
+    "start_time": 1774732968,
+    "series_id": 1080260,
+    "patch": "60",
+    "duration": 1749
+  },
+  {
+    "match_id": 8748186049,
+    "start_time": 1774733003,
+    "series_id": 1080262,
+    "patch": "60",
+    "duration": 2809
+  },
+  {
+    "match_id": 8748247022,
+    "start_time": 1774737032,
+    "series_id": 1080283,
+    "patch": "60",
+    "duration": 3360
+  },
+  {
+    "match_id": 8748268838,
+    "start_time": 1774738751,
+    "series_id": 1080262,
+    "patch": "60",
+    "duration": 2594
+  },
+  {
+    "match_id": 8748473200,
+    "start_time": 1774757033,
+    "series_id": 1080344,
+    "patch": "60",
+    "duration": 1933
+  },
+  {
+    "match_id": 8748503689,
+    "start_time": 1774759482,
+    "series_id": 1080344,
+    "patch": "60",
+    "duration": 2467
+  },
+  {
+    "match_id": 8748527298,
+    "start_time": 1774761285,
+    "series_id": 1080352,
+    "patch": "60",
+    "duration": 1721
+  },
+  {
+    "match_id": 8748550719,
+    "start_time": 1774763033,
+    "series_id": 1080360,
+    "patch": "60",
+    "duration": 2005
+  },
+  {
+    "match_id": 8748556960,
+    "start_time": 1774763527,
+    "series_id": 1080352,
+    "patch": "60",
+    "duration": 1464
+  },
+  {
+    "match_id": 8748564044,
+    "start_time": 1774763979,
+    "series_id": 1080363,
+    "patch": "60",
+    "duration": 2412
+  },
+  {
+    "match_id": 8748589867,
+    "start_time": 1774765785,
+    "series_id": 1080352,
+    "patch": "60",
+    "duration": 1680
+  },
+  {
+    "match_id": 8748590365,
+    "start_time": 1774765839,
+    "series_id": 1080360,
+    "patch": "60",
+    "duration": 1737
+  },
+  {
+    "match_id": 8748615379,
+    "start_time": 1774767334,
+    "series_id": 1080363,
+    "patch": "60",
+    "duration": 2249
+  },
+  {
+    "match_id": 8748626074,
+    "start_time": 1774768048,
+    "series_id": 1080360,
+    "patch": "60",
+    "duration": 1616
+  },
+  {
+    "match_id": 8748636158,
+    "start_time": 1774768917,
+    "series_id": 1080376,
+    "patch": "60",
+    "duration": 1819
+  },
+  {
+    "match_id": 8748666605,
+    "start_time": 1774770406,
+    "series_id": 1080378,
+    "patch": "60",
+    "duration": 1931
+  },
+  {
+    "match_id": 8748684403,
+    "start_time": 1774771374,
+    "series_id": 1080376,
+    "patch": "60",
+    "duration": 1521
+  },
+  {
+    "match_id": 8748701183,
+    "start_time": 1774772377,
+    "series_id": 1080389,
+    "patch": "60",
+    "duration": 2589
+  },
+  {
+    "match_id": 8748714132,
+    "start_time": 1774772910,
+    "series_id": 1080378,
+    "patch": "60",
+    "duration": 1796
+  },
+  {
+    "match_id": 8748726162,
+    "start_time": 1774773531,
+    "series_id": 1080376,
+    "patch": "60",
+    "duration": 1713
+  },
+  {
+    "match_id": 8748759002,
+    "start_time": 1774775192,
+    "series_id": 1080378,
+    "patch": "60",
+    "duration": 2032
+  },
+  {
+    "match_id": 8748777873,
+    "start_time": 1774776090,
+    "series_id": 1080389,
+    "patch": "60",
+    "duration": 1983
+  },
+  {
+    "match_id": 8748816019,
+    "start_time": 1774778017,
+    "series_id": 1080421,
+    "patch": "60",
+    "duration": 2164
+  },
+  {
+    "match_id": 8748838607,
+    "start_time": 1774779142,
+    "series_id": 1080389,
+    "patch": "60",
+    "duration": 2816
+  },
+  {
+    "match_id": 8748880560,
+    "start_time": 1774781157,
+    "series_id": 1080421,
+    "patch": "60",
+    "duration": 2849
+  },
+  {
+    "match_id": 8748904227,
+    "start_time": 1774782280,
+    "series_id": 1080439,
+    "patch": "60",
+    "duration": 2439
+  },
+  {
+    "match_id": 8748935977,
+    "start_time": 1774783777,
+    "series_id": 1080447,
+    "patch": "60",
+    "duration": 1738
+  },
+  {
+    "match_id": 8748962660,
+    "start_time": 1774784970,
+    "series_id": 1080421,
+    "patch": "60",
+    "duration": 2000
+  },
+  {
+    "match_id": 8748983086,
+    "start_time": 1774785834,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2061
+  },
+  {
+    "match_id": 8748983682,
+    "start_time": 1774785860,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2570
+  },
+  {
+    "match_id": 8748983690,
+    "start_time": 1774785860,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2376
+  },
+  {
+    "match_id": 8748983797,
+    "start_time": 1774785864,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 4531
+  },
+  {
+    "match_id": 8748983971,
+    "start_time": 1774785871,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1245
+  },
+  {
+    "match_id": 8748984145,
+    "start_time": 1774785877,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2489
+  },
+  {
+    "match_id": 8748984652,
+    "start_time": 1774785896,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 964
+  },
+  {
+    "match_id": 8748985791,
+    "start_time": 1774785942,
+    "series_id": 1080458,
+    "patch": "60",
+    "duration": 1332
+  },
+  {
+    "match_id": 8748986679,
+    "start_time": 1774785978,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2742
+  },
+  {
+    "match_id": 8748987175,
+    "start_time": 1774785998,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1967
+  },
+  {
+    "match_id": 8748987284,
+    "start_time": 1774786002,
+    "series_id": 1080459,
+    "patch": "60",
+    "duration": 1901
+  },
+  {
+    "match_id": 8748988858,
+    "start_time": 1774786065,
+    "series_id": 1080460,
+    "patch": "60",
+    "duration": 2534
+  },
+  {
+    "match_id": 8748988994,
+    "start_time": 1774786071,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 3067
+  },
+  {
+    "match_id": 8748989334,
+    "start_time": 1774786085,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1238
+  },
+  {
+    "match_id": 8748993823,
+    "start_time": 1774786266,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2746
+  },
+  {
+    "match_id": 8748997250,
+    "start_time": 1774786405,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1359
+  },
+  {
+    "match_id": 8748993377,
+    "start_time": 1774786609,
+    "series_id": 1080439,
+    "patch": "60",
+    "duration": 2037
+  },
+  {
+    "match_id": 8749004525,
+    "start_time": 1774786696,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1079
+  },
+  {
+    "match_id": 8749092500,
+    "start_time": 1774790188,
+    "series_id": 1080493,
+    "patch": "60",
+    "duration": 2186
+  },
+  {
+    "match_id": 8749102310,
+    "start_time": 1774790517,
+    "series_id": 1080439,
+    "patch": "60",
+    "duration": 2037
+  },
+  {
+    "match_id": 8749119981,
+    "start_time": 1774791166,
+    "series_id": 1080502,
+    "patch": "60",
+    "duration": 1113
+  },
+  {
+    "match_id": 8749123972,
+    "start_time": 1774791313,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1278
+  },
+  {
+    "match_id": 8749124345,
+    "start_time": 1774791326,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1353
+  },
+  {
+    "match_id": 8749124403,
+    "start_time": 1774791328,
+    "series_id": 1080503,
+    "patch": "60",
+    "duration": 2157
+  },
+  {
+    "match_id": 8749124621,
+    "start_time": 1774791337,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1828
+  },
+  {
+    "match_id": 8749124693,
+    "start_time": 1774791339,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1737
+  },
+  {
+    "match_id": 8749126860,
+    "start_time": 1774791418,
+    "series_id": 1080504,
+    "patch": "60",
+    "duration": 2357
+  },
+  {
+    "match_id": 8749127626,
+    "start_time": 1774791447,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 3453
+  },
+  {
+    "match_id": 8749133252,
+    "start_time": 1774791653,
+    "series_id": 1080506,
+    "patch": "60",
+    "duration": 1598
+  },
+  {
+    "match_id": 8749140718,
+    "start_time": 1774791933,
+    "series_id": 1080508,
+    "patch": "60",
+    "duration": 1698
+  },
+  {
+    "match_id": 8749147435,
+    "start_time": 1774792183,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 1880
+  },
+  {
+    "match_id": 8749187348,
+    "start_time": 1774793669,
+    "series_id": 1080518,
+    "patch": "60",
+    "duration": 2163
+  },
+  {
+    "match_id": 8749282562,
+    "start_time": 1774797242,
+    "series_id": 1080518,
+    "patch": "60",
+    "duration": 1445
+  },
+  {
+    "match_id": 8749292870,
+    "start_time": 1774797396,
+    "series_id": 1080544,
+    "patch": "60",
+    "duration": 3242
+  },
+  {
+    "match_id": 8749296182,
+    "start_time": 1774797517,
+    "series_id": 1080546,
+    "patch": "60",
+    "duration": 3782
+  },
+  {
+    "match_id": 8749290937,
+    "start_time": 1774797535,
+    "series_id": 1080543,
+    "patch": "60",
+    "duration": 2439
+  },
+  {
+    "match_id": 8749299001,
+    "start_time": 1774797621,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2503
+  },
+  {
+    "match_id": 8749309716,
+    "start_time": 1774798021,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2890
+  },
+  {
+    "match_id": 8749317442,
+    "start_time": 1774798309,
+    "series_id": 1080550,
+    "patch": "60",
+    "duration": 2002
+  },
+  {
+    "match_id": 8749367028,
+    "start_time": 1774800650,
+    "series_id": 1080566,
+    "patch": "60",
+    "duration": 1795
+  },
+  {
+    "match_id": 8749401157,
+    "start_time": 1774801859,
+    "series_id": 1080543,
+    "patch": "60",
+    "duration": 3748
+  },
+  {
+    "match_id": 8749433933,
+    "start_time": 1774802903,
+    "series_id": 0,
+    "patch": "60",
+    "duration": 2073
+  },
+  {
+    "match_id": 8749440696,
+    "start_time": 1774803187,
+    "series_id": 1080584,
+    "patch": "60",
+    "duration": 1704
+  },
+  {
+    "match_id": 8749454702,
+    "start_time": 1774803786,
+    "series_id": 1080588,
+    "patch": "60",
+    "duration": 1630
+  },
+  {
+    "match_id": 8749463873,
+    "start_time": 1774804175,
+    "series_id": 1080596,
+    "patch": "60",
+    "duration": 1264
+  },
+  {
+    "match_id": 8749530326,
+    "start_time": 1774807050,
+    "series_id": 1080615,
+    "patch": "60",
+    "duration": 2408
+  },
+  {
+    "match_id": 8749533801,
+    "start_time": 1774807497,
+    "series_id": 1080543,
+    "patch": "60",
+    "duration": 2264
+  },
+  {
+    "match_id": 8749589036,
+    "start_time": 1774809632,
+    "series_id": 1080642,
+    "patch": "60",
+    "duration": 1760
+  },
+  {
+    "match_id": 8749625824,
+    "start_time": 1774811505,
+    "series_id": 1080653,
+    "patch": "60",
+    "duration": 1722
+  },
+  {
+    "match_id": 8749644755,
+    "start_time": 1774812158,
+    "series_id": 1080662,
+    "patch": "60",
+    "duration": 1678
+  },
+  {
+    "match_id": 8749652988,
+    "start_time": 1774812548,
+    "series_id": 1080667,
+    "patch": "60",
+    "duration": 2402
+  },
+  {
+    "match_id": 8749655300,
+    "start_time": 1774812860,
+    "series_id": 1080543,
+    "patch": "60",
+    "duration": 1662
+  },
+  {
+    "match_id": 8749698741,
+    "start_time": 1774814862,
+    "series_id": 1080680,
+    "patch": "60",
+    "duration": 1837
+  },
+  {
+    "match_id": 8749721094,
+    "start_time": 1774816112,
+    "series_id": 1080689,
+    "patch": "60",
+    "duration": 2136
+  },
+  {
+    "match_id": 8749737860,
+    "start_time": 1774817040,
+    "series_id": 1080653,
+    "patch": "60",
+    "duration": 1835
+  },
+  {
+    "match_id": 8749741237,
+    "start_time": 1774817279,
+    "series_id": 1080680,
+    "patch": "60",
+    "duration": 1713
+  },
+  {
+    "match_id": 8749777329,
+    "start_time": 1774819663,
+    "series_id": 1080707,
+    "patch": "60",
+    "duration": 1639
+  },
+  {
+    "match_id": 8749780096,
+    "start_time": 1774819796,
+    "series_id": 1080680,
+    "patch": "60",
+    "duration": 1572
+  },
+  {
+    "match_id": 8749790435,
+    "start_time": 1774820515,
+    "series_id": 1080713,
+    "patch": "60",
+    "duration": 1705
+  },
+  {
+    "match_id": 8749809128,
+    "start_time": 1774822136,
+    "series_id": 1080725,
+    "patch": "60",
+    "duration": 1765
+  },
+  {
+    "match_id": 8749823604,
+    "start_time": 1774823176,
+    "series_id": 1080732,
+    "patch": "60",
+    "duration": 1329
+  },
+  {
+    "match_id": 8749833141,
+    "start_time": 1774824106,
+    "series_id": 1080735,
+    "patch": "60",
+    "duration": 1951
+  },
+  {
+    "match_id": 8749845136,
+    "start_time": 1774825293,
+    "series_id": 1080725,
+    "patch": "60",
+    "duration": 1968
+  },
+  {
+    "match_id": 8749871656,
+    "start_time": 1774827946,
+    "series_id": 1080746,
+    "patch": "60",
+    "duration": 1644
+  },
+  {
+    "match_id": 8749892091,
+    "start_time": 1774830152,
+    "series_id": 1080746,
+    "patch": "60",
+    "duration": 1819
+  },
+  {
+    "match_id": 8749912983,
+    "start_time": 1774832475,
+    "series_id": 1080746,
+    "patch": "60",
+    "duration": 1514
+  }
+]
