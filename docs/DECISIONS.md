@@ -75,3 +75,9 @@
 **Change:** prefix truncation now filters only existing event lists, preserving None. Added a regression test asserting feature invariance for missing objectives/player-kill logs.
 **Evidence:** 24/24 offline tests pass. No model family, split boundary or data sample was altered.
 **Bible:** §§3.1–3.6, 14.3.
+
+## ADR-014 — Hash source payloads separately from the ID manifest (2026-11-13)
+**Decision:** the executed notebook computes and saves both a SHA-256 of its match-ID/time/patch manifest and a canonical hash over all fetched match payloads in its run receipt. This adds no input files or API endpoints.
+**Why:** OpenDota may reparse an unchanged match ID, changing the feature values. A frozen manifest alone does not prove identical input data; a payload hash makes such changes observable.
+**Tests:** synthetic end-to-end Run All executes the hash code and produces a valid 64-character digest. Real-data acceptance remains pending.
+**Bible:** §§3.1–3.2, 14.1–14.2.
