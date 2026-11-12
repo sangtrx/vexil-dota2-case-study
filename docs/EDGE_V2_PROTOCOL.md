@@ -112,6 +112,17 @@ not visibly degraded. Secondary: equal-match weighting, accuracy by
 Time/patch/team-level generalization is limited; one 200-game test is not
 proof of broad applicability.
 
+Transparent amendment dated 2026-11-13, AFTER internal development validation but
+BEFORE seeing new holdout outcomes: If no structural S model passes the
+predeclared gate, we may still evaluate the *already locked M1 vs original
+M0 gold-only* on the 200-game external cohort as a **replication of the
+previous take-home finding**, not as a test of S1-S4 or an incremental
+structural feature claim. In that case, S1-S4 are NOT evaluated on the
+new external holdout, the external cohort is marked consumed, and no further
+model is selected using those results. This is an explicitly post-development
+protocol amendment, not a claim to have preregistered the baseline audit
+at the start.
+
 No peeking at new holdout outcomes until model selection is locked.
 After test, do post-hoc error analysis only with that label, not further
 model retuning on this same 200-game set. The final take-home notebook
