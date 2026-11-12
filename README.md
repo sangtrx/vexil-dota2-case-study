@@ -31,6 +31,10 @@ Use **Run All**. The notebook downloads its own match payloads from OpenDota, ra
 
 Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local environment to verify point-in-time invariance, split boundaries and paired match-bootstrap behavior without network calls. The notebook has additionally passed a separate end-to-end synthetic integration smoke test. Neither establishes model quality on real matches.
 
+## Derived outputs
+
+After Run All, the notebook exports the frozen match manifest, validation ablations, held-out metrics and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions and manifest hash. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
+
 ## Kaggle execution
 
 Kaggle is the primary experiment runtime, but **GitHub is authoritative for source and review history**. A private Kaggle CPU kernel using one authorized account successfully fetched an OpenDota pro-match page over the Internet (HTTP 200, 100 matches). An initial full-payload crawl was stopped before reaching the patch boundary. The revised implementation identifies the boundary from a few label-blind probes per page and then fetches a balanced 250/250 two-patch cohort. Its real run is not yet verified. Syncing is done with `kaggle kernels push` / `pull`; only vetted notebook checkpoints are committed to GitHub. No GPU is required.

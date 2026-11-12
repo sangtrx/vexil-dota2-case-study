@@ -33,3 +33,5 @@ Status: development protocol and synthetic smoke tests complete; no 500-match re
 - Assignment: *Vexil Capital - Take-Home Modelling Project*, pages 1–4.
 - Private internal methodology: *Quant Research Bible* **v1.4.1**, sections cited above; *Theory Reading Paths*, `Before starting any deep dive`. No private source text, code or credentials are included here.
 - Public implementation: OpenDota API documentation and scikit-learn probability calibration guide (linked from the research plan).
+
+- Notebook now exports derived run artifacts (CSV, calibration PNG, versioned receipt) for audit and report preparation. Synthetic end-to-end verification confirmed valid exports; real outputs still pending.
