@@ -38,3 +38,8 @@
 **Decision:** use the explicit minute-array and timestamp convention in the brief, verify with prefix truncation and future-data poisoning, and state that actual historical reception latency is unobserved.
 **Why:** the endpoint returns retrospectively parsed replays, not a timestamped live delivery log. Reference: Bible v1.4.1 §§3.1, 3.3, 13.2.
 **Status:** implemented with offline tests, real-data tests pending.
+
+## ADR-008 — Avoid replacing binary libraries inside a live Kaggle kernel (2026-11-13)
+**Observed failure:** first full Kaggle run reached Setup but failed with a NumPy/SciPy binary mismatch after `pip install` replaced packages inside Kaggle Python 3.13. No 500-match empirical evaluation occurred.
+**Decision:** use Kaggle's preinstalled scientific stack and record its actual versions. Colab installs the notebook's inline-pinned analysis requirements; local installs `requirements.txt`. Do not claim bitwise numerical identity across different cloud base images until verified.
+**Status:** corrected in notebook; real Kaggle retry pending.

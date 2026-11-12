@@ -21,6 +21,12 @@ Once the final candidate is selected on validation, do not tune it or rerun feat
 
 ### Engineering verification checkpoint — 2026-11-13
 
-- 11/11 offline contract tests passed; synthetic end-to-end smoke passed. Synthetic loss numbers are not retained as empirical evidence.
+- 11/14 offline contract tests passed; synthetic end-to-end smoke passed. Synthetic loss numbers are not retained as empirical evidence.
 - Private Kaggle CPU smoke on one account printed `OPEN_DOTA_KAGGLE_SMOKE_PASS 200 100`.
 - The complete 500-match run was launched on Kaggle, with final eligibility/patch manifest and held-out metrics pending; no claim of model superiority is justified yet.
+
+### Environment incident — first full Kaggle attempt
+
+- The private CPU job was accepted and executed, but aborted during Setup: in-kernel pin replacement caused `AttributeError: 'numpy.ufunc' object has no attribute '__module__'` while importing scikit-learn/SciPy.
+- This is an execution-environment failure, not a model outcome. No data selection or holdout evidence is claimed from that run.
+- Correction: skip binary dependency replacement in an already-running Kaggle kernel; record actual package versions instead. Retry must use the same predeclared model and evaluation design.
