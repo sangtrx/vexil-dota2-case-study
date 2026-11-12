@@ -83,3 +83,7 @@ The source notebook was frozen and committed at 3258a76 BEFORE execution results
 
 ### E03 — Fixed-model influence and reporting audit, 2026-11-13
 No new model candidate was trained or selected after the held-out results. A read-only report review flagged concentrated late-game uncertainty; per-match loss contributions confirm that a single long late-game match drives the nominal 30+ log-loss advantage. The post-hoc exclusion is descriptive only, not an alternative headline estimand. Report numbers were matched programmatically to all 10 held-out metric rows and 4 validation ablation rows. The 500 IDs, source notebook model code and split remain fixed.
+
+
+### E04 — Full selected-cohort point-in-time invariant audit (2026-11-13)
+After freezing the manifest and selecting the model, I ran a **feature-only** stress test over every selected match, with 3,342 minute cutoffs across 500 games: 1,667 checks for patch 59 and 1,675 for patch 60. At each checkpoint I independently rebuilt the snapshot from a prefix-truncated copy and compared every feature. All 3,342 comparisons passed. The audit used 500 cached match responses and **zero** new API requests; it did not refit, retune or reevaluate models. A receipt is stored with the local QA artifacts. This proves the implemented feature dependence conforms to the assignment's event/array cutoff convention; it does not prove real live-feed arrival-time availability.

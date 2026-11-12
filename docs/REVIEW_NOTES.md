@@ -68,3 +68,7 @@ A read-only Sonnet review checked the completed report against the brief and hig
 - Reported source freeze commit 3258a76 and pre-results model-family commit e49e853; the same model, features and cutoff rules remain unchanged.
 - Machine-checked all 10 held-out phase-metric table entries and all 4 validation rows (rounded scores and interval endpoints) against the executed CSV outputs. PASS.
 **Still blocked:** actual human hours, independent Kaggle acceptance, fresh Colab, and final report page-budget/packaging check.
+
+
+## All-500-match leakage acceptance — 2026-11-13
+The full cohort of 500 selected parsed games passed **3,342** adversarial PIT prefix checks (patch 59: 1,667; patch 60: 1,675) without making API requests. The previously reported 128-game/512-check audit was a smaller pre-freeze smoke test and is superseded by the complete result. This is feature-logic evidence only, not proof of live network-time delivery or model superiority.
