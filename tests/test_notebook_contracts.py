@@ -308,5 +308,21 @@ class NotebookContractsTest(unittest.TestCase):
             self.assertFalse(env["ON_KAGGLE"])
 
 
+    def test_wilson_interval_bounds_and_extremes(self):
+        cell = next(c for c in NB["cells"] if c.get("id") == "vexil-comeback-data")
+        tree = ast.parse("".join(cell["source"]))
+        fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "wilson_95")
+        namespace = {"math": math}
+        exec(compile(ast.Module(body=[fn], type_ignores=[]), "<wilson-test>", "exec"), namespace)
+        low, high = namespace["wilson_95"](0, 10)
+        self.assertEqual(low, 0.0)
+        self.assertAlmostEqual(high, 0.2775328, places=6)
+        low, high = namespace["wilson_95"](5, 10)
+        self.assertTrue(0.23 < low < 0.24)
+        self.assertTrue(0.76 < high < 0.77)
+        low, high = namespace["wilson_95"](10, 10)
+        self.assertAlmostEqual(high, 1.0, places=10)
+        self.assertTrue(0.72 < low < 0.73)
+
 if __name__ == "__main__":
     unittest.main()

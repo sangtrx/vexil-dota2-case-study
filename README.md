@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** notebook implementation and 16 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
+**Status:** notebook implementation and 17 offline contract tests completed; one-account private Kaggle Internet smoke passed. **Not submission-ready:** the 500-match manifest, real held-out metrics, executed outputs and four-page report are still pending. Synthetic smoke-test scores are not research results.
 
 ## Submission contract
 
