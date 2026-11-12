@@ -1,0 +1,316 @@
+{
+  "bootstrap_replicates": 5000,
+  "candidate_familywise_test_count": 28,
+  "cards": [
+    {
+      "family": "time-shape",
+      "file": "research/proposals/P01_time-shape.md",
+      "id": "P01",
+      "model": "logistic",
+      "new_features": [
+        "gold_signed_square",
+        "gold_cubic"
+      ],
+      "null": "No nonlinear gold advantage remains after gold\u00d7log(time)."
+    },
+    {
+      "family": "time-shape",
+      "file": "research/proposals/P02_time-shape.md",
+      "id": "P02",
+      "model": "logistic",
+      "new_features": [
+        "gold_x_early",
+        "gold_x_late"
+      ],
+      "null": "Separate time slopes do not improve proper scores."
+    },
+    {
+      "family": "time-shape",
+      "file": "research/proposals/P03_time-shape.md",
+      "id": "P03",
+      "model": "logistic",
+      "new_features": [
+        "gold_asinh"
+      ],
+      "null": "A nonlinear compression is not more transportable."
+    },
+    {
+      "family": "time-shape",
+      "file": "research/proposals/P04_time-shape.md",
+      "id": "P04",
+      "model": "logistic",
+      "new_features": [
+        "minute_sq",
+        "gold_x_minute_sq"
+      ],
+      "null": "Extra temporal curvature does not calibrate better."
+    },
+    {
+      "family": "economic",
+      "file": "research/proposals/P05_economic.md",
+      "id": "P05",
+      "model": "logistic",
+      "new_features": [
+        "relative_gold"
+      ],
+      "null": "Relative purchasing-power signal adds no conditional information."
+    },
+    {
+      "family": "economic",
+      "file": "research/proposals/P06_economic.md",
+      "id": "P06",
+      "model": "logistic",
+      "new_features": [
+        "relative_xp",
+        "xp_k"
+      ],
+      "null": "XP is redundant conditional on gold/time."
+    },
+    {
+      "family": "economic",
+      "file": "research/proposals/P07_economic.md",
+      "id": "P07",
+      "model": "logistic",
+      "new_features": [
+        "top2_share_gap",
+        "carry_gold_diff_k"
+      ],
+      "null": "Concentration is redundant or unstable."
+    },
+    {
+      "family": "economic",
+      "file": "research/proposals/P08_economic.md",
+      "id": "P08",
+      "model": "logistic",
+      "new_features": [
+        "bottom3_gold_diff_k",
+        "lh_diff10",
+        "gold_gini_gap"
+      ],
+      "null": "Distribution features do not generalize."
+    },
+    {
+      "family": "dynamics",
+      "file": "research/proposals/P09_dynamics.md",
+      "id": "P09",
+      "model": "logistic",
+      "new_features": [
+        "gold_velocity5_k",
+        "xp_velocity5_k"
+      ],
+      "null": "Shock is fully priced by current gold/time."
+    },
+    {
+      "family": "dynamics",
+      "file": "research/proposals/P10_dynamics.md",
+      "id": "P10",
+      "model": "logistic",
+      "new_features": [
+        "gold_accel10_k",
+        "gold_velocity5_k"
+      ],
+      "null": "Accelerations are noise once gold/time is known."
+    },
+    {
+      "family": "dynamics",
+      "file": "research/proposals/P11_dynamics.md",
+      "id": "P11",
+      "model": "logistic",
+      "new_features": [
+        "gold_vol5_k",
+        "gold_vol10_k"
+      ],
+      "null": "Past realized volatility adds no reliable signal."
+    },
+    {
+      "family": "dynamics",
+      "file": "research/proposals/P12_dynamics.md",
+      "id": "P12",
+      "model": "logistic",
+      "new_features": [
+        "lead_persistence10",
+        "gold_drawdown10_k",
+        "lead_flip10"
+      ],
+      "null": "Persistence has no incremental probability value."
+    },
+    {
+      "family": "objectives",
+      "file": "research/proposals/P13_objectives.md",
+      "id": "P13",
+      "model": "logistic",
+      "new_features": [
+        "tower_tier_delta",
+        "barracks_delta"
+      ],
+      "null": "Tier distinctions do not survive time-aware validation."
+    },
+    {
+      "family": "objectives",
+      "file": "research/proposals/P14_objectives.md",
+      "id": "P14",
+      "model": "logistic",
+      "new_features": [
+        "tower_recent10",
+        "tower_tier_delta"
+      ],
+      "null": "Tower event recency does not improve forecasts."
+    },
+    {
+      "family": "objectives",
+      "file": "research/proposals/P15_objectives.md",
+      "id": "P15",
+      "model": "logistic",
+      "new_features": [
+        "kills_recent5",
+        "kill_delta"
+      ],
+      "null": "Kill momentum is reflected in gold/time."
+    },
+    {
+      "family": "objectives",
+      "file": "research/proposals/P16_objectives.md",
+      "id": "P16",
+      "model": "logistic",
+      "new_features": [
+        "roshan_recent10",
+        "tower_recent10"
+      ],
+      "null": "Neither timing signal adds reproducible information."
+    },
+    {
+      "family": "option-state",
+      "file": "research/proposals/P17_option-state.md",
+      "id": "P17",
+      "model": "logistic",
+      "new_features": [
+        "aegis_claim5"
+      ],
+      "null": "Recent Aegis claim has no value conditional on gold/time."
+    },
+    {
+      "family": "option-state",
+      "file": "research/proposals/P18_option-state.md",
+      "id": "P18",
+      "model": "logistic",
+      "new_features": [
+        "buyback_commitment5"
+      ],
+      "null": "Buyback pressure is redundant or directionally unstable."
+    },
+    {
+      "family": "option-state",
+      "file": "research/proposals/P19_option-state.md",
+      "id": "P19",
+      "model": "logistic",
+      "new_features": [
+        "unconverted_gold_k"
+      ],
+      "null": "Economic-structural mismatch cannot improve proper loss."
+    },
+    {
+      "family": "items",
+      "file": "research/proposals/P20_items.md",
+      "id": "P20",
+      "model": "logistic",
+      "new_features": [
+        "major_item_diff",
+        "blink_bkb_diff"
+      ],
+      "null": "Item purchases are already encoded in gold/time."
+    },
+    {
+      "family": "items",
+      "file": "research/proposals/P21_items.md",
+      "id": "P21",
+      "model": "logistic",
+      "new_features": [
+        "major_recent5",
+        "purchasing_breadth5"
+      ],
+      "null": "Item impulse is noisy and does not transport."
+    },
+    {
+      "family": "draft",
+      "file": "research/proposals/P22_draft.md",
+      "id": "P22",
+      "model": "hero_ridge",
+      "new_features": [
+        "draft_onehot"
+      ],
+      "null": "A sparse 150-dimensional draft prior cannot generalize in 291 matches."
+    },
+    {
+      "family": "shape",
+      "file": "research/proposals/P23_shape.md",
+      "id": "P23",
+      "model": "tree_base",
+      "new_features": [],
+      "null": "A small tree overfits and degrades calibration."
+    },
+    {
+      "family": "shape",
+      "file": "research/proposals/P24_shape.md",
+      "id": "P24",
+      "model": "tree_macro",
+      "new_features": [
+        "xp_k",
+        "gold_velocity5_k",
+        "tower_tier_delta",
+        "kill_delta"
+      ],
+      "null": "Nonlinear multivariate interactions do not improve net loss."
+    },
+    {
+      "family": "shape",
+      "file": "research/proposals/P25_shape.md",
+      "id": "P25",
+      "model": "spline",
+      "new_features": [],
+      "null": "Low sample power does not justify spline flexibility."
+    },
+    {
+      "family": "synthesis",
+      "file": "research/proposals/P26_synthesis.md",
+      "id": "P26",
+      "model": "logistic",
+      "new_features": [
+        "relative_gold",
+        "gold_velocity5_k",
+        "tower_tier_delta",
+        "roshan_recent10"
+      ],
+      "null": "Joint mechanism only adds complexity and weak priors."
+    },
+    {
+      "family": "synthesis",
+      "file": "research/proposals/P27_synthesis.md",
+      "id": "P27",
+      "model": "logistic",
+      "new_features": [
+        "aegis_claim5",
+        "buyback_commitment5",
+        "tower_recent10",
+        "major_recent5"
+      ],
+      "null": "Event timing is sparse and absorbs no additional information."
+    },
+    {
+      "family": "shape",
+      "file": "research/proposals/P28_shape.md",
+      "id": "P28",
+      "model": "strong_ridge",
+      "new_features": [],
+      "null": "Shrinkage does not change useful conditional probability structure."
+    }
+  ],
+  "consumed_test_games_reserved_as_not_new": 506,
+  "feature_source_sha256": "8dc12a63b08c5a2b2c8a8888a9768bee7def9fd4abff7ca48d8f36977c3b661d",
+  "minimum_required_logloss_gain": 0.005,
+  "original_train_games": 291,
+  "previously_inspected_validation_games": 103,
+  "proposal_count": 28,
+  "registration_status": "registered BEFORE scored development experiments",
+  "registry_sha256": "650819d80fef51aaa7a9f1057639f06e2de169a698f8975bea36bf001e95a525",
+  "seed": 20261113
+}
