@@ -79,3 +79,7 @@ The source notebook was frozen and committed at 3258a76 BEFORE execution results
 - Predeclared minute-20 comeback check: stable/improving 5/44 leaders lost; deteriorating 1/8 leaders lost. Cannot infer increased comeback risk from that low-count contrast.
 - Raw-payload digest from executed notebook: 7328f1f8df8f3925765e390f997168a084aa6bded1c1bb031da81e8e8092281b.
 - Saved executed notebook staged locally; independent Kaggle execution and fresh Colab acceptance are separate gates. Report contains an honest human-time placeholder to complete before submission.
+
+
+### E03 — Fixed-model influence and reporting audit, 2026-11-13
+No new model candidate was trained or selected after the held-out results. A read-only report review flagged concentrated late-game uncertainty; per-match loss contributions confirm that a single long late-game match drives the nominal 30+ log-loss advantage. The post-hoc exclusion is descriptive only, not an alternative headline estimand. Report numbers were matched programmatically to all 10 held-out metric rows and 4 validation ablation rows. The 500 IDs, source notebook model code and split remain fixed.

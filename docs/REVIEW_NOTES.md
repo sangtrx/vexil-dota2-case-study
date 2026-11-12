@@ -55,3 +55,16 @@ No model candidate or cutoff was changed in response to a held-out score.
 - M1 selected by validation; overall held-out log-loss/Brier point estimates are better than M0, but paired 95% match-bootstrap intervals both include zero. A late-game Brier degradation and post-hoc calibration concerns require cautious interpretation.
 - Major unresolved gates: Kaggle fresh API run in the same account, fresh Colab Run All, verify report page budget and actual candidate work-time entry.
 - Leave Draft PR open until independent execution evidence is available. No further model tuning on the held-out set.
+
+
+## Independent report review and factual repairs — 2026-11-13
+A read-only Sonnet review checked the completed report against the brief and highlighted missing sensitivity numbers, unusually wide late-game loss uncertainty, calibration/base-rate shift, CI dependence and provenance wording. These were addressed without modifying the frozen model or data:
+
+- Added equal-match-weighted log loss (M1 0.495052, M0 0.509507) and Brier (M1 0.164904, M0 0.169773) as already predeclared sensitivity point estimates.
+- Verified that one 25-row late-game match (8744971178) contributes -26.61273 to a total 30+ log-loss difference sum of -4.91722. A post-hoc removal of that match yields +0.031262 (M1 worse) on the remaining 694 late-minute rows. The report identifies this as an influence diagnostic, not a new model-selection criterion.
+- Reported partition base-rate drift (Radiant 51.2% train, 48.5% validation, 59.4% test), the match-level bootstrap percentile method (2000 resamples, seed 20261113), and residual within-series dependence.
+- Clarified that overlapping games across phases and unadjusted multiple comparisons prevent strong phase-specific claims.
+- Made the minute-20 momentum contrast explicitly inconclusive/underpowered, with Wilson intervals for both groups.
+- Reported source freeze commit 3258a76 and pre-results model-family commit e49e853; the same model, features and cutoff rules remain unchanged.
+- Machine-checked all 10 held-out phase-metric table entries and all 4 validation rows (rounded scores and interval endpoints) against the executed CSV outputs. PASS.
+**Still blocked:** actual human hours, independent Kaggle acceptance, fresh Colab, and final report page-budget/packaging check.
