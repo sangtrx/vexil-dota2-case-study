@@ -149,6 +149,18 @@ class NotebookContractsTest(unittest.TestCase):
                 player["net_worth"]=9000000
             N["assert_same_features"](original,N["snapshot_features"](altered,t))
 
+    def test_prefix_truncation_preserves_event_availability_flags(self):
+        m=match_fixture()
+        m["objectives"]=None
+        m["players"][0]["kills_log"]=None
+        original=N["snapshot_features"](m,10)
+        truncated=N["prefix_truncated"](m,10)
+        self.assertIsNone(truncated["objectives"])
+        self.assertIsNone(truncated["players"][0]["kills_log"])
+        self.assertTrue(math.isnan(original["tower_delta"]))
+        self.assertTrue(math.isnan(original["kill_delta"]))
+        N["assert_same_features"](original,N["snapshot_features"](truncated,10))
+
     def test_missing_event_logs_are_unknown_not_false_zero(self):
         m=match_fixture()
         no_objectives=copy.deepcopy(m)
