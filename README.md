@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** frozen 500-match manifest (250 games from each of patches 59 and 60), 26 offline contract tests passing, private one-account Kaggle Internet smoke passing. **Not submission-ready:** real held-out metrics, saved outputs, reproducibility acceptance and the final report are pending. Synthetic smoke-test scores are not research results.
+**Status:** 500-match patch-balanced manifest frozen; 26 offline tests passing. **Local full-data Run All: PASS**, with saved real outputs (14 code cells, 18,304 minute rows, 106 held-out games). M1 (gold × time) was chosen using validation. **Not submission-ready:** fresh private Kaggle and Colab acceptance, and the actual time-spent entry are pending. The technical report is available in [REPORT.md](REPORT.md).
 
 ## Submission contract
 
@@ -14,7 +14,7 @@ Predict the probability that **Radiant wins at each match minute**, using only d
 - Log loss, Brier score, and calibration plots on untouched held-out matches, overall and for 0–9, 10–19, 20–29, and 30+ minutes.
 - Final notebook prints a table of the exact 500 `match_id`, `start_time`, and `patch`, plus held-out predictions.
 
-## Local execution (once notebook implementation is complete)
+## Local execution
 
 Python 3.11+ recommended:
 
@@ -25,11 +25,11 @@ python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
 ```
 
-Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (~50/minute), and caches fetched payloads during execution. No credentials or local data files are required. A fresh run is expected to take materially longer than subsequent cells because of API pacing.
+Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (about 37.5/minute), and caches fetched payloads during execution. No credentials or local data files are required. A cold API run takes substantially longer than a cached local rerun. The complete cached local execution has been verified; the source notebook still fetches the same 500 OpenDota records on a clean runtime.
 
 ## Offline checks
 
-Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local environment to verify point-in-time invariance, split boundaries and paired match-bootstrap behavior without network calls. The notebook has additionally passed a separate end-to-end synthetic integration smoke test. Neither establishes model quality on real matches.
+Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local environment to verify point-in-time invariance, split boundaries and paired match-bootstrap behavior without network calls. The notebook has additionally passed a separate end-to-end synthetic integration smoke test. These offline tests alone do not establish model quality; held-out results from the complete real-data Run All are in REPORT.md.
 
 ## Derived outputs
 

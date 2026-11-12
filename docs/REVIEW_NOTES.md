@@ -47,3 +47,11 @@ Status: development protocol and synthetic smoke tests complete; no 500-match re
 - **P2 deferred:** phase-faceted reliability and recalibration slopes are optional given small held-out bins. Fixed-bin overall reliability with counts, plus mandatory phase log loss/Brier/whole-match CIs, remains primary.
 - **P1 outstanding:** fresh Colab ABI/package compatibility, final 500-game Run All, executed outputs and report still require evidence.
 No model candidate or cutoff was changed in response to a held-out score.
+
+
+## Local real-data acceptance — 2026-11-13
+- One pinned, frozen-source notebook executed all 14 code cells on BigLinux with 500 real parsed matches, 18,304 minute forecasts, 4 PNG plots, full held-out table and exported audit receipt. Source matched the frozen code committed before results.
+- 26/26 contract tests pass, including frozen-manifest no-resample and missing-payload errors.
+- M1 selected by validation; overall held-out log-loss/Brier point estimates are better than M0, but paired 95% match-bootstrap intervals both include zero. A late-game Brier degradation and post-hoc calibration concerns require cautious interpretation.
+- Major unresolved gates: Kaggle fresh API run in the same account, fresh Colab Run All, verify report page budget and actual candidate work-time entry.
+- Leave Draft PR open until independent execution evidence is available. No further model tuning on the held-out set.

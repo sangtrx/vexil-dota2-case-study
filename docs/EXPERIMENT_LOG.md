@@ -65,3 +65,17 @@ Independent review identified a potential data-quality problem. The feature extr
 - Ordered-ID SHA256: f2be53e16ae29df1f62aa9907187fdba846d9af9fb7a3f69e7dd7504be43b776.
 - All 500 IDs embedded in the notebook. 26 offline contract tests passed BEFORE any held-out metric was inspected.
 - Result and report remain pending. The March 2026 patch-transition sample is a specific historical evaluation, not an estimate for November 2026 professional games.
+
+
+### E02 — First complete frozen-manifest modelling run (BigLinux, 2026-11-13)
+The source notebook was frozen and committed at 3258a76 BEFORE execution results were read; no model or split definition was changed afterwards. Cached local Run All: 14/14 code cells executed in 17.71 seconds with zero notebook errors, four saved plot outputs and all held-out predictions (3,837 rows). This is an execution check using previously fetched API payloads, not an independent cold-fetch acceptance. Binary stack: Python 3.12.3, numpy 2.2.6, pandas 2.3.3, scipy 1.16.3, sklearn 1.7.2, matplotlib 3.10.7.
+
+- Manifest: 500 matches, 18,304 minute rows. Train 291 matches / 10,683 rows, validation 103 / 3,784, test 106 / 3,837.
+- Split: train 250 patch-59 and 41 patch-60; validation 103 patch-60; test 106 patch-60. The test cannot demonstrate out-of-sample generalization across an entirely unseen patch.
+- Validation log loss: M0 0.532079; M1 0.519346; M2 0.522014; M3 0.527826. M1 selected before held-out scores were viewed.
+- Held-out overall log loss: M1 0.503906 vs M0 0.516305, paired difference -0.012399, 95% whole-match bootstrap [-0.030286, +0.001400].
+- Held-out overall Brier: M1 0.168312 vs M0 0.171859, paired difference -0.003547, 95% whole-match bootstrap [-0.006916, +0.000192].
+- Both overall 95% intervals cross zero. Do NOT claim conclusive superiority; early/mid phases favor M1, whereas 30+ Brier is worse and uncertain.
+- Predeclared minute-20 comeback check: stable/improving 5/44 leaders lost; deteriorating 1/8 leaders lost. Cannot infer increased comeback risk from that low-count contrast.
+- Raw-payload digest from executed notebook: 7328f1f8df8f3925765e390f997168a084aa6bded1c1bb031da81e8e8092281b.
+- Saved executed notebook staged locally; independent Kaggle execution and fresh Colab acceptance are separate gates. Report contains an honest human-time placeholder to complete before submission.
