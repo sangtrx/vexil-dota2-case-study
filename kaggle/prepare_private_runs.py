@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate 3 PRIVATE CPU-only Kaggle notebook directories and a dataset stage.
+"""Generate 4 PRIVATE CPU-only Kaggle notebook directories and a dataset stage.
 
 Does not connect to Kaggle. Never embeds credentials, private Bible text
 or unconsumed holdout data in a public artifact.
@@ -51,7 +51,7 @@ Not a hosted completion receipt until Kaggle reports COMPLETE.
 from pathlib import Path
 
 mode = {mode!r}
-data = Path(os.environ.get("VEXIL_BIBLE_DATASET", "/kaggle/input/{DATA_SLUG}"))
+data = Path(os.environ.get("VEXIL_BIBLE_DATASET", "/kaggle/input/datasets/sangtruong/{DATA_SLUG}"))
 assert data.is_dir(), f"Attach PRIVATE Kaggle dataset {DATA_ID}, found {{data}}"
 src = data / "dev_validation_predictions_28.csv"
 sha256 = hashlib.sha256(src.read_bytes()).hexdigest()
@@ -112,16 +112,24 @@ def main():
         shutil.copy2(src,dest)
         manifest[name]={"size":dest.stat().st_size,"sha256":sha(dest)}
     assert manifest["dev_validation_predictions_28.csv"]["sha256"]==EXPECTED_SHA
-    package={
-        "data_version":1,
-        "files":manifest,
-        "source_repository_head_at_packaging":subprocess.check_output(
-            ["git","-C",str(ROOT),"rev-parse","HEAD"],text=True).strip(),
-        "quant_bible_reference_head":"8e6374c8ac8c62da6611104555ce98f1cf40a528",
-        "claim":"retrospective previously-inspected development QA only"
-    }
     packfile=dataset/"dataset_files_sha256.json"
-    packfile.write_text(json.dumps(package,sort_keys=True,indent=2)+"\n")
+    if packfile.is_file():
+        # Never silently rewrite the manifest of an ALREADY PUBLISHED
+        # private Kaggle dataset when Git HEAD advances. The frozen
+        # input SHA and source commit must remain pinned to its version.
+        package=json.loads(packfile.read_text())
+        if package["files"] != manifest:
+            raise RuntimeError("Kaggle dataset files changed; explicitly version the private dataset before repacking")
+    else:
+        package={
+            "data_version":1,
+            "files":manifest,
+            "source_repository_head_at_packaging":subprocess.check_output(
+                ["git","-C",str(ROOT),"rev-parse","HEAD"],text=True).strip(),
+            "quant_bible_reference_head":"8e6374c8ac8c62da6611104555ce98f1cf40a528",
+            "claim":"retrospective previously-inspected development QA only"
+        }
+        packfile.write_text(json.dumps(package,sort_keys=True,indent=2)+"\n")
     package_sha=sha(packfile)
     metadata={
         "title":"Vexil Bible Development QA 20261113",
@@ -159,7 +167,8 @@ def main():
         "verification_script_sha256":sha(ROOT/"kaggle/verify_bible.py"),
         "kernels":out,
         "local_stage":str(stage),
-        "requires_new_user_authenticated_kaggle_cli":True,
+        "requires_new_user_authenticated_kaggle_cli":False,
+        "credential_lane":"woodsbot kaggle pool, slot kaggle_01; no raw key copied",
         "do_not_claim_completed_kaggle_runs":True
     },indent=2,sort_keys=True)+"\n")
     print("PRIVATE_KAGGLE_RUNS_PREPARED",json.dumps({
