@@ -48,6 +48,22 @@ excluded 1,849 games with time-axis anomalies, showing why this
 audit matters. This certificate is scoped to THESE 900 records;
 it does not establish network receive time in a live feed.
 
+An additional outcome-blind **event-clock plausibility audit**
+on the same 900 matches checked Roshan kills, Aegis pickups,
+first-blood events, buyback, purchases and hero-kill timestamps.
+All **1,200 Aegis pickups** had a preceding Roshan death in the
+same match, with pickup lag at most **13 seconds** and 95th
+percentile **2 seconds** in each of the three cohorts. All 876
+available first-blood events agreed with the match-level
+first_blood_time summary to within **1 second** (negative
+pregame times clamp to zero in that summary). No event timestamps
+were missing, nonfinite, earlier than -120 seconds or later than
+game duration plus 120 seconds. All 9,000 players had
+buyback_log, purchase_log and kills_log lists, including empty
+lists for no events. This is strong **internal clock consistency
+evidence**, but event lists and summary fields can share a parser,
+so it is NOT proof of packet-receipt timing or event completeness.
+
 The option features themselves also passed **2,754 direct
 feature-prefix invariance checks** on 394 development games at
 game-minute cutoffs. Additional unit tests cover missing event logs,
@@ -79,6 +95,18 @@ Three chronological, series-safe training-only folds:
 M4−M1 loss changes **+0.010073, −0.008026, −0.003626**
 with evaluation groups of 22, 44 and 49 games respectively.
 Two folds favor M4 and one disfavors it sharply.
+An approximate, **descriptive** power warning: the 53-series
+validation interval for M4−M1 has width about 0.0107
+(half-width roughly 0.0054), larger than the entire practical
+improvement threshold. Under a simplistic normal approximation
+that corresponds to a standard error around 0.0027, before
+accounting for dependent/tournament games or adaptive prior
+inspection. Thus a genuinely small incremental effect may be
+undetectable in this pilot; a negative screen does NOT demonstrate
+that the new information has zero conditional value. The patch
+mix also changes between train and validation, limiting
+mechanism-specific attribution.
+
 The precommitted screening rule required at least −0.005
 validation log-loss difference, an upper confidence bound below 0,
 Brier no worse, and favorable direction in at least two folds.
@@ -87,7 +115,13 @@ Brier no worse, and favorable direction in at least two folds.
 ### Why the negative result is scientifically informative
 
 Feature support varied substantially across phases in the 103-game
-validation sample:
+validation sample. All three engineered features were observed
+(not NaN) on these training and validation rows, so the fitted
+median imputer did NOT actually substitute values in this
+experiment. However this same model would turn missing events into
+a learned median (often zero) on an unseen distribution; deployment
+must guard or explicitly model that source-missingness state,
+not silently equate unknown with no recent event:
 
 | Phase | Recent Aegis claim nonzero | Recent buyback nonzero | Economic/structural disagreement nonzero |
 |---|---:|---:|---:|
@@ -108,7 +142,10 @@ semantics or simply insufficient independent samples.
 ## Outcome-blind matched observational case
 
 The case-selection algorithm was committed **before looking at
-the selected pair's outcomes** (27b0295). It fixed minute 25,
+the selected pair's outcomes** (27b0295). Minute 25 was chosen
+after inspecting aggregate phase-level event support, so the
+case is outcome-blind but not an independently preregistered
+scientific sample. It fixed minute 25,
 restricted to the original TRAIN cohort, identical patch and
 gold-lead side, no series overlap and an ordered ladder of
 gold/XP tolerances. Both games are patch 59, different series:
@@ -152,6 +189,10 @@ risk-bin patterns were not consistently replicated.
 Subgroup intervals are exploratory and NOT multiplicity-adjusted.
 This motivates investigation of path-level calibration, not
 a statistically proven drift opportunity or financial alpha.
+Moreover the M1 model conditions only on current gold and elapsed
+time, not on the full historical information set: a nonzero
+conditional forecast revision would not, by itself, disprove
+full-filtration martingale calibration.
 
 ## Decision and the strongest defensible story
 
@@ -188,4 +229,6 @@ do not substitute its unproven M4 model or claim a better score.
 - research/matched_option_case.py — outcome-blind matched case.
 - research/forecast_path_coherence.py — no-fitting martingale audit.
 - research/pit_axis_audit.py — complete 900-game gold/time audit.
+- research/event_clock_audit.py — timestamp plausibility and
+  first-blood/Roshan/Aegis event alignment checks.
 - research/results — exact derived CSVs, JSON receipts and PNG.

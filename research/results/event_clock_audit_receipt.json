@@ -1,0 +1,82 @@
+{
+  "caveat": "Finite Roshan/Aegis/firstblood clock comparisons, not proof of wall-clock streaming arrival or complete event capture.",
+  "datasets": {
+    "first_forward200": {
+      "aegis_after_roshan_lags_seconds": {
+        "N": 236,
+        "max": 11.0,
+        "p50": 0.0,
+        "p95": 2.0,
+        "p99": 6.950000000000017
+      },
+      "anomaly_examples": [],
+      "counts": {
+        "aegis_claim_events": 236,
+        "buyback_log_events": 559,
+        "kills_log_events": 12969,
+        "matches": 200,
+        "objective_events": 4513,
+        "purchase_log_events": 70106,
+        "roshan_events": 244
+      },
+      "firstblood_summary_diffs_seconds": {
+        "N": 197,
+        "max_abs": 1.0,
+        "p50_abs": 0.0
+      },
+      "games": 200
+    },
+    "original500": {
+      "aegis_after_roshan_lags_seconds": {
+        "N": 772,
+        "max": 13.0,
+        "p50": 0.0,
+        "p95": 2.0,
+        "p99": 4.289999999999964
+      },
+      "anomaly_examples": [],
+      "counts": {
+        "aegis_claim_events": 772,
+        "buyback_log_events": 1396,
+        "kills_log_events": 29757,
+        "matches": 500,
+        "objective_events": 12138,
+        "purchase_log_events": 204299,
+        "roshan_events": 795
+      },
+      "firstblood_summary_diffs_seconds": {
+        "N": 481,
+        "max_abs": 1.0,
+        "p50_abs": 0.0
+      },
+      "games": 500
+    },
+    "second_forward200": {
+      "aegis_after_roshan_lags_seconds": {
+        "N": 192,
+        "max": 9.0,
+        "p50": 0.0,
+        "p95": 2.0,
+        "p99": 4.090000000000003
+      },
+      "anomaly_examples": [],
+      "counts": {
+        "aegis_claim_events": 192,
+        "buyback_log_events": 405,
+        "kills_log_events": 12557,
+        "matches": 200,
+        "objective_events": 4040,
+        "purchase_log_events": 69943,
+        "roshan_events": 196
+      },
+      "firstblood_summary_diffs_seconds": {
+        "N": 198,
+        "max_abs": 1.0,
+        "p50_abs": 0.0
+      },
+      "games": 200
+    }
+  },
+  "http_calls": 0,
+  "total_matches": 900
+}

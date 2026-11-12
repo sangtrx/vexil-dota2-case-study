@@ -18,6 +18,36 @@
 | `scikit-learn-contrib/MAPIE` | Conformal prediction sets and uncertainty quantification | Conformal methodology is existing prior art and depends on exchangeability. Match-minute rows are NOT independently exchangeable; nominal coverage guarantees must not be claimed without grouped/time-aware conformalization |
 | `whanyu1212/gem-dota` | Rich replay parsing, fight/ward/map/buyback state | External replay parsing would violate Vexil's permitted source constraint. Read for design patterns only; DO NOT add it as a source |
 
+## Deep implementation-level comparison (source inspected)
+
+The live GitHub source files docs/features.md and docs/data_pipeline.md
+of amarcu/dota-predictor were read directly, not inferred from its README.
+Their 20-timestep features are: the eight summed player-gold/XP/LH
+measures, hero-kill totals, towers and barracks remaining, cumulative
+Roshan kills, score differences, a weighted structure score and
+five-minute kill momentum. The repository reports 244,866 LSTM weights,
+hero-pick embeddings, a seeded **random** 80/20 match split and three
+separately fitted phase-isotonic maps. Their README notes that full
+evaluation/calibration artifacts were not committed and need
+regeneration. The files also document a training/live GSI feature
+mismatch: exact recorded XP in offline training versus an XPM×elapsed
+proxy in spectator mode.
+
+**Precise difference:** the tested option-value work does NOT copy
+these cumulative features or their LSTM. Instead it treats an Aegis
+pickup as a **signed decayed claim**, buyback as a **dated commitment**,
+and towers/barracks as *persistent* game-state changes with a controlled
+economic-structural disagreement. It has strict API-only minute clock
+checks and series-safe chronological splits, but still needs a stronger
+independent dataset to establish predictive value. Per-phase isotonic
+calibration is prior art, and its empirical benefits on tens of
+thousands of matches cannot be transplanted to 103 dependent
+validation games without overfitting risk.
+
+Source files:
+- https://github.com/amarcu/dota-predictor/blob/main/docs/features.md
+- https://github.com/amarcu/dota-predictor/blob/main/docs/data_pipeline.md
+
 ## Distinctive hypothesis proposed here (not a priority/novelty claim)
 
 **Ephemeral and irreversible strategic information should not be represented by the same cumulative event counter.** Roshan's pickup/claim generates a *temporary tactical window*; buybacks are an observable short-term resource commitment; structures are irreversible map-state changes. A two-timescale, point-in-time representation of these signals plus a forecast-path coherence audit differs from the specific features and evaluation baselines reviewed above.

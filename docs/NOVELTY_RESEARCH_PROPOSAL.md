@@ -17,7 +17,11 @@ Existing peer-reviewed and open-source work covers Dota in-play prediction, hero
 
 **C3 — forecast-path coherence:** This is an application of existing probability theory, NOT a newly discovered martingale theorem. Wilkinson & Ferro (arXiv:2606.31621, 2026) already study sequential probability calibration. If p_t is the true conditional probability of a fixed terminal result Y given information F_t, then {p_t} is a bounded martingale. Assess whether the forecast has *predictable conditional drift*, using series-blocked confidence intervals and game-ending absorption. This diagnoses temporal consistency; it is not a claim that all realized paths must be smooth or that p_t=p_(t+1).
 
-The **combination and test protocol** constitute a proposed original analytical contribution in this project. They have not yet been demonstrated to outperform M1. Do not present them as a globally first-of-kind published invention.
+The combination and test protocol were independently formulated
+for this repository, but global novelty has NOT been established
+beyond the public sources reviewed. Generic event-age weighting
+already exists in time-series research. Neither the combination
+nor its predictive value has been demonstrated to outperform M1. Do not present them as a globally first-of-kind published invention.
 
 ### 2. Research questions and hypotheses
 
