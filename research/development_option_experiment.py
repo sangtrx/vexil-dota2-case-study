@@ -106,11 +106,13 @@ def walkforward(manifest,frame):
         ['start_time','match_id']).reset_index(drop=True)
     valid=safe_cuts(m)
     result=[]
-    for fold,target in enumerate([125,175,225],1):
-        start=min([i for i in valid if 90<=i<=250],key=lambda i:abs(i-target))
-        options=[i for i in valid if start+35<=i<=min(start+65,len(m)-1)]
-        if not options:raise RuntimeError('No series-safe forward boundary')
-        end=min(options,key=lambda i:abs(i-(start+45)))
+    # Choose deterministic chronological cutoffs by fractions of train GAME count.
+    # Sparse group-safe cutpoints can create a shorter first validation block;
+    # do not force a split through a professional series merely to hit a size.
+    targets=[len(m)*f for f in (.52,.60,.75,.92)]
+    points=[min(valid,key=lambda c:(abs(c-t),c)) for t in targets]
+    assert points==sorted(set(points)) and len(points)==4,points
+    for fold,(start,end) in enumerate(zip(points[:-1],points[1:]),1):
         train_ids=set(m.iloc[:start].match_id)
         val_ids=set(m.iloc[start:end].match_id)
         assert not train_ids&val_ids
