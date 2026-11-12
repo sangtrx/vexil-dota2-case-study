@@ -1,0 +1,905 @@
+{
+  "M1_parity_abs_error": 0.0,
+  "audit_type": "descriptive posthoc; no scoring, model fits or unconsumed test payloads",
+  "chronological_split": true,
+  "factory_M1_logloss": 0.5193456503081976,
+  "hero_id_count": 3940,
+  "hero_id_max": 155,
+  "hero_id_min": 1,
+  "hero_ids_over160": 0,
+  "http_calls": 0,
+  "input_split": {
+    "test": {
+      "matches": 106,
+      "patch_counts": {
+        "60": 106
+      },
+      "positive_series": 54,
+      "series0_games": 0,
+      "start_time_max": 1774555382,
+      "start_time_min": 1774448219
+    },
+    "train": {
+      "matches": 291,
+      "patch_counts": {
+        "59": 250,
+        "60": 41
+      },
+      "positive_series": 149,
+      "series0_games": 22,
+      "start_time_max": 1774358742,
+      "start_time_min": 1774101151
+    },
+    "validation": {
+      "matches": 103,
+      "patch_counts": {
+        "60": 103
+      },
+      "positive_series": 53,
+      "series0_games": 0,
+      "start_time_max": 1774445654,
+      "start_time_min": 1774358915
+    }
+  },
+  "major_purchase_event_count": 9051,
+  "manifest_header": [
+    "match_id",
+    "start_time",
+    "patch",
+    "series_id",
+    "partition"
+  ],
+  "no_positive_series_split": true,
+  "original_validation_M0_logloss": 0.5320785175664139,
+  "original_validation_M1_logloss": 0.5193456503081976,
+  "source_input_manifest_has_labels": false,
+  "top_major_keys": [
+    [
+      "blink",
+      1750
+    ],
+    [
+      "aghanims_shard",
+      1388
+    ],
+    [
+      "ultimate_scepter",
+      1075
+    ],
+    [
+      "black_king_bar",
+      1057
+    ],
+    [
+      "force_staff",
+      556
+    ],
+    [
+      "glimmer_cape",
+      412
+    ],
+    [
+      "manta",
+      335
+    ],
+    [
+      "shivas_guard",
+      264
+    ],
+    [
+      "pipe",
+      207
+    ],
+    [
+      "refresher",
+      199
+    ],
+    [
+      "lotus_orb",
+      197
+    ],
+    [
+      "desolator",
+      176
+    ],
+    [
+      "sphere",
+      157
+    ],
+    [
+      "crimson_guard",
+      145
+    ],
+    [
+      "silver_edge",
+      131
+    ],
+    [
+      "octarine_core",
+      121
+    ],
+    [
+      "satanic",
+      110
+    ],
+    [
+      "orchid",
+      101
+    ],
+    [
+      "diffusal_blade",
+      100
+    ],
+    [
+      "bfury",
+      98
+    ],
+    [
+      "monkey_king_bar",
+      82
+    ],
+    [
+      "radiance",
+      74
+    ],
+    [
+      "assault",
+      74
+    ],
+    [
+      "nullifier",
+      54
+    ],
+    [
+      "skadi",
+      52
+    ],
+    [
+      "heart",
+      43
+    ],
+    [
+      "abyssal_blade",
+      42
+    ],
+    [
+      "bloodthorn",
+      40
+    ],
+    [
+      "heavens_halberd",
+      11
+    ]
+  ],
+  "validation_games_per_utc_day": {
+    "2026-03-24": 63,
+    "2026-03-25": 40
+  },
+  "validation_match_teams": [
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 2443375,
+      "match_id": 8741959434,
+      "radiant_team_id": 9878494,
+      "series_id": 1078529
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9781824,
+      "match_id": 8741965571,
+      "radiant_team_id": 9270895,
+      "series_id": 1078531
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9828921,
+      "match_id": 8741970387,
+      "radiant_team_id": 9729268,
+      "series_id": 1078533
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9600141,
+      "match_id": 8741991954,
+      "radiant_team_id": 9872558,
+      "series_id": 1078537
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9878494,
+      "match_id": 8742019345,
+      "radiant_team_id": 2443375,
+      "series_id": 1078529
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9729268,
+      "match_id": 8742035906,
+      "radiant_team_id": 9828921,
+      "series_id": 1078533
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9823272,
+      "match_id": 8742039237,
+      "radiant_team_id": 8255888,
+      "series_id": 1078551
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9964962,
+      "match_id": 8742039319,
+      "radiant_team_id": 9828897,
+      "series_id": 1078552
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9572001,
+      "match_id": 8742051677,
+      "radiant_team_id": 9338413,
+      "series_id": 1078558
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8291895,
+      "match_id": 8742051676,
+      "radiant_team_id": 9351740,
+      "series_id": 1078559
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9872558,
+      "match_id": 8742079293,
+      "radiant_team_id": 9600141,
+      "series_id": 1078537
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8629005,
+      "match_id": 8742082993,
+      "radiant_team_id": 9767998,
+      "series_id": 1078564
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10095057,
+      "match_id": 8742096790,
+      "radiant_team_id": 8623207,
+      "series_id": 1078565
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10001733,
+      "match_id": 8742101192,
+      "radiant_team_id": 10047709,
+      "series_id": 1078567
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10054769,
+      "match_id": 8742113642,
+      "radiant_team_id": 9972930,
+      "series_id": 1078569
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9828897,
+      "match_id": 8742118850,
+      "radiant_team_id": 9964962,
+      "series_id": 1078552
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9375234,
+      "match_id": 8742106753,
+      "radiant_team_id": 2704744,
+      "series_id": 1078568
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9351740,
+      "match_id": 8742124178,
+      "radiant_team_id": 8291895,
+      "series_id": 1078559
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9767998,
+      "match_id": 8742135055,
+      "radiant_team_id": 8629005,
+      "series_id": 1078564
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9572001,
+      "match_id": 8742136025,
+      "radiant_team_id": 9338413,
+      "series_id": 1078558
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9823272,
+      "match_id": 8742137378,
+      "radiant_team_id": 8255888,
+      "series_id": 1078551
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8623207,
+      "match_id": 8742179381,
+      "radiant_team_id": 10095057,
+      "series_id": 1078581
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10047709,
+      "match_id": 8742180275,
+      "radiant_team_id": 10001733,
+      "series_id": 1078567
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9972930,
+      "match_id": 8742209485,
+      "radiant_team_id": 10054769,
+      "series_id": 1078569
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10001733,
+      "match_id": 8742254205,
+      "radiant_team_id": 10047709,
+      "series_id": 1078567
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8623207,
+      "match_id": 8742260265,
+      "radiant_team_id": 10095057,
+      "series_id": 1078597
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9973477,
+      "match_id": 8742263390,
+      "radiant_team_id": 9828921,
+      "series_id": 1078599
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9467224,
+      "match_id": 8742266812,
+      "radiant_team_id": 2586976,
+      "series_id": 1078601
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8261500,
+      "match_id": 8742266886,
+      "radiant_team_id": 7554697,
+      "series_id": 1078602
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9895392,
+      "match_id": 8742267022,
+      "radiant_team_id": 7119388,
+      "series_id": 1078603
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9247354,
+      "match_id": 8742267069,
+      "radiant_team_id": 67,
+      "series_id": 1078604
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9972930,
+      "match_id": 8742274880,
+      "radiant_team_id": 10054769,
+      "series_id": 1078569
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 1360586,
+      "match_id": 8742291159,
+      "radiant_team_id": 9375234,
+      "series_id": 1078610
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9828921,
+      "match_id": 8742318115,
+      "radiant_team_id": 9973477,
+      "series_id": 1078599
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10095057,
+      "match_id": 8742339646,
+      "radiant_team_id": 9054301,
+      "series_id": 1078622
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 7554697,
+      "match_id": 8742334442,
+      "radiant_team_id": 8261500,
+      "series_id": 1078602
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 1360586,
+      "match_id": 8742345807,
+      "radiant_team_id": 9286811,
+      "series_id": 1078623
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10095068,
+      "match_id": 8742347239,
+      "radiant_team_id": 10054769,
+      "series_id": 1078626
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 2586976,
+      "match_id": 8742349162,
+      "radiant_team_id": 9467224,
+      "series_id": 1078601
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 7119388,
+      "match_id": 8742349256,
+      "radiant_team_id": 9895392,
+      "series_id": 1078603
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9247354,
+      "match_id": 8742349274,
+      "radiant_team_id": 67,
+      "series_id": 1078604
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9973477,
+      "match_id": 8742391830,
+      "radiant_team_id": 9828921,
+      "series_id": 1078599
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9054301,
+      "match_id": 8742398301,
+      "radiant_team_id": 10095057,
+      "series_id": 1078660
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 1360586,
+      "match_id": 8742407240,
+      "radiant_team_id": 9286811,
+      "series_id": 1078623
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10054769,
+      "match_id": 8742413399,
+      "radiant_team_id": 10095068,
+      "series_id": 1078626
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9895392,
+      "match_id": 8742422808,
+      "radiant_team_id": 9467224,
+      "series_id": 1078668
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 7119388,
+      "match_id": 8742422889,
+      "radiant_team_id": 8261500,
+      "series_id": 1078669
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9247354,
+      "match_id": 8742432109,
+      "radiant_team_id": 2586976,
+      "series_id": 1078672
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 67,
+      "match_id": 8742432204,
+      "radiant_team_id": 7554697,
+      "series_id": 1078673
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8849837,
+      "match_id": 8742447882,
+      "radiant_team_id": 9048057,
+      "series_id": 1078684
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10047415,
+      "match_id": 8742454637,
+      "radiant_team_id": 9995737,
+      "series_id": 1078688
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9467224,
+      "match_id": 8742477122,
+      "radiant_team_id": 9895392,
+      "series_id": 1078668
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9048057,
+      "match_id": 8742487596,
+      "radiant_team_id": 8849837,
+      "series_id": 1078684
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 7119388,
+      "match_id": 8742491783,
+      "radiant_team_id": 8261500,
+      "series_id": 1078669
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10014708,
+      "match_id": 8742497663,
+      "radiant_team_id": 10047415,
+      "series_id": 1078708
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10095068,
+      "match_id": 8742497814,
+      "radiant_team_id": 10054769,
+      "series_id": 1078709
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 9247354,
+      "match_id": 8742496748,
+      "radiant_team_id": 2586976,
+      "series_id": 1078672
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 67,
+      "match_id": 8742507954,
+      "radiant_team_id": 7554697,
+      "series_id": 1078673
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8850015,
+      "match_id": 8742519033,
+      "radiant_team_id": 8849833,
+      "series_id": 1078714
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 10014708,
+      "match_id": 8742532065,
+      "radiant_team_id": 10047415,
+      "series_id": 1078708
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8849833,
+      "match_id": 8742548246,
+      "radiant_team_id": 8850015,
+      "series_id": 1078714
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8850015,
+      "match_id": 8742576775,
+      "radiant_team_id": 8849833,
+      "series_id": 1078714
+    },
+    {
+      "date": "2026-03-24",
+      "dire_team_id": 8879077,
+      "match_id": 8742606270,
+      "radiant_team_id": 9005364,
+      "series_id": 1078737
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9005364,
+      "match_id": 8742627411,
+      "radiant_team_id": 8879077,
+      "series_id": 1078737
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 8936613,
+      "match_id": 8742659562,
+      "radiant_team_id": 9025669,
+      "series_id": 1078764
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9025669,
+      "match_id": 8742685788,
+      "radiant_team_id": 8936613,
+      "series_id": 1078764
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 8936613,
+      "match_id": 8742718833,
+      "radiant_team_id": 9025669,
+      "series_id": 1078764
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9426115,
+      "match_id": 8742799249,
+      "radiant_team_id": 8629315,
+      "series_id": 1078814
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9768243,
+      "match_id": 8742812448,
+      "radiant_team_id": 2443375,
+      "series_id": 1078824
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 10081680,
+      "match_id": 8742818025,
+      "radiant_team_id": 8944230,
+      "series_id": 1078825
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 8629315,
+      "match_id": 8742829105,
+      "radiant_team_id": 9426115,
+      "series_id": 1078814
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 2443375,
+      "match_id": 8742836060,
+      "radiant_team_id": 9768243,
+      "series_id": 1078824
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 10081680,
+      "match_id": 8742848863,
+      "radiant_team_id": 8944230,
+      "series_id": 1078825
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9425656,
+      "match_id": 8742861301,
+      "radiant_team_id": 8629005,
+      "series_id": 1078829
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9768002,
+      "match_id": 8742863727,
+      "radiant_team_id": 9814269,
+      "series_id": 1078831
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9814269,
+      "match_id": 8742892931,
+      "radiant_team_id": 9768002,
+      "series_id": 1078831
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 8629005,
+      "match_id": 8742894803,
+      "radiant_team_id": 9425656,
+      "series_id": 1078829
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9879852,
+      "match_id": 8742903823,
+      "radiant_team_id": 7917893,
+      "series_id": 1078835
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9878494,
+      "match_id": 8742931925,
+      "radiant_team_id": 9768243,
+      "series_id": 1078841
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9729268,
+      "match_id": 8742944193,
+      "radiant_team_id": 9593609,
+      "series_id": 1078842
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9879852,
+      "match_id": 8742963479,
+      "radiant_team_id": 7917893,
+      "series_id": 1078835
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9768243,
+      "match_id": 8742972287,
+      "radiant_team_id": 9878494,
+      "series_id": 1078841
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9593609,
+      "match_id": 8742985126,
+      "radiant_team_id": 9729268,
+      "series_id": 1078842
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9878494,
+      "match_id": 8743012883,
+      "radiant_team_id": 9768243,
+      "series_id": 1078841
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9879852,
+      "match_id": 8743010344,
+      "radiant_team_id": 7917893,
+      "series_id": 1078835
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 5014799,
+      "match_id": 8743016533,
+      "radiant_team_id": 10041315,
+      "series_id": 1078850
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9768002,
+      "match_id": 8743063058,
+      "radiant_team_id": 2443375,
+      "series_id": 1078855
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 10060977,
+      "match_id": 8743099747,
+      "radiant_team_id": 9729767,
+      "series_id": 1078859
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 5014799,
+      "match_id": 8743108866,
+      "radiant_team_id": 10041315,
+      "series_id": 1078850
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 2443375,
+      "match_id": 8743114112,
+      "radiant_team_id": 9768002,
+      "series_id": 1078855
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9964962,
+      "match_id": 8743150103,
+      "radiant_team_id": 8255888,
+      "series_id": 1078868
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9338413,
+      "match_id": 8743150101,
+      "radiant_team_id": 9823272,
+      "series_id": 1078867
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9351740,
+      "match_id": 8743150168,
+      "radiant_team_id": 9572001,
+      "series_id": 1078869
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 8291895,
+      "match_id": 8743150184,
+      "radiant_team_id": 9828897,
+      "series_id": 1078870
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9729767,
+      "match_id": 8743166936,
+      "radiant_team_id": 10088400,
+      "series_id": 1078874
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9814269,
+      "match_id": 8743176373,
+      "radiant_team_id": 9426115,
+      "series_id": 1078881
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9426115,
+      "match_id": 8743229675,
+      "radiant_team_id": 9814269,
+      "series_id": 1078881
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9828897,
+      "match_id": 8743235152,
+      "radiant_team_id": 8291895,
+      "series_id": 1078870
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9572001,
+      "match_id": 8743236667,
+      "radiant_team_id": 9351740,
+      "series_id": 1078869
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 10088400,
+      "match_id": 8743243642,
+      "radiant_team_id": 9729767,
+      "series_id": 1078874
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9338413,
+      "match_id": 8743239684,
+      "radiant_team_id": 9823272,
+      "series_id": 1078867
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9964962,
+      "match_id": 8743259155,
+      "radiant_team_id": 8255888,
+      "series_id": 1078868
+    },
+    {
+      "date": "2026-03-25",
+      "dire_team_id": 9814269,
+      "match_id": 8743292734,
+      "radiant_team_id": 9426115,
+      "series_id": 1078881
+    }
+  ],
+  "validation_team_id_availability": {
+    "both_team_ids_nonzero": 103,
+    "total": 103
+  }
+}

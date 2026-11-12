@@ -155,3 +155,48 @@ a strong development screen. It may still be negative.
 The original notebook and ≤4-page take-home REPORT.md in
 Draft PR #3 remain unchanged and separately submission-ready
 only after their own outstanding Colab and human-hours checks.
+
+## Independent red-team and extra provenance (post-screen appendendum)
+
+The read-only Sonnet reviewer found no direct look-ahead P0 in the
+candidate code but raised important P1 engineering and statistical
+concerns. Their exact dispositions, without rerunning the consumed
+screen, are in POST_SCREEN_REVIEW_DISPOSITION.md.
+
+The old Vexil notebook's M0 reference (not re-fitted in this
+factory) has validation log loss **0.532078517566** and
+Brier **0.180927146853**. A separate audit confirmed that the
+factory M1 score **0.519345650308** is identical to its
+original registered notebook value to floating-point precision,
+and that the train/validation/test match IDs, dates and positive
+series were disjoint.
+
+The original 500-game manifest has **no outcome column**; only
+the metadata for all 500 games was read prior to selecting
+291+103 development game IDs. Full raw match payloads and
+labels from the original 106-game test and the two later
+200-game cohorts were never used by the factory.
+
+Data coverage: all 3,940 hero IDs in the development cohort
+are in the registered 1–160 range; no missing hero-ID values
+were observed. Item features count **reported purchases**,
+not actual remaining inventories. P22's hero-draft pipeline
+was under-regularized in effective match units despite
+the label "strong shrinkage"; its loss of 1.581239 is
+a negative result of THAT specification, not evidence
+against all draft models.
+
+Additional post-hoc P20 cluster sensitivity against M1
+used the already-saved probability CSV; no model was refitted.
+The 53-series, 50-opponent-pair/day and 49-opponent-pair
+confidence intervals all included zero. A league/day scheme
+had only 14 groups and its naive percentile CI excluded zero:
+that small-cluster, post-result estimate is not considered
+reliable and does NOT override the registered simultaneous
+28-model familywise interval. The point estimate −0.005248
+is insufficient for a GO.
+
+The only defensible model-selection decision remains
+**0/28 promoted**. A true future positive model needs a
+new, independent temporal cohort and an explicit protocol
+registered separately from this consumed screen.
