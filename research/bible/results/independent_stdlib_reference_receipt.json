@@ -1,0 +1,19 @@
+{
+  "alternative_rng_seed": 27182818,
+  "alternative_series_percentile95_lower": -0.012604727748675318,
+  "alternative_series_percentile95_upper": 0.0022135657522353194,
+  "expected_sign_uncertain": true,
+  "games": 103,
+  "groups": 53,
+  "implementation": "Python stdlib csv/math/random, distinct from numpy/vectorized factory",
+  "minute_rows": 3784,
+  "no_new_test_labels": true,
+  "no_training": true,
+  "p20_minus_m1_brier": -0.002025426883664155,
+  "p20_minus_m1_ll_equal_match": -0.004491209735395273,
+  "p20_minus_m1_ll_equal_series": -0.002869279834146472,
+  "p20_minus_m1_ll_minute_weighted": -0.00524782751798068,
+  "series_bootstrap_draws": 4000,
+  "source": "frozen prior-exposed validation predictions",
+  "test_kind": "independent arithmetic/reference, NOT independent model evaluation"
+}

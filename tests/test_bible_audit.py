@@ -38,6 +38,8 @@ class BibleExperimentContracts(unittest.TestCase):
 
     def test_block_selection_reversal(self):
         self.assertEqual(len(self.cscv),20)
+        self.assertEqual(self.cscv.complement_pair.nunique(),10)
+        self.assertTrue(self.cscv.groupby("complement_pair").size().eq(2).all())
         self.assertEqual(self.cscv.worse_than_panel_median.sum(),6)
         self.assertEqual((self.cscv.OOS_winner_minus_M1>0).sum(),10)
         self.assertEqual(set(self.cscv.OOS_rank.between(1,29)),{True})
@@ -45,6 +47,8 @@ class BibleExperimentContracts(unittest.TestCase):
     def test_series_oob_bootstrap(self):
         self.assertEqual(len(self.oob),3000)
         self.assertEqual((self.oob.winner_IS=="P20").sum(),1363)
+        self.assertEqual((self.oob.winner_IS=="M1_time_value").sum(),0)
+        self.assertAlmostEqual(self.report["oob_selected_worse_given_non_m1"],1544/3000)
         self.assertEqual((self.oob.OOB_winner_minus_M1>0).sum(),1544)
         self.assertTrue((self.oob.OOB_groups>0).all())
 
@@ -56,9 +60,40 @@ class BibleExperimentContracts(unittest.TestCase):
         self.assertIsNone(rec["independent_trials_estimated"])
         self.assertTrue(rec["unknown_unrecorded_trials"])
 
+    def test_event_time_aware_chronology_limit(self):
+        receipt=json.loads((OUT/"chronology_receipt.json").read_text())
+        comp=pd.read_csv(OUT/"chronology_components.csv")
+        x=pd.read_csv(OUT/"old_six_bucket_overlap_audit.csv")
+        self.assertEqual(receipt["approx_disjoint_component_count"],4)
+        self.assertEqual(comp.games.tolist(),[62,2,3,36])
+        self.assertEqual(comp.series_groups.tolist(),[34,1,1,17])
+        self.assertEqual(int(x.intervals_overlap.sum()),4)
+        self.assertTrue(receipt["no_new_test_labels"])
+        self.assertTrue(receipt["no_model_fit"])
+        self.assertTrue(receipt["no_network_calls"])
+        self.assertEqual(len(pd.read_csv(OUT/"chronology_4component_scores.csv")),116)
+
+    def test_distinct_arithmetic_reference(self):
+        rec=json.loads((OUT/"independent_stdlib_reference_receipt.json").read_text())
+        self.assertEqual(rec["series_bootstrap_draws"],4000)
+        self.assertEqual(rec["groups"],53)
+        self.assertAlmostEqual(rec["p20_minus_m1_ll_minute_weighted"],-0.0052478275179806836)
+        self.assertAlmostEqual(rec["p20_minus_m1_ll_equal_match"],-0.004491209735395407)
+        self.assertAlmostEqual(rec["p20_minus_m1_ll_equal_series"],-0.002869279834146532)
+        self.assertLess(rec["alternative_series_percentile95_lower"],0)
+        self.assertGreater(rec["alternative_series_percentile95_upper"],0)
+        self.assertTrue(rec["no_training"])
+
+    def test_all_kaggle_sources_pinned(self):
+        m=json.loads((ROOT/"kaggle/hosted_run_manifest.json").read_text())
+        self.assertEqual(len(m["kernels"]),4)
+        self.assertEqual(len(m["dataset_manifest_sha256"]),64)
+        self.assertEqual(len(m["verification_script_sha256"]),64)
+        self.assertTrue(all(len(k["notebook_sha256"])==64 for k in m["kernels"]))
+
     def test_hosted_kaggle_not_falsely_complete(self):
         m=json.loads((ROOT/"kaggle/hosted_run_manifest.json").read_text())
-        self.assertEqual(len(m["kernels"]),3)
+        self.assertEqual(len(m["kernels"]),4)
         self.assertTrue(m["private"])
         self.assertFalse(m["enable_internet"])
         self.assertFalse(m["enable_gpu"])

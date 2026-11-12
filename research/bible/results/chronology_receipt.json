@@ -1,0 +1,26 @@
+{
+  "approx_component_match_counts": [
+    62,
+    2,
+    3,
+    36
+  ],
+  "approx_component_series_counts": [
+    34,
+    1,
+    1,
+    17
+  ],
+  "approx_disjoint_component_count": 4,
+  "audit_kind": "POSTHOC_DURATION_AWARE_CHRONOLOGY_CORRECTION",
+  "duration_caveat": "start_time+game.duration omits pauses and is NOT a network receive-time or exact physical end timestamp; true overlap can be worse",
+  "no_model_fit": true,
+  "no_network_calls": true,
+  "no_new_test_labels": true,
+  "note": "No valid 6-block strict chronological CSCV is supportable with these 103 games/53 series under duration-aware grouping.",
+  "old_six_bucket_overlapping_boundaries": 4,
+  "old_six_bucket_total_boundaries": 5,
+  "result": "old six buckets cannot be called strictly chronological",
+  "series_groups": 53,
+  "validation_matches": 103
+}

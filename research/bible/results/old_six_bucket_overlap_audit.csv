@@ -1,0 +1,6 @@
+boundary,prev_latest_approx_end,next_earliest_start,overlap_seconds_lower_bound,intervals_overlap
+1,1774370250,1774364845,5405,True
+2,1774381437,1774373220,8217,True
+3,1774389710,1774382040,7670,True
+4,1774410004,1774415196,0,False
+5,1774440359,1774435179,5180,True

@@ -37,3 +37,23 @@ Every hosted kernel requires KernelWorkerStatus.COMPLETE plus downloaded numeric
 ## Unchangeable outcome
 
 Prior factory had zero of 28 candidates pass. M1 stays selected. Do not access consumed 106+200+200 test labels to optimize. A new candidate needs a separate protocol, later series-disjoint cohort and source PIT audit. Original main notebook and report remain unchanged. Negative results remain visible.
+
+
+## Post-run chronology erratum (2026-11-13; NOT part of the frozen original design)
+
+The original D2 assumed six series-safe earliest-start buckets could be
+treated as six contiguous chronological non-overlapping blocks. This
+was FALSE. Subsequent read-only event-clock inspection found four of
+five bucket boundaries overlap in approximate game intervals, and
+only four maximal interval-disjoint components with 62/2/3/36 matches.
+This is an outcome-blind source-design audit performed after viewing
+the earlier screening summary, not a retroactive preregistration.
+
+The pre-existing 20-way split metrics remain available but are
+downgraded to a series-bucket sensitivity test, NOT strict
+forward-time validation nor textbook PBO. A separate K4 Kaggle
+notebook reproduces the interval audit and 4×29 component scores.
+No model, feature, threshold, old 20-way split, validation
+prediction or label was changed. The code uses start+duration
+as an optimistic approximate game interval; real wall-clock
+completion and live receipt times are not provided.

@@ -1,5 +1,6 @@
 {
   "dataset": "sangtruong/vexil-bible-development-qa-20261113",
+  "dataset_manifest_sha256": "c9155ee8820fac43f4432ac1f1362226c6c16af7868080b105bd45b30767dc8b",
   "do_not_claim_completed_kaggle_runs": true,
   "enable_gpu": false,
   "enable_internet": false,
@@ -8,21 +9,32 @@
     {
       "kernel_slug": "sangtruong/vexil-bible-proper-scores-20261113",
       "mode": "scores",
+      "notebook_sha256": "4833766b818c999083fdcca3b0ab29f3a6e162ae3f9ac6b917d2a1bd3e8663b5",
       "source_file": "vexil-bible-proper-scores-20261113.ipynb"
     },
     {
       "kernel_slug": "sangtruong/vexil-bible-selection-instability-20261113",
       "mode": "instability",
+      "notebook_sha256": "62e81c5dfb1d94174d28cbebd8f9738875841720763d5c2dcf2c462595e963c2",
       "source_file": "vexil-bible-selection-instability-20261113.ipynb"
     },
     {
       "kernel_slug": "sangtruong/vexil-bible-familywise-audit-20261113",
       "mode": "maxt",
+      "notebook_sha256": "2b0df8235f5b07bd6d382fe71dca1552d7ff6050f9eaedbf16dddaaeaeaaca8f",
       "source_file": "vexil-bible-familywise-audit-20261113.ipynb"
+    },
+    {
+      "kernel_slug": "sangtruong/vexil-bible-chronology-audit-20261113",
+      "mode": "chronology",
+      "notebook_sha256": "3110379da5a3d8780801fa1dabfc196df60060755460c07710737e6dc169affa",
+      "source_file": "vexil-bible-chronology-audit-20261113.ipynb"
     }
   ],
   "local_stage": "/home/ai-agent/.cache/vexil-bible-kaggle-stage-20261113",
+  "packaged_from_git_head": "91241c9f050986bee1ad69f1e966870827bf5292",
   "private": true,
   "requires_new_user_authenticated_kaggle_cli": true,
-  "state": "PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED"
+  "state": "PREPARED_LOCALLY_NOT_UPLOADED_OR_EXECUTED",
+  "verification_script_sha256": "9f4d4ce899518552ff28a7724714a28f41ed1b32eebfe898336f5703a71eee0d"
 }

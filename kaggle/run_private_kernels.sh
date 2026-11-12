@@ -23,9 +23,9 @@ python="$(dirname "$repo")/vexil-dota2-win-probability/.venv/bin/python"
 # Kaggle datasets create is PRIVATE by default; do not pass --public.
 echo "Creating private input dataset (one-time; fail if same ID exists)."
 "$kaggle" datasets create -p "$stage/dataset"
-for mode in scores instability maxt; do
+for mode in scores instability maxt chronology; do
   echo "Submitting PRIVATE CPU kernel: $mode"
   "$kaggle" kernels push -p "$repo/kaggle/kernel_$mode"
 done
-echo "Submitted 3 hosted kernels, not yet verified COMPLETE."
+echo "Submitted 4 hosted kernels, not yet verified COMPLETE."
 echo "Check status and download receipts with kaggle/verify_hosted_kernels.sh."

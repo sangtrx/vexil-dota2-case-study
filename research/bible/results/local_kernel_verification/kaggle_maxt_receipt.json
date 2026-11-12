@@ -1,8 +1,11 @@
 {
+  "dataset_manifest_sha256": "c9155ee8820fac43f4432ac1f1362226c6c16af7868080b105bd45b30767dc8b",
+  "kaggle_execution_env_detected": false,
   "mode": "maxt",
   "no_model_fit": true,
   "not_new_blind_data": true,
   "numpy_version": "2.2.6",
+  "packaged_from_source_head": "91241c9f050986bee1ad69f1e966870827bf5292",
   "pandas_version": "2.3.3",
   "python_version": "3.12.3",
   "results": {
@@ -17,5 +20,7 @@
   "seed": 20261113,
   "source_known_trial_ledger_sha256": "2f2668c0c1d94b17499a7d0db1f154e6c8597778a5318f038e3220b5fe0429cd",
   "source_prediction_sha256": "aebc0cccce1b4c7ed7591bafa3dd2cd52fc1f8de50aa7c79fcba5b2faf3532d4",
-  "status": "PASS"
+  "stability_source_sha256": "88405f8e9c9720ced7b6296b012a9b1b8dc5507f7f1bffe2370620b1c32251e7",
+  "status": "PASS",
+  "verification_script_sha256": "9f4d4ce899518552ff28a7724714a28f41ed1b32eebfe898336f5703a71eee0d"
 }
