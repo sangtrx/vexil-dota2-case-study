@@ -1,8 +1,9 @@
 # Fresh Colab acceptance procedure for Vexil
 
 **Status: prepared, not yet executed in a fresh hosted Colab runtime.**
-An earlier Kaggle run verified a pre-guard notebook; it is not certification
-of the newest guarded source. This procedure never modifies the original
+Private Kaggle V3 completed a source-matched cold run but precedes the
+final frozen-ID and metadata guard. Its receipt is archived; it is
+not certification of the newest V4 source. This procedure never modifies the original
 500-match manifest or uses unseen held-out outcomes to choose a model.
 
 ## 1. Source and runtime
@@ -39,7 +40,7 @@ Do not replace missing matches to force the check to pass.
 The notebook writes its derived artifacts into the Colab Files sidebar
 at /content/vexil_takehome_outputs and creates a ready-to-download ZIP
 at /content/vexil_takehome_outputs.zip. The ZIP contains eight exported
-CSV data tables, a JSON receipt, and a calibration PNG. It never contains
+CSV data tables, a JSON receipt, and **four exported PNG figures**. It never contains
 raw match cache files.
 
 Download the ZIP from the Colab Files sidebar. Also download the
@@ -51,7 +52,7 @@ cells and execution counts, and the CSVs carry numerical evidence.
 
 Unzip the Colab artifact into a dedicated local directory. The extracted
 folder should contain vexil_takehome_outputs, with eight CSV files,
-calibration.png and derived_run_receipt.json. Also place the executed Colab
+four PNG figures and derived_run_receipt.json. Also place the executed Colab
 notebook in that directory.
 
 Set LOCAL_OUTPUTS to the reference output folder from the local validated
@@ -73,13 +74,30 @@ Verification requires exact saved notebook source cells,
 14 completed code cells, a Colab-specific receipt, at least 500 fresh API
 calls with zero cache hits, all eight scientific CSVs within 2e-7 numeric
 tolerance, exact frozen cohort identity and matching semantic source
-hashes. Full raw JSON hashes may differ due to reparsing: semantic
+hashes and four valid exported PNG files. Full raw JSON hashes may
+differ due to reparsing: semantic
 inputs, labels and cohort metadata must not drift.
 
 This script checks numeric and notebook evidence only. It cannot
 authenticate that the downloaded notebook came from Colab. Capture
 and review the actual signed-in Colab notebook URL, run history and
 source identity separately before declaring hosted acceptance.
+
+## Kaggle CPU acceptance difference
+
+A Kaggle notebook downloaded using the Kaggle CLI may retain source
+cells and execution counts but omit inline output images. That is
+not by itself evidence of missing executed charts. For a Kaggle
+verification, use --expected-runtime kaggle, pull the matching
+notebook source and download all Kaggle output artifacts, including
+all four PNG files. The offline verifier checks exact code, output
+CSV parity, source semantic fingerprints, 500+ source HTTP calls,
+zero cached responses and four actual valid PNGs. The Kaggle provider
+must independently confirm a COMPLETE kernel run; the verifier does
+not authenticate the provider account or run history.
+
+For Colab downloads, all four PNG outputs must still be present
+inline in the saved notebook as well as in exported artifacts.
 
 ## 4. Submission checklist
 

@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** Latest 14 November integrity revision: full 500-match BigLinux Run All **PASS**, 51/51 offline tests **PASS**, all 8 score CSVs unchanged (max delta 4.44e-16), exact TRAIN input/label/item fingerprints reproduced independently. An **earlier pre-guard** notebook passed private Kaggle CPU Run All; that hosted receipt is not certification of the newest source. Frozen 250/250 patch manifest, 291/103/106 match split, 18,304 minute rows, 3,837 held-out predictions and M1 selection remain unchanged. Submission HOLD pending final Colab acceptance, actual candidate human hours, and reviewer access.
+**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **54/54** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. A separate private Kaggle V4 cold run has been launched, but must not be called PASS until its outputs are downloaded and checked. Submission HOLD pending final hosted acceptance, actual human work hours, applicant review and reviewer access.
 
 ## Submission contract
 
@@ -41,6 +41,13 @@ Keep the assistance/hours disclosure honest and visually verify the PDF.
 
 ## Offline checks
 
+The frozen-cohort gate now checks each requested /matches/{id} response
+against its actual integer match_id, invalidates switched cached payloads
+and rejects incorrect HTTP replies. It also pins the SHA-256 of the 500
+match IDs, start times and patch IDs **before fitting** (the hash excludes
+win labels). Tests demonstrated the old code accepted an intentionally
+swapped same-patch match; V4 rejects it. See docs/REDTEAM_20261114.md.
+
 The optional read-only independent research audit uses the existing cached
 OpenDota payloads and saved forecast CSVs, never retrains or calls the API:
 
@@ -58,7 +65,7 @@ Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local enviro
 
 ## Derived outputs
 
-Run All exports eight science CSV tables, all 3,837 held-out probability rows, a calibration PNG and a JSON receipt. The receipt separates full raw OpenDota JSON digests from canonical model-input, label, item and cohort fingerprints, and records runtime identity and HTTP/cache-call counts. None of these derived outputs is an input. Kaggle writes to /kaggle/working; Colab writes to /content/vexil_takehome_outputs and creates a ZIP in its Files sidebar; local runs use a temporary directory. Four plots are embedded in the saved notebook, with training-support-masked time-value scenarios.
+Run All exports eight science CSV tables, all 3,837 held-out probability rows, a calibration PNG and a JSON receipt. The receipt separates full raw OpenDota JSON digests from canonical model-input, label, item and cohort fingerprints, and records runtime identity and HTTP/cache-call counts. None of these derived outputs is an input. Kaggle writes to /kaggle/working; Colab writes to /content/vexil_takehome_outputs and creates a ZIP in its Files sidebar; local runs use a temporary directory. Four plots are embedded in the saved notebook, with training-support-masked time-value scenarios. The same four PNGs are individually exported on Kaggle/Colab; the Colab ZIP contains 13 derived files (eight CSVs, one receipt and four PNGs).
 
 ## Kaggle execution
 
