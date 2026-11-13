@@ -22,3 +22,12 @@ before running. Do not count earlier errors as passes.
 
 Hosted status and results must be checked against Kaggle's
 actual COMPLETE status. No credentials are in these sources.
+
+## Final hosted verification
+
+Both private Kaggle kernels are COMPLETE and their receipts have been
+retrieved and checked. Family totals reproduce 12,063 local adversarial
+cases, while the separate all-train-minute kernel passes 10,683
+cutoffs. Research evidence is in research/results/hosted_qa_summary_20261113.json
+and the two adjacent hosted receipt JSON files. These results do not
+constitute new match outcomes, live OpenDota, or trading profitability.

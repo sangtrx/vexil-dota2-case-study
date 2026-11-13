@@ -1,0 +1,24 @@
+{
+  "claim_limit": "QA assertions on previously inspected training data, not independent model lift",
+  "cloud_cases_every_train_minute": 10683,
+  "cloud_cases_redteam": 12063,
+  "cpu_only": true,
+  "dataset": "sangtruong/vexil-redteam-train291-binary-20261113",
+  "dataset_archive_sha256": "8d9c34c7a4547b6bc29587ffafb4ce34a939b7df90548328b92d5407760c3e8d",
+  "date": "2026-11-13",
+  "hosted_fullpit_url": "https://www.kaggle.com/code/sangtruong/vexil-binary-train-fullpit-qa-20261113",
+  "hosted_redteam_url": "https://www.kaggle.com/code/sangtruong/vexil-binary-train-redteam-qa-20261113",
+  "internet_off": true,
+  "local_cases_two_seeds": 24126,
+  "new_validation_or_heldout_scoring": false,
+  "private": true,
+  "real_http_calls": 0,
+  "receipt_sha256": {
+    "fullpit": "38feedd7564b2a650aed0685b239c628936c29b68be8a0a16dae3acd69a72c8b",
+    "redteam": "7b77af3a1b13365394f8ea775a792b650bfb6a9b38ea51424ad71ce4437eb064"
+  },
+  "source_cells_pulled_back_and_matched": true,
+  "status": "BOTH_KAGGLE_PRIVATE_KERNELS_COMPLETE_VERIFIED",
+  "total_cloud_case_executions": 22746,
+  "train_games": 291
+}

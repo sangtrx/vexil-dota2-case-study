@@ -36,6 +36,27 @@ a real saturated OpenDota server. The source is versioned in
 research/adversarial_cases.py and research/reseed_adversarial_cases.py,
 with one receipt per random stream.
 
+## Two private Kaggle QA kernels: both COMPLETE
+
+The 12,063-case red-team kernel and the second exhaustive 10,683-minute
+TRAIN-only PIT kernel have both completed on private Kaggle CPU with
+Internet OFF. Downloaded cloud receipts confirm **22,746 QA-case
+executions**, 0 actual API calls and 0 original validation/test labels
+scored. Both source notebooks were pulled back from Kaggle and verified
+against committed source, including private execution metadata.
+
+- [Adversarial 12,063](https://www.kaggle.com/code/sangtruong/vexil-binary-train-redteam-qa-20261113):
+  8/8 family totals and all observations match local exactly.
+- [Every TRAIN minute](https://www.kaggle.com/code/sangtruong/vexil-binary-train-fullpit-qa-20261113):
+  all 10,683 historical cutoffs and both feature families passed.
+
+The original archive upload was auto-extracted by Kaggle, so the first
+kernel pair failed before QA. A second binary private dataset fixed the
+mount problem, with SHA-256 verified before extraction. Both final
+success receipts are committed under research/results/hosted_kaggle_*.
+These are reproducibility checks on previously inspected train games,
+not 22,746 independent outcome samples or a new model edge.
+
 ## Concrete defects and isolated fixes
 
 1. **Nonfinite objective event time:** float NaN passed numeric-type

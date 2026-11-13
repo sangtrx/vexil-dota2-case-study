@@ -1,0 +1,9 @@
+{
+  "actual_cases": 10683,
+  "games": 291,
+  "heldout_106_scored": 0,
+  "real_api_requests": 0,
+  "source": "Kaggle 291 cached training OpenDota games",
+  "status": "PASS",
+  "validation_103_scored": 0
+}
