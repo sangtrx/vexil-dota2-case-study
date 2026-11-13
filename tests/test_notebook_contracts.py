@@ -37,7 +37,7 @@ def load_definitions() -> dict:
         Pipeline=Pipeline, SimpleImputer=SimpleImputer,
         StandardScaler=StandardScaler, LogisticRegression=LogisticRegression,
     )
-    for cell_no in (4, 7, 8, 10, 12, 14, 16):
+    for cell_no in (4, 7, 8, 10, 12, 14, 16, 24):
         tree = ast.parse(source_at(cell_no), filename=f"cell_{cell_no}")
         nodes = []
         for node in tree.body:
@@ -409,6 +409,44 @@ class NotebookContractsTest(unittest.TestCase):
                          "OpenDota failed after 2 bounded attempts.*HTTP 503"):
                     api.get("/matches/123")
             self.assertEqual(api.calls,2)
+
+    def test_serving_contract_refuses_time_extrapolation(self):
+        class GoldDummy:
+            def predict_proba(self, frame):
+                self.last_frame=frame.copy()
+                return np.array([[0.3,0.7]])
+        model=GoldDummy()
+        game=match_fixture()
+        output=N["forecast_snapshot"](game, 10, model,
+                    N["SETS"]["M1_time_value"], max_trained_minute=85)
+        self.assertEqual(output["status"],"OK_RETROSPECTIVE_CLOCK_SNAPSHOT")
+        self.assertAlmostEqual(output["p_radiant_win"],0.7)
+        self.assertEqual(model.last_frame.columns.tolist(),
+                         ["gold_k","minute10","gold_x_time"])
+        self.assertEqual(model.last_frame["gold_k"].iloc[0],1.2)
+        refusal=N["forecast_snapshot"](game, 86, model,
+                    N["SETS"]["M1_time_value"], max_trained_minute=85)
+        self.assertEqual(refusal["status"],"OUTSIDE_TRAIN_TIME_SUPPORT")
+        self.assertIsNone(refusal["p_radiant_win"])
+        with self.assertRaises(ValueError):
+            N["forecast_snapshot"](game,-1,model,
+                       N["SETS"]["M1_time_value"],85)
+
+    def test_model_feature_lineage_hash_stable_and_sensitive(self):
+        cols=["match_id","minute","radiant_win","gold_k"]
+        sample=pd.DataFrame([
+          {"match_id":2,"minute":10,"radiant_win":0,"gold_k":-2.0},
+          {"match_id":1,"minute":0,"radiant_win":1,"gold_k":0.0}])
+        digest=N["canonical_feature_sha256"](sample,cols)
+        self.assertEqual(digest,N["canonical_feature_sha256"](
+            sample.iloc[::-1],cols))
+        modified=sample.copy();modified.loc[0,"gold_k"]=-1.2
+        self.assertNotEqual(digest,N["canonical_feature_sha256"](modified,cols))
+        with self.assertRaises(ValueError):
+            N["canonical_feature_sha256"](pd.concat([
+                sample,sample.iloc[:1]],ignore_index=True),cols)
+        with self.assertRaises(ValueError):
+            N["canonical_feature_sha256"](sample,cols+["does_not_exist"])
 
     def test_corrupt_cache_is_replaced_by_fresh_payload(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -30,6 +30,21 @@ def predict_at_minute(model, game, t, ns, columns):
                 timing_basis='parsed retrospective game clock; not a live receipt',
                 live_feed_availability_verified=False)
 
+def guarded_predict_at_minute(model, game, t, ns, columns, supported_max=85):
+    """Return explicit no-forecast status outside trained time support."""
+    if type(t) is not int or t<0:
+        raise ValueError("minute must be a nonnegative integer")
+    if t>supported_max:
+        return dict(match_id=int(game['match_id']),minute=t,
+                    model='M1_time_value',
+                    status='OUTSIDE_TRAIN_TIME_SUPPORT',
+                    p_radiant_win=None,
+                    action='abstain_or_approved_baseline; no silent extrapolation',
+                    supported_max_training_minute=supported_max)
+    prediction=predict_at_minute(model,game,t,ns,columns)
+    prediction['status']='OK_HISTORICAL_CLOCK_SNAPSHOT'
+    return prediction
+
 def monotonic_audit(model,minutes):
     imputer=model.named_steps['imputer']
     scaler=model.named_steps['scale']
@@ -103,6 +118,15 @@ def main():
     pred_rows=[(int(x['match_id']),int(x['minute']),
                 format(x['p_radiant_win'],'.12g')) for x in golden]
     panel_sha=hashlib.sha256(json.dumps(pred_rows,separators=(',',':')).encode()).hexdigest()
+    sample_game=games[0]
+    guard=guarded_predict_at_minute(model,sample_game,99,ns,columns,
+                                   supported_max=maxminute)
+    assert guard['status']=='OUTSIDE_TRAIN_TIME_SUPPORT'
+    assert guard['p_radiant_win'] is None
+    root_crossing=10*math.expm1(-info['coef_gold']/info['coef_gold_x_logtime'])
+    assert root_crossing>maxminute
+    info['analytic_gold_slope_zero_crossing_minute']=root_crossing
+    info['out_of_support_example']=guard
     report=dict(allowed_endpoint_calls=0,existing_train_games=291,
          original_validation_games_scored=0,original_heldout_games_scored=0,
          parity_snapshots=len(cases),source_poisoning_checks=sum(
