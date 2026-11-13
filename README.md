@@ -2,7 +2,36 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** Local full 500-match Run All **PASS**; extended notebook fresh private Kaggle CPU/Internet-ON Run All **PASS**. All **26 notebook cells** pulled back from Kaggle match the GitHub source exactly. All **8 numeric CSV outputs** match the local run within 4.44e-16. **30/30 offline tests PASS**. Frozen manifest: patch 59/60 = 250/250, 18,304 minute rows, 291/103/106 split and 3,837 held-out forecasts. M1 remains the selected model; the additional purchase-timing experiment is development-only. **[REPORT.pdf](REPORT.pdf) is two A4 pages**. Submission still needs a genuine hosted Google Colab Run All, the candidate's actual human hours, and reviewer access to the private repo.
+**Status:** Local full 500-match Run All **PASS**; extended notebook fresh private Kaggle CPU/Internet-ON Run All **PASS**. All **26 notebook cells** pulled back from Kaggle match the GitHub source exactly. All **8 numeric CSV outputs** match the local run within 4.44e-16. **35/35 offline tests PASS**. Frozen manifest: patch 59/60 = 250/250, 18,304 minute rows, 291/103/106 split and 3,837 held-out forecasts. M1 remains the selected model; the additional purchase-timing experiment is development-only. **[REPORT.pdf](REPORT.pdf) is two A4 pages**. Submission still needs a genuine hosted Google Colab Run All, the candidate's actual human hours, and reviewer access to the private repo.
+
+## Experimental operational robustness lab (Draft PR #9)
+
+This branch is a **research extension** of the original Vexil take-home
+in PR #8, not an alternate final submission. It preserves the same
+500 games, frozen M0–M3 model decision, 3,837 held-out probabilities
+and eight original exported result tables.
+
+- [Retrospective train-only temporal stability](docs/ROBUSTNESS_FINDINGS.md):
+  five series-safe, game-end-embargoed rolling windows, 25
+  candidate/fold scores and negative model-stability findings.
+- [Operational M1 model card](docs/OPERATIONAL_MODEL_CARD.md):
+  one-snapshot CPU prediction contract, supported time range,
+  fail-closed out-of-support handling and monitoring/promotion gates.
+- The notebook has added exact feature-lineage SHA-256 receipts for
+  all model-input/target rows and timestamped purchase proxies,
+  without changing model coefficients, selection or held-out outputs.
+- The frozen 500-game raw OpenDota arrays were cross-checked at all
+  18,304 minute indices against the ten players' gold/XP histories.
+- **35 offline regression tests PASS**; an additional deterministic
+  train-only adversarial script passed 12,063 seeded assertions.
+  These are QA tests, not 12,063 independent match outcomes.
+- **Local 500-game Run All PASS**. The earlier private Kaggle V2
+  remains confirmed for the eight original outputs; a fresh hosted
+  Kaggle V3 run containing the new feature-lineage/source-contract
+  fields is underway and must not be marked verified prematurely.
+
+Actual author hours, fresh hosted Colab and private reviewer
+access are still open. The base PR #8 and main remain unchanged.
 
 ## Submission contract
 
