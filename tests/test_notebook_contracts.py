@@ -182,6 +182,36 @@ class NotebookContractsTest(unittest.TestCase):
         no_players["players"]=None
         self.assertTrue(math.isnan(N["snapshot_features"](no_players,10)["kill_delta"]))
 
+    def test_nan_objective_timestamp_is_not_accepted_at_minute_zero(self):
+        m=match_fixture()
+        m["objectives"]=[{"time":float("nan"),"type":"building_kill",
+                         "key":"npc_dota_badguys_tower1_mid"},
+                         {"time":float("inf"),"type":"CHAT_MESSAGE_ROSHAN_KILL",
+                          "team":2},
+                         {"time":True,"type":"building_kill",
+                          "key":"npc_dota_badguys_tower1_top"}]
+        for minute in (0,1,10,20):
+            x=N["snapshot_features"](m,minute)
+            self.assertEqual(x["tower_delta"],0)
+            self.assertEqual(x["roshan_delta"],0)
+            N["assert_same_features"](x,N["snapshot_features"](
+                N["prefix_truncated"](m,minute),minute))
+
+    def test_duplicate_or_boolean_player_slots_are_unknown(self):
+        m=match_fixture()
+        m["players"][0]["player_slot"]=1
+        self.assertTrue(math.isnan(N["snapshot_features"](m,10)["kill_delta"]))
+        m=match_fixture()
+        m["players"][0]["player_slot"]=True
+        self.assertTrue(math.isnan(N["snapshot_features"](m,10)["kill_delta"]))
+
+    def test_boolean_gold_observation_is_not_used_as_measured_gold(self):
+        m=match_fixture()
+        m["radiant_gold_adv"][10]=True
+        self.assertAlmostEqual(N["snapshot_features"](m,10)["gold_k"],1.08)
+        m["radiant_gold_adv"][10]=float("inf")
+        self.assertAlmostEqual(N["snapshot_features"](m,10)["gold_k"],1.08)
+
     def test_missing_xp_carries_nan_but_never_future(self):
         m=match_fixture()
         m["radiant_xp_adv"]=None
