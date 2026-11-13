@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **55/55** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. A separate private Kaggle V4 cold run has been launched, but must not be called PASS until its outputs are downloaded and checked. Submission HOLD pending final hosted acceptance, actual human work hours, applicant review and reviewer access.
+**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **56/56** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. The exact V4 notebook also passed a **private Kaggle CPU cold Run All**, independently verified from downloaded source and all outputs: **511 HTTP calls, zero cache hits, 8/8 scientific CSVs and 4/4 exported PNGs**, with exact 26-cell source and semantic hash parity. Colab-specific cold execution is not separately verified. External submission remains HOLD pending actual human work hours, applicant editorial review and private-repo reviewer access.
 
 ## Submission contract
 
@@ -26,6 +26,14 @@ jupyter notebook live_dota2_win_probability.ipynb
 ```
 
 Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (about 37.5/minute), retries transient 429/5xx/transport errors with bounded backoff, and caches fetched payloads during execution. A shared-IP rate limit or temporary OpenDota outage can still prevent a cold hosted run from finishing; such failure is reported, never silently replaced with a different match. No credentials or local data files are required. A cold API run takes substantially longer than a cached local rerun. The complete cached local execution has been verified; the source notebook still fetches the same 500 OpenDota records on a clean runtime.
+
+## Hosted reproducibility receipts
+
+- [Private Kaggle V3](https://www.kaggle.com/code/sangtruong/vexil-dota-2-v3-visual-source-integrity-20261114): completed earlier source (505 HTTP, zero cache, all 8 CSVs matched).
+- [Private Kaggle V4](https://www.kaggle.com/code/sangtruong/vexil-takehome-v4-frozen-integrity-20261114): **COMPLETE and independently verified** on exact guarded notebook commit 400f9fd. All 26 source cells match, 14 code cells execute, 511 HTTP calls, zero cache hits, all 8 science CSVs agree with local, and 4 valid PNG files exported. Source hash dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb. Raw OpenDota JSON digests differ because upstream auxiliary fields may be reparsed; model input/label/cohort/item semantic hashes match.
+- Aggregate, keyless receipts: research/results/kaggle_v4_cold_20261114.json and research/results/kaggle_v4_strict_acceptance_20261114.json. The notebook pull from Kaggle omits embedded media (a provider export behavior); separately downloaded four chart PNGs are verified. The submitted GitHub notebook retains four embedded output PNGs.
+- **Stricter visual audit:** all four Kaggle V4 plots have identical **decoded RGB pixels** to local results, and the two PDF source figures match the cloud render pixel-for-pixel. File SHA-256 differs only because PNG container bytes/metadata differ. Tests reject a genuine image alteration while accepting harmless metadata changes. See research/results/kaggle_v4_strict_pixel_acceptance_20261114.json; the strict option is --require-plot-pixel-parity (use only when comparing compatible renderers).
+- Neither Kaggle run proves that game-clock timestamps had been available from a contemporaneous live feed. A fresh Colab Run All is not independently verified.
 
 ## Report and figures
 

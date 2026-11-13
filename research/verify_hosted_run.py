@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import struct
 import json
 from pathlib import Path
@@ -59,6 +60,35 @@ def verify_derived_images(directory: Path) -> dict:
         records[name] = {"bytes":len(raw),"size":[width,height]}
     return records
 
+
+
+def compare_plot_pixels(local_dir: Path, hosted_dir: Path,
+                        require_exact: bool = False) -> dict:
+    """Compare decoded RGB artwork, not PNG container metadata.
+
+    Exact pixel parity is appropriate for this same-renderer Kaggle V4
+    replay. Keep it opt-in for future Colab versions where fonts and
+    Matplotlib rasterization may legitimately differ.
+    """
+    verify_derived_images(local_dir)
+    verify_derived_images(hosted_dir)
+    results = {}
+    for name in PLOTS:
+        with Image.open(local_dir / name) as a, Image.open(hosted_dir / name) as b:
+            arr_a = np.asarray(a.convert("RGB"))
+            arr_b = np.asarray(b.convert("RGB"))
+        same_size = arr_a.shape == arr_b.shape
+        same_pixels = bool(same_size and np.array_equal(arr_a, arr_b))
+        results[name] = dict(
+            source_dimensions=[int(arr_a.shape[1]), int(arr_a.shape[0])],
+            hosted_dimensions=[int(arr_b.shape[1]), int(arr_b.shape[0])],
+            decoded_pixels_equal=same_pixels,
+            decoded_source_sha256=hashlib.sha256(arr_a.tobytes()).hexdigest(),
+            decoded_hosted_sha256=hashlib.sha256(arr_b.tobytes()).hexdigest(),
+        )
+        if require_exact and not same_pixels:
+            raise ValueError(f"Hosted PNG pixel content differs: {name}")
+    return results
 
 
 def compare_notebook(local_path: Path, hosted_path: Path,
@@ -124,7 +154,8 @@ def compare_tables(local_dir: Path, hosted_dir: Path, atol: float=2e-7) -> dict:
 
 
 def verify(local_dir: Path, hosted_dir: Path, local_notebook: Path,
-           hosted_notebook: Path, expected_runtime: str) -> dict:
+           hosted_notebook: Path, expected_runtime: str,
+           require_plot_pixel_parity: bool = False) -> dict:
     if expected_runtime not in ("colab", "kaggle"):
         raise ValueError("Expected runtime must be colab or kaggle")
     before=json.loads((local_dir/"derived_run_receipt.json").read_text())
@@ -147,6 +178,8 @@ def verify(local_dir: Path, hosted_dir: Path, local_notebook: Path,
         raise ValueError("The frozen 500-match cohort was modified")
     files=compare_tables(local_dir, hosted_dir)
     images=verify_derived_images(hosted_dir)
+    pixels=compare_plot_pixels(local_dir, hosted_dir,
+            require_exact=require_plot_pixel_parity)
     # Kaggle's authenticated notebook pull can strip media outputs while
     # preserving executed code counts. Require four separately downloaded
     # real chart artifacts instead of rejecting a valid hosted execution.
@@ -165,10 +198,12 @@ def verify(local_dir: Path, hosted_dir: Path, local_notebook: Path,
         semantic_hashes_exact=True,
         scientific_files=files,
         exported_pngs=images,
+        decoded_plot_pixel_comparison=pixels,
         source_notebook=cells,
         limitations=[
             "Runtime flags and API-call counts are self-reported by the executed notebook.",
             "Kaggle notebook pulls may omit output media; verified exported PNG files are required.",
+            "Pixel comparisons use decoded RGB, not potentially different PNG metadata; exact parity is optional for cross-platform font variance.",
             "Use the authenticated Colab/Kaggle run URL and execution history to establish hosting provenance.",
             "This is the same already-inspected 500-match population, not new independent predictive evidence."
         ],
@@ -182,11 +217,13 @@ def main() -> None:
     p.add_argument("--local-notebook",type=Path,required=True)
     p.add_argument("--hosted-notebook",type=Path,required=True)
     p.add_argument("--expected-runtime",choices=("colab","kaggle"),required=True)
+    p.add_argument("--require-plot-pixel-parity",action="store_true",
+                   help="Fail on any decoded RGB difference (same-renderer QA)")
     p.add_argument("--receipt",type=Path,required=True)
     args=p.parse_args()
     result=verify(args.local_output_dir,args.hosted_output_dir,
                   args.local_notebook,args.hosted_notebook,
-                  args.expected_runtime)
+                  args.expected_runtime, args.require_plot_pixel_parity)
     args.receipt.parent.mkdir(parents=True,exist_ok=True)
     args.receipt.write_text(json.dumps(result,indent=2,sort_keys=True)+"\n")
     print("HOSTED_RUN_VERIFICATION",json.dumps({

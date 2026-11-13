@@ -14,7 +14,7 @@
 - Host: epic; Python 3.12.3; the existing isolated Python environment.
 - 500/500 real cached OpenDota match payloads used (0 new API calls / 500 cache hits); 250 games per patch 59/60.
 - Source-clock audit: 5,000/5,000 player clocks begin at 0 and increment by 60 seconds; no gold/XP/clock length mismatch; 496 games have exactly floor(duration/60)+1 minute values and four have one extra trailing value, never needed by forecasts. The final notebook also checks 18,304/18,304 same-minute player gold and XP sums against team advantages before fitting, with exact tolerance 1e-6.
-- 55/55 offline Python tests passed; notebook JSON validation passed.
+- 56/56 offline Python tests passed; notebook JSON validation passed.
 - Full 26-cell notebook Run All: 14/14 code cells executed; 18,304 minute rows; 291/103/106 train/validation/held-out matches; 3,837 unchanged held-out probability rows.
 - Separate model-input, outcome-label, development item, and cohort-metadata hashes added to the run receipt. The three TRAIN hashes matched an independently implemented research audit exactly.
 - Eight scientific CSV outputs checked column-by-column against the original saved submission-polish execution. Maximum absolute numerical difference: 4.44e-16.
@@ -54,7 +54,7 @@
   and the PDF contains both embedded figure objects. A local-only
   report rendering script is included.
 - Offline unit/adversarial plus visible-output/report-artifact tests:
-  55/55 PASS.
+  56/56 PASS.
 
 ## V3 cold-cloud reproduction and V4 frozen-identity repair
 
@@ -77,7 +77,7 @@
   alone cannot affect this fingerprint; start-time or patch changes
   do. The existing expected hash is
   e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea.
-- Actual BigLinux **V4** full local 500-match Run All PASS, with 55/55
+- Actual BigLinux **V4** full local 500-match Run All PASS, with 56/56
   offline tests, 14/14 executed code cells, four embedded plots and
   four separately exported valid PNG files. All eight science CSVs
   remain identical to within 4.44e-16; M1 and held-out forecasts unchanged.
@@ -86,8 +86,19 @@
   acceptance verifies the four **derived PNG files** separately for
   Kaggle and requires embedded PNGs for Colab downloads. The latest
   Colab ZIP contains eight CSVs, one receipt and four plots (13 files).
-- A new, private Kaggle V4 kernel was pushed with this exact code source.
-  Its running/queued status alone is NOT a passed cold-run result.
+- **Private Kaggle V4 COMPLETE and strictly verified** on exact notebook
+  source from 400f9fd, hash dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb.
+  Provider returned COMPLETE. The fresh run made **511 HTTP requests, zero
+  cache hits**; all 26 source cells and 14 executed code cells matched,
+  all eight science CSVs agreed with local (max numerical delta
+  4.44e-16), and all four separately downloaded PNG figures passed
+  real-image validation. The source semantic fingerprints matched,
+  while the full raw JSON digest drifted on unrelated upstream fields.
+  Exact-source receipt:
+  research/results/kaggle_v4_cold_20261114.json;
+  strict verifier: research/results/kaggle_v4_strict_acceptance_20261114.json.
+  This is a hosted reproduction, not a new blind outcome test or
+  proof that OpenDota was a timely live feed.
 
 ## Series-level influence sensitivity
 
@@ -100,10 +111,27 @@ deletions) and a negative Brier difference (range -0.00424 to
 -0.00319). This does **not** change the non-significant overall
 series-bootstrap log-loss interval or justify model promotion.
 
+## Exact rendered-plot parity
+
+The new pixel-level artifact audit compares decoded RGB arrays rather
+than PNG file hashes. On Kaggle V4, all four exported plots were
+**pixel-identical** to BigLinux even though all four PNG file SHA-256
+digests differed. The report's two illustrative source PNGs also
+matched the corresponding cloud outputs pixel for pixel. The
+new mutation test leaves an image visually unchanged while altering
+PNG metadata (must PASS), then draws a visible overlay into a
+structurally valid image (must FAIL in strict mode). The default
+cross-platform gate reports pixel differences without failing on
+benign font/rendering variance; strict same-renderer mode is opt-in.
+Evidence: research/results/kaggle_v4_strict_pixel_acceptance_20261114.json.
+
 ## Unclosed gates
 
-- Hosted Colab fresh-runtime acceptance has not been executed on this exact branch.
-- Private Kaggle V3 passed, but the final V4 identity and manifest guards still require fresh hosted output verification. Do not equate a local cached replay with a hosted cold run.
+- Fresh Colab-specific runtime acceptance is still unverified, though
+  exact V4 source passed private Kaggle CPU cold Run All and strict
+  downloadable-source/output verification.
+- Model improvement remains statistically uncertain and all retrospective
+  source timestamps need live-feed arrival validation before production.
 - Applicant must enter their actual active hours, not elapsed API/kernel time, before submission.
 - No hiring submission or model promotion has occurred.
 

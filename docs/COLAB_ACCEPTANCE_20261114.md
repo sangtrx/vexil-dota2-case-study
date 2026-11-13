@@ -1,9 +1,13 @@
 # Fresh Colab acceptance procedure for Vexil
 
-**Status: prepared, not yet executed in a fresh hosted Colab runtime.**
-Private Kaggle V3 completed a source-matched cold run but precedes the
-final frozen-ID and metadata guard. Its receipt is archived; it is
-not certification of the newest V4 source. This procedure never modifies the original
+**Status: private Kaggle V4 exact-source cold Run All COMPLETE and
+independently VERIFIED; fresh Google Colab specifically remains untested.**
+V3 and the newer V4 both completed authenticated Kaggle runs.
+V4 verified the final frozen-ID and metadata guard source and
+all scientific tables and four PNG exports. See
+research/results/kaggle_v4_strict_acceptance_20261114.json.
+This Colab procedure documents an additional platform-specific
+acceptance check, not a claim that Colab has run already. This procedure never modifies the original
 500-match manifest or uses unseen held-out outcomes to choose a model.
 
 ## 1. Source and runtime
@@ -98,6 +102,14 @@ not authenticate the provider account or run history.
 
 For Colab downloads, all four PNG outputs must still be present
 inline in the saved notebook as well as in exported artifacts.
+
+An optional --require-plot-pixel-parity switch verifies **exact decoded
+RGB pixel equality** between local and hosted PNGs, after ignoring
+PNG-container metadata differences. It passed on Kaggle V4. Do not use
+it as a universal Colab gate if Colab runs a different Matplotlib/font
+renderer: exact pixels can change without changing underlying forecast
+data. The default verifier records pixel parity but gates on science
+CSV/semantic-source consistency and four structurally valid figures.
 
 ## 4. Submission checklist
 

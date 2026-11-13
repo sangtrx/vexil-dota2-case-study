@@ -6,6 +6,8 @@ import tempfile
 import shutil
 import unittest
 from pathlib import Path
+from PIL import Image, ImageDraw
+from PIL.PngImagePlugin import PngInfo
 
 import nbformat
 import pandas as pd
@@ -13,6 +15,7 @@ import pandas as pd
 from research.verify_hosted_run import (
     SOURCE_FIELDS, RECEIPT_FIELDS, TABLES, PLOTS,
     compare_notebook, compare_tables, verify, verify_derived_images,
+    compare_plot_pixels,
 )
 
 
@@ -70,6 +73,39 @@ class HostedRunVerificationTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Missing saved PNG"):
                 compare_notebook(a, b)
 
+    def test_plot_comparison_ignores_png_metadata_but_detects_visual_tampering(self):
+        chart = Path(__file__).resolve().parents[1] / "docs/figures/heldout_reliability.png"
+        with tempfile.TemporaryDirectory() as tmp:
+            local, cloud = Path(tmp)/"local", Path(tmp)/"cloud"
+            local.mkdir(); cloud.mkdir()
+            for name in PLOTS:
+                shutil.copy2(chart,local/name)
+                shutil.copy2(chart,cloud/name)
+            initial=compare_plot_pixels(local,cloud,require_exact=True)
+            self.assertTrue(all(x["decoded_pixels_equal"] for x in initial.values()))
+            # PNG tEXt chunks and compression bytes may differ across
+            # environments even when the rendered chart pixels are identical.
+            metadata=PngInfo()
+            metadata.add_text("rendered-by","synthetic metadata only")
+            with Image.open(local/PLOTS[0]) as img:
+                img.save(cloud/PLOTS[0],format="PNG",pnginfo=metadata)
+            self.assertNotEqual((local/PLOTS[0]).read_bytes(),
+                                (cloud/PLOTS[0]).read_bytes())
+            after=compare_plot_pixels(local,cloud,require_exact=True)
+            self.assertTrue(after[PLOTS[0]]["decoded_pixels_equal"])
+            # A valid, same-sized high-detail chart with tampered visible
+            # content must fail even when its container/structure is valid.
+            with Image.open(local/PLOTS[1]) as img:
+                altered=img.convert("RGB")
+                ImageDraw.Draw(altered).rectangle(
+                    (80, 80, 300, 170), fill=(255, 0, 0))
+                altered.save(cloud/PLOTS[1],format="PNG")
+            self.assertGreater((cloud/PLOTS[1]).stat().st_size,10000)
+            self.assertFalse(compare_plot_pixels(
+                local,cloud)[PLOTS[1]]["decoded_pixels_equal"])
+            with self.assertRaisesRegex(ValueError,"pixel content differs"):
+                compare_plot_pixels(local,cloud,require_exact=True)
+
     def test_runtime_and_cold_retrieval_required(self):
         with tempfile.TemporaryDirectory() as tmp:
             base=Path(tmp)
@@ -82,6 +118,7 @@ class HostedRunVerificationTest(unittest.TestCase):
             chart=Path(__file__).resolve().parents[1] / "docs/figures/heldout_reliability.png"
             for name in PLOTS:
                 shutil.copy2(chart,remote/name)
+                shutil.copy2(chart,local/name)
             self.assertEqual(len(verify_derived_images(remote)),4)
             a={name:"x"*64 for name in SOURCE_FIELDS}
             a.update({name:123 for name in RECEIPT_FIELDS})

@@ -1,0 +1,89 @@
+{
+  "gpu": false,
+  "hosted_cache_hits": 0,
+  "hosted_http_calls": 511,
+  "internet": true,
+  "interpretation": "Provider COMPLETE was observed through authenticated Kaggle CLI; strict source, forecast CSV, semantic lineage, runtime and four PNG artifacts PASS. This is not proof of independent live-feed availability or statistically confirmed uplift.",
+  "kernel_slug": "sangtruong/vexil-takehome-v4-frozen-integrity-20261114",
+  "kernel_url": "https://www.kaggle.com/code/sangtruong/vexil-takehome-v4-frozen-integrity-20261114",
+  "model_choice_unchanged": true,
+  "plots": {
+    "calibration.png": {
+      "bytes": 107613,
+      "size": [
+        1741,
+        708
+      ]
+    },
+    "heldout_game_trajectory.png": {
+      "bytes": 82750,
+      "size": [
+        1201,
+        795
+      ]
+    },
+    "minute20_comeback.png": {
+      "bytes": 31691,
+      "size": [
+        931,
+        458
+      ]
+    },
+    "time_value_scenarios.png": {
+      "bytes": 57263,
+      "size": [
+        1038,
+        480
+      ]
+    }
+  },
+  "private": true,
+  "provider_complete": true,
+  "pulled_source_notebook": {
+    "cells": 26,
+    "embedded_pngs": 0,
+    "error_outputs": 0,
+    "executed_code_cells": 14,
+    "source_exact_match": true
+  },
+  "raw_json_digest_equal": false,
+  "scientific_tables": {
+    "exploratory_item_ablation.csv": {
+      "max_absolute_numeric_difference": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "exploratory_item_folds.csv": {
+      "max_absolute_numeric_difference": 4.998172015158175e-16,
+      "rows": 3
+    },
+    "heldout_metrics.csv": {
+      "max_absolute_numeric_difference": 1.9992688060632702e-16,
+      "rows": 10
+    },
+    "heldout_predictions.csv": {
+      "max_absolute_numeric_difference": 4.440892098500626e-16,
+      "rows": 3837
+    },
+    "match_manifest.csv": {
+      "max_absolute_numeric_difference": 0.0,
+      "rows": 500
+    },
+    "minute20_comeback.csv": {
+      "max_absolute_numeric_difference": 0.0,
+      "rows": 2
+    },
+    "terminal_sensitivity.csv": {
+      "max_absolute_numeric_difference": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "validation_ablations.csv": {
+      "max_absolute_numeric_difference": 3.0531133177191805e-16,
+      "rows": 4
+    }
+  },
+  "semantic_hashes_exact": true,
+  "source_commit": "400f9fd9e95b0ab66b784c5452eba431804e4264",
+  "source_exact_match": true,
+  "source_notebook_sha256": "dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb",
+  "status": "V4_KAGGLE_PRIVATE_COLD_COMPLETE_AND_INDEPENDENTLY_VERIFIED"
+}
