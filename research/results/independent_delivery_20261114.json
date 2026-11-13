@@ -321,6 +321,28 @@
     "Calibration probability bins were already inspected and the intervals are post-hoc, not simultaneous."
   ],
   "provenance": "Frozen 500 OpenDota cached payloads, no external API calls or model fits",
+  "series_deletion_influence": {
+    "brier": {
+      "all_deletions_favor_model": true,
+      "clusters": 54,
+      "clusters_favoring_baseline": 16,
+      "clusters_favoring_model": 38,
+      "deletion_max": -0.0031871158273366076,
+      "deletion_min": -0.004243515528227218,
+      "overall_difference": -0.0035472137973090166,
+      "rows": 3837
+    },
+    "logloss": {
+      "all_deletions_favor_model": true,
+      "clusters": 54,
+      "clusters_favoring_baseline": 17,
+      "clusters_favoring_model": 37,
+      "deletion_max": -0.006243454377858665,
+      "deletion_min": -0.014828323396579513,
+      "overall_difference": -0.012399080119409656,
+      "rows": 3837
+    }
+  },
   "source_games": 500,
   "split_games": {
     "test": 106,

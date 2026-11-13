@@ -14,7 +14,7 @@
 - Host: epic; Python 3.12.3; the existing isolated Python environment.
 - 500/500 real cached OpenDota match payloads used (0 new API calls / 500 cache hits); 250 games per patch 59/60.
 - Source-clock audit: 5,000/5,000 player clocks begin at 0 and increment by 60 seconds; no gold/XP/clock length mismatch; 496 games have exactly floor(duration/60)+1 minute values and four have one extra trailing value, never needed by forecasts. The final notebook also checks 18,304/18,304 same-minute player gold and XP sums against team advantages before fitting, with exact tolerance 1e-6.
-- 54/54 offline Python tests passed; notebook JSON validation passed.
+- 55/55 offline Python tests passed; notebook JSON validation passed.
 - Full 26-cell notebook Run All: 14/14 code cells executed; 18,304 minute rows; 291/103/106 train/validation/held-out matches; 3,837 unchanged held-out probability rows.
 - Separate model-input, outcome-label, development item, and cohort-metadata hashes added to the run receipt. The three TRAIN hashes matched an independently implemented research audit exactly.
 - Eight scientific CSV outputs checked column-by-column against the original saved submission-polish execution. Maximum absolute numerical difference: 4.44e-16.
@@ -54,7 +54,7 @@
   and the PDF contains both embedded figure objects. A local-only
   report rendering script is included.
 - Offline unit/adversarial plus visible-output/report-artifact tests:
-  54/54 PASS.
+  55/55 PASS.
 
 ## V3 cold-cloud reproduction and V4 frozen-identity repair
 
@@ -77,7 +77,7 @@
   alone cannot affect this fingerprint; start-time or patch changes
   do. The existing expected hash is
   e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea.
-- Actual BigLinux **V4** full local 500-match Run All PASS, with 54/54
+- Actual BigLinux **V4** full local 500-match Run All PASS, with 55/55
   offline tests, 14/14 executed code cells, four embedded plots and
   four separately exported valid PNG files. All eight science CSVs
   remain identical to within 4.44e-16; M1 and held-out forecasts unchanged.
@@ -88,6 +88,17 @@
   Colab ZIP contains eight CSVs, one receipt and four plots (13 files).
 - A new, private Kaggle V4 kernel was pushed with this exact code source.
   Its running/queued status alone is NOT a passed cold-run result.
+
+## Series-level influence sensitivity
+
+An additional independent, post-hoc leave-one-series-out analysis
+is included in research/results/independent_delivery_20261114.json:
+37/54 series have negative M1-minus-M0 mean log loss; 38/54 favor
+M1 on Brier. Removing any single test series preserves a negative
+overall log-loss difference (range -0.01483 to -0.00624 across 54
+deletions) and a negative Brier difference (range -0.00424 to
+-0.00319). This does **not** change the non-significant overall
+series-bootstrap log-loss interval or justify model promotion.
 
 ## Unclosed gates
 

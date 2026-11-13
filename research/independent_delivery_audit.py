@@ -101,6 +101,33 @@ def bootstrap_delta(frame: pd.DataFrame, group_name: str, loss_name: str,
 
 
 
+
+def leave_one_cluster_out_influence(frame: pd.DataFrame,
+                                   group_name: str,
+                                   metric: str) -> dict:
+    """Post-hoc descriptive support/influence, with intact grouped games."""
+    if metric not in ("logloss", "brier"):
+        raise ValueError("Unsupported influence metric")
+    required = [group_name, "minute", metric+"_model", metric+"_baseline"]
+    if frame.empty or frame[required].isna().any().any():
+        raise ValueError("Empty or missing cluster influence data")
+    vals = frame.assign(_loss_delta=frame[metric+"_model"]-frame[metric+"_baseline"])
+    grouped = vals.groupby(group_name, sort=True).agg(
+        rows=("minute", "size"), loss_difference=("_loss_delta", "sum"))
+    if len(grouped) < 2:
+        raise ValueError("Need at least two clusters for deletion sensitivity")
+    n = int(grouped.rows.sum())
+    total = float(grouped.loss_difference.sum())
+    without = (total-grouped.loss_difference)/(n-grouped.rows)
+    return dict(
+        clusters=len(grouped), rows=n, overall_difference=float(total/n),
+        clusters_favoring_model=int((grouped.loss_difference < 0).sum()),
+        clusters_favoring_baseline=int((grouped.loss_difference > 0).sum()),
+        deletion_min=float(without.min()), deletion_max=float(without.max()),
+        all_deletions_favor_model=bool((without < 0).all()),
+    )
+
+
 def bootstrap_calibration_gap(frame: pd.DataFrame, group_name: str, model: str,
                               n_boot: int = 12000, seed: int = 20261114) -> dict:
     """Percentile interval for E[y-p], reusing whole series rather than minutes.
@@ -224,6 +251,11 @@ def audit(outputs: Path, cache: Path) -> dict:
             "brier_match": bootstrap_delta(df, "match_id", "brier"),
             "brier_series": bootstrap_delta(df, "series_cluster", "brier"),
         }
+    influence = {
+        name: leave_one_cluster_out_influence(
+            forecasts, "series_cluster", name)
+        for name in ("logloss", "brier")
+    }
     # A fixed 0.5-0.6 interval is a descriptive example from a previously
     # inspected reliability chart, not a rule used to select or recalibrate.
     calibrations = {}
@@ -264,6 +296,7 @@ def audit(outputs: Path, cache: Path) -> dict:
             on="match_id", validate="one_to_one").radiant_win.mean()),
         league_leave_one_out=loo,
         bootstrap=scores,
+        series_deletion_influence=influence,
         calibration=calibrations,
         limitations=[
             "Post-hoc reuse of previously inspected held-out data; no new blind test.",

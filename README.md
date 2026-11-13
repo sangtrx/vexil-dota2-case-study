@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **54/54** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. A separate private Kaggle V4 cold run has been launched, but must not be called PASS until its outputs are downloaded and checked. Submission HOLD pending final hosted acceptance, actual human work hours, applicant review and reviewer access.
+**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **55/55** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. A separate private Kaggle V4 cold run has been launched, but must not be called PASS until its outputs are downloaded and checked. Submission HOLD pending final hosted acceptance, actual human work hours, applicant review and reviewer access.
 
 ## Submission contract
 

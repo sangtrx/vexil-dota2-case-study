@@ -13,6 +13,7 @@ import pandas as pd
 from research.independent_delivery_audit import (
     _json_match_filename, load_provenance, proper_scores, bootstrap_delta,
     independent_metric_oracle, bootstrap_calibration_gap,
+    leave_one_cluster_out_influence,
 )
 
 
@@ -60,6 +61,25 @@ class IndependentRedteamTest(unittest.TestCase):
         self.assertTrue(x["ci95"][0] <= x["delta"] <= x["ci95"][1])
         with self.assertRaises(ValueError):
             bootstrap_delta(f[f.series_cluster=="a"],"series_cluster","logloss")
+
+    def test_series_deletion_sensitivity_is_weighted_and_order_invariant(self):
+        f = proper_scores(example_predictions())
+        f["series_cluster"] = ["a", "a", "b", "b"]
+        x = leave_one_cluster_out_influence(f, "series_cluster", "logloss")
+        y = leave_one_cluster_out_influence(
+            f.sample(frac=1,random_state=43), "series_cluster", "logloss")
+        self.assertEqual(x,y)
+        self.assertEqual(x["clusters"],2)
+        self.assertEqual(x["rows"],4)
+        self.assertEqual(x["clusters_favoring_model"],2)
+        self.assertTrue(x["all_deletions_favor_model"])
+        self.assertLess(x["deletion_max"],0.)
+        with self.assertRaises(ValueError):
+            leave_one_cluster_out_influence(
+                f.iloc[:2],"series_cluster","logloss")
+        with self.assertRaises(ValueError):
+            leave_one_cluster_out_influence(
+                f,"series_cluster","accuracy")
 
     def test_calibration_gap_series_bootstrap_order_invariant(self):
         f = proper_scores(example_predictions())
