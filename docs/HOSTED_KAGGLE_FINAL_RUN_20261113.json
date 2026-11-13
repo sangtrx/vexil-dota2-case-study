@@ -1,0 +1,96 @@
+{
+  "api_credentials_used_for_opendota": false,
+  "cloud_csv_sha256": {
+    "exploratory_item_ablation.csv": "2feeafd976f8436e06d4c21371c6f0088c953cdffe73bfe966b0f08a5ec6b7b9",
+    "exploratory_item_folds.csv": "768ff55b880fe666171d8e9aed0b0619751d2a52ea6ae5bfa7998924d5d5f270",
+    "heldout_metrics.csv": "fd4b6bbf07fdc089670fba8cb1c39ba8a569f0d61eca71fe00148b6a4d608e14",
+    "heldout_predictions.csv": "90e657db1efeb5be888e949d7cdb3de716a926838c901a18831a8a9e3df4af43",
+    "match_manifest.csv": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+    "minute20_comeback.csv": "1f5cc49ef9ca29fdb6cd876d8b1cc51690d1818e257bccb106ed15c3e3a519d0",
+    "terminal_sensitivity.csv": "2afe692279584a0fa59bd5610b209e9742111831f51e95abb3920f766221dd41",
+    "validation_ablations.csv": "8fef917b83eac2a5c38e93d05dcad3f4d8bd60977ac0ec1c1ead45d80de99348"
+  },
+  "cloud_raw_response_drift_caveat": "Some auxiliary OpenDota JSON fields can change; numerical parity does not mean exact raw API payload equality.",
+  "comparisons": {
+    "exploratory_item_ablation.csv": {
+      "max_absolute_numeric_diff": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "exploratory_item_folds.csv": {
+      "max_absolute_numeric_diff": 4.998172015158175e-16,
+      "rows": 3
+    },
+    "heldout_metrics.csv": {
+      "max_absolute_numeric_diff": 1.9992688060632702e-16,
+      "rows": 10
+    },
+    "heldout_predictions.csv": {
+      "max_absolute_numeric_diff": 4.440892098500626e-16,
+      "rows": 3837
+    },
+    "match_manifest.csv": {
+      "max_absolute_numeric_diff": 0.0,
+      "rows": 500
+    },
+    "minute20_comeback.csv": {
+      "max_absolute_numeric_diff": 0.0,
+      "rows": 2
+    },
+    "terminal_sensitivity.csv": {
+      "max_absolute_numeric_diff": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "validation_ablations.csv": {
+      "max_absolute_numeric_diff": 3.0531133177191805e-16,
+      "rows": 4
+    }
+  },
+  "exploratory_item_did_not_score_test": true,
+  "gpu": false,
+  "heldout_predictions_unchanged": true,
+  "hosted_colab_run_all_verified": false,
+  "hosted_settings_verification": {
+    "CPU_only": true,
+    "additional_kaggle_datasets": 0,
+    "additional_kaggle_notebook_sources": 0,
+    "internet_on": true,
+    "private": true
+  },
+  "human_hours_supplied": false,
+  "internet": true,
+  "manifest_sha256": "e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea",
+  "matches": 500,
+  "minute_rows": 18304,
+  "model_selected": "M1_time_value",
+  "patch_counts": {
+    "59": 250,
+    "60": 250
+  },
+  "private": true,
+  "pulled_hosted_source_26_cells_exact": true,
+  "seed": 20261113,
+  "source_git_commit": "5fcf76f2abd64deb30e647ebba7e9387447b50b8",
+  "source_notebook_sha256": "6a003a668a96ee039cbe77b4375517b61899e02920b59ee4e7c27de68defc2e0",
+  "source_payload_hash_unchanged": false,
+  "split_counts": {
+    "test": 106,
+    "train": 291,
+    "validation": 103
+  },
+  "status": "KAGGLE_HOSTED_COLD_500_COMPLETE_NUMERICALLY_VERIFIED",
+  "url": "https://www.kaggle.com/code/sangtruong/vexil-final-dota2-takehome-v2-20261113",
+  "versions_cloud": {
+    "matplotlib": "3.10.0",
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "sklearn": "1.6.1"
+  },
+  "versions_local": {
+    "matplotlib": "3.10.7",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "sklearn": "1.7.2"
+  }
+}

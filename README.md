@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** 500-match patch-balanced manifest frozen; 26 offline tests passing; full-data BigLinux **and private one-account Kaggle CPU Run All: PASS**. The numerical outputs agree to floating-point precision (max probability difference 4.44e-16), despite different scientific Python versions. M1 was selected on validation. **Not submission-ready:** fresh hosted Google Colab acceptance and the candidate's actual time-spent entry are still pending. The current REPORT.md rendered to 3 A4 pages in a separate visual layout check (4-page maximum). See [REPORT.md](REPORT.md).
+**Status:** Local full 500-match Run All **PASS**; extended notebook fresh private Kaggle CPU/Internet-ON Run All **PASS**. All **26 notebook cells** pulled back from Kaggle match the GitHub source exactly. All **8 numeric CSV outputs** match the local run within 4.44e-16. **30/30 offline tests PASS**. Frozen manifest: patch 59/60 = 250/250, 18,304 minute rows, 291/103/106 split and 3,837 held-out forecasts. M1 remains the selected model; the additional purchase-timing experiment is development-only. **[REPORT.pdf](REPORT.pdf) is two A4 pages**. Submission still needs a genuine hosted Google Colab Run All, the candidate's actual human hours, and reviewer access to the private repo.
 
 ## Submission contract
 
@@ -37,7 +37,18 @@ After Run All, the notebook exports the frozen match manifest, four-model valida
 
 ## Kaggle execution
 
-Kaggle is the primary experiment runtime, but **GitHub is authoritative for source and review history**. A private Kaggle CPU kernel using one authorized account successfully fetched an OpenDota pro-match page over the Internet (HTTP 200, 100 matches). The final notebook contains an immutable list of 500 unique match IDs selected without using game outcomes: 250 games from patch 59 (21–24 March 2026) and 250 from patch 60 (24–26 March 2026). The data preflight verified the selection and recorded its manifest digest. A private Kaggle CPU execution of the frozen notebook completed independently: 500 games, 18,304 match-minute rows, and 3,837 held-out predictions. All model outputs, validation scores, bootstrap CIs, and research sensitivities agreed with BigLinux to machine precision. The full raw API JSON hash differed because OpenDota can revise auxiliary fields (a spot check identified computed_mmr changes), although the forecast results were unchanged. This is a qualified scientific-output parity PASS, not a claim of identical raw API payloads. The private Kaggle notebook is at https://www.kaggle.com/code/sangtruong/vexil-dota2-patch-cohorts-20261113. Syncing is done with `kaggle kernels push` / `pull`; only vetted notebook checkpoints are committed to GitHub. No GPU is required.
+A complete cold hosted execution of this **exact extended notebook** finished successfully on private Kaggle CPU with Internet ON, no attached datasets or notebook inputs, and no OpenDota API key:
+
+- [Final Kaggle Run All](https://www.kaggle.com/code/sangtruong/vexil-final-dota2-takehome-v2-20261113)
+- [Immutable numerical QA receipt](docs/HOSTED_KAGGLE_FINAL_RUN_20261113.json)
+- Status COMPLETE; original 500 IDs loaded from the OpenDota API itself.
+- 500 games, patch 59:250 / patch 60:250; 18,304 minute rows and 3,837 held-out probabilities.
+- Eight exported CSV tables (including purchase-event ablation and train-only folds) compared field-by-field to BigLinux; maximum absolute numeric difference 4.44e-16.
+- The 26 source cells pulled back through Kaggle's API match this branch's saved notebook source exactly.
+- Local stack: Python 3.12.3, NumPy 2.2.6, scikit-learn 1.7.2. Kaggle: Python 3.13.18, NumPy 2.1.3, scikit-learn 1.6.1.
+- OpenDota raw payload digest changed between requests, consistent with reparsing of auxiliary fields. **Forecast and evaluation parity is confirmed; byte-identical raw API payloads are not claimed.**
+
+The prior attempt failed on transient OpenDota requests despite later single-request HTTP 200 diagnostics; the completed V2 ran after bounded-retry improvements. The notebook never silently replaces frozen matches or reads predownloaded match data. The Kaggle account was accessed through the installed credential pool; those credentials are **not shipped**.
 
 ## Fresh Colab acceptance (required before sending)
 

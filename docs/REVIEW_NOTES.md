@@ -25,9 +25,11 @@
   reproducibility QA kernels (separate PR #7) completed on Kaggle.
 - The report is rendered and visually inspected as **two A4 pages**,
   with editable REPORT.md and explicit AI/public-code disclosure.
-- A cold hosted Kaggle Run All of this exact extended item-timing
-  version is being retested after an OpenDota transport failure.
-  **Do not claim its new hosted status COMPLETE without its receipt.**
+- The final extended notebook's private Kaggle CPU cold Run All
+  completed on permitted OpenDota API endpoints with no attached
+  datasets. All 26 pulled notebook cells matched source, and eight
+  exported CSVs matched local numerical results (<= 4.44e-16).
+  Provenance: docs/HOSTED_KAGGLE_FINAL_RUN_20261113.json.
   The Colab branch passed an emulated local setup, but a genuine
   hosted Google Colab Run All remains **unverified**.
 - Submission HOLD until actual candidate human hours are recorded
