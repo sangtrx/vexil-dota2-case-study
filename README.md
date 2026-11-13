@@ -25,7 +25,7 @@ python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
 ```
 
-Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (about 37.5/minute), and caches fetched payloads during execution. No credentials or local data files are required. A cold API run takes substantially longer than a cached local rerun. The complete cached local execution has been verified; the source notebook still fetches the same 500 OpenDota records on a clean runtime.
+Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (about 37.5/minute), retries transient 429/5xx/transport errors with bounded backoff, and caches fetched payloads during execution. A shared-IP rate limit or temporary OpenDota outage can still prevent a cold hosted run from finishing; such failure is reported, never silently replaced with a different match. No credentials or local data files are required. A cold API run takes substantially longer than a cached local rerun. The complete cached local execution has been verified; the source notebook still fetches the same 500 OpenDota records on a clean runtime.
 
 ## Offline checks
 
@@ -41,7 +41,7 @@ Kaggle is the primary experiment runtime, but **GitHub is authoritative for sour
 
 ## Fresh Colab acceptance (required before sending)
 
-This final cross-environment check has **not yet been completed** on a hosted Colab runtime. In Colab, use **File → Open notebook → GitHub**, authorize access to this private repository, select branch research/pit-validation-20261113, and open live_dota2_win_probability.ipynb. Choose a fresh CPU runtime with Internet access; then select **Runtime → Run all**. Colab installs the pinned analysis packages from the notebook's Setup cell without external local files.
+This final cross-environment check has **not yet been completed** on a hosted Colab runtime. In Colab, use **File → Open notebook → GitHub**, authorize access to this private repository, select branch research/pit-validation-20261113, and open live_dota2_win_probability.ipynb. Choose a fresh CPU runtime with Internet access; then select **Runtime → Run all**. Colab uses its installed scientific stack when already available (to avoid live-kernel NumPy ABI conflicts), installing only missing libraries at the pinned versions. Local requirements.txt fixes exact versions; the notebook records all actual package versions.
 
 Check the saved output against the frozen receipt: exactly 500 matches, patch 59:250 and patch 60:250, 18,304 minute rows, train/validation/test 291/103/106 matches, proposed model M1_time_value, 3,837 test forecast rows and manifest hash e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea. Log loss/Brier should agree up to numerical tolerance. Full raw JSON digests can change as OpenDota reparses auxiliary fields. Do **not** edit feature cells or substitute a predownloaded dataset to make the check pass; report any actual runtime or API error.
 
