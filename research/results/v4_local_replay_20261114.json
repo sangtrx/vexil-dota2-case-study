@@ -1,0 +1,24 @@
+{
+  "code_cells": 14,
+  "embedded_pngs": 4,
+  "exported_pngs": [
+    "calibration.png",
+    "time_value_scenarios.png",
+    "heldout_game_trajectory.png",
+    "minute20_comeback.png"
+  ],
+  "heldout_predictions": 3837,
+  "matches": 500,
+  "max_numeric_difference": 4.440892098500626e-16,
+  "minute_rows": 18304,
+  "model": "M1_time_value",
+  "notebook_sha256": "dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb",
+  "retrieval": {
+    "api_calls": 0,
+    "cache_hits": 500,
+    "candidate_exclusions": 0
+  },
+  "run_elapsed_seconds": 60.8,
+  "scientific_csvs": 8,
+  "status": "FINAL_V4_LOCAL_500_RUN_ALL_PASS"
+}

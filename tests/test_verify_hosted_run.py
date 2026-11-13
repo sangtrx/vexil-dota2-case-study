@@ -11,8 +11,8 @@ import nbformat
 import pandas as pd
 
 from research.verify_hosted_run import (
-    SOURCE_FIELDS, RECEIPT_FIELDS, TABLES,
-    compare_notebook, compare_tables, verify,
+    SOURCE_FIELDS, RECEIPT_FIELDS, TABLES, PLOTS,
+    compare_notebook, compare_tables, verify, verify_derived_images,
 )
 
 
@@ -45,6 +45,18 @@ class HostedRunVerificationTest(unittest.TestCase):
             good = compare_notebook(a, b)
             self.assertEqual(good["executed_code_cells"], 14)
             self.assertEqual(good["embedded_pngs"], 4)
+            # Kaggle CLI pulls preserve source and execution counts but
+            # sometimes strip all rich output media from notebook files.
+            stripped = nbformat.read(str(b), as_version=4)
+            for cell in stripped.cells:
+                if cell.cell_type == "code":
+                    cell.outputs = []
+            nbformat.write(stripped, str(b))
+            with self.assertRaisesRegex(ValueError,"Missing saved PNG"):
+                compare_notebook(a, b)
+            self.assertEqual(compare_notebook(
+                a,b,require_embedded_images=False)["embedded_pngs"],0)
+            shutil.copy2(a,b)
 
             edited = nbformat.read(str(b), as_version=4)
             edited.cells[20].source += "\n# stealth change"
@@ -67,6 +79,10 @@ class HostedRunVerificationTest(unittest.TestCase):
                 v=pd.DataFrame({"id":[1], "p":[.45]})
                 v.to_csv(local/name,index=False)
                 v.to_csv(remote/name,index=False)
+            chart=Path(__file__).resolve().parents[1] / "docs/figures/heldout_reliability.png"
+            for name in PLOTS:
+                shutil.copy2(chart,remote/name)
+            self.assertEqual(len(verify_derived_images(remote)),4)
             a={name:"x"*64 for name in SOURCE_FIELDS}
             a.update({name:123 for name in RECEIPT_FIELDS})
             a.update(matches=500,minute_rows=18304,
@@ -94,6 +110,21 @@ class HostedRunVerificationTest(unittest.TestCase):
             (remote/"derived_run_receipt.json").write_text(json.dumps(b))
             with self.assertRaisesRegex(ValueError,"fresh OpenDota"):
                 verify(local,remote,notebook,notebook,"colab")
+            b["runtime"]={"colab_detected":False,"kaggle_detected":True}
+            b["retrieval"]={"api_calls":505,"cache_hits":0,"candidate_exclusions":0}
+            (remote/"derived_run_receipt.json").write_text(json.dumps(b))
+            # Simulate a Kaggle source-only notebook downloaded by CLI.
+            stripped=nbformat.read(str(notebook),as_version=4)
+            for cell in stripped.cells:
+                if cell.cell_type=="code":cell.outputs=[]
+            stripped_file=base/"kaggle_pull.ipynb"
+            nbformat.write(stripped,str(stripped_file))
+            accepted=verify(local,remote,notebook,stripped_file,"kaggle")
+            self.assertEqual(accepted["source_notebook"]["embedded_pngs"],0)
+            self.assertEqual(len(accepted["exported_pngs"]),4)
+            (remote/"minute20_comeback.png").write_bytes(b"not a real PNG")
+            with self.assertRaisesRegex(ValueError,"PNG artifact"):
+                verify(local,remote,notebook,stripped_file,"kaggle")
 
 
 if __name__=="__main__":

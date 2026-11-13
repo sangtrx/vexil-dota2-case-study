@@ -133,7 +133,9 @@ class NotebookContractsTest(unittest.TestCase):
             "match_manifest.csv", "validation_ablations.csv", "heldout_metrics.csv",
             "terminal_sensitivity.csv", "heldout_predictions.csv",
             "minute20_comeback.csv", "exploratory_item_ablation.csv",
-            "exploratory_item_folds.csv", "derived_run_receipt.json", "calibration.png"
+            "exploratory_item_folds.csv", "derived_run_receipt.json",
+            "calibration.png", "time_value_scenarios.png",
+            "heldout_game_trajectory.png", "minute20_comeback.png"
         )
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/"vexil_takehome_outputs"
@@ -623,6 +625,94 @@ class NotebookContractsTest(unittest.TestCase):
                 N["collect_matches"](FrozenAPI(),(11,11,13,14))
         finally:
             N["N_MATCHES"], N["COHORT_N"] = old_n, old_cohort
+
+    def test_frozen_cohort_fingerprint_is_outcome_blind_and_strict(self):
+        frame = pd.DataFrame([
+            {"match_id":10,"start_time":1000,"patch":"59",
+             "radiant_win":True},
+            {"match_id":11,"start_time":1010,"patch":"60",
+             "radiant_win":False},
+        ])
+        digest = N["manifest_identity_hash"](frame)
+        self.assertEqual(len(digest),64)
+        self.assertEqual(digest,N["manifest_identity_hash"](
+            frame.sample(frac=1,random_state=12)))
+        changed=frame.copy()
+        changed["radiant_win"] = ~changed["radiant_win"]
+        self.assertEqual(digest,N["manifest_identity_hash"](changed))
+        changed=frame.copy()
+        changed.loc[0,"start_time"] += 1
+        self.assertNotEqual(digest,N["manifest_identity_hash"](changed))
+        changed=frame.copy()
+        changed.loc[0,"patch"] = "60"
+        self.assertNotEqual(digest,N["manifest_identity_hash"](changed))
+        with self.assertRaisesRegex(ValueError,"Duplicate cohort"):
+            N["manifest_identity_hash"](
+                pd.concat([frame,frame.iloc[[0]]],ignore_index=True))
+        self.assertIn("e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea",
+                      source_at(5))
+
+    def test_frozen_manifest_rejects_wrong_source_match_id(self):
+        """Patch balance cannot authenticate the requested cohort identity."""
+        old_n, old_c = N["N_MATCHES"], N["COHORT_N"]
+        N["N_MATCHES"], N["COHORT_N"] = 4, 2
+        class SwappedAPI:
+            def get(self, path, params=None):
+                requested = int(path.rsplit("/", 1)[-1])
+                mid = 15 if requested == 11 else requested
+                return {"match_id":mid, "duration":1200,
+                        "radiant_win":bool(mid % 2),
+                        "radiant_gold_adv":[0, 10],
+                        "patch":59 if mid in (12, 15) else 60}
+        try:
+            with self.assertRaisesRegex(ValueError, "requested match 11"):
+                N["collect_matches"](SwappedAPI(), (11, 12, 13, 14))
+            with self.assertRaisesRegex(ValueError, "requested match 123"):
+                N["verify_match_identity"]("/matches/123",
+                                           {"match_id": True})
+            with self.assertRaisesRegex(ValueError, "Non-object"):
+                N["verify_match_identity"]("/matches/123", [])
+        finally:
+            N["N_MATCHES"], N["COHORT_N"] = old_n, old_c
+
+    def test_misidentified_cached_match_refetched_and_http_mismatch_fails(self):
+        import gzip
+        with tempfile.TemporaryDirectory() as tmp:
+            api = N["OpenDota"](cache_dir=tmp, interval=0)
+            requests = []
+            class Response:
+                status_code = 200
+                def raise_for_status(self): pass
+                def json(self):
+                    return {"match_id":123, "duration":1200,
+                            "radiant_win":True,
+                            "radiant_gold_adv":[0, 100]}
+            api.session.get = lambda url, params, timeout: (
+                requests.append(url) or Response())
+            self.assertEqual(api.get("/matches/123")["match_id"], 123)
+            cached = list(Path(tmp).glob("*.json.gz"))
+            self.assertEqual(len(cached), 1)
+            with gzip.open(cached[0], "wt") as handle:
+                json.dump({"match_id":999, "duration":1200,
+                           "radiant_win":False,
+                           "radiant_gold_adv":[0, 999]}, handle)
+            self.assertEqual(api.get("/matches/123")["match_id"], 123)
+            self.assertEqual(len(requests), 2)
+            self.assertEqual(api.cache_hits, 0)
+        with tempfile.TemporaryDirectory() as tmp:
+            api = N["OpenDota"](cache_dir=tmp, interval=0,
+                                max_retries=2)
+            class WrongResponse:
+                status_code = 200
+                def raise_for_status(self): pass
+                def json(self):
+                    return {"match_id":999, "duration":1200,
+                            "radiant_win":True, "radiant_gold_adv":[0, 100]}
+            api.session.get = lambda url, params, timeout: WrongResponse()
+            with self.assertRaisesRegex(RuntimeError, "requested match 123"):
+                api.get("/matches/123")
+            self.assertEqual(api.calls, 1)
+            self.assertFalse(list(Path(tmp).glob("*.json.gz")))
 
     def test_frozen_manifest_refuses_silent_replacement_of_unparsed_match(self):
         old_n, old_cohort = N["N_MATCHES"], N["COHORT_N"]

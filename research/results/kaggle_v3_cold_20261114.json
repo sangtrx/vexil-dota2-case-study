@@ -1,0 +1,59 @@
+{
+  "kernel_url": "https://www.kaggle.com/code/sangtruong/vexil-dota-2-v3-visual-source-integrity-20261114",
+  "latest_identity_guard_included": false,
+  "local_latest_guarded_source_verified": false,
+  "match_count": 500,
+  "minute_rows": 18304,
+  "model_selected": "M1_time_value",
+  "note": "Kaggle V3 source precedes the frozen-match-ID and manifest-hash guards; it is not acceptance of latest branch bytes. Pulled notebook is source-only, so saved outputs are verified through exported CSV/PNG and provider completion status.",
+  "notebook_source_sha256": "8e3f09b9557ee1e9176a6bfa1f4c65d4491b5c085234ef3436f672693163fde4",
+  "private": true,
+  "pulled_source_cell_match": true,
+  "raw_payload_sha256_equal": false,
+  "retrieval": {
+    "api_calls": 505,
+    "cache_hits": 0,
+    "candidate_exclusions": 0
+  },
+  "runtime": {
+    "colab_detected": false,
+    "kaggle_detected": true
+  },
+  "semantic_hashes_match": true,
+  "sourced_code_cells": 14,
+  "status": "KAGGLE_V3_COLD_COMPLETE_NUMERICALLY_VERIFIED",
+  "tables": {
+    "exploratory_item_ablation.csv": {
+      "max_numeric_delta": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "exploratory_item_folds.csv": {
+      "max_numeric_delta": 4.998172015158175e-16,
+      "rows": 3
+    },
+    "heldout_metrics.csv": {
+      "max_numeric_delta": 1.9992688060632702e-16,
+      "rows": 10
+    },
+    "heldout_predictions.csv": {
+      "max_numeric_delta": 4.440892098500626e-16,
+      "rows": 3837
+    },
+    "match_manifest.csv": {
+      "max_numeric_delta": 0.0,
+      "rows": 500
+    },
+    "minute20_comeback.csv": {
+      "max_numeric_delta": 0.0,
+      "rows": 2
+    },
+    "terminal_sensitivity.csv": {
+      "max_numeric_delta": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "validation_ablations.csv": {
+      "max_numeric_delta": 3.0531133177191805e-16,
+      "rows": 4
+    }
+  }
+}
