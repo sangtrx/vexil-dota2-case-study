@@ -29,6 +29,8 @@ Use **Run All**. The notebook downloads its own match payloads from OpenDota, ra
 
 ## Offline checks
 
+The notebook now rejects misaligned player minute clocks before making its 18,304 forecasts. The current 500-game cohort passed all 5,000 player clock sequences and all 500 paired team gold/XP axis-length checks. Invalid NaN/infinite/boolean event times, invalid gold values and duplicate player slots have explicit regression tests. These checks do not establish that a live feed received events at the same time as their retrospective match timestamps.
+
 Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local environment to verify point-in-time invariance, split boundaries and paired match-bootstrap behavior without network calls. The notebook has additionally passed a separate end-to-end synthetic integration smoke test. These offline tests alone do not establish model quality; held-out results from the complete real-data Run All are in REPORT.md.
 
 ## Derived outputs

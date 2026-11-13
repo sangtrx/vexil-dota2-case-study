@@ -64,8 +64,9 @@ def match_fixture() -> dict:
     for slot in list(range(5)) + list(range(128, 133)):
         players.append({
             "player_slot": slot,
-            "gold_t": [1000 + 10 * t for t in range(36)],
-            "xp_t": [700 + 20 * t for t in range(36)],
+            "times": [t * 60 for t in range(36)],
+            "gold_t": [1000 + 10 * t + (24 * t if slot < 128 else 0) for t in range(36)],
+            "xp_t": [700 + 20 * t + (18 * t if slot < 128 else 0) for t in range(36)],
             "lh_t": [t for t in range(36)],
             "kills_log": ([{"time": -4, "key": "enemy"},
                            {"time": 600, "key": "enemy"},
@@ -97,6 +98,50 @@ class NotebookContractsTest(unittest.TestCase):
         self.assertEqual(NB["nbformat"], 4)
         for i, cell in enumerate(NB["cells"]):
             if cell["cell_type"] == "code": compile(source_at(i), f"cell_{i}", "exec")
+
+
+    def test_team_minute_axis_fail_closed(self):
+        base = match_fixture()
+        self.assertTrue(N["validate_minute_alignment"](base))
+        self.assertEqual(N["prefix_truncated"](base, 10)["players"][0]["times"], list(range(0, 601, 60)))
+        mutations = [
+            ("shifted start", lambda m: m["players"][0]["times"].__setitem__(0, 60)),
+            ("irregular step", lambda m: m["players"][0]["times"].__setitem__(2, 121)),
+            ("missing clock", lambda m: m["players"][0].pop("times")),
+            ("short clock", lambda m: m["players"][0]["times"].pop()),
+            ("short team gold", lambda m: m["radiant_gold_adv"].pop()),
+            ("short team xp", lambda m: m["radiant_xp_adv"].pop()),
+            ("short player xp", lambda m: m["players"][0]["xp_t"].pop()),
+            ("corrupt team gold", lambda m: m["radiant_gold_adv"].__setitem__(11, m["radiant_gold_adv"][11]+1)),
+            ("corrupt player xp", lambda m: m["players"][0]["xp_t"].__setitem__(9, m["players"][0]["xp_t"][9]+1)),
+            ("duplicate identity", lambda m: m["players"][1].__setitem__("player_slot", 0)),
+            ("boolean identity", lambda m: m["players"][1].__setitem__("player_slot", True)),
+        ]
+        for label, mutate in mutations:
+            with self.subTest(label=label), self.assertRaises(ValueError):
+                m = copy.deepcopy(base)
+                mutate(m)
+                N["validate_minute_alignment"](m)
+        with self.assertRaises(ValueError):
+            N["make_minute_table"]([dict(base, radiant_gold_adv=[0])])
+
+    def test_invalid_numeric_events_and_player_slots(self):
+        m = match_fixture()
+        m["objectives"].append({"type":"building_kill","key":"npc_dota_badguys_tower1_mid","time":float("nan")})
+        m["objectives"].append({"type":"CHAT_MESSAGE_ROSHAN_KILL","team":2,"time":True})
+        self.assertEqual(N["objective_snapshot"](m,600), (0,0,1))
+        self.assertEqual(N["objective_snapshot"](N["prefix_truncated"](m,10),600),(0,0,1))
+        m["players"][0]["kills_log"].extend([
+            {"time":float("nan")}, {"time":True}, {"time":float("inf")}])
+        self.assertEqual(N["kill_snapshot"](m,600),2)
+        self.assertEqual(N["kill_snapshot"](N["prefix_truncated"](m,10),600),2)
+        m["players"][1]["player_slot"] = 0
+        self.assertTrue(math.isnan(N["kill_snapshot"](m,600)))
+        m = match_fixture()
+        m["radiant_gold_adv"][10] = True
+        self.assertEqual(N["snapshot_features"](m,10)["gold_k"], 1.08)
+        m["radiant_gold_adv"][10] = float("inf")
+        self.assertEqual(N["snapshot_features"](m,10)["gold_k"], 1.08)
 
     def test_pins_colab_and_local_match(self):
         tree = ast.parse(source_at(2))
