@@ -8,7 +8,7 @@ Predict the probability that **Radiant wins at each match minute**, using only d
 
 - `live_dota2_win_probability.ipynb`: one self-contained Python notebook, all outputs saved, runnable top-to-bottom on a fresh Google Colab runtime and locally.
 - `requirements.txt`: pinned packages; no API key or pre-downloaded data.
-- `REPORT.md` or `REPORT.pdf`: at most four pages, explaining decisions, ablations, evaluation, uncertainty, limitations, and AI/public-code use.
+- `REPORT.md` or `REPORT.pdf`: at most four pages, explaining decisions, ablations, evaluation, uncertainty, limitations, and AI/public-code use. The notebook also contains one strictly development-only item-purchase hypothesis; it never alters the original M0–M3 model selection or held-out scores.
 - OpenDota endpoints **only**: `/api/proMatches` and `/api/matches/{match_id}`.
 - A point-in-time feature invariant check, grouped temporal validation, gold-only logistic-regression baseline, one proposed model, and match-cluster bootstrap confidence intervals.
 - Log loss, Brier score, and calibration plots on untouched held-out matches, overall and for 0–9, 10–19, 20–29, and 30+ minutes.
@@ -33,7 +33,7 @@ Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local enviro
 
 ## Derived outputs
 
-After Run All, the notebook exports the frozen match manifest, validation ablations, held-out metrics, terminal-minute sensitivity and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions, match manifest hash and a combined content hash of the 500 decoded OpenDota match payloads. The latter detects upstream reparsing even if the match IDs remain unchanged. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
+After Run All, the notebook exports the frozen match manifest, four-model validation ablations, the exploratory item-purchase comparison and three earlier train-only fold results, held-out metrics, terminal-minute sensitivity and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions, match manifest hash and a combined content hash of the 500 decoded OpenDota match payloads. The latter detects upstream reparsing even if the match IDs remain unchanged. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
 
 ## Kaggle execution
 

@@ -47,7 +47,8 @@ def load_definitions() -> dict:
                 names = [t.id for t in node.targets if isinstance(t, ast.Name)]
                 if any(n in {"BASE_URL", "N_MATCHES", "COHORT_N",
                              "MAX_PRO_PAGES", "FROZEN_MATCH_IDS",
-                             "FEATURE_COLUMNS", "SETS"} for n in names):
+                             "FEATURE_COLUMNS", "SETS", "MAJOR_ITEM_KEYS",
+                             "IMPACT_ITEM_KEYS", "ITEM_ADDED_COLUMNS"} for n in names):
                     nodes.append(node)
         exec(compile(ast.Module(body=nodes, type_ignores=[]), f"cell_{cell_no}", "exec"), namespace)
     return namespace
@@ -200,6 +201,45 @@ class NotebookContractsTest(unittest.TestCase):
         self.assertEqual(info.partition.value_counts().sum(),120)
         self.assertTrue((info.groupby("series_id").partition.nunique()==1).all())
         self.assertEqual(set(info.partition),{"train","validation","test"})
+
+    def test_item_purchase_cutoff_side_and_future_poisoning(self):
+        m=match_fixture()
+        for player in m["players"]: player["purchase_log"]=[]
+        radiant=next(p for p in m["players"] if p["player_slot"]==0)
+        dire=next(p for p in m["players"] if p["player_slot"]==128)
+        radiant["purchase_log"]=[
+            {"time":-8,"key":"blink"},
+            {"time":600,"key":"black_king_bar"},
+            {"time":601,"key":"manta"},
+        ]
+        dire["purchase_log"]=[{"time":601,"key":"force_staff"}]
+        self.assertEqual(N["item_purchase_snapshot"](m,0),(1,1))
+        self.assertEqual(N["item_purchase_snapshot"](m,9),(1,1))
+        self.assertEqual(N["item_purchase_snapshot"](m,10),(2,2))
+        self.assertEqual(N["item_purchase_snapshot"](m,11),(2,2))
+        for t in (0,9,10,11,20,30):
+            before=N["item_purchase_snapshot"](m,t)
+            truncated=N["prefix_truncated"](m,t)
+            self.assertEqual(before,N["item_purchase_snapshot"](truncated,t))
+            altered=copy.deepcopy(m)
+            altered["radiant_win"]=not m["radiant_win"]
+            altered["players"][0]["net_worth"]=10000000
+            altered["players"][0]["purchase_log"].append(
+                {"time":60*t+10,"key":"radiance"})
+            self.assertEqual(before,N["item_purchase_snapshot"](altered,t))
+
+    def test_item_missing_purchases_are_not_fake_zero(self):
+        m=match_fixture()
+        self.assertTrue(all(math.isnan(x) for x in N["item_purchase_snapshot"](m,10)))
+        for p in m["players"]:p["purchase_log"]=[]
+        self.assertEqual(N["item_purchase_snapshot"](m,10),(0,0))
+        m["players"][0]["purchase_log"].append({"time":None,"key":"blink"})
+        self.assertTrue(all(math.isnan(x) for x in N["item_purchase_snapshot"](m,10)))
+        self.assertEqual(N["SETS"]["M0_gold_only"],["gold_k"])
+        self.assertEqual(N["SETS"]["M1_time_value"],
+                         ["gold_k","minute10","gold_x_time"])
+        self.assertEqual(N["ITEM_ADDED_COLUMNS"],
+                         ["major_item_diff","blink_bkb_diff"])
 
     def test_gold_baseline_has_one_predictor(self):
         cols=N["SETS"]["M0_gold_only"]
