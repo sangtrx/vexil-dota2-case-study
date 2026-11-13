@@ -14,7 +14,7 @@
 - Host: epic; Python 3.12.3; the existing isolated Python environment.
 - 500/500 real cached OpenDota match payloads used (0 new API calls / 500 cache hits); 250 games per patch 59/60.
 - Source-clock audit: 5,000/5,000 player clocks begin at 0 and increment by 60 seconds; no gold/XP/clock length mismatch; 496 games have exactly floor(duration/60)+1 minute values and four have one extra trailing value, never needed by forecasts. The final notebook also checks 18,304/18,304 same-minute player gold and XP sums against team advantages before fitting, with exact tolerance 1e-6.
-- 59/59 offline Python tests passed; notebook JSON validation passed.
+- 61/61 offline Python tests passed; notebook JSON validation passed.
 - Full 26-cell notebook Run All: 14/14 code cells executed; 18,304 minute rows; 291/103/106 train/validation/held-out matches; 3,837 unchanged held-out probability rows.
 - Separate model-input, outcome-label, development item, and cohort-metadata hashes added to the run receipt. The three TRAIN hashes matched an independently implemented research audit exactly.
 - Eight scientific CSV outputs checked column-by-column against the original saved submission-polish execution. Maximum absolute numerical difference: 4.44e-16.
@@ -54,7 +54,7 @@
   and the PDF contains both embedded figure objects. A local-only
   report rendering script is included.
 - Offline unit/adversarial plus visible-output/report-artifact tests:
-  59/59 PASS.
+  61/61 PASS.
 
 ## V3 cold-cloud reproduction and V4 frozen-identity repair
 
@@ -77,7 +77,7 @@
   alone cannot affect this fingerprint; start-time or patch changes
   do. The existing expected hash is
   e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea.
-- Actual BigLinux **V4** full local 500-match Run All PASS, with 59/59
+- Actual BigLinux **V4** full local 500-match Run All PASS, with 61/61
   offline tests, 14/14 executed code cells, four embedded plots and
   four separately exported valid PNG files. All eight science CSVs
   remain identical to within 4.44e-16; M1 and held-out forecasts unchanged.
@@ -149,7 +149,25 @@ Evidence: research/results/kaggle_v4_strict_pixel_acceptance_20261114.json.
   held-out replication or a new selection protocol.
 - Mutation/contract tests verify series-safe boundaries, permutation
   invariance, missing-future outcome embargo and rejection of
-  non-TRAIN inputs. Total tests now **59/59 PASS**.
+  non-TRAIN inputs. Total tests now **61/61 PASS**.
+
+## Downloadable full forecast table
+
+A clean external GitHub clone previously exposed only the 16-row
+notebook preview; the complete 3,837 forecasts were written to a
+temporary execution output, which required a new 500-match API Run All
+to inspect. A **derived-output-only** CSV is now packaged at
+artifacts/heldout_predictions.csv (106 held-out games, five documented
+columns). The CSV matches the saved BigLinux V4 output byte-for-byte
+(SHA-256 e3b2c843172fdde029f5f5ec05536ea837ec023b8b860543cadedf028bb3cb32)
+and the private Kaggle V4 predictions to maximum numerical delta
+4.44e-16, with exact match ID/minute/outcome keys. The file contains
+only already-reported probabilities and outcomes, not raw source
+matches, training data or credentials, and the notebook never reads it.
+An explicit .gitignore exception allows this one derived CSV while
+keeping all other CSV files ignored. Two additional tests independently
+recompute the proper scores and assert the notebook's frozen hash,
+giving **61/61 local PASS**.
 
 ## Unclosed gates
 
