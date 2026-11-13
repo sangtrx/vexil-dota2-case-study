@@ -1,0 +1,267 @@
+{
+  "bootstrap": {
+    "early": {
+      "brier_match": {
+        "ci95": [
+          -0.011988487192475968,
+          -0.0013526408830157551
+        ],
+        "clusters": 106,
+        "delta": -0.006696964410389657,
+        "draws": 12000,
+        "minutes": 1060,
+        "seed": 20261114
+      },
+      "brier_series": {
+        "ci95": [
+          -0.011593298325818138,
+          -0.0019849085084233877
+        ],
+        "clusters": 54,
+        "delta": -0.00669696441038963,
+        "draws": 12000,
+        "minutes": 1060,
+        "seed": 20261114
+      },
+      "logloss_match": {
+        "ci95": [
+          -0.02595053265610838,
+          -0.002818284673756134
+        ],
+        "clusters": 106,
+        "delta": -0.014452399358443785,
+        "draws": 12000,
+        "minutes": 1060,
+        "seed": 20261114
+      },
+      "logloss_series": {
+        "ci95": [
+          -0.025225274216781973,
+          -0.004189273501489601
+        ],
+        "clusters": 54,
+        "delta": -0.014452399358443892,
+        "draws": 12000,
+        "minutes": 1060,
+        "seed": 20261114
+      }
+    },
+    "late": {
+      "brier_match": {
+        "ci95": [
+          -0.003675097930126172,
+          0.01082370066308295
+        ],
+        "clusters": 79,
+        "delta": 0.004525146989538741,
+        "draws": 12000,
+        "minutes": 719,
+        "seed": 20261114
+      },
+      "brier_series": {
+        "ci95": [
+          -0.0033688447938221705,
+          0.011079156072090621
+        ],
+        "clusters": 47,
+        "delta": 0.004525146989538701,
+        "draws": 12000,
+        "minutes": 719,
+        "seed": 20261114
+      },
+      "logloss_match": {
+        "ci95": [
+          -0.09505754576016456,
+          0.041486827735063674
+        ],
+        "clusters": 79,
+        "delta": -0.006838976051399867,
+        "draws": 12000,
+        "minutes": 719,
+        "seed": 20261114
+      },
+      "logloss_series": {
+        "ci95": [
+          -0.08952431260643139,
+          0.04185653361940254
+        ],
+        "clusters": 47,
+        "delta": -0.006838976051399749,
+        "draws": 12000,
+        "minutes": 719,
+        "seed": 20261114
+      }
+    },
+    "mid": {
+      "brier_match": {
+        "ci95": [
+          -0.008195567042204406,
+          -0.0010598992956167763
+        ],
+        "clusters": 106,
+        "delta": -0.004745120384227452,
+        "draws": 12000,
+        "minutes": 2058,
+        "seed": 20261114
+      },
+      "brier_series": {
+        "ci95": [
+          -0.007969137861694736,
+          -0.0015578846674155398
+        ],
+        "clusters": 54,
+        "delta": -0.0047451203842273975,
+        "draws": 12000,
+        "minutes": 2058,
+        "seed": 20261114
+      },
+      "logloss_match": {
+        "ci95": [
+          -0.02235211579266114,
+          -0.0033734547034004973
+        ],
+        "clusters": 106,
+        "delta": -0.013284015217331262,
+        "draws": 12000,
+        "minutes": 2058,
+        "seed": 20261114
+      },
+      "logloss_series": {
+        "ci95": [
+          -0.021849257682713053,
+          -0.004524466070708138
+        ],
+        "clusters": 54,
+        "delta": -0.013284015217331373,
+        "draws": 12000,
+        "minutes": 2058,
+        "seed": 20261114
+      }
+    },
+    "overall": {
+      "brier_match": {
+        "ci95": [
+          -0.007079099788581604,
+          0.0001714860745405727
+        ],
+        "clusters": 106,
+        "delta": -0.003547213797309005,
+        "draws": 12000,
+        "minutes": 3837,
+        "seed": 20261114
+      },
+      "brier_series": {
+        "ci95": [
+          -0.006660971921812815,
+          -0.00048719533250600233
+        ],
+        "clusters": 54,
+        "delta": -0.003547213797309005,
+        "draws": 12000,
+        "minutes": 3837,
+        "seed": 20261114
+      },
+      "logloss_match": {
+        "ci95": [
+          -0.03003370229683472,
+          0.0013189006817042582
+        ],
+        "clusters": 106,
+        "delta": -0.012399080119409524,
+        "draws": 12000,
+        "minutes": 3837,
+        "seed": 20261114
+      },
+      "logloss_series": {
+        "ci95": [
+          -0.02857978644004232,
+          0.0001773050112946191
+        ],
+        "clusters": 54,
+        "delta": -0.012399080119409642,
+        "draws": 12000,
+        "minutes": 3837,
+        "seed": 20261114
+      }
+    }
+  },
+  "heldout_games": 106,
+  "heldout_label_win_rate": 0.5943396226415094,
+  "heldout_leagues": 9,
+  "heldout_minutes": 3837,
+  "heldout_series": 54,
+  "label_completion_overlap": {
+    "max_train_validation_overlap_seconds": 1606,
+    "train_before_first_validation": 5,
+    "validation_before_first_test": 0
+  },
+  "league_leave_one_out": [
+    {
+      "excluding_league_logloss_delta": -0.012085420451716471,
+      "games": 1,
+      "league_logloss_delta": -0.05506799705667163,
+      "leagueid": 16251
+    },
+    {
+      "excluding_league_logloss_delta": -0.0159401686322859,
+      "games": 8,
+      "league_logloss_delta": 0.02846230399485837,
+      "leagueid": 17909
+    },
+    {
+      "excluding_league_logloss_delta": -0.011537966567574883,
+      "games": 6,
+      "league_logloss_delta": -0.024546205537614295,
+      "leagueid": 18865
+    },
+    {
+      "excluding_league_logloss_delta": -0.013393336720725632,
+      "games": 12,
+      "league_logloss_delta": -0.005591777253957922,
+      "leagueid": 18866
+    },
+    {
+      "excluding_league_logloss_delta": -0.014046070545661645,
+      "games": 21,
+      "league_logloss_delta": -0.005697983008635382,
+      "leagueid": 18867
+    },
+    {
+      "excluding_league_logloss_delta": -0.01216208613008658,
+      "games": 28,
+      "league_logloss_delta": -0.013179251607751713,
+      "leagueid": 18959
+    },
+    {
+      "excluding_league_logloss_delta": -0.013116876419286263,
+      "games": 12,
+      "league_logloss_delta": -0.005466364189768058,
+      "leagueid": 19201
+    },
+    {
+      "excluding_league_logloss_delta": -0.011531494887150212,
+      "games": 2,
+      "league_logloss_delta": -0.07946873031938435,
+      "leagueid": 19378
+    },
+    {
+      "excluding_league_logloss_delta": -0.007573808462777477,
+      "games": 16,
+      "league_logloss_delta": -0.03402319038634556,
+      "leagueid": 19422
+    }
+  ],
+  "limitations": [
+    "Post-hoc reuse of previously inspected held-out data; no new blind test.",
+    "Bootstrap series clusters may still share teams, leagues, and patch-specific common shocks.",
+    "Estimated completion is start_time+game duration; pauses and source receipt timing unavailable.",
+    "Series bootstrap intervals are descriptive, not multiplicity-adjusted or market PnL."
+  ],
+  "provenance": "Frozen 500 OpenDota cached payloads, no external API calls or model fits",
+  "source_games": 500,
+  "split_games": {
+    "test": 106,
+    "train": 291,
+    "validation": 103
+  }
+}

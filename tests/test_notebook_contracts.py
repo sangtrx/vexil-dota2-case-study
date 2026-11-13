@@ -37,7 +37,7 @@ def load_definitions() -> dict:
         Pipeline=Pipeline, SimpleImputer=SimpleImputer,
         StandardScaler=StandardScaler, LogisticRegression=LogisticRegression,
     )
-    for cell_no in (4, 7, 8, 10, 12, 14, 16):
+    for cell_no in (4, 7, 8, 10, 12, 14, 16, 24):
         tree = ast.parse(source_at(cell_no), filename=f"cell_{cell_no}")
         nodes = []
         for node in tree.body:
@@ -99,6 +99,34 @@ class NotebookContractsTest(unittest.TestCase):
         for i, cell in enumerate(NB["cells"]):
             if cell["cell_type"] == "code": compile(source_at(i), f"cell_{i}", "exec")
 
+
+    def test_source_lineage_separates_outcomes_from_inputs(self):
+        cols = ["match_id", "minute", "gold_k", "radiant_win"]
+        frame = pd.DataFrame([
+            {"match_id":1,"minute":0,"gold_k":0.,"radiant_win":1},
+            {"match_id":1,"minute":1,"gold_k":0.02,"radiant_win":1},
+            {"match_id":2,"minute":0,"gold_k":-0.1,"radiant_win":0},
+        ],columns=cols)
+        h=N["canonical_hash"]
+        main=["match_id","minute","gold_k"]
+        target=["match_id","minute","radiant_win"]
+        self.assertEqual(h(frame,main),h(frame.sample(frac=1,random_state=19),main))
+        changed=frame.copy()
+        changed.loc[changed.match_id==1,"radiant_win"]=0
+        self.assertEqual(h(frame,main),h(changed,main))
+        self.assertNotEqual(h(frame,target),h(changed,target))
+        changed=frame.copy()
+        changed.loc[changed.minute==1,"gold_k"]+=0.0001
+        self.assertNotEqual(h(frame,main),h(changed,main))
+        changed=frame.copy()
+        changed["gold_k"]=changed.gold_k.astype(float)
+        changed.loc[changed.minute==1,"gold_k"]=float("inf")
+        with self.assertRaises(ValueError):
+            h(changed,main)
+        with self.assertRaises(ValueError):
+            h(pd.concat([frame,frame.iloc[[0]]]),main)
+        with self.assertRaises(ValueError):
+            h(frame,main+["gold_k"])
 
     def test_team_minute_axis_fail_closed(self):
         base = match_fixture()
