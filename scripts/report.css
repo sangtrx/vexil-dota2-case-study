@@ -10,7 +10,7 @@ thead{background:#edf1f5}
 th,td{border-bottom:.5pt solid #c6cbd5;padding:1.3mm 1.4mm;text-align:left;vertical-align:middle}
 tr{break-inside:avoid}
 img{display:block;max-width:100%;height:auto;margin:0 auto}
-img[src*="reliability"]{width:76%;max-height:70mm;object-fit:contain}
+img[src*="reliability"]{width:66%;max-height:70mm;object-fit:contain}
 img[src*="illustrative_game"]{width:54%;max-height:76mm;object-fit:contain}
 p:has(img){text-align:center;break-inside:avoid;margin-top:1mm;margin-bottom:0.5mm}
 p:has(img)+p{font-size:8pt;font-style:italic;text-align:center;margin-bottom:2mm}

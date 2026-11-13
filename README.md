@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **61/61** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. The exact V4 notebook also passed a **private Kaggle CPU cold Run All**, independently verified from downloaded source and all outputs: **511 HTTP calls, zero cache hits, 8/8 scientific CSVs and 4/4 exported PNGs**, with exact 26-cell source and semantic hash parity. Colab-specific cold execution is not separately verified. External submission remains HOLD pending actual human work hours, applicant editorial review and private-repo reviewer access.
+**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **65/65** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. The exact V4 notebook also passed a **private Kaggle CPU cold Run All**, independently verified from downloaded source and all outputs: **511 HTTP calls, zero cache hits, 8/8 scientific CSVs and 4/4 exported PNGs**, with exact 26-cell source and semantic hash parity. Colab-specific cold execution is not separately verified. External submission remains HOLD pending actual human work hours, applicant editorial review and private-repo reviewer access.
 
 ## Submission contract
 
@@ -66,6 +66,28 @@ Reproduce locally only with the frozen OpenDota cache:
 The evaluator reads only games marked TRAIN in the manifest,
 not validation or held-out labels. Its saved aggregate result is
 research/results/development_forward_stability_20261114.json.
+
+## League and split-boundary red-team
+
+A read-only post-hoc audit verifies both chronological label-availability
+boundaries and dependence across the **nine** held-out leagues. It does
+not retrain models or select a different candidate:
+
+    python research/league_and_boundary_stress.py --outputs PATH_TO_OUTPUTS --cache PATH_TO_API_CACHE --receipt PATH_TO_RECEIPT_JSON
+
+The train-to-validation split has five preceding games with estimated
+completion *after* the first validation starts (maximum 1,606 seconds).
+The latest validation game ends **only 143 seconds before** the first
+test game is scheduled to begin, if estimated start+game-duration is
+treated as wall-clock completion. Recorded game duration does not
+establish actual pauses, ingestion latency or label-availability time.
+
+The held-out sample spans just **9 leagues** (8/9 have a negative
+M1-minus-M0 league-average log loss). Different post-hoc clustering
+conventions disagree on whether a 95% reference interval includes
+zero. That sensitivity is not an independent, model-selection-adjusted
+claim of superiority. See
+research/results/league_and_boundary_stress_20261114.json.
 
 ## Report and figures
 

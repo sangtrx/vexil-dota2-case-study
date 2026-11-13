@@ -14,7 +14,7 @@
 - Host: epic; Python 3.12.3; the existing isolated Python environment.
 - 500/500 real cached OpenDota match payloads used (0 new API calls / 500 cache hits); 250 games per patch 59/60.
 - Source-clock audit: 5,000/5,000 player clocks begin at 0 and increment by 60 seconds; no gold/XP/clock length mismatch; 496 games have exactly floor(duration/60)+1 minute values and four have one extra trailing value, never needed by forecasts. The final notebook also checks 18,304/18,304 same-minute player gold and XP sums against team advantages before fitting, with exact tolerance 1e-6.
-- 61/61 offline Python tests passed; notebook JSON validation passed.
+- 65/65 offline Python tests passed; notebook JSON validation passed.
 - Full 26-cell notebook Run All: 14/14 code cells executed; 18,304 minute rows; 291/103/106 train/validation/held-out matches; 3,837 unchanged held-out probability rows.
 - Separate model-input, outcome-label, development item, and cohort-metadata hashes added to the run receipt. The three TRAIN hashes matched an independently implemented research audit exactly.
 - Eight scientific CSV outputs checked column-by-column against the original saved submission-polish execution. Maximum absolute numerical difference: 4.44e-16.
@@ -54,7 +54,7 @@
   and the PDF contains both embedded figure objects. A local-only
   report rendering script is included.
 - Offline unit/adversarial plus visible-output/report-artifact tests:
-  61/61 PASS.
+  65/65 PASS.
 
 ## V3 cold-cloud reproduction and V4 frozen-identity repair
 
@@ -77,7 +77,7 @@
   alone cannot affect this fingerprint; start-time or patch changes
   do. The existing expected hash is
   e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea.
-- Actual BigLinux **V4** full local 500-match Run All PASS, with 61/61
+- Actual BigLinux **V4** full local 500-match Run All PASS, with 65/65
   offline tests, 14/14 executed code cells, four embedded plots and
   four separately exported valid PNG files. All eight science CSVs
   remain identical to within 4.44e-16; M1 and held-out forecasts unchanged.
@@ -149,7 +149,7 @@ Evidence: research/results/kaggle_v4_strict_pixel_acceptance_20261114.json.
   held-out replication or a new selection protocol.
 - Mutation/contract tests verify series-safe boundaries, permutation
   invariance, missing-future outcome embargo and rejection of
-  non-TRAIN inputs. Total tests now **61/61 PASS**.
+  non-TRAIN inputs. Total tests now **65/65 PASS**.
 
 ## Downloadable full forecast table
 
@@ -167,7 +167,36 @@ matches, training data or credentials, and the notebook never reads it.
 An explicit .gitignore exception allows this one derived CSV while
 keeping all other CSV files ignored. Two additional tests independently
 recompute the proper scores and assert the notebook's frozen hash,
-giving **61/61 local PASS**.
+giving **65/65 local PASS**.
+
+## League dependence and estimated label availability (new audit)
+
+- Reconstructed all 500 frozen source games from their existing
+  cached OpenDota payloads, without new network requests or model fits;
+  match ID/start/patch/series/winner are independently validated.
+- The chronological train->validation gap contains **5 unfinished
+  preceding train games** by estimated start+duration (maximum overlap
+  1,606 s). The validation->test boundary has **0 estimated overlaps**
+  but only **143 s** of estimated availability slack. Pauses, upstream
+  parsing and delivery latency are unknown, so do not describe this as
+  a fully authenticated live-time model-selection cut.
+- All **106** test games are patch 60, spread across **9 leagues**.
+  Eight leagues individually favor M1 on mean log loss and Brier.
+  Under **40,000** league-cluster percentile draws, the M1-minus-M0
+  log-loss 95% interval is [-0.024012, -0.000540] and Brier interval
+  [-0.006360, -0.000618]. In contrast, equal-league (each league one
+  observation) small-sample t95 intervals are [-0.045895, +0.002655]
+  for log loss and [-0.016124, +0.000754] for Brier, both containing
+  zero. With only 9 very uneven clusters, the two procedures target
+  different population weightings, have fragile coverage, and are
+  post-hoc. They are **not grounds for changing the conservative
+  primary match/series-bootstrap conclusion** or selecting a model.
+- Independent permutation/identity/timing/adversarial tests reject
+  duplicate match keys, league substitution, incorrect series reuse
+  and chronology breaks. Current local suite **65/65 PASS**.
+- Evidence: research/league_and_boundary_stress.py,
+  tests/test_league_and_boundary_stress.py and
+  research/results/league_and_boundary_stress_20261114.json.
 
 ## Unclosed gates
 

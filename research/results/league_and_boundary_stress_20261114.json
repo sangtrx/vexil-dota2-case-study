@@ -1,0 +1,91 @@
+{
+  "estimated_label_availability": {
+    "train_to_validation": {
+      "estimated_availability_slack_seconds": -1606,
+      "first_following_start": 1774358915,
+      "following_games": 103,
+      "latest_prior_estimated_end": 1774360521,
+      "max_estimated_overlap_seconds": 1606,
+      "preceding_games": 291,
+      "prior_estimated_not_finished": 5
+    },
+    "validation_to_test": {
+      "estimated_availability_slack_seconds": 143,
+      "first_following_start": 1774448219,
+      "following_games": 106,
+      "latest_prior_estimated_end": 1774448076,
+      "max_estimated_overlap_seconds": 0,
+      "preceding_games": 103,
+      "prior_estimated_not_finished": 0
+    }
+  },
+  "heldout_league": {
+    "caveat": "Post-hoc evaluation on nine uneven-sized leagues. Equal-league t95 uses a small-sample approximation; league bootstrap can under-cover with few groups. Neither is adjusted for model search or independent prospective replication.",
+    "effects": {
+      "brier": {
+        "bootstrap_draws": 40000,
+        "equal_league_delta": -0.007684770614940725,
+        "equal_league_t95": [
+          -0.01612389174020514,
+          0.0007543505103236913
+        ],
+        "league_cluster_percentile95": [
+          -0.0063598902028523824,
+          -0.000618068692001253
+        ],
+        "minute_weighted_delta": -0.003547213797309016,
+        "per_league_favoring_m0": 1,
+        "per_league_favoring_m1": 8
+      },
+      "logloss": {
+        "bootstrap_draws": 40000,
+        "equal_league_delta": -0.02161991059614117,
+        "equal_league_t95": [
+          -0.04589461878957862,
+          0.002654797597296279
+        ],
+        "league_cluster_percentile95": [
+          -0.024012128234517323,
+          -0.0005399912365228217
+        ],
+        "minute_weighted_delta": -0.012399080119409652,
+        "per_league_favoring_m0": 1,
+        "per_league_favoring_m1": 8
+      }
+    },
+    "league_game_counts": {
+      "16251": 1,
+      "17909": 8,
+      "18865": 6,
+      "18866": 12,
+      "18867": 21,
+      "18959": 28,
+      "19201": 12,
+      "19378": 2,
+      "19422": 16
+    },
+    "leagues": 9,
+    "matches": 106,
+    "minutes": 3837
+  },
+  "patch_counts_by_partition": {
+    "test": {
+      "60": 106
+    },
+    "train": {
+      "59": 250,
+      "60": 41
+    },
+    "validation": {
+      "60": 103
+    }
+  },
+  "prediction_file_sha256": "e3b2c843172fdde029f5f5ec05536ea837ec023b8b860543cadedf028bb3cb32",
+  "scope": "Read-only descriptive sensitivity, no fitting/selection",
+  "source_match_ids_sha256": "e431ae76db95f4a333f9725820500465cc3c6bddd79eca213e1f00cb9e60b725",
+  "split_counts": {
+    "test": 106,
+    "train": 291,
+    "validation": 103
+  }
+}
