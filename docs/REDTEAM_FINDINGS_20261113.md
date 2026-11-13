@@ -27,9 +27,14 @@ OpenDota or score the original validation/test outcomes.
 | Paired grouped bootstrap arithmetic | 250 | Exact proper score identities, paired resamples, bounds |
 | **Total** | **12,063** | **PASS** on isolated research branch |
 
-These are deterministic case-level assertions, **not** 12,063
-independent professional games or OOS outcomes. HTTP fault cases
-use mocks rather than real rate-limit saturation.
+The original seed 20261113 and a second independent RNG stream
+seed 20261114 each completed **12,063/12,063 cases PASS**:
+**24,126 total case evaluations**, with identical family counts.
+These are deterministic case assertions, **not** 24,126 independent
+professional games or OOS outcomes. HTTP faults use mocks, not
+a real saturated OpenDota server. The source is versioned in
+research/adversarial_cases.py and research/reseed_adversarial_cases.py,
+with one receipt per random stream.
 
 ## Concrete defects and isolated fixes
 

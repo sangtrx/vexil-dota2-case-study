@@ -1,0 +1,25 @@
+{
+  "candidate_fitting_uses_only_291_train": true,
+  "categories": {
+    "M1_out_of_support_horizon_warning_checks": 45,
+    "M1_train_horizon_gold_monotonic_pairs": 3000,
+    "event_exact_minute_boundary_oracle": 2700,
+    "fake_api_http_fail_closed_or_retry": 225,
+    "full_future_poison_proofs": 1050,
+    "grouped_bootstrap_arithmetic_identity": 250,
+    "malformed_clock_and_observation_rejection": 1980,
+    "real_train_prefix_proofs": 2813
+  },
+  "diagnostic_notes": {
+    "first_negative_gold_slope_minute": 99,
+    "max_train_minute": 85,
+    "negative_slope_minute_count": 32
+  },
+  "heldout_106_labels_scored": 0,
+  "intended_use": "redteam correctness/stability, NOT evidence of model lift",
+  "real_http_calls": 0,
+  "seed": 20261114,
+  "source": "291 original train games + seeded synthetic/adversarial cases",
+  "total_case_assertions": 12063,
+  "validation_103_labels_scored": 0
+}
