@@ -14,7 +14,7 @@
 - Host: epic; Python 3.12.3; the existing isolated Python environment.
 - 500/500 real cached OpenDota match payloads used (0 new API calls / 500 cache hits); 250 games per patch 59/60.
 - Source-clock audit: 5,000/5,000 player clocks begin at 0 and increment by 60 seconds; no gold/XP/clock length mismatch; 496 games have exactly floor(duration/60)+1 minute values and four have one extra trailing value, never needed by forecasts. The final notebook also checks 18,304/18,304 same-minute player gold and XP sums against team advantages before fitting, with exact tolerance 1e-6.
-- 56/56 offline Python tests passed; notebook JSON validation passed.
+- 59/59 offline Python tests passed; notebook JSON validation passed.
 - Full 26-cell notebook Run All: 14/14 code cells executed; 18,304 minute rows; 291/103/106 train/validation/held-out matches; 3,837 unchanged held-out probability rows.
 - Separate model-input, outcome-label, development item, and cohort-metadata hashes added to the run receipt. The three TRAIN hashes matched an independently implemented research audit exactly.
 - Eight scientific CSV outputs checked column-by-column against the original saved submission-polish execution. Maximum absolute numerical difference: 4.44e-16.
@@ -54,7 +54,7 @@
   and the PDF contains both embedded figure objects. A local-only
   report rendering script is included.
 - Offline unit/adversarial plus visible-output/report-artifact tests:
-  56/56 PASS.
+  59/59 PASS.
 
 ## V3 cold-cloud reproduction and V4 frozen-identity repair
 
@@ -77,7 +77,7 @@
   alone cannot affect this fingerprint; start-time or patch changes
   do. The existing expected hash is
   e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea.
-- Actual BigLinux **V4** full local 500-match Run All PASS, with 56/56
+- Actual BigLinux **V4** full local 500-match Run All PASS, with 59/59
   offline tests, 14/14 executed code cells, four embedded plots and
   four separately exported valid PNG files. All eight science CSVs
   remain identical to within 4.44e-16; M1 and held-out forecasts unchanged.
@@ -124,6 +124,32 @@ structurally valid image (must FAIL in strict mode). The default
 cross-platform gate reports pixel differences without failing on
 benign font/rendering variance; strict same-renderer mode is opt-in.
 Evidence: research/results/kaggle_v4_strict_pixel_acceptance_20261114.json.
+
+## Independent development-only forward stability
+
+- Used only the 291 frozen TRAIN games (10,683 historical minute rows);
+  validation/held-out labels were not loaded for this audit. The
+  independent script uses the notebook's exact feature definitions
+  and independently refits M0/M1 with training-only transforms.
+- Reused the **existing 3-fold TRAIN time cuts** from the notebook's
+  item-sensitivity procedure: training 154/176/220 matches; later
+  evaluation 22/44/49 games (115 disjoint games, 4,255 minutes).
+  M1 log loss beats M0 in **one of three** windows; pooled minute-
+  weighted Δ M1−M0 = **+0.00120761**, i.e. M1 worse.
+- A separate post-hoc **4-fold schedule** on the same 115 games
+  yields **one of four** M1-improving folds, but pooled Δ
+  **−0.00115781**, marginally favoring M1. Fold ranking and
+  pooled result are window-dependent.
+- The sign of the standardized gold × time coefficient stays
+  negative in 3/3 and 4/4 respective refits, but coefficient
+  direction alone does not ensure better probability scoring.
+- Every forward training cutoff excludes games with approximate
+  end after the next evaluation's first start. Series do not cross
+  folds. This is a post-hoc descriptive stress test, not independent
+  held-out replication or a new selection protocol.
+- Mutation/contract tests verify series-safe boundaries, permutation
+  invariance, missing-future outcome embargo and rejection of
+  non-TRAIN inputs. Total tests now **59/59 PASS**.
 
 ## Unclosed gates
 

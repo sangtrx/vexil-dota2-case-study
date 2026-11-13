@@ -1,0 +1,197 @@
+{
+  "alternate_four_fold_schedule": {
+    "boundary_fractions": [
+      0.45,
+      0.58,
+      0.71,
+      0.84,
+      0.96
+    ],
+    "brier_favorable_folds": 1,
+    "folds": [
+      {
+        "M0_gold_only_brier": 0.174098630620244,
+        "M0_gold_only_logloss": 0.5154223307106245,
+        "M1_minus_M0_brier": 0.0004113216027061828,
+        "M1_minus_M0_logloss": 0.0017859839525993237,
+        "M1_time_interaction_standardized_coefficient": -2.8609258817348047,
+        "M1_time_value_brier": 0.17450995222295018,
+        "M1_time_value_logloss": 0.5172083146632238,
+        "completed_prior_games": 154,
+        "embargoed_prior_games": 0,
+        "evaluation_games": 14,
+        "evaluation_minutes": 470,
+        "evaluation_patch_counts": {
+          "59": 14
+        },
+        "evaluation_radiant_rate_per_match": 0.7142857142857143,
+        "evaluation_radiant_rate_per_minute": 0.7191489361702128,
+        "fold": 1,
+        "prior_games": 154
+      },
+      {
+        "M0_gold_only_brier": 0.22828782619213384,
+        "M0_gold_only_logloss": 0.6759026641420169,
+        "M1_minus_M0_brier": -0.000527418556808934,
+        "M1_minus_M0_logloss": -0.011720094426580618,
+        "M1_time_interaction_standardized_coefficient": -2.7677759927063086,
+        "M1_time_value_brier": 0.2277604076353249,
+        "M1_time_value_logloss": 0.6641825697154363,
+        "completed_prior_games": 167,
+        "embargoed_prior_games": 1,
+        "evaluation_games": 52,
+        "evaluation_minutes": 1951,
+        "evaluation_patch_counts": {
+          "59": 52
+        },
+        "evaluation_radiant_rate_per_match": 0.46153846153846156,
+        "evaluation_radiant_rate_per_minute": 0.4628395694515633,
+        "fold": 2,
+        "prior_games": 168
+      },
+      {
+        "M0_gold_only_brier": 0.1956114317171203,
+        "M0_gold_only_logloss": 0.558348786862384,
+        "M1_minus_M0_brier": 0.0002465925581616457,
+        "M1_minus_M0_logloss": 0.001471090198457703,
+        "M1_time_interaction_standardized_coefficient": -2.5054139985795763,
+        "M1_time_value_brier": 0.19585802427528196,
+        "M1_time_value_logloss": 0.5598198770608417,
+        "completed_prior_games": 218,
+        "embargoed_prior_games": 2,
+        "evaluation_games": 27,
+        "evaluation_minutes": 1070,
+        "evaluation_patch_counts": {
+          "59": 27
+        },
+        "evaluation_radiant_rate_per_match": 0.48148148148148145,
+        "evaluation_radiant_rate_per_minute": 0.4570093457943925,
+        "fold": 3,
+        "prior_games": 220
+      },
+      {
+        "M0_gold_only_brier": 0.23311640392087757,
+        "M0_gold_only_logloss": 0.648556727260101,
+        "M1_minus_M0_brier": 0.0069459760787892455,
+        "M1_minus_M0_logloss": 0.020321889658792225,
+        "M1_time_interaction_standardized_coefficient": -2.4018094046226173,
+        "M1_time_value_brier": 0.24006237999966681,
+        "M1_time_value_logloss": 0.6688786169188933,
+        "completed_prior_games": 246,
+        "embargoed_prior_games": 1,
+        "evaluation_games": 22,
+        "evaluation_minutes": 764,
+        "evaluation_patch_counts": {
+          "59": 3,
+          "60": 19
+        },
+        "evaluation_radiant_rate_per_match": 0.45454545454545453,
+        "evaluation_radiant_rate_per_minute": 0.43717277486910994,
+        "fold": 4,
+        "prior_games": 247
+      }
+    ],
+    "interpretation": "Post-hoc exploratory stability, not new model selection or blind test",
+    "logloss_favorable_folds": 1,
+    "pooled_minute_weighted_delta_brier": 0.0011127866769366909,
+    "pooled_minute_weighted_delta_logloss": -0.0011578147019671216,
+    "scope": "TRAIN partition only, series-safe chronological evaluation blocks",
+    "time_interaction_negative_folds": 4,
+    "total_evaluation_games": 115,
+    "total_evaluation_minutes": 4255,
+    "training_games": 291,
+    "training_rows": 10683
+  },
+  "manifest_file_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "notebook_source_sha256": "dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb",
+  "preexisting_three_fold_schedule": {
+    "boundary_fractions": [
+      0.52,
+      0.6,
+      0.75,
+      0.92
+    ],
+    "brier_favorable_folds": 1,
+    "folds": [
+      {
+        "M0_gold_only_brier": 0.22047820879261262,
+        "M0_gold_only_logloss": 0.6461063188194871,
+        "M1_minus_M0_brier": 0.0021637298004889838,
+        "M1_minus_M0_logloss": 0.006050386350716086,
+        "M1_time_interaction_standardized_coefficient": -2.8609258817348047,
+        "M1_time_value_brier": 0.2226419385931016,
+        "M1_time_value_logloss": 0.6521567051702032,
+        "completed_prior_games": 154,
+        "embargoed_prior_games": 0,
+        "evaluation_games": 22,
+        "evaluation_minutes": 771,
+        "evaluation_patch_counts": {
+          "59": 22
+        },
+        "evaluation_radiant_rate_per_match": 0.5909090909090909,
+        "evaluation_radiant_rate_per_minute": 0.562905317769131,
+        "fold": 1,
+        "prior_games": 154
+      },
+      {
+        "M0_gold_only_brier": 0.21417276685243974,
+        "M0_gold_only_logloss": 0.6335106588491913,
+        "M1_minus_M0_brier": -0.000923552659799487,
+        "M1_minus_M0_logloss": -0.011972463847470527,
+        "M1_time_interaction_standardized_coefficient": -2.5013574446508975,
+        "M1_time_value_brier": 0.21324921419264026,
+        "M1_time_value_logloss": 0.6215381950017208,
+        "completed_prior_games": 176,
+        "embargoed_prior_games": 0,
+        "evaluation_games": 44,
+        "evaluation_minutes": 1650,
+        "evaluation_patch_counts": {
+          "59": 44
+        },
+        "evaluation_radiant_rate_per_match": 0.4772727272727273,
+        "evaluation_radiant_rate_per_minute": 0.4890909090909091,
+        "fold": 2,
+        "prior_games": 176
+      },
+      {
+        "M0_gold_only_brier": 0.2128387894062869,
+        "M0_gold_only_logloss": 0.5997443281872261,
+        "M1_minus_M0_brier": 0.003558739787776377,
+        "M1_minus_M0_logloss": 0.011029494423346442,
+        "M1_time_interaction_standardized_coefficient": -2.5054139985795763,
+        "M1_time_value_brier": 0.21639752919406327,
+        "M1_time_value_logloss": 0.6107738226105726,
+        "completed_prior_games": 218,
+        "embargoed_prior_games": 2,
+        "evaluation_games": 49,
+        "evaluation_minutes": 1834,
+        "evaluation_patch_counts": {
+          "59": 30,
+          "60": 19
+        },
+        "evaluation_radiant_rate_per_match": 0.46938775510204084,
+        "evaluation_radiant_rate_per_minute": 0.44874591057797164,
+        "fold": 3,
+        "prior_games": 220
+      }
+    ],
+    "interpretation": "Post-hoc exploratory stability, not new model selection or blind test",
+    "logloss_favorable_folds": 1,
+    "pooled_minute_weighted_delta_brier": 0.0015678266881997012,
+    "pooled_minute_weighted_delta_logloss": 0.001207608766273351,
+    "scope": "TRAIN partition only, series-safe chronological evaluation blocks",
+    "time_interaction_negative_folds": 3,
+    "total_evaluation_games": 115,
+    "total_evaluation_minutes": 4255,
+    "training_games": 291,
+    "training_rows": 10683
+  },
+  "scope": "Post-hoc TRAIN-only model stability, not a new model-selection or blind-test procedure",
+  "scope_caveats": [
+    "The original final model and held-out predictions are unchanged.",
+    "Train/evaluation blocks are chronology-ordered; repeated training blocks overlap.",
+    "Estimated label completion uses match start_time plus game duration; actual pauses unavailable.",
+    "Multiple post-hoc schedules were inspected. Neither is a confirmatory significance test."
+  ],
+  "train_match_ids_sha256": "7ea044006085a017c6795ed0e84e99110401b724bf16e91c8224da0b949ed3c3"
+}

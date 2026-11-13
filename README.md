@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **56/56** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. The exact V4 notebook also passed a **private Kaggle CPU cold Run All**, independently verified from downloaded source and all outputs: **511 HTTP calls, zero cache hits, 8/8 scientific CSVs and 4/4 exported PNGs**, with exact 26-cell source and semantic hash parity. Colab-specific cold execution is not separately verified. External submission remains HOLD pending actual human work hours, applicant editorial review and private-repo reviewer access.
+**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **59/59** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. The exact V4 notebook also passed a **private Kaggle CPU cold Run All**, independently verified from downloaded source and all outputs: **511 HTTP calls, zero cache hits, 8/8 scientific CSVs and 4/4 exported PNGs**, with exact 26-cell source and semantic hash parity. Colab-specific cold execution is not separately verified. External submission remains HOLD pending actual human work hours, applicant editorial review and private-repo reviewer access.
 
 ## Submission contract
 
@@ -34,6 +34,27 @@ Use **Run All**. The notebook downloads its own match payloads from OpenDota, ra
 - Aggregate, keyless receipts: research/results/kaggle_v4_cold_20261114.json and research/results/kaggle_v4_strict_acceptance_20261114.json. The notebook pull from Kaggle omits embedded media (a provider export behavior); separately downloaded four chart PNGs are verified. The submitted GitHub notebook retains four embedded output PNGs.
 - **Stricter visual audit:** all four Kaggle V4 plots have identical **decoded RGB pixels** to local results, and the two PDF source figures match the cloud render pixel-for-pixel. File SHA-256 differs only because PNG container bytes/metadata differ. Tests reject a genuine image alteration while accepting harmless metadata changes. See research/results/kaggle_v4_strict_pixel_acceptance_20261114.json; the strict option is --require-plot-pixel-parity (use only when comparing compatible renderers).
 - Neither Kaggle run proves that game-clock timestamps had been available from a contemporaneous live feed. A fresh Colab Run All is not independently verified.
+
+## Development-only temporal stability
+
+An additional post-hoc audit refits only M0 and M1 in chronological,
+series-safe TRAIN-only windows, excluding any earlier match whose
+estimated result was not yet available when the next evaluation began.
+Reusing the existing notebook's three time cuts, M1 improves log loss in
+only **1/3** windows (pooled minute-weighted M1−M0 Δ = +0.00121, worse).
+An alternate four-window cut also favors M1 in only **1/4** windows,
+though its pooled Δ is −0.00116. Both schedules evaluate the same 115
+TRAIN games and **neither alters the validation-selected model**.
+The windows are small, partly share training history and were inspected
+post hoc. They support caution on stability, not a new independent test.
+
+Reproduce locally only with the frozen OpenDota cache:
+
+    python research/train_forward_stability.py --manifest PATH_TO_MATCH_MANIFEST_CSV --cache PATH_TO_API_CACHE --receipt PATH_TO_RECEIPT_JSON
+
+The evaluator reads only games marked TRAIN in the manifest,
+not validation or held-out labels. Its saved aggregate result is
+research/results/development_forward_stability_20261114.json.
 
 ## Report and figures
 
