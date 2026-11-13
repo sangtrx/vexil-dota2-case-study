@@ -1,0 +1,23 @@
+{
+  "allowed_endpoint_calls": 0,
+  "benchmark_excludes": "API fetch, IPC, network/HTTP, system cold-start",
+  "benchmark_includes": "Python snapshot + Pandas one-row + scikit-learn pipeline",
+  "benchmark_iteration_count": 1200,
+  "coef_gold": 0.47796364853774437,
+  "coef_gold_x_logtime": -0.20058381191064176,
+  "cpu": "BigLinux epic",
+  "deterministic_train_panel_sha256": "2704bea893a4c14973648d622be4b49ab098f92c3a1db5d62ca9623841344efc",
+  "existing_train_games": 291,
+  "max_ms": 2.853531,
+  "minutes_with_nonpositive_gold_slope": 0,
+  "model": "M1_time_value",
+  "observed_maximum_minute": 85,
+  "original_heldout_games_scored": 0,
+  "original_validation_games_scored": 0,
+  "p50_ms": 1.73858,
+  "p95_ms": 2.0927059999999993,
+  "p99_ms": 2.46677067,
+  "p_at_zero_gold_minute0": 0.5050284585359117,
+  "parity_snapshots": 297,
+  "source_poisoning_checks": 180
+}

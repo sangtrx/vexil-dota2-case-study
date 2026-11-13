@@ -1,0 +1,46 @@
+{
+  "canonical_float_decimal_places": 8,
+  "item_purchase_features_sha256": "dd5869c664f58f6ff3a248f6c5d23ed05e6f2ef5b8e2ba6a13e9fa43bcb5bb72",
+  "minute_rows": 10683,
+  "missing_count_per_column": {
+    "barracks_delta": 0,
+    "gold_k": 0,
+    "gold_velocity5_k": 0,
+    "gold_x_time": 0,
+    "kill_delta": 0,
+    "match_id": 0,
+    "minute": 0,
+    "minute10": 0,
+    "radiant_win": 0,
+    "roshan_delta": 0,
+    "tower_delta": 0,
+    "xp_k": 0,
+    "xp_velocity5_k": 0
+  },
+  "no_heldout_model_scoring": true,
+  "no_network_calls": true,
+  "primary_features_sha256": "06d686a2f07e221f60c1e8e025e6baba158053856e4cb2453b8d8014407b91e3",
+  "required_item_columns": [
+    "match_id",
+    "minute",
+    "major_item_diff",
+    "blink_bkb_diff"
+  ],
+  "required_main_columns": [
+    "match_id",
+    "minute",
+    "radiant_win",
+    "gold_k",
+    "minute10",
+    "gold_x_time",
+    "xp_k",
+    "gold_velocity5_k",
+    "xp_velocity5_k",
+    "tower_delta",
+    "barracks_delta",
+    "roshan_delta",
+    "kill_delta"
+  ],
+  "scope": "original 291 train games (not validation/test)",
+  "train_games": 291
+}

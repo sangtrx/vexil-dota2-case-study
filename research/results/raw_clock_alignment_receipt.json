@@ -1,0 +1,14 @@
+{
+  "failures": 0,
+  "first_five_offenders": [],
+  "gold_summary_vs_player_sums": 18304,
+  "kills_log_player_streams_present": 5000,
+  "match_minutes": 18304,
+  "matches": 500,
+  "no_network_calls": true,
+  "original_heldout_outcomes_used_for_model_selection": false,
+  "purchase_log_player_streams_present": 5000,
+  "source": "cached original 500 OpenDota match payloads",
+  "timestamp_contract": "player gold_t/xp_t array index t vs aggregate at minute t",
+  "xp_summary_vs_player_sums": 18304
+}

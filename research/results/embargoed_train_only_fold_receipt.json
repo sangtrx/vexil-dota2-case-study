@@ -1,0 +1,74 @@
+{
+  "caveat": "retrospective; model ideas pre-exposed; folds share training data; estimated end ignores pauses",
+  "folds": [
+    {
+      "embargo_games": 0,
+      "eval_first_start": 1774225451,
+      "eval_games": 22,
+      "eval_series": 11,
+      "fold": 1,
+      "train_games": 154,
+      "train_series": 101
+    },
+    {
+      "embargo_games": 0,
+      "eval_first_start": 1774257523,
+      "eval_games": 44,
+      "eval_series": 21,
+      "fold": 2,
+      "train_games": 176,
+      "train_series": 112
+    },
+    {
+      "embargo_games": 4,
+      "eval_first_start": 1774285689,
+      "eval_games": 27,
+      "eval_series": 16,
+      "fold": 3,
+      "train_games": 216,
+      "train_series": 131
+    },
+    {
+      "embargo_games": 2,
+      "eval_first_start": 1774306468,
+      "eval_games": 22,
+      "eval_series": 10,
+      "fold": 4,
+      "train_games": 245,
+      "train_series": 148
+    },
+    {
+      "embargo_games": 0,
+      "eval_first_start": 1774346528,
+      "eval_games": 22,
+      "eval_series": 12,
+      "fold": 5,
+      "train_games": 269,
+      "train_series": 159
+    }
+  ],
+  "m1_match_favorable_folds": 3,
+  "m1_minute_favorable_folds": 2,
+  "models": [
+    "M0_gold_only",
+    "M1_time_value",
+    "M2_lead_fragility",
+    "M3_objective_conversion",
+    "P20_item_purchases"
+  ],
+  "network_requests": 0,
+  "original_heldout_matches_scored": 0,
+  "original_validation_matches_scored": 0,
+  "p20_match_favorable_folds": 1,
+  "p20_minute_favorable_folds": 2,
+  "protocol_fractions": [
+    0.53,
+    0.62,
+    0.75,
+    0.84,
+    0.92,
+    1.0
+  ],
+  "rows": 25,
+  "source": "frozen original 291 train matches only"
+}
