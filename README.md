@@ -2,17 +2,17 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** Latest 14 November integrity revision: full 500-match BigLinux Run All **PASS**, 49/49 offline tests **PASS**, all 8 score CSVs unchanged (max delta 4.44e-16), exact TRAIN input/label/item fingerprints reproduced independently. An **earlier pre-guard** notebook passed private Kaggle CPU Run All; that hosted receipt is not certification of the newest source. Frozen 250/250 patch manifest, 291/103/106 match split, 18,304 minute rows, 3,837 held-out predictions and M1 selection remain unchanged. Submission HOLD pending final Colab acceptance, actual candidate human hours, and reviewer access.
+**Status:** Latest 14 November integrity revision: full 500-match BigLinux Run All **PASS**, 51/51 offline tests **PASS**, all 8 score CSVs unchanged (max delta 4.44e-16), exact TRAIN input/label/item fingerprints reproduced independently. An **earlier pre-guard** notebook passed private Kaggle CPU Run All; that hosted receipt is not certification of the newest source. Frozen 250/250 patch manifest, 291/103/106 match split, 18,304 minute rows, 3,837 held-out predictions and M1 selection remain unchanged. Submission HOLD pending final Colab acceptance, actual candidate human hours, and reviewer access.
 
 ## Submission contract
 
 - `live_dota2_win_probability.ipynb`: one self-contained Python notebook, all outputs saved, runnable top-to-bottom on a fresh Google Colab runtime and locally.
 - `requirements.txt`: pinned packages; no API key or pre-downloaded data.
-- `REPORT.pdf` (**2 A4 pages**) and the matching editable `REPORT.md`: the same report in two formats, explaining decisions, ablations, evaluation, uncertainty, limitations, and AI/public-code use. The notebook also contains one strictly development-only item-purchase hypothesis; it never alters the original M0–M3 model selection or held-out scores. Re-export the PDF after the candidate fills in real human hours.
+- `REPORT.pdf` (**3 A4 pages, with two real-data figures**) and the matching editable `REPORT.md`: the same report in two formats, explaining decisions, ablations, evaluation, uncertainty, limitations, and AI/public-code use. The notebook also contains one strictly development-only item-purchase hypothesis; it never alters the original M0–M3 model selection or held-out scores. Re-export the PDF after the candidate fills in real human hours.
 - OpenDota endpoints **only**: `/api/proMatches` and `/api/matches/{match_id}`.
 - A point-in-time feature invariant check, grouped temporal validation, gold-only logistic-regression baseline, one proposed model, and match-cluster bootstrap confidence intervals.
 - Log loss, Brier score, and calibration plots on untouched held-out matches, overall and for 0–9, 10–19, 20–29, and 30+ minutes.
-- Final notebook prints a table of the exact 500 `match_id`, `start_time`, and `patch`, plus held-out predictions.
+- The notebook prints all 500 match identifiers, start times and patch IDs, and previews 16 held-out predictions. All 3,837 held-out probability rows are exported to heldout_predictions.csv. Four charts are embedded directly in the saved notebook output.
 
 ## Local execution
 
@@ -26,6 +26,18 @@ jupyter notebook live_dota2_win_probability.ipynb
 ```
 
 Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (about 37.5/minute), retries transient 429/5xx/transport errors with bounded backoff, and caches fetched payloads during execution. A shared-IP rate limit or temporary OpenDota outage can still prevent a cold hosted run from finishing; such failure is reported, never silently replaced with a different match. No credentials or local data files are required. A cold API run takes substantially longer than a cached local rerun. The complete cached local execution has been verified; the source notebook still fetches the same 500 OpenDota records on a clean runtime.
+
+## Report and figures
+
+REPORT.md is the editable source of the three-page A4 REPORT.pdf.
+The report embeds two real-data figures under docs/figures. To regenerate
+locally on BigLinux, install the optional authoring dependency
+mistune==3.4.0, ensure Chrome/Chromium is available, then run:
+
+    python scripts/render_report.py
+
+The renderer does not touch source matches, models or held-out predictions.
+Keep the assistance/hours disclosure honest and visually verify the PDF.
 
 ## Offline checks
 
@@ -46,7 +58,7 @@ Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local enviro
 
 ## Derived outputs
 
-After Run All, the notebook exports the frozen match manifest, four-model validation ablations, the exploratory item-purchase comparison and three earlier train-only fold results, held-out metrics, terminal-minute sensitivity and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions, match manifest hash and a combined content hash of the 500 decoded OpenDota match payloads. The latter detects upstream reparsing even if the match IDs remain unchanged. The latest receipt also records canonical input, outcome-label, development item and cohort metadata fingerprints, runtime type and actual source API/cache-call counts. The 14 November receipt also hashes model input features, separate outcome labels, development item features and cohort metadata; these identify semantically relevant changes even when unrelated raw JSON fields drift. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
+Run All exports eight science CSV tables, all 3,837 held-out probability rows, a calibration PNG and a JSON receipt. The receipt separates full raw OpenDota JSON digests from canonical model-input, label, item and cohort fingerprints, and records runtime identity and HTTP/cache-call counts. None of these derived outputs is an input. Kaggle writes to /kaggle/working; Colab writes to /content/vexil_takehome_outputs and creates a ZIP in its Files sidebar; local runs use a temporary directory. Four plots are embedded in the saved notebook, with training-support-masked time-value scenarios.
 
 ## Kaggle execution
 

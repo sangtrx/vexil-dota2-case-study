@@ -100,6 +100,33 @@ class NotebookContractsTest(unittest.TestCase):
             if cell["cell_type"] == "code": compile(source_at(i), f"cell_{i}", "exec")
 
 
+    def test_saved_charts_are_embedded_and_outputs_are_reviewable(self):
+        """A reproducible numeric notebook without visible plots is incomplete QA."""
+        import base64
+        self.assertEqual(len(NB["cells"]), 26)
+        for cell_idx, expected in ((15,1), (20,2), (22,1)):
+            cell = NB["cells"][cell_idx]
+            self.assertIsNotNone(cell.get("execution_count"))
+            charts = [out["data"]["image/png"] for out in cell.get("outputs", [])
+                      if out.get("output_type") == "display_data"
+                      and "image/png" in out.get("data", {})]
+            self.assertEqual(len(charts), expected, f"missing PNG in cell {cell_idx}")
+            for chart in charts:
+                raw = base64.b64decode(chart if isinstance(chart, str) else "".join(chart))
+                self.assertTrue(raw.startswith(bytes([137,80,78,71,13,10,26,10])))
+                self.assertGreater(len(raw), 20000)
+            self.assertNotIn("plt.show()", source_at(cell_idx))
+        self.assertIn("train-supported points", source_at(20))
+        self.assertIn("support >= 10", source_at(20))
+        last = NB["cells"][24]
+        self.assertIsNotNone(last.get("execution_count"))
+        self.assertIn("final_predictions.head(16)", source_at(24))
+        tables = [str(out["data"].get("text/html", ""))
+                  for out in last.get("outputs", [])
+                  if out.get("output_type") == "display_data"]
+        self.assertTrue(tables)
+        self.assertLess(max(map(len, tables)), 20000)
+
     def test_colab_zip_contains_only_derived_outputs(self):
         import zipfile
         required = (

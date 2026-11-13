@@ -24,6 +24,10 @@ Use Runtime > Run all. When successful, verify from actual cell outputs:
   forecasts, 291/103/106 train/validation/test games, selected M1_time_value,
   and 3,837 held-out forecasts.
 - Exactly 14 code cells execute; there must be no error outputs.
+- Four PNG figures must be embedded in the saved executed notebook:
+  reliability, time-value, illustrative match and comeback-risk.
+  All 3,837 held-out probabilities remain in the exported CSV; the
+  notebook displays a compact preview only.
 - Source fingerprint warnings and changes must be investigated, not ignored.
 
 OpenDota may apply rate limits or temporarily return unparsed matches.

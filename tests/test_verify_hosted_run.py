@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import json
 import tempfile
+import shutil
 import unittest
 from pathlib import Path
 
@@ -34,22 +35,28 @@ class HostedRunVerificationTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"numeric drift"):
                 compare_tables(local,remote)
 
-    def test_saved_hosted_notebook_source_must_match(self):
+    def test_saved_hosted_notebook_source_and_visuals(self):
+        actual = Path(__file__).resolve().parents[1] / "live_dota2_win_probability.ipynb"
         with tempfile.TemporaryDirectory() as tmp:
-            base=Path(tmp)
-            a=base/"a.ipynb";b=base/"b.ipynb"
-            n=nbformat.v4.new_notebook(cells=[
-                nbformat.v4.new_markdown_cell("# Demo"),
-                *[nbformat.v4.new_code_cell(f"print({i})",execution_count=i+1,
-                         outputs=[]) for i in range(14)],
-            ])
-            nbformat.write(n,str(a));nbformat.write(n,str(b))
-            good=compare_notebook(a,b)
-            self.assertEqual(good["executed_code_cells"],14)
-            n.cells[3].source="print(9999)"
-            nbformat.write(n,str(b))
-            with self.assertRaisesRegex(ValueError,"source differs"):
-                compare_notebook(a,b)
+            base = Path(tmp)
+            a, b = base/"a.ipynb", base/"b.ipynb"
+            shutil.copy2(actual, a)
+            shutil.copy2(actual, b)
+            good = compare_notebook(a, b)
+            self.assertEqual(good["executed_code_cells"], 14)
+            self.assertEqual(good["embedded_pngs"], 4)
+
+            edited = nbformat.read(str(b), as_version=4)
+            edited.cells[20].source += "\n# stealth change"
+            nbformat.write(edited, str(b))
+            with self.assertRaisesRegex(ValueError, "source differs"):
+                compare_notebook(a, b)
+
+            edited = nbformat.read(str(a), as_version=4)
+            edited.cells[15].outputs = []
+            nbformat.write(edited, str(b))
+            with self.assertRaisesRegex(ValueError, "Missing saved PNG"):
+                compare_notebook(a, b)
 
     def test_runtime_and_cold_retrieval_required(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -73,11 +80,9 @@ class HostedRunVerificationTest(unittest.TestCase):
                             "candidate_exclusions":0}
             (local/"derived_run_receipt.json").write_text(json.dumps(a))
             (remote/"derived_run_receipt.json").write_text(json.dumps(b))
-            n=nbformat.v4.new_notebook(cells=[
-                nbformat.v4.new_code_cell(f"x={i}",execution_count=i+1,
-                                         outputs=[]) for i in range(14)])
             notebook=base/"both.ipynb"
-            nbformat.write(n,str(notebook))
+            shutil.copy2(Path(__file__).resolve().parents[1] /
+                         "live_dota2_win_probability.ipynb", notebook)
             accepted=verify(local,remote,notebook,notebook,"colab")
             self.assertEqual(accepted["outcome"],"NUMERICAL_AND_SAVED_SOURCE_PARITY_PASS")
             b["runtime"]={"colab_detected":False,"kaggle_detected":True}

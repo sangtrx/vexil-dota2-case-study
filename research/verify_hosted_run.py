@@ -7,6 +7,7 @@ URL/runtime provenance must be independently inspected by the applicant.
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 from pathlib import Path
 
@@ -47,8 +48,25 @@ def compare_notebook(local_path: Path, hosted_path: Path) -> dict:
         raise ValueError("Hosted notebook did not save a full 14-code-cell execution")
     if any(o.output_type == "error" for c in code for o in c.outputs):
         raise ValueError("Hosted notebook has an error output")
+    images = 0
+    for cell_number, expected in ((15, 1), (20, 2), (22, 1)):
+        if len(hosted.cells) <= cell_number:
+            raise ValueError("Hosted notebook is missing expected visual cells")
+        embedded = [output.data["image/png"]
+                    for output in hosted.cells[cell_number].outputs
+                    if output.output_type == "display_data"
+                    and "image/png" in output.data]
+        if len(embedded) != expected:
+            raise ValueError(f"Missing saved PNG plots in notebook cell {cell_number}")
+        for b64 in embedded:
+            binary = base64.b64decode(b64 if isinstance(b64, str)
+                                      else "".join(b64), validate=True)
+            if not binary.startswith(bytes([137,80,78,71,13,10,26,10])) or len(binary) < 10000:
+                raise ValueError(f"Corrupt saved PNG plot in notebook cell {cell_number}")
+            images += 1
     return dict(cells=len(hosted.cells), executed_code_cells=len(code),
-                source_exact_match=True, error_outputs=0)
+                source_exact_match=True, error_outputs=0,
+                embedded_pngs=images)
 
 
 def compare_tables(local_dir: Path, hosted_dir: Path, atol: float=2e-7) -> dict:
