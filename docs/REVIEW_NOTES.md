@@ -1,4 +1,43 @@
-# Independent review and delivery gates
+# Vexil notebook — research and QA ledger
+
+## Current acceptance state (13 November 2026)
+
+- Original 500 parsed OpenDota professional matches, 250 per patch, frozen by ID.
+  One self-contained 26-cell notebook, 18,304 minute rows,
+  train/validation/held-out = 291/103/106 matches.
+- M1 gold-by-time remains selected from the original M0–M3 family.
+  The 3,837 original held-out forecasts and six original output CSVs
+  are numerically unchanged. Local full 500-match cached Run All PASS;
+  cold Kaggle pass of earlier four-model version already documented
+  below.
+- A development-only post-selection item-purchase hypothesis is
+  explicitly labeled exploratory: validation log loss 0.514098
+  versus 0.519346 for M1, 1/3 favorable prior training-only folds,
+  paired series CI crossing zero. No held-out item-model evaluation.
+- 394 development games and 1,847 timestamps: independent purchase
+  feature PIT/source parity PASS; missing purchase logs = 0.
+- Five train games with approximate end after first validation start
+  were identified; excluding these from an audit refit still
+  selects M1, 286 completed train games and 103 validation games.
+  The original selected model and held-out scores stay fixed.
+- 30/30 latest offline unit tests PASS, including bounded
+  429/503 network-failure behavior. Four Quant Bible
+  reproducibility QA kernels (separate PR #7) completed on Kaggle.
+- The report is rendered and visually inspected as **two A4 pages**,
+  with editable REPORT.md and explicit AI/public-code disclosure.
+- A cold hosted Kaggle Run All of this exact extended item-timing
+  version is being retested after an OpenDota transport failure.
+  **Do not claim its new hosted status COMPLETE without its receipt.**
+  The Colab branch passed an emulated local setup, but a genuine
+  hosted Google Colab Run All remains **unverified**.
+- Submission HOLD until actual candidate human hours are recorded
+  in the notebook/report, hosted Colab is verified and reviewers
+  have access to this private GitHub repository. No false hours,
+  no unverified cloud pass, no P20 model promotion.
+
+## Historical notes (earlier checkpoints; current state above supersedes their statuses)
+
+### Early independent review and delivery gates
 
 Status: development protocol and synthetic smoke tests complete; no 500-match result exists yet. This document is a **research checklist**, not empirical evidence or a score claim.
 

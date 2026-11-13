@@ -372,6 +372,44 @@ class NotebookContractsTest(unittest.TestCase):
             self.assertEqual(len(calls), 2)
             self.assertEqual(api.cache_hits, 1)
 
+    def test_transient_429_retries_with_respectful_backoff(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api=N["OpenDota"](cache_dir=tmp,interval=0,max_retries=4)
+            requests_seen=[]
+            waits=[]
+            class Response:
+                def __init__(self,code):
+                    self.status_code=code
+                    self.headers={"Retry-After":"11"} if code==429 else {}
+                def raise_for_status(self):pass
+                def json(self):return [{"match_id":123}]
+            def fake_get(url,params,timeout):
+                requests_seen.append(url)
+                return Response(429 if len(requests_seen)<3 else 200)
+            api.session.get=fake_get
+            from unittest.mock import patch
+            with patch.object(N["time"],"sleep",side_effect=lambda value:waits.append(value)):
+                result=api.get("/proMatches")
+            self.assertEqual(result,[{"match_id":123}])
+            self.assertEqual(api.calls,3)
+            self.assertEqual(len(requests_seen),3)
+            self.assertGreaterEqual(len(waits),2)
+            self.assertGreaterEqual(min(waits),11)
+
+    def test_persistent_503_bounded_and_diagnostic(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api=N["OpenDota"](cache_dir=tmp,interval=0,max_retries=2)
+            class Response:
+                status_code=503
+                headers={}
+            api.session.get=lambda url,params,timeout:Response()
+            from unittest.mock import patch
+            with patch.object(N["time"],"sleep",return_value=None):
+                with self.assertRaisesRegex(RuntimeError,
+                         "OpenDota failed after 2 bounded attempts.*HTTP 503"):
+                    api.get("/matches/123")
+            self.assertEqual(api.calls,2)
+
     def test_corrupt_cache_is_replaced_by_fresh_payload(self):
         with tempfile.TemporaryDirectory() as tmp:
             api = N["OpenDota"](cache_dir=tmp, interval=0)
