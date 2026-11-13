@@ -100,6 +100,31 @@ class NotebookContractsTest(unittest.TestCase):
             if cell["cell_type"] == "code": compile(source_at(i), f"cell_{i}", "exec")
 
 
+    def test_colab_zip_contains_only_derived_outputs(self):
+        import zipfile
+        required = (
+            "match_manifest.csv", "validation_ablations.csv", "heldout_metrics.csv",
+            "terminal_sensitivity.csv", "heldout_predictions.csv",
+            "minute20_comeback.csv", "exploratory_item_ablation.csv",
+            "exploratory_item_folds.csv", "derived_run_receipt.json", "calibration.png"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)/"vexil_takehome_outputs"
+            out.mkdir()
+            for name in required:
+                (out/name).write_text("test payload")
+            (out/"secret_raw_match_cache.json").write_text("must never export")
+            destination=Path(tmp)/"colab_outputs.zip"
+            N["archive_derived_outputs"](out,destination)
+            with zipfile.ZipFile(destination) as archive:
+                names=archive.namelist()
+                self.assertEqual(names,sorted(
+                    "vexil_takehome_outputs/"+name for name in required))
+                self.assertFalse(any("secret" in name for name in names))
+            (out/"heldout_predictions.csv").unlink()
+            with self.assertRaises(FileNotFoundError):
+                N["archive_derived_outputs"](out,destination)
+
     def test_source_lineage_separates_outcomes_from_inputs(self):
         cols = ["match_id", "minute", "gold_k", "radiant_win"]
         frame = pd.DataFrame([

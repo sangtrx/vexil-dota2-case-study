@@ -1,0 +1,93 @@
+{
+  "completed": 10,
+  "elapsed_s": 26.98,
+  "errors": [],
+  "no_data_cache_written": true,
+  "raw_payload_drift_count": 10,
+  "records": [
+    {
+      "feature_mismatches": {},
+      "match_id": 8737958835,
+      "minute_rows_compared": 36,
+      "patch": 59,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8739343662,
+      "minute_rows_compared": 33,
+      "patch": 59,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8739942372,
+      "minute_rows_compared": 21,
+      "patch": 59,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8740634695,
+      "minute_rows_compared": 36,
+      "patch": 59,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8741406460,
+      "minute_rows_compared": 31,
+      "patch": 59,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8741426861,
+      "minute_rows_compared": 33,
+      "patch": 60,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8742179381,
+      "minute_rows_compared": 45,
+      "patch": 60,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8743012883,
+      "minute_rows_compared": 37,
+      "patch": 60,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8743972436,
+      "minute_rows_compared": 43,
+      "patch": 60,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    },
+    {
+      "feature_mismatches": {},
+      "match_id": 8745181014,
+      "minute_rows_compared": 29,
+      "patch": 60,
+      "raw_digest_unchanged": false,
+      "source_gate_pass": true
+    }
+  ],
+  "requested": 10,
+  "scope": "Small current OpenDota /matches/{id} response check, not full cold run or new blind dataset",
+  "semantic_mismatch_matches": 0,
+  "total_minute_rows_checked": 344
+}

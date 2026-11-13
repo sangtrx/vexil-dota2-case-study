@@ -42,6 +42,10 @@ def load_provenance(manifest: pd.DataFrame, cache: Path) -> pd.DataFrame:
             raise ValueError(f"Patch changed for {m.match_id}")
         if int(payload["start_time"]) != int(m.start_time):
             raise ValueError(f"Start-time provenance drift: {m.match_id}")
+        if type(payload.get("radiant_win")) is not bool:
+            raise ValueError(f"Missing source winner or malformed outcome: {m.match_id}")
+        if int(payload.get("series_id") or 0) != int(m.series_id):
+            raise ValueError(f"Source series ID differs from frozen cohort: {m.match_id}")
         league = int(payload.get("leagueid") or 0)
         rows.append(dict(
             match_id=int(m.match_id),
@@ -50,6 +54,7 @@ def load_provenance(manifest: pd.DataFrame, cache: Path) -> pd.DataFrame:
             start_time=int(m.start_time),
             estimated_end_time=int(m.start_time) + int(payload["duration"]),
             leagueid=league,
+            source_radiant_win=int(payload["radiant_win"]),
         ))
     return pd.DataFrame(rows).sort_values(["start_time", "match_id"], kind="mergesort")
 
@@ -93,6 +98,46 @@ def bootstrap_delta(frame: pd.DataFrame, group_name: str, loss_name: str,
     return dict(clusters=n, minutes=int(actual[0]),
                 delta=float((actual[1]-actual[2])/actual[0]),
                 ci95=[float(lo), float(hi)], draws=n_boot, seed=seed)
+
+
+
+def bootstrap_calibration_gap(frame: pd.DataFrame, group_name: str, model: str,
+                              n_boot: int = 12000, seed: int = 20261114) -> dict:
+    """Percentile interval for E[y-p], reusing whole series rather than minutes.
+
+    A descriptive, post-hoc interval conditional on the already chosen sample;
+    not an interval for a newly fitted calibration correction.
+    """
+    if model not in ("model", "baseline") or n_boot < 100 or frame.empty:
+        raise ValueError("Invalid calibration audit input")
+    p = frame["p_" + model].to_numpy(dtype=float)
+    y = frame["radiant_win"].to_numpy(dtype=float)
+    if not np.isfinite(p).all() or ((p < 0.) | (p > 1.)).any():
+        raise ValueError("Nonprobability calibration prediction")
+    if not np.isin(y, [0., 1.]).all():
+        raise ValueError("Invalid calibration outcome")
+    observed = frame.assign(_cal_p=p, _cal_y=y)
+    group = observed.groupby(group_name, sort=True).agg(
+        rows=("minute", "size"), forecast=("_cal_p", "sum"),
+        outcomes=("_cal_y", "sum"))
+    vectors = group[["rows", "forecast", "outcomes"]].to_numpy(dtype=float)
+    n = len(vectors)
+    if n < 2:
+        raise ValueError("Too few independent source clusters")
+    rng = np.random.default_rng(seed)
+    draws = rng.integers(0, n, size=(n_boot, n))
+    sampled = vectors[draws].sum(axis=1)
+    gaps = (sampled[:, 2] - sampled[:, 1]) / sampled[:, 0]
+    total = vectors.sum(axis=0)
+    lo, hi = np.quantile(gaps, [0.025, 0.975])
+    return dict(
+        clusters=n, games=int(frame.match_id.nunique()),
+        rows=int(total[0]), forecast_mean=float(total[1] / total[0]),
+        observed_rate=float(total[2] / total[0]),
+        outcome_minus_forecast=float((total[2] - total[1]) / total[0]),
+        ci95=[float(lo), float(hi)],
+        draws=n_boot, seed=seed,
+    )
 
 
 def independent_metric_oracle(frame: pd.DataFrame, metrics: pd.DataFrame) -> None:
@@ -155,10 +200,13 @@ def audit(outputs: Path, cache: Path) -> dict:
         raise ValueError("Validation labels were not yet available at first test start")
     forecasts = proper_scores(raw_preds)
     independent_metric_oracle(forecasts, frozen_metrics)
-    forecasts = forecasts.merge(test[["match_id", "series_id", "leagueid"]],
-                                on="match_id", validate="many_to_one")
-    if forecasts[["series_id", "leagueid"]].isna().any().any():
-        raise ValueError("Missing held-out cluster metadata")
+    forecasts = forecasts.merge(
+        test[["match_id", "series_id", "leagueid", "source_radiant_win"]],
+        on="match_id", validate="many_to_one")
+    if forecasts[["series_id", "leagueid", "source_radiant_win"]].isna().any().any():
+        raise ValueError("Missing held-out source metadata or labels")
+    if not (forecasts.radiant_win == forecasts.source_radiant_win).all():
+        raise ValueError("Tampered held-out label disagrees with raw source match")
     # Nonpositive series IDs are match-level fallbacks, never one false cluster.
     forecasts["series_cluster"] = np.where(
         forecasts.series_id > 0,
@@ -176,7 +224,20 @@ def audit(outputs: Path, cache: Path) -> dict:
             "brier_match": bootstrap_delta(df, "match_id", "brier"),
             "brier_series": bootstrap_delta(df, "series_cluster", "brier"),
         }
-    forecast_delta = forecasts.logloss_model - forecasts.logloss_baseline
+    # A fixed 0.5-0.6 interval is a descriptive example from a previously
+    # inspected reliability chart, not a rule used to select or recalibrate.
+    calibrations = {}
+    for name in ("model", "baseline"):
+        selected = forecasts.loc[
+            (forecasts["p_" + name] >= 0.5) &
+            (forecasts["p_" + name] < 0.6)
+        ]
+        calibrations[name] = {
+            "overall_series": bootstrap_calibration_gap(
+                forecasts, "series_cluster", name),
+            "p_0_5_to_0_6_series": bootstrap_calibration_gap(
+                selected, "series_cluster", name)
+        }
     loo = []
     for league, group in forecasts.groupby("leagueid"):
         other = forecasts.loc[forecasts.leagueid != league]
@@ -203,11 +264,13 @@ def audit(outputs: Path, cache: Path) -> dict:
             on="match_id", validate="one_to_one").radiant_win.mean()),
         league_leave_one_out=loo,
         bootstrap=scores,
+        calibration=calibrations,
         limitations=[
             "Post-hoc reuse of previously inspected held-out data; no new blind test.",
             "Bootstrap series clusters may still share teams, leagues, and patch-specific common shocks.",
             "Estimated completion is start_time+game duration; pauses and source receipt timing unavailable.",
             "Series bootstrap intervals are descriptive, not multiplicity-adjusted or market PnL."
+            ,"Calibration probability bins were already inspected and the intervals are post-hoc, not simultaneous."
         ]
     )
 

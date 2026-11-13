@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 from research.independent_delivery_audit import (
     _json_match_filename, load_provenance, proper_scores, bootstrap_delta,
-    independent_metric_oracle,
+    independent_metric_oracle, bootstrap_calibration_gap,
 )
 
 
@@ -61,6 +61,37 @@ class IndependentRedteamTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             bootstrap_delta(f[f.series_cluster=="a"],"series_cluster","logloss")
 
+    def test_calibration_gap_series_bootstrap_order_invariant(self):
+        f = proper_scores(example_predictions())
+        f["series_cluster"] = ["a", "a", "b", "b"]
+        x = bootstrap_calibration_gap(
+            f, "series_cluster", "model", n_boot=1000, seed=19)
+        y = bootstrap_calibration_gap(
+            f.sample(frac=1, random_state=7),
+            "series_cluster", "model", n_boot=1000, seed=19)
+        self.assertEqual(x, y)
+        self.assertEqual(x["rows"], 4)
+        self.assertEqual(x["clusters"], 2)
+        self.assertAlmostEqual(
+            x["outcome_minus_forecast"],
+            f.radiant_win.mean() - f.p_model.mean(), places=12)
+        self.assertAlmostEqual(x["forecast_mean"], f.p_model.mean(), places=12)
+        self.assertAlmostEqual(x["observed_rate"], f.radiant_win.mean(), places=12)
+
+    def test_calibration_gap_rejects_bad_inputs(self):
+        f = proper_scores(example_predictions())
+        f["series_cluster"] = ["a", "a", "b", "b"]
+        for variant, name in [
+            (f.assign(p_model=[.2, .3, 1.1, .7]), "model"),
+            (f.assign(radiant_win=[0, 1, 2, 0]), "model"),
+            (f.assign(p_model=[.2, .3, float("nan"), .7]), "model"),
+            (f.iloc[:2], "model")
+        ]:
+            with self.assertRaises(ValueError):
+                bootstrap_calibration_gap(variant, "series_cluster", name)
+        with self.assertRaises(ValueError):
+            bootstrap_calibration_gap(f, "series_cluster", "unknown")
+
     def test_oracle_detects_tampered_original_metric(self):
         f=proper_scores(example_predictions())
         # Ensure all report phases have rows by adding age-offset copies.
@@ -94,7 +125,7 @@ class IndependentRedteamTest(unittest.TestCase):
         metadata=pd.DataFrame([dict(match_id=101,patch=60,series_id=123,
                                     start_time=1234567,partition="test")])
         payload=dict(match_id=101,patch=60,start_time=1234567,duration=1800,
-                     leagueid=7,radiant_win=True)
+                     leagueid=7,radiant_win=True,series_id=123)
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/_json_match_filename(101)
             def write(value):
@@ -103,11 +134,16 @@ class IndependentRedteamTest(unittest.TestCase):
             got=load_provenance(metadata,Path(tmp))
             self.assertEqual(int(got.iloc[0].estimated_end_time),1234567+1800)
             for change in [
-                {"match_id":202}, {"patch":59}, {"start_time":1234570}
+                {"match_id":202}, {"patch":59}, {"start_time":1234570},
+                {"radiant_win":1}, {"series_id":999}
             ]:
                 corrupt=copy.deepcopy(payload);corrupt.update(change);write(corrupt)
                 with self.subTest(change=change),self.assertRaises(ValueError):
                     load_provenance(metadata,Path(tmp))
+            alternate=copy.deepcopy(payload)
+            alternate["radiant_win"]=False
+            write(alternate)
+            self.assertEqual(int(load_provenance(metadata,Path(tmp)).iloc[0].source_radiant_win), 0)
 
 
 if __name__=="__main__":

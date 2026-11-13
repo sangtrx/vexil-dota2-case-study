@@ -2,7 +2,7 @@
 
 Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
 
-**Status:** Latest 14 November integrity revision: full 500-match BigLinux Run All **PASS**, 38/38 offline tests **PASS**, all 8 score CSVs unchanged (max delta 4.44e-16), exact TRAIN input/label/item fingerprints reproduced independently. An **earlier pre-guard** notebook passed private Kaggle CPU Run All; that hosted receipt is not certification of the newest source. Frozen 250/250 patch manifest, 291/103/106 match split, 18,304 minute rows, 3,837 held-out predictions and M1 selection remain unchanged. Submission HOLD pending final Colab acceptance, actual candidate human hours, and reviewer access.
+**Status:** Latest 14 November integrity revision: full 500-match BigLinux Run All **PASS**, 49/49 offline tests **PASS**, all 8 score CSVs unchanged (max delta 4.44e-16), exact TRAIN input/label/item fingerprints reproduced independently. An **earlier pre-guard** notebook passed private Kaggle CPU Run All; that hosted receipt is not certification of the newest source. Frozen 250/250 patch manifest, 291/103/106 match split, 18,304 minute rows, 3,837 held-out predictions and M1 selection remain unchanged. Submission HOLD pending final Colab acceptance, actual candidate human hours, and reviewer access.
 
 ## Submission contract
 
@@ -46,7 +46,7 @@ Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local enviro
 
 ## Derived outputs
 
-After Run All, the notebook exports the frozen match manifest, four-model validation ablations, the exploratory item-purchase comparison and three earlier train-only fold results, held-out metrics, terminal-minute sensitivity and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions, match manifest hash and a combined content hash of the 500 decoded OpenDota match payloads. The latter detects upstream reparsing even if the match IDs remain unchanged. The 14 November receipt also hashes model input features, separate outcome labels, development item features and cohort metadata; these identify semantically relevant changes even when unrelated raw JSON fields drift. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
+After Run All, the notebook exports the frozen match manifest, four-model validation ablations, the exploratory item-purchase comparison and three earlier train-only fold results, held-out metrics, terminal-minute sensitivity and full held-out predictions as CSV, a calibration PNG, and a JSON run receipt with package versions, match manifest hash and a combined content hash of the 500 decoded OpenDota match payloads. The latter detects upstream reparsing even if the match IDs remain unchanged. The latest receipt also records canonical input, outcome-label, development item and cohort metadata fingerprints, runtime type and actual source API/cache-call counts. The 14 November receipt also hashes model input features, separate outcome labels, development item features and cohort metadata; these identify semantically relevant changes even when unrelated raw JSON fields drift. These are outputs only: none is required to execute the notebook. Kaggle writes them to `/kaggle/working`; Colab/local use a temporary runtime directory.
 
 ## Kaggle execution
 
@@ -63,9 +63,35 @@ A complete cold hosted execution of the **pre-14-November source** finished succ
 
 The prior attempt failed on transient OpenDota requests despite later single-request HTTP 200 diagnostics; the completed V2 ran after bounded-retry improvements. The notebook never silently replaces frozen matches or reads predownloaded match data. The Kaggle account was accessed through the installed credential pool; those credentials are **not shipped**.
 
+## Fresh-source drift canary and calibration audit
+
+The 14 November read-only **10-match source canary** across both patches
+re-fetched only the permitted match endpoint: all ten raw JSON digests
+changed, yet every one of the 344 checked minute-level snapshots had
+identical model/item features and valid time alignment. These are existing
+matches, not new blind test games or a full 500-match cold run. See
+research/current_source_canary.py and
+research/results/current_source_canary_20261114.json.
+
+The independent audit validates all 500 source labels and professional
+series IDs before recomputing scoring. Whole-series bootstrap identifies
+M1 mean probability 0.54271 against minute-weighted outcome rate 0.60438
+(+0.06167 calibration-in-the-large gap); the 54-series confidence interval
+includes zero. Do not recalibrate using the already-inspected held-out set.
+
 ## Fresh Colab acceptance (required before sending)
 
 This final cross-environment check has **not yet been completed** on a hosted Colab runtime. In Colab, use **File → Open notebook → GitHub**, authorize access to this private repository, select branch fix/vexil-delivery-audit-20261114, and open live_dota2_win_probability.ipynb. Choose a fresh CPU runtime with Internet access; then select **Runtime → Run all**. Colab uses its installed scientific stack when already available (to avoid live-kernel NumPy ABI conflicts), installing only missing libraries at the pinned versions. Local requirements.txt fixes exact versions; the notebook records all actual package versions.
+
+Colab now creates vexil_takehome_outputs.zip next to the output folder.
+After Run All, download that ZIP from the Colab Files sidebar and save
+the executed notebook via File > Download > Download .ipynb. The
+research/verify_hosted_run.py script checks the 8 CSV tables, all source
+cells, semantic fingerprints and self-reported API/cache-call counts.
+A cached local replay is rejected when cloud cold-run acceptance is
+requested. Self-reported environment flags alone do not authenticate a
+Colab run: separately check the actual hosted run URL and history.
+See docs/COLAB_ACCEPTANCE_20261114.md.
 
 Check the saved output against the frozen receipt: exactly 500 matches, patch 59:250 and patch 60:250, 18,304 minute rows, train/validation/test 291/103/106 matches, proposed model M1_time_value, 3,837 test forecast rows and manifest hash e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea. Log loss/Brier should agree up to numerical tolerance. Full raw JSON digests can change as OpenDota reparses auxiliary fields. Do **not** edit feature cells or substitute a predownloaded dataset to make the check pass; report any actual runtime or API error.
 

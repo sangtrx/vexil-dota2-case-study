@@ -1,0 +1,33 @@
+{
+  "code_cells": 14,
+  "csv_files": [
+    "exploratory_item_ablation.csv",
+    "exploratory_item_folds.csv",
+    "heldout_metrics.csv",
+    "heldout_predictions.csv",
+    "match_manifest.csv",
+    "minute20_comeback.csv",
+    "terminal_sensitivity.csv",
+    "validation_ablations.csv"
+  ],
+  "elapsed_s": 27.52,
+  "heldout_rows": 3837,
+  "local_final_run_pass": true,
+  "matches": 500,
+  "max_abs_csv_difference": 4.440892098500626e-16,
+  "minute_rows": 18304,
+  "model_selected": "M1_time_value",
+  "patch_counts": {
+    "59": 250,
+    "60": 250
+  },
+  "retrieval": {
+    "api_calls": 0,
+    "cache_hits": 500,
+    "candidate_exclusions": 0
+  },
+  "runtime": {
+    "colab_detected": false,
+    "kaggle_detected": false
+  }
+}

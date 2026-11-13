@@ -185,6 +185,68 @@
       }
     }
   },
+  "calibration": {
+    "baseline": {
+      "overall_series": {
+        "ci95": [
+          -0.023413865404658094,
+          0.14273394659846578
+        ],
+        "clusters": 54,
+        "draws": 12000,
+        "forecast_mean": 0.5422809894017593,
+        "games": 106,
+        "observed_rate": 0.6043784206411259,
+        "outcome_minus_forecast": 0.06209743123936659,
+        "rows": 3837,
+        "seed": 20261114
+      },
+      "p_0_5_to_0_6_series": {
+        "ci95": [
+          0.022217734261794454,
+          0.2535870886870402
+        ],
+        "clusters": 53,
+        "draws": 12000,
+        "forecast_mean": 0.5365470769067608,
+        "games": 104,
+        "observed_rate": 0.675564681724846,
+        "outcome_minus_forecast": 0.13901760481808517,
+        "rows": 974,
+        "seed": 20261114
+      }
+    },
+    "model": {
+      "overall_series": {
+        "ci95": [
+          -0.023669779347791263,
+          0.14211567775291237
+        ],
+        "clusters": 54,
+        "draws": 12000,
+        "forecast_mean": 0.5427103013139264,
+        "games": 106,
+        "observed_rate": 0.6043784206411259,
+        "outcome_minus_forecast": 0.0616681193271995,
+        "rows": 3837,
+        "seed": 20261114
+      },
+      "p_0_5_to_0_6_series": {
+        "ci95": [
+          -0.0076055270483880695,
+          0.2336707102008427
+        ],
+        "clusters": 53,
+        "draws": 12000,
+        "forecast_mean": 0.5401222105572943,
+        "games": 103,
+        "observed_rate": 0.6535532994923858,
+        "outcome_minus_forecast": 0.11343108893509153,
+        "rows": 788,
+        "seed": 20261114
+      }
+    }
+  },
   "heldout_games": 106,
   "heldout_label_win_rate": 0.5943396226415094,
   "heldout_leagues": 9,
@@ -255,7 +317,8 @@
     "Post-hoc reuse of previously inspected held-out data; no new blind test.",
     "Bootstrap series clusters may still share teams, leagues, and patch-specific common shocks.",
     "Estimated completion is start_time+game duration; pauses and source receipt timing unavailable.",
-    "Series bootstrap intervals are descriptive, not multiplicity-adjusted or market PnL."
+    "Series bootstrap intervals are descriptive, not multiplicity-adjusted or market PnL.",
+    "Calibration probability bins were already inspected and the intervals are post-hoc, not simultaneous."
   ],
   "provenance": "Frozen 500 OpenDota cached payloads, no external API calls or model fits",
   "source_games": 500,

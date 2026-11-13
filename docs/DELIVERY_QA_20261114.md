@@ -14,12 +14,28 @@
 - Host: epic; Python 3.12.3; the existing isolated Python environment.
 - 500/500 real cached OpenDota match payloads used (0 new API calls / 500 cache hits); 250 games per patch 59/60.
 - Source-clock audit: 5,000/5,000 player clocks begin at 0 and increment by 60 seconds; no gold/XP/clock length mismatch; 496 games have exactly floor(duration/60)+1 minute values and four have one extra trailing value, never needed by forecasts. The final notebook also checks 18,304/18,304 same-minute player gold and XP sums against team advantages before fitting, with exact tolerance 1e-6.
-- 38/38 offline Python tests passed; notebook JSON validation passed.
+- 49/49 offline Python tests passed; notebook JSON validation passed.
 - Full 26-cell notebook Run All: 14/14 code cells executed; 18,304 minute rows; 291/103/106 train/validation/held-out matches; 3,837 unchanged held-out probability rows.
 - Separate model-input, outcome-label, development item, and cohort-metadata hashes added to the run receipt. The three TRAIN hashes matched an independently implemented research audit exactly.
 - Eight scientific CSV outputs checked column-by-column against the original saved submission-polish execution. Maximum absolute numerical difference: 4.44e-16.
 - Frozen manifest SHA-256: e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea.
 - Cached source-content SHA-256: 7328f1f8df8f3925765e390f997168a084aa6bded1c1bb031da81e8e8092281b. OpenDota reparses may change this on a cold hosted run; compare the model-relevant outputs and report any material drift.
+
+## Additional same-day reliability checks
+
+- Independent QA checks 500 source winner labels and professional series
+  identifiers directly against original cached OpenDota match payloads.
+- Ten fresh, paced OpenDota match requests: 10/10 successful, 344/344
+  model/item minute snapshots identical, 10/10 full raw JSON digests
+  changed. This is a small source-drift canary, not full cloud acceptance.
+- M1 calibration-in-the-large: mean p=0.542710 versus empirical
+  minute-row win rate=0.604378; gap +0.061668, 54-series descriptive
+  interval [-0.023670, +0.142116]. No model recalibration fitted.
+- The latest notebook records self-reported runtime and API/cache counts,
+  creates a Colab-derived artifact ZIP and has an independent offline
+  verifier requiring exact saved source and numerical parity.
+- A later BigLinux full replay validated this change again: 500/500
+  cached match payloads, 14/14 code cells, 8 unchanged CSVs, M1 fixed.
 
 ## Unclosed gates
 
