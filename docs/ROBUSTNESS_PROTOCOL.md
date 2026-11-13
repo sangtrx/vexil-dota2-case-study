@@ -15,8 +15,8 @@ Date: 13 November 2026. Parent PR #8 code at
 - Fit same median imputer + StandardScaler + LogisticRegression C=1
   and seed 20261113, without any hyperparameter search.
 - Five rolling-origin evaluation windows are chosen by nearest
-  series-safe split boundaries at fractions 0.42, 0.54, 0.66, 0.78,
-  0.90 and 1.00 of the time-ordered 291 train matches.
+  series-safe split boundaries at fractions 0.53, 0.62, 0.75, 0.84,
+  0.92 and 1.00 of the time-ordered 291 train matches.
 - Embargo prior training games with estimated completion
   start_time + match.duration greater than the earliest start of
   the evaluation block. Embargo entire series if needed.
@@ -33,3 +33,22 @@ hypothetical stability screen for future research (not model
 promotion): benefit in at least 4 of 5 windows for both weighting
 systems, without any >+0.015 catastrophic loss fold. Even a pass
 is not independent evidence due previous research exposure.
+
+
+## Outcome-blind design correction before scoring
+
+The first script abort (no model was fitted or scored) exposed a
+two-game evaluation fold. The original fractions produced series-safe
+cut indices [154,156,176,221,269,291], with 2 games in the first
+evaluation block. Series IDs cross many time-ordered match positions,
+so arithmetic percentage splits are not valid by themselves.
+
+Before inspecting any model prediction or label-derived metric,
+the six metadata-only target fractions were shifted to
+[0.53,0.62,0.75,0.84,0.92,1.00], which map to series-safe
+cut indices [154,176,220,247,269,291] and evaluation
+sizes [22,44,27,22,22]. This is a feasibility fix based only
+on match start times and positive series_id grouping.
+It is logged, not backdated or presented as the original design.
+This series-safe split does not imply genuine label end-times:
+the separate completion embargo is still required.

@@ -9,7 +9,7 @@ import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
 CACHE=Path('/home/ai-agent/.cache/vexil-real-data-20261113')
 OUT=ROOT/'research/results'
-FRACTIONS=(.42,.54,.66,.78,.90,1.)
+FRACTIONS=(.53,.62,.75,.84,.92,1.)
 
 def defs():
     sys.path.insert(0,str(ROOT))
@@ -116,7 +116,7 @@ def main():
                 train_games=fold['train_games'],eval_games=fold['eval_games'],
                 embargo_games=fold['embargo_games'],
                 eval_minute_rows=len(later),
-                **scores(later.radiant_win,later.match_id*0+p,later.match_id)))
+                **scores(later.radiant_win,p,later.match_id)))
     table=pd.DataFrame(results)
     assert len(table)==25
     comparisons=[]
