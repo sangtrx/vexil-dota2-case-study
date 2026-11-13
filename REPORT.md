@@ -1,6 +1,6 @@
 # Live Dota 2 Win Probability
 
-**Vexil Capital · Senior Data Scientist take-home · 14 November 2026**
+**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 14 November 2026**
 
 **Result:** On 106 held-out games, the gold-and-time model M1 reduced log loss
 from **0.5163 to 0.5039** and Brier score from **0.1719 to 0.1683** versus
