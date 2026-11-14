@@ -2,11 +2,14 @@
 
 **Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 14 November 2026**
 
-**Result:** On 106 held-out games, the gold-and-time model M1 reduced log loss
-from **0.5163 to 0.5039** and Brier score from **0.1719 to 0.1683** versus
-the required gold-only M0. The overall matched-game bootstrap log-loss
-difference still includes zero. I would retain M0 as the deployed reference
-and evaluate M1 in shadow mode, not claim proven superiority.
+**Research question:** Does the same gold lead mean the same thing at different
+minutes? I tested that with an explicit gold-by-time interaction instead of
+assuming that more game events necessarily make a better prediction.
+
+**Result:** On 106 held-out games, M1 reduced log loss **0.5163 to 0.5039**
+and Brier **0.1719 to 0.1683** versus gold-only M0. Both primary paired
+confidence intervals cross zero. I would shadow-test M1 rather than replace
+the dependable baseline on this evidence alone.
 
 
 ## Question, dataset, and information cutoff
@@ -30,7 +33,10 @@ I fixed a small nested family before observing held-out scores. Every candidate 
 | M2, lead fragility | XP lead and trailing five-minute gold/XP changes | 0.5220 | 0.1777 |
 | M3, objective conversion | Timestamped towers, barracks, Roshan and kill differential | 0.5278 | 0.1805 |
 
-**M1 was selected on validation log loss**, before opening the held-out scores. M2 and M3 beat M0 but did not improve on M1 in validation. In a separate post-hoc forward audit on TRAIN only, M1 beat M0 in just one of three existing chronological folds; the pooled log-loss difference was +0.0012 (M1 worse). This did not change selection. The fitted gold × time interaction is negative: holding gold lead at **+2,000**, M1 forecasts **66.5%** Radiant win probability at minute 10 but **59.4%** at minute 30. Both are within the observed training range (at least +2,000 gold in 60/291 minute-10 games and 87/214 minute-30 games). This is a conditional model comparison, not an intervention. The fixed absolute lead appears less decisive as the game progresses, but the data do not show that creating the same lead at a different minute causes that probability change.
+**M1 was selected on validation log loss**, before opening the held-out scores. M2 and M3 beat M0 but did not improve on M1 in validation. Their
+incremental log-loss changes versus M1 were **+0.0027** and **+0.0085**
+respectively (worse): adding XP momentum and then tower/Roshan/kill events
+did not earn their complexity in this small cohort. In a separate post-hoc forward audit on TRAIN only, M1 beat M0 in just one of three existing chronological folds; the pooled log-loss difference was +0.0012 (M1 worse). This did not change selection. The fitted gold × time interaction is negative: holding gold lead at **+2,000**, M1 forecasts **66.5%** Radiant win probability at minute 10 but **59.4%** at minute 30. Both are within the observed training range (at least +2,000 gold in 60/291 minute-10 games and 87/214 minute-30 games). This is a conditional model comparison, not an intervention. The fixed absolute lead appears less decisive as the game progresses, but the data do not show that creating the same lead at a different minute causes that probability change.
 
 ### An exploratory item-timing hypothesis
 
@@ -56,17 +62,24 @@ Equal-weighting each match gives log loss 0.5095 → 0.4951 and Brier 0.1698 →
 *Figure 1. Held-out reliability. Each annotation is a minute-row count; observations from the same game are dependent.*
 
 
-## An inconclusive game-level check and shipping decision
+## When economic leads fail to convert
 
-I also fixed a descriptive check at minute 20: among held-out games with an absolute gold lead of at least 3,000, how often did the current gold leader eventually lose? Deteriorating means the current gold lead and the preceding five-minute gold change have opposite signs. Among **44** stable/improving leads, **5** leaders lost (11.4%, Wilson 95% interval 5.0%–24.0%). Among **8** deteriorating leads, **1** lost (12.5%, interval 2.2%–47.1%). The comparison is underpowered and inconclusive; it cannot support a comeback mechanism, and it was not used for model selection.
+I also fixed a descriptive check at minute 20: among held-out games with an absolute gold lead of at least 3,000, how often did the current gold leader eventually lose? Deteriorating means the current gold lead and the preceding five-minute gold change have opposite signs. Among **44** stable/improving leads, **5** leaders lost (11.4%, Wilson 95% interval 5.0%–24.0%). Among **8** deteriorating leads, **1** lost (12.5%, interval 2.2%–47.1%). The comparison is underpowered and inconclusive; it cannot establish a comeback mechanism. In particular, five-minute gold momentum need not translate into a better *eventual winner* model. This was not used for selection.
 
 **What I would ship:** keep the gold-only baseline as a dependable reference, and run M1 in shadow mode with versioned `(match_id, minute, model, probability)` outputs and checks for source completeness, calibration by phase/patch, and inference latency. I would not replace the baseline operationally until the overall gain and calibration replicate on later series. The notebook's timestamped item-purchase model is development-only, not a release candidate. Historical OpenDota parsing is not an authenticated live feed.
 
 Limitations are material. All match data are retrospectively parsed; game-clock timestamps do not establish the historical arrival time of a live data feed. Match minutes share a winner, series may be dependent, the 30+ sample is selected by game duration, and patch distribution is confounded with the chronological split. No market prices, trade execution or profitability are studied.
 
-![Figure 2. Gold-lead and minute-by-minute probability traces in one held-out match, selected by gold-range variation rather than outcome.](docs/figures/illustrative_game.png)
+**A lead has a time value.** Figure 2 visualizes the fitted gold-by-time
+interaction directly. For a fixed positive lead, the model assigns less win
+probability at later game times, while a negative lead becomes less decisive.
+Only minute/lead pairs supported by at least 10 distinct training games within
+a nearby window are drawn. This is a *conditional model comparison*, not a
+causal statement about what would happen if we gave a team gold.
 
-*Figure 2. One illustrative held-out trajectory, selected using gold-range variation rather than realized outcome or predictive accuracy.*
+![Figure 2. Fitted time-value of a fixed gold lead, restricted to observed training support.](docs/figures/time_value_scenarios.png)
+
+*Figure 2. Model-implied probability at fixed gold leads; masked outside sufficient training support. These are not actual game trajectories.*
 
 ## Reproduction and assistance
 

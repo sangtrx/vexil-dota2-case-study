@@ -15,7 +15,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
         for relative in (
             "docs/figures/heldout_reliability.png",
-            "docs/figures/illustrative_game.png",
+            "docs/figures/time_value_scenarios.png",
         ):
             self.assertIn("](" + relative + ")", markdown)
             source = (ROOT / relative).read_bytes()

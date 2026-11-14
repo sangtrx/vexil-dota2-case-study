@@ -45,7 +45,7 @@ Run all cells, top to bottom. `requirements.txt` pins the local Python dependenc
 | [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) | **All 3,837** held-out predictions, one row per `(match_id, minute)`; never read as notebook input |
 | [requirements.txt](requirements.txt) | Exact dependencies for local execution |
 | [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
-| [docs/figures/illustrative_game.png](docs/figures/illustrative_game.png) | One held-out game trajectory, illustrative rather than a cherry-picked model-accuracy claim |
+| [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Model's original time-value hypothesis, plotted only in training-supported states |
 
 Running the notebook also exports eight scientific CSV tables, four PNG figures and a JSON receipt. The included forecast CSV lets a reviewer inspect all held-out predictions without re-fetching 500 matches. The downloadable submission ZIP mirrors these files and includes SHA-256 checksums; it is not a separate model or input dataset.
 
