@@ -2,115 +2,73 @@
 
 **Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 14 November 2026**
 
-**Research question:** Does the same gold lead mean the same thing at different
-minutes? I tested that with an explicit gold-by-time interaction instead of
-assuming that more game events necessarily make a better prediction.
+**Research question:** Does the same +2,000 gold lead carry the same information at minute 10 and minute 30? I test the **time value of an economic lead** using a simple gold-by-time interaction, then challenge it with richer game-state features, temporal checks and error analysis.
 
-**Result:** On 106 held-out games, M1 reduced log loss **0.5163 to 0.5039**
-and Brier **0.1719 to 0.1683** versus gold-only M0. Both primary paired
-confidence intervals cross zero. I would shadow-test M1 rather than replace
-the dependable baseline on this evidence alone.
+**Result:** On 106 held-out games, M1 reduces log loss **0.5164 → 0.5040** and Brier **0.1719 → 0.1684** versus gold-only M0. **Both primary paired 95% intervals include zero.** One 55-row game accounts for **54.9% of the total log-loss improvement**. I would shadow-test M1, not replace M0 yet.
 
+## Data, information cutoff and validation design
 
-## Question, dataset, and information cutoff
+I retrieved **500 parsed professional matches** using only the permitted OpenDota endpoints: **250 on patch 59 and 250 on patch 60**, selected around the March 2026 patch boundary without filtering by winner. Discovery used 705 API calls (49 cache hits); 46 candidate games were outside the two target patches or ineligible. These games cover **21–26 March 2026, just 5.26 days**. This is a deliberately concentrated patch-transition cohort, **not** representative of November games.
 
-The target is the probability that Radiant eventually wins, estimated at each game minute. I treat this as a forecasting and calibration problem, not a last-minute classification contest.
+There are **18,292 admissible minute-level forecasts, not 18,292 independent outcomes**. At minute *t*, gold/XP use array indices no later than *t*, while objective and kill events use timestamps ≤ 60*t* seconds, including pre-horn events. All ten parsed player clocks align with aggregate team economy. Final kills, total net worth, duration and the winner do not enter model features. A strict pre-terminal rule now excludes snapshots at or after game end: **12 original end-boundary rows (8 TRAIN, 3 VALIDATION, 1 TEST)** were removed and the 500-game notebook was re-executed. The notebook also includes prefix truncation and future-field poisoning; the earlier full-cohort audit passed **3,342 historical point-in-time probes**. These establish a retrospective game-clock cutoff, **not** authenticated live-feed arrival times.
 
-I retrieved **500 distinct parsed professional matches** from the permitted OpenDota endpoints. The sample has exactly 250 games from patch 59 (21–24 March 2026) and 250 from patch 60 (24–26 March 2026), satisfying the brief's requirement to span a patch change. I located the patch boundary by probing only a few match details per page, then selected the nearest eligible games on each side without using the winner. The discovery used 705 API calls, with 49 cache hits; 45 candidate games were outside the target patches and one was unparsed/too short. This is deliberately a **patch-transition sample**, not a representative draw of November 2026 games.
+I split games by start time without dividing a professional series: **291 TRAIN / 103 VALIDATION / 106 TEST games** (**10,675 / 3,781 / 3,836** minute rows). TRAIN contains **250 patch-59 + 41 patch-60** games; validation/test are entirely patch 60. It is a later-match test, **not an unseen-patch experiment**. Five training games may have finished after validation began (maximum estimated overlap 1,606 seconds); excluding them from training in a development-only sensitivity still selects M1. Historical feed receipt and result-availability times remain unverified.
 
-The 500 games produce **18,304 minute-level observations**; median match duration is 34.2 minutes. For each prediction at minute *t*, gold/XP features use array indices no later than *t*, and event features use times at or before 60*t* seconds, including events before the horn. A separate **retrospective data-quality gate**, not a live-feed guarantee, requires all ten player clock arrays to align at 0, 60, 120, ... seconds with the aggregate gold/XP series; all 500 games passed. A live integration would validate only the received prefix. End-of-match totals, the winner, and match duration do not enter the model. Duration is used only to determine which minute rows exist. A prefix-truncation test and deliberately poisoned future/post-game fields check this invariant. A separate cached-cohort audit passed 3,342 point-in-time checks on all 500 games; the executable notebook also performs prefix/future poisoning checks across both patches. All selected games had the XP series and objective/kill logs required by the implemented features, and none needed a stale gold-series tail.
+## Model, original game insight and negative controls
 
-## Split and candidate models
+All models use training-only imputation/scaling and fixed **L2 logistic regression, C = 1**. The original candidate family was fixed before the primary held-out evaluation; validation log loss selects M1.
 
-I sorted matches by start time, then chose chronological boundaries that do not split a match or professional series. All imputation and scaling are fitted on training rows only. The actual split is **291 train / 103 validation / 106 held-out test games**, corresponding to **10,683 / 3,784 / 3,837 minute rows**. Training contains 250 patch-59 games and 41 patch-60 games; validation and test contain only patch 60. That is an intentionally difficult later-match holdout, but it is **not** an unseen-patch experiment. Series-safe start-time splits are not perfectly label-available: five training games have estimated end times up to 1,606 seconds after the first validation game begins. An exploratory check excluding those five from training still selects M1 (validation log loss 0.5198 versus M0 0.5325). The final validation game is estimated to end only **143 seconds before** the first test game begins; none is estimated to overlap, but feed/processing latency and pauses remain unknown. End times use game duration and can omit pauses; the original model and held-out scores are unchanged. Radiant won 149/291 training games (51.2%), 50/103 validation games (48.5%) and 63/106 test games (59.4%).
-
-I fixed a small nested family before observing held-out scores. Every candidate uses the same regularized logistic regression (C = 1 fixed in advance), with no hyperparameter grid. Equal validation losses break ties in favor of fewer predictors. The candidate family predates the full real-data test.
-
-| Model | Features added to the preceding model | Validation log loss | Validation Brier |
+| Model | Information available at minute t | Validation log loss | Brier |
 |---|---|---:|---:|
-| M0, mandatory baseline | Current gold lead only | 0.5321 | 0.1809 |
-| **M1, time-value** | Game minute and gold × log elapsed time | **0.5193** | **0.1758** |
-| M2, lead fragility | XP lead and trailing five-minute gold/XP changes | 0.5220 | 0.1777 |
-| M3, objective conversion | Timestamped towers, barracks, Roshan and kill differential | 0.5278 | 0.1805 |
+| M0 · required baseline | Current gold lead only | 0.5325 | 0.1811 |
+| **M1 · time value** | Gold + minute + gold × log(1 + minute/10) | **0.5197** | **0.1759** |
+| M2 · lead fragility | M1 + XP + trailing five-minute gold/XP changes | 0.5224 | 0.1778 |
+| M3 · objective conversion | M2 + timestamped towers, barracks, Roshan, kills | 0.5282 | 0.1806 |
 
-**M1 was selected on validation log loss**, before opening the held-out scores. M2 and M3 beat M0 but did not improve on M1 in validation. Their
-incremental log-loss changes versus M1 were **+0.0027** and **+0.0085**
-respectively (worse): adding XP momentum and then tower/Roshan/kill events
-did not earn their complexity in this small cohort. In a separate post-hoc forward audit on TRAIN only, M1 beat M0 in just one of three existing chronological folds; the pooled log-loss difference was +0.0012 (M1 worse). This did not change selection. The fitted gold × time interaction is negative: holding gold lead at **+2,000**, M1 forecasts **66.5%** Radiant win probability at minute 10 but **59.4%** at minute 30. Both are within the observed training range (at least +2,000 gold in 60/291 minute-10 games and 87/214 minute-30 games). This is a conditional model comparison, not an intervention. The fixed absolute lead appears less decisive as the game progresses, but the data do not show that creating the same lead at a different minute causes that probability change.
+**More features did not automatically help.** Relative to selected M1, M2 and M3 worsened validation log loss by **+0.0027** and **+0.0085**. A separate post-hoc TRAIN-only forward audit found M1 better than M0 in only **one of three** earlier folds (pooled M1−M0 difference **+0.0012**, worse). I treat the interaction as a testable hypothesis, not a verified mechanism or stable population effect.
 
-### An exploratory item-timing hypothesis
+**What the fitted interaction means:** holding Radiant's lead at **+2,000 gold**, M1 predicts **66.5%** win probability at minute 10 versus **59.4%** at minute 30. The original training sample supports these lead values at both minutes (at least +2k in 60/291 minute-10 games and 87/214 minute-30 games). Figure 1 masks unsupported regions. This conditional contrast is **not** evidence that adding gold or delaying the game causes the change.
 
-After the original four-model family was fixed and evaluated, I tested whether **timestamped purchases of influential items** add information not captured by gold and time. A five-feature logistic model (M1 plus signed cumulative major-item and Blink/BKB purchase counts) achieved validation log loss **0.5141 versus 0.5193** for M1 and Brier **0.1737 versus 0.1758**. It beat M1 in only **one of three earlier train-only folds** (log-loss differences +0.0313, −0.0013, +0.0063). On 103 previously inspected validation games, the unadjusted paired series-bootstrap 95% interval for its log-loss difference is **[−0.012944, +0.001811]**, spanning zero. The idea was highlighted from a broader **28-candidate exploratory search after original held-out outcomes had already been examined**. The interval does not correct for that search; the prior held-out set is no longer an independent test of this idea. Purchase logs are not current inventory, and the item model was **never evaluated on the 106 held-out games or used to revise M1**. The notebook reproduces the development comparison and cutoff checks.
+![Figure 1. Time-value at fixed gold leads, masked outside measured training support.](docs/figures/time_value_scenarios.png)
 
-### The wider experiment record
+*Figure 1. Conditional model predictions, shown only with at least 10 distinct nearby TRAIN games (gold ±1k, minute ±2); not game trajectories.*
 
-I did not stop at four logistic feature sets. Separate research branches
-tested **economic distribution**, **temporary strategic options**, **draft
-and nonlinear specifications**, and **phase-aware selection**. These screens
-reused a previously inspected development validation set and are **not**
-additional blind evidence for replacing M1:
+I explored player-level economic concentration (S2), temporary strategic options such as Aegis/buyback (M4), timestamped item purchases (P20), draft/nonlinear specifications and phase-aware models. **0/28 exploratory candidates** passed the existing chronological and uncertainty promotion gates. P20 looked promising on reused development validation (log loss **0.5145** versus M1 **0.5197**), but beat M1 in only **one of three** earlier TRAIN folds; its unadjusted series-bootstrap difference interval **[−0.012944,+0.001811]** includes zero. The inspected held-out set is **no longer an independent test** for those post-hoc ideas. A separate phase blend failed a registered gate on a later 200-game research cohort (0.539850 versus M1 0.533704). Those historical 28-screen numbers predate the **12-row boundary repair** and were not refitted as a new search. The [experiment register](https://github.com/sangtrx/vexil-dota2-win-probability/blob/review/vexil-recruiter-polish-20261114/docs/EXPERIMENT_REGISTER.md) documents all nine PRs, 28 results and negative trials; these branches are not part of notebook Run All.
 
-| Follow-up hypothesis | Development log loss vs M1 (0.519346) | Decision |
-|---|---:|---|
-| S2, concentration of gold among players | **0.517384** (−0.001962) | Worse in all three earlier TRAIN folds |
-| M4, recent Aegis/buyback plus structure mismatch | 0.520596 (+0.001251) | No incremental score gain; uncertain across series |
-| P20, timestamped purchase counts | **0.514098** (−0.005248) | Best of 28, but only one of three prior folds favors it |
+## Proper scoring and where the model fails
 
-The complete **28-candidate** exploratory screen advanced **zero** models after
-the practical, chronological and simultaneous 53-series uncertainty gates.
-A separately registered phase-aware blend also failed its gate on a later
-200-game cohort (log loss **0.539850** versus full M1 **0.533704**);
-those extra games are **not** in this notebook. In an independent
-adversarial research branch I tested timestamp boundaries, malformed
-snapshots and future-data poisoning; the original 3,837 held-out
-forecasts remained unchanged. The full 28-row score table, negative
-results, exact source PRs and experimental scope are preserved in the
-[experiment register](https://github.com/sangtrx/vexil-dota2-win-probability/blob/review/vexil-recruiter-polish-20261114/docs/EXPERIMENT_REGISTER.md). The register is also included as docs/EXPERIMENT_REGISTER.md in the
-repository and ZIP. Other research branches do not run inside this submission notebook.
+The primary estimand is the mean proper loss per **minute-level forecast opportunity**, so longer games carry more weight. I report **2,000 paired whole-match bootstrap resamples**, never resampling correlated minute rows as independent. Same-series games can still depend on one another.
 
-## Held-out scoring and uncertainty
-
-The primary estimand is proper loss per **minute-level forecast opportunity**. This weights longer games more heavily, so I also calculated an equal-match-weighted sensitivity. The uncertainty analysis uses **2,000 paired percentile-bootstrap resamples of whole matches** (seed 20261113), not individual minutes. Same-series games remain dependent, so even these intervals may be too narrow. The table reports M0 → M1, followed by the 95% confidence interval for the **difference M1 minus M0**. Negative differences favor M1.
-
-| Phase (matches) | Log loss M0 → M1 | Difference 95% CI | Brier M0 → M1 | Difference 95% CI |
+| Phase (games) | Log loss M0 → M1 | Difference 95% CI | Brier M0 → M1 | Difference 95% CI |
 |---|---|---|---|---|
-| **Overall (106)** | 0.5163 → **0.5039** | [−0.0303, +0.0014] | 0.1719 → **0.1683** | [−0.0069, +0.0002] |
-| 0–9 (106) | 0.6651 → 0.6507 | [−0.0251, −0.0030] | 0.2362 → 0.2295 | [−0.0116, −0.0014] |
-| 10–19 (106) | 0.5695 → 0.5500 | [−0.0342, −0.0031] | 0.1927 → 0.1853 | [−0.0131, −0.0013] |
-| 20–29 (105) | 0.4127 → 0.4061 | [−0.0110, −0.0015] | 0.1311 → 0.1291 | [−0.0036, −0.0001] |
-| 30+ (79) | 0.3623 → 0.3554 | [−0.0945, +0.0414] | 0.1028 → 0.1074 (worse) | [−0.0037, +0.0109] |
+| **Overall (106)** | 0.5164 → **0.5040** | **[−0.0304,+0.0014]** | 0.1719 → **0.1684** | **[−0.0069,+0.0002]** |
+| 0–9 (106) | 0.6651 → 0.6506 | [−0.0252,−0.0030] | 0.2362 → 0.2295 | [−0.0117,−0.0014] |
+| 10–19 (106) | 0.5695 → 0.5499 | [−0.0343,−0.0031] | 0.1927 → 0.1853 | [−0.0131,−0.0013] |
+| 20–29 (105) | 0.4131 → 0.4065 | [−0.0111,−0.0015] | 0.1312 → 0.1293 | [−0.0036,−0.0001] |
+| **30+ (79)** | 0.3623 → 0.3555 | [−0.0947,+0.0415] | **0.1028 → 0.1074 (worse)** | [−0.0037,+0.0109] |
 
-M1 improves both overall point estimates, but **both primary overall confidence intervals include zero**. I therefore do not claim a conclusive overall advantage. A separate **post-hoc** 12,000-draw, 54-series cluster resampling gives a log-loss difference interval of **[−0.0286, +0.0002]** and Brier interval **[−0.0067, −0.0005]**. The latter excludes zero under this different resampling unit, but this sensitivity is neither a new independent test nor adjusted for model search or shared teams/leagues; overall log-loss uncertainty still crosses zero. The held-out sample spans only **nine leagues**. A separate post-hoc league sensitivity is method-dependent: league-resampled intervals favor M1, but an equal-league small-sample t interval for log-loss difference includes zero. Neither establishes prospective superiority. The 0–29-minute phases favor M1 under this resampling scheme, but these exploratory phase intervals are **not adjusted for multiple comparisons**. Late-game uncertainty is much wider and Brier is worse at 30+. The 30+ log-loss gain is dominated by one 25-row game (match 8744971178), which contributes −26.61 loss-difference points to a total of −4.92. Removing that game makes the remaining late-phase difference +0.0313 (M1 worse). This is a post-hoc influence diagnostic, **not** a replacement for the primary score. Early-phase intervals are not independent of the overall interval: the same games contribute to several phases, and the unstable late-phase contribution changes whole-match bootstrap draws. Phase populations also differ because short games never reach later phases.
+**Neither overall primary interval excludes zero.** Phase intervals are not multiple-testing adjusted. Later phases also select games that last longer. Post-hoc alternative resampling by 54 series, equal-match weighting and removal of the last two recorded minutes are sensitivity checks, **not** new independent experiments or selection rules.
 
-Equal-weighting each match gives log loss 0.5095 → 0.4951 and Brier 0.1698 → 0.1649 (sensitivity point estimates; no new model fit). Neither model is fully calibrated (Figure 1). Descriptive fixed-width 10-bin ECE is **0.0748 for M1 versus 0.0897 for M0**; the *post-hoc* 54-series bootstrap 95% interval for their ECE difference **[-0.0205,+0.0020]** includes zero, so I do not claim a conclusive calibration advantage. M1's mean forecast is **0.5427** versus an observed 0.6044 across correlated minute rows. In M1's 0.5–0.6 prediction bin, the mean forecast is **0.540** but the observed Radiant win frequency is **0.654** across 788 minute rows from 103 matches. Those rows come from the held-out set and are correlated within games, not 788 independent outcomes. The shift in Radiant win rate between train and test may contribute to this underprediction. Excluding the last two recorded minutes favors M1 on log loss (difference −0.0136, 95% CI [−0.0306, −0.0002]) and Brier (−0.0040, [−0.0075, −0.0002]); unlike the headline intervals, these exclude zero. This prespecified sensitivity does not replace all-minute results or drive model selection.
+**Calibration exposes a failure mode.** Overall 10-bin ECE favors M1 (**0.0750** versus M0 **0.0895**), but the post-hoc series-bootstrap difference interval **[−0.0203,+0.0020]** includes zero. At **30+ minutes**, M1's ECE **worsens from 0.0559 to 0.0680**, as does Brier. M1's mean probability is **0.5429** against a held-out row-weighted Radiant win fraction of **0.6045**. In its 0.5–0.6 bin, the mean prediction is 0.540 but the observed win fraction is 0.653 (787 correlated rows). TRAIN Radiant wins were **51.2% of games**, versus **59.4% on TEST**; the gap may reflect sample shift as well as model calibration error, which 106 games cannot disentangle. I do **not** recalibrate on TEST.
 
-![Figure 1. Held-out reliability of M1 and the mandatory gold-only baseline. Numbers label minute rows, not independent matches.](docs/figures/heldout_reliability.png)
-*Figure 1. Held-out reliability. Each annotation is a minute-row count; observations from the same game are dependent.*
+![Figure 2. Conditional calibration ECE and Brier differences by game phase.](docs/figures/phase_error_audit.png)
 
+*Figure 2. Post-hoc error diagnostics, not a new selection criterion: M1's late-game Brier and ECE are worse than M0.*
 
-## When economic leads fail to convert
+![Figure 3. Both models' held-out reliability, with correlated minute-row counts.](docs/figures/heldout_reliability.png)
 
-I also fixed a descriptive check at minute 20: among held-out games with an absolute gold lead of at least 3,000, how often did the current gold leader eventually lose? Deteriorating means the current gold lead and the preceding five-minute gold change have opposite signs. Among **44** stable/improving leads, **5** leaders lost (11.4%, Wilson 95% interval 5.0%–24.0%). Among **8** deteriorating leads, **1** lost (12.5%, interval 2.2%–47.1%). The comparison is underpowered and inconclusive; it cannot establish a comeback mechanism. In particular, five-minute gold momentum need not translate into a better *eventual winner* model. This was not used for selection.
+*Figure 3. Descriptive reliability on the corrected held-out cohort; bin annotations are minute-row counts, not independent outcomes.*
 
-**What I would ship:** keep the gold-only baseline as a dependable reference, and run M1 in shadow mode with versioned `(match_id, minute, model, probability)` outputs and checks for source completeness, calibration by phase/patch, and inference latency. I would not replace the baseline operationally until the overall gain and calibration replicate on later series. The notebook's timestamped item-purchase model is development-only, not a release candidate. Historical OpenDota parsing is not an authenticated live feed.
+**Influence matters:** match **8744971178** contributes **54.9%** of M1's aggregate log-loss advantage across its 55 minute rows. Removing it as a **post-hoc descriptive check** changes the overall M1−M0 difference from **−0.0124 to −0.0057** (still favorable). At minute 30+, 25 rows of this game dominate the apparent late log-loss advantage; deleting them reverses the remaining late-phase point difference to **+0.0314** (M1 worse). This is not a replacement primary score.
 
-Limitations are material. All match data are retrospectively parsed; game-clock timestamps do not establish the historical arrival time of a live data feed. Match minutes share a winner, series may be dependent, the 30+ sample is selected by game duration, and patch distribution is confounded with the chronological split. No market prices, trade execution or profitability are studied.
+I also preselected a **minute-20 comeback test**. For games with |gold lead| ≥ 3,000, the current leader lost **5/44** times with a stable/improving lead versus **1/8** with deteriorating gold momentum. The comparison is underpowered and inconclusive. I do not turn an unverified comeback narrative into a release feature.
 
-**A lead has a time value.** Figure 2 visualizes the fitted gold-by-time
-interaction directly. For a fixed positive lead, the model assigns less win
-probability at later game times, while a negative lead becomes less decisive.
-Only minute/lead pairs supported by at least 10 distinct training games within
-a nearby window are drawn. This is a *conditional model comparison*, not a
-causal statement about what would happen if we gave a team gold.
+## Decision, reproducibility and assistance
 
-![Figure 2. Fitted time-value of a fixed gold lead, restricted to observed training support.](docs/figures/time_value_scenarios.png)
+**What I would ship:** keep gold-only M0 as a reference and run M1 in **shadow mode**. Record model version, match ID, minute, probability, source receipt time and input completeness; monitor log loss, calibration, late-game error, patch/league drift and latency. Replace M0 only after a fresh, genuinely later-series cohort with verified source availability supports a replicable gain. Historical OpenDota parsing is not a live authenticated feed. There are no betting odds, execution simulations or trading-profit claims.
 
-*Figure 2. Model-implied probability at fixed gold leads; masked outside sufficient training support. These are not actual game trajectories.*
+The candidate family (commit **e49e853**) and 500-game identity list (**3258a76**) preceded the original test. An endpoint-boundary correctness repair excludes 12 exact end-of-game rows; the notebook was then **re-fitted and fully re-executed locally** from the same frozen OpenDota cache (500 cache hits, zero HTTP calls, all 14 code cells, four saved figures). Previous Kaggle/Colab cold runs verified the **earlier** 18,304-row scientific version, not this corrected one; no identical new cloud run is claimed. The current revision exports **3,836 held-out predictions**. Earlier extended research QA passed 65 tests; the current portable suite is independently rechecked. A [read-only error audit](https://github.com/sangtrx/vexil-dota2-win-probability/blob/review/vexil-recruiter-polish-20261114/docs/ERROR_ANALYSIS.md) independently recalculates phase ECE and match influence from the frozen CSV without fitting or API calls. Source events' game-clock times are not certified feed arrival times.
 
-## Reproduction and assistance
+**Time spent:** Approximately **8 hours of active work**, based on my estimate, excluding unattended API fetching and cloud/runtime waiting.
 
-The four-model candidate family was committed before real evaluation (e49e853); the 500 IDs were frozen before inspecting held-out results (3258a76). The self-contained notebook fetches only permitted OpenDota records, exports every prediction and four figures, and retains model-input, outcome-label and cohort hashes. The complete 3,837-row forecast CSV is also attached to the repository for direct inspection, but is never read by the notebook. The same scientific code completed two private Kaggle CPU cold runs (V3: **505 HTTP calls**; guarded V4: **511 calls**) and a fresh Google Colab CPU cold run (**512 calls**), all with zero cache hits. Independently verified all eight exported scientific CSVs and four figures against BigLinux (maximum absolute numerical difference below **5e-16**). OpenDota can reparse raw auxiliary fields, but model-relevant source hashes agreed. The final notebook's author-hours declaration and explanatory Markdown were corrected after those hosted runs; all substantive feature, training and evaluation code cells are unchanged. A fresh local full cached Run All reproduced the same 3,837 held-out predictions; **65 offline tests** passed on the frozen scientific code. These historical game-clock timestamps do not certify live-feed arrival times.
-
-**Time spent:** Approximately **8 hours of active work**, based on my estimate. This excludes unattended API fetching and cloud/runtime waiting.
-
-**Assistance disclosure:** ChatGPT assisted with notebook/test implementation and report drafting; Claude Sonnet independently reviewed an earlier code/report draft. No external Dota win-prediction implementation was copied. All reported numerical results come from executed analysis, not illustrative or synthetic data.
+**Assistance disclosure:** ChatGPT assisted notebook/test implementation and report drafting; Claude Sonnet independently reviewed an earlier editorial draft. No external Dota win-prediction code was copied. Every numerical result comes from executed data analysis, not a synthetic example.

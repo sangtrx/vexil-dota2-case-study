@@ -15,3 +15,5 @@ img[src*="illustrative_game"]{width:54%;max-height:76mm;object-fit:contain}
 p:has(img){text-align:center;break-inside:avoid;margin-top:1mm;margin-bottom:0.5mm}
 p:has(img)+p{font-size:8pt;font-style:italic;text-align:center;margin-bottom:2mm}
 a{color:#194e7a;text-decoration:none}
+
+img[src*="phase_error_audit"]{width:85%;max-height:58mm;object-fit:contain}

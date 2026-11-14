@@ -28,6 +28,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         for relative in (
             "docs/figures/heldout_reliability.png",
             "docs/figures/time_value_scenarios.png",
+            "docs/figures/phase_error_audit.png",
         ):
             self.assertIn("](" + relative + ")", markdown)
             source = (ROOT / relative).read_bytes()
@@ -47,10 +48,14 @@ class ReportDeliveryContractTest(unittest.TestCase):
                      if x.startswith("Pages:")]
             self.assertEqual(len(pages), 1)
             self.assertLessEqual(pages[0],4)
+        if shutil.which("pdfinfo"):
+            annotations=subprocess.check_output(["pdfinfo","-url",str(ROOT/"REPORT.pdf")],text=True)
+            self.assertNotIn("file:///",annotations)
+            self.assertIn("https://github.com/",annotations)
         if shutil.which("pdfimages"):
             listings = subprocess.check_output(["pdfimages","-list",str(ROOT/"REPORT.pdf")],text=True)
             actual_lines = [x for x in listings.splitlines() if x.lstrip()[:1].isdigit()]
-            self.assertGreaterEqual(len(actual_lines),2)
+            self.assertGreaterEqual(len(actual_lines),3)
 
 
 if __name__ == "__main__":

@@ -207,6 +207,23 @@ class NotebookContractsTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             N["make_minute_table"]([dict(base, radiant_gold_adv=[0])])
 
+    def test_live_forecast_clock_excludes_exact_terminal_minute(self):
+        # A match ending at t=35*60 cannot yield a preterminal forecast at t=35.
+        # The corrected notebook must also align timestamped item features.
+        case=match_fixture()
+        case["duration"]=2100
+        strict=N["make_minute_table"]([case])
+        self.assertEqual(strict.minute.min(),0)
+        self.assertEqual(strict.minute.max(),34)
+        self.assertEqual(len(strict),35)
+        self.assertTrue((60*strict.minute < case["duration"]).all())
+        case["duration"]=2150
+        partial=N["make_minute_table"]([case])
+        self.assertEqual(partial.minute.max(),35)
+        self.assertEqual(len(partial),36)
+        self.assertTrue((60*partial.minute < case["duration"]).all())
+        self.assertIn('for t in range((int(game["duration"])-1)//60 + 1):',source_at(12))
+
     def test_invalid_numeric_events_and_player_slots(self):
         m = match_fixture()
         m["objectives"].append({"type":"building_kill","key":"npc_dota_badguys_tower1_mid","time":float("nan")})

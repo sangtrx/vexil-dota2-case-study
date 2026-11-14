@@ -13,9 +13,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261114.zip"
-MODEL_CODE_SHA256 = "d3a12a5bb2c272b10f6a16384eb760d52efba89a856b95b9d651bd001a57eba5"
-EXPECTED_NOTEBOOK_SHA256 = "bbac94f53890825ade6f7654946f427be3b26f0c032f67271fc11c6525060877"
-EXPECTED_FORECAST_SHA256 = "e3b2c843172fdde029f5f5ec05536ea837ec023b8b860543cadedf028bb3cb32"
+MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
+EXPECTED_NOTEBOOK_SHA256 = "b36da889d8c4e3a45d25e8b770987c46b8ad437ee5e83aa49c7dbb1806dc6857"
+EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FILES = (
     "README.md",
     "SUBMISSION_PACKAGE_README.md",
@@ -27,9 +27,19 @@ FILES = (
     "docs/figures/heldout_reliability.png",
     "docs/figures/time_value_scenarios.png",
     "docs/EXPERIMENT_REGISTER.md",
+    "docs/STRICT_SERIES_ECE_RECEIPT.json",
+    "docs/ERROR_ANALYSIS.md",
+    "docs/ERROR_AUDIT_RECEIPT.json",
+    "docs/figures/phase_error_audit.png",
+    "research/error_diagnostics.py",
+    "research/render_error_figure.py",
+    "scripts/render_report.py",
+    "scripts/render_report_weasyprint.py",
+    "scripts/report.css",
     "tests/test_notebook_contracts.py",
     "tests/test_report_contract.py",
     "tests/test_submission_forecasts.py",
+    "tests/test_error_diagnostics.py",
 )
 STAMP = (2026, 11, 14, 0, 0, 0)
 
@@ -56,7 +66,7 @@ def verify() -> dict:
     model_code = "".join("".join(c["source"]) for i, c in enumerate(cells)
                          if c["cell_type"] == "code" and i != 2)
     if sha(model_code.encode()) != MODEL_CODE_SHA256:
-        raise ValueError("Scientific code is not the independently reviewed version.")
+        raise ValueError("Scientific code does not match the pinned and locally tested corrected source.")
     setup = "".join(cells[2]["source"])
     setup_out = "".join(
         "".join(x.get("text", "")) if isinstance(x.get("text"), list)
@@ -76,6 +86,16 @@ def verify() -> dict:
                      if x.startswith("Pages:")))
     if pages > 4:
         raise ValueError("Report exceeds the four-page assignment limit.")
+    # A PDF with no embedded figures or local-only file:// links is not shippable.
+    info_urls = subprocess.check_output(["pdfinfo", "-url", str(ROOT / "REPORT.pdf")], text=True)
+    if "file:///" in info_urls:
+        raise ValueError("PDF contains machine-local file hyperlinks.")
+    if "https://github.com/" not in info_urls:
+        raise ValueError("PDF source/experiment hyperlinks are missing.")
+    images = subprocess.check_output(["pdfimages", "-list", str(ROOT / "REPORT.pdf")], text=True)
+    image_lines = [line for line in images.splitlines() if line.lstrip()[:1].isdigit()]
+    if len(image_lines) < 3:
+        raise ValueError("Report PDF has missing rendered figures.")
     report = (ROOT / "REPORT.md").read_text()
     if not all(x in report for x in ("**Time spent:**", "**Assistance disclosure:**", "**Result:**")):
         raise ValueError("Missing hours, assistance or results in report.")
@@ -83,9 +103,15 @@ def verify() -> dict:
     forecasts = (ROOT / "artifacts/heldout_predictions.csv").read_bytes()
     if sha(forecasts) != EXPECTED_FORECAST_SHA256:
         raise ValueError("Frozen held-out predictions have changed.")
+    # Never package a stale post-hoc audit under a new frozen forecast receipt.
+    audit = json.loads((ROOT / "docs/ERROR_AUDIT_RECEIPT.json").read_text())
+    if audit.get("source_forecasts_sha256") != EXPECTED_FORECAST_SHA256:
+        raise ValueError("Error-audit receipt does not match frozen source CSV.")
+    if audit.get("overall", {}).get("minute_rows") != 3836 or audit.get("overall", {}).get("matches") != 106:
+        raise ValueError("Error-audit receipt dimensions have changed.")
     rows = list(csv.DictReader(io.StringIO(forecasts.decode("utf8"))))
-    if len(rows) != 3837 or len({r["match_id"] for r in rows}) != 106:
-        raise ValueError("Expected exactly 106 games and 3,837 forecasts.")
+    if len(rows) != 3836 or len({r["match_id"] for r in rows}) != 106:
+        raise ValueError("Expected exactly 106 games and 3,836 forecasts.")
     if not rows or list(rows[0]) != ["match_id", "minute", "p_model", "p_baseline", "radiant_win"]:
         raise ValueError("Missing required held-out probability columns.")
     for row in rows:
@@ -107,8 +133,8 @@ def verify() -> dict:
 
     m0 = measures("p_baseline")
     m1 = measures("p_model")
-    reference = ((0.5163046946798686, 0.17185915685725403),
-                 (0.5039056145604591, 0.168311943059945))
+    reference = ((0.5164444241748873, 0.1719121780368728),
+                 (0.504014697253528, 0.1683528340689237))
     if any(abs(a - b) > 1e-12
            for computed, expected in zip((m0, m1), reference)
            for a, b in zip(computed, expected)):
@@ -147,7 +173,7 @@ def run() -> dict:
                 raise ValueError("ZIP file changed: " + name)
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),
             "size_bytes": DEST.stat().st_size, "files": len(entries),
-            "science_code_unchanged": True, **acceptance}
+            "science_code_sha256_pinned": True, **acceptance}
 
 
 if __name__ == "__main__":
