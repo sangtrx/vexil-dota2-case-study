@@ -7,6 +7,7 @@ import hashlib
 import io
 import json
 import math
+import numpy as np
 from pathlib import Path
 import subprocess
 import zipfile
@@ -122,6 +123,50 @@ def verify() -> dict:
             if not math.isfinite(p) or p <= 0 or p >= 1:
                 raise ValueError("Invalid probability in held-out CSV.")
 
+    # Reproduce the original paired whole-match bootstrap on the immutable
+    # corrected forecasts, not a new test or a new model-selection procedure.
+    # Match clusters are the resampling unit and minute opportunities are the
+    # scoring denominator; same-series correlation remains a limitation.
+    ids=sorted({int(r["match_id"]) for r in rows})
+    grouped={mid:[] for mid in ids}
+    for row in rows:
+        grouped[int(row["match_id"])].append(row)
+    def match_ci(metric: str) -> tuple[float,float]:
+        values=[]
+        for mid in ids:
+            subset=grouped[mid]
+            def loss(row,model):
+                y=int(row["radiant_win"])
+                p=float(row[model])
+                return (p-y)**2 if metric=="brier" else -(y*math.log(p)+(1-y)*math.log1p(-p))
+            values.append([len(subset),
+                           sum(loss(x,"p_model") for x in subset),
+                           sum(loss(x,"p_baseline") for x in subset)])
+        a=np.asarray(values,dtype=float)
+        rng=np.random.default_rng(20261113)
+        idx=rng.integers(0,len(a),size=(2000,len(a)))
+        vals=a[idx].sum(axis=1)
+        delta=(vals[:,1]-vals[:,2])/vals[:,0]
+        return tuple(map(float,np.quantile(delta,[.025,.975])))
+    ci_ll=match_ci("logloss")
+    ci_brier=match_ci("brier")
+    for got,expected in [
+        (ci_ll,(-.03037142153342258,.0014126953857700388)),
+        (ci_brier,(-.006938042296466374,.00019175815572719667)),
+    ]:
+        if any(abs(a-b)>1e-10 for a,b in zip(got,expected)):
+            raise ValueError("Paired whole-match bootstrap CI contract drifted.")
+    readme=(ROOT/"README.md").read_text()
+    report=(ROOT/"REPORT.md").read_text()
+    if "[-0.0304, +0.0014]" not in readme or "[−0.0304,+0.0014]" not in report:
+        raise ValueError("README and report CI display does not match corrected forecasts.")
+    if "28-way adjusted" not in report or "[−0.0169,+0.0064]" not in report:
+        raise ValueError("Historical exploratory P20 interval/provenance absent.")
+    if "AI-assisted critiques, not independent human peer review" not in report:
+        raise ValueError("Mandatory accurate AI-review disclosure missing.")
+    if "https://github.com/sangtrx/vexil-dota2-win-probability" in report:
+        raise ValueError("Reviewer PDF still links to development-only source.")
+
     def measures(key: str) -> tuple[float, float]:
         ll = brier = 0.0
         for row in rows:
@@ -140,6 +185,7 @@ def verify() -> dict:
            for a, b in zip(computed, expected)):
         raise ValueError("Recomputed held-out metrics differ from report.")
     return {"pages": pages, "forecast_rows": len(rows), "heldout_games": 106,
+            "paired_match_ci_logloss": ci_ll, "paired_match_ci_brier": ci_brier,
             "M0": m0, "M1": m1}
 
 

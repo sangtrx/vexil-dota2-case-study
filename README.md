@@ -13,15 +13,15 @@ The notebook estimates the probability that Radiant eventually wins using inform
 | Held-out Brier score (106 games) | 0.1719 | **0.1684** |
 | Held-out Brier, minute 30+ | **0.1028** | 0.1074 |
 
-The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0303, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
+The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0304, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
 
-The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a **three-page A4 report**.
+The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), an A4 report of at most four pages.
 
 **Read-only failure audit:** [Error analysis](docs/ERROR_ANALYSIS.md) explains phase calibration, the late-game Brier reversal and match-level influence; a small [offline verification script](research/error_diagnostics.py) recalculates held-out phase scores, ECE and influential matches from the frozen forecast CSV without model refitting. **One 55-row game explains 54.9% of the sample log-loss gain**, another reason not to treat the M1 point estimate as a confirmed improvement.
 
 **Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. Prior cold Kaggle/Colab runs covered the earlier inclusive-boundary version, not this corrected exact-source notebook.
 
-**Full research inventory:** [Experiment register](docs/EXPERIMENT_REGISTER.md) covers all nine project/research PRs, every one of the **28 exploratory candidates** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are *not* part of the notebook's Run All, and no additional model was selected by inspecting the frozen held-out test.
+**Full research inventory:** [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
 
 ## Run the notebook
 
@@ -51,7 +51,7 @@ Run all cells, top to bottom. `requirements.txt` pins the local Python dependenc
 | [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) | **All 3,836** held-out predictions, one row per `(match_id, minute)`; never read as notebook input |
 | [requirements.txt](requirements.txt) | Exact dependencies for local execution |
 | [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
-| [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Model's original time-value hypothesis, plotted only in training-supported states |
+| [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Fitted time-value hypothesis, plotted only in training-supported states |
 | [docs/figures/phase_error_audit.png](docs/figures/phase_error_audit.png) | Error diagnosis by phase, including the late-game Brier and ECE reversal; post-hoc descriptive |
 | [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | All 9 project PRs and 28 exploratory hypotheses; supplemental source-linked experiment index, not a second assessment report |
 | [docs/ERROR_ANALYSIS.md](docs/ERROR_ANALYSIS.md) | Reproducible post-hoc failure diagnosis: phase ECE/Brier, match influence and model-governance boundaries |
@@ -66,4 +66,4 @@ Running the notebook also exports eight scientific CSV tables, four PNG figures 
 - **Uncertainty:** paired bootstrap by whole match, rather than treating minute rows as independent labels. Same-series and league dependencies remain and can widen uncertainty. The 30+ minute phase is especially unstable.
 - **Exploration:** the notebook includes a separate *development-only*, timestamped item-purchase hypothesis. Its validation score was not used to replace M1; it has no new held-out result and is not a deployed model.
 
-The report records approximately **8 hours of active work**, excluding unattended API/cloud waiting, and discloses the coding/drafting assistance as required by the assignment. No trade execution, market prices or realised profitability are measured.
+The original core-work estimate was **approximately 8 active hours**, excluding unattended data/cloud time. Later research and QA work extended beyond this estimate without an audited total. AI coding, research and writing assistance is disclosed in REPORT.pdf. No trade execution, market prices or realised profitability are measured.

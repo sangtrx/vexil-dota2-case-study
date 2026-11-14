@@ -18,10 +18,30 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(len(candidates), 28)
         self.assertEqual(set(candidates), {f"P{i:02d}" for i in range(1,29)})
         for pr in range(3,12):
-            self.assertIn(f"/pull/{pr}", text)
+            self.assertIn(f"| #{pr} |", text)
+        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-win-probability", text)
         for phrase in ("0/28", "previously inspected", "M4", "S2",
                        "stage gate", "24,126", "not a second", "[-0.016929,+0.006434]"):
             self.assertIn(phrase.lower(),text.lower())
+
+    def test_fable_handoff_truth_and_historical_provenance(self):
+        report=(ROOT/"REPORT.md").read_text(encoding="utf8")
+        readme=(ROOT/"README.md").read_text(encoding="utf8")
+        register=(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text(encoding="utf8")
+        self.assertIn("[−0.0304,+0.0014]",report)
+        self.assertIn("[-0.0304, +0.0014]",readme)
+        self.assertNotIn("[-0.0303, +0.0014]",readme)
+        for token in ("28-way adjusted","[−0.0169,+0.0064]","pre-correction",
+                      "reused validation","at least 38","none of the 28"):
+            self.assertIn(token.lower(),report.lower())
+        self.assertIn("[-0.016929,+0.006434]",register)
+        self.assertIn("Claude (Sonnet and Fable)",report)
+        self.assertIn("AI-assisted critiques, not independent human peer review",report)
+        self.assertIn("Later exploration and QA",report)
+        self.assertIn("no reliable total is claimed",report)
+        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-win-probability",report)
+        self.assertIn("vexil-dota2-assessment/blob/v1.0.0/",report)
+        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-win-probability",readme)
 
     def test_report_figures_and_rendered_pdf_are_present(self):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
@@ -40,7 +60,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("**Result:**", markdown)
         self.assertIn("**Assistance disclosure:**", markdown)
         self.assertIn("**Time spent:**", markdown)
-        self.assertIn("no longer an independent test", markdown)
+        self.assertIn("not** an independent held-out test", markdown)
         self.assertTrue((ROOT/"REPORT.pdf").read_bytes().startswith(b"%PDF-"))
         if shutil.which("pdfinfo"):
             info = subprocess.check_output(["pdfinfo", str(ROOT/"REPORT.pdf")],text=True)

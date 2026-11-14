@@ -45,3 +45,5 @@ minute-weighted log loss changed 0.5164 to 0.5040 and Brier changed
 include zero. M1's Brier at minute 30+ is worse. These historical
 OpenDota forecasts neither prove true live-feed availability nor yield
 a measured trading or betting profit.
+
+**Reviewer handoff:** A dedicated single-branch repository and stable v1.0.0 source tag isolate this deliverable from the historical research PR branches. The candidate-only study/InterviewBundle archives are not included.
