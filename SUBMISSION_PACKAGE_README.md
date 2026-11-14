@@ -17,7 +17,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,837 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Three small test modules under tests/ run 42 offline unit/contract checks
+5. Three small test modules under tests/ run 43 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
 6. docs/EXPERIMENT_REGISTER.md lists all nine project/research PRs,
    including the 28-model exploratory search with every negative result.

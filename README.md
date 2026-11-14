@@ -36,7 +36,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 42 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the clean reviewer handoff.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 43 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the clean reviewer handoff.
 
 ## Files and review order
 

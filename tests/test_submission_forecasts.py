@@ -39,6 +39,26 @@ class SubmissionForecastsTest(unittest.TestCase):
             self.assertTrue(np.isfinite(p).all())
             self.assertTrue(((p >= 0) & (p <= 1)).all())
 
+    def test_descriptive_calibration_from_frozen_forecasts(self):
+        # Fixed ten equal-width bins. No refit, threshold search, or
+        # test-set recalibration; descriptive only on correlated minute rows.
+        frame = pd.read_csv(ROOT / "artifacts/heldout_predictions.csv")
+        y = frame.radiant_win.to_numpy(float)
+        self.assertEqual(len(y), 3837)
+        self.assertAlmostEqual(float(y.mean()), 0.6043784206411259, places=12)
+        for name, expected in (
+            ("model", 0.07483265952034383),
+            ("baseline", 0.08966626212560196),
+        ):
+            p = frame["p_" + name].to_numpy(float)
+            bins = np.minimum(np.floor(10 * p).astype(int), 9)
+            ece = sum(abs(float((y[mask] - p[mask]).sum()))
+                      for b in range(10)
+                      if (mask := (bins == b)).any()) / len(y)
+            self.assertAlmostEqual(ece, expected, places=12)
+        self.assertAlmostEqual(
+            float(frame.p_model.mean()), 0.5427103013139265, places=12)
+
     def test_independent_scores_and_provenance(self):
         file = ROOT / "artifacts/heldout_predictions.csv"
         frame = pd.read_csv(file)
