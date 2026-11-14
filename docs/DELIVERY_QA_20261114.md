@@ -207,7 +207,7 @@ giving **65/65 local PASS**.
   This does not certify contemporaneous live-feed arrival.
 - Model improvement remains statistically uncertain and all retrospective
   source timestamps need live-feed arrival validation before production.
-- Applicant must enter their actual active hours, not elapsed API/kernel time, before submission.
+- Applicant reports approximately 8 active hours; the 14 November report now records that estimate explicitly, excluding unattended API/kernel waiting.
 - No hiring submission or model promotion has occurred.
 
 This QA isolates source correctness from predictive evidence. The original selected M1 still lacks a statistically conclusive overall held-out advantage over M0.
