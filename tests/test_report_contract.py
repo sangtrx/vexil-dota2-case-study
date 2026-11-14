@@ -11,6 +11,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ReportDeliveryContractTest(unittest.TestCase):
+    def test_full_experiment_register(self):
+        import re
+        text = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text(encoding="utf8")
+        candidates = re.findall(r"^\| (P\d{2}) \|", text, flags=re.M)
+        self.assertEqual(len(candidates), 28)
+        self.assertEqual(set(candidates), {f"P{i:02d}" for i in range(1,29)})
+        for pr in range(3,12):
+            self.assertIn(f"/pull/{pr}", text)
+        for phrase in ("0/28", "previously inspected", "M4", "S2",
+                       "stage gate", "24,126", "not a second", "[-0.016929,+0.006434]"):
+            self.assertIn(phrase.lower(),text.lower())
+
     def test_report_figures_and_rendered_pdf_are_present(self):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
         for relative in (

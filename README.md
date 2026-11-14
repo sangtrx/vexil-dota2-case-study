@@ -15,7 +15,9 @@ The notebook estimates the probability that Radiant eventually wins using inform
 
 The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0303, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
 
-The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a **three-page A4 report**.
+The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a **four-page A4 report**.
+
+**Full research inventory:** [Experiment register](docs/EXPERIMENT_REGISTER.md) covers all nine project/research PRs, every one of the **28 exploratory candidates** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are *not* part of the notebook's Run All, and no additional model was selected by inspecting the frozen held-out test.
 
 ## Run the notebook
 
@@ -34,18 +36,19 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 41 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the clean reviewer handoff.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 42 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the clean reviewer handoff.
 
 ## Files and review order
 
 | File | Purpose |
 | --- | --- |
-| [REPORT.pdf](REPORT.pdf) | Three-page assessment report with real-data figures, results, limitations and required assistance disclosure |
+| [REPORT.pdf](REPORT.pdf) | Four-page assessment report with real-data figures, results, limitations and required assistance disclosure |
 | [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb) | Self-contained data collection, point-in-time features, M0–M3, validation, held-out scoring and saved outputs |
 | [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) | **All 3,837** held-out predictions, one row per `(match_id, minute)`; never read as notebook input |
 | [requirements.txt](requirements.txt) | Exact dependencies for local execution |
 | [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
 | [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Model's original time-value hypothesis, plotted only in training-supported states |
+| [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | All 9 project PRs and 28 exploratory hypotheses; supplemental source-linked experiment index, not a second assessment report |
 
 Running the notebook also exports eight scientific CSV tables, four PNG figures and a JSON receipt. The included forecast CSV lets a reviewer inspect all held-out predictions without re-fetching 500 matches. The downloadable submission ZIP mirrors these files and includes SHA-256 checksums; it is not a separate model or input dataset.
 

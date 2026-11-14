@@ -42,6 +42,32 @@ did not earn their complexity in this small cohort. In a separate post-hoc forwa
 
 After the original four-model family was fixed and evaluated, I tested whether **timestamped purchases of influential items** add information not captured by gold and time. A five-feature logistic model (M1 plus signed cumulative major-item and Blink/BKB purchase counts) achieved validation log loss **0.5141 versus 0.5193** for M1 and Brier **0.1737 versus 0.1758**. It beat M1 in only **one of three earlier train-only folds** (log-loss differences +0.0313, −0.0013, +0.0063). On 103 previously inspected validation games, the unadjusted paired series-bootstrap 95% interval for its log-loss difference is **[−0.012944, +0.001811]**, spanning zero. The idea was highlighted from a broader **28-candidate exploratory search after original held-out outcomes had already been examined**. The interval does not correct for that search; the prior held-out set is no longer an independent test of this idea. Purchase logs are not current inventory, and the item model was **never evaluated on the 106 held-out games or used to revise M1**. The notebook reproduces the development comparison and cutoff checks.
 
+### The wider experiment record
+
+I did not stop at four logistic feature sets. Separate research branches
+tested **economic distribution**, **temporary strategic options**, **draft
+and nonlinear specifications**, and **phase-aware selection**. These screens
+reused a previously inspected development validation set and are **not**
+additional blind evidence for replacing M1:
+
+| Follow-up hypothesis | Development log loss vs M1 (0.519346) | Decision |
+|---|---:|---|
+| S2, concentration of gold among players | **0.517384** (−0.001962) | Worse in all three earlier TRAIN folds |
+| M4, recent Aegis/buyback plus structure mismatch | 0.520596 (+0.001251) | No incremental score gain; uncertain across series |
+| P20, timestamped purchase counts | **0.514098** (−0.005248) | Best of 28, but only one of three prior folds favors it |
+
+The complete **28-candidate** exploratory screen advanced **zero** models after
+the practical, chronological and simultaneous 53-series uncertainty gates.
+A separately registered phase-aware blend also failed its gate on a later
+200-game cohort (log loss **0.539850** versus full M1 **0.533704**);
+those extra games are **not** in this notebook. In an independent
+adversarial research branch I tested timestamp boundaries, malformed
+snapshots and future-data poisoning; the original 3,837 held-out
+forecasts remained unchanged. The full 28-row score table, negative
+results, exact source PRs and experimental scope are preserved in the
+[experiment register](https://github.com/sangtrx/vexil-dota2-win-probability/blob/review/vexil-recruiter-polish-20261114/docs/EXPERIMENT_REGISTER.md). The register is also included as docs/EXPERIMENT_REGISTER.md in the
+repository and ZIP. Other research branches do not run inside this submission notebook.
+
 ## Held-out scoring and uncertainty
 
 The primary estimand is proper loss per **minute-level forecast opportunity**. This weights longer games more heavily, so I also calculated an equal-match-weighted sensitivity. The uncertainty analysis uses **2,000 paired percentile-bootstrap resamples of whole matches** (seed 20261113), not individual minutes. Same-series games remain dependent, so even these intervals may be too narrow. The table reports M0 → M1, followed by the 95% confidence interval for the **difference M1 minus M0**. Negative differences favor M1.

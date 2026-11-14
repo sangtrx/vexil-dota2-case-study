@@ -6,7 +6,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
 
 ## Contents and reproducibility
 
-1. REPORT.pdf is the separate three-page technical report, including decisions,
+1. REPORT.pdf is the separate four-page technical report, including decisions,
    ablations, uncertainty, limitations, approximately eight active work hours,
    and the assistance disclosure.
 2. live_dota2_win_probability.ipynb is one executable notebook with 14 executed
@@ -17,9 +17,13 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,837 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Three small test modules under tests/ run 41 offline unit/contract checks
+5. Three small test modules under tests/ run 42 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
-6. Two real-data figures used in the report are included under docs/figures.
+6. docs/EXPERIMENT_REGISTER.md lists all nine project/research PRs,
+   including the 28-model exploratory search with every negative result.
+   This is an index to separate research branches, not a second report,
+   and the standalone notebook does not run all those experiments.
+7. Two real-data figures used in the report are included under docs/figures.
    The latest notebook has saved outputs and an 8-hour author-time disclosure.
    Earlier cold Kaggle/Colab runs verified the same scientific code; the setup
    disclosure and explanatory Markdown were corrected afterwards, then

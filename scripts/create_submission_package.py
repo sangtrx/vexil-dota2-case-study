@@ -26,6 +26,7 @@ FILES = (
     "artifacts/heldout_predictions.csv",
     "docs/figures/heldout_reliability.png",
     "docs/figures/time_value_scenarios.png",
+    "docs/EXPERIMENT_REGISTER.md",
     "tests/test_notebook_contracts.py",
     "tests/test_report_contract.py",
     "tests/test_submission_forecasts.py",
