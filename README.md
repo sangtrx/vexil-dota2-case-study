@@ -1,22 +1,29 @@
-# Live Dota 2 Win Probability — Vexil Capital Take-Home
+# Live Dota 2 Win Probability
 
-Predict the probability that **Radiant wins at each match minute**, using only data available at that minute, from **500 parsed professional OpenDota matches** spanning a patch change.
+A reproducible, minute-by-minute Radiant win-probability study using **500 parsed professional OpenDota matches** spanning patches 59 and 60 in March 2026. Prepared for the Vexil Capital Senior Data Scientist take-home.
 
-**Status:** 14 November source-integrity V4: full 500-match BigLinux Run All **PASS**, **65/65** offline tests **PASS**, and eight scientific CSVs unchanged (maximum numerical delta 4.44e-16). All 3,837 held-out forecasts and the selected M1 remain fixed. Private Kaggle V3 completed a genuine 500-match cold run with 505 HTTP calls, zero cache hits and complete 8-CSV parity; its source precedes V4 identity/manifest guards. The exact V4 notebook also passed a **private Kaggle CPU cold Run All**, independently verified from downloaded source and all outputs: **511 HTTP calls, zero cache hits, 8/8 scientific CSVs and 4/4 exported PNGs**, with exact 26-cell source and semantic hash parity. The same exact-source notebook also passed a signed-in Google Colab CPU cold Run All: 512 fresh HTTP calls, zero cache hits, 14/14 code cells, 8/8 CSVs and 4/4 PNGs verified. Active work time is now recorded as approximately 8 hours in REPORT.md/PDF. External submission remains HOLD pending applicant editorial review, private-repo reviewer access and actual submission.
+The notebook estimates the probability that Radiant eventually wins using information available by game minute t. It compares the required **gold-lead-only logistic regression** with a validation-selected, interpretable **gold-and-time challenger**. This is a retrospective forecast study, not an authenticated live feed or a betting strategy.
 
-## Submission contract
+## Results
 
-- `live_dota2_win_probability.ipynb`: one self-contained Python notebook, all outputs saved, runnable top-to-bottom on a fresh Google Colab runtime and locally.
-- `requirements.txt`: pinned packages; no API key or pre-downloaded data.
-- `REPORT.pdf` (**3 A4 pages, with two real-data figures**) and the matching editable `REPORT.md`: the same report in two formats, explaining decisions, ablations, evaluation, uncertainty, limitations, and AI/public-code use. The notebook also contains one strictly development-only item-purchase hypothesis; it never alters the original M0–M3 model selection or held-out scores. The report records the candidate's estimate of approximately 8 active work hours (excluding unattended runtime/API wait).
-- OpenDota endpoints **only**: `/api/proMatches` and `/api/matches/{match_id}`.
-- A point-in-time feature invariant check, grouped temporal validation, gold-only logistic-regression baseline, one proposed model, and match-cluster bootstrap confidence intervals.
-- Log loss, Brier score, and calibration plots on untouched held-out matches, overall and for 0–9, 10–19, 20–29, and 30+ minutes.
-- The notebook prints all 500 match identifiers, start times and patch IDs, and previews 16 held-out predictions. The **complete 3,837-row** derived table is directly reviewable at [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) and also regenerated as heldout_predictions.csv by Run All. This file is an output, **never an input** to the notebook. Four charts are embedded in the saved notebook output.
+| Metric | Gold-only baseline M0 | Selected challenger M1 |
+| --- | ---: | ---: |
+| Validation log loss (103 games) | 0.5321 | **0.5193** |
+| Held-out log loss (106 games) | 0.5163 | **0.5039** |
+| Held-out Brier score (106 games) | 0.1719 | **0.1683** |
+| Held-out Brier, minute 30+ | **0.1028** | 0.1074 |
 
-## Local execution
+The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0303, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
 
-Python 3.11+ recommended:
+The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a **three-page A4 report**.
+
+## Run the notebook
+
+Use [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb). The notebook fetches its own data from the allowed OpenDota endpoints: `/api/proMatches` and `/api/matches/{match_id}`. It uses a frozen, explicit 250/250 match manifest. No credentials, uploaded datasets or other model inputs are required.
+
+**Google Colab:** Open the notebook from this GitHub repository, choose a CPU runtime with Internet access and select **Runtime → Run all**. The setup cell checks the Python environment and installs required packages when missing. OpenDota may rate-limit requests; the collector uses bounded retry and refuses to silently substitute a different match.
+
+**Local Python 3.11+:**
 
 ```bash
 python3 -m venv .venv
@@ -25,161 +32,27 @@ python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
 ```
 
-Use **Run All**. The notebook downloads its own match payloads from OpenDota, rate-limits requests (about 37.5/minute), retries transient 429/5xx/transport errors with bounded backoff, and caches fetched payloads during execution. A shared-IP rate limit or temporary OpenDota outage can still prevent a cold hosted run from finishing; such failure is reported, never silently replaced with a different match. No credentials or local data files are required. A cold API run takes substantially longer than a cached local rerun. The complete cached local execution has been verified; the source notebook still fetches the same 500 OpenDota records on a clean runtime.
+Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-## Direct forecast review
+## Files and review order
 
-The full, frozen **3,837-row** held-out prediction table is included as
-[artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv).
-Reviewers can inspect every Radiant win probability without requesting
-500 OpenDota games again. It is regenerated by the notebook, **never
-read as a model input**, and was compared independently to Kaggle V4
-(maximum difference 4.44e-16; keys/outcome labels identical).
-The narrow .gitignore exception permits this derived CSV only; raw
-OpenDota payloads, caches and local credentials remain excluded.
+| File | Purpose |
+| --- | --- |
+| [REPORT.pdf](REPORT.pdf) | Three-page assessment report with real-data figures, results, limitations and required assistance disclosure |
+| [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb) | Self-contained data collection, point-in-time features, M0–M3, validation, held-out scoring and saved outputs |
+| [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) | **All 3,837** held-out predictions, one row per `(match_id, minute)`; never read as notebook input |
+| [requirements.txt](requirements.txt) | Exact dependencies for local execution |
+| [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
+| [docs/figures/illustrative_game.png](docs/figures/illustrative_game.png) | One held-out game trajectory, illustrative rather than a cherry-picked model-accuracy claim |
 
-## Hosted reproducibility receipts
+Running the notebook also exports eight scientific CSV tables, four PNG figures and a JSON receipt. The included forecast CSV lets a reviewer inspect all held-out predictions without re-fetching 500 matches. An optional evidence ZIP with Colab-derived outputs can be inspected independently; none of its files is a notebook input.
 
-- [Private Kaggle V3](https://www.kaggle.com/code/sangtruong/vexil-dota-2-v3-visual-source-integrity-20261114): completed earlier source (505 HTTP, zero cache, all 8 CSVs matched).
-- [Private Kaggle V4](https://www.kaggle.com/code/sangtruong/vexil-takehome-v4-frozen-integrity-20261114): **COMPLETE and independently verified** on exact guarded notebook commit 400f9fd. All 26 source cells match, 14 code cells execute, 511 HTTP calls, zero cache hits, all 8 science CSVs agree with local, and 4 valid PNG files exported. Source hash dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb. Raw OpenDota JSON digests differ because upstream auxiliary fields may be reparsed; model input/label/cohort/item semantic hashes match.
-- Aggregate, keyless receipts: research/results/kaggle_v4_cold_20261114.json and research/results/kaggle_v4_strict_acceptance_20261114.json. The notebook pull from Kaggle omits embedded media (a provider export behavior); separately downloaded four chart PNGs are verified. The submitted GitHub notebook retains four embedded output PNGs.
-- **Stricter visual audit:** all four Kaggle V4 plots have identical **decoded RGB pixels** to local results, and the two PDF source figures match the cloud render pixel-for-pixel. File SHA-256 differs only because PNG container bytes/metadata differ. Tests reject a genuine image alteration while accepting harmless metadata changes. See research/results/kaggle_v4_strict_pixel_acceptance_20261114.json; the strict option is --require-plot-pixel-parity (use only when comparing compatible renderers).
-- Neither Kaggle nor Colab reproduction proves that game-clock timestamps had been available from a contemporaneous live feed. Fresh Colab CPU Run All has now passed independent source/output acceptance.
+## Methods and boundaries
 
-## Development-only temporal stability
+- **Point in time:** economy arrays use only indices at or before minute `t`; logged events use timestamps no later than `60*t` seconds. Future/post-game feature-poisoning tests check the cutoff. A retrospective OpenDota replay does **not** prove that the same event was available to a production feed at that instant.
+- **Validation:** chronological game-level train/validation/test split, keeping professional series together: **291 / 103 / 106 games** and **10,683 / 3,784 / 3,837 minute rows**. Training already includes 41 patch-60 games; this is not an unseen-patch test.
+- **Models:** M0 is logistic regression on current gold difference. M1 adds elapsed minute and a gold-by-time interaction. M2 adds XP and five-minute velocity; M3 adds timestamped objectives and kill differential. All use the same `C=1` regularized logistic pipeline and train-only preprocessing. M1 was chosen by validation log loss.
+- **Uncertainty:** paired bootstrap by whole match, rather than treating minute rows as independent labels. Same-series and league dependencies remain and can widen uncertainty. The 30+ minute phase is especially unstable.
+- **Exploration:** the notebook includes a separate *development-only*, timestamped item-purchase hypothesis. Its validation score was not used to replace M1; it has no new held-out result and is not a deployed model.
 
-An additional post-hoc audit refits only M0 and M1 in chronological,
-series-safe TRAIN-only windows, excluding any earlier match whose
-estimated result was not yet available when the next evaluation began.
-Reusing the existing notebook's three time cuts, M1 improves log loss in
-only **1/3** windows (pooled minute-weighted M1−M0 Δ = +0.00121, worse).
-An alternate four-window cut also favors M1 in only **1/4** windows,
-though its pooled Δ is −0.00116. Both schedules evaluate the same 115
-TRAIN games and **neither alters the validation-selected model**.
-The windows are small, partly share training history and were inspected
-post hoc. They support caution on stability, not a new independent test.
-
-Reproduce locally only with the frozen OpenDota cache:
-
-    python research/train_forward_stability.py --manifest PATH_TO_MATCH_MANIFEST_CSV --cache PATH_TO_API_CACHE --receipt PATH_TO_RECEIPT_JSON
-
-The evaluator reads only games marked TRAIN in the manifest,
-not validation or held-out labels. Its saved aggregate result is
-research/results/development_forward_stability_20261114.json.
-
-## League and split-boundary red-team
-
-A read-only post-hoc audit verifies both chronological label-availability
-boundaries and dependence across the **nine** held-out leagues. It does
-not retrain models or select a different candidate:
-
-    python research/league_and_boundary_stress.py --outputs PATH_TO_OUTPUTS --cache PATH_TO_API_CACHE --receipt PATH_TO_RECEIPT_JSON
-
-The train-to-validation split has five preceding games with estimated
-completion *after* the first validation starts (maximum 1,606 seconds).
-The latest validation game ends **only 143 seconds before** the first
-test game is scheduled to begin, if estimated start+game-duration is
-treated as wall-clock completion. Recorded game duration does not
-establish actual pauses, ingestion latency or label-availability time.
-
-The held-out sample spans just **9 leagues** (8/9 have a negative
-M1-minus-M0 league-average log loss). Different post-hoc clustering
-conventions disagree on whether a 95% reference interval includes
-zero. That sensitivity is not an independent, model-selection-adjusted
-claim of superiority. See
-research/results/league_and_boundary_stress_20261114.json.
-
-## Report and figures
-
-REPORT.md is the editable source of the three-page A4 REPORT.pdf.
-The report embeds two real-data figures under docs/figures. To regenerate
-locally on BigLinux, install the optional authoring dependency
-mistune==3.4.0, ensure Chrome/Chromium is available, then run:
-
-    python scripts/render_report.py
-
-The renderer does not touch source matches, models or held-out predictions.
-Keep the assistance/hours disclosure honest and visually verify the PDF.
-
-## Offline checks
-
-The frozen-cohort gate now checks each requested /matches/{id} response
-against its actual integer match_id, invalidates switched cached payloads
-and rejects incorrect HTTP replies. It also pins the SHA-256 of the 500
-match IDs, start times and patch IDs **before fitting** (the hash excludes
-win labels). Tests demonstrated the old code accepted an intentionally
-swapped same-patch match; V4 rejects it. See docs/REDTEAM_20261114.md.
-
-The optional read-only independent research audit uses the existing cached
-OpenDota payloads and saved forecast CSVs, never retrains or calls the API:
-
-    python research/independent_delivery_audit.py --outputs /path/to/vexil_takehome_outputs --cache /path/to/api-cache --receipt /path/to/audit.json
-
-This recomputes log loss and Brier from probabilities, checks label
-completion and measures post-hoc match/series-bootstrap sensitivity.
-See [docs/REDTEAM_20261114.md](docs/REDTEAM_20261114.md). The one notebook
-remains completely self-contained; this audit is not a runtime input.
-
-
-The notebook now rejects misaligned player minute clocks before making its 18,304 forecasts. The current 500-game cohort passed all 5,000 player clock sequences and all 500 paired team gold/XP axis-length checks. Invalid NaN/infinite/boolean event times, invalid gold values and duplicate player slots have explicit regression tests. These checks do not establish that a live feed received events at the same time as their retrospective match timestamps.
-
-Run `python -m unittest discover -s tests -p "test_*.py" -v` in the local environment to verify point-in-time invariance, split boundaries and paired match-bootstrap behavior without network calls. The notebook has additionally passed a separate end-to-end synthetic integration smoke test. These offline tests alone do not establish model quality; held-out results from the complete real-data Run All are in REPORT.md.
-
-## Derived outputs
-
-Run All exports eight science CSV tables, all 3,837 held-out probability rows, a calibration PNG and a JSON receipt. The receipt separates full raw OpenDota JSON digests from canonical model-input, label, item and cohort fingerprints, and records runtime identity and HTTP/cache-call counts. None of these derived outputs is an input. Kaggle writes to /kaggle/working; Colab writes to /content/vexil_takehome_outputs and creates a ZIP in its Files sidebar; local runs use a temporary directory. Four plots are embedded in the saved notebook, with training-support-masked time-value scenarios. The same four PNGs are individually exported on Kaggle/Colab; the Colab ZIP contains 13 derived files (eight CSVs, one receipt and four PNGs).
-
-## Kaggle execution
-
-A complete cold hosted execution of the **pre-14-November source** finished successfully on private Kaggle CPU with Internet ON, no attached datasets or notebook inputs, and no OpenDota API key:
-
-- [Final Kaggle Run All](https://www.kaggle.com/code/sangtruong/vexil-final-dota2-takehome-v2-20261113)
-- [Immutable numerical QA receipt](docs/HOSTED_KAGGLE_FINAL_RUN_20261113.json)
-- Status COMPLETE; original 500 IDs loaded from the OpenDota API itself.
-- 500 games, patch 59:250 / patch 60:250; 18,304 minute rows and 3,837 held-out probabilities.
-- Eight exported CSV tables (including purchase-event ablation and train-only folds) compared field-by-field to BigLinux; maximum absolute numeric difference 4.44e-16.
-- The 26 source cells pulled back through Kaggle's API matched the **earlier pre-guard source** exactly, not the current branch. Its numerical parity remains a historical reference.
-- Local stack: Python 3.12.3, NumPy 2.2.6, scikit-learn 1.7.2. Kaggle: Python 3.13.18, NumPy 2.1.3, scikit-learn 1.6.1.
-- OpenDota raw payload digest changed between requests, consistent with reparsing of auxiliary fields. **Forecast and evaluation parity is confirmed; byte-identical raw API payloads are not claimed.**
-
-The prior attempt failed on transient OpenDota requests despite later single-request HTTP 200 diagnostics; the completed V2 ran after bounded-retry improvements. The notebook never silently replaces frozen matches or reads predownloaded match data. The Kaggle account was accessed through the installed credential pool; those credentials are **not shipped**.
-
-## Fresh-source drift canary and calibration audit
-
-The 14 November read-only **10-match source canary** across both patches
-re-fetched only the permitted match endpoint: all ten raw JSON digests
-changed, yet every one of the 344 checked minute-level snapshots had
-identical model/item features and valid time alignment. These are existing
-matches, not new blind test games or a full 500-match cold run. See
-research/current_source_canary.py and
-research/results/current_source_canary_20261114.json.
-
-The independent audit validates all 500 source labels and professional
-series IDs before recomputing scoring. Whole-series bootstrap identifies
-M1 mean probability 0.54271 against minute-weighted outcome rate 0.60438
-(+0.06167 calibration-in-the-large gap); the 54-series confidence interval
-includes zero. Do not recalibrate using the already-inspected held-out set.
-
-## Fresh Colab acceptance (verified 14 November 2026)
-
-This cross-environment check **passed** on a fresh signed-in Colab CPU runtime on 14 November 2026: [executed notebook](https://colab.research.google.com/drive/19pbbGdEM_NANnbtt9LpKG-2lbP8U-0u1), 512 HTTP calls, zero cache hits, source-exact 26 cells, 14 executed code cells, 4 embedded PNGs, 8/8 science CSV parity (maximum difference 4.9982e-16) and four decoded-pixel-identical plots. Receipt: research/results/colab_v4_strict_acceptance_20261114.json. For independent reproduction, in Colab use **File → Open notebook → GitHub**, authorize access to this private repository, select branch fix/vexil-delivery-audit-20261114, and open live_dota2_win_probability.ipynb. Choose a fresh CPU runtime with Internet access; then select **Runtime → Run all**. Colab uses its installed scientific stack when already available (to avoid live-kernel NumPy ABI conflicts), installing only missing libraries at the pinned versions. Local requirements.txt fixes exact versions; the notebook records all actual package versions.
-
-Colab now creates vexil_takehome_outputs.zip next to the output folder.
-After Run All, download that ZIP from the Colab Files sidebar and save
-the executed notebook via File > Download > Download .ipynb. The
-research/verify_hosted_run.py script checks the 8 CSV tables, all source
-cells, semantic fingerprints and self-reported API/cache-call counts.
-A cached local replay is rejected when cloud cold-run acceptance is
-requested. Self-reported environment flags alone do not authenticate a
-Colab run: separately check the actual hosted run URL and history.
-See docs/COLAB_ACCEPTANCE_20261114.md.
-
-Check the saved output against the frozen receipt: exactly 500 matches, patch 59:250 and patch 60:250, 18,304 minute rows, train/validation/test 291/103/106 matches, proposed model M1_time_value, 3,837 test forecast rows and manifest hash e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea. Log loss/Brier should agree up to numerical tolerance. Full raw JSON digests can change as OpenDota reparses auxiliary fields. Do **not** edit feature cells or substitute a predownloaded dataset to make the check pass; report any actual runtime or API error.
-
-## Research design
-
-See [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md), [docs/DECISIONS.md](docs/DECISIONS.md), [docs/EXPERIMENT_LOG.md](docs/EXPERIMENT_LOG.md), and [docs/REVIEW_NOTES.md](docs/REVIEW_NOTES.md).
-
-**Submission deadline:** Thursday, 19 November 2026. Questions or extension requests: Long at long@vexil.capital.
-
-*The supplied assignment brief is the source of truth; optional experiments must not compromise its rules.*
+The report records approximately **8 hours of active work**, excluding unattended API/cloud waiting, and discloses the coding/drafting assistance as required by the assignment. No trade execution, market prices or realised profitability are measured.
