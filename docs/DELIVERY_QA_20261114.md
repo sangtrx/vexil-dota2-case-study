@@ -198,11 +198,13 @@ giving **65/65 local PASS**.
   tests/test_league_and_boundary_stress.py and
   research/results/league_and_boundary_stress_20261114.json.
 
-## Unclosed gates
+## Final acceptance and unclosed gates
 
-- Fresh Colab-specific runtime acceptance is still unverified, though
-  exact V4 source passed private Kaggle CPU cold Run All and strict
-  downloadable-source/output verification.
+- Fresh Colab-specific runtime acceptance PASSED on the exact V4 source:
+  signed-in browser Colab CPU Run All, 512 HTTP calls, zero cache hits,
+  14/14 code cells, eight CSVs and four PNGs verified. Evidence:
+  research/results/colab_v4_strict_acceptance_20261114.json.
+  This does not certify contemporaneous live-feed arrival.
 - Model improvement remains statistically uncertain and all retrospective
   source timestamps need live-feed arrival validation before production.
 - Applicant must enter their actual active hours, not elapsed API/kernel time, before submission.

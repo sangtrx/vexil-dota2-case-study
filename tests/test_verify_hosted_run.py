@@ -48,6 +48,23 @@ class HostedRunVerificationTest(unittest.TestCase):
             good = compare_notebook(a, b)
             self.assertEqual(good["executed_code_cells"], 14)
             self.assertEqual(good["embedded_pngs"], 4)
+            # Official Colab downloads append a terminal newline to each
+            # valid PNG base64 string, unlike the original GitHub notebook.
+            colab = nbformat.read(str(b), as_version=4)
+            for cell in colab.cells:
+                if cell.cell_type != "code":
+                    continue
+                for output in cell.outputs:
+                    if output.output_type == "display_data" and "image/png" in output.data:
+                        output.data["image/png"] += "\n"
+            nbformat.write(colab, str(b))
+            self.assertEqual(compare_notebook(a, b)["embedded_pngs"], 4)
+            corrupted = nbformat.read(str(b), as_version=4)
+            corrupted.cells[15].outputs[0].data["image/png"] += "!"
+            nbformat.write(corrupted, str(b))
+            with self.assertRaisesRegex(ValueError, "Invalid encoded PNG"):
+                compare_notebook(a, b)
+            shutil.copy2(a, b)
             # Kaggle CLI pulls preserve source and execution counts but
             # sometimes strip all rich output media from notebook files.
             stripped = nbformat.read(str(b), as_version=4)

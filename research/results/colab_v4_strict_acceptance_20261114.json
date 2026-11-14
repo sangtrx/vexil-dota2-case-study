@@ -1,0 +1,144 @@
+{
+  "decoded_plot_pixel_comparison": {
+    "calibration.png": {
+      "decoded_hosted_sha256": "89a687f6338f8a3a134fa3c1494a433ba967d2717558551d5dbb5ed6b16a12a9",
+      "decoded_pixels_equal": true,
+      "decoded_source_sha256": "89a687f6338f8a3a134fa3c1494a433ba967d2717558551d5dbb5ed6b16a12a9",
+      "hosted_dimensions": [
+        1741,
+        708
+      ],
+      "source_dimensions": [
+        1741,
+        708
+      ]
+    },
+    "heldout_game_trajectory.png": {
+      "decoded_hosted_sha256": "fcd139a91c33705cc8dc69a7eb54dce58967885319f961a514ec2266718633bd",
+      "decoded_pixels_equal": true,
+      "decoded_source_sha256": "fcd139a91c33705cc8dc69a7eb54dce58967885319f961a514ec2266718633bd",
+      "hosted_dimensions": [
+        1201,
+        795
+      ],
+      "source_dimensions": [
+        1201,
+        795
+      ]
+    },
+    "minute20_comeback.png": {
+      "decoded_hosted_sha256": "e33f291f958c726cc1fd56d137ee5baed8ffc22acc91dd2707288a1c12a22d24",
+      "decoded_pixels_equal": true,
+      "decoded_source_sha256": "e33f291f958c726cc1fd56d137ee5baed8ffc22acc91dd2707288a1c12a22d24",
+      "hosted_dimensions": [
+        931,
+        458
+      ],
+      "source_dimensions": [
+        931,
+        458
+      ]
+    },
+    "time_value_scenarios.png": {
+      "decoded_hosted_sha256": "f5c79064d514d90e0bbe5332a3a9d5b4312f1af3f324cefb90d0875a7f2942b8",
+      "decoded_pixels_equal": true,
+      "decoded_source_sha256": "f5c79064d514d90e0bbe5332a3a9d5b4312f1af3f324cefb90d0875a7f2942b8",
+      "hosted_dimensions": [
+        1038,
+        480
+      ],
+      "source_dimensions": [
+        1038,
+        480
+      ]
+    }
+  },
+  "expected_runtime": "colab",
+  "exported_pngs": {
+    "calibration.png": {
+      "bytes": 107613,
+      "size": [
+        1741,
+        708
+      ]
+    },
+    "heldout_game_trajectory.png": {
+      "bytes": 82750,
+      "size": [
+        1201,
+        795
+      ]
+    },
+    "minute20_comeback.png": {
+      "bytes": 31691,
+      "size": [
+        931,
+        458
+      ]
+    },
+    "time_value_scenarios.png": {
+      "bytes": 57263,
+      "size": [
+        1038,
+        480
+      ]
+    }
+  },
+  "hosted_cache_hits": 0,
+  "hosted_http_calls": 512,
+  "limitations": [
+    "Runtime flags and API-call counts are self-reported by the executed notebook.",
+    "Kaggle notebook pulls may omit output media; verified exported PNG files are required.",
+    "Pixel comparisons use decoded RGB, not potentially different PNG metadata; exact parity is optional for cross-platform font variance.",
+    "Use the authenticated Colab/Kaggle run URL and execution history to establish hosting provenance.",
+    "This is the same already-inspected 500-match population, not new independent predictive evidence."
+  ],
+  "outcome": "NUMERICAL_AND_SAVED_SOURCE_PARITY_PASS",
+  "raw_json_hash_unchanged": false,
+  "runtime_self_report": {
+    "colab_detected": true,
+    "kaggle_detected": false
+  },
+  "scientific_files": {
+    "exploratory_item_ablation.csv": {
+      "max_absolute_numeric_difference": 1.1102230246251565e-16,
+      "rows": 2
+    },
+    "exploratory_item_folds.csv": {
+      "max_absolute_numeric_difference": 4.998172015158175e-16,
+      "rows": 3
+    },
+    "heldout_metrics.csv": {
+      "max_absolute_numeric_difference": 4.0245584642661925e-16,
+      "rows": 10
+    },
+    "heldout_predictions.csv": {
+      "max_absolute_numeric_difference": 4.440892098500626e-16,
+      "rows": 3837
+    },
+    "match_manifest.csv": {
+      "max_absolute_numeric_difference": 0.0,
+      "rows": 500
+    },
+    "minute20_comeback.csv": {
+      "max_absolute_numeric_difference": 0.0,
+      "rows": 2
+    },
+    "terminal_sensitivity.csv": {
+      "max_absolute_numeric_difference": 2.0000819576926343e-16,
+      "rows": 2
+    },
+    "validation_ablations.csv": {
+      "max_absolute_numeric_difference": 2.220446049250313e-16,
+      "rows": 4
+    }
+  },
+  "semantic_hashes_exact": true,
+  "source_notebook": {
+    "cells": 26,
+    "embedded_pngs": 4,
+    "error_outputs": 0,
+    "executed_code_cells": 14,
+    "source_exact_match": true
+  }
+}

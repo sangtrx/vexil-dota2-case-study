@@ -1,14 +1,35 @@
 # Fresh Colab acceptance procedure for Vexil
 
-**Status: private Kaggle V4 exact-source cold Run All COMPLETE and
-independently VERIFIED; fresh Google Colab specifically remains untested.**
-V3 and the newer V4 both completed authenticated Kaggle runs.
-V4 verified the final frozen-ID and metadata guard source and
-all scientific tables and four PNG exports. See
-research/results/kaggle_v4_strict_acceptance_20261114.json.
-This Colab procedure documents an additional platform-specific
-acceptance check, not a claim that Colab has run already. This procedure never modifies the original
-500-match manifest or uses unseen held-out outcomes to choose a model.
+**Status: fresh Google Colab CPU V4 Run All COMPLETE and independently
+VERIFIED on 14 November 2026**, in addition to private Kaggle V4.
+
+The notebook was uploaded and run through an authenticated Google Colab
+browser session at
+https://colab.research.google.com/drive/19pbbGdEM_NANnbtt9LpKG-2lbP8U-0u1.
+This was a **browser execution**, not a Colab CLI invocation; the CLI is
+installed on BigLinux but its separate OAuth/ADC authorization is not
+complete. Colab's real downloaded .ipynb and /content output ZIP were
+recovered and checked locally. The 26 source cells matched the pinned
+V4 notebook exactly; 14/14 code cells executed with zero error outputs,
+4/4 PNG charts were embedded, 512 fresh HTTP requests with zero cache
+hits returned the original 500 games/18,304 minute rows, and the 3,837
+held-out forecasts and selected M1 were unchanged. All 8 CSVs matched
+the BigLinux reference (max absolute numerical deviation 4.9982e-16).
+All four exported PNGs matched local decoded RGB pixels exactly.
+Original raw JSON digests changed on reparse but the semantic model
+input/outcome/cohort hashes were equal.
+
+**Independent receipt:** research/results/colab_v4_strict_acceptance_20261114.json
+and research/results/colab_v4_provider_provenance_20261114.json.
+The verifier's original strict base64 decoder rejected the one terminal
+newline that Colab inserts after each valid image/png string; this was
+repaired narrowly with a dedicated negative tampering test. Full
+BigLinux offline suite remains 65/65 PASS. This does **not** mean Vexil
+external submission was sent or that real-time feed arrival was proved.
+
+V3 and V4 Kaggle receipts remain in the research/results directory.
+The remaining instructions document how to repeat this Colab check
+without changing the original model, frozen manifest, or held-out evidence.
 
 ## 1. Source and runtime
 

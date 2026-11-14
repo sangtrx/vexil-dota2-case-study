@@ -1,0 +1,25 @@
+{
+  "authenticated_browser_session_observed": true,
+  "cache_hits": 0,
+  "cli_oauth_status": "NOT_AUTHENTICATED",
+  "colab_notebook_url": "https://colab.research.google.com/drive/19pbbGdEM_NANnbtt9LpKG-2lbP8U-0u1",
+  "date": "2026-11-14",
+  "decoded_rgb_png_pixel_parity": 4,
+  "downloaded_derived_zip_sha256": "7216be933aced7b1dfac0dc2b0325a82d58930e14ed88e3e9aa0c38057a43ec1",
+  "errors": 0,
+  "executed_code_cells": 14,
+  "executed_notebook_sha256": "a328e8d190f9ea797e43384ba3dd94e46323cdf09e06ff89dfde067731b71203",
+  "external_submission": "NOT_SUBMITTED",
+  "fresh_opendota_http_calls": 512,
+  "limitations": [
+    "Browser account and live notebook inspected via main Chrome, not cryptographically signed provider audit.",
+    "OpenDota game-clock time does not authenticate contemporaneous live-feed arrival.",
+    "Raw JSON digests changed after OpenDota reparse; semantic source hashes and predictions matched."
+  ],
+  "max_abs_numeric_diff": 4.998172015158175e-16,
+  "not_a_colab_cli_run": true,
+  "provider": "Google Colab (browser UI, CPU)",
+  "saved_embedded_pngs": 4,
+  "source_notebook_sha256": "dd1d0a6ffd37f1f609451684e6d848d124dfa2fddbbc720c470513144fbf34bb",
+  "verified_csv_tables": 8
+}

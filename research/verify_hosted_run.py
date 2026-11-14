@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import binascii
 import hashlib
 import struct
 import json
@@ -120,8 +121,16 @@ def compare_notebook(local_path: Path, hosted_path: Path,
         if not require_embedded_images and len(embedded) not in (0, expected):
             raise ValueError(f"Partially stripped PNG outputs in notebook cell {cell_number}")
         for b64 in embedded:
-            binary = base64.b64decode(b64 if isinstance(b64, str)
-                                      else "".join(b64), validate=True)
+            encoded = b64 if isinstance(b64, str) else "".join(b64)
+            # Colab's official .ipynb download adds a terminal newline
+            # after each valid PNG base64 string. Do not relax strict
+            # decoding of the interior or silently discard bad bytes.
+            try:
+                binary = base64.b64decode(encoded.rstrip("\r\n"), validate=True)
+            except binascii.Error as exc:
+                raise ValueError(
+                    f"Invalid encoded PNG plot in notebook cell {cell_number}"
+                ) from exc
             if not binary.startswith(bytes([137,80,78,71,13,10,26,10])) or len(binary) < 10000:
                 raise ValueError(f"Corrupt saved PNG plot in notebook cell {cell_number}")
             images += 1
