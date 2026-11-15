@@ -1,0 +1,57 @@
+{
+  "all_minute_rows": 18292,
+  "api_calls": 514,
+  "cache_hits": 0,
+  "cloud_csv_byte_equality_verified": false,
+  "cloud_csv_note": "The cloud output ZIP was observed in the Files sidebar but was not recovered before Colab runtime disconnection. Do not claim it matches the frozen CSV byte-for-byte.",
+  "code_cells_executed": 14,
+  "code_cells_total": 14,
+  "colab_notebook_url": "https://colab.research.google.com/drive/1BfBbL6S9cN4n4_cxJ2YcbnYh438L1Ck3",
+  "data_policy": "No heldout fitting, recalibration, post-hoc promotion or new model selection.",
+  "environment": {
+    "matplotlib": "3.10.0",
+    "numpy": "2.4.6",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.6.1"
+  },
+  "execution_date_utc": "2026-11-15",
+  "execution_errors": 0,
+  "expected_repo_frozen_forecast_csv_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "frozen_manifest_sha256": "e227b630a71b3bbc1673f281908ae13b3f6ee5b4edcfb896bce268732a74dfea",
+  "heldout_baseline_brier_round5": 0.17191,
+  "heldout_baseline_logloss_round5": 0.51644,
+  "heldout_model_brier_round5": 0.16835,
+  "heldout_model_logloss_round5": 0.50401,
+  "match_bootstrap_difference_brier_95ci_round5": [
+    -0.00694,
+    0.00019
+  ],
+  "match_bootstrap_difference_logloss_95ci_round5": [
+    -0.03037,
+    0.00141
+  ],
+  "matches_loaded": 500,
+  "patch59_matches": 250,
+  "patch60_matches": 250,
+  "python": "3.13.18",
+  "raw_notebook_sha_parity": false,
+  "raw_sha_note": "Colab was uploaded before the last markdown-only revisions. Raw notebook bytes also differ after re-execution. The scientific code fingerprint, manifest/source-lineage fingerprints and evaluated metrics match; do not equate this with whole-notebook byte equality.",
+  "repo_main_notebook_sha256": "7bddda51fa6ebfb2d54bd56424456e4569865fd507b0015903bfdf755576ac57",
+  "saved_colab_notebook_sha256": "ebab4d540680ba0db3fd73c2732d9a9af3d489f4c87acbc74cefa9247e040afa",
+  "scientific_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+  "selected_model": "M1_time_value",
+  "source": "saved Google Colab notebook, downloaded from candidate's Drive after Run all",
+  "source_access": "Candidate-owned private Google Drive; reviewer access must be granted separately",
+  "source_lineage_sha256": {
+    "cohort_metadata": "dbe3b9f6241f8fefeb7e211c7ee921539ef3b546d76f5eaf168e77a2e5982b3d",
+    "dev_item_inputs": "bfc8b3b5d50f91a658838567fd18123bc7ba19fd30ee1d189c94825731b2d966",
+    "model_inputs": "5d5b57ea3ec85cfa4af1519c8c568c0b79d809f071a26e08f75bca42ad9bd6e5",
+    "outcome_labels": "698a67f38bef4aaf8377255259bf94eb0a241a57cfa80b09cfa4ee1ea72316c9"
+  },
+  "status": "COLAB_EXECUTION_PASS_NUMERIC_PARITY; CSV_BYTE_PARITY_NOT_VERIFIED",
+  "test_matches": 106,
+  "test_minute_rows": 3836,
+  "train_matches": 291,
+  "validation_matches": 103,
+  "verification_scope": "Rehydrated saved notebook JSON and execution outputs, not a bytewise comparison of the hosted derived ZIP."
+}

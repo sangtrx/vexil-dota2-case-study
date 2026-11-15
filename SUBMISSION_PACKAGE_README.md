@@ -17,16 +17,15 @@ Deadline: Thursday, 19 November 2026 (exact submission cutoff time not confirmed
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,836 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Four test modules under tests/ run 52 offline unit/contract checks
+5. Four test modules under tests/ run 53 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
-6. docs/EXPERIMENT_REGISTER.md lists all nine project/research PRs,
+6. docs/EXPERIMENT_REGISTER.md lists nine historical research PRs (#3-#11),
    including the 28-model exploratory search with every negative result.
    This is an index to separate research branches, not a second report,
    and the standalone notebook does not run all those experiments.
 7. Three real-data figures used in the report, including the phase error-audit chart, are included under docs/figures.
    The latest notebook has saved outputs and a 10-hour active-work estimate.
-   Historical Kaggle/Colab cold runs verified the previous inclusive-terminal source. The corrected notebook was then replayed locally against the frozen 500-game cache.
-   The corrected source now excludes 12 terminal-boundary minute rows, so the exact current notebook has not yet had a new cold hosted run.
+   Historical Kaggle QA covered the inclusive-terminal predecessor. A fresh Google Colab CPU Run all on 15 November fetched all 500 frozen games (514 API calls, zero cache hits), completed 14/14 cells and reproduced rounded held-out scores. The scientific code SHA matches main. The hosted notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise SHA comparison; see docs/COLAB_COLD_RUN_RECEIPT.json.
 
 8. docs/ERROR_ANALYSIS.md and its frozen audit receipt expose the model's
    late-game calibration/Brier reversal and 55-row influential game.

@@ -19,7 +19,7 @@ The full results, ablations, uncertainty, calibration plots and limitations are 
 
 **Read-only failure audit:** [Error analysis](docs/ERROR_ANALYSIS.md) explains phase calibration, the late-game Brier reversal and match-level influence; a small [offline verification script](research/error_diagnostics.py) recalculates held-out phase scores, ECE and influential matches from the frozen forecast CSV without model refitting. **One 55-row game explains 54.9% of the sample log-loss gain**, another reason not to treat the M1 point estimate as a confirmed improvement.
 
-**Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. Prior cold Kaggle/Colab runs covered the earlier inclusive-boundary version, not this corrected exact-source notebook.
+**Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. A **fresh Google Colab CPU Run all (15 November 2026)** fetched the 500 frozen games (514 API calls, zero cache hits), completed **14/14 code cells without error** and reproduced the selected model and held-out scores to 4 decimals. Its scientific-code SHA matches this repository; the uploaded notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise comparison. See the [Colab execution receipt](docs/COLAB_COLD_RUN_RECEIPT.json). Older Kaggle QA covered the inclusive-terminal predecessor.
 
 **Full research history:** [Original commits and PRs](HISTORY.md) retains the branches, experiment code and negative results. [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
 
@@ -40,7 +40,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 52 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 53 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
 
 ## Files and review order
 
@@ -53,7 +53,8 @@ Run all cells, top to bottom. `requirements.txt` pins the local Python dependenc
 | [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
 | [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Fitted time-value hypothesis, plotted only in training-supported states |
 | [docs/figures/phase_error_audit.png](docs/figures/phase_error_audit.png) | Error diagnosis by phase, including the late-game Brier and ECE reversal; post-hoc descriptive |
-| [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | All 9 project PRs and 28 exploratory hypotheses; supplemental source-linked experiment index, not a second assessment report |
+| [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | Nine original research PRs (#3–#11) and 28 exploratory hypotheses; not a second assessment report |
+| [docs/COLAB_COLD_RUN_RECEIPT.json](docs/COLAB_COLD_RUN_RECEIPT.json) | Fresh Colab 14/14 execution receipt, science-code fingerprint, runtime versions, and explicitly unverified CSV-byte parity |
 | [docs/ERROR_ANALYSIS.md](docs/ERROR_ANALYSIS.md) | Reproducible post-hoc failure diagnosis: phase ECE/Brier, match influence and model-governance boundaries |
 
 Running the notebook also exports eight scientific CSV tables, four PNG figures and a JSON receipt. The included forecast CSV lets a reviewer inspect all held-out predictions without re-fetching 500 matches. The downloadable submission ZIP mirrors these files and includes SHA-256 checksums; it is not a separate model or input dataset.

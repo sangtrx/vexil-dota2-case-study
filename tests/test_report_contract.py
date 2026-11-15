@@ -43,6 +43,23 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("vexil-dota2-win-probability/blob/main/",report)
         self.assertIn("Original commits and PRs",readme)
 
+    def test_colab_run_receipt_is_scoped_honestly(self):
+        import hashlib
+        import json
+        receipt=json.loads((ROOT / "docs/COLAB_COLD_RUN_RECEIPT.json").read_text())
+        notebook=json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
+        code="".join("".join(c["source"]) for i,c in enumerate(notebook["cells"])
+                     if c["cell_type"]=="code" and i!=2)
+        self.assertEqual(hashlib.sha256(code.encode()).hexdigest(),
+                         receipt["scientific_code_sha256"])
+        self.assertEqual(receipt["code_cells_executed"],14)
+        self.assertEqual(receipt["execution_errors"],0)
+        self.assertEqual(receipt["cache_hits"],0)
+        self.assertEqual(receipt["matches_loaded"],500)
+        self.assertEqual(receipt["test_minute_rows"],3836)
+        self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
+        self.assertFalse(receipt["raw_notebook_sha_parity"])
+
     def test_reviewer_text_matches_scientific_boundaries(self):
         import json
         notebook=json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
