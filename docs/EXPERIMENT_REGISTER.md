@@ -4,7 +4,7 @@
 
 **Repository experiment log, not a second applicant report.** The required deliverables are the executable 500-game notebook and the separately bounded PDF report (at most four pages). Research PRs contain experiments and integrity tests that are *not all executed by the submitted notebook*. Read these summaries as attempts and negative findings, not nine independent model improvements.
 
-**Reviewer snapshot boundary:** This repository contains the full executable M0–M3 notebook and original forecast evidence. This register summarizes **historical** supplemental research; underlying experimental branch scripts and PR discussions remain in the author's separate development repository and are not needed for the core assessment. The recorded 28-candidate scores predate the corrected strict pre-terminal cutoff and were not rerun as new blind validation.
+**Research lineage:** This original repository contains the full executable M0-M3 notebook and preserved forecast evidence on main. Historical experiment scripts and PR discussions remain on their original research branches. See [HISTORY.md](../HISTORY.md). The recorded 28-candidate scores predate the corrected strict pre-terminal cutoff and were not rerun as new blind validation.
 
 **Original study:** 500 professional OpenDota matches, 291 train / 103 validation / 106 held-out; selected M1 gold × game time over the required gold-only M0 on validation. Held-out log loss M0 **0.5163**, M1 **0.5039**, 95% paired M1-minus-M0 CI **[-0.0303,+0.0014]** (includes zero). Held-out Brier M0 0.1719, M1 0.1683, interval includes zero; M1 Brier is worse at minute 30+.
 
@@ -14,19 +14,19 @@
 
 | PR | Executed research / engineering scope | What survived |
 |---|---|---|
-| #3 | OpenDota input, point-in-time snapshots, M0-M3 ablation, chronological series grouping, paired whole-match bootstrap | Original M1 selected |
-| #4 | Economic topology S1-S4, stability/familywise checks; separate fixed stage gate on a later 200-game cohort | No incremental structural model or gate promoted |
-| #5 | Recent Aegis, buyback, structural control mismatch, real matched cases, 900-game time/event integrity | M4 screen failed; real contrast is descriptive |
-| #6 | All 28 distinct specifications, 3 TRAIN-only folds, 103-game reused validation, simultaneous series-cluster bootstrap | **0/28** pass complete screen |
-| #7 | Proper-score parity, 20 dependent stability selections, 3,000 OOB resamples, four hosted private Kaggle CPU checks | Model search unstable; no new blind outcomes |
-| #8 | Timestamped item-purchase ablation integrated into main notebook as development-only | P20 point estimate improved; not promoted |
-| #9 | Adversarial clock/label/fault tests, five TRAIN-only rolling folds, CPU latency and domain-support limits | Input contracts strengthened; prediction unchanged |
-| #10 | Frozen source/prediction, clock audit, Colab/Kaggle parity, reproducible package | Release integrity, not a new predictor |
-| #11 | Clean recruiter-facing notebook, report, artifacts, portable QA, version pins | Actual submission candidate; not employer-submitted |
+| [#3](https://github.com/sangtrx/vexil-dota2-win-probability/pull/3) | OpenDota input, point-in-time snapshots, M0-M3 ablation, chronological series grouping, paired whole-match bootstrap | Original M1 selected |
+| [#4](https://github.com/sangtrx/vexil-dota2-win-probability/pull/4) | Economic topology S1-S4, stability/familywise checks; separate fixed stage gate on a later 200-game cohort | No incremental structural model or gate promoted |
+| [#5](https://github.com/sangtrx/vexil-dota2-win-probability/pull/5) | Recent Aegis, buyback, structural control mismatch, real matched cases, 900-game time/event integrity | M4 screen failed; real contrast is descriptive |
+| [#6](https://github.com/sangtrx/vexil-dota2-win-probability/pull/6) | All 28 distinct specifications, 3 TRAIN-only folds, 103-game reused validation, simultaneous series-cluster bootstrap | **0/28** pass complete screen |
+| [#7](https://github.com/sangtrx/vexil-dota2-win-probability/pull/7) | Proper-score parity, 20 dependent stability selections, 3,000 OOB resamples, four hosted private Kaggle CPU checks | Model search unstable; no new blind outcomes |
+| [#8](https://github.com/sangtrx/vexil-dota2-win-probability/pull/8) | Timestamped item-purchase ablation integrated into main notebook as development-only | P20 point estimate improved; not promoted |
+| [#9](https://github.com/sangtrx/vexil-dota2-win-probability/pull/9) | Adversarial clock/label/fault tests, five TRAIN-only rolling folds, CPU latency and domain-support limits | Input contracts strengthened; prediction unchanged |
+| [#10](https://github.com/sangtrx/vexil-dota2-win-probability/pull/10) | Frozen source/prediction, clock audit, Colab/Kaggle parity, reproducible package | Release integrity, not a new predictor |
+| [#11](https://github.com/sangtrx/vexil-dota2-win-probability/pull/11) | Clean recruiter-facing notebook, report, artifacts, portable QA, version pins | Actual submission candidate; not employer-submitted |
 
 ## Mechanisms with exact negative and positive *point* estimates
 
-All rows below use the **same reused development validation**, reference M1 log loss **0.519346**, lower is better. These historical summaries are retained for audit; the original exploratory branch scripts are outside this reviewer snapshot.
+All rows below use the **same reused development validation**, reference M1 log loss **0.519346**, lower is better. These historical summaries are retained for audit; the original exploratory branch scripts are available in the research PRs listed above.
 
 | Mechanism | Val. LL | Delta vs M1 | Why no promotion |
 |---|---:|---:|---|

@@ -20,6 +20,7 @@ EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0
 FILES = (
     "README.md",
     "SUBMISSION_PACKAGE_README.md",
+    "HISTORY.md",
     "live_dota2_win_probability.ipynb",
     "requirements.txt",
     "REPORT.md",
@@ -164,8 +165,10 @@ def verify() -> dict:
         raise ValueError("Historical exploratory P20 interval/provenance absent.")
     if "AI-assisted critiques, not independent human peer review" not in report:
         raise ValueError("Mandatory accurate AI-review disclosure missing.")
-    if "https://github.com/sangtrx/vexil-dota2-win-probability" in report:
-        raise ValueError("Reviewer PDF still links to development-only source.")
+    if "https://github.com/sangtrx/vexil-dota2-assessment" in report:
+        raise ValueError("Reviewer PDF links to retired snapshot repository.")
+    if "https://github.com/sangtrx/vexil-dota2-win-probability/blob/main/" not in report:
+        raise ValueError("Reviewer PDF must link to canonical original repository main branch.")
 
     def measures(key: str) -> tuple[float, float]:
         ll = brier = 0.0

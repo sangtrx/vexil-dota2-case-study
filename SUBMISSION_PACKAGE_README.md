@@ -17,7 +17,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,836 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Four small test modules under tests/ run 50 offline unit/contract checks
+5. Four small test modules under tests/ run 51 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
 6. docs/EXPERIMENT_REGISTER.md lists all nine project/research PRs,
    including the 28-model exploratory search with every negative result.
@@ -46,4 +46,4 @@ include zero. M1's Brier at minute 30+ is worse. These historical
 OpenDota forecasts neither prove true live-feed availability nor yield
 a measured trading or betting profit.
 
-**Reviewer handoff:** A dedicated single-branch repository and stable v1.0.0 source tag isolate this deliverable from the historical research PR branches. The candidate-only study/InterviewBundle archives are not included.
+**Reviewer handoff:** This is the original development repository, not a single-commit snapshot. Its main branch contains the final notebook, report and forecasts. [HISTORY.md](HISTORY.md) links to unchanged research branches and PR #3-#11. Historical experiments are not part of notebook Run All. Candidate-only interview/study files are not included.

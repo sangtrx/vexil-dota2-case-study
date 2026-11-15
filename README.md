@@ -21,7 +21,7 @@ The full results, ablations, uncertainty, calibration plots and limitations are 
 
 **Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. Prior cold Kaggle/Colab runs covered the earlier inclusive-boundary version, not this corrected exact-source notebook.
 
-**Full research inventory:** [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
+**Full research history:** [Original commits and PRs](HISTORY.md) retains the branches, experiment code and negative results. [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
 
 ## Run the notebook
 
@@ -40,7 +40,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 50 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the earlier reviewer handoff; only the updated 50-test portable suite was rerun for this corrected version.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 51 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the earlier reviewer handoff; only the updated 51-test portable suite was rerun for this corrected version.
 
 ## Files and review order
 

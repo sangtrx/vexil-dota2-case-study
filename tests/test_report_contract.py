@@ -18,8 +18,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(len(candidates), 28)
         self.assertEqual(set(candidates), {f"P{i:02d}" for i in range(1,29)})
         for pr in range(3,12):
-            self.assertIn(f"| #{pr} |", text)
-        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-win-probability", text)
+            self.assertIn(f"| [#{pr}](https://github.com/sangtrx/vexil-dota2-win-probability/pull/{pr}) |", text)
+        self.assertIn("https://github.com/sangtrx/vexil-dota2-win-probability/pull/", text)
         for phrase in ("0/28", "previously inspected", "M4", "S2",
                        "stage gate", "24,126", "not a second", "[-0.016929,+0.006434]"):
             self.assertIn(phrase.lower(),text.lower())
@@ -39,9 +39,9 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("AI-assisted critiques, not independent human peer review",report)
         self.assertIn("Later exploration and QA",report)
         self.assertIn("no reliable total is claimed",report)
-        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-win-probability",report)
-        self.assertIn("vexil-dota2-assessment/blob/v1.0.0/",report)
-        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-win-probability",readme)
+        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
+        self.assertIn("vexil-dota2-win-probability/blob/main/",report)
+        self.assertIn("Original commits and PRs",readme)
 
     def test_report_figures_and_rendered_pdf_are_present(self):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
