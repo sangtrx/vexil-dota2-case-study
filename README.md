@@ -29,7 +29,7 @@ The full results, ablations, uncertainty, calibration plots and limitations are 
 
 The [three-minute reviewer path](SUBMISSION_PACKAGE_README.md) is report → executed notebook → frozen forecasts → error audit. **Figure 2** of the four-figure report shows a real held-out game trajectory, selected by gold-lead range rather than model performance.
 
-**Provenance:** This repository presents a curated final deliverable assembled on **15 November 2026**. Its short commit history is a packaging history, **not a reconstruction of when the research experiments were performed**. The [original repository](https://github.com/sangtrx/vexil-dota2-win-probability) preserves the full authentic development history and negative research PRs; [HISTORY.md](HISTORY.md) maps them. The included report, notebook and experiment register are self-contained for assessment without relying on those external PR links.
+**Provenance:** This repository presents a curated final deliverable assembled on **15 November 2026**. Its short commit history is a packaging history, **not a reconstruction of when the research experiments were performed**. The [original private repository](https://github.com/sangtrx/vexil-dota2-win-probability) (**reviewer access granted separately**) preserves the full authentic development history and negative research PRs; [HISTORY.md](HISTORY.md) maps them. The included report, notebook and experiment register are self-contained for assessment without relying on those external PR links.
 
 ## Run the notebook
 
@@ -48,7 +48,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 56 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 57 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
 
 ## Files and review order
 

@@ -59,6 +59,20 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("3,837 minute rows", register)
         self.assertNotIn("This original repository", register)
 
+    def test_historical_200_cohort_and_private_source_are_explicit(self):
+        report = (ROOT / "REPORT.md").read_text()
+        readme = (ROOT / "README.md").read_text()
+        register = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text()
+        self.assertIn("pre-terminal-correction", report)
+        self.assertIn("not** a post-correction rerun", report)
+        self.assertIn("before the later strict pre-terminal notebook correction", register)
+        self.assertIn("no preregistered direct paired confidence interval", register)
+        self.assertIn("original private research history", report)
+        self.assertIn("reviewer access provided separately", report)
+        self.assertIn("original private repository", readme)
+        self.assertIn("reviewer access granted separately", readme)
+        self.assertNotIn("late-game failures", report)
+
     def test_colab_run_receipt_is_scoped_honestly(self):
         import hashlib
         import json

@@ -82,14 +82,14 @@ The cards linked in each row were registered before this finite experiment. All 
 
 ## One locked stage gate on a separate third 200-game cohort
 
-A fixed, non-learned mixture uses M1 until minute 10, transitions toward M0 in 11-19 and uses M0 after minute 20. The third chronological 200-game cohort (30 March-2 April 2026; 6,827 minute rows, 97 series-or-singleton groups) was frozen and scored once for this gate. It is **not part of the assignment's original 500 games**.
+A fixed, non-learned mixture uses M1 until minute 10, transitions toward M0 in 11-19 and uses M0 after minute 20. The third chronological 200-game cohort (30 March-2 April 2026; 6,827 minute rows, 97 series-or-singleton groups) was frozen and scored once for this gate **before the later strict pre-terminal notebook correction**; these M0/M1/blend scores are historical, not a post-repair rerun. It is **not part of the assignment's original 500 games**.
 
 | Metric on separate 200 | M0 | M1 | Stage gate |
 |---|---:|---:|---:|
 | Log loss | 0.545075 | **0.533704** | 0.539850 |
 | Brier | 0.18647 | **0.18242** | 0.18430 |
 
-The gate-minus-M1 log-loss difference **+0.006146** has simultaneous series-cluster 95% CI **[-0.002836,+0.015127]**. It failed its preregistered improvement requirement against **both** M0 and M1; no thresholds were retuned on the consumed cohort. A direct M1-minus-M0 comparison calculated **after** the gate evaluation is *secondary and descriptive*, not registered familywise confirmation. The phase blend departs from M1 only **after minute 10**; its observed aggregate loss disadvantage does not identify the 30+ effect. See the archived source and stage-gate receipts in [original research PR #4](https://github.com/sangtrx/vexil-dota2-win-probability/pull/4).
+The gate-minus-M1 log-loss difference **+0.006146** has simultaneous series-cluster 95% CI **[-0.002836,+0.015127]**. It failed its preregistered improvement requirement against **both** M0 and M1; no thresholds were retuned on the consumed cohort. The direct M1-minus-M0 comparison was calculated **after** gate evaluation, with no preregistered direct paired confidence interval; it is *secondary and descriptive*, not registered familywise confirmation. The phase blend departs from M1 only **after minute 10**; its observed aggregate loss disadvantage does not identify the 30+ effect. See the archived source and stage-gate receipts in [original research PR #4](https://github.com/sangtrx/vexil-dota2-win-probability/pull/4).
 
 ## Robustness evidence (not additional independent model accuracy)
 

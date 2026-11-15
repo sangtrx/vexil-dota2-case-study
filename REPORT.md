@@ -2,7 +2,7 @@
 
 **Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 15 November 2026**
 
-**Research question:** Is the same gold lead equally informative at minute 10 and minute 30? I started with the required gold-only logistic baseline, tested one time-dependent alternative, and evaluated what the richer model buys once uncertainty and late-game failures are taken seriously.
+**Research question:** Is the same gold lead equally informative at minute 10 and minute 30? I started with the required gold-only logistic baseline, tested one time-dependent alternative, and evaluated its incremental value under correlated observations and late-game uncertainty.
 
 **Result:** On 106 held-out professional matches, M1 improved log loss from **0.5164 to 0.5040** and Brier from **0.1719 to 0.1684** versus M0. A later 200-game development cohort also favors M1 on aggregate point scores. The original TEST paired 95% intervals still include zero, and the observed 30+ Brier reversal is **inconclusive**, not proof of late-game failure. I would retain M0 as the benchmark and shadow-test M1.
 
@@ -69,7 +69,7 @@ The early-phase differences favor M1 **without multiplicity adjustment**. The 30
 
 *Figure 3. On the original TEST, late-phase Brier/ECE point estimates favor M0; this exploratory reversal is not statistically established.*
 
-A later **200-game development cohort** (6,827 minute rows; 30 March–2 April) gave **M0 / M1 / phase-blend** log losses **0.5451 / 0.5337 / 0.5399**, and Brier scores **0.18647 / 0.18242 / 0.18430**. M1 again has the best aggregate point estimates; the predeclared *blend* failed its gate. Because that blend departs from M1 only **after minute 10**, the observed aggregate disadvantage occurs after that point; it does **not** isolate minute 30+. The direct M1-vs-M0 comparison was **secondary and post-gate**, not confirmatory.
+An archived **pre-terminal-correction** stage-gate run on a later **200-game development cohort** (6,827 minute rows; 30 March–2 April; original private [PR #4](https://github.com/sangtrx/vexil-dota2-win-probability/pull/4)) gave **M0 / M1 / phase-blend** log losses **0.5451 / 0.5337 / 0.5399**, and Brier scores **0.18647 / 0.18242 / 0.18430**. M1 again has the best aggregate point estimates; the predeclared *blend* failed its gate. Because that blend departs from M1 only **after minute 10**, the observed aggregate disadvantage occurs after that point; it does **not** isolate minute 30+. The direct M1-vs-M0 comparison was **secondary and post-gate**, with no preregistered direct paired interval; this historical run is **not** a post-correction rerun or confirmatory evidence.
 
 A post-hoc **54-series** bootstrap on the original TEST gives an M1−M0 log-loss interval **[−0.0283,+0.0001]** including zero. Its Brier interval **[−0.0067,−0.0004]** excludes zero, but these same-data sensitivities do not supersede the prespecified match-bootstrap result. Resampling by series need not yield a wider interval than resampling by match.
 
@@ -93,7 +93,7 @@ For a real live feed, I would also log the match, model version, game minute, **
 
 ## 8. Reproducibility and assistance
 
-In the [original research history](https://github.com/sangtrx/vexil-dota2-win-probability), the model-family source (commit **e49e853**) and 500-game manifest (commit **3258a762**) were frozen before the first held-out evaluation. Following the 12-row end-boundary repair, the same candidates were refitted and run from cached records (500 matches, zero HTTP calls, **14/14 code cells**). A fresh Google Colab CPU run fetched all 500 games (**514 API calls, zero cache hits**) and reproduced held-out metrics to four decimals on a **different package stack** (versions in receipt). Its scientific-code SHA matches the notebook; **cloud-export CSV byte parity was not verified** ([receipt](https://github.com/sangtrx/dota2-live-win-probability/blob/main/docs/COLAB_COLD_RUN_RECEIPT.json)). A separate frozen [error audit](https://github.com/sangtrx/dota2-live-win-probability/blob/main/docs/ERROR_ANALYSIS.md) reproduces calibration and influence calculations without refitting.
+In the [original private research history](https://github.com/sangtrx/vexil-dota2-win-probability) (**reviewer access provided separately**), the model-family source (commit **e49e853**) and 500-game manifest (commit **3258a762**) were frozen before the first held-out evaluation. Following the 12-row end-boundary repair, the same candidates were refitted and run from cached records (500 matches, zero HTTP calls, **14/14 code cells**). A fresh Google Colab CPU run fetched all 500 games (**514 API calls, zero cache hits**) and reproduced held-out metrics to four decimals on a **different package stack** (versions in receipt). Its scientific-code SHA matches the notebook; **cloud-export CSV byte parity was not verified** ([receipt](https://github.com/sangtrx/dota2-live-win-probability/blob/main/docs/COLAB_COLD_RUN_RECEIPT.json)). A separate frozen [error audit](https://github.com/sangtrx/dota2-live-win-probability/blob/main/docs/ERROR_ANALYSIS.md) reproduces calibration and influence calculations without refitting.
 
 **Time spent:** Approximately **10 hours of active work**, excluding unattended AI, API and cloud execution.
 
