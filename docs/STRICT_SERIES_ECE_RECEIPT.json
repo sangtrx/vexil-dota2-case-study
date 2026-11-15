@@ -1,0 +1,18 @@
+{
+  "scope": "POST-HOC series-cluster percentile bootstrap on already opened corrected test predictions; no fit or model selection",
+  "seed": 20261114,
+  "draws": 10000,
+  "nrows": 3836,
+  "n_matches": 106,
+  "groups": 54,
+  "model_ece": 0.07501877151942368,
+  "baseline_ece": 0.08948284614037452,
+  "point_delta": -0.01446407462095084,
+  "series_95_delta": [
+    -0.020279324982743128,
+    0.0020365065106749637
+  ],
+  "row_rate": 0.6045359749739312,
+  "model_mean_prediction": 0.5428557631621745,
+  "prediction_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
+}

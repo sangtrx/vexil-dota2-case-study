@@ -22,4 +22,10 @@ output/
 *.joblib
 *.pyc
 *.csv
+!artifacts/heldout_predictions.csv
 *.jsonl
+
+# Temporary execution/staging and backups
+.local/
+*.bak.*
+*.log
