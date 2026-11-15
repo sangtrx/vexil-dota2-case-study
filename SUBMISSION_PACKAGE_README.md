@@ -7,7 +7,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
 ## Contents and reproducibility
 
 1. REPORT.pdf is the separate three-page technical report, including decisions,
-   ablations, uncertainty, limitations, approximately eight active work hours,
+   ablations, uncertainty, limitations, approximately 10 active work hours,
    and the assistance disclosure.
 2. live_dota2_win_probability.ipynb is one executable notebook with 14 executed
    code cells and four embedded figures.
@@ -24,7 +24,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
    This is an index to separate research branches, not a second report,
    and the standalone notebook does not run all those experiments.
 7. Three real-data figures used in the report, including the phase error-audit chart, are included under docs/figures.
-   The latest notebook has saved outputs and an 8-hour author-time disclosure.
+   The latest notebook has saved outputs and a 10-hour active-work estimate.
    Earlier cold Kaggle/Colab runs verified the PREVIOUS inclusive-terminal scientific code. The corrected notebook was then executed locally against the frozen 500-game cache.
    The corrected source now excludes 12 terminal-boundary minute rows, so the exact current notebook has not yet had a new cold hosted run.
 
@@ -46,4 +46,4 @@ include zero. M1's Brier at minute 30+ is worse. These historical
 OpenDota forecasts neither prove true live-feed availability nor yield
 a measured trading or betting profit.
 
-**Reviewer handoff:** This is the original development repository, not a single-commit snapshot. Its main branch contains the final notebook, report and forecasts. [HISTORY.md](HISTORY.md) links to unchanged research branches and PR #3-#11. Historical experiments are not part of notebook Run All. Candidate-only interview/study files are not included.
+**Reviewer handoff:** This is the original development repository, not a single-commit snapshot. Its main branch contains the final notebook, report and forecasts. [HISTORY.md](HISTORY.md) links to archived research PRs #3-#10 (closed without merge), merged final PR #11, and unchanged historical branches. Historical experiments are not part of notebook Run All. Candidate-only interview/study files are not included.

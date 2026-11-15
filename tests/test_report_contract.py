@@ -35,13 +35,32 @@ class ReportDeliveryContractTest(unittest.TestCase):
                       "reused validation","at least 38","none of the 28"):
             self.assertIn(token.lower(),report.lower())
         self.assertIn("[-0.016929,+0.006434]",register)
-        self.assertIn("Claude (Sonnet and Fable)",report)
-        self.assertIn("AI-assisted critiques, not independent human peer review",report)
-        self.assertIn("Later exploration and QA",report)
-        self.assertIn("no reliable total is claimed",report)
+        self.assertIn("Claude Sonnet/Fable with review",report)
+        self.assertIn("AI reviews are not independent human peer review",report)
+        self.assertIn("10 hours of active work",report)
+        self.assertIn("No third-party Dota predictor was copied",report)
         self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
         self.assertIn("vexil-dota2-win-probability/blob/main/",report)
         self.assertIn("Original commits and PRs",readme)
+
+    def test_reviewer_text_matches_scientific_boundaries(self):
+        import json
+        notebook=json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
+        text="\n".join("".join(c["source"]) for c in notebook["cells"]
+                       if c["cell_type"]=="markdown")
+        report=(ROOT / "REPORT.md").read_text()
+        readme=(ROOT / "README.md").read_text()
+        pkg=(ROOT / "SUBMISSION_PACKAGE_README.md").read_text()
+        self.assertIn("strictly before match end", text)
+        self.assertNotIn("through match end", text)
+        self.assertIn("60*t < duration", text)
+        self.assertIn("strict pre-terminal", report)
+        self.assertIn("10 hours", text)
+        self.assertIn("10 hours", report)
+        self.assertIn("10 hours", readme)
+        self.assertIn("10 active work hours", pkg)
+        self.assertIn("106", report)
+        self.assertIn("3,836", pkg)
 
     def test_report_figures_and_rendered_pdf_are_present(self):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")

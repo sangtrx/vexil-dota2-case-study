@@ -15,7 +15,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261114.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
-EXPECTED_NOTEBOOK_SHA256 = "b36da889d8c4e3a45d25e8b770987c46b8ad437ee5e83aa49c7dbb1806dc6857"
+EXPECTED_NOTEBOOK_SHA256 = "d6eea01465b2b2896ac3ed034427a09f4ed09e34a1e597712077813e2bbaa8e1"
 EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FILES = (
     "README.md",
@@ -76,7 +76,7 @@ def verify() -> dict:
         for x in cells[2].get("outputs", [])
         if x.get("output_type") == "stream"
     )
-    if "8 hours active" not in setup or "Approximately 8 hours active" not in setup_out:
+    if "10 hours active" not in setup or "Approximately 10 hours active" not in setup_out:
         raise ValueError("Missing candidate-estimated hours in Setup and saved output.")
 
     pins = (ROOT / "requirements.txt").read_text().splitlines()
@@ -163,7 +163,7 @@ def verify() -> dict:
         raise ValueError("README and report CI display does not match corrected forecasts.")
     if "28-way adjusted" not in report or "[−0.0169,+0.0064]" not in report:
         raise ValueError("Historical exploratory P20 interval/provenance absent.")
-    if "AI-assisted critiques, not independent human peer review" not in report:
+    if "AI reviews are not independent human peer review" not in report:
         raise ValueError("Mandatory accurate AI-review disclosure missing.")
     if "https://github.com/sangtrx/vexil-dota2-assessment" in report:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")

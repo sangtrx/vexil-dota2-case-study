@@ -71,6 +71,6 @@ I also preselected a **minute-20 comeback test**. For games with |gold lead| ≥
 
 The pre-test model family (**e49e853**) and match manifest (**3258a76**) were fixed before the first TEST evaluation. After the 12-row game-end repair, the **same models were refitted and executed locally** (500 cached matches, zero new HTTP calls, 14/14 cells). Earlier cold Kaggle/Colab runs checked the **previous inclusive-boundary revision**, not this one. The corrected [error audit](https://github.com/sangtrx/vexil-dota2-win-probability/blob/main/docs/ERROR_ANALYSIS.md) recomputes scores, calibration and match influence from all **3,836 frozen forecasts**; source arrival timestamps remain unverified.
 
-**Time spent:** An initial estimate was **8 active hours** for the core notebook/report, excluding unattended API/cloud runs. Later exploration and QA took additional untracked active time, so no reliable total is claimed.
+**Time spent:** Approximately **10 hours of active work**, excluding unattended AI runs, API collection and cloud runtime.
 
-**Assistance disclosure:** AI tools assisted throughout: ChatGPT with notebook/tests, exploratory code, figures, report drafting and QA; Claude (Sonnet and Fable) with technical/editorial review and packaging checks. These were **AI-assisted critiques, not independent human peer review**. No third-party Dota win-prediction implementation was copied; reported scores come from executed tests, not synthetic examples.
+**Assistance disclosure:** ChatGPT Web assisted with code, experiments, tests and drafting; Claude Sonnet/Fable with review. I checked the findings and directed follow-up tests. No third-party Dota predictor was copied. AI reviews are not independent human peer review.

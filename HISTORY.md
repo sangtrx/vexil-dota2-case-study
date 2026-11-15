@@ -4,6 +4,8 @@ This is the original development repository for the Vexil Capital Dota 2 take-ho
 
 Read [REPORT.pdf](REPORT.pdf) and [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb) on main first. The research branches below document exploratory experiments and negative results. They are **not** all executed by the submission notebook and most were **not** selected. Before this handoff update, the original branching graph had 97 distinct reachable commits from 13-14 November 2026, not 97 commits in a single linear history.
 
+**PR disposition (15 November 2026):** #3-#10 are closed without merge as completed research archives; #11 was merged into main as the final candidate. Closing a PR does not delete its branch, commits or experiment receipts. For a quick technical audit, read #3 → #6 → #9 → #11; the other PRs document separate negative experiments and QA.
+
 ## Actual research PRs
 
 | PR | Research branch | Work / conclusion |
