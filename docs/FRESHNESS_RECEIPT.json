@@ -1,0 +1,555 @@
+{
+  "bootstrap_draws": 10000,
+  "cohort": {
+    "games": 106,
+    "minute_rows": 3836,
+    "series": 54,
+    "series_metadata_sha256": "472db6781f6e6ad210120a07c4fb291583b75557841bbf2fa9448bafe6662383",
+    "sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
+  },
+  "evidence_class": "POST_HOC_OPENED_TEST_NOT_INDEPENDENT",
+  "immutable_forecasts": true,
+  "immutable_model": true,
+  "lags": {
+    "1": {
+      "M0": {
+        "brier_value": 0.0065166837319252475,
+        "by_phase": {
+          "00-09": {
+            "brier_value": 0.002976364179905878,
+            "calibration_term": 0.0024275522374874697,
+            "equal_game_brier_value": 0.002976364179905878,
+            "games": 106,
+            "innovation_energy": 0.0005488119424184088,
+            "logloss_value": 0.006126872696368964,
+            "n": 954,
+            "probability_drift": 0.0013284805427040585
+          },
+          "10-19": {
+            "brier_value": 0.004999014511264005,
+            "calibration_term": 0.0028109133352084673,
+            "equal_game_brier_value": 0.004999014511264005,
+            "games": 106,
+            "innovation_energy": 0.0021881011760555374,
+            "logloss_value": 0.01141659304417506,
+            "n": 1060,
+            "probability_drift": 0.0019191747775062797
+          },
+          "20-29": {
+            "brier_value": 0.010082176703329034,
+            "calibration_term": 0.005780134023148557,
+            "equal_game_brier_value": 0.010403850066515822,
+            "games": 105,
+            "innovation_energy": 0.004302042680180478,
+            "logloss_value": 0.027565508086518108,
+            "n": 997,
+            "probability_drift": 0.004955208781404653
+          },
+          "30+": {
+            "brier_value": 0.00850750116452305,
+            "calibration_term": 0.004058288135162744,
+            "equal_game_brier_value": 0.012158096586350002,
+            "games": 79,
+            "innovation_energy": 0.004449213029360306,
+            "logloss_value": 0.023497193660223195,
+            "n": 719,
+            "probability_drift": 0.00043775016551040837
+          }
+        },
+        "calibration_term": 0.0037469586488324785,
+        "equal_game_brier_value": 0.006997847165794843,
+        "games": 106,
+        "innovation_energy": 0.0027697250830927686,
+        "logloss_value": 0.016708825464643588,
+        "n": 3730,
+        "probability_drift": 0.002294043224117627,
+        "series_bootstrap_95ci": {
+          "brier_value": [
+            0.005783606982992403,
+            0.007117338304440592
+          ],
+          "calibration_term": [
+            0.0030703805989268146,
+            0.004377997800320923
+          ],
+          "innovation_energy": [
+            0.0023928826199500048,
+            0.0031699008960708866
+          ],
+          "logloss_value": [
+            0.014445229241779108,
+            0.018451677465934225
+          ],
+          "probability_drift": [
+            -0.00011294508656777665,
+            0.0047591864433806155
+          ]
+        }
+      },
+      "M1": {
+        "brier_value": 0.006355922864902588,
+        "by_phase": {
+          "00-09": {
+            "brier_value": 0.0037142241075545116,
+            "calibration_term": 0.002030940078994539,
+            "equal_game_brier_value": 0.003714224107554512,
+            "games": 106,
+            "innovation_energy": 0.0016832840285599733,
+            "logloss_value": 0.007837898243226962,
+            "n": 954,
+            "probability_drift": 0.0016232415306658388
+          },
+          "10-19": {
+            "brier_value": 0.0048042927408338465,
+            "calibration_term": 0.0010497926061451977,
+            "equal_game_brier_value": 0.0048042927408338465,
+            "games": 106,
+            "innovation_energy": 0.003754500134688648,
+            "logloss_value": 0.011219288725485412,
+            "n": 1060,
+            "probability_drift": 0.0014523347395266986
+          },
+          "20-29": {
+            "brier_value": 0.009385951753799244,
+            "calibration_term": 0.00461661908565295,
+            "equal_game_brier_value": 0.009682024745679625,
+            "games": 105,
+            "innovation_energy": 0.004769332668146294,
+            "logloss_value": 0.025669337718772486,
+            "n": 997,
+            "probability_drift": 0.004321297525903974
+          },
+          "30+": {
+            "brier_value": 0.007946979532208518,
+            "calibration_term": 0.004535759900243303,
+            "equal_game_brier_value": 0.011701541099139828,
+            "games": 79,
+            "innovation_energy": 0.003411219631965216,
+            "logloss_value": 0.02164422537667324,
+            "n": 719,
+            "probability_drift": 0.000416606802775545
+          }
+        },
+        "calibration_term": 0.0029260797840604895,
+        "equal_game_brier_value": 0.006851827490598601,
+        "games": 106,
+        "influence": {
+          "games_positive": 104,
+          "games_total": 106,
+          "leave_one_series_out_brier_max": 0.006580576272996892,
+          "leave_one_series_out_brier_min": 0.006291269243269373,
+          "max_series_row_share": 0.035656836461126,
+          "series_positive": 53,
+          "series_total": 54
+        },
+        "innovation_energy": 0.003429843080842098,
+        "logloss_value": 0.016226361588337075,
+        "n": 3730,
+        "probability_drift": 0.002063249643076512,
+        "series_bootstrap_95ci": {
+          "brier_value": [
+            0.005701071510429454,
+            0.006937518705358522
+          ],
+          "calibration_term": [
+            0.0023594652149770867,
+            0.0034834388353676437
+          ],
+          "innovation_energy": [
+            0.003008654029527971,
+            0.003876202113114144
+          ],
+          "logloss_value": [
+            0.014567328534009766,
+            0.017725746139065354
+          ],
+          "probability_drift": [
+            -0.00024314458551122174,
+            0.004457947035427619
+          ]
+        }
+      },
+      "same_row_model_comparison": {
+        "games": 106,
+        "m1_fresh_gain_over_m0_brier": 0.0036171906780546634,
+        "m1_fresh_gain_over_m0_logloss": 0.012695256373627485,
+        "m1_stale_disadvantage_to_m0_fresh_brier": 0.0027387321868479245,
+        "m1_stale_disadvantage_to_m0_fresh_logloss": 0.0035311052147095883,
+        "n": 3730,
+        "series_bootstrap_95ci": {
+          "m1_fresh_gain_over_m0_brier": [
+            0.0004110039705713522,
+            0.006774386740313306
+          ],
+          "m1_fresh_gain_over_m0_logloss": [
+            -0.00014187958453708134,
+            0.02874276243806626
+          ],
+          "m1_stale_disadvantage_to_m0_fresh_brier": [
+            -0.0004119342932951067,
+            0.005942845874725972
+          ],
+          "m1_stale_disadvantage_to_m0_fresh_logloss": [
+            -0.013650584467584572,
+            0.016749509715633496
+          ]
+        }
+      }
+    },
+    "2": {
+      "M0": {
+        "brier_value": 0.012780625431780473,
+        "by_phase": {
+          "00-09": {
+            "brier_value": 0.005650875737010773,
+            "calibration_term": 0.004587585478556004,
+            "equal_game_brier_value": 0.005650875737010773,
+            "games": 106,
+            "innovation_energy": 0.001063290258454769,
+            "logloss_value": 0.01164219284519675,
+            "n": 848,
+            "probability_drift": 0.0021043793247461934
+          },
+          "10-19": {
+            "brier_value": 0.009967354537911787,
+            "calibration_term": 0.005432572187010836,
+            "equal_game_brier_value": 0.009967354537911786,
+            "games": 106,
+            "innovation_energy": 0.004534782350900951,
+            "logloss_value": 0.022707512715191114,
+            "n": 1060,
+            "probability_drift": 0.003476994963675406
+          },
+          "20-29": {
+            "brier_value": 0.02022177145581338,
+            "calibration_term": 0.00952195299227457,
+            "equal_game_brier_value": 0.020868847782885305,
+            "games": 105,
+            "innovation_energy": 0.010699818463538808,
+            "logloss_value": 0.05423317803420301,
+            "n": 997,
+            "probability_drift": 0.010457116132654432
+          },
+          "30+": {
+            "brier_value": 0.015018834475876038,
+            "calibration_term": 0.0033485709717514167,
+            "equal_game_brier_value": 0.02357820864029503,
+            "games": 79,
+            "innovation_energy": 0.011670263504124622,
+            "logloss_value": 0.03911850205969795,
+            "n": 719,
+            "probability_drift": 0.001661595490469038
+          }
+        },
+        "calibration_term": 0.005946415194821742,
+        "equal_game_brier_value": 0.013822914908538342,
+        "games": 106,
+        "innovation_energy": 0.0068342102369587324,
+        "logloss_value": 0.03204724737633903,
+        "n": 3624,
+        "probability_drift": 0.004715938264565234,
+        "series_bootstrap_95ci": {
+          "brier_value": [
+            0.011224048871738217,
+            0.014067486830019084
+          ],
+          "calibration_term": [
+            0.004416063973446644,
+            0.007356629064299376
+          ],
+          "innovation_energy": [
+            0.0058766427633247485,
+            0.007849231058242324
+          ],
+          "logloss_value": [
+            0.02650639667805682,
+            0.03610040939769557
+          ],
+          "probability_drift": [
+            -7.461276031323625e-05,
+            0.009312351357163127
+          ]
+        }
+      },
+      "M1": {
+        "brier_value": 0.012315131424681467,
+        "by_phase": {
+          "00-09": {
+            "brier_value": 0.00674821797392209,
+            "calibration_term": 0.003679531761087085,
+            "equal_game_brier_value": 0.00674821797392209,
+            "games": 106,
+            "innovation_energy": 0.003068686212835005,
+            "logloss_value": 0.014344832716582587,
+            "n": 848,
+            "probability_drift": 0.0022043772009401955
+          },
+          "10-19": {
+            "brier_value": 0.009550363757538406,
+            "calibration_term": 0.0019334338506766739,
+            "equal_game_brier_value": 0.009550363757538408,
+            "games": 106,
+            "innovation_energy": 0.007616929906861732,
+            "logloss_value": 0.022327823923992195,
+            "n": 1060,
+            "probability_drift": 0.002536909722557793
+          },
+          "20-29": {
+            "brier_value": 0.01890893652212861,
+            "calibration_term": 0.007198137302023602,
+            "equal_game_brier_value": 0.01949300754831631,
+            "games": 105,
+            "innovation_energy": 0.011710799220105008,
+            "logloss_value": 0.05071252817007668,
+            "n": 997,
+            "probability_drift": 0.009455665001329574
+          },
+          "30+": {
+            "brier_value": 0.013813563484849464,
+            "calibration_term": 0.004723843690400545,
+            "equal_game_brier_value": 0.022445264608686188,
+            "games": 79,
+            "innovation_energy": 0.00908971979444892,
+            "logloss_value": 0.03670056828739704,
+            "n": 719,
+            "probability_drift": 0.0008101784750048111
+          }
+        },
+        "calibration_term": 0.004344003675119936,
+        "equal_game_brier_value": 0.013378879517900986,
+        "games": 106,
+        "innovation_energy": 0.00797112774956153,
+        "logloss_value": 0.031120311999806482,
+        "n": 3624,
+        "probability_drift": 0.004019937224658552,
+        "series_bootstrap_95ci": {
+          "brier_value": [
+            0.01088960829712979,
+            0.013578044553180634
+          ],
+          "calibration_term": [
+            0.003002647378395046,
+            0.005615603872348126
+          ],
+          "innovation_energy": [
+            0.006920740513640124,
+            0.009074534281302692
+          ],
+          "logloss_value": [
+            0.027440470595878383,
+            0.03440299448253669
+          ],
+          "probability_drift": [
+            -0.0006017436276113679,
+            0.00847674664160066
+          ]
+        }
+      },
+      "same_row_model_comparison": {
+        "games": 106,
+        "m1_fresh_gain_over_m0_brier": 0.003539462392974809,
+        "m1_fresh_gain_over_m0_logloss": 0.012691339910927652,
+        "m1_stale_disadvantage_to_m0_fresh_brier": 0.008775669031706656,
+        "m1_stale_disadvantage_to_m0_fresh_logloss": 0.01842897208887883,
+        "n": 3624,
+        "series_bootstrap_95ci": {
+          "m1_fresh_gain_over_m0_brier": [
+            0.00039916806729027707,
+            0.0066899240240101705
+          ],
+          "m1_fresh_gain_over_m0_logloss": [
+            -0.00020181265439652495,
+            0.029366027664097304
+          ],
+          "m1_stale_disadvantage_to_m0_fresh_brier": [
+            0.005286130335028408,
+            0.012140162353727602
+          ],
+          "m1_stale_disadvantage_to_m0_fresh_logloss": [
+            -0.0006592499319701473,
+            0.0323143726120147
+          ]
+        }
+      }
+    },
+    "5": {
+      "M0": {
+        "brier_value": 0.029474958706696253,
+        "by_phase": {
+          "00-09": {
+            "brier_value": 0.013266503217595014,
+            "calibration_term": 0.00968161180890901,
+            "equal_game_brier_value": 0.013266503217595014,
+            "games": 106,
+            "innovation_energy": 0.0035848914086860067,
+            "logloss_value": 0.027335715011901417,
+            "n": 530,
+            "probability_drift": 0.00493763792316187
+          },
+          "10-19": {
+            "brier_value": 0.02476254448762574,
+            "calibration_term": 0.014005421867701108,
+            "equal_game_brier_value": 0.02476254448762574,
+            "games": 106,
+            "innovation_energy": 0.010757122619924628,
+            "logloss_value": 0.05558958441195978,
+            "n": 1060,
+            "probability_drift": 0.008028385555069472
+          },
+          "20-29": {
+            "brier_value": 0.04470016433421327,
+            "calibration_term": 0.014724416886959114,
+            "equal_game_brier_value": 0.046380393779988385,
+            "games": 105,
+            "innovation_energy": 0.029975747447254154,
+            "logloss_value": 0.11585872812495061,
+            "n": 997,
+            "probability_drift": 0.02331762235296886
+          },
+          "30+": {
+            "brier_value": 0.027258144340637745,
+            "calibration_term": -0.00192769204474215,
+            "equal_game_brier_value": 0.04901468392463625,
+            "games": 79,
+            "innovation_energy": 0.029185836385379898,
+            "logloss_value": 0.06727340674735842,
+            "n": 719,
+            "probability_drift": 0.008496884219756837
+          }
+        },
+        "calibration_term": 0.01006389428149231,
+        "equal_game_brier_value": 0.03222203228974361,
+        "games": 106,
+        "innovation_energy": 0.01941106442520394,
+        "logloss_value": 0.07177665451449232,
+        "n": 3306,
+        "probability_drift": 0.012245603759093934,
+        "series_bootstrap_95ci": {
+          "brier_value": [
+            0.02517214776066668,
+            0.033110779585692585
+          ],
+          "calibration_term": [
+            0.005567343074450485,
+            0.01429610942262115
+          ],
+          "innovation_energy": [
+            0.0170598687079197,
+            0.021800094007804145
+          ],
+          "logloss_value": [
+            0.055336691700089986,
+            0.08363070659886963
+          ],
+          "probability_drift": [
+            0.00149128297521581,
+            0.022724569602223747
+          ]
+        }
+      },
+      "M1": {
+        "brier_value": 0.028189279392562886,
+        "by_phase": {
+          "00-09": {
+            "brier_value": 0.01514551431385689,
+            "calibration_term": 0.005796185460543004,
+            "equal_game_brier_value": 0.01514551431385689,
+            "games": 106,
+            "innovation_energy": 0.009349328853313887,
+            "logloss_value": 0.032308804684889676,
+            "n": 530,
+            "probability_drift": 0.004703881157149577
+          },
+          "10-19": {
+            "brier_value": 0.02436073861868882,
+            "calibration_term": 0.00702529480482925,
+            "equal_game_brier_value": 0.02436073861868882,
+            "games": 106,
+            "innovation_energy": 0.01733544381385957,
+            "logloss_value": 0.05655602334947302,
+            "n": 1060,
+            "probability_drift": 0.00563423678614167
+          },
+          "20-29": {
+            "brier_value": 0.04182561940635658,
+            "calibration_term": 0.009220446074374486,
+            "equal_game_brier_value": 0.04344331588735293,
+            "games": 105,
+            "innovation_energy": 0.0326051733319821,
+            "logloss_value": 0.10864041633224994,
+            "n": 997,
+            "probability_drift": 0.0213873080592089
+          },
+          "30+": {
+            "brier_value": 0.02453979082269971,
+            "calibration_term": 0.000643457407409718,
+            "equal_game_brier_value": 0.04580393729926026,
+            "games": 79,
+            "innovation_energy": 0.023896333415289996,
+            "logloss_value": 0.06496609464621797,
+            "n": 719,
+            "probability_drift": 0.004319580816902049
+          }
+        },
+        "calibration_term": 0.006102305323437914,
+        "equal_game_brier_value": 0.03091688061025636,
+        "games": 106,
+        "innovation_energy": 0.022086974069124972,
+        "logloss_value": 0.0702051325974945,
+        "n": 3306,
+        "probability_drift": 0.009949870764967722,
+        "series_bootstrap_95ci": {
+          "brier_value": [
+            0.024149502279406824,
+            0.03171584374341152
+          ],
+          "calibration_term": [
+            0.001894025300487141,
+            0.010099574956214342
+          ],
+          "innovation_energy": [
+            0.0193010333834298,
+            0.024948672915119062
+          ],
+          "logloss_value": [
+            0.05960356415267588,
+            0.07934603674425258
+          ],
+          "probability_drift": [
+            -0.0005071482805120906,
+            0.020217784553376104
+          ]
+        }
+      },
+      "same_row_model_comparison": {
+        "games": 106,
+        "m1_fresh_gain_over_m0_brier": 0.003202636113281585,
+        "m1_fresh_gain_over_m0_logloss": 0.012494949048497354,
+        "m1_stale_disadvantage_to_m0_fresh_brier": 0.024986643279281302,
+        "m1_stale_disadvantage_to_m0_fresh_logloss": 0.057710183548997145,
+        "n": 3306,
+        "series_bootstrap_95ci": {
+          "m1_fresh_gain_over_m0_brier": [
+            -0.00022004212537323801,
+            0.006544844208425214
+          ],
+          "m1_fresh_gain_over_m0_logloss": [
+            -0.0017316397186450383,
+            0.03085414751828064
+          ],
+          "m1_stale_disadvantage_to_m0_fresh_brier": [
+            0.019754092978466305,
+            0.029824940710575832
+          ],
+          "m1_stale_disadvantage_to_m0_fresh_logloss": [
+            0.031162593739799533,
+            0.076252065173378
+          ]
+        }
+      }
+    }
+  },
+  "protocol": "docs/FRESHNESS_PROTOCOL.md",
+  "seed": 20261115,
+  "source_received_at_observed": false
+}
