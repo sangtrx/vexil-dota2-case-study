@@ -32,6 +32,7 @@ FILES = (
     "docs/STRICT_SERIES_ECE_RECEIPT.json",
     "docs/ERROR_ANALYSIS.md",
     "docs/ERROR_AUDIT_RECEIPT.json",
+    "docs/COLAB_COLD_RUN_RECEIPT.json",
     "docs/figures/phase_error_audit.png",
     "research/error_diagnostics.py",
     "research/render_error_figure.py",
@@ -101,6 +102,14 @@ def verify() -> dict:
     report = (ROOT / "REPORT.md").read_text()
     if not all(x in report for x in ("**Time spent:**", "**Assistance disclosure:**", "**Result:**")):
         raise ValueError("Missing hours, assistance or results in report.")
+
+    cloud_receipt=json.loads((ROOT / "docs/COLAB_COLD_RUN_RECEIPT.json").read_text())
+    if (cloud_receipt["scientific_code_sha256"]!=MODEL_CODE_SHA256
+            or cloud_receipt["repo_main_notebook_sha256"]!=EXPECTED_NOTEBOOK_SHA256
+            or cloud_receipt["code_cells_executed"]!=14
+            or cloud_receipt["test_minute_rows"]!=3836
+            or cloud_receipt["cloud_csv_byte_equality_verified"]):
+        raise ValueError("Colab execution receipt conflicts with pinned scientific delivery.")
 
     forecasts = (ROOT / "artifacts/heldout_predictions.csv").read_bytes()
     if sha(forecasts) != EXPECTED_FORECAST_SHA256:

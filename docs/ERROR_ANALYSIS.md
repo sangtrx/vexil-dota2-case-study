@@ -33,6 +33,10 @@ Late-game M1 Brier is worse even though its log-loss point estimate improves sli
 
 This illustrates why a single overall proper score is not an adequate model-governance decision. Match-group and series-group dependence remain; a leave-one-out sign check is not a confidence interval.
 
+## Check the base rate before interpreting calibration
+
+The saved 500-game notebook reports Radiant winning **51.2% of 291 TRAIN games**, **48.5% of 103 VALIDATION games** and **59.4% of 106 TEST games**. The TEST row-weighted observed win fraction is **60.45%**, versus mean predicted probabilities of **54.24% (M0)** and **54.29% (M1)**. Both models underpredict this held-out cohort on average. With few games in a narrow March patch window, these differences do not identify whether the cause is genuine patch/league drift or sampling variation; no TEST recalibration is performed.
+
 ## What else could make the result fail in deployment?
 
 The 500 selected games span **5.26 days** across one patch boundary (250 patch 59, 250 patch 60). Validation and TEST are entirely patch 60; the study does not establish unseen-patch performance. TRAIN/VALIDATION/TEST Radiant game-win fractions are **51.2% / 48.5% / 59.4%**. On TEST M1 predicts an average Radiant win probability of **0.5429**, versus an actual row-weighted win share **0.6045**. Such misalignment may combine model error, side prevalence variation, league/team composition and sampling noise. We cannot separate those mechanisms with this small cohort.
