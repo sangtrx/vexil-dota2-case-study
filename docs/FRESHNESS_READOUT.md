@@ -1,3 +1,5 @@
+> **Research inference withdrawn (15 November 2026).** The lagged Brier freshness mean is an endpoint telescoping identity, not per-minute information value or measured latency. The 1.76x headline must not be used. Read [FRESHNESS_ERRATA.md](FRESHNESS_ERRATA.md) before interpreting the historical numbers below. This is NOT recruiter-facing appendix material.
+
 # Value of Freshness | A real-time forecasting question beyond model complexity
 
 **Evidence level: post-hoc descriptive research on an already opened TEST.** Not part of the required 500-match model selection or a second independent holdout. No new fitted model, threshold, calibration, live network recording or betting return.

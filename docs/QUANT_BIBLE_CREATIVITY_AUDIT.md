@@ -1,3 +1,5 @@
+> **Research inference withdrawn (15 November 2026).** The lagged Brier freshness mean is an endpoint telescoping identity, not per-minute information value or measured latency. The 1.76x headline must not be used. Read [FRESHNESS_ERRATA.md](FRESHNESS_ERRATA.md) before interpreting the historical numbers below. This is NOT recruiter-facing appendix material.
+
 # Vexil × Quant Research Bible | Theory-to-experiment applicability audit
 
 **Goal:** select ideas that answer the Vexil question with the available data. **Not** to run every theorem as a model hyperparameter, claim financial alpha, or optimize on previously opened TEST. This map references [the Bible](https://github.com/sangtrx/quant-research-bible), [full 28-candidate register](EXPERIMENT_REGISTER.md) and [failure audit](ERROR_ANALYSIS.md).
