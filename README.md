@@ -27,7 +27,7 @@ The full results, ablations, uncertainty, calibration plots and limitations are 
 
 Use [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb). The notebook fetches its own data from the allowed OpenDota endpoints: `/api/proMatches` and `/api/matches/{match_id}`. It uses a frozen, explicit 250/250 match manifest. No credentials, uploaded datasets or other model inputs are required.
 
-**Google Colab:** Open the notebook from this GitHub repository, choose a CPU runtime with Internet access and select **Runtime → Run all**. The setup cell checks the Python environment and installs required packages when missing. OpenDota may rate-limit requests; the collector uses bounded retry and refuses to silently substitute a different match.
+**Google Colab:** With repo access, download the notebook file from GitHub and select **File → Upload notebook** in Colab, then choose a CPU runtime with Internet and **Runtime → Run all**. Direct private-GitHub import may require separately authorizing GitHub in Colab. The setup cell checks the Python environment and installs required packages when missing. OpenDota may rate-limit requests; the collector uses bounded retry and refuses to silently substitute a different match.
 
 **Local Python 3.11+:**
 
@@ -40,7 +40,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 51 portable contracts for point-in-time features, report assets and frozen forecasts without calling OpenDota. The extended research/QA suite was independently run before the earlier reviewer handoff; only the updated 51-test portable suite was rerun for this corrected version.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 52 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
 
 ## Files and review order
 

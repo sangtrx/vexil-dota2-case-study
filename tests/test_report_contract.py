@@ -35,7 +35,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
                       "reused validation","at least 38","none of the 28"):
             self.assertIn(token.lower(),report.lower())
         self.assertIn("[-0.016929,+0.006434]",register)
-        self.assertIn("Claude Sonnet/Fable with review",report)
+        self.assertIn("Claude Sonnet/Fable provided AI reviews",report)
         self.assertIn("AI reviews are not independent human peer review",report)
         self.assertIn("10 hours of active work",report)
         self.assertIn("No third-party Dota predictor was copied",report)
@@ -52,6 +52,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         readme=(ROOT / "README.md").read_text()
         pkg=(ROOT / "SUBMISSION_PACKAGE_README.md").read_text()
         self.assertIn("strictly before match end", text)
+        self.assertIn("corrected terminal boundary", text)
+        self.assertNotIn("Evaluation on the untouched", text)
         self.assertNotIn("through match end", text)
         self.assertIn("60*t < duration", text)
         self.assertIn("strict pre-terminal", report)

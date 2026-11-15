@@ -2,7 +2,7 @@
 
 Candidate: Truong Quang Sang
 Project: Vexil Capital Senior Data Scientist take-home
-Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
+Deadline: Thursday, 19 November 2026 (exact submission cutoff time not confirmed)
 
 ## Contents and reproducibility
 
@@ -17,7 +17,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,836 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Four small test modules under tests/ run 51 offline unit/contract checks
+5. Four test modules under tests/ run 52 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
 6. docs/EXPERIMENT_REGISTER.md lists all nine project/research PRs,
    including the 28-model exploratory search with every negative result.
@@ -25,7 +25,7 @@ Deadline: Thursday, 19 November 2026 (submission cutoff time zone not specified)
    and the standalone notebook does not run all those experiments.
 7. Three real-data figures used in the report, including the phase error-audit chart, are included under docs/figures.
    The latest notebook has saved outputs and a 10-hour active-work estimate.
-   Earlier cold Kaggle/Colab runs verified the PREVIOUS inclusive-terminal scientific code. The corrected notebook was then executed locally against the frozen 500-game cache.
+   Historical Kaggle/Colab cold runs verified the previous inclusive-terminal source. The corrected notebook was then replayed locally against the frozen 500-game cache.
    The corrected source now excludes 12 terminal-boundary minute rows, so the exact current notebook has not yet had a new cold hosted run.
 
 8. docs/ERROR_ANALYSIS.md and its frozen audit receipt expose the model's
