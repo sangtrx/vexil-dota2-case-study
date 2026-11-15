@@ -33,6 +33,9 @@ FILES = (
     "docs/ERROR_ANALYSIS.md",
     "docs/ERROR_AUDIT_RECEIPT.json",
     "docs/COLAB_COLD_RUN_RECEIPT.json",
+    "docs/SERIES_GROUPS_TEST.json",
+    "docs/SERIES_CI_RECEIPT.json",
+    "research/series_cluster_sensitivity.py",
     "docs/figures/phase_error_audit.png",
     "research/error_diagnostics.py",
     "research/render_error_figure.py",
@@ -112,6 +115,15 @@ def verify() -> dict:
         raise ValueError("Colab execution receipt conflicts with pinned scientific delivery.")
 
     forecasts = (ROOT / "artifacts/heldout_predictions.csv").read_bytes()
+    series_receipt=json.loads((ROOT / "docs/SERIES_CI_RECEIPT.json").read_text())
+    series_meta=(ROOT / "docs/SERIES_GROUPS_TEST.json").read_bytes()
+    if (series_receipt["source_csv_sha256"]!=EXPECTED_FORECAST_SHA256
+            or series_receipt["series_group_metadata_sha256"]!=sha(series_meta)
+            or series_receipt["series_clusters"]!=54
+            or series_receipt["matches"]!=106
+            or series_receipt["minute_rows"]!=3836):
+        raise ValueError("Series-cluster sensitivity receipt is stale or ungrounded.")
+
     if sha(forecasts) != EXPECTED_FORECAST_SHA256:
         raise ValueError("Frozen held-out predictions have changed.")
     # Never package a stale post-hoc audit under a new frozen forecast receipt.

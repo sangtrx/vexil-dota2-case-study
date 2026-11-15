@@ -73,6 +73,19 @@ class ErrorDiagnosticsContractTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"time-varying"):
                 error.load_rows(path)
 
+    def test_posthoc_series_clustering_reproduces_saved_receipt(self):
+        path=ROOT/"research"/"series_cluster_sensitivity.py"
+        spec=importlib.util.spec_from_file_location("vexil_series_sensitivity",path)
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module=importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        actual=module.compute()  # Offline only. Never refits the model.
+        self.assertEqual(actual["series_clusters"],54)
+        self.assertEqual(actual["minute_rows"],3836)
+        self.assertGreater(actual["series_bootstrap_delta_ll_ci"][1],0)
+        self.assertLess(actual["series_bootstrap_delta_brier_ci"][1],0)
+
     def test_chart_and_document_are_review_artifacts_only(self):
         doc=(ROOT/"docs"/"ERROR_ANALYSIS.md").read_text(encoding="utf8")
         self.assertIn("post-hoc",doc.lower())
