@@ -1,0 +1,29 @@
+{
+  "fetched_from": "OpenDota /api/matches/{match_id}, series_id only for grouping",
+  "limitations": [
+    "Series cluster metadata derives from the final parsed match; for uncertainty grouping only, not a model input",
+    "Results are post-hoc descriptive sensitivity on an already opened TEST set",
+    "No claim of independent validation",
+    "Future source reparses may change metadata"
+  ],
+  "matches": 106,
+  "method": "Paired series-cluster bootstrap; resample 54 series IDs (with replacement), aggregate all per-minute M1-M0 losses within each sampled series; divide summed differences by total sampled minute observations; percentile 2.5/97.5, 10,000 draws. No refit or model selection.",
+  "minute_rows": 3836,
+  "n_bootstrap_resamples": 10000,
+  "primary_point_delta_brier": -0.0035593439679491197,
+  "primary_point_delta_ll": -0.012429726921359435,
+  "scope": "POST-HOC descriptive series-cluster sensitivity on pinned heldout predictions; no fitting, model selection or recalibration",
+  "seed": 20261115,
+  "series_bootstrap_delta_brier_ci": [
+    -0.006700176342786193,
+    -0.00038261362015002884
+  ],
+  "series_bootstrap_delta_ll_ci": [
+    -0.02828104009238174,
+    0.00011999653289943327
+  ],
+  "series_clusters": 54,
+  "series_group_metadata_sha256": "472db6781f6e6ad210120a07c4fb291583b75557841bbf2fa9448bafe6662383",
+  "series_id_missing_matches": 0,
+  "source_csv_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
+}

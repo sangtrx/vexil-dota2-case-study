@@ -4,7 +4,7 @@ This is the original development repository for the Vexil Capital Dota 2 take-ho
 
 Read [REPORT.pdf](REPORT.pdf) and [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb) on main first. The research branches below document exploratory experiments and negative results. They are **not** all executed by the submission notebook and most were **not** selected. The original development history is a branching graph, not one artificial linear series. New handoff fixes are committed with their actual dates.
 
-**PR disposition (15 November 2026):** #3-#10 are closed without merge as completed research archives; #11 merged the final notebook/report, #12 corrected the handoff, and #13 records the verified fresh Colab execution. Closing a PR does not delete its branch, commits or experiment receipts. For a quick technical audit, read #3 → #6 → #9 → #11 → #12; the other PRs document separate negative experiments and QA.
+**PR disposition (15 November 2026):** #3-#10 are closed without merge as completed research archives; #11 merged the final notebook/report, #12 corrected the handoff, #13 records the fresh Colab execution, and #14 adds a post-hoc series-dependence sensitivity without changing the model. Closing a PR does not delete its branch, commits or experiment receipts. For a quick technical audit, read #3 → #6 → #9 → #11 → #12; the other PRs document separate negative experiments and QA.
 
 ## Actual research PRs
 
@@ -21,6 +21,7 @@ Read [REPORT.pdf](REPORT.pdf) and [live_dota2_win_probability.ipynb](live_dota2_
 | [#11](https://github.com/sangtrx/vexil-dota2-win-probability/pull/11) | Merged | review/vexil-recruiter-polish-20261114 | Final scientific notebook, strict pre-terminal repair and frozen-cache refit |
 | [#12](https://github.com/sangtrx/vexil-dota2-win-probability/pull/12) | Merged | fix/vexil-hiring-review-20261115 | Terminal-boundary text, pre/post correction evidence, concise disclosure, clean Git/PR handoff |
 | [#13](https://github.com/sangtrx/vexil-dota2-win-probability/pull/13) | Merged | fix/vexil-colab-receipt-20261115 | Fresh 14-cell Colab cold-run receipt, source hash and numeric parity, honest CSV limitation |
+| [#14](https://github.com/sangtrx/vexil-dota2-win-probability/pull/14) | Merged post-hoc audit | research/vexil-series-ci-20261115 | 54-series grouped bootstrap from unchanged TEST forecasts; CI still crosses zero for log loss |
 
 ## Key original commits
 

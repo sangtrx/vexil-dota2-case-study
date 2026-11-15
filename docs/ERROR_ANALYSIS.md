@@ -25,6 +25,12 @@ All values are descriptive point estimates from the fixed test forecasts. ECE us
 
 *Figure: Descriptive phase ECE and Brier-score differences. The direction reverses on late-game Brier and calibration; no hypothesis was selected using this plot.*
 
+## Series-dependence sensitivity (post-hoc, not a second TEST)
+
+The 106 TEST games belong to **54 professional series**. I re-fetched only their series ID metadata from the permitted OpenDota match endpoint and froze the [106-game grouping](SERIES_GROUPS_TEST.json). With the unchanged 3,836 forecasts, a **10,000-draw paired cluster bootstrap by whole series** (seed 20261115) estimates the M1−M0 log-loss difference 95% CI **[−0.02828, +0.00012]**. It still includes zero. The series-bootstrap Brier difference CI is **[−0.00670, −0.00038]**, unlike the prespecified match-cluster primary interval, which includes zero. Neither result is an independent evaluation, and no model was refit or promoted.
+
+The unit is the series: resample series IDs with replacement, sum all per-minute loss differences within sampled series and divide by the sampled minute-row count. The [offline series-bootstrap script](../research/series_cluster_sensitivity.py) reproduces the frozen [series-sensitivity receipt](SERIES_CI_RECEIPT.json) without OpenDota requests. Series-grouping metadata was obtained only after TEST for uncertainty diagnosis, never used as a model feature.
+
 ## Is the global improvement driven by a few matches?
 
 The corrected TEST contains **106 games and 3,836 forecast opportunities**. M1–M0 mean log-loss difference is **−0.012430**. Match **8744971178** contains 55 minute rows and contributes **54.92% of the total signed log-loss improvement**. If this match is removed for influence diagnosis, the remaining 105 games have mean M1−M0 difference **−0.005685**: the sign survives, but the gain is materially smaller.

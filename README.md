@@ -17,7 +17,7 @@ The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log lo
 
 The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a 3-page A4 report. **Read first:** [report](REPORT.pdf) → [notebook](live_dota2_win_probability.ipynb) → [research history](HISTORY.md).
 
-**Read-only failure audit:** [Error analysis](docs/ERROR_ANALYSIS.md) explains phase calibration, the late-game Brier reversal and match-level influence; a small [offline verification script](research/error_diagnostics.py) recalculates held-out phase scores, ECE and influential matches from the frozen forecast CSV without model refitting. **One 55-row game explains 54.9% of the sample log-loss gain**, another reason not to treat the M1 point estimate as a confirmed improvement.
+**Read-only failure audit:** [Error analysis](docs/ERROR_ANALYSIS.md) explains phase calibration, the late-game Brier reversal, 54-series sensitivity and match-level influence; a small [offline verification script](research/error_diagnostics.py) recalculates held-out phase scores, ECE and influential matches from the frozen forecast CSV without model refitting. **One 55-row game explains 54.9% of the sample log-loss gain**, another reason not to treat the M1 point estimate as a confirmed improvement.
 
 **Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. A **fresh Google Colab CPU Run all (15 November 2026)** fetched the 500 frozen games (514 API calls, zero cache hits), completed **14/14 code cells without error** and reproduced the selected model and held-out scores to 4 decimals. Its scientific-code SHA matches this repository; the uploaded notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise comparison. See the [Colab execution receipt](docs/COLAB_COLD_RUN_RECEIPT.json). Older Kaggle QA covered the inclusive-terminal predecessor.
 
@@ -40,7 +40,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 53 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 54 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
 
 ## Files and review order
 
@@ -55,6 +55,7 @@ Run all cells, top to bottom. `requirements.txt` pins the local Python dependenc
 | [docs/figures/phase_error_audit.png](docs/figures/phase_error_audit.png) | Error diagnosis by phase, including the late-game Brier and ECE reversal; post-hoc descriptive |
 | [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | Nine original research PRs (#3–#11) and 28 exploratory hypotheses; not a second assessment report |
 | [docs/COLAB_COLD_RUN_RECEIPT.json](docs/COLAB_COLD_RUN_RECEIPT.json) | Fresh Colab 14/14 execution receipt, science-code fingerprint, runtime versions, and explicitly unverified CSV-byte parity |
+| [docs/SERIES_CI_RECEIPT.json](docs/SERIES_CI_RECEIPT.json) | Post-hoc series-cluster uncertainty, 54 series and 10,000 resamples; [offline audit](research/series_cluster_sensitivity.py) |
 | [docs/ERROR_ANALYSIS.md](docs/ERROR_ANALYSIS.md) | Reproducible post-hoc failure diagnosis: phase ECE/Brier, match influence and model-governance boundaries |
 
 Running the notebook also exports eight scientific CSV tables, four PNG figures and a JSON receipt. The included forecast CSV lets a reviewer inspect all held-out predictions without re-fetching 500 matches. The downloadable submission ZIP mirrors these files and includes SHA-256 checksums; it is not a separate model or input dataset.
