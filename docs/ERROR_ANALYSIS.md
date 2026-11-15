@@ -19,11 +19,11 @@ The original notebook included 12 rows exactly at match end where duration was d
 | 20–29 | 105 / 997 | −0.00667 | −0.00195 | 0.1019 → 0.0901 |
 | **30+** | **79 / 719** | −0.00678 | **+0.00455, worse** | **0.0559 → 0.0680, worse** |
 
-All values are descriptive point estimates from the fixed test forecasts. ECE uses ten equal-width probability bins and has limited interpretability when labels recur within matches. The original report presents confidence intervals for log loss and Brier; those remain the primary inferential results. The 30+ phase samples longer games selectively, and its intervals are wide.
+All values are descriptive point estimates from the fixed test forecasts. ECE uses ten equal-width bins over repeated within-game labels. The original 30+ **Brier point difference** is +0.00455, but its paired 95% interval **[−0.0037,+0.0109] includes zero**, so the phase reversal is not confirmed. A later 200-game development cohort favors M1 on aggregate point scores; it does not identify the 30+ effect. The original report's paired log-loss/Brier intervals remain the primary inferential evidence.
 
 ![Phase calibration and Brier error, directly computed from saved held-out probabilities.](figures/phase_error_audit.png)
 
-*Figure: Descriptive phase ECE and Brier-score differences. The direction reverses on late-game Brier and calibration; no hypothesis was selected using this plot.*
+*Figure: Descriptive phase ECE and Brier-score differences; the observed late-game reversal is inconclusive and was not used for model selection.*
 
 ## Series-dependence sensitivity (post-hoc, not a second TEST)
 
@@ -35,7 +35,7 @@ The unit is the series: resample series IDs with replacement, sum all per-minute
 
 The corrected TEST contains **106 games and 3,836 forecast opportunities**. M1–M0 mean log-loss difference is **−0.012430**. Match **8744971178** contains 55 minute rows and contributes **54.92% of the total signed log-loss improvement**. If this match is removed for influence diagnosis, the remaining 105 games have mean M1−M0 difference **−0.005685**: the sign survives, but the gain is materially smaller.
 
-Late-game M1 Brier is worse even though its log-loss point estimate improves slightly. Excluding that influential match's 25 late-minute rows reverses the remaining late-phase log-loss point advantage to **+0.0314** (M1 worse). This is not a new primary metric or a license to delete inconvenient games.
+Late-game M1 Brier has a worse **point estimate** even though its log-loss point estimate improves slightly; neither establishes a late-game population ranking. Excluding that influential match's 25 late-minute rows reverses the remaining late-phase log-loss point advantage to **+0.0314** (M1 worse). This is not a new primary metric or a license to delete inconvenient games.
 
 This illustrates why a single overall proper score is not an adequate model-governance decision. Match-group and series-group dependence remain; a leave-one-out sign check is not a confidence interval.
 

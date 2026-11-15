@@ -17,7 +17,7 @@ Deadline: Thursday, 19 November 2026 (exact submission cutoff time not confirmed
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,836 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Four test modules under tests/ run 55 offline unit/contract checks
+5. Four test modules under tests/ run 56 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
 6. docs/EXPERIMENT_REGISTER.md lists nine historical research PRs (#3-#11),
    including the 28-model exploratory search with every negative result.
@@ -41,8 +41,11 @@ Gold-only logistic baseline M0 was compared with validation-selected M1
 (gold, elapsed minute, and their interaction). On 106 held-out games,
 minute-weighted log loss changed 0.5164 to 0.5040 and Brier changed
 0.1719 to 0.1684. Both paired whole-match 95% intervals for differences
-include zero. M1's Brier at minute 30+ is worse. These historical
-OpenDota forecasts neither prove true live-feed availability nor yield
+include zero. On the original TEST, M1's 30+ Brier point estimate is
+0.0046 worse, but its paired 95% interval [−0.0037,+0.0109] crosses zero.
+A separate later 200-game development cohort favors M1 on aggregate point
+scores, not as new confirmatory evidence. These historical OpenDota forecasts
+neither prove true live-feed availability nor yield
 a measured trading or betting profit.
 
 **Reviewer handoff:** This is a **curated delivery repository** assembled on 15 November 2026, not a simulated chronological research log. Its main contains the reviewed notebook, report, figures, forecasts and reproducible archive. [HISTORY.md](HISTORY.md) explains that the complete original 13–15 November development commit graph and PRs are preserved in the [source repository](https://github.com/sangtrx/vexil-dota2-win-probability); the candidate can grant access separately. Historical research scores and negative findings are also reproduced within the included EXPERIMENT_REGISTER.md. Research branches are not part of notebook Run All. Candidate-only interview/study files are not included.

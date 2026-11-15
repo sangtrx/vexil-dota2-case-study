@@ -13,7 +13,7 @@ The notebook estimates the probability that Radiant eventually wins using inform
 | Held-out Brier score (106 games) | 0.1719 | **0.1684** |
 | Held-out Brier, minute 30+ | **0.1028** | 0.1074 |
 
-The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0304, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
+The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0304, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. M1 improves the aggregate point estimates without conclusive primary evidence; its **30+ Brier point estimate** is worse by 0.0046, but the paired 95% interval **[−0.0037,+0.0109]** spans zero. A later 200-game development cohort also favors M1 on aggregate point scores.
 
 The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a 4-page A4 report. **Read first:** [report](REPORT.pdf) → [notebook](live_dota2_win_probability.ipynb) → [research history](HISTORY.md).
 
@@ -27,7 +27,7 @@ The full results, ablations, uncertainty, calibration plots and limitations are 
 
 **The defensible choice is not the most expressive model.** I selected the smallest validation-winning challenger, retained negative research screens, and avoided promoting it because the original paired overall uncertainty still spans zero and actual live-feed receipt is unverified. M1's aggregate point-score advantage recurs on 200 later development games; its 30+ Brier reversal on the original TEST remains descriptive and inconclusive. A future-series evaluation with verified source timing is the next decision point.
 
-The [three-minute reviewer path](SUBMISSION_PACKAGE_README.md) is report → executed notebook → frozen forecasts → error audit. The fourth report figure is a **real held-out game trajectory**, selected by gold-lead range rather than model performance.
+The [three-minute reviewer path](SUBMISSION_PACKAGE_README.md) is report → executed notebook → frozen forecasts → error audit. **Figure 2** of the four-figure report shows a real held-out game trajectory, selected by gold-lead range rather than model performance.
 
 **Provenance:** This repository presents a curated final deliverable assembled on **15 November 2026**. Its short commit history is a packaging history, **not a reconstruction of when the research experiments were performed**. The [original repository](https://github.com/sangtrx/vexil-dota2-win-probability) preserves the full authentic development history and negative research PRs; [HISTORY.md](HISTORY.md) maps them. The included report, notebook and experiment register are self-contained for assessment without relying on those external PR links.
 
@@ -48,13 +48,13 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 55 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 56 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
 
 ## Files and review order
 
 | File | Purpose |
 | --- | --- |
-| [REPORT.pdf](REPORT.pdf) | Three-page assessment report with real-data figures, results, limitations and required assistance disclosure |
+| [REPORT.pdf](REPORT.pdf) | Four-page assessment report with four real-data figures, results, limitations and required assistance disclosure |
 | [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb) | Self-contained data collection, point-in-time features, M0–M3, validation, held-out scoring and saved outputs |
 | [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) | **All 3,836** held-out predictions, one row per `(match_id, minute)`; never read as notebook input |
 | [requirements.txt](requirements.txt) | Exact dependencies for local execution |

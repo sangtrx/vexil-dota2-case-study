@@ -69,7 +69,7 @@ The early-phase differences favor M1 **without multiplicity adjustment**. The 30
 
 *Figure 3. On the original TEST, late-phase Brier/ECE point estimates favor M0; this exploratory reversal is not statistically established.*
 
-A later **200-game development cohort** (6,827 minute rows; 30 March–2 April) gave **M0 / M1 / phase-blend** log losses **0.5451 / 0.5337 / 0.5399**, and Brier scores **0.18647 / 0.18242 / 0.18430**. M1 again has the best aggregate point estimates; the predeclared *blend* failed its gate. The direct M1-vs-M0 comparison there was **secondary and post-gate**, not a new confirmatory holdout; aggregate scores do not determine the 30+ effect.
+A later **200-game development cohort** (6,827 minute rows; 30 March–2 April) gave **M0 / M1 / phase-blend** log losses **0.5451 / 0.5337 / 0.5399**, and Brier scores **0.18647 / 0.18242 / 0.18430**. M1 again has the best aggregate point estimates; the predeclared *blend* failed its gate. Because that blend departs from M1 only **after minute 10**, the observed aggregate disadvantage occurs after that point; it does **not** isolate minute 30+. The direct M1-vs-M0 comparison was **secondary and post-gate**, not confirmatory.
 
 A post-hoc **54-series** bootstrap on the original TEST gives an M1−M0 log-loss interval **[−0.0283,+0.0001]** including zero. Its Brier interval **[−0.0067,−0.0004]** excludes zero, but these same-data sensitivities do not supersede the prespecified match-bootstrap result. Resampling by series need not yield a wider interval than resampling by match.
 
@@ -79,7 +79,7 @@ A post-hoc **54-series** bootstrap on the original TEST gives an M1−M0 log-los
 
 ## 6. Calibration is a separate release risk
 
-Overall 10-bin ECE is **0.0750** for M1 versus **0.0895** for M0, but the post-hoc series-bootstrap interval for the difference **[−0.0203,+0.0020]** crosses zero. After minute 30, ECE worsens from **0.0559 to 0.0680**. Both models underpredict the held-out cohort on average: their predicted means are about **0.543**, while the minute-row-weighted observed Radiant win fraction is **0.6045**. This could reflect a short-window prevalence shift, game composition or sampling noise; it cannot be identified as patch drift from these data. I do not recalibrate on TEST.
+Overall 10-bin ECE is **0.0750** for M1 versus **0.0895** for M0, but the post-hoc series-bootstrap interval for the difference **[−0.0203,+0.0020]** crosses zero. After minute 30, **descriptive, bin-sensitive ECE point estimates** change from **0.0559 to 0.0680**, without a separately validated ECE interval. Both models underpredict the held-out cohort on average: their predicted means are about **0.543**, while the minute-row-weighted observed Radiant win fraction is **0.6045**. This could reflect a short-window prevalence shift, game composition or sampling noise; it cannot be identified as patch drift from these data. I do not recalibrate on TEST.
 
 ![Held-out fixed-bin reliability curves, minute rows not independent.](docs/figures/heldout_reliability.png)
 

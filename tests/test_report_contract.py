@@ -43,6 +43,22 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("dota2-live-win-probability/blob/main/",report)
         self.assertIn("Original commits and PRs",readme)
 
+    def test_secondary_200_game_evidence_and_original_test_limitations(self):
+        report = (ROOT / "REPORT.md").read_text()
+        readme = (ROOT / "README.md").read_text()
+        register = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text()
+        handoff = (ROOT / "SUBMISSION_PACKAGE_README.md").read_text()
+        for fragment in ("200-game development cohort", "0.5451 / 0.5337 / 0.5399",
+                         "0.18647 / 0.18242 / 0.18430", "secondary and post-gate",
+                         "after minute 10", "does **not** isolate minute 30+"):
+            self.assertIn(fragment, report)
+        for doc in (report, readme, handoff):
+            self.assertIn("0.0046", doc)
+            self.assertIn("−0.0037,+0.0109", doc)
+        self.assertIn("pre-correction", register.lower())
+        self.assertIn("3,837 minute rows", register)
+        self.assertNotIn("This original repository", register)
+
     def test_colab_run_receipt_is_scoped_honestly(self):
         import hashlib
         import json

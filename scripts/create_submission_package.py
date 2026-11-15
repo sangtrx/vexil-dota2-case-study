@@ -190,7 +190,7 @@ def verify() -> dict:
     if "https://github.com/sangtrx/vexil-dota2-assessment" in report:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")
     if "https://github.com/sangtrx/dota2-live-win-probability/blob/main/" not in report:
-        raise ValueError("Reviewer PDF must link to canonical original repository main branch.")
+        raise ValueError("Reviewer PDF must link to curated submission repository main branch.")
 
     def measures(key: str) -> tuple[float, float]:
         ll = brier = 0.0
