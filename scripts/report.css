@@ -1,19 +1,25 @@
 @page {size:A4;margin:14mm 14mm 13mm 14mm}
-body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;line-height:1.27;color:#1c2736;margin:0}
+body{font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.29;color:#1c2736;margin:0}
 h1{font-size:18pt;margin:0 0 2mm;color:#13233a}
 h2{font-size:11.8pt;margin:3mm 0 1.2mm;color:#13233a;break-after:avoid}
 h3{font-size:10.4pt;margin:3mm 0 1.2mm;color:#193b52;break-after:avoid}
 p{margin:0 0 1.6mm;break-inside:auto}
 strong{color:#13233a}
-table{border-collapse:collapse;width:100%;font-size:8.4pt;margin:2.3mm 0 3mm;break-inside:avoid}
+table{border-collapse:collapse;width:100%;font-size:8.75pt;margin:2.3mm 0 3mm;break-inside:avoid}
 thead{background:#edf1f5}
 th,td{border-bottom:.5pt solid #c6cbd5;padding:1.3mm 1.4mm;text-align:left;vertical-align:middle}
 tr{break-inside:avoid}
 img{display:block;max-width:100%;height:auto;margin:0 auto}
-img[src*="reliability"]{width:66%;max-height:70mm;object-fit:contain}
+img[src*="reliability"]{width:76%;max-height:72mm;object-fit:contain}
 img[src*="illustrative_game"]{width:54%;max-height:76mm;object-fit:contain}
 p:has(img){text-align:center;break-inside:avoid;margin-top:1mm;margin-bottom:0.5mm}
 p:has(img)+p{font-size:8pt;font-style:italic;text-align:center;margin-bottom:2mm}
 a{color:#194e7a;text-decoration:none}
 
 img[src*="phase_error_audit"]{width:85%;max-height:58mm;object-fit:contain}
+
+/* Intentional four-page scientific narrative rather than accidental overflow. */
+hr{break-before:page;page-break-before:always;border:0;height:0;margin:0;padding:0}
+img[src*="heldout_game_trajectory"]{width:67%;max-height:78mm;object-fit:contain}
+img[src*="time_value_scenarios"]{width:78%;max-height:73mm;object-fit:contain}
+h2{margin-top:2.8mm}

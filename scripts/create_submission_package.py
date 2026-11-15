@@ -13,9 +13,9 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261114.zip"
+DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261115.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
-EXPECTED_NOTEBOOK_SHA256 = "7bddda51fa6ebfb2d54bd56424456e4569865fd507b0015903bfdf755576ac57"
+EXPECTED_NOTEBOOK_SHA256 = "63ec9510940dfa88532fccf488196b73660327bef87ed7a115ab8da44cc8d0dd"
 EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FILES = (
     "README.md",
@@ -28,6 +28,7 @@ FILES = (
     "artifacts/heldout_predictions.csv",
     "docs/figures/heldout_reliability.png",
     "docs/figures/time_value_scenarios.png",
+    "docs/figures/heldout_game_trajectory.png",
     "docs/EXPERIMENT_REGISTER.md",
     "docs/STRICT_SERIES_ECE_RECEIPT.json",
     "docs/ERROR_ANALYSIS.md",
@@ -47,7 +48,7 @@ FILES = (
     "tests/test_submission_forecasts.py",
     "tests/test_error_diagnostics.py",
 )
-STAMP = (2026, 11, 14, 0, 0, 0)
+STAMP = (2026, 11, 15, 0, 0, 0)
 
 
 def sha(data: bytes) -> str:
@@ -100,7 +101,7 @@ def verify() -> dict:
         raise ValueError("PDF source/experiment hyperlinks are missing.")
     images = subprocess.check_output(["pdfimages", "-list", str(ROOT / "REPORT.pdf")], text=True)
     image_lines = [line for line in images.splitlines() if line.lstrip()[:1].isdigit()]
-    if len(image_lines) < 3:
+    if len(image_lines) < 4:
         raise ValueError("Report PDF has missing rendered figures.")
     report = (ROOT / "REPORT.md").read_text()
     if not all(x in report for x in ("**Time spent:**", "**Assistance disclosure:**", "**Result:**")):
@@ -188,7 +189,7 @@ def verify() -> dict:
         raise ValueError("Mandatory accurate AI-review disclosure missing.")
     if "https://github.com/sangtrx/vexil-dota2-assessment" in report:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")
-    if "https://github.com/sangtrx/vexil-dota2-win-probability/blob/main/" not in report:
+    if "https://github.com/sangtrx/dota2-live-win-probability/blob/main/" not in report:
         raise ValueError("Reviewer PDF must link to canonical original repository main branch.")
 
     def measures(key: str) -> tuple[float, float]:
@@ -218,7 +219,7 @@ def run() -> dict:
     entries = {name: (ROOT / name).read_bytes() for name in FILES}
     manifest = {
         "project": "Vexil Capital Senior Data Scientist Dota 2 take-home",
-        "created_on": "2026-11-14",
+        "created_on": "2026-11-15",
         "report_pages": acceptance["pages"],
         "notebook_sha256": EXPECTED_NOTEBOOK_SHA256,
         "scientific_code_sha256": MODEL_CODE_SHA256,

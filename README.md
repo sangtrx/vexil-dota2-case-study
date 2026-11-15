@@ -15,13 +15,21 @@ The notebook estimates the probability that Radiant eventually wins using inform
 
 The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0304, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
 
-The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a 3-page A4 report. **Read first:** [report](REPORT.pdf) → [notebook](live_dota2_win_probability.ipynb) → [research history](HISTORY.md).
+The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a 4-page A4 report. **Read first:** [report](REPORT.pdf) → [notebook](live_dota2_win_probability.ipynb) → [research history](HISTORY.md).
 
 **Read-only failure audit:** [Error analysis](docs/ERROR_ANALYSIS.md) explains phase calibration, the late-game Brier reversal, 54-series sensitivity and match-level influence; a small [offline verification script](research/error_diagnostics.py) recalculates held-out phase scores, ECE and influential matches from the frozen forecast CSV without model refitting. **One 55-row game explains 54.9% of the sample log-loss gain**, another reason not to treat the M1 point estimate as a confirmed improvement.
 
 **Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. A **fresh Google Colab CPU Run all (15 November 2026)** fetched the 500 frozen games (514 API calls, zero cache hits), completed **14/14 code cells without error** and reproduced the selected model and held-out scores to 4 decimals. Its scientific-code SHA matches this repository; the uploaded notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise comparison. See the [Colab execution receipt](docs/COLAB_COLD_RUN_RECEIPT.json). Older Kaggle QA covered the inclusive-terminal predecessor.
 
-**Full research history:** [Original commits and PRs](HISTORY.md) retains the branches, experiment code and negative results. [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
+**Full research history:** [Original commits and PRs](HISTORY.md) links to the authentic branches and experiments preserved in the separate development repository. The complete negative-result table is included here. [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
+
+## One-page decision summary
+
+**The defensible choice is not the most expressive model.** I selected the smallest validation-winning challenger, retained negative research screens, and avoided promoting it because the original paired overall uncertainty still spans zero and actual live-feed receipt is unverified. M1's aggregate point-score advantage recurs on 200 later development games; its 30+ Brier reversal on the original TEST remains descriptive and inconclusive. A future-series evaluation with verified source timing is the next decision point.
+
+The [three-minute reviewer path](SUBMISSION_PACKAGE_README.md) is report → executed notebook → frozen forecasts → error audit. The fourth report figure is a **real held-out game trajectory**, selected by gold-lead range rather than model performance.
+
+**Provenance:** This repository presents a curated final deliverable assembled on **15 November 2026**. Its short commit history is a packaging history, **not a reconstruction of when the research experiments were performed**. The [original repository](https://github.com/sangtrx/vexil-dota2-win-probability) preserves the full authentic development history and negative research PRs; [HISTORY.md](HISTORY.md) maps them. The included report, notebook and experiment register are self-contained for assessment without relying on those external PR links.
 
 ## Run the notebook
 
@@ -40,7 +48,7 @@ jupyter notebook live_dota2_win_probability.ipynb
 
 Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 54 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
+**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 55 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
 
 ## Files and review order
 
@@ -52,6 +60,7 @@ Run all cells, top to bottom. `requirements.txt` pins the local Python dependenc
 | [requirements.txt](requirements.txt) | Exact dependencies for local execution |
 | [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
 | [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Fitted time-value hypothesis, plotted only in training-supported states |
+| [docs/figures/heldout_game_trajectory.png](docs/figures/heldout_game_trajectory.png) | Real held-out match: gold lead and minute-by-minute M0/M1 forecast trajectories |
 | [docs/figures/phase_error_audit.png](docs/figures/phase_error_audit.png) | Error diagnosis by phase, including the late-game Brier and ECE reversal; post-hoc descriptive |
 | [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | Nine original research PRs (#3–#11) and 28 exploratory hypotheses; not a second assessment report |
 | [docs/COLAB_COLD_RUN_RECEIPT.json](docs/COLAB_COLD_RUN_RECEIPT.json) | Fresh Colab 14/14 execution receipt, science-code fingerprint, runtime versions, and explicitly unverified CSV-byte parity |

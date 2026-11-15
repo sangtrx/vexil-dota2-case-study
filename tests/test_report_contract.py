@@ -40,7 +40,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("10 hours of active work",report)
         self.assertIn("No third-party Dota predictor was copied",report)
         self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
-        self.assertIn("vexil-dota2-win-probability/blob/main/",report)
+        self.assertIn("dota2-live-win-probability/blob/main/",report)
         self.assertIn("Original commits and PRs",readme)
 
     def test_colab_run_receipt_is_scoped_honestly(self):
@@ -81,11 +81,31 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("106", report)
         self.assertIn("3,836", pkg)
 
+    def test_trajectory_figure_matches_saved_notebook_output_byte_for_byte(self):
+        import base64
+        import json
+        import hashlib
+        nb = json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
+        cell = nb["cells"][20]
+        self.assertIn('show_embedded_figure(fig, "heldout_game_trajectory.png")',
+                      "".join(cell["source"]))
+        figures = [output["data"]["image/png"] for output in cell["outputs"]
+                   if "image/png" in output.get("data", {})]
+        self.assertGreaterEqual(len(figures), 2)
+        encoded = figures[-1]
+        original = base64.b64decode("".join(encoded) if isinstance(encoded, list)
+                                    else encoded)
+        exported = (ROOT / "docs/figures/heldout_game_trajectory.png").read_bytes()
+        self.assertEqual(hashlib.sha256(original).digest(),
+                         hashlib.sha256(exported).digest())
+        self.assertEqual(original, exported)
+
     def test_report_figures_and_rendered_pdf_are_present(self):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
         for relative in (
             "docs/figures/heldout_reliability.png",
             "docs/figures/time_value_scenarios.png",
+            "docs/figures/heldout_game_trajectory.png",
             "docs/figures/phase_error_audit.png",
         ):
             self.assertIn("](" + relative + ")", markdown)
@@ -113,7 +133,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         if shutil.which("pdfimages"):
             listings = subprocess.check_output(["pdfimages","-list",str(ROOT/"REPORT.pdf")],text=True)
             actual_lines = [x for x in listings.splitlines() if x.lstrip()[:1].isdigit()]
-            self.assertGreaterEqual(len(actual_lines),3)
+            self.assertGreaterEqual(len(actual_lines),4)
 
 
 if __name__ == "__main__":

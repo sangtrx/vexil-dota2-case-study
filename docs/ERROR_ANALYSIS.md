@@ -3,7 +3,7 @@
 **Evidence class: post-hoc diagnostics on an already inspected TEST cohort.**
 The model choice (M1) was frozen before TEST; no fitting, feature selection, recalibration, or new thresholds are based on these diagnostics.
 
-The corrected Vexil submission is one executable notebook plus the three-page REPORT.pdf. This additional document makes the *failure cases* independently inspectable. For the full search history, including negative results, see [EXPERIMENT_REGISTER.md](EXPERIMENT_REGISTER.md).
+The corrected Vexil submission is one executable notebook plus the four-page REPORT.pdf. This additional document makes the *failure cases* independently inspectable. For the full search history, including negative results, see [EXPERIMENT_REGISTER.md](EXPERIMENT_REGISTER.md).
 
 
 ## Strict pre-terminal source boundary

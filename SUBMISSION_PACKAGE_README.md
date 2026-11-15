@@ -6,7 +6,7 @@ Deadline: Thursday, 19 November 2026 (exact submission cutoff time not confirmed
 
 ## Contents and reproducibility
 
-1. REPORT.pdf is the separate three-page technical report, including decisions,
+1. REPORT.pdf is the separate four-page technical report, including decisions,
    ablations, uncertainty, limitations, approximately 10 active work hours,
    and the assistance disclosure.
 2. live_dota2_win_probability.ipynb is one executable notebook with 14 executed
@@ -17,13 +17,13 @@ Deadline: Thursday, 19 November 2026 (exact submission cutoff time not confirmed
    from requirements.txt, then run the notebook.
 4. artifacts/heldout_predictions.csv exports all 3,836 held-out forecasts.
    It is a review artifact only; the notebook never loads it.
-5. Four test modules under tests/ run 54 offline unit/contract checks
+5. Four test modules under tests/ run 55 offline unit/contract checks
    (no credentials, OpenDota calls or predownloaded match data).
 6. docs/EXPERIMENT_REGISTER.md lists nine historical research PRs (#3-#11),
    including the 28-model exploratory search with every negative result.
    This is an index to separate research branches, not a second report,
    and the standalone notebook does not run all those experiments.
-7. Three real-data figures used in the report, including the phase error-audit chart, are included under docs/figures.
+7. Four real-data figures used in the report, including the phase error-audit chart, are included under docs/figures.
    The latest notebook has saved outputs and a 10-hour active-work estimate.
    Historical Kaggle QA covered the inclusive-terminal predecessor. A fresh Google Colab CPU Run all on 15 November fetched all 500 frozen games (514 API calls, zero cache hits), completed 14/14 cells and reproduced rounded held-out scores. The scientific code SHA matches main. The hosted notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise SHA comparison; see docs/COLAB_COLD_RUN_RECEIPT.json.
 
@@ -45,4 +45,4 @@ include zero. M1's Brier at minute 30+ is worse. These historical
 OpenDota forecasts neither prove true live-feed availability nor yield
 a measured trading or betting profit.
 
-**Reviewer handoff:** This is the original development repository, not a single-commit snapshot. Its main branch contains the final notebook, report and forecasts. [HISTORY.md](HISTORY.md) links to archived research PRs #3-#10 (closed without merge), merged final PR #11, and unchanged historical branches. Historical experiments are not part of notebook Run All. Candidate-only interview/study files are not included.
+**Reviewer handoff:** This is a **curated delivery repository** assembled on 15 November 2026, not a simulated chronological research log. Its main contains the reviewed notebook, report, figures, forecasts and reproducible archive. [HISTORY.md](HISTORY.md) explains that the complete original 13–15 November development commit graph and PRs are preserved in the [source repository](https://github.com/sangtrx/vexil-dota2-win-probability); the candidate can grant access separately. Historical research scores and negative findings are also reproduced within the included EXPERIMENT_REGISTER.md. Research branches are not part of notebook Run All. Candidate-only interview/study files are not included.

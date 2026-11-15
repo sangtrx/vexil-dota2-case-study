@@ -4,9 +4,9 @@
 
 **Repository experiment log, not a second applicant report.** The required deliverables are the executable 500-game notebook and the separately bounded PDF report (at most four pages). Research PRs contain experiments and integrity tests that are *not all executed by the submitted notebook*. Read these summaries as attempts and negative findings, not nine independent model improvements.
 
-**Research lineage:** This original repository contains the full executable M0-M3 notebook and preserved forecast evidence on main. Historical experiment scripts and PR discussions remain on their original research branches. See [HISTORY.md](../HISTORY.md). The recorded 28-candidate scores predate the corrected strict pre-terminal cutoff and were not rerun as new blind validation.
+**Research lineage:** This curated repository contains the executable M0-M3 notebook and frozen forecast evidence. The historical development branches, timestamps and PR discussions remain in the [separate original research repository](https://github.com/sangtrx/vexil-dota2-win-probability), indexed in [HISTORY.md](../HISTORY.md). All 28 historical candidate scores predate the strict pre-terminal correction and were not rerun as new blind validation.
 
-**Original study:** 500 professional OpenDota matches, 291 train / 103 validation / 106 held-out; selected M1 gold × game time over the required gold-only M0 on validation. Held-out log loss M0 **0.5163**, M1 **0.5039**, 95% paired M1-minus-M0 CI **[-0.0303,+0.0014]** (includes zero). Held-out Brier M0 0.1719, M1 0.1683, interval includes zero; M1 Brier is worse at minute 30+.
+**Historical pre-correction study:** 500 professional OpenDota matches, 291 train / 103 validation / 106 held-out; selected M1 gold × game time over the required gold-only M0 on validation. Held-out log loss M0 **0.5163**, M1 **0.5039**, 95% paired M1-minus-M0 CI **[-0.0303,+0.0014]** (includes zero). Held-out Brier M0 0.1719, M1 0.1683, interval includes zero; M1 Brier is worse at minute 30+.
 
 **Rules of interpretation:** Follow-up S1-S4, M4, P01-P28 and P20 item-model results were screened on **103 previously inspected validation matches**. Registering their hypotheses before *their own* finite screen does not undo earlier adaptive use of those labels. A later 200-match cohort was used for one locked stage-gate test, not to reselect 28 candidates. All scores in the 28-way table are *development outcomes*. No trading PnL, verified live packet-arrival timestamps or two-layer neural model is claimed.
 
@@ -75,7 +75,7 @@ The cards linked in each row were registered before this finite experiment. All 
 | P14 | Recent tower conversion (objectives) | 0.528961 | 0.180257 | 0.009616 | 0.027557 | 1/3 | NO |
 | P23 | Shallow nonlinear gold/time (shape) | 0.532511 | 0.179920 | 0.013165 | 0.031488 | 1/3 | NO |
 | P24 | Shallow calibrated macro-state tree (shape) | 0.539473 | 0.183276 | 0.020127 | 0.040017 | 2/3 | NO |
-| P22 | Strong-shrinkage hero draft encoding (draft) | 1.581239 | 0.368861 | 1.061894 | 1.637817 | 0/3 | NO |
+| P22 | High-dimensional hero draft encoding (draft) | 1.581239 | 0.368861 | 1.061894 | 1.637817 | 0/3 | NO |
 
 
 **All 28 have archived scores; zero were selected.** P20 is the best reused-validation point estimate, yet unstable across earlier time. The high-dimensional P22 hero model was severely underregularized relative to 291 independent TRAIN games, and says nothing decisive about *all* hero drafting architectures. Full outputs, Brier and five-phase scores.
