@@ -1,0 +1,107 @@
+{
+  "draws": 1000,
+  "minute_windows": {
+    "early": [
+      8,
+      12
+    ],
+    "late": [
+      28,
+      32
+    ]
+  },
+  "model_promotion": false,
+  "panels": {
+    "all_available_games": {
+      "balanced_on_future_survival_NOT_an_online_feature": false,
+      "cluster_count": 171,
+      "differences_early_minus_late": {
+        "auc_gold_vs_winner": {
+          "percentile_ci_95": [
+            -0.19681326306554547,
+            -0.07241433043741267
+          ],
+          "point": -0.13492744013942293
+        },
+        "logodds_per_one_gold_SD": {
+          "percentile_ci_95": [
+            -1.388353001776098,
+            -0.36382124926236586
+          ],
+          "point": -0.8309183853621147
+        },
+        "logodds_per_plus_2k_gold": {
+          "percentile_ci_95": [
+            0.18681251847729763,
+            0.6476994644330183
+          ],
+          "point": 0.39441613568679035
+        }
+      },
+      "early": {
+        "auc_gold_vs_winner": 0.7228986824170831,
+        "games": 291,
+        "logodds_per_one_gold_SD": 1.039234653943079,
+        "logodds_per_plus_2k_gold": 0.7651983994263978,
+        "observed_gold_SD_thousands": 2.716248896291739,
+        "rows": 1454
+      },
+      "late": {
+        "auc_gold_vs_winner": 0.857826122556506,
+        "games": 233,
+        "logodds_per_one_gold_SD": 1.8701530393051937,
+        "logodds_per_plus_2k_gold": 0.37078226373960743,
+        "observed_gold_SD_thousands": 10.087607861516066,
+        "rows": 1060
+      }
+    },
+    "balanced_survivors_to_minute_32": {
+      "balanced_on_future_survival_NOT_an_online_feature": true,
+      "cluster_count": 133,
+      "differences_early_minus_late": {
+        "auc_gold_vs_winner": {
+          "percentile_ci_95": [
+            -0.2504528402233169,
+            -0.10072588786068756
+          ],
+          "point": -0.17434586466165425
+        },
+        "logodds_per_one_gold_SD": {
+          "percentile_ci_95": [
+            -1.4885348083315053,
+            -0.5845932299531235
+          ],
+          "point": -0.9728603733018306
+        },
+        "logodds_per_plus_2k_gold": {
+          "percentile_ci_95": [
+            -0.10671246898145012,
+            0.4914648610463351
+          ],
+          "point": 0.184596858427376
+        }
+      },
+      "early": {
+        "auc_gold_vs_winner": 0.647622903412377,
+        "games": 186,
+        "logodds_per_one_gold_SD": 0.5421998478682766,
+        "logodds_per_plus_2k_gold": 0.52404653422393,
+        "observed_gold_SD_thousands": 2.0692813040781965,
+        "rows": 930
+      },
+      "late": {
+        "auc_gold_vs_winner": 0.8219687680740313,
+        "games": 186,
+        "logodds_per_one_gold_SD": 1.5150602211701072,
+        "logodds_per_plus_2k_gold": 0.339449675796554,
+        "observed_gold_SD_thousands": 8.926567495549145,
+        "rows": 930
+      }
+    }
+  },
+  "scope": "TRAIN_ONLY_POST_SELECTION_LOCAL_WINDOW_AND_SURVIVOR_FALSIFICATION",
+  "seed": 20261115,
+  "source_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "test_or_validation_outcomes_read": false
+}
