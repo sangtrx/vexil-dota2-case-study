@@ -138,7 +138,7 @@ def evaluate() -> dict:
                 & (one_row_per_time.abs_gold_k >= lower)
                 & (one_row_per_time.abs_gold_k < upper)
             ]
-            assert not cell.empty, "Prespecified cell unsupported"
+            assert not cell.empty, "Declared post-hoc grid cell unsupported"
             assert not cell.duplicated("match_id").any()
             assert (cell.partition == "train").all()
             k, n = int(cell.leader_won.sum()), int(len(cell))
@@ -220,7 +220,7 @@ def draw(receipt: dict, output: Path = FIGURE) -> None:
         ci = np.array([r["series_cluster_percentile_95_exploratory"] for r in cells])
         ax.errorbar(
             x, observed, yerr=np.vstack((observed-ci[:,0],ci[:,1]-observed)),
-            fmt="o-", lw=2.0, markersize=6.2, capsize=3.8,
+            fmt="o", markersize=6.2, capsize=3.8,
             color=ink, ecolor=ink, elinewidth=1.05, label="Observed (TRAIN)"
         )
         ax.plot(x, [r["M0_training_fitted_mean_p_leader"] for r in cells],
@@ -235,14 +235,14 @@ def draw(receipt: dict, output: Path = FIGURE) -> None:
             upper_y = r["series_cluster_percentile_95_exploratory"][1]
             ax.annotate(
                 f"n={r['games']}",
-                (r["minute"], min(0.995, upper_y+0.065)), ha="center",
+                (r["minute"], min(1.115, upper_y+0.065)), ha="center",
                 fontsize=8, color=ink
             )
         ax.set_title(f"|Gold lead| {int(lower)}–{int(upper)}k", pad=9)
         ax.set_xlabel("Game minute")
         ax.set_xticks(MINUTES)
         ax.set_xlim(7, 33)
-        ax.set_ylim(0, 1.1)
+        ax.set_ylim(0, 1.15)
         ax.set_yticks([0, .2, .4, .6, .8, 1.])
         ax.set_yticklabels(["0%", "20%", "40%", "60%", "80%", "100%"])
         ax.grid(axis="y", alpha=.14)

@@ -15,7 +15,7 @@ A reproducible study of **500 parsed professional OpenDota matches** (patches 59
 | TEST Brier, 106 games | 0.1719 | **0.1684** |
 | TEST minute-30+ Brier | **0.1028** | 0.1074 |
 
-**Evaluation boundary:** The 12 terminal-minute corrections were made after the original TEST had been inspected. These are corrected results on the same games, **not a new blind TEST**.
+**Evaluation boundary:** The 12 terminal-minute corrections were made after the original TEST had been inspected. These are corrected results on the same games, **not a new blind TEST**. The saved appendix's 'Pre-registered' refers to a previously specified *bootstrap method*, not to a preregistered corrected TEST result; its 'pinned versions' remark applies to local verification, not Colab's preinstalled stack.
 
 The gold-only logistic model is the required baseline. I selected M1 on validation log loss; M1 adds elapsed minute and gold × time interaction to that baseline. A constant **TRAIN-only** Radiant-win prior (149/291 games) has TEST log loss **0.6884** and Brier **0.2476**, so both fitted models outperform this no-skill reference.
 

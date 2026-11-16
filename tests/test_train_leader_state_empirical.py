@@ -5,6 +5,7 @@ from pathlib import Path
 import unittest
 
 import numpy as np
+import pandas as pd
 
 from research import train_leader_state_empirical as study
 
@@ -45,6 +46,19 @@ class TrainLeaderStateScienceTest(unittest.TestCase):
         for m in fits.values():
             self.assertEqual(m["logistic"].C, 1.0)
             self.assertEqual(m["logistic"].random_state, 20261113)
+        # Compare the original frozen TRAIN fit at the notebook's +2k
+        # minute-10/minute-30 scientific scenario, not a new TEST score.
+        scenarios = pd.DataFrame({
+            "gold_k": [2.0, 2.0],
+            "minute10": [1.0, 3.0],
+            "gold_x_time": [2 * np.log1p(1), 2 * np.log1p(3)]
+        })
+        np.testing.assert_allclose(
+            fits["M1_time_value"].predict_proba(
+                scenarios[list(study.FEATURES["M1_time_value"])]
+            )[:, 1],
+            [0.6649891894445682, 0.5940371481769873], rtol=0, atol=1e-6
+        )
         self.assertTrue(self.result["not_a_model_selection_gate"])
         self.assertFalse(self.result["any_validation_rows_read"])
         self.assertFalse(self.result["any_TEST_rows_read"])
@@ -89,11 +103,33 @@ class TrainLeaderStateScienceTest(unittest.TestCase):
         )
         self.assertTrue(self.result["not_causal"])
 
-    def test_receipt_exact_replay_and_figure(self):
-        expected_bytes = json.dumps(
-            self.result, indent=2, sort_keys=True, ensure_ascii=False
-        ).encode("utf-8") + b"\n"
-        self.assertEqual(study.RECEIPT.read_bytes(), expected_bytes)
+    def test_receipt_numeric_replay_and_figure(self):
+        # The original TRAIN cohort, per-cell counts and scientific boundaries
+        # must match exactly; minute floating point predictions may vary at
+        # insignificant ulps across supported BLAS/scikit-learn builds.
+        stored = json.loads(study.RECEIPT.read_text())
+        for key in ("analysis_type", "selection_or_refit_using_TEST",
+                    "any_validation_rows_read", "any_TEST_rows_read",
+                    "not_causal", "not_a_model_selection_gate", "cohort",
+                    "fixed_grid", "source", "limitations"):
+            self.assertEqual(stored[key], self.result[key])
+        self.assertEqual(len(stored["cells"]), len(self.result["cells"]))
+        float_fields = (
+            "observed_leader_win_fraction", "M0_training_fitted_mean_p_leader",
+            "M1_training_fitted_mean_p_leader"
+        )
+        interval_fields = (
+            "wilson_95_by_game_descriptive",
+            "series_cluster_percentile_95_exploratory"
+        )
+        for saved, actual in zip(stored["cells"], self.result["cells"]):
+            for k in ("minute", "abs_lead_lower_k", "abs_lead_upper_exclusive_k",
+                      "games", "eventual_leader_wins", "series_groups"):
+                self.assertEqual(saved[k], actual[k])
+            for k in float_fields:
+                self.assertAlmostEqual(saved[k], actual[k], delta=1e-7)
+            for k in interval_fields:
+                np.testing.assert_allclose(saved[k], actual[k], rtol=0, atol=1e-7)
         self.assertTrue(study.FIGURE.is_file())
         self.assertGreater(study.FIGURE.stat().st_size, 40_000)
         # No access to frozen TEST or validation artefacts is part of the script.

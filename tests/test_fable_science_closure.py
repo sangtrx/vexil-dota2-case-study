@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import subprocess
+import shutil
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -86,6 +87,8 @@ class FableScienceRepairContract(unittest.TestCase):
                      "about 0.00455 worse"):
             self.assertIn(term,self.report)
 
+    @unittest.skipUnless(shutil.which("pdftotext") and shutil.which("pdfinfo"),
+                         "Poppler pdfinfo/pdftotext unavailable; other science tests still run")
     def test_pdf_has_all_new_science_anchors_and_no_disclosure_rewrite(self):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True

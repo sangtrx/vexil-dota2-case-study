@@ -41,11 +41,11 @@ M1 models a time-dependent mapping from a fixed gold lead to win probability. Th
 
 ![Original TRAIN-only leader-win empirical rates across time and lead magnitudes, compared with in-sample M0 and M1 fitted probabilities.](docs/figures/train_leader_state_empirical.png)
 
-*Figure 2. Fixed TRAIN-only 3k/6k lead neighborhoods (±1k), one game per cell; series-resampled uncertainty. Cannot establish an out-of-sample or causal time effect.*
+*Figure 2. Fixed TRAIN-only 3k/6k lead neighborhoods (±1k), each game counted once per cell; unadjusted series-resampled uncertainty. Not causal or out-of-sample.*
 
 ## 4. What did not survive model selection
 
-**The stronger null is the real check.** Against **gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020**, 70-series 95% interval **[−0.0148,+0.0090]**; it won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**). The fitted 10m–30m gold-effect contrast was **+0.301** in 250 patch-59 TRAIN games versus **+0.029** in only 41 patch-60 games: an unstable, post-hoc subgroup comparison, not proven drift. Of **at least 38** historical checks, **0/28** follow-ups cleared promotion gates on **reused validation**. The promising item model (P20) had VAL loss **0.5145 vs 0.5197**, but **1/3 pre-correction TRAIN** folds favored it; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** crossed zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md).
+**The stronger null is the real check.** Against **gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020**, 70-series 95% interval **[−0.0148,+0.0090]**; it won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**). The fitted **+2k gold log-odds contrast (10m−30m)** was **+0.301** in 250 patch-59 TRAIN games versus **+0.029** in only 41 patch-60 games: an unstable, post-hoc subgroup comparison, not proven drift. Of **at least 38** historical checks, **0/28** follow-ups cleared promotion gates on **reused validation**. The promising item model (P20) had VAL loss **0.5145 vs 0.5197**, but **1/3 pre-correction TRAIN** folds favored it; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** crossed zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md).
 
 ---
 
