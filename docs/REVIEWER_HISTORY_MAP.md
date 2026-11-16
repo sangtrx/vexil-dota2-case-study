@@ -1,6 +1,6 @@
 # Review the actual research sequence
 
-**This is a map, not a backdated experiment diary.** Original research
+**All fourteen original PR #3–#16 head branches are mirrored here under their authentic source commit IDs; this is a map, not a backdated experiment diary.** Original research
 Git objects are preserved without rewriting their author/committer
 dates. Original source main commits are in the ancestry of this
 repository's main. The following historical branch heads are mirrored
@@ -16,11 +16,18 @@ to this one.
 | Does economic topology add stable lift? | **5ff7163**, 13 Nov | [Actual PR #4 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr04-structural-edge) |
 | Aegis/buyback option state and novelty limits | **035388e**, 13 Nov | [Actual PR #5 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr05-option-state) |
 | 28 falsifiable specifications and multiple-test gate | **e544b04**, 13 Nov | [Actual PR #6 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr06-28-hypotheses) |
+| Quant Bible stability and Kaggle QA boundary | **7bce668**, 13 Nov | [Actual PR #7 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr07-bible-audit) |
+| Item-completion hypothesis, reused-validation constraints | **17bb57a**, 13 Nov | [Actual PR #8 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr08-submission-polish) |
 | Adversarial feature/label tests and rolling TRAIN folds | **ccaac51**, 13 Nov | [Actual PR #9 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr09-redteam) |
+| Source-minute alignment and reproducible delivery audit | **1e0b230**, 14 Nov | [Actual PR #10 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr10-delivery-audit) |
+| Original reviewer notebook/report merge candidate | **86de0b0**, 15 Nov | [Actual PR #11 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr11-reviewer-merge) |
+| Terminal-boundary repair and post-TEST disclosure | **4b52558**, 15 Nov | [Actual PR #12 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr12-terminal-repair) |
+| Actual corrected Colab cold replay receipt | **d43c674**, 15 Nov | [Actual PR #13 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr13-colab-replay) |
+| 54-series bootstrap on original inspected TEST | **54d0ae5**, 15 Nov | [Actual PR #14 source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr14-series-ci) |
 | Invalid freshness-ratio claim explicitly **rejected** | **5f405b5**, 15 Nov | [Actual PR #15 rejected source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr15-rejected-freshness) |
 | Four-page reviewer proposal, not an accepted new model | **c377c03**, 15 Nov | [Actual PR #16 draft source](https://github.com/sangtrx/vexil-dota2-case-study/tree/history/actual-pr16-reviewer) |
 
-The source GitHub pull requests contain additional discussion, which
+All fourteen original PR head references are distinct, verifiable Git objects; some were stacked drafts, some were merged, and one proposed conclusion was rejected. The source GitHub pull requests contain additional discussion, which
 is **not copied** into these mirrored branches and may be inaccessible
 without separate permission to the original private repository. The
 historical source code is real and inspectable here; the *PR pages*

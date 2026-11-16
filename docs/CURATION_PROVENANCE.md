@@ -15,7 +15,7 @@ This repository retains the **authentic Git ancestry** of the original private r
 | [Rejected PR #15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15), 15 Nov | Invalid freshness-ratio claim withdrawn, not promoted |
 | [Draft PR #16](https://github.com/sangtrx/vexil-dota2-win-probability/pull/16), 15 Nov | Reviewer packaging proposal, never merged into original research main |
 
-Selected original branch heads are mirrored under history/actual-* inside this repository, so their real source code and commit timestamps remain accessible to a viewer of this repo alone. The original PR discussion links above may need additional access; the mirrored branches do not copy GitHub comments or reviews.
+All fourteen original PR #3–#16 head branches are mirrored under history/actual-* inside this repository, so their real source code and commit timestamps remain accessible to a viewer of this repo alone. The original PR discussion links above may need additional access; the mirrored branches do not copy GitHub comments or reviews.
 
 The 16 Nov reviewer package is source-checked against separate existing private Draft PR #7 in sangtrx/dota2-live-win-probability. Its original scientific notebook SHA-256 is **5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca**, and its original TEST probability CSV SHA-256 is **03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441**. Neither is re-selected or changed by curation.
 

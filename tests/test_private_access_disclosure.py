@@ -35,6 +35,11 @@ class ExternalAccessTruthfulness(unittest.TestCase):
         self.assertIsNotNone(source_match)
         self.assertEqual(source_match.group(1),source_main)
         self.assertIn("original private research",provenance.lower())
+        branch_index=(ROOT/"docs/REVIEWER_HISTORY_MAP.md").read_text()
+        self.assertIn("All fourteen original PR #3–#16 head branches",branch_index)
+        for n in range(3,17):
+            self.assertIn(f"Actual PR #{n}",branch_index)
+        self.assertIn("DRAFT / HOLD",branch_index)
 
 
 if __name__=="__main__":
