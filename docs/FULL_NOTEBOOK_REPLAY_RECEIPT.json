@@ -1,0 +1,101 @@
+{
+  "cache_hits": 500,
+  "cell_execution_errors": 0,
+  "cloud_csv_byte_parity_claimed": false,
+  "controller_python_executable": "/srv/ai/worktrees/vexil-senior-submission-20261115/.venv/bin/python",
+  "data_origin": "author's pre-existing OpenDota raw-match cache; no new HTTP",
+  "employer_release_or_submission_modified": false,
+  "environment": {
+    "python": "3.12.3",
+    "versions": {
+      "matplotlib": "3.10.7",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scipy": "1.16.3",
+      "sklearn": "1.7.2"
+    }
+  },
+  "evidence_class": "AUTHOR_CONTROLLED_NO_NETWORK_500_MATCH_FRESH_KERNEL_REPLAY",
+  "executed_code_cells": 14,
+  "execution_date_utc": "2026-11-15",
+  "heldout_scores": {
+    "brier": {
+      "M0": 0.1719121780368728,
+      "M1": 0.1683528340689237
+    },
+    "logloss": {
+      "M0": 0.5164444241748873,
+      "M1": 0.504014697253528
+    }
+  },
+  "jupyter_kernel_is_controller_python": true,
+  "kernel_launcher_executable": "/srv/ai/worktrees/vexil-senior-submission-20261115/.venv/bin/python",
+  "kernel_spec_argv": [
+    "python",
+    "-m",
+    "ipykernel_launcher",
+    "-f",
+    "{connection_file}"
+  ],
+  "local_fresh_kernel_test_csv_byte_parity_verified": true,
+  "matches": 500,
+  "minute_rows": 18292,
+  "original_test_predictions_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "outputs_sha256": {
+    "calibration.png": "e8b8a80b8849c3a2c1f21a65aaa370ded6b47290d0511931ca43542c54f90114",
+    "derived_run_receipt.json": "a4605bd031262bc87a41841e9d5deafc9c7ed6042684373d476fea4d999bd9b0",
+    "exploratory_item_ablation.csv": "1577135b25ac2bec71035b31aa90c0bc6f9a1ecd67a76be369982eb75e1affcb",
+    "exploratory_item_folds.csv": "9546e6aad7fe8707139216bc75ad10ce7b6f2c67f1bd8f934bdc6dbf71c92a1c",
+    "heldout_game_trajectory.png": "0304fa4e78db38ef04d8bf2b0d842f0ac03345c0c6b728db0e0ef66ac6561b2f",
+    "heldout_metrics.csv": "63965b1d3a8af533299c4a7c16ef06bc54d35d761c3798ed7fa93e50aacc13ed",
+    "heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "match_manifest.csv": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+    "minute20_comeback.csv": "1f5cc49ef9ca29fdb6cd876d8b1cc51690d1818e257bccb106ed15c3e3a519d0",
+    "minute20_comeback.png": "4f41a747b67948eb99632e112e032dc81db8bacdf59c7b9c28cc487f746d393a",
+    "terminal_sensitivity.csv": "9e96b40621821f73d7a6240ab2fe4f17adc5485e2500148f61a00a2496b73bce",
+    "time_value_scenarios.png": "6290b63efd05db81c790a756fa1ddf0c4bf362915e44c73b02377474064bd376",
+    "validation_ablations.csv": "e746f402a6b64a4aae5578640659affbf3b08e77518fcbfab4c7a32019eb2ea7"
+  },
+  "report_figures_byte_equal_to_notebook_outputs": true,
+  "selected_model": "M1_time_value",
+  "setup_cell_sha256": "d671e49ef45c3f727800e899a60e538ce05704fb38140443bae52477ec64da95",
+  "source_cached_json_canonical_digest": "7328f1f8df8f3925765e390f997168a084aa6bded1c1bb031da81e8e8092281b",
+  "source_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+  "source_gzip_files_copied": 500,
+  "source_lineage_sha256": {
+    "cohort_metadata": "dbe3b9f6241f8fefeb7e211c7ee921539ef3b546d76f5eaf168e77a2e5982b3d",
+    "dev_item_inputs": "bfc8b3b5d50f91a658838567fd18123bc7ba19fd30ee1d189c94825731b2d966",
+    "model_inputs": "5d5b57ea3ec85cfa4af1519c8c568c0b79d809f071a26e08f75bca42ad9bd6e5",
+    "outcome_labels": "698a67f38bef4aaf8377255259bf94eb0a241a57cfa80b09cfa4ee1ea72316c9"
+  },
+  "source_notebook_sha256": "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca",
+  "split_match_counts": {
+    "test": 106,
+    "train": 291,
+    "validation": 103
+  },
+  "split_minute_rows": {
+    "test": 3836,
+    "train": 10675,
+    "validation": 3781
+  },
+  "validation_model_scores": {
+    "M0_gold_only": {
+      "brier": 0.1810746830906831,
+      "logloss": 0.5324900423908928
+    },
+    "M1_time_value": {
+      "brier": 0.1759016844633338,
+      "logloss": 0.519713962581423
+    },
+    "M2_lead_fragility": {
+      "brier": 0.17779381881266196,
+      "logloss": 0.5223863883284187
+    },
+    "M3_objective_conversion": {
+      "brier": 0.18063144342728849,
+      "logloss": 0.5282050730295414
+    }
+  },
+  "zero_http_calls": true
+}

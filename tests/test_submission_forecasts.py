@@ -11,7 +11,7 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_NOTEBOOK_SHA256 = "7bddda51fa6ebfb2d54bd56424456e4569865fd507b0015903bfdf755576ac57"
+EXPECTED_NOTEBOOK_SHA256 = "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"
 EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 
 
@@ -38,6 +38,35 @@ class SubmissionForecastsTest(unittest.TestCase):
             p = frame[key].to_numpy(float)
             self.assertTrue(np.isfinite(p).all())
             self.assertTrue(((p >= 0) & (p <= 1)).all())
+
+    def test_train_only_prevalence_reference_and_minute_zero_limit(self):
+        # A frozen no-skill reference, estimated from TRAIN games only.
+        # Its TEST scores are context, not a new model-selection trial.
+        train=pd.read_csv(ROOT/"research/frozen_original_train_features.csv.gz")
+        self.assertEqual(len(train),10675)
+        game_wins=train.groupby("match_id").radiant_win.first()
+        self.assertEqual(len(game_wins),291)
+        self.assertEqual(int(game_wins.sum()),149)
+        prior=float(game_wins.mean())
+        self.assertAlmostEqual(prior,149/291,places=15)
+        test=pd.read_csv(ROOT/"artifacts/heldout_predictions.csv")
+        y=test.radiant_win.to_numpy(float)
+        constant_ll=float(-(y*np.log(prior)+(1-y)*np.log1p(-prior)).mean())
+        constant_brier=float(((y-prior)**2).mean())
+        self.assertAlmostEqual(constant_ll,0.6884063928574592,places=12)
+        self.assertAlmostEqual(constant_brier,0.24763004946774492,places=12)
+        self.assertGreater(constant_ll,0.5164444241748879)
+        self.assertGreater(constant_brier,0.1719121780368728)
+        minute_zero=test.loc[test.minute==0].copy()
+        self.assertEqual(len(minute_zero),106)
+        self.assertEqual(int(minute_zero.p_model.between(.45,.55).sum()),101)
+        self.assertAlmostEqual(float(minute_zero.p_model.mean()),
+                               0.5056821856524288,places=12)
+        report=(ROOT/"REPORT.md").read_text()
+        self.assertIn("TRAIN game-win rate (149/291 = 0.5120)",report)
+        self.assertIn("TEST log loss **0.6884**",report)
+        self.assertIn("Brier **0.2476**",report)
+        self.assertIn("101/106",report)
 
     def test_descriptive_calibration_from_frozen_forecasts(self):
         # Fixed ten equal-width bins. No refit, threshold search, or
