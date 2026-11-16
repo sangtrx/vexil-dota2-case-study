@@ -1,0 +1,40 @@
+{
+  "coefficient_parity_per_model": {
+    "M0": true,
+    "M1": true
+  },
+  "max_abs_column_differences": {
+    "duration": 0.0,
+    "gold_k": 0.0,
+    "gold_x_time": 7.105427357601002e-15,
+    "match_id": 0.0,
+    "minute": 0.0,
+    "minute10": 0.0,
+    "radiant_win": 0.0,
+    "series_id": 0.0,
+    "start_time": 0.0
+  },
+  "model_coefficient_sha256": {
+    "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+    "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+  },
+  "no_new_forward_outcome_labels_used_in_fit": true,
+  "no_new_model_selection": true,
+  "numpy_version": "2.2.6",
+  "original_test_forecast_rows_checked": 3836,
+  "original_test_labels_not_used_for_fitting": true,
+  "original_test_pred_max_abs_probability_error": {
+    "M0": 3.3306690738754696e-16,
+    "M1": 1.8496315590255108e-13
+  },
+  "original_test_prediction_parity_only": true,
+  "original_test_prediction_reference_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "python_version": "3.12.3",
+  "raw_source_games": 500,
+  "same_train_model_coefficients": true,
+  "sklearn_version": "1.7.2",
+  "source_train_sha": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "status": "PASS_ORIGINAL_500_TRAIN_AND_TEST_PREDICTION_PARITY",
+  "train_games": 291,
+  "train_minute_rows": 10675
+}

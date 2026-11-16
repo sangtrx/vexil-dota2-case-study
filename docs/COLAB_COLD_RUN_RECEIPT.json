@@ -36,7 +36,7 @@
   "python": "3.13.18",
   "raw_notebook_sha_parity": false,
   "raw_sha_note": "Colab was uploaded before the last markdown-only revisions. Raw notebook bytes also differ after re-execution. The scientific code fingerprint, manifest/source-lineage fingerprints and evaluated metrics match; do not equate this with whole-notebook byte equality.",
-  "repo_main_notebook_sha256": "7bddda51fa6ebfb2d54bd56424456e4569865fd507b0015903bfdf755576ac57",
+  "repo_main_notebook_sha256": "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca",
   "saved_colab_notebook_sha256": "ebab4d540680ba0db3fd73c2732d9a9af3d489f4c87acbc74cefa9247e040afa",
   "scientific_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
   "selected_model": "M1_time_value",
