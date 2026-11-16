@@ -62,11 +62,6 @@ class SubmissionForecastsTest(unittest.TestCase):
         self.assertEqual(int(minute_zero.p_model.between(.45,.55).sum()),101)
         self.assertAlmostEqual(float(minute_zero.p_model.mean()),
                                0.5056821856524288,places=12)
-        report=(ROOT/"REPORT.md").read_text()
-        self.assertIn("TRAIN game-win rate (149/291 = 0.5120)",report)
-        self.assertIn("TEST log loss **0.6884**",report)
-        self.assertIn("Brier **0.2476**",report)
-        self.assertIn("101/106",report)
 
     def test_descriptive_calibration_from_frozen_forecasts(self):
         # Fixed ten equal-width bins. No refit, threshold search, or

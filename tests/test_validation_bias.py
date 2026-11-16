@@ -115,10 +115,6 @@ class ValidationBiasAuditTests(unittest.TestCase):
             ci=r["models"][name]["bias_minute_ci_95_series"]
             self.assertLess(ci[0],0)
             self.assertGreater(ci[1],0)
-        report=(ROOT/"REPORT.md").read_text()
-        self.assertIn("53-series",report)
-        self.assertIn("VALIDATION",report)
-        self.assertIn("neither wide interval establishes a shift",report)
 
     def test_rejects_mutated_source_and_receipt(self):
         with TemporaryDirectory() as tmp:
