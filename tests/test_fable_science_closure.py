@@ -53,8 +53,54 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertTrue(c["not_a_model_selection_gate"])
         self.assertTrue(c["not_causal"])
         self.assertIn("not a causal time effect",self.report)
-        self.assertIn("docs/figures/train_leader_state_empirical.png",self.report)
+        self.assertIn("docs/TRAIN_LEADER_STATE_EMPIRICAL.md",self.report)
+        self.assertIn("docs/figures/train_interaction_vs_additive_null.png",self.report)
+        self.assertNotIn("docs/figures/train_leader_state_empirical.png",self.report)
         self.assertNotIn("docs/figures/train_matched_state_aliasing.png",self.report)
+
+    def test_report_figure_two_is_nonselecting_stronger_null_evidence(self):
+        from research.render_interaction_null_figure import audited_values, OUTPUT
+        folds, delta, ci, groups = audited_values()
+        self.assertEqual(len(folds), 4)
+        self.assertEqual(sum(f["eval_games"] for f in folds), 137)
+        self.assertEqual(sum(f["delta_logloss"] < 0 for f in folds), 1)
+        self.assertEqual(groups, 70)
+        self.assertAlmostEqual(delta, -0.002020073983088214, places=12)
+        self.assertAlmostEqual(ci[0], -0.01480135155766235, places=12)
+        self.assertAlmostEqual(ci[1], 0.00898354827703724, places=12)
+        self.assertLess(ci[0], 0)
+        self.assertGreater(ci[1], 0)
+        self.assertTrue(OUTPUT.is_file())
+        self.assertGreater(OUTPUT.stat().st_size, 10000)
+        script = (ROOT/"research/render_interaction_null_figure.py").read_text()
+        self.assertNotIn("heldout_predictions", script)
+        self.assertNotIn("validation_m0_m1_predictions", script)
+        self.assertIn("docs/figures/train_interaction_vs_additive_null.png", self.report)
+        self.assertIn("M1 won only **1/4** chronological folds", self.report)
+
+    def test_train_lead_groups_are_not_within_match_time_decay(self):
+        import csv
+        import gzip
+        source = ROOT/"research/frozen_original_train_features.csv.gz"
+        mid_by_minute = {10: set(), 30: set()}
+        counts = {10: [0, 0], 30: [0, 0]}
+        with gzip.open(source, "rt", encoding="utf-8") as handle:
+            for row in csv.DictReader(handle):
+                minute = int(row["minute"])
+                gold = float(row["gold_k"])
+                if minute not in mid_by_minute or not 2 <= abs(gold) < 4:
+                    continue
+                mid_by_minute[minute].add(int(row["match_id"]))
+                outcome = int(row["radiant_win"])
+                leader_won = outcome if gold > 0 else (1 - outcome)
+                counts[minute][0] += leader_won
+                counts[minute][1] += 1
+        self.assertEqual(counts, {10: [66, 82], 30: [11, 25]})
+        self.assertEqual(len(mid_by_minute[10] & mid_by_minute[30]), 7)
+        self.assertIn("Only 7 matches occur in both groups", self.report)
+        supplemental = (ROOT/"docs/TRAIN_LEADER_STATE_EMPIRICAL.md").read_text()
+        self.assertIn("only 7 match IDs qualify", supplemental)
+        self.assertIn("This is **not a causal time effect**", self.report)
 
     def test_post_inspection_not_mislabeled_preregistered_blind(self):
         import json

@@ -4,7 +4,7 @@ Candidate: Truong Quang Sang
 
 **Start here (3 minutes):** read [REPORT.pdf](REPORT.pdf) for the single research question, negative evidence and M0/M1 decision; then inspect the [one executed notebook](live_dota2_win_probability.ipynb) and its saved figures. For source selection, see the [dated `/proMatches` discovery provenance](docs/DISCOVERY_PROVENANCE.md); [3,836 frozen TEST forecasts](artifacts/heldout_predictions.csv) are available for offline audit. The report also includes the candidate's provisional **10 active work hours** and the required AI/public-code disclosure.
 
-The notebook implements the required gold-lead logistic baseline M0 and the validation-selected gold × time challenger M1 on 500 professional OpenDota matches. The new [original TRAIN-only empirical game-state figure](docs/figures/train_leader_state_empirical.png) and [source-frozen script and receipt](docs/TRAIN_LEADER_STATE_EMPIRICAL.md) report observed eventual leader-win rates at fixed time/lead bins with series-resampled uncertainty, **not** an out-of-sample, causal or M1-promotion claim. The earlier [two-game objective-state illustration](docs/figures/train_matched_state_aliasing.png) is supplemental. Chronological, series-grouped TRAIN/VALIDATION/TEST partitions have 291/103/106 games. M1 has TEST log loss 0.5040 versus M0 0.5164; both primary whole-match confidence intervals for the difference cross zero. The original TEST minute-30+ Brier point difference is **0.00455** worse for M1, with a paired interval **[−0.0037,+0.0109]**. Keep M0 as reference and M1 shadow-only.
+The notebook compares the required gold-only logistic baseline M0 with validation-selected gold×time M1 on 500 professional OpenDota matches (291/103/106 TRAIN/VAL/TEST, chronological and series-disjoint). **The key falsification** is [Figure 2 in the report](docs/figures/train_interaction_vs_additive_null.png): on four original TRAIN-forward folds, M1 beat the stronger **gold + time without interaction** model in only **1/4 folds**, with 70-series 95% CI **[−0.0148,+0.0090]** around the pooled log-loss difference. The separate [TRAIN-only empirical leader-win observation](docs/TRAIN_LEADER_STATE_EMPIRICAL.md) remains exploratory and is not evidence of causal time decay or added model skill. On original TEST, M1 log loss was 0.5040 versus M0 0.5164, but both primary paired intervals cross zero; minute-30+ Brier was **0.00455** worse for M1 (CI **[−0.0037,+0.0109]**). **Decision: keep M0 reference, M1 shadow-only.**
 
 ## How to rerun
 
@@ -27,7 +27,7 @@ For **offline** score/contract verification from the ZIP (not a fresh notebook R
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-Twenty-two test modules contain **160 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file. An optional [post-hoc team/league dependence audit](docs/TEAM_LEAGUE_DEPENDENCE.md) recomputes from bundled frozen public match/group IDs and predictions, without fitting new models or changing the notebook.
+Twenty-two test modules contain **162 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file. An optional [post-hoc team/league dependence audit](docs/TEAM_LEAGUE_DEPENDENCE.md) recomputes from bundled frozen public match/group IDs and predictions, without fitting new models or changing the notebook.
 
 ## What is supplementary
 

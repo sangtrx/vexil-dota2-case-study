@@ -29,23 +29,25 @@ M1 models a time-dependent mapping from a fixed gold lead to win probability. Th
 
 ---
 
-## 3. What the model actually learned
+## 3. What the fitted interaction says
 
-**An economic lead has context.** At fixed **+2,000 Radiant gold**, M1 predicts **66.5%** at 10m versus **59.4%** at 30m. The **+7.1 pp** post-selection TRAIN-only bootstrap contrast has 95% interval **[−1.1,+13.8] pp**, crossing zero (2,000 refits; 149 series plus 22 singletons). This is not a causal effect or a confirmed incremental interaction. The separate TRAIN counts **60/291** (10m) and **87/214** (30m) include **all Radiant leads ≥2k**, *not* observations near exactly +2k; Figure 1 masks poorly supported conditions.
+At fixed **+2,000 Radiant gold**, M1 predicts **66.5%** at 10m versus **59.4%** at 30m. The **+7.1 pp** post-selection TRAIN-only bootstrap contrast has 95% interval **[−1.1,+13.8] pp**, crossing zero. This is **not a causal effect** or evidence that the interaction improves forecasts. The separate TRAIN counts **60/291** (10m) and **87/214** (30m) include **all Radiant leads ≥2k**, *not* observations near exactly +2k; Figure 1 masks poorly supported scenarios.
 
-![Fitted model probabilities at fixed gold leads and time, masked outside observed training support.](docs/figures/time_value_scenarios.png)
+![Fixed-gold conditional M1 probability curves, masked outside original TRAIN support.](docs/figures/time_value_scenarios.png)
 
-*Figure 1. Conditional M1 curves at 0, ±3k and ±6k gold. The +2k contrast and bootstrap bands are not plotted. Not causal.*
+*Figure 1. Fitted M1 scenarios at 0, ±3k and ±6k gold. The +2k uncertainty band is not drawn. These are fitted probabilities, not causal effects.*
 
-**What the games actually show (TRAIN only).** With an absolute gold lead of **2–4k**, the leading team ultimately won **66/82 (80.5%)** at 10m and **11/25 (44.0%)** at 30m; series-bootstrap 95% descriptive intervals were **[71.4%,88.8%]** and **[24.0%,64.0%]**. At **5–7k**, the pattern was not monotone, and minute-10 had only **9 games**. These are **different surviving game samples**, not a causal time effect or evidence M1 predicts better; the dashed M0/M1 probabilities are fitted *in-sample* on TRAIN (docs/TRAIN_LEADER_STATE_EMPIRICAL.md).
+## 4. Did gold × time beat simply adding time?
 
-![Original TRAIN-only leader-win empirical rates across time and lead magnitudes, compared with in-sample M0 and M1 fitted probabilities.](docs/figures/train_leader_state_empirical.png)
+**The stronger null is the real check.** Against **gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020** on **137 games** (70 series; 95% interval **[−0.0148,+0.0090]**). M1 won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**). Three folds favored the simpler model. This post-result TRAIN-only analysis challenges the interaction's incremental value; it is not another blind TEST.
 
-*Figure 2. Fixed TRAIN-only 3k/6k lead neighborhoods (±1k), each game counted once per cell; unadjusted series-resampled uncertainty. Not causal or out-of-sample.*
+![Four original TRAIN-forward blocks comparing M1 to the stronger additive gold-plus-time control, with pooled series-bootstrap uncertainty.](docs/figures/train_interaction_vs_additive_null.png)
 
-## 4. What did not survive model selection
+*Figure 2. M1 minus additive gold+time log loss (negative favors M1). Each dot is one TRAIN-forward fold; the pooled 95% series-bootstrap interval crosses zero. Individual fold dots have no confidence bands.*
 
-**The stronger null is the real check.** Against **gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020**, 70-series 95% interval **[−0.0148,+0.0090]**; it won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**). The fitted **+2k gold log-odds contrast (10m−30m)** was **+0.301** in 250 patch-59 TRAIN games versus **+0.029** in only 41 patch-60 games: an unstable, post-hoc subgroup comparison, not proven drift. Of **at least 38** historical checks, **0/28** follow-ups cleared promotion gates on **reused validation**. The promising item model (P20) had VAL loss **0.5145 vs 0.5197**, but **1/3 pre-correction TRAIN** folds favored it; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** crossed zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md).
+**Game-state caveat:** At |gold lead| **2–4k**, leaders won **66/82** at 10m versus **11/25** at 30m. **Only 7 matches occur in both groups**; survival and side/league mix differ. This is **not a causal time effect**. Full grouped uncertainty is in **docs/TRAIN_LEADER_STATE_EMPIRICAL.md**, never used for model selection.
+
+**Patch sensitivity:** The fitted **+2k gold log-odds contrast (10m−30m)** was **+0.301** (250 patch-59 TRAIN games) versus **+0.029** (41 patch-60 games), a post-hoc comparison, not confirmed drift. Of **at least 38** checks, **0/28** follow-ups passed gates on **reused validation**. Item model P20 had VAL loss **0.5145 vs 0.5197**, but won only **1/3 pre-correction TRAIN** folds; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** crossed zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md).
 
 ---
 
