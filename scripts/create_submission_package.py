@@ -58,6 +58,12 @@ FILES = (
     "docs/figures/train_matched_state_aliasing.png",
     "research/render_train_state_aliasing_figure.py",
     "tests/test_train_state_aliasing_figure.py",
+    "research/train_leader_state_empirical.py",
+    "docs/TRAIN_LEADER_STATE_EMPIRICAL.md",
+    "docs/TRAIN_LEADER_STATE_EMPIRICAL_RECEIPT.json",
+    "docs/figures/train_leader_state_empirical.png",
+    "tests/test_train_leader_state_empirical.py",
+    "tests/test_fable_science_closure.py",
     "docs/EXPERIMENT_REGISTER.md",
     "docs/RESEARCH_DECISION_TRAIL.md",
     "docs/TEAM_LEAGUE_DEPENDENCE.md",
@@ -727,7 +733,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 144 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 158 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

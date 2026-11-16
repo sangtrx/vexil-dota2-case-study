@@ -24,6 +24,8 @@
 | November sample | 100 games overlap a prior 120-game cohort by **68 IDs**; two leagues supply 85 games | Not independent replication | [Overlap receipt](NOVEMBER_COHORT_OVERLAP_RECEIPT.json) |
 | Value-of-freshness idea | Proposed headline estimator telescoped to endpoint effects | **Rejected** and preserved | [PR #15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15) |
 
+The [new TRAIN-only empirical leader-win audit](TRAIN_LEADER_STATE_EMPIRICAL.md) asks whether similarly sized gold leads in surviving matches at different minutes correspond to similar eventual win fractions. This post-hoc descriptive chart uses fixed source-frozen TRAIN data, series-resampled uncertainty and in-sample M0/M1 probabilities; it neither selects models nor makes a causal time claim. The prior two-match objective-state illustration remains supplementary.
+
 The [post-TEST team/league dependence audit](TEAM_LEAGUE_DEPENDENCE.md) quantifies 54 TEST series, overlapping teams across chronological splits and descriptive match-versus-series intervals. This audit does not change the original primary match-bootstrap inference, model selection or TEST scores.
 
 The [fixed TRAIN matched-state figure](figures/train_matched_state_aliasing.png), regenerated from the frozen development archive by `research/render_train_state_aliasing_figure.py`, visualizes the historical Aegis/objective-state counterexample without using TEST or claiming objective-feature uplift.

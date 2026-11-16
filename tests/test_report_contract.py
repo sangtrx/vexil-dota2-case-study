@@ -48,8 +48,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("144 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("144 offline unit/contract checks",
+        self.assertIn("158 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("158 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -96,7 +96,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("Does the same gold lead map to the same win probability",report)
         self.assertIn("not** a claim that gold becomes less discriminative",report)
         self.assertNotIn("same gold lead equally informative",report)
-        self.assertIn("fixed-gold forecast contrast is not proof",readme)
+        self.assertIn("independent holdout or evidence of M1 lift",readme)
 
     def test_historical_200_game_study_is_preserved_without_crowding_report(self):
         report = (ROOT / "REPORT.md").read_text()
@@ -291,7 +291,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         for relative in (
             "docs/figures/heldout_reliability.png",
             "docs/figures/time_value_scenarios.png",
-            "docs/figures/train_matched_state_aliasing.png",
+            "docs/figures/train_leader_state_empirical.png",
             "docs/figures/phase_error_audit.png",
         ):
             self.assertIn("](" + relative + ")", markdown)

@@ -1,0 +1,163 @@
+{
+  "analysis_type": "POST_HOC_EXPLORATORY_TRAIN_ONLY_DESCRIPTIVE",
+  "any_TEST_rows_read": false,
+  "any_validation_rows_read": false,
+  "cells": [
+    {
+      "M0_training_fitted_mean_p_leader": 0.6449536677849919,
+      "M1_training_fitted_mean_p_leader": 0.7225146002350855,
+      "abs_lead_lower_k": 2.0,
+      "abs_lead_upper_exclusive_k": 4.0,
+      "eventual_leader_wins": 66,
+      "games": 82,
+      "minute": 10,
+      "observed_leader_win_fraction": 0.8048780487804879,
+      "series_cluster_percentile_95_exploratory": [
+        0.7142857142857143,
+        0.8875
+      ],
+      "series_groups": 68,
+      "wilson_95_by_game_descriptive": [
+        0.7062981066280967,
+        0.8761710252681838
+      ]
+    },
+    {
+      "M0_training_fitted_mean_p_leader": 0.6508434516180848,
+      "M1_training_fitted_mean_p_leader": 0.6808228731951709,
+      "abs_lead_lower_k": 2.0,
+      "abs_lead_upper_exclusive_k": 4.0,
+      "eventual_leader_wins": 46,
+      "games": 69,
+      "minute": 20,
+      "observed_leader_win_fraction": 0.6666666666666666,
+      "series_cluster_percentile_95_exploratory": [
+        0.5571428571428572,
+        0.7714285714285715
+      ],
+      "series_groups": 60,
+      "wilson_95_by_game_descriptive": [
+        0.5492647542871832,
+        0.7664894929831328
+      ]
+    },
+    {
+      "M0_training_fitted_mean_p_leader": 0.6573354579981657,
+      "M1_training_fitted_mean_p_leader": 0.6502004726817694,
+      "abs_lead_lower_k": 2.0,
+      "abs_lead_upper_exclusive_k": 4.0,
+      "eventual_leader_wins": 11,
+      "games": 25,
+      "minute": 30,
+      "observed_leader_win_fraction": 0.44,
+      "series_cluster_percentile_95_exploratory": [
+        0.24,
+        0.64
+      ],
+      "series_groups": 24,
+      "wilson_95_by_game_descriptive": [
+        0.26665638881067344,
+        0.6293266813020123
+      ]
+    },
+    {
+      "M0_training_fitted_mean_p_leader": 0.7763377378320407,
+      "M1_training_fitted_mean_p_leader": 0.8801881416473079,
+      "abs_lead_lower_k": 5.0,
+      "abs_lead_upper_exclusive_k": 7.0,
+      "eventual_leader_wins": 8,
+      "games": 9,
+      "minute": 10,
+      "observed_leader_win_fraction": 0.8888888888888888,
+      "series_cluster_percentile_95_exploratory": [
+        0.6666666666666666,
+        1.0
+      ],
+      "series_groups": 9,
+      "wilson_95_by_game_descriptive": [
+        0.5650002944233439,
+        0.9801091123614551
+      ]
+    },
+    {
+      "M0_training_fitted_mean_p_leader": 0.7728016212062903,
+      "M1_training_fitted_mean_p_leader": 0.8170815125952173,
+      "abs_lead_lower_k": 5.0,
+      "abs_lead_upper_exclusive_k": 7.0,
+      "eventual_leader_wins": 25,
+      "games": 35,
+      "minute": 20,
+      "observed_leader_win_fraction": 0.7142857142857143,
+      "series_cluster_percentile_95_exploratory": [
+        0.5555555555555556,
+        0.8611111111111112
+      ],
+      "series_groups": 33,
+      "wilson_95_by_game_descriptive": [
+        0.5494506513681738,
+        0.836734637635653
+      ]
+    },
+    {
+      "M0_training_fitted_mean_p_leader": 0.7748682987043334,
+      "M1_training_fitted_mean_p_leader": 0.7642165970512108,
+      "abs_lead_lower_k": 5.0,
+      "abs_lead_upper_exclusive_k": 7.0,
+      "eventual_leader_wins": 24,
+      "games": 30,
+      "minute": 30,
+      "observed_leader_win_fraction": 0.8,
+      "series_cluster_percentile_95_exploratory": [
+        0.6549695740365112,
+        0.9310344827586207
+      ],
+      "series_groups": 28,
+      "wilson_95_by_game_descriptive": [
+        0.6269430358685175,
+        0.9049489282271013
+      ]
+    }
+  ],
+  "cohort": {
+    "original_train_games": 291,
+    "original_train_minute_rows": 10675,
+    "patch_scope": "original TRAIN patches 59 and 60; cannot claim patch-invariant effect"
+  },
+  "fixed_grid": {
+    "absolute_gold_lead_k_half_open_bins": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        5.0,
+        7.0
+      ]
+    ],
+    "counting_unit": "one match at a specific minute/bin, never duplicated per team",
+    "minutes": [
+      10,
+      20,
+      30
+    ],
+    "outcome": "eventual winner is the team that led at that minute"
+  },
+  "limitations": [
+    "Post-hoc chart design and original TRAIN in-sample model forecasts, not validation.",
+    "Conditional on still playing at minute t; late survivors differ from early games.",
+    "Cells differ in match makeup, patch balance and lead distribution within each bin.",
+    "Wilson game intervals ignore series dependence; grouped intervals still ignore cross-series team/league dependence.",
+    "Small cells, especially |gold| in [5k,7k) at minute 10, are unstable.",
+    "No causal time effect, no confirmed mechanism or predictive lift; no new TEST inference."
+  ],
+  "not_a_model_selection_gate": true,
+  "not_causal": true,
+  "selection_or_refit_using_TEST": false,
+  "source": {
+    "bootstrap_draws_per_cell": 5000,
+    "bootstrap_series_or_singleton_seed": 20261116,
+    "original_model_fit": "TRAIN-only sklearn Pipeline median imputer, StandardScaler, logistic C=1",
+    "original_science_notebook_sha256": "466dce5d64adf081fb20642df210f903794745714675e225415c0aa8770f8304",
+    "train_features_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
+  }
+}
