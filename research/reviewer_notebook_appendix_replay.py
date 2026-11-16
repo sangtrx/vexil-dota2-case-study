@@ -54,6 +54,11 @@ def checked_sources(nb):
 def execute(cache_dir:Path,out_dir:Path):
     sys.path.insert(0,str(ROOT))
     import research.full_notebook_replay as replay
+    # The published notebook is immutable evidence. Jupyter execution
+    # metadata (timestamps, stream chunking) is nondeterministic: the
+    # reviewer receipt fingerprints the released notebook *before* replay,
+    # not a newly executed copy.
+    released_notebook_sha=sha(MAIN.read_bytes())
     future=nbformat.read(MAIN,as_version=4)
     original=checked_sources(future)
     orig_fp=replay.scientific_fingerprint
@@ -93,15 +98,21 @@ def execute(cache_dir:Path,out_dir:Path):
             raise ValueError("Appendix has missing executed outputs")
     if sha((ROOT/"artifacts/heldout_predictions.csv").read_bytes())!=EXPECTED_TEST_SHA:
         raise ValueError("Original heldout results changed")
-    nbformat.write(executed,MAIN)
-    saved=nbformat.read(MAIN,as_version=4)
+    # execute_replay already saved the fresh-kernel notebook under out_dir.
+    # Never rewrite MAIN during QA: it contains the applicant's frozen
+    # saved outputs, and execution timestamps would alter its file hash.
+    saved=nbformat.read(out_dir/"executed_fresh_kernel.ipynb",as_version=4)
+    if sha(MAIN.read_bytes())!=released_notebook_sha:
+        raise AssertionError("Released reviewer notebook was mutated during replay")
     checked_sources(saved)
     if sha(saved.cells[27].source.encode())!=sha(PIT.read_bytes()):
         raise ValueError("Post-save appendix source drift")
     result={
         "status":"APPEND_ONLY_REVIEWER_NOTEBOOK_SOURCE_FROZEN_QA",
         "source_science_notebook_sha256":FROZEN_SHA,
-        "new_reviewer_notebook_sha256":sha(MAIN.read_bytes()),
+        # This legacy receipt key means the sha of the *released* reviewer
+        # notebook, not of ephemeral freshly executed Jupyter metadata.
+        "new_reviewer_notebook_sha256":released_notebook_sha,
         "unchanged_scientific_code_sha256":receipt["source_code_sha256"],
         "heldout_3836_csv_sha256":EXPECTED_TEST_SHA,
         "source_cells_26_bytewise_code_parity":True,

@@ -34,6 +34,7 @@ FILES = (
     "scripts/build_reviewer_notebook_appendix.py",
     "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
     "tests/test_reviewer_notebook_appendix.py",
+    "tests/test_reviewer_replay_idempotency.py",
     "requirements.txt",
     "REPORT.md",
     "REPORT.pdf",
@@ -733,7 +734,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 158 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 160 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

@@ -27,7 +27,7 @@ For **offline** score/contract verification from the ZIP (not a fresh notebook R
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-Twenty-one test modules contain **158 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file. An optional [post-hoc team/league dependence audit](docs/TEAM_LEAGUE_DEPENDENCE.md) recomputes from bundled frozen public match/group IDs and predictions, without fitting new models or changing the notebook.
+Twenty-two test modules contain **160 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file. An optional [post-hoc team/league dependence audit](docs/TEAM_LEAGUE_DEPENDENCE.md) recomputes from bundled frozen public match/group IDs and predictions, without fitting new models or changing the notebook.
 
 ## What is supplementary
 
