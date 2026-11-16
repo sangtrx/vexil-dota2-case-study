@@ -1,0 +1,1759 @@
+{
+  "candidate_listing_sha256": "e0a05e5d9021dc54799a43be9aa514e345f0363ebbeb846ed5ff0a05605fc8d4",
+  "code_git_commit": "8b8e40d",
+  "cohort_collection_receipt": {
+    "accepted_count": 100,
+    "candidate_audit": [
+      {
+        "accepted": false,
+        "match_id": 9091638344,
+        "reason": "unparsed_gold",
+        "start_time": 1794756402
+      },
+      {
+        "accepted": true,
+        "match_id": 9091523157,
+        "reason": "eligible",
+        "start_time": 1794752678
+      },
+      {
+        "accepted": true,
+        "match_id": 9091521748,
+        "reason": "eligible",
+        "start_time": 1794752711
+      },
+      {
+        "accepted": true,
+        "match_id": 9091507542,
+        "reason": "eligible",
+        "start_time": 1794751803
+      },
+      {
+        "accepted": true,
+        "match_id": 9091386510,
+        "reason": "eligible",
+        "start_time": 1794747812
+      },
+      {
+        "accepted": true,
+        "match_id": 9091378026,
+        "reason": "eligible",
+        "start_time": 1794747179
+      },
+      {
+        "accepted": true,
+        "match_id": 9091310904,
+        "reason": "eligible",
+        "start_time": 1794744580
+      },
+      {
+        "accepted": true,
+        "match_id": 9091291242,
+        "reason": "eligible",
+        "start_time": 1794744028
+      },
+      {
+        "accepted": true,
+        "match_id": 9091236030,
+        "reason": "eligible",
+        "start_time": 1794741439
+      },
+      {
+        "accepted": true,
+        "match_id": 9091138476,
+        "reason": "eligible",
+        "start_time": 1794736826
+      },
+      {
+        "accepted": true,
+        "match_id": 9091135592,
+        "reason": "eligible",
+        "start_time": 1794737656
+      },
+      {
+        "accepted": true,
+        "match_id": 9090701002,
+        "reason": "eligible",
+        "start_time": 1794704403
+      },
+      {
+        "accepted": true,
+        "match_id": 9090631460,
+        "reason": "eligible",
+        "start_time": 1794698297
+      },
+      {
+        "accepted": true,
+        "match_id": 9090576268,
+        "reason": "eligible",
+        "start_time": 1794694632
+      },
+      {
+        "accepted": true,
+        "match_id": 9090500945,
+        "reason": "eligible",
+        "start_time": 1794690307
+      },
+      {
+        "accepted": true,
+        "match_id": 9090414768,
+        "reason": "eligible",
+        "start_time": 1794686519
+      },
+      {
+        "accepted": true,
+        "match_id": 9090331679,
+        "reason": "eligible",
+        "start_time": 1794682787
+      },
+      {
+        "accepted": true,
+        "match_id": 9090295298,
+        "reason": "eligible",
+        "start_time": 1794682378
+      },
+      {
+        "accepted": true,
+        "match_id": 9090241603,
+        "reason": "eligible",
+        "start_time": 1794679310
+      },
+      {
+        "accepted": true,
+        "match_id": 9090171021,
+        "reason": "eligible",
+        "start_time": 1794676723
+      },
+      {
+        "accepted": true,
+        "match_id": 9090050956,
+        "reason": "eligible",
+        "start_time": 1794672136
+      },
+      {
+        "accepted": true,
+        "match_id": 9090049848,
+        "reason": "eligible",
+        "start_time": 1794672096
+      },
+      {
+        "accepted": true,
+        "match_id": 9090044969,
+        "reason": "eligible",
+        "start_time": 1794671973
+      },
+      {
+        "accepted": true,
+        "match_id": 9089968791,
+        "reason": "eligible",
+        "start_time": 1794669241
+      },
+      {
+        "accepted": true,
+        "match_id": 9089893551,
+        "reason": "eligible",
+        "start_time": 1794666683
+      },
+      {
+        "accepted": true,
+        "match_id": 9089886596,
+        "reason": "eligible",
+        "start_time": 1794666616
+      },
+      {
+        "accepted": true,
+        "match_id": 9089764053,
+        "reason": "eligible",
+        "start_time": 1794662061
+      },
+      {
+        "accepted": true,
+        "match_id": 9089662627,
+        "reason": "eligible",
+        "start_time": 1794657933
+      },
+      {
+        "accepted": true,
+        "match_id": 9089662134,
+        "reason": "eligible",
+        "start_time": 1794657910
+      },
+      {
+        "accepted": true,
+        "match_id": 9089593281,
+        "reason": "eligible",
+        "start_time": 1794654605
+      },
+      {
+        "accepted": true,
+        "match_id": 9089567599,
+        "reason": "eligible",
+        "start_time": 1794653449
+      },
+      {
+        "accepted": true,
+        "match_id": 9089520696,
+        "reason": "eligible",
+        "start_time": 1794650878
+      },
+      {
+        "accepted": true,
+        "match_id": 9089448051,
+        "reason": "eligible",
+        "start_time": 1794646922
+      },
+      {
+        "accepted": true,
+        "match_id": 9088923051,
+        "reason": "eligible",
+        "start_time": 1794604942
+      },
+      {
+        "accepted": true,
+        "match_id": 9088831675,
+        "reason": "eligible",
+        "start_time": 1794600710
+      },
+      {
+        "accepted": true,
+        "match_id": 9088760214,
+        "reason": "eligible",
+        "start_time": 1794597303
+      },
+      {
+        "accepted": true,
+        "match_id": 9088710443,
+        "reason": "eligible",
+        "start_time": 1794595409
+      },
+      {
+        "accepted": true,
+        "match_id": 9088639372,
+        "reason": "eligible",
+        "start_time": 1794592915
+      },
+      {
+        "accepted": true,
+        "match_id": 9088593108,
+        "reason": "eligible",
+        "start_time": 1794590736
+      },
+      {
+        "accepted": true,
+        "match_id": 9088481002,
+        "reason": "eligible",
+        "start_time": 1794586440
+      },
+      {
+        "accepted": true,
+        "match_id": 9088414151,
+        "reason": "eligible",
+        "start_time": 1794583527
+      },
+      {
+        "accepted": true,
+        "match_id": 9088363938,
+        "reason": "eligible",
+        "start_time": 1794581623
+      },
+      {
+        "accepted": true,
+        "match_id": 9088362009,
+        "reason": "eligible",
+        "start_time": 1794581644
+      },
+      {
+        "accepted": true,
+        "match_id": 9088316044,
+        "reason": "eligible",
+        "start_time": 1794580018
+      },
+      {
+        "accepted": true,
+        "match_id": 9088309338,
+        "reason": "eligible",
+        "start_time": 1794579516
+      },
+      {
+        "accepted": true,
+        "match_id": 9088267544,
+        "reason": "eligible",
+        "start_time": 1794578164
+      },
+      {
+        "accepted": true,
+        "match_id": 9088218721,
+        "reason": "eligible",
+        "start_time": 1794575843
+      },
+      {
+        "accepted": true,
+        "match_id": 9088161900,
+        "reason": "eligible",
+        "start_time": 1794573488
+      },
+      {
+        "accepted": true,
+        "match_id": 9088130768,
+        "reason": "eligible",
+        "start_time": 1794571781
+      },
+      {
+        "accepted": true,
+        "match_id": 9088086810,
+        "reason": "eligible",
+        "start_time": 1794569533
+      },
+      {
+        "accepted": true,
+        "match_id": 9088069727,
+        "reason": "eligible",
+        "start_time": 1794568435
+      },
+      {
+        "accepted": true,
+        "match_id": 9088001992,
+        "reason": "eligible",
+        "start_time": 1794564172
+      },
+      {
+        "accepted": true,
+        "match_id": 9087999035,
+        "reason": "eligible",
+        "start_time": 1794563945
+      },
+      {
+        "accepted": true,
+        "match_id": 9087439951,
+        "reason": "eligible",
+        "start_time": 1794513123
+      },
+      {
+        "accepted": true,
+        "match_id": 9087374444,
+        "reason": "eligible",
+        "start_time": 1794510069
+      },
+      {
+        "accepted": true,
+        "match_id": 9087276030,
+        "reason": "eligible",
+        "start_time": 1794505595
+      },
+      {
+        "accepted": true,
+        "match_id": 9087180510,
+        "reason": "eligible",
+        "start_time": 1794501248
+      },
+      {
+        "accepted": true,
+        "match_id": 9087070975,
+        "reason": "eligible",
+        "start_time": 1794496803
+      },
+      {
+        "accepted": true,
+        "match_id": 9087068600,
+        "reason": "eligible",
+        "start_time": 1794496594
+      },
+      {
+        "accepted": true,
+        "match_id": 9087022411,
+        "reason": "eligible",
+        "start_time": 1794494617
+      },
+      {
+        "accepted": true,
+        "match_id": 9086982375,
+        "reason": "eligible",
+        "start_time": 1794493395
+      },
+      {
+        "accepted": true,
+        "match_id": 9086957012,
+        "reason": "eligible",
+        "start_time": 1794492129
+      },
+      {
+        "accepted": true,
+        "match_id": 9086956929,
+        "reason": "eligible",
+        "start_time": 1794491947
+      },
+      {
+        "accepted": true,
+        "match_id": 9086875606,
+        "reason": "eligible",
+        "start_time": 1794488650
+      },
+      {
+        "accepted": true,
+        "match_id": 9086867468,
+        "reason": "eligible",
+        "start_time": 1794488351
+      },
+      {
+        "accepted": true,
+        "match_id": 9086225563,
+        "reason": "eligible",
+        "start_time": 1794431113
+      },
+      {
+        "accepted": true,
+        "match_id": 9086220626,
+        "reason": "eligible",
+        "start_time": 1794430999
+      },
+      {
+        "accepted": true,
+        "match_id": 9086220440,
+        "reason": "eligible",
+        "start_time": 1794430782
+      },
+      {
+        "accepted": true,
+        "match_id": 9086164367,
+        "reason": "eligible",
+        "start_time": 1794427674
+      },
+      {
+        "accepted": true,
+        "match_id": 9086158750,
+        "reason": "eligible",
+        "start_time": 1794427300
+      },
+      {
+        "accepted": true,
+        "match_id": 9086136368,
+        "reason": "eligible",
+        "start_time": 1794427030
+      },
+      {
+        "accepted": true,
+        "match_id": 9086093467,
+        "reason": "eligible",
+        "start_time": 1794424093
+      },
+      {
+        "accepted": true,
+        "match_id": 9086076880,
+        "reason": "eligible",
+        "start_time": 1794423431
+      },
+      {
+        "accepted": true,
+        "match_id": 9086062076,
+        "reason": "eligible",
+        "start_time": 1794422543
+      },
+      {
+        "accepted": true,
+        "match_id": 9086014176,
+        "reason": "eligible",
+        "start_time": 1794420382
+      },
+      {
+        "accepted": true,
+        "match_id": 9086005199,
+        "reason": "eligible",
+        "start_time": 1794419935
+      },
+      {
+        "accepted": true,
+        "match_id": 9085960791,
+        "reason": "eligible",
+        "start_time": 1794418612
+      },
+      {
+        "accepted": true,
+        "match_id": 9085906939,
+        "reason": "eligible",
+        "start_time": 1794415928
+      },
+      {
+        "accepted": true,
+        "match_id": 9085889389,
+        "reason": "eligible",
+        "start_time": 1794415374
+      },
+      {
+        "accepted": true,
+        "match_id": 9085858818,
+        "reason": "eligible",
+        "start_time": 1794413689
+      },
+      {
+        "accepted": true,
+        "match_id": 9085857623,
+        "reason": "eligible",
+        "start_time": 1794413820
+      },
+      {
+        "accepted": true,
+        "match_id": 9085805420,
+        "reason": "eligible",
+        "start_time": 1794411554
+      },
+      {
+        "accepted": true,
+        "match_id": 9085776650,
+        "reason": "eligible",
+        "start_time": 1794410208
+      },
+      {
+        "accepted": true,
+        "match_id": 9085741878,
+        "reason": "eligible",
+        "start_time": 1794408807
+      },
+      {
+        "accepted": true,
+        "match_id": 9085724120,
+        "reason": "eligible",
+        "start_time": 1794408087
+      },
+      {
+        "accepted": true,
+        "match_id": 9085710488,
+        "reason": "eligible",
+        "start_time": 1794407824
+      },
+      {
+        "accepted": true,
+        "match_id": 9085656696,
+        "reason": "eligible",
+        "start_time": 1794405420
+      },
+      {
+        "accepted": true,
+        "match_id": 9085637307,
+        "reason": "eligible",
+        "start_time": 1794404515
+      },
+      {
+        "accepted": true,
+        "match_id": 9085620814,
+        "reason": "eligible",
+        "start_time": 1794404027
+      },
+      {
+        "accepted": true,
+        "match_id": 9085616958,
+        "reason": "eligible",
+        "start_time": 1794403742
+      },
+      {
+        "accepted": true,
+        "match_id": 9085563234,
+        "reason": "eligible",
+        "start_time": 1794401292
+      },
+      {
+        "accepted": true,
+        "match_id": 9085549467,
+        "reason": "eligible",
+        "start_time": 1794400934
+      },
+      {
+        "accepted": true,
+        "match_id": 9085542397,
+        "reason": "eligible",
+        "start_time": 1794400677
+      },
+      {
+        "accepted": true,
+        "match_id": 9085534249,
+        "reason": "eligible",
+        "start_time": 1794400089
+      },
+      {
+        "accepted": true,
+        "match_id": 9085534158,
+        "reason": "eligible",
+        "start_time": 1794400021
+      },
+      {
+        "accepted": true,
+        "match_id": 9085512721,
+        "reason": "eligible",
+        "start_time": 1794398865
+      },
+      {
+        "accepted": true,
+        "match_id": 9085490599,
+        "reason": "eligible",
+        "start_time": 1794397798
+      },
+      {
+        "accepted": true,
+        "match_id": 9085486499,
+        "reason": "eligible",
+        "start_time": 1794397462
+      },
+      {
+        "accepted": true,
+        "match_id": 9085465186,
+        "reason": "eligible",
+        "start_time": 1794396257
+      },
+      {
+        "accepted": true,
+        "match_id": 9085464517,
+        "reason": "eligible",
+        "start_time": 1794396221
+      },
+      {
+        "accepted": true,
+        "match_id": 9085458195,
+        "reason": "eligible",
+        "start_time": 1794395860
+      }
+    ],
+    "complete": true,
+    "details_queried": 101,
+    "eligible": [
+      {
+        "duration": 3489,
+        "match_id": 9091523157,
+        "patch": "60",
+        "raw_sha256": "aa95c4e3ac755dc49199de65d0c513697b969e087a3eab850e2b503cbad0bf1e",
+        "series_id": 1168831,
+        "start_time": 1794752678
+      },
+      {
+        "duration": 2074,
+        "match_id": 9091521748,
+        "patch": "60",
+        "raw_sha256": "2559b5db1f246dac53c48dd616d12eed205d54043d57320ba6649a380f3c29b1",
+        "series_id": 1168829,
+        "start_time": 1794752711
+      },
+      {
+        "duration": 3601,
+        "match_id": 9091507542,
+        "patch": "60",
+        "raw_sha256": "2631d349502cc8e3cab49f8eceeb0959e297e547bf748af4e7afa385e3796718",
+        "series_id": 0,
+        "start_time": 1794751803
+      },
+      {
+        "duration": 2762,
+        "match_id": 9091386510,
+        "patch": "60",
+        "raw_sha256": "f434ab326121bb0bbeec47335688b43a86449349f1858565bf084332b46ce1fc",
+        "series_id": 1168701,
+        "start_time": 1794747812
+      },
+      {
+        "duration": 3441,
+        "match_id": 9091378026,
+        "patch": "60",
+        "raw_sha256": "93082cc87d4d9372804d3e86130cd0b0023ab3b17c43571041aa81f3400d77b7",
+        "series_id": 0,
+        "start_time": 1794747179
+      },
+      {
+        "duration": 1732,
+        "match_id": 9091310904,
+        "patch": "60",
+        "raw_sha256": "2d92e0038496a18768b5a7821c2a04cd51b2e2c753dca12eeda8806ce43dbd92",
+        "series_id": 0,
+        "start_time": 1794744580
+      },
+      {
+        "duration": 2035,
+        "match_id": 9091291242,
+        "patch": "60",
+        "raw_sha256": "fd7e0eafc8e6346fe061c28257a0170ecbb000272783e19cacb863078d39a182",
+        "series_id": 1168701,
+        "start_time": 1794744028
+      },
+      {
+        "duration": 3122,
+        "match_id": 9091236030,
+        "patch": "60",
+        "raw_sha256": "02948afe5e5b12d5d4e0f7e2770da323c39d5f8dd714861c2f854eeb840d1f88",
+        "series_id": 1168703,
+        "start_time": 1794741439
+      },
+      {
+        "duration": 2518,
+        "match_id": 9091138476,
+        "patch": "60",
+        "raw_sha256": "f2532f1936fb4a752deb54ca7b440a35891ec014aaf72824b78fac1377ee9654",
+        "series_id": 1168703,
+        "start_time": 1794736826
+      },
+      {
+        "duration": 4612,
+        "match_id": 9091135592,
+        "patch": "60",
+        "raw_sha256": "801dbe65d2b75e6c6ce5da781ca8288371443f724731645dd35be97174f7e499",
+        "series_id": 1168701,
+        "start_time": 1794737656
+      },
+      {
+        "duration": 1853,
+        "match_id": 9090701002,
+        "patch": "60",
+        "raw_sha256": "e399218d6679065a60be3a53f8e987d7213fa08a7bdb58d18cfbeef9debb55e1",
+        "series_id": 1168570,
+        "start_time": 1794704403
+      },
+      {
+        "duration": 4363,
+        "match_id": 9090631460,
+        "patch": "60",
+        "raw_sha256": "17212de24efb87ff3d2c8f8f96322b51df83072fd70ab261eb9457893c949e84",
+        "series_id": 1168570,
+        "start_time": 1794698297
+      },
+      {
+        "duration": 1924,
+        "match_id": 9090576268,
+        "patch": "60",
+        "raw_sha256": "bb8444f132b096a0d71360ee28ac3758413f3ef64ef097dd880649591fd38bda",
+        "series_id": 1168570,
+        "start_time": 1794694632
+      },
+      {
+        "duration": 2332,
+        "match_id": 9090500945,
+        "patch": "60",
+        "raw_sha256": "bf50411c42e9adf873ede659af53e0ac8b42a7131bd314cc024297b2e53162c3",
+        "series_id": 1168517,
+        "start_time": 1794690307
+      },
+      {
+        "duration": 2276,
+        "match_id": 9090414768,
+        "patch": "60",
+        "raw_sha256": "6b5f24d23748f781467ea1dbd4a38b83560a0412f7bcf0416fc72e9558ebce4d",
+        "series_id": 1168517,
+        "start_time": 1794686519
+      },
+      {
+        "duration": 4635,
+        "match_id": 9090331679,
+        "patch": "60",
+        "raw_sha256": "fc0e9473cf24908b3e48f01d2d713957aab6ee4738742663b420326f29902497",
+        "series_id": 1168455,
+        "start_time": 1794682787
+      },
+      {
+        "duration": 2452,
+        "match_id": 9090295298,
+        "patch": "60",
+        "raw_sha256": "941e06b22a42a56dd1c7c52e4ee49c0947dbc1213f48ee8687a1410a1e2098db",
+        "series_id": 1168375,
+        "start_time": 1794682378
+      },
+      {
+        "duration": 1944,
+        "match_id": 9090241603,
+        "patch": "60",
+        "raw_sha256": "2cf50d42c616871be6258ffb4bebf967b278efc9c1ed8bde64f0bd11c46a68e9",
+        "series_id": 1168455,
+        "start_time": 1794679310
+      },
+      {
+        "duration": 2950,
+        "match_id": 9090171021,
+        "patch": "60",
+        "raw_sha256": "20a67cb2d66c3e023a0cad579576265b20b23d7cf12ac62eb3ee1b48e530ad5e",
+        "series_id": 1168375,
+        "start_time": 1794676723
+      },
+      {
+        "duration": 3069,
+        "match_id": 9090050956,
+        "patch": "60",
+        "raw_sha256": "3fe38e1cb9a37f99d8e632acdd91d3978bea755a508c7989507caec2369e893c",
+        "series_id": 1168375,
+        "start_time": 1794672136
+      },
+      {
+        "duration": 2260,
+        "match_id": 9090049848,
+        "patch": "60",
+        "raw_sha256": "69efcd73378955f15024d8e0272e09624a0063e470b1dbf546215135ce0ae998",
+        "series_id": 1168307,
+        "start_time": 1794672096
+      },
+      {
+        "duration": 3721,
+        "match_id": 9090044969,
+        "patch": "60",
+        "raw_sha256": "a88c568c39c3ceb3148e4c79f2a49aea6b3bd60d211a8679720df5c6fe712d2b",
+        "series_id": 1168376,
+        "start_time": 1794671973
+      },
+      {
+        "duration": 1339,
+        "match_id": 9089968791,
+        "patch": "60",
+        "raw_sha256": "c319c87268f15349de72d3ac3f7df9eb2487d3683780d5bcaaaecad21ba4e867",
+        "series_id": 1168345,
+        "start_time": 1794669241
+      },
+      {
+        "duration": 3570,
+        "match_id": 9089893551,
+        "patch": "60",
+        "raw_sha256": "aebedb39ab3452cbb7e1822e75e4de8909f7e3f072236ed32a147786c101ed48",
+        "series_id": 1168307,
+        "start_time": 1794666683
+      },
+      {
+        "duration": 3286,
+        "match_id": 9089886596,
+        "patch": "60",
+        "raw_sha256": "0fad32c701beaadc21107e63ee8acafffa3284821abbaf8dac4e2cdf3dedec15",
+        "series_id": 1168207,
+        "start_time": 1794666616
+      },
+      {
+        "duration": 2972,
+        "match_id": 9089764053,
+        "patch": "60",
+        "raw_sha256": "9d3aacd332ec77eafb96da028ee6b4a407de4f21377291f6ef8ed4288cbf4482",
+        "series_id": 1168207,
+        "start_time": 1794662061
+      },
+      {
+        "duration": 3626,
+        "match_id": 9089662627,
+        "patch": "60",
+        "raw_sha256": "16e5c43f2df02293195ff18257e462db3a62bd1492daccc6dcc5b6bbcc04914e",
+        "series_id": 1168132,
+        "start_time": 1794657933
+      },
+      {
+        "duration": 2699,
+        "match_id": 9089662134,
+        "patch": "60",
+        "raw_sha256": "14a51eaf95902a9892128998a10a1448ed6fa39c428bedab4dc6adb835d69165",
+        "series_id": 1168207,
+        "start_time": 1794657910
+      },
+      {
+        "duration": 1998,
+        "match_id": 9089593281,
+        "patch": "60",
+        "raw_sha256": "d675cfa5d646d9dd455139c44efa8e9dbb6a574d79c231e111c009dab22a9cbd",
+        "series_id": 1168132,
+        "start_time": 1794654605
+      },
+      {
+        "duration": 2378,
+        "match_id": 9089567599,
+        "patch": "60",
+        "raw_sha256": "f78e57322e37ded878589a35af39d92186b03b4cc2c6ddddca2dbadfc0aab104",
+        "series_id": 1168095,
+        "start_time": 1794653449
+      },
+      {
+        "duration": 2415,
+        "match_id": 9089520696,
+        "patch": "60",
+        "raw_sha256": "62431c28cdaf27ef5f512acb35786a265f5efcc432a7bb412f3e2ceecbf76ece",
+        "series_id": 1168132,
+        "start_time": 1794650878
+      },
+      {
+        "duration": 3857,
+        "match_id": 9089448051,
+        "patch": "60",
+        "raw_sha256": "bb028382e7a95b04a725a39b12024319f65fe3e08edf58be40acaa5cf42cd532",
+        "series_id": 1168095,
+        "start_time": 1794646922
+      },
+      {
+        "duration": 3270,
+        "match_id": 9088923051,
+        "patch": "60",
+        "raw_sha256": "4faf88385ba0865342157c9181afcb8088ad3ea4c51b1652912609b504dca26d",
+        "series_id": 1167943,
+        "start_time": 1794604942
+      },
+      {
+        "duration": 2715,
+        "match_id": 9088831675,
+        "patch": "60",
+        "raw_sha256": "f0229742dab0215d090292bf9a25c6ed93ec2216165964240a5c05db539dc783",
+        "series_id": 1167943,
+        "start_time": 1794600710
+      },
+      {
+        "duration": 2448,
+        "match_id": 9088760214,
+        "patch": "60",
+        "raw_sha256": "5eade3692bc9e19e21d90fcad08fbce71799d1cadfc182207fc1cd86cb3d8d1e",
+        "series_id": 1167881,
+        "start_time": 1794597303
+      },
+      {
+        "duration": 2976,
+        "match_id": 9088710443,
+        "patch": "60",
+        "raw_sha256": "25149955231f2d4ed463ce364b4bc778684f1f8fa43c67469cd43596bda38ff6",
+        "series_id": 1167834,
+        "start_time": 1794595409
+      },
+      {
+        "duration": 2918,
+        "match_id": 9088639372,
+        "patch": "60",
+        "raw_sha256": "2245b1a3cb06c868dcb65dc83cd055f850a716fd76a38f7a67299b4c3e1de6d2",
+        "series_id": 1167881,
+        "start_time": 1794592915
+      },
+      {
+        "duration": 2626,
+        "match_id": 9088593108,
+        "patch": "60",
+        "raw_sha256": "b057876750be67570902109c4b525dde932b3098a5b285ce3bb0faac68c166d4",
+        "series_id": 1167834,
+        "start_time": 1794590736
+      },
+      {
+        "duration": 2592,
+        "match_id": 9088481002,
+        "patch": "60",
+        "raw_sha256": "df013558e495989228aeeadb20e71d968723451df0c3e4c0d2cad8d984cc01c5",
+        "series_id": 1167834,
+        "start_time": 1794586440
+      },
+      {
+        "duration": 1794,
+        "match_id": 9088414151,
+        "patch": "60",
+        "raw_sha256": "4858d5742a35fa1aeea6013371d2688d358b742bc11a02fe3165dc0dc4d0ac33",
+        "series_id": 1167802,
+        "start_time": 1794583527
+      },
+      {
+        "duration": 2654,
+        "match_id": 9088363938,
+        "patch": "60",
+        "raw_sha256": "18384a94dc936fafc3bab1781cd669fcc46b85266f4663862672d7202ab22513",
+        "series_id": 0,
+        "start_time": 1794581623
+      },
+      {
+        "duration": 2409,
+        "match_id": 9088362009,
+        "patch": "60",
+        "raw_sha256": "4821189c7bfdc7a8d948fd9c10f4f4b9b3a4781b0b8d16ae1cc7ca1f279518b6",
+        "series_id": 1167786,
+        "start_time": 1794581644
+      },
+      {
+        "duration": 1912,
+        "match_id": 9088316044,
+        "patch": "60",
+        "raw_sha256": "3d92c643ae5c532065858a6efe6399b84f88c8f8097f66e0d79df547142b1f1a",
+        "series_id": 1167802,
+        "start_time": 1794580018
+      },
+      {
+        "duration": 1336,
+        "match_id": 9088309338,
+        "patch": "60",
+        "raw_sha256": "58d07e6b1594dbf7af747504df31883e5715ec713d76fcb5de65719bbdb460b5",
+        "series_id": 0,
+        "start_time": 1794579516
+      },
+      {
+        "duration": 1952,
+        "match_id": 9088267544,
+        "patch": "60",
+        "raw_sha256": "c8b6049711b2e17fa7373dcde66e7c4afa07d37dcddd213618dff01898a702f6",
+        "series_id": 1167786,
+        "start_time": 1794578164
+      },
+      {
+        "duration": 2369,
+        "match_id": 9088218721,
+        "patch": "60",
+        "raw_sha256": "a68647445c599ec9f2e101979c3937e2b362a802eaf058addbb91a24c8087483",
+        "series_id": 0,
+        "start_time": 1794575843
+      },
+      {
+        "duration": 2387,
+        "match_id": 9088161900,
+        "patch": "60",
+        "raw_sha256": "a200a96c5c84b56612bd45bd332f2703898c06a4c466845ff59027a65a572151",
+        "series_id": 1167741,
+        "start_time": 1794573488
+      },
+      {
+        "duration": 2932,
+        "match_id": 9088130768,
+        "patch": "60",
+        "raw_sha256": "30432eb451717ff4bdf57b90f102caf467430b66c7ea547ead6c460eb593f073",
+        "series_id": 0,
+        "start_time": 1794571781
+      },
+      {
+        "duration": 2363,
+        "match_id": 9088086810,
+        "patch": "60",
+        "raw_sha256": "09b0731a8df55bbcd0ddf21caacad22313d0bcf41bf09deaf90a20dd138086ad",
+        "series_id": 1167741,
+        "start_time": 1794569533
+      },
+      {
+        "duration": 3980,
+        "match_id": 9088069727,
+        "patch": "60",
+        "raw_sha256": "d087a7640d48403c861c6713ab6f3fa7539c4814fa3df5150e9f4f7cf8c66f58",
+        "series_id": 1167739,
+        "start_time": 1794568435
+      },
+      {
+        "duration": 3710,
+        "match_id": 9088001992,
+        "patch": "60",
+        "raw_sha256": "48cec3c3cda1fa86b85afe74036a65e72409ec3f91f65c829b9e34a21f6ddea8",
+        "series_id": 1167741,
+        "start_time": 1794564172
+      },
+      {
+        "duration": 2857,
+        "match_id": 9087999035,
+        "patch": "60",
+        "raw_sha256": "e0ba3ca4eb061e082bba40ec2583e84e3bcc91022e457ab44b1aaeecb2419d9c",
+        "series_id": 1167739,
+        "start_time": 1794563945
+      },
+      {
+        "duration": 3377,
+        "match_id": 9087439951,
+        "patch": "60",
+        "raw_sha256": "136780930040ba6a679cf033fc0794c6b5f5eccfee51f22ac1b693cfd2036ee7",
+        "series_id": 1167587,
+        "start_time": 1794513123
+      },
+      {
+        "duration": 1489,
+        "match_id": 9087374444,
+        "patch": "60",
+        "raw_sha256": "fc7dacca30da075ee90b9445d0551d1dd966180b2d0c743af2bd929777832412",
+        "series_id": 1167587,
+        "start_time": 1794510069
+      },
+      {
+        "duration": 1824,
+        "match_id": 9087276030,
+        "patch": "60",
+        "raw_sha256": "ef3323f52d970aaae5de5208f28a675d8376429a070bc49b715a349a780f9116",
+        "series_id": 1167538,
+        "start_time": 1794505595
+      },
+      {
+        "duration": 2647,
+        "match_id": 9087180510,
+        "patch": "60",
+        "raw_sha256": "dc548c9b1a2dfb107bb48577cea69da6ac4c2867dd1c66fe07292ad41bf7b2ea",
+        "series_id": 1167538,
+        "start_time": 1794501248
+      },
+      {
+        "duration": 3481,
+        "match_id": 9087070975,
+        "patch": "60",
+        "raw_sha256": "50ea05f01767837dcdfb88278d00b8ec28aaf093e5fd0146f7cf6f5583593c6d",
+        "series_id": 1167518,
+        "start_time": 1794496803
+      },
+      {
+        "duration": 2179,
+        "match_id": 9087068600,
+        "patch": "60",
+        "raw_sha256": "110c728103d8fb8b8104eb4afcd95d10c81821b2e9ac01799a06861903617354",
+        "series_id": 1167468,
+        "start_time": 1794496594
+      },
+      {
+        "duration": 2716,
+        "match_id": 9087022411,
+        "patch": "60",
+        "raw_sha256": "cc60c1f46a6205f3ba72adb95c1dd6995af440c42c9d18acf4c7eed4a4f473f3",
+        "series_id": 0,
+        "start_time": 1794494617
+      },
+      {
+        "duration": 1909,
+        "match_id": 9086982375,
+        "patch": "60",
+        "raw_sha256": "68ee478f2c4c203d02340f7386314d46f76f9f7f620d6ef808b7305fa6f3174a",
+        "series_id": 1167504,
+        "start_time": 1794493395
+      },
+      {
+        "duration": 2759,
+        "match_id": 9086957012,
+        "patch": "60",
+        "raw_sha256": "49a5a917a4f48366b4ee4b2636fb90519e53501ee54c616eed5e46e2215c3718",
+        "series_id": 0,
+        "start_time": 1794492129
+      },
+      {
+        "duration": 1867,
+        "match_id": 9086956929,
+        "patch": "60",
+        "raw_sha256": "73de4a31d3627247ef1a98851e2ddf478691bb77b939ea9655783491d3d007c7",
+        "series_id": 0,
+        "start_time": 1794491947
+      },
+      {
+        "duration": 1822,
+        "match_id": 9086875606,
+        "patch": "60",
+        "raw_sha256": "992b340473e8f8eb6abf69a894b4d2d2fde8fc94899f740ec04fe7b8363c489a",
+        "series_id": 1167468,
+        "start_time": 1794488650
+      },
+      {
+        "duration": 2987,
+        "match_id": 9086867468,
+        "patch": "60",
+        "raw_sha256": "828be02560e47666b707cd5c15d489f21bd199222aa0111aaac107be4802500e",
+        "series_id": 1167465,
+        "start_time": 1794488351
+      },
+      {
+        "duration": 1659,
+        "match_id": 9086225563,
+        "patch": "60",
+        "raw_sha256": "1e2107f5cc24b95fb6bac1b77a964d2d24bde7b8aed63493e3cc2266b1bea667",
+        "series_id": 1167279,
+        "start_time": 1794431113
+      },
+      {
+        "duration": 1881,
+        "match_id": 9086220626,
+        "patch": "60",
+        "raw_sha256": "6e37fe978e9179d2baa06107db0a35b1f73e25cbf97088461830ea6303b18e15",
+        "series_id": 1167282,
+        "start_time": 1794430999
+      },
+      {
+        "duration": 2850,
+        "match_id": 9086220440,
+        "patch": "60",
+        "raw_sha256": "63ee9986f1667dd4b6f7b1c6f3fb8e7b51d9db7ae6e965240ecabc4668d653af",
+        "series_id": 1167276,
+        "start_time": 1794430782
+      },
+      {
+        "duration": 1938,
+        "match_id": 9086164367,
+        "patch": "60",
+        "raw_sha256": "e8f11aba2e94ea1e5d92c5480eb8c2653c62af7f32deee075fbfda5fa1671432",
+        "series_id": 1167282,
+        "start_time": 1794427674
+      },
+      {
+        "duration": 2516,
+        "match_id": 9086158750,
+        "patch": "60",
+        "raw_sha256": "f139839df56ef65adb04138f926c754bd02d252ebf0146bfa49e8b3575e8b4f0",
+        "series_id": 1167279,
+        "start_time": 1794427300
+      },
+      {
+        "duration": 2125,
+        "match_id": 9086136368,
+        "patch": "60",
+        "raw_sha256": "91e7d43b8611e381ebd1736e5a143965a591e914bdff632a666534e33d99cdb7",
+        "series_id": 1167276,
+        "start_time": 1794427030
+      },
+      {
+        "duration": 1829,
+        "match_id": 9086093467,
+        "patch": "60",
+        "raw_sha256": "732eb90fe8b41af92cac51b8ddfbb7a8cffff4be9fd9f26006859855614b1252",
+        "series_id": 1167206,
+        "start_time": 1794424093
+      },
+      {
+        "duration": 2649,
+        "match_id": 9086076880,
+        "patch": "60",
+        "raw_sha256": "a7b829a31931fb3e66b2e344bc1197cc9b53178ae18c0c207ea543c5462dc0bc",
+        "series_id": 1167203,
+        "start_time": 1794423431
+      },
+      {
+        "duration": 2101,
+        "match_id": 9086062076,
+        "patch": "60",
+        "raw_sha256": "aad72b700a25dbc8f45b1c71a0d280b62ceb3e9a3384a9f30d92e8c7771f3df9",
+        "series_id": 1167216,
+        "start_time": 1794422543
+      },
+      {
+        "duration": 2255,
+        "match_id": 9086014176,
+        "patch": "60",
+        "raw_sha256": "3ceae15b7dbad98d5f24fc209267063850d3d1a4d7df00092fbc373aa16f8561",
+        "series_id": 1167206,
+        "start_time": 1794420382
+      },
+      {
+        "duration": 2061,
+        "match_id": 9086005199,
+        "patch": "60",
+        "raw_sha256": "2437348682513943b64035aca545d7250ca09f9b4118f0f63671ccf1e8b84560",
+        "series_id": 1167203,
+        "start_time": 1794419935
+      },
+      {
+        "duration": 2087,
+        "match_id": 9085960791,
+        "patch": "60",
+        "raw_sha256": "02bbaacabecb60a40a091818796e6517bbd405655cc3a72f575238d4a753c2ff",
+        "series_id": 1167216,
+        "start_time": 1794418612
+      },
+      {
+        "duration": 3016,
+        "match_id": 9085906939,
+        "patch": "60",
+        "raw_sha256": "8d9db72aac6437103cb93ff0d5588bd9920bea9d9f6f14c5f0949b4416713a35",
+        "series_id": 1167206,
+        "start_time": 1794415928
+      },
+      {
+        "duration": 2838,
+        "match_id": 9085889389,
+        "patch": "60",
+        "raw_sha256": "c5fabc8d7f672baaee3f38c0dc42d05b649e09db851be540807dd98131a6ff89",
+        "series_id": 1167203,
+        "start_time": 1794415374
+      },
+      {
+        "duration": 4552,
+        "match_id": 9085858818,
+        "patch": "60",
+        "raw_sha256": "93915020b877801170da0ffa94fe61e6838402d09b7b8ee2792c7dddcf39432a",
+        "series_id": 1167159,
+        "start_time": 1794413689
+      },
+      {
+        "duration": 2294,
+        "match_id": 9085857623,
+        "patch": "60",
+        "raw_sha256": "7d3457b8606b832c1e79228ebafd62b346ecf3e277ca15586aded8271502eb7c",
+        "series_id": 1167153,
+        "start_time": 1794413820
+      },
+      {
+        "duration": 2400,
+        "match_id": 9085805420,
+        "patch": "60",
+        "raw_sha256": "ff874da0d2bdc663fb2e4291dc986d95a76b01cece3dacfdf257fb9318f6c229",
+        "series_id": 1167151,
+        "start_time": 1794411554
+      },
+      {
+        "duration": 1812,
+        "match_id": 9085776650,
+        "patch": "60",
+        "raw_sha256": "d597490caf954912ac9fd7a97d2d5ca7a5716b8116eab0ba04ba589a0b2bbebd",
+        "series_id": 1167159,
+        "start_time": 1794410208
+      },
+      {
+        "duration": 2329,
+        "match_id": 9085741878,
+        "patch": "60",
+        "raw_sha256": "d466eb10845e215311d106886769ae3c3d2a6e5c4038f369aef1f37186f4b5b7",
+        "series_id": 1167153,
+        "start_time": 1794408807
+      },
+      {
+        "duration": 2422,
+        "match_id": 9085724120,
+        "patch": "60",
+        "raw_sha256": "07592ff83f47551bbb4f558d645e20588cf30916d21d276de8495c149adfea93",
+        "series_id": 0,
+        "start_time": 1794408087
+      },
+      {
+        "duration": 2070,
+        "match_id": 9085710488,
+        "patch": "60",
+        "raw_sha256": "b58ce40dfb61da5c0beab32afc263a9facbd3ba24b6ae3c22a24101fd8763731",
+        "series_id": 1167151,
+        "start_time": 1794407824
+      },
+      {
+        "duration": 3147,
+        "match_id": 9085656696,
+        "patch": "60",
+        "raw_sha256": "9ae8aee514a397f7408ef32c9d061342be930a5f371bd8e08b9e47dd4d9ae06f",
+        "series_id": 1167159,
+        "start_time": 1794405420
+      },
+      {
+        "duration": 2974,
+        "match_id": 9085637307,
+        "patch": "60",
+        "raw_sha256": "77c8e0f4c543877fc6ec10238f97e30d655cc0a259c3dd8dbbbd7a6277273077",
+        "series_id": 0,
+        "start_time": 1794404515
+      },
+      {
+        "duration": 3084,
+        "match_id": 9085620814,
+        "patch": "60",
+        "raw_sha256": "6010969441f098ec76b8e26135418838ee136a97b26614b0b62a7c0cd6ea8bd9",
+        "series_id": 0,
+        "start_time": 1794404027
+      },
+      {
+        "duration": 2533,
+        "match_id": 9085616958,
+        "patch": "60",
+        "raw_sha256": "74e69c0c5e2bc6086b373530f0f02ce8ffca0036e7bc444691a2c242533d0ce5",
+        "series_id": 1167151,
+        "start_time": 1794403742
+      },
+      {
+        "duration": 2406,
+        "match_id": 9085563234,
+        "patch": "60",
+        "raw_sha256": "ff96d3672c1c392314db37b8d6b28ae3ab188147a0fe346b213316b439625318",
+        "series_id": 0,
+        "start_time": 1794401292
+      },
+      {
+        "duration": 2522,
+        "match_id": 9085549467,
+        "patch": "60",
+        "raw_sha256": "6edfba6debe92f4e3380ecb818ee25eb85c33b435af6c8b287a55b3bbf7d56f4",
+        "series_id": 1167105,
+        "start_time": 1794400934
+      },
+      {
+        "duration": 1354,
+        "match_id": 9085542397,
+        "patch": "60",
+        "raw_sha256": "f827e7cc5b947b01b3a094c64d0dce67be178d9adce35eec3cba18248cd61064",
+        "series_id": 1167108,
+        "start_time": 1794400677
+      },
+      {
+        "duration": 2290,
+        "match_id": 9085534249,
+        "patch": "60",
+        "raw_sha256": "ae7f323542d4344b198f6a759f4ee171a85c06a2da00ca68ad11f6879469c669",
+        "series_id": 1167104,
+        "start_time": 1794400089
+      },
+      {
+        "duration": 2015,
+        "match_id": 9085534158,
+        "patch": "60",
+        "raw_sha256": "6663d5cc1d32f34eab73fee9c6becb7b25d4214fb9801dd5efea02ee42bd6f44",
+        "series_id": 1167106,
+        "start_time": 1794400021
+      },
+      {
+        "duration": 1728,
+        "match_id": 9085512721,
+        "patch": "60",
+        "raw_sha256": "8a62396e1953dfad670be5d8b5dac10315d8ac43bb758c991c15741ead77e751",
+        "series_id": 0,
+        "start_time": 1794398865
+      },
+      {
+        "duration": 2270,
+        "match_id": 9085490599,
+        "patch": "60",
+        "raw_sha256": "693340c149b1eae6034d7e97e78e9a8ef9818b3a106717783596e8666e5ba2ed",
+        "series_id": 1167107,
+        "start_time": 1794397798
+      },
+      {
+        "duration": 1979,
+        "match_id": 9085486499,
+        "patch": "60",
+        "raw_sha256": "47038c9768597cd07c788c3e4e4610408138aefbb26c442257505c4ff2fad4e2",
+        "series_id": 1167105,
+        "start_time": 1794397462
+      },
+      {
+        "duration": 2321,
+        "match_id": 9085465186,
+        "patch": "60",
+        "raw_sha256": "9e70d6521c6062180adf38968315dac8bb6bc1f1dd878a10d830e4562d42fff2",
+        "series_id": 1167106,
+        "start_time": 1794396257
+      },
+      {
+        "duration": 2866,
+        "match_id": 9085464517,
+        "patch": "60",
+        "raw_sha256": "29ba463e3d9431dee352019d0eada9d99f0885d7f2e5ad5aa5ef635e192c01dd",
+        "series_id": 1167108,
+        "start_time": 1794396221
+      },
+      {
+        "duration": 2578,
+        "match_id": 9085458195,
+        "patch": "60",
+        "raw_sha256": "d1feb7cdc81fa3df7d3cc0a3a0f0c4cb696f6769b637f74a6c414c5c55da20a4",
+        "series_id": 1167104,
+        "start_time": 1794395860
+      }
+    ],
+    "first_eligible_target": 100,
+    "http_attempts": 101,
+    "listing_sha256": "e0a05e5d9021dc54799a43be9aa514e345f0363ebbeb846ed5ff0a05605fc8d4",
+    "max_details": 500,
+    "rejection_reasons": {
+      "unparsed_gold": 1
+    }
+  },
+  "evidence_class": "RETROSPECTIVE_LATER_MATCH_FROZEN_SELECTION; NOT_LIVE_OR_RANDOMIZED",
+  "evidence_uses_raw_json_in_bundle": false,
+  "forward_scores": {
+    "M0": {
+      "brier": 0.18530154860837186,
+      "ece": 0.05197657961302498,
+      "logloss": 0.5410593820843251
+    },
+    "M1": {
+      "brier": 0.1831466730108113,
+      "ece": 0.04995850456113065,
+      "logloss": 0.533089403418909
+    },
+    "M1_minus_M0": {
+      "brier": -0.0021548755975605285,
+      "brier_ci_95_series": [
+        -0.007731664987434161,
+        0.002678932654661174
+      ],
+      "equal_game_weighted_brier_diff": -0.003151562289138243,
+      "equal_game_weighted_logloss_diff": -0.00967242567637883,
+      "logloss": -0.007969978665416221,
+      "logloss_ci_95_series": [
+        -0.028411531172217622,
+        0.008721707279579261
+      ]
+    },
+    "bootstrap": {
+      "draws": 5000,
+      "groups": "series_id positive else singleton match",
+      "seed": 20261115
+    },
+    "candidate_listing_sha256": "e0a05e5d9021dc54799a43be9aa514e345f0363ebbeb846ed5ff0a05605fc8d4",
+    "clusters": 56,
+    "date_max_utc": "2026-11-15T14:25:11+00:00",
+    "date_min_utc": "2026-11-11T11:17:40+00:00",
+    "games": 100,
+    "mean_prob_M0": 0.46736877030405755,
+    "mean_prob_M1": 0.47127226106395875,
+    "minutes": 4355,
+    "no_forward_cohort_fit": true,
+    "no_live_packet_timing": true,
+    "no_recalibration": true,
+    "original_500_test_predictions_changed": false,
+    "original_science_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+    "patch_counts": {
+      "60": 100
+    },
+    "phase_descriptive": {
+      "0-9": {
+        "brier_M0": 0.2442106731707893,
+        "brier_M1": 0.24392514896856357,
+        "ece_M0": 0.04959713082061086,
+        "ece_M1": 0.08115121989176531,
+        "games": 100,
+        "minute_rows": 1000
+      },
+      "10-19": {
+        "brier_M0": 0.20469578271977978,
+        "brier_M1": 0.20369465636649806,
+        "ece_M0": 0.06337532314114579,
+        "ece_M1": 0.0645855705495137,
+        "games": 100,
+        "minute_rows": 1000
+      },
+      "20-29": {
+        "brier_M0": 0.15406820560234888,
+        "brier_M1": 0.15356229275021344,
+        "ece_M0": 0.06629499199096536,
+        "ece_M1": 0.05530611848536214,
+        "games": 100,
+        "minute_rows": 970
+      },
+      "30+": {
+        "brier_M0": 0.15063944322354653,
+        "brier_M1": 0.14514695426665317,
+        "ece_M0": 0.07604018925400291,
+        "ece_M1": 0.0517099445671659,
+        "games": 92,
+        "minute_rows": 1385
+      }
+    },
+    "radiant_win_rate_game_weighted": 0.46,
+    "radiant_win_rate_minute_rows": 0.44661308840413316,
+    "selection_rule": "first 100 eligible in descending frozen proMatches match_id",
+    "source_model_coeff_sha256": {
+      "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+      "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+    },
+    "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+    "status": "PRESPECIFIED_POSTTEST_DOMAIN_SHIFT_CHECK; NO MODEL PROMOTION"
+  },
+  "four_leagues_two_supply_85_games": true,
+  "league_concentration_receipt": {
+    "caution": "Only 4 leagues and repeated teams; series bootstrap is not league-independent. LOLO descriptive, no significance claim.",
+    "league_summaries": [
+      {
+        "M0_logloss": 0.4531518910636957,
+        "M1_logloss": 0.4625681408488782,
+        "M1_minus_M0_brier": 0.0021408002020824987,
+        "M1_minus_M0_logloss": 0.009416249785182514,
+        "games": 43,
+        "leagueid": 20486,
+        "minute_rows": 1897,
+        "radiant_win_fraction": 0.42066420664206644
+      },
+      {
+        "M0_logloss": 0.6037747503936087,
+        "M1_logloss": 0.574612611620723,
+        "M1_minus_M0_brier": -0.007592368816666013,
+        "M1_minus_M0_logloss": -0.02916213877288571,
+        "games": 42,
+        "leagueid": 20511,
+        "minute_rows": 1828,
+        "radiant_win_fraction": 0.40919037199124725
+      },
+      {
+        "M0_logloss": 0.6506066744639815,
+        "M1_logloss": 0.6507071705171386,
+        "M1_minus_M0_brier": 4.328152353516293e-05,
+        "M1_minus_M0_logloss": 0.00010049605315708715,
+        "games": 13,
+        "leagueid": 18631,
+        "minute_rows": 544,
+        "radiant_win_fraction": 0.5753676470588235
+      },
+      {
+        "M0_logloss": 0.4541185697846867,
+        "M1_logloss": 0.46204690575606716,
+        "M1_minus_M0_brier": 0.004764230666694646,
+        "M1_minus_M0_logloss": 0.007928335971380457,
+        "games": 2,
+        "leagueid": 16251,
+        "minute_rows": 86,
+        "radiant_win_fraction": 1.0
+      }
+    ],
+    "leagues": 4,
+    "leave_one_league_out": [
+      {
+        "M1_minus_M0_logloss": -0.0082902539192847,
+        "games_kept": 98,
+        "league_omitted": 16251
+      },
+      {
+        "M1_minus_M0_logloss": -0.009121996048492552,
+        "games_kept": 87,
+        "league_omitted": 18631
+      },
+      {
+        "M1_minus_M0_logloss": -0.021388072795109393,
+        "games_kept": 57,
+        "league_omitted": 20486
+      },
+      {
+        "M1_minus_M0_logloss": 0.007360163272238783,
+        "games_kept": 58,
+        "league_omitted": 20511
+      }
+    ],
+    "most_frequent_team_appearances": [
+      [
+        10331884,
+        15
+      ],
+      [
+        10282069,
+        15
+      ],
+      [
+        9964962,
+        9
+      ],
+      [
+        55,
+        9
+      ],
+      [
+        5014799,
+        8
+      ],
+      [
+        10020555,
+        8
+      ],
+      [
+        10291652,
+        7
+      ]
+    ],
+    "no_model_selection_or_refit": true,
+    "not_valid_cluster_inference_four_leagues": true,
+    "source_forward_prediction_sha256": "0058166b54d910090fed06b43af7b24ce96b3184f07870fd764bffd51ecbc27d",
+    "status": "DESCRIPTIVE_POSTHOC_LEAGUE_SENSITIVITY_ONLY",
+    "teams_named": 30,
+    "top_two_leagues_games": 85,
+    "top_two_leagues_pct_games": 0.85,
+    "unavailable_team_id_games": 13
+  },
+  "newer_matches_predate_protocol": true,
+  "no_model_promotion_authorized": true,
+  "offline_replay_receipt": {
+    "no_forward_refit_or_recalibration": true,
+    "no_new_http": true,
+    "original_candidate_listing_sha256": "e0a05e5d9021dc54799a43be9aa514e345f0363ebbeb846ed5ff0a05605fc8d4",
+    "original_forward_scores_sha256": "b7754ada891aa8ab8d081aa740ce481ea3800a1b3196542d2a667d15b25c06a1",
+    "original_historical_test_data_used_for_selection": false,
+    "original_match_raw_sha256s_sha256": "311e36f50c074322d4c3a2ed57a32b183651fec55c989ffde40b9a191cfb9287",
+    "original_matches": 100,
+    "original_minute_rows": 4355,
+    "original_prediction_csv_sha256": "0058166b54d910090fed06b43af7b24ce96b3184f07870fd764bffd51ecbc27d",
+    "original_series_clusters": 56,
+    "original_source_model_coefficients_sha256": {
+      "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+      "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+    },
+    "status": "PASS_100_MATCH_OFFLINE_REPLAY"
+  },
+  "original_500_test_science_unchanged": true,
+  "protocol_git_commit": "9d6cddf",
+  "provenance_receipt": {
+    "detail_collector_source_commit": "8b8e40d",
+    "freezer_program_extracted_only_matchid_starttime": true,
+    "freezer_source_commit": "b49f6df",
+    "frozen_candidate_listing_sha256": "e0a05e5d9021dc54799a43be9aa514e345f0363ebbeb846ed5ff0a05605fc8d4",
+    "games_happened_before_protocol": true,
+    "not_prospective_calendar_time": true,
+    "observed_collector_runs": 1,
+    "one_rejected_match_raw_sha_not_saved": true,
+    "original_collector_source_sha256": "e1c084b5d03fc45289a5eec8514cb7da6b1f2afe6835fd2f05aaa90e2d7ed38a",
+    "original_freezer_source_sha256": "9e76f2b30722da0d9abeb2b67072165c39003b2d6a3e88d5477d07c4a497b809",
+    "original_model_source_and_original_500_test_unchanged": true,
+    "pre_declared_selection_only": true,
+    "precommitted_protocol_was_not_edited_post_data": true,
+    "protocol_commit": "9d6cddf",
+    "provenance_qualification": "Git author timestamps and local file mtimes can be edited; not independent notarization or proof no other undocumented run existed.",
+    "raw_promatches_pages_may_contain_outcomes": true,
+    "run_ledger_evidence": "Connected BigLinux SentinelX job job_b18d1e06bf27 completed with exit 0; operator-controlled receipt, not independent audit",
+    "status": "SELF_ATTESTED_LOCAL_TIMELINE_CONSISTENT",
+    "timestamps": {
+      "candidate_listing_file_modified": "2026-11-15T16:37:50.278338+00:00",
+      "collection_receipt_file_modified": "2026-11-15T16:41:35.068851+00:00",
+      "collector_git_author": "2026-11-15T16:38:47+00:00",
+      "first_accepted_raw_file_modified": "2026-11-15T16:38:51.804360+00:00",
+      "first_page_file_modified": "2026-11-15T16:37:22.083344+00:00",
+      "freezer_git_author": "2026-11-15T16:37:21+00:00",
+      "last_accepted_raw_file_modified": "2026-11-15T16:41:35.056619+00:00",
+      "last_page_file_modified": "2026-11-15T16:37:48.605338+00:00",
+      "protocol_git_author": "2026-11-15T16:36:55+00:00",
+      "scores_file_modified": "2026-11-15T16:41:36.592453+00:00"
+    }
+  },
+  "redteam_receipt": {
+    "cases": {
+      "change_discovery_candidate": {
+        "error_type": "ValueError",
+        "guard_message": "Frozen candidate listing fingerprint changed",
+        "status": "PASS_REJECTED_MUTATION"
+      },
+      "delete_source_game": {
+        "error_type": "ValueError",
+        "guard_message": "Raw accepted sources missing or have unexpected extras",
+        "status": "PASS_REJECTED_MUTATION"
+      },
+      "falsify_metrics": {
+        "error_type": "ValueError",
+        "guard_message": "Forward scores changed from original frozen run",
+        "status": "PASS_REJECTED_MUTATION"
+      },
+      "flip_final_label": {
+        "error_type": "ValueError",
+        "guard_message": "Original match source has changed: 9091523157",
+        "status": "PASS_REJECTED_MUTATION"
+      },
+      "mutate_published_forecast": {
+        "error_type": "ValueError",
+        "guard_message": "Forward predictions differ from original frozen CSV",
+        "status": "PASS_REJECTED_MUTATION"
+      },
+      "reorder_accepted_selection": {
+        "error_type": "ValueError",
+        "guard_message": "Possible cherry-pick or post-hoc replacement",
+        "status": "PASS_REJECTED_MUTATION"
+      }
+    },
+    "no_http_requests": true,
+    "source": "author-owned original 100 raw OpenDota JSON files",
+    "status": "PASS_ALL_6_ADVERSARIAL_MUTATIONS",
+    "study_data_unchanged": true
+  },
+  "source_metadata_csv_sha256": "b99b22c3dc1b160da1441e0a9856aee97586517646a6e30dfaa7332cb926f0fa",
+  "source_prediction_csv_sha256": "0058166b54d910090fed06b43af7b24ce96b3184f07870fd764bffd51ecbc27d",
+  "source_provenance_and_method_self_attested": true,
+  "train_parity_receipt": {
+    "coefficient_parity_per_model": {
+      "M0": true,
+      "M1": true
+    },
+    "max_abs_column_differences": {
+      "duration": 0.0,
+      "gold_k": 0.0,
+      "gold_x_time": 7.105427357601002e-15,
+      "match_id": 0.0,
+      "minute": 0.0,
+      "minute10": 0.0,
+      "radiant_win": 0.0,
+      "series_id": 0.0,
+      "start_time": 0.0
+    },
+    "model_coefficient_sha256": {
+      "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+      "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+    },
+    "no_new_forward_outcome_labels_used_in_fit": true,
+    "no_new_model_selection": true,
+    "numpy_version": "2.2.6",
+    "original_test_forecast_rows_checked": 3836,
+    "original_test_labels_not_used_for_fitting": true,
+    "original_test_pred_max_abs_probability_error": {
+      "M0": 3.3306690738754696e-16,
+      "M1": 1.8496315590255108e-13
+    },
+    "original_test_prediction_parity_only": true,
+    "original_test_prediction_reference_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "python_version": "3.12.3",
+    "raw_source_games": 500,
+    "same_train_model_coefficients": true,
+    "sklearn_version": "1.7.2",
+    "source_train_sha": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+    "status": "PASS_ORIGINAL_500_TRAIN_AND_TEST_PREDICTION_PARITY",
+    "train_games": 291,
+    "train_minute_rows": 10675
+  }
+}
