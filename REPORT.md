@@ -2,7 +2,7 @@
 
 **Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 16 November 2026**
 
-**Research question:** Does the same gold lead map to the same win probability at minute 10 and minute 30? I tested that question against the required gold-only baseline **and** a stronger additive gold + time control. The aim was a trustworthy probability, not the best-looking classifier.
+**Research question:** Does the same gold lead map to the same win probability at minute 10 and minute 30? I tested the required gold-only baseline against M1, then **after reviewing the initial fitted result** checked the interaction against an additive gold + time control using TRAIN only. The goal was a reliable probability, not a favorable point estimate.
 
 **Result:** On 106 TEST games, M1's minute-weighted log loss was **0.5040 vs 0.5164** for M0 (Brier **0.1684 vs 0.1719**). These are point estimates: **both primary paired 95% intervals cross zero**, one game explains **54.9%** of the log-loss gain, and 30+ Brier is **0.00455 worse**. **Decision: M0 remains the reference; M1 is shadow-only.**
 
@@ -39,7 +39,7 @@ At fixed **+2,000 Radiant gold**, M1 predicts **66.5%** at 10m versus **59.4%** 
 
 ## 4. Did gold × time beat simply adding time?
 
-**The stronger null is the real check.** Against **gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020** on **137 games** (70 series; 95% interval **[−0.0148,+0.0090]**). M1 won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**). Three folds favored the simpler model. This post-result TRAIN-only analysis challenges the interaction's incremental value; it is not another blind TEST.
+**The direct incremental check:** Against **additive gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020** over **137 games** (70 series; 95% interval **[−0.0148,+0.0090]**). M1 won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**); three favored the **additive control**. M1's pooled Brier difference was **+0.000405 (worse)**, 95% interval **[−0.003059,+0.003857]**. Neither establishes an incremental benefit. This was a post-result TRAIN-only analysis, not a new blind TEST.
 
 ![Four original TRAIN-forward blocks comparing M1 to the stronger additive gold-plus-time control, with pooled series-bootstrap uncertainty.](docs/figures/train_interaction_vs_additive_null.png)
 
@@ -47,7 +47,7 @@ At fixed **+2,000 Radiant gold**, M1 predicts **66.5%** at 10m versus **59.4%** 
 
 **Game-state caveat:** At |gold lead| **2–4k**, leaders won **66/82** at 10m versus **11/25** at 30m. **Only 7 matches occur in both groups**; survival and side/league mix differ. This is **not a causal time effect**. Full grouped uncertainty is in **docs/TRAIN_LEADER_STATE_EMPIRICAL.md**, never used for model selection.
 
-**Patch sensitivity:** The fitted **+2k gold log-odds contrast (10m−30m)** was **+0.301** (250 patch-59 TRAIN games) versus **+0.029** (41 patch-60 games), a post-hoc comparison, not confirmed drift. Of **at least 38** checks, **0/28** follow-ups passed gates on **reused validation**. Item model P20 had VAL loss **0.5145 vs 0.5197**, but won only **1/3 pre-correction TRAIN** folds; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** crossed zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md).
+**Selection discipline:** Of **at least 38** historical checks, **0/28** follow-ups passed promotion gates on **reused validation**. Item model P20 scored VAL loss **0.5145 vs 0.5197**, but won only **1/3 pre-correction TRAIN** folds; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** included zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md). Post-result patch/influence fits are kept in the research readout, not treated as validated effects.
 
 ---
 

@@ -12,7 +12,7 @@
 
 **Decision.** Original TEST M1 log loss **0.5040 vs M0 0.5164**, Brier **0.1684 vs 0.1719**. Both primary paired whole-match 95% confidence intervals for the difference include zero. One 55-row game contributes **54.9%** of the total log-loss improvement. M1 has a worse late (30+) Brier point estimate (**0.1074 vs 0.1028**) with uncertain interval; only **2/5** additional TRAIN-only rolling folds favored M1. **Retain M0; shadow-test M1 until independent new evidence clears a predeclared gate.**
 
-## The falsification trail
+## Research decisions and negative checks
 
 | Research path | Actual finding | Decision | Original evidence |
 | --- | --- | --- | --- |
@@ -24,7 +24,7 @@
 | November sample | 100 games overlap a prior 120-game cohort by **68 IDs**; two leagues supply 85 games | Not independent replication | [Overlap receipt](NOVEMBER_COHORT_OVERLAP_RECEIPT.json) |
 | Value-of-freshness idea | Proposed headline estimator telescoped to endpoint effects | **Rejected** and preserved | [PR #15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15) |
 
-The [report's interaction-vs-additive-null figure](figures/train_interaction_vs_additive_null.png) renders the four chronological TRAIN-only forward-fold differences directly from the frozen [stronger-null receipt](../research/GOLD_INTERACTION_NULL_INFLUENCE_RECEIPT.json), with the 70-series pooled interval crossing zero. This falsification is the *primary* scientific interpretation, not a new holdout or model promotion. The [supplementary TRAIN-only empirical leader-win audit](TRAIN_LEADER_STATE_EMPIRICAL.md) asks whether similarly sized gold leads in surviving matches at different minutes correspond to similar eventual win fractions. This post-hoc descriptive chart uses fixed source-frozen TRAIN data, series-resampled uncertainty and in-sample M0/M1 probabilities; it neither selects models nor makes a causal time claim. The prior two-match objective-state illustration remains supplementary.
+The [report's interaction-vs-additive-null figure](figures/train_interaction_vs_additive_null.png) renders the four chronological TRAIN-only forward-fold differences directly from the frozen [stronger-null receipt](../research/GOLD_INTERACTION_NULL_INFLUENCE_RECEIPT.json), with the 70-series pooled interval crossing zero. This is the *primary non-confirmatory TRAIN-only check* on incremental interaction skill, not a new holdout or model promotion. The [supplementary TRAIN-only empirical leader-win audit](TRAIN_LEADER_STATE_EMPIRICAL.md) asks whether similarly sized gold leads in surviving matches at different minutes correspond to similar eventual win fractions. This post-hoc descriptive chart uses fixed source-frozen TRAIN data, series-resampled uncertainty and in-sample M0/M1 probabilities; it neither selects models nor makes a causal time claim. The prior two-match objective-state illustration remains supplementary.
 
 The [post-TEST team/league dependence audit](TEAM_LEAGUE_DEPENDENCE.md) quantifies 54 TEST series, overlapping teams across chronological splits and descriptive match-versus-series intervals. This audit does not change the original primary match-bootstrap inference, model selection or TEST scores.
 
@@ -32,7 +32,9 @@ The [fixed TRAIN matched-state figure](figures/train_matched_state_aliasing.png)
 
 The [portable development-label audit](DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) refits the same four models on the 286 mature TRAIN games; original M1 selection holds on reused VAL. A separate [500-game future-deletion receipt](FULL_500_PREFIX_AUDIT_RECEIPT.json) checks all 18,292 forecast opportunities (requires author raw cache), and [fixed-bin grouped reliability CIs](CALIBRATION_FIXED_BIN_GROUPED_CI.md) characterize post-hoc calibration uncertainty. The stronger additive gold + time null and rejected TRAIN-only calibration offset are also quantified there. This is an additional post-result sensitivity, not a fresh holdout.
 
-The current reviewer-facing notebook additionally appends two explicitly post-TEST, **non-selecting in-memory verification cells**. These recalculate all 18,292 at-time feature snapshots, original proper losses, ECE, no-skill and the stronger additive TRAIN-only null. The exact original 14-cell notebook is archived separately with its old SHA and historical Colab receipt; reviewer appendix does not create a new blind TEST.\n\nThe follow-ups often used **already observed** validation/TEST cohorts. A written protocol for a subsequent analysis does not make an exposed outcome newly blind.
+The current reviewer-facing notebook additionally appends two explicitly post-TEST, **non-selecting in-memory verification cells**. These recalculate all 18,292 at-time feature snapshots, original proper losses, ECE, no-skill and the stronger additive TRAIN-only null. The exact original 14-cell notebook is archived separately with its old SHA and historical Colab receipt; reviewer appendix does not create a new blind TEST.
+
+The follow-ups often used **already observed** validation/TEST cohorts. A written protocol for a subsequent analysis does not make an exposed outcome newly blind.
 
 ## Three risks that control the decision
 

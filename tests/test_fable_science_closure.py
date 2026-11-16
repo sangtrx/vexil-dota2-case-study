@@ -32,9 +32,19 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertEqual(len(losses),4)
         self.assertEqual(sum(x<0 for x in losses),1)
         self.assertEqual(sum(x>0 for x in losses),3)
-        for x in ("won only **1/4**","[−0.0148,+0.0090]","250 patch-59",
-                  "41 patch-60","+0.301","+0.029"):
-            self.assertIn(x,self.report)
+        for x in ("won only **1/4**", "[−0.0148,+0.0090]",
+                  "+0.000405 (worse)", "[−0.003059,+0.003857]"):
+            self.assertIn(x, self.report)
+        readout=(ROOT/"research/GOLD_INTERACTION_NULL_READOUT.md").read_text()
+        self.assertIn("**NOT VERIFIED**", readout)
+        self.assertIn("Only C1–C3", readout)
+        self.assertIn("+0.300675", readout)
+        self.assertIn("+0.029227", readout)
+        self.assertNotIn("Patch sensitivity:", self.report)
+        self.assertNotIn("The decisive scientific test", self.readme)
+        self.assertNotIn("The key falsification", (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
+        self.assertIn("Gold + time + interaction M1", self.readme)
+        self.assertNotIn("\\n\\n", (ROOT/"docs/RESEARCH_DECISION_TRAIL.md").read_text())
         by_patch=self.null["patch_and_cluster_influence"]["patch_subfit"]
         self.assertEqual([by_patch[k]["games"] for k in ("59","60")],[250,41])
         self.assertAlmostEqual(by_patch["59"]["fit_D"],0.3006750974392104,12)
@@ -139,8 +149,8 @@ class FableScienceRepairContract(unittest.TestCase):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True
         ).split())
-        for term in ("66/82","11/25","1/4","250 patch-59",
-                     "41 patch-60","0.24421→0.24393","Colab retained",
+        for term in ("66/82", "11/25", "1/4", "+0.000405",
+                     "0.24421→0.24393", "Colab retained",
                      "No third-party Dota predictor was copied"):
             self.assertIn(term,pdf)
         self.assertEqual(

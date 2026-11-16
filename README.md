@@ -8,7 +8,7 @@ A reproducible study of **500 parsed professional OpenDota matches** (patches 59
 
 ## Results on the held-out TEST
 
-| Proper score (lower is better) | Gold-only logistic M0 | Gold + time logistic M1 |
+| Proper score (lower is better) | Gold-only logistic M0 | Gold + time + interaction M1 |
 | --- | ---: | ---: |
 | Validation log loss, 103 games | 0.5325 | **0.5197** |
 | TEST log loss, 106 games | 0.5164 | **0.5040** |
@@ -21,7 +21,7 @@ The gold-only logistic model is the required baseline. I selected M1 on validati
 
 The primary **whole-match paired** 95% bootstrap intervals for M1 minus M0 are **[-0.0304, +0.0014]** (log loss) and **[-0.0069, +0.0002]** (Brier): both cross zero. M1's minute-30+ Brier point estimate is **0.00455 worse**, paired interval **[−0.0037,+0.0109]**. One 55-row game accounts for 54.9% of the observed gain; five embargoed TRAIN-only rolling-origin folds favored M1 in only **2/5**. **Decision: M0 remains the reference; M1 is shadow-only, not proven superior.**
 
-**The decisive scientific test:** The gold×time interaction beat **gold + time without interaction** in only **1/4 chronological TRAIN-forward folds** (137 games; mean M1−null log loss **−0.0020**, 70-series 95% CI **[−0.0148,+0.0090]**). See the [four-fold falsification figure](docs/figures/train_interaction_vs_additive_null.png) and the [source-frozen null audit](research/GOLD_INTERACTION_NULL_READOUT.md). The TRAIN-only [leader-win observation](docs/TRAIN_LEADER_STATE_EMPIRICAL.md) is exploratory: 66/82 at 10m versus 11/25 at 30m, but only **7 matches** are common to both groups. It is not a causal effect, independent holdout or evidence of M1 lift. The [maturity audit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) and [historical experiment register](docs/EXPERIMENT_REGISTER.md) retain the negative findings.
+**The most direct incremental check (post-result, TRAIN only):** The gold×time interaction beat **additive gold + time without interaction** in only **1/4 chronological TRAIN-forward folds** (137 games; mean M1−null log loss **−0.0020**, 70-series 95% CI **[−0.0148,+0.0090]**). See the [four-fold TRAIN comparison figure](docs/figures/train_interaction_vs_additive_null.png) and the [source-frozen null audit](research/GOLD_INTERACTION_NULL_READOUT.md). The TRAIN-only [leader-win observation](docs/TRAIN_LEADER_STATE_EMPIRICAL.md) is exploratory: 66/82 at 10m versus 11/25 at 30m, but only **7 matches** are common to both groups. It is not a causal effect, independent holdout or evidence of M1 lift. The [maturity audit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) and [historical experiment register](docs/EXPERIMENT_REGISTER.md) retain the negative findings.
 
 ## Where the assignment requirements are addressed
 

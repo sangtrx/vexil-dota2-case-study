@@ -5,6 +5,19 @@ conducted after seeing the originally favorable fitted conditional
 gold effect. It is not a newly opened holdout, production evaluation
 or human peer review.
 
+**Execution status of the original 15 November protocol:** Sections A
+(local time-window slopes/survival panels) and B (unit-free AUC and
+standardized coefficients) were specified but have **no reproducible
+implementation or computed results in this repository**. Treat A/B as
+**NOT VERIFIED**, not as successful or negative experiments. Only C1–C3
+(stricter additive-null comparison, patch subgroup and group influence)
+have recorded source code and receipts. The protocol itself was
+**authored after the initial positive D result**, not preregistered
+before original modeling. Its governance warning against promoting D
+is honored: patch-specific D remains in this supplemental readout,
+not the employer's main report. The non-confirmatory C1 interval is
+the bound on what can be claimed.
+
 ## 1. Appropriate null for an interaction
 
 The correct nested null is **gold + elapsed minute without gold-by-minute
