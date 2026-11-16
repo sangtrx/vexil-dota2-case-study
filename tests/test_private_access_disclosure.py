@@ -19,7 +19,7 @@ class ExternalAccessTruthfulness(unittest.TestCase):
     def test_curated_source_history_is_kept_not_rewritten(self):
         text=(ROOT/"HISTORY.md").read_text()
         self.assertIn("inherits the real 13–15 November original research Git commit ancestry",text)
-        self.assertIn("Selected historical branch heads are mirrored",text)
+        self.assertIn("docs/REVIEWER_HISTORY_MAP.md",text)
         self.assertIn("not backdated experiments",text)
         provenance=(ROOT/"docs/CURATION_PROVENANCE.md").read_text()
         self.assertIn("No commits are backdated",provenance)

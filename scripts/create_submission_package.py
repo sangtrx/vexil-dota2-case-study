@@ -49,6 +49,7 @@ FILES = (
     "docs/EXPERIMENT_REGISTER.md",
     "docs/RESEARCH_DECISION_TRAIL.md",
     "docs/CURATION_PROVENANCE.md",
+    "docs/REVIEWER_HISTORY_MAP.md",
     "docs/STRICT_SERIES_ECE_RECEIPT.json",
     "docs/ERROR_ANALYSIS.md",
     "docs/ERROR_AUDIT_RECEIPT.json",
@@ -225,6 +226,10 @@ def verify() -> dict:
     # retroactively dated experimental work.
     provenance=(ROOT/"docs/CURATION_PROVENANCE.md").read_text()
     trail=(ROOT/"docs/RESEARCH_DECISION_TRAIL.md").read_text()
+    branch_index=(ROOT/"docs/REVIEWER_HISTORY_MAP.md").read_text()
+    if ("7b3584f" not in branch_index or "5f405b5" not in branch_index
+            or "DRAFT / HOLD" not in branch_index or "not copied" not in branch_index):
+        raise ValueError("Reviewer timeline must show original and rejected-branch proofs")
     if ("No commits are backdated" not in provenance
             or "retains the **authentic Git ancestry**" not in provenance
             or "not** an invented" not in trail
