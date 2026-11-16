@@ -37,15 +37,13 @@ At fixed **+2,000 Radiant gold**, M1 predicts **66.5%** at minute 10 versus **59
 
 *Figure 1. Conditional M1 curves at 0, ±3k and ±6k gold. The +2k contrast and bootstrap bands are not plotted. Not causal.*
 
-Figure 2 tracks **minute-by-minute probabilities** for a TEST game selected for its gold-lead **range**, not forecast error or outcome. Both models follow the same economic trajectory but assign different probabilities. The output is a forecast stream, not one score per match.
+**A matched TRAIN counterexample to gold as complete game state.** At minute 25, two patch-59 games have Radiant gold leads **+1,901 vs +1,929** and XP leads **+6,964 vs +6,862**. M1 assigns **60.3% vs 60.5%**, although the observed tower deltas are **0 vs −1** and Roshan-kill deltas **+2 vs −1**. The source-frozen TRAIN feature archive reproduces these values. An Aegis pickup at 24:39 is recorded in the original raw payload for game A (not bundled). **Both Radiant teams eventually won.** Similar economy can conceal different objective states; this comparison does **not** establish that objective features predict better.
 
-![Actual one-match gold advantage and M0/M1 probability trajectories.](docs/figures/heldout_game_trajectory.png)
+![Two fixed TRAIN matches with nearly identical gold and XP at minute 25, different objective control, and nearly identical M1 forecasts.](docs/figures/train_matched_state_aliasing.png)
 
-*Figure 2. Descriptive illustration, game 8744395141. Selection was based on observed gold range, not forecast accuracy.*
+*Figure 2. Descriptive TRAIN-only matches, selected historically on economic similarity; not chosen on TEST error. Objective deltas are timestamped inputs, not evidence of incremental predictive lift.*
 
 ## 4. What did not survive model selection
-
-**Gold is not control:** Two patch-59 TRAIN games at minute 25 had near-identical Radiant leads (+1,901/+6,964 gold/XP versus +1,929/+6,862). M1 gave **60.3% versus 60.5%** Radiant win probability, although one Radiant team had just claimed **Aegis at 24:39** and the other was behind in tower/Roshan control. Both eventually won: this exposes a missing input, **not proven predictive lift**.
 
 After four fixed models, **0/28** follow-ups passed gates on **reused validation** (S2 economy, M4 objectives, P20 items; **at least 38** research checks total). P20 scored **0.5145** versus M1 **0.5197**, but only **1/3 pre-correction TRAIN** folds favored it; the **pre-correction, 28-way adjusted** CI **[−0.0169,+0.0064]** crossed zero. More importantly, M1 did not reliably beat the additive **gold + time without interaction** null in TRAIN-forward folds (ΔLL **−0.0020**, 70-series CI **[−0.0148,+0.0090]**). A 200-game stage blend failed. **No new model was promoted** (docs/EXPERIMENT_REGISTER.md).
 
