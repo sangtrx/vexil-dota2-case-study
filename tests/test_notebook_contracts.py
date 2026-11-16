@@ -104,7 +104,7 @@ class NotebookContractsTest(unittest.TestCase):
         """A reproducible numeric notebook without visible plots is incomplete QA."""
         import base64
         self.assertEqual(len(NB["cells"]), 29)
-        original=json.loads((ROOT/"research/frozen_original_500_notebook.ipynb").read_text())
+        original=json.loads((ROOT/"research/frozen_original_notebook_source.json").read_text())
         self.assertEqual(len(original["cells"]),26)
         self.assertEqual(
             ["".join(c["source"]) for c in NB["cells"][:26]],

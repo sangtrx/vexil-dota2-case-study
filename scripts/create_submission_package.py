@@ -20,14 +20,14 @@ ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261116.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
 EXPECTED_NOTEBOOK_SHA256 = "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"
-EXPECTED_REVIEWER_NOTEBOOK_SHA256 = "75a717e6d47cc5c68c44640896b0cb99f0c83df10383e607ad56f568f60ba450"
+EXPECTED_REVIEWER_NOTEBOOK_SHA256 = "466dce5d64adf081fb20642df210f903794745714675e225415c0aa8770f8304"
 EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FILES = (
     "README.md",
     "SUBMISSION_PACKAGE_README.md",
     "HISTORY.md",
     "live_dota2_win_probability.ipynb",
-    "research/frozen_original_500_notebook.ipynb",
+    "research/frozen_original_notebook_source.json",
     "research/reviewer_notebook_pit_appendix.py",
     "research/reviewer_notebook_report_appendix.py",
     "research/reviewer_notebook_appendix_replay.py",
@@ -90,6 +90,8 @@ FILES = (
     "research/frozen_original_split_manifest.csv",
     "research/frozen_original_development_features.csv.gz",
     "research/mature_label_validation_audit.py",
+    "research/validation_test_label_maturity.py",
+    "docs/VAL_TEST_LABEL_MATURITY_RECEIPT.json",
     "docs/MATURE_LABEL_VALIDATION_RECEIPT.json",
     "docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md",
     "tests/test_mature_label_validation.py",
@@ -136,10 +138,15 @@ def sha(data: bytes) -> str:
 
 
 def verify() -> dict:
+    # Original Vexil brief asks for ONE runnable .ipynb with all work.
+    # Frozen scientific source is retained in a plain JSON provenance file.
+    if [name for name in FILES if name.endswith(".ipynb")]!=[
+            "live_dota2_win_probability.ipynb"]:
+        raise ValueError("Vexil requires exactly one runnable main notebook")
     # Preserve scientific provenance: original full notebook is byte-for-byte
     # archived. The reviewer notebook is a separate, post-TEST APPEND-ONLY
     # 16-code-cell version with all original 26 cells' code intact.
-    original_raw=(ROOT/"research/frozen_original_500_notebook.ipynb").read_bytes()
+    original_raw=(ROOT/"research/frozen_original_notebook_source.json").read_bytes()
     if sha(original_raw)!=EXPECTED_NOTEBOOK_SHA256:
         raise ValueError("Original 14-cell scientific notebook archive drift")
     original=json.loads(original_raw)
@@ -264,6 +271,22 @@ def verify() -> dict:
         raise ValueError("Report falsely asserts private repo access granted")
     if "no reviewer access granted" not in report:
         raise ValueError("Source-repository access boundary missing")
+
+    # The original VAL->TEST chronology is independently checked using
+    # original development-only outcomes and TEST start metadata (no TEST
+    # prediction, winner or score ever consulted).
+    vtpath=ROOT/"research/validation_test_label_maturity.py"
+    vtspec=importlib.util.spec_from_file_location("vexil_val_test_maturity",vtpath)
+    vtmodule=importlib.util.module_from_spec(vtspec)
+    vtspec.loader.exec_module(vtmodule)
+    vt=vtmodule.verify()
+    if (vt["validation_outcomes_not_mature_at_first_test_start"]!=0
+            or vt["last_validation_label_maturity_margin_seconds"]!=143
+            or vt["models_fit_or_reselected"]
+            or vt["original_TEST_features_or_outcomes_scored"]
+            or vt["proof_of_real_received_at"]
+            or "143 seconds" not in report):
+        raise ValueError("VAL to TEST source-label maturity audit inconsistent")
 
     # Completion-time, development-only maturity audit: the reviewer ZIP
     # must independently refit M0-M3 from exactly 394 frozen original
@@ -662,7 +685,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 127 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 129 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

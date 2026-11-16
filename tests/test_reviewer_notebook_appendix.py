@@ -10,7 +10,7 @@ from types import SimpleNamespace
 import nbformat
 
 ROOT=Path(__file__).resolve().parents[1]
-FROZEN=ROOT/"research/frozen_original_500_notebook.ipynb"
+FROZEN=ROOT/"research/frozen_original_notebook_source.json"
 MAIN=ROOT/"live_dota2_win_probability.ipynb"
 PIT=ROOT/"research/reviewer_notebook_pit_appendix.py"
 ANALYSIS=ROOT/"research/reviewer_notebook_report_appendix.py"
@@ -79,6 +79,18 @@ class ReviewerNotebookAppendixContractTest(unittest.TestCase):
         self.assertTrue(r["original_test_previously_inspected"])
         self.assertEqual(r["appendix_source_sha256"]["PIT"],sha(PIT.read_bytes()))
         self.assertEqual(r["appendix_source_sha256"]["report_crosswalk"],sha(ANALYSIS.read_bytes()))
+
+    def test_vexil_delivery_has_exactly_one_executable_notebook(self):
+        # This must run from the self-extracted ZIP as well as the author
+        # worktree. The author-only packaging script is not shipped.
+        packaged=sorted(p.relative_to(ROOT).as_posix()
+                        for p in ROOT.rglob("*.ipynb")
+                        if ".ipynb_checkpoints" not in p.parts)
+        self.assertEqual(packaged,["live_dota2_win_probability.ipynb"])
+        self.assertEqual(
+            hashlib.sha256((ROOT/"research/frozen_original_notebook_source.json").read_bytes()).hexdigest(),
+            ORIGINAL_SHA)
+        self.assertTrue((ROOT/"research/frozen_original_notebook_source.json").is_file())
 
     def test_model_no_heldout_refit_in_appendix(self):
         pit=PIT.read_text()

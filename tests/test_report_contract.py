@@ -48,8 +48,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("127 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("127 offline unit/contract checks",
+        self.assertIn("129 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("129 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -137,7 +137,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         import hashlib
         import json
         receipt=json.loads((ROOT / "docs/COLAB_COLD_RUN_RECEIPT.json").read_text())
-        notebook=json.loads((ROOT / "research/frozen_original_500_notebook.ipynb").read_text())
+        notebook=json.loads((ROOT / "research/frozen_original_notebook_source.json").read_text())
         code="".join("".join(c["source"]) for i,c in enumerate(notebook["cells"])
                      if c["cell_type"]=="code" and i!=2)
         self.assertEqual(hashlib.sha256(code.encode()).hexdigest(),

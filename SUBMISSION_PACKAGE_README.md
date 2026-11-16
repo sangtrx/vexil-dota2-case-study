@@ -19,7 +19,7 @@ python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
 ~~~
 
-The reviewer notebook has **16 executed code cells**: the original source-frozen 14 scientific cells plus two appended, clearly labeled post-hoc QA cells that compute full minute-level point-in-time checks and report numbers **without extra files**. All have saved outputs except the original frozen-cohort definitions cell. The new [16-cell cached-source fresh-kernel receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current notebook. Historical [14-cell source-frozen replay](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) and [Colab cold run](docs/COLAB_COLD_RUN_RECEIPT.json) preserve original reproducibility. Local QA used 500 original raw match JSONs **not bundled**; reviewers need live OpenDota for a new Run All. The two new appendix cells were **not separately Colab-executed**; cloud CSV byte parity has not been verified.
+The repository has **one executable main notebook**, containing **16 executed code cells**: the original 14 scientific cells plus two post-hoc QA cells that recompute point-in-time checks and report numbers **without extra files**. The historical original 14-cell source is archived as plain JSON in research/ only, not as a second notebook. The notebook's Evaluation table provides individual and paired 95% whole-match bootstrap intervals for M0/M1 log loss and Brier overall and all four phases. All have saved outputs except the original frozen-cohort definitions cell. The new [16-cell cached-source fresh-kernel receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current notebook. Historical [14-cell source-frozen replay](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) and [Colab cold run](docs/COLAB_COLD_RUN_RECEIPT.json) preserve original reproducibility. Local QA used 500 original raw match JSONs **not bundled**; reviewers need live OpenDota for a new Run All. The two new appendix cells were **not separately Colab-executed**; cloud CSV byte parity has not been verified.
 
 For **offline** score/contract verification from the ZIP (not a fresh notebook Run all), without API keys or private research access:
 
@@ -27,11 +27,13 @@ For **offline** score/contract verification from the ZIP (not a fresh notebook R
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-Sixteen test modules contain **127 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
+Sixteen test modules contain **129 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
 
 ## What is supplementary
 
 The original 500-game TEST is the core assessment. The [offline label-maturity refit and interaction null](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md), [full original 500-match point-in-time audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) (author raw cache required), [fixed-bin grouped calibration uncertainty](docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md), [error audit](docs/ERROR_ANALYSIS.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) preserve negative evidence without refitting TEST. The validation forecast CSV, reconstruction receipt and offline verification script are included; recreating source JSON requires OpenDota or the author's external cache.
+
+A [development-only as-of audit](docs/VAL_TEST_LABEL_MATURITY_RECEIPT.json) finds no unfinished VALIDATION labels by the first TEST game start under the parsed start+duration proxy, but only **143 seconds** to spare and no real received-at proof.
 
 The separate [November 100-game study](docs/FORWARD_100_STRESS.md) is **not** a blind second test: 68 games had been evaluated in a prior 120-game study and two leagues account for 85/100 games. Its probability CSV, per-match metadata, frozen candidate listing and independent source checks are included for audit, not pooled with the original TEST. Raw OpenDota match JSON is not included.
 

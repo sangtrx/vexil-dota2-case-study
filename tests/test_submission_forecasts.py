@@ -23,7 +23,7 @@ class SubmissionForecastsTest(unittest.TestCase):
         # Historic scientific source is immutable; only the reviewer
         # wrapper has two post-TEST, non-selecting in-memory audit cells.
         self.assertEqual(
-            hashlib.sha256((ROOT / "research/frozen_original_500_notebook.ipynb").read_bytes()).hexdigest(),
+            hashlib.sha256((ROOT / "research/frozen_original_notebook_source.json").read_bytes()).hexdigest(),
             EXPECTED_NOTEBOOK_SHA256)
         appendix=json.loads((ROOT/"docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json").read_text())
         self.assertEqual(

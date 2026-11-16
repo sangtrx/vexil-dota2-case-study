@@ -1,0 +1,17 @@
+{
+  "duration_is_end_time_proxy_not_live_availability": true,
+  "first_test_start_unix": 1774448219,
+  "frozen_original_development_archive_sha256": "d4f91431d2c373eb772093bbf26ecb9c37c62714f95e89e0500e30b7700bd628",
+  "frozen_original_split_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "last_validation_estimated_end_unix": 1774448076,
+  "last_validation_label_maturity_margin_seconds": 143,
+  "models_fit_or_reselected": false,
+  "original_TEST_features_or_outcomes_scored": false,
+  "original_holdout_was_previously_inspected": true,
+  "proof_of_real_received_at": false,
+  "status": "ORIGINAL_VALIDATION_TO_TEST_COMPLETION_PROXY_AUDIT",
+  "test_games_metadata_only": 106,
+  "validation_games": 103,
+  "validation_match_ids_unfinished_at_test": [],
+  "validation_outcomes_not_mature_at_first_test_start": 0
+}

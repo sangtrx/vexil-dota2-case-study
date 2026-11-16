@@ -12,7 +12,7 @@ I collected **500 parsed professional OpenDota matches**, 250 from patch 59 and 
 
 The **18,292 minute-level rows are forecast opportunities, not independent game outcomes**. For a forecast at game minute *t*, economy arrays use indices at most *t*; event features use timestamps no later than `60*t`. A later **author-cache** audit compared **all 18,292** snapshots against future-truncated payloads, with zero feature differences; player clocks also match team economy (raw JSON not bundled). Winner, post-game totals, future events and final duration do not enter features. The corrected notebook imposes the **strict pre-terminal** condition `60*t < duration`: an audit found and removed 12 end-boundary rows (8 TRAIN, 3 VALIDATION, 1 TEST). This was a correction **after the original TEST was opened**, not a second blind evaluation.
 
-Matches are ordered chronologically and entire professional series stay in one partition: **291 TRAIN / 103 VALIDATION / 106 TEST**, with **10,675 / 3,781 / 3,836** minute rows. TRAIN contains 41 patch-60 games; both later partitions are entirely patch 60. This tests later games within the observed environment, **not generalization to an unseen patch**. Five TRAIN labels were not mature at first VALIDATION start (at most 1,606 seconds by end-time proxy). Refitting all four fixed models on **286 mature TRAIN games** still selects M1 on **reused VAL** (log loss **0.5202** versus M0 **0.5329**). This does not repair the original fit or create a new TEST. Real received-at times remain unknown.
+Matches are ordered chronologically and entire professional series stay in one partition: **291 TRAIN / 103 VALIDATION / 106 TEST**, with **10,675 / 3,781 / 3,836** minute rows. TRAIN contains 41 patch-60 games; both later partitions are entirely patch 60. This tests later games within the observed environment, **not generalization to an unseen patch**. Five TRAIN labels were not mature at first VALIDATION start (at most 1,606 seconds by end-time proxy). Refitting all four fixed models on **286 mature TRAIN games** still selects M1 on **reused VAL** (log loss **0.5202** versus M0 **0.5329**). At the VAL→TEST boundary, **0/103 VAL games** were unfinished by the same proxy, but the margin was only **143 seconds**. Neither audit establishes live received-at times or creates a new TEST.
 
 ## 2. Model design and validation selection
 
@@ -53,7 +53,7 @@ After four fixed models, **0/28** follow-ups passed gates on **reused validation
 
 ## 5. Held-out forecast quality and uncertainty
 
-The primary target is average proper loss **per admissible minute-level forecast opportunity**; longer games therefore receive more weight. Confidence intervals are paired bootstraps over **whole matches** (2,000 draws), never over minute rows treated as independent outcomes. Common-series dependence can widen uncertainty.
+The target is proper loss **per admissible minute-level forecast opportunity**; longer games receive more weight. The notebook reports **individual model 95% CIs** and the paired M1−M0 CI for **each phase and metric**. All use **whole-match bootstraps** (2,000 draws), not independent minute rows. Common-series dependence may widen uncertainty; the table below shows paired differences.
 
 | Phase (games) | Log loss M0 → M1 | Difference 95% CI | Brier M0 → M1 | Difference 95% CI |
 | --- | --- | --- | --- | --- |

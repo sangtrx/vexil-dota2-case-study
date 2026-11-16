@@ -12,7 +12,7 @@ from pathlib import Path
 import nbformat
 
 ROOT=Path(__file__).resolve().parents[1]
-FROZEN=ROOT/"research/frozen_original_500_notebook.ipynb"
+FROZEN=ROOT/"research/frozen_original_notebook_source.json"
 MAIN=ROOT/"live_dota2_win_probability.ipynb"
 PIT=ROOT/"research/reviewer_notebook_pit_appendix.py"
 ANALYSIS=ROOT/"research/reviewer_notebook_report_appendix.py"

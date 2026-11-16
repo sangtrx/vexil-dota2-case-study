@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from research.posttest_temporal.collect_and_score import frozen_functions, sha
 
 ROOT=Path(__file__).resolve().parents[1]
-NB=ROOT/"research/frozen_original_500_notebook.ipynb"
+NB=ROOT/"research/frozen_original_notebook_source.json"
 SPLIT=ROOT/"research/frozen_original_split_manifest.csv"
 RECEIPT=ROOT/"docs/FULL_500_PREFIX_AUDIT_RECEIPT.json"
 SCIENCE_SHA="5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"

@@ -13,7 +13,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 
 ROOT=Path(__file__).resolve().parents[2]
-SOURCE_NOTEBOOK=ROOT/"research/frozen_original_500_notebook.ipynb"
+SOURCE_NOTEBOOK=ROOT/"research/frozen_original_notebook_source.json"
 TRAIN_CSV=ROOT/"research/frozen_original_train_features.csv.gz"
 DATA_SHA="066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
 CODE_SHA="e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"

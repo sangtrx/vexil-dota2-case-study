@@ -73,6 +73,19 @@ class MatureLabelValidationTest(unittest.TestCase):
         self.assertIn("matches, rejected = collect_matches(api, FROZEN_MATCH_IDS)", source5)
         self.assertIn("if frozen:", source4)
 
+    def test_validation_outcomes_mature_before_first_test_start_under_proxy(self):
+        from research import validation_test_label_maturity as audit2
+        a=audit2.verify()
+        self.assertEqual(a["validation_games"],103)
+        self.assertEqual(a["test_games_metadata_only"],106)
+        self.assertEqual(a["validation_outcomes_not_mature_at_first_test_start"],0)
+        self.assertEqual(a["last_validation_label_maturity_margin_seconds"],143)
+        self.assertEqual(a["validation_match_ids_unfinished_at_test"],[])
+        self.assertFalse(a["original_TEST_features_or_outcomes_scored"])
+        self.assertFalse(a["proof_of_real_received_at"])
+        self.assertFalse(a["models_fit_or_reselected"])
+        self.assertTrue(a["original_holdout_was_previously_inspected"])
+
     def test_receipt_does_not_turn_validation_into_a_new_test(self):
         r = self.receipt
         self.assertEqual(r["status"], "POST_HOC_COMPLETION_EMBARGO_DEVELOPMENT_ONLY")
