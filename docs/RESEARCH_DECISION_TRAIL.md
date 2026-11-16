@@ -6,7 +6,7 @@
 
 **Question.** Does the same gold advantage imply the same Radiant win probability at minute 10 and minute 30?
 
-**Experiment.** Freeze 500 parsed professional OpenDota matches (250 patch 59, 250 patch 60), group professional series, order by game start time: **291 TRAIN / 103 VALIDATION / 106 TEST** games. Strict preterminal cutoff yields **18,292 forecasts**, including **3,836 TEST** minutes. Source event time is not verified live receipt time.
+**Experiment.** [Original `/proMatches` patch-boundary discovery and the 13 Nov ID freeze](DISCOVERY_PROVENANCE.md) produced 500 parsed professional OpenDota matches (250 patch 59, 250 patch 60). Group professional series, order by game start time: **291 TRAIN / 103 VALIDATION / 106 TEST** games. Strict preterminal cutoff yields **18,292 forecasts**, including **3,836 TEST** minutes. Source event time is not verified live receipt time.
 
 **Comparator.** M0 is gold-only logistic regression; M1 adds elapsed minute and gold-by-log-time interaction. M1 wins on VALIDATION log loss **0.5197 vs 0.5325**; the richer M2/M3 do not. This justifies testing the hypothesis, not deploying M1.
 

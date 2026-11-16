@@ -4,7 +4,7 @@
 
 A reproducible study of **500 parsed professional OpenDota matches** (patches 59 and 60, 21–26 March 2026). At each admissible game minute, the notebook estimates Radiant's probability of winning using information timestamped no later than that minute. This is a historical point-in-time exercise, not a live-feed latency or betting-profitability claim.
 
-**Review in this order:** [four-page report](REPORT.pdf) → [notebook with saved outputs](live_dota2_win_probability.ipynb) → [research decision trail](docs/RESEARCH_DECISION_TRAIL.md) → [frozen TEST predictions](artifacts/heldout_predictions.csv). The original research Git ancestry is preserved in this repository, with exploratory branch heads mirrored for review; no separate source access is needed to audit the main numerical results.
+**First three minutes:** Read the [four-page report](REPORT.pdf) for the question, negative tests and ship/HOLD decision; open the [one executed notebook](live_dota2_win_probability.ipynb) to inspect saved outputs; then use the [original `/proMatches` discovery provenance](docs/DISCOVERY_PROVENANCE.md) if you want to audit where the 500 games came from. [Frozen TEST forecasts](artifacts/heldout_predictions.csv) and the [research decision trail](docs/RESEARCH_DECISION_TRAIL.md) are supplementary; you do not need the private original research PR discussions to verify the reported scores.
 
 ## Results on the held-out TEST
 
@@ -27,7 +27,7 @@ The [TRAIN-only matched-state figure](docs/figures/train_matched_state_aliasing.
 
 | Requirement | Evidence in this package |
 | --- | --- |
-| 500 professional OpenDota matches | Notebook collection and frozen 250/250 match IDs; setup needs no API key |
+| 500 professional OpenDota matches spanning a patch change | [Original `/proMatches` pagination and cohort freeze](docs/DISCOVERY_PROVENANCE.md); same 250/250 IDs fetched via `/matches/{id}` on fresh reruns, no API key |
 | Gold-lead logistic baseline **and** own model | M0–M3 model comparison in notebook and [report](REPORT.pdf); M1 selected by validation |
 | Information available at the forecast time | Minute-prefix features and timestamps; later [full 18,292-snapshot future-deletion audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) (author raw cache needed); strict pre-terminal 60*t < duration |
 | Chronological split, label timing and probability evaluation | Series-disjoint **291 TRAIN / 103 VALIDATION / 106 TEST**; [offline label-maturity refit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) verifies M1 selection after excluding 5 unfinished TRAIN games; grouped proper scores/calibration diagnostics |
@@ -37,7 +37,7 @@ The [TRAIN-only matched-state figure](docs/figures/train_matched_state_aliasing.
 
 ## Reproduce
 
-**Google Colab:** Upload the notebook to a CPU runtime with Internet and choose Runtime → Run all. It fetches **500 preselected, frozen match IDs through /matches/{match_id}**; this deterministic replay intentionally **does not call /proMatches** again. The original label-blind patch-boundary discovery/pagination logic using /proMatches is in the same notebook but is not the default replay path. Only these two OpenDota endpoints are permitted; rate limits are retried without replacing cohort IDs. Saved outputs and figures are available without rerunning.
+**Google Colab:** Upload the notebook to a CPU runtime with Internet and select Runtime → Run all. For reproducibility it fetches the **original 500 fixed match IDs through `/matches/{match_id}`**, rather than resampling the moving `/proMatches` feed. The [initial `/proMatches` discovery, recorded evidence and missing raw-page limitation](docs/DISCOVERY_PROVENANCE.md) are documented separately. Both code paths are present in the notebook; the saved TEST and model remain unchanged. This reviewer replay does not call /proMatches. No key is required. OpenDota rate limits are retried; no silent match replacement is permitted.
 
 **Local Python 3.12 (verified with exact pins):**
 
@@ -54,7 +54,7 @@ Run the notebook top to bottom. For a fast no-network contract check:
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-This runs **133 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The [16-cell fresh-kernel appendix receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current reviewer notebook from the original cached 500 games and recomputes PIT/no-skill/calibration/strong-null figures in memory, with no network. The [fresh 16-cell Colab Run All receipt](docs/COLAB_16CELL_RUN_RECEIPT.json) verifies 500 downloads, 16/16 executed code cells, scientific-code/input-source fingerprints and rounded TEST-score parity, but **NOT bytewise cloud CSV equality**. Earlier [14-cell Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) is preserved as historical evidence.
+This runs **135 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The [16-cell fresh-kernel appendix receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current reviewer notebook from the original cached 500 games and recomputes PIT/no-skill/calibration/strong-null figures in memory, with no network. The [fresh 16-cell Colab Run All receipt](docs/COLAB_16CELL_RUN_RECEIPT.json) verifies 500 downloads, 16/16 executed code cells, scientific-code/input-source fingerprints and rounded TEST-score parity, but **NOT bytewise cloud CSV equality**. Earlier [14-cell Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) is preserved as historical evidence.
 
 ## Evidence boundaries and research history
 
@@ -62,6 +62,6 @@ The original development-label audit finds **5/291 TRAIN** outcomes not mature a
 
 An optional [100-game November check](docs/FORWARD_100_STRESS.md) uses the original frozen M0/M1 and has confidence intervals crossing zero; **68 of those games overlap an earlier 120-game research cohort**, so the results are not independent replications. [Frozen calibration audit](docs/CALIBRATION_BIAS_READOUT.md), [error analysis](docs/ERROR_ANALYSIS.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) preserve negative results without model promotion.
 
-**Git provenance:** [HISTORY.md](HISTORY.md), the [clickable branch/PR map](docs/REVIEWER_HISTORY_MAP.md) and [curation provenance](docs/CURATION_PROVENANCE.md) distinguish authentic 13–15 November research from the 16 November reviewer curation PRs. The [decision trail](docs/RESEARCH_DECISION_TRAIL.md) links hypotheses, rejected alternatives and the deployment gate to source evidence. Original GitHub PR discussions remain in a separately private repo, but original code ancestry and selected branch heads are included here. Historical 200-game raw payloads are not bundled.
+**Git provenance:** [Original 500-game discovery and commit/hash evidence](docs/DISCOVERY_PROVENANCE.md), [HISTORY.md](HISTORY.md), the [clickable branch/PR map](docs/REVIEWER_HISTORY_MAP.md) and [curation provenance](docs/CURATION_PROVENANCE.md) distinguish 13–15 November research from the 16 November reviewer curation PRs. The [decision trail](docs/RESEARCH_DECISION_TRAIL.md) links hypotheses, rejected alternatives and the deployment gate to source evidence. Original GitHub PR discussions remain in a separately private repo, but original code ancestry and selected branch heads are included here. Historical 200-game raw payloads are not bundled.
 
 The report states the candidate's **approximately 10 hours of active work** estimate and details extensive AI assistance. No third-party Dota predictor was copied; no measured betting returns or verified live latency are claimed.

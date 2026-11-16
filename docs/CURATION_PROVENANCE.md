@@ -2,7 +2,7 @@
 
 This repository retains the **authentic Git ancestry** of the original private research repository, sangtrx/vexil-dota2-win-probability, including its author/committer dates. The original research main was **5bff687aca176b82912a53d10f67ecaa7a73832a** (15 Nov 2026). Its first research-contract commits were **4baa02a** and **87c2fac** (13 Nov ICT).
 
-**Curation was carried out on 16 November 2026**, after the 500-match study and multiple research branches existed. New commits and PRs named curation/01, curation/02, etc. organize saved evidence for a reviewer; they do **not** claim that research was executed for the first time in that new PR order. No commits are backdated. The source commit ancestry and rejected alternatives are preserved.
+The original [\`/proMatches\` discovery and cohort freeze](DISCOVERY_PROVENANCE.md) are documented separately, including the 13 Nov research-log evidence, frozen-ID checksum, and absent raw API page caveat.\n\n**Curation was carried out on 16 November 2026**, after the 500-match study and multiple research branches existed. New commits and PRs named curation/01, curation/02, etc. organize saved evidence for a reviewer; they do **not** claim that research was executed for the first time in that new PR order. No commits are backdated. The source commit ancestry and rejected alternatives are preserved.
 
 | Original, time-stamped source | Audit relevance |
 | --- | --- |

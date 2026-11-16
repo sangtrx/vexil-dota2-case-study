@@ -60,6 +60,8 @@ FILES = (
     "tests/test_train_state_aliasing_figure.py",
     "docs/EXPERIMENT_REGISTER.md",
     "docs/RESEARCH_DECISION_TRAIL.md",
+    "docs/DISCOVERY_PROVENANCE.md",
+    "tests/test_discovery_provenance.py",
     "docs/CURATION_PROVENANCE.md",
     "docs/REVIEWER_HISTORY_MAP.md",
     "docs/STRICT_SERIES_ECE_RECEIPT.json",
@@ -625,6 +627,7 @@ def verify() -> dict:
     if "https://github.com/sangtrx/vexil-dota2-assessment" in report:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")
     for local_source in ("docs/EXPERIMENT_REGISTER.md",
+                         "docs/DISCOVERY_PROVENANCE.md",
                          "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
                          "docs/COLAB_16CELL_RUN_RECEIPT.json"):
         if local_source not in report:
@@ -719,7 +722,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 133 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 135 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),
