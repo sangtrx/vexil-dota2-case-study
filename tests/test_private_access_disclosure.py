@@ -7,8 +7,8 @@ ROOT=Path(__file__).resolve().parents[1]
 class ExternalAccessTruthfulness(unittest.TestCase):
     def test_report_does_not_claim_access_already_granted(self):
         text=(ROOT/"REPORT.md").read_text()
-        self.assertIn("access available on request",text)
-        self.assertIn("not yet granted",text)
+        self.assertIn("Original research commits and branches are retained here",text)
+        self.assertIn("no reviewer access granted",text)
         self.assertNotIn("reviewer access provided separately",text)
 
     def test_readme_does_not_claim_access_already_granted(self):

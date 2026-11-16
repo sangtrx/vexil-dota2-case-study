@@ -43,7 +43,9 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
         self.assertIn("docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",report)
         self.assertNotIn("https://github.com/",report)
-        self.assertIn("Original commits and PRs",readme)
+        self.assertIn("**Git provenance:**",readme)
+        self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
+        self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
         self.assertIn("111 offline checks",(ROOT/"README.md").read_text())
@@ -123,9 +125,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("before the later strict pre-terminal notebook correction", register)
         self.assertIn("pre-correction", register)
         self.assertIn("no preregistered direct paired confidence interval", register)
-        self.assertIn("original private research history", report)
-        self.assertIn("access available on request", report)
-        self.assertIn("not yet granted", report)
+        self.assertIn("Original research commits and branches are retained here",report)
+        self.assertIn("no reviewer access granted",report)
         self.assertIn("Original GitHub PR discussions remain in a separately private repo", readme)
         self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
@@ -187,7 +188,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         pdf=pdf.replace("cloud- export","cloud-export")
         for snippet in (
             "16 November 2026",
-            "access available on request",
+            "no reviewer access granted",
             "63/106 game winners",
             "0.5174",
             "53-series",
