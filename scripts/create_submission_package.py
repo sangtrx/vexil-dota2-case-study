@@ -228,7 +228,8 @@ def verify() -> dict:
     trail=(ROOT/"docs/RESEARCH_DECISION_TRAIL.md").read_text()
     branch_index=(ROOT/"docs/REVIEWER_HISTORY_MAP.md").read_text()
     if ("7b3584f" not in branch_index or "5f405b5" not in branch_index
-            or "DRAFT / HOLD" not in branch_index or "not copied" not in branch_index):
+            or "DRAFT / HOLD" not in branch_index or "not copied" not in branch_index
+            or any(f"Actual PR #{n}" not in branch_index for n in range(3,17))):
         raise ValueError("Reviewer timeline must show original and rejected-branch proofs")
     if ("No commits are backdated" not in provenance
             or "retains the **authentic Git ancestry**" not in provenance
