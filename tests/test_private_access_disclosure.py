@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -23,6 +24,16 @@ class ExternalAccessTruthfulness(unittest.TestCase):
         self.assertIn("not backdated experiments",text)
         provenance=(ROOT/"docs/CURATION_PROVENANCE.md").read_text()
         self.assertIn("No commits are backdated",provenance)
+        # This is a portable text/length check in ZIP-only QA. A fresh
+        # Git clone separately verifies that the genuine original source
+        # commit is an ancestor of the new main.
+        source_main="5bff687aca176b82912a53d10f67ecaa7a73832a"
+        self.assertEqual(len(source_main),40)
+        self.assertIn(source_main,provenance)
+        self.assertNotIn(source_main+"04",provenance)
+        source_match=re.search(r"original research main was \*\*([0-9a-f]+)\*\*",provenance)
+        self.assertIsNotNone(source_match)
+        self.assertEqual(source_match.group(1),source_main)
         self.assertIn("original private research",provenance.lower())
 
 
