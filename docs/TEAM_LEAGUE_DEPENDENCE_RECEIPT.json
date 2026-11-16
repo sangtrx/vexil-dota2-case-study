@@ -1,0 +1,194 @@
+{
+  "cohort": {
+    "known_test_team_id_overlap_train_fraction": 0.8,
+    "known_test_team_id_overlap_validation_fraction": 0.7076923076923077,
+    "known_test_teams_also_in_train": 52,
+    "known_test_teams_also_in_validation": 46,
+    "matches_total": 500,
+    "split_matches": {
+      "test": 106,
+      "train": 291,
+      "validation": 103
+    },
+    "test_distinct_known_team_ids": 65,
+    "test_distinct_leagues": 9,
+    "test_games": 106,
+    "test_games_by_league_id": {
+      "16251": 1,
+      "17909": 8,
+      "18865": 6,
+      "18866": 12,
+      "18867": 21,
+      "18959": 28,
+      "19201": 12,
+      "19378": 2,
+      "19422": 16
+    },
+    "test_minute_rows": 3836,
+    "test_positive_series_or_singletons": 54,
+    "test_top_two_league_game_count": 49,
+    "test_top_two_league_game_fraction": 0.46226415094339623
+  },
+  "do_not_use_to_promote_model": true,
+  "does_not_fit_or_select_models": true,
+  "frozen_test_differences": {
+    "M1_minus_M0_minute_weighted_brier": -0.00355934396794912,
+    "M1_minus_M0_minute_weighted_logloss": -0.012429726921359421
+  },
+  "limitations": [
+    "Cross-series team/league dependence remains.",
+    "Only nine selected, unbalanced leagues: no league-cluster confidence interval is treated as reliable.",
+    "Overlapping teams are expected under chronological evaluation and are not proof of leakage.",
+    "The M1 gold-by-time interaction still has no verified incremental skill over gold plus time additive control.",
+    "Model/predictions were previously evaluated on this TEST; no fresh blind inference."
+  ],
+  "metadata_source": "500 original author-cached /matches/{id} JSON records",
+  "not_new_blind_test": true,
+  "post_hoc_leave_one_league_out": [
+    {
+      "delta_brier": -0.0034183101238294557,
+      "delta_logloss": -0.01211597030192865,
+      "excluded_games": 1,
+      "excluded_league_id": "16251",
+      "excluded_rows": 28,
+      "remaining_games": 105,
+      "within_league_delta_brier": -0.022739946768223485,
+      "within_league_delta_logloss": -0.05510062716394436
+    },
+    {
+      "delta_brier": -0.004603807308416003,
+      "delta_logloss": -0.015979626254859793,
+      "excluded_games": 8,
+      "excluded_league_id": "17909",
+      "excluded_rows": 306,
+      "remaining_games": 98,
+      "within_league_delta_brier": 0.008489530515214602,
+      "within_league_delta_logloss": 0.02852172617424942
+    },
+    {
+      "delta_brier": -0.0029055265907500147,
+      "delta_logloss": -0.011567303669009613,
+      "excluded_games": 6,
+      "excluded_league_id": "18865",
+      "excluded_rows": 254,
+      "remaining_games": 100,
+      "within_league_delta_brier": -0.012779713436953829,
+      "within_league_delta_logloss": -0.02459193199977289
+    },
+    {
+      "delta_brier": -0.0036990048790706063,
+      "delta_logloss": -0.013426891870086092,
+      "excluded_games": 12,
+      "excluded_league_id": "18866",
+      "excluded_rows": 489,
+      "remaining_games": 94,
+      "within_league_delta_brier": -0.0026034235803752658,
+      "within_league_delta_logloss": -0.005604550881710837
+    },
+    {
+      "delta_brier": -0.003597005263827227,
+      "delta_logloss": -0.01407639675653745,
+      "excluded_games": 21,
+      "excluded_league_id": "18867",
+      "excluded_rows": 757,
+      "remaining_games": 85,
+      "within_league_delta_brier": -0.003406161497660227,
+      "within_league_delta_logloss": -0.005732109454367152
+    },
+    {
+      "delta_brier": -0.0030318270403493523,
+      "delta_logloss": -0.012191001052407011,
+      "excluded_games": 28,
+      "excluded_league_id": "18959",
+      "excluded_rows": 894,
+      "remaining_games": 78,
+      "within_league_delta_brier": -0.0052953113068736355,
+      "within_league_delta_logloss": -0.013215332633281113
+    },
+    {
+      "delta_brier": -0.003691606105057042,
+      "delta_logloss": -0.013150312078090429,
+      "excluded_games": 12,
+      "excluded_league_id": "19201",
+      "excluded_rows": 359,
+      "remaining_games": 94,
+      "within_league_delta_brier": -0.0022783538545111093,
+      "within_league_delta_logloss": -0.005450689066335155
+    },
+    {
+      "delta_brier": -0.003265491985589876,
+      "delta_logloss": -0.01156035904315672,
+      "excluded_games": 2,
+      "excluded_league_id": "19378",
+      "excluded_rows": 49,
+      "remaining_games": 104,
+      "within_league_delta_brier": -0.026269904318856403,
+      "within_league_delta_logloss": -0.07961944436531113
+    },
+    {
+      "delta_brier": -0.003818772456349375,
+      "delta_logloss": -0.0075937531378165975,
+      "excluded_games": 16,
+      "excluded_league_id": "19422",
+      "excluded_rows": 700,
+      "remaining_games": 90,
+      "within_league_delta_brier": -0.0023971043399159766,
+      "within_league_delta_logloss": -0.03409488947163128
+    }
+  ],
+  "post_hoc_resampling": {
+    "match_brier": {
+      "both_sides_of_zero": true,
+      "clusters": 106,
+      "draws": 30000,
+      "grouping": "match_id",
+      "interval_95": [
+        -0.007058140283675655,
+        0.00010532728067175728
+      ],
+      "seed": 20261116
+    },
+    "match_logloss": {
+      "both_sides_of_zero": true,
+      "clusters": 106,
+      "draws": 30000,
+      "grouping": "match_id",
+      "interval_95": [
+        -0.03016688032750079,
+        0.0013056789369875633
+      ],
+      "seed": 20261116
+    },
+    "note": "Match/series resampling assumes independent clusters, potentially violated by overlapping teams/leagues; none is a fresh validation. Not a new model-selection gate.",
+    "series_brier": {
+      "both_sides_of_zero": false,
+      "clusters": 54,
+      "draws": 30000,
+      "grouping": "series",
+      "interval_95": [
+        -0.006615930875296031,
+        -0.00040837817512519656
+      ],
+      "seed": 20261116
+    },
+    "series_logloss": {
+      "both_sides_of_zero": true,
+      "clusters": 54,
+      "draws": 30000,
+      "grouping": "series",
+      "interval_95": [
+        -0.02825261385657433,
+        8.547043640661712e-05
+      ],
+      "seed": 20261116
+    }
+  },
+  "provenance_limitation": "Raw HTTP payloads omitted from reviewer ZIP; frozen match/league/team ID metadata is an author-derived extract.",
+  "purpose": "POST_HOC_NONSELECTING_DEPENDENCE_DIAGNOSTIC",
+  "raw_match_json_included": false,
+  "source": {
+    "group_metadata_sha256": "74fdc9479bd8dc4f70eac72f776d24a7708e7d7119f1ec6b18af43c954c701fe",
+    "manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+    "test_predictions_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
+  }
+}

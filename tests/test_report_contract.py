@@ -48,8 +48,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("135 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("135 offline unit/contract checks",
+        self.assertIn("144 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("144 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):

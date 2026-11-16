@@ -24,6 +24,8 @@
 | November sample | 100 games overlap a prior 120-game cohort by **68 IDs**; two leagues supply 85 games | Not independent replication | [Overlap receipt](NOVEMBER_COHORT_OVERLAP_RECEIPT.json) |
 | Value-of-freshness idea | Proposed headline estimator telescoped to endpoint effects | **Rejected** and preserved | [PR #15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15) |
 
+The [post-TEST team/league dependence audit](TEAM_LEAGUE_DEPENDENCE.md) quantifies 54 TEST series, overlapping teams across chronological splits and descriptive match-versus-series intervals. This audit does not change the original primary match-bootstrap inference, model selection or TEST scores.
+
 The [fixed TRAIN matched-state figure](figures/train_matched_state_aliasing.png), regenerated from the frozen development archive by `research/render_train_state_aliasing_figure.py`, visualizes the historical Aegis/objective-state counterexample without using TEST or claiming objective-feature uplift.
 
 The [portable development-label audit](DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) refits the same four models on the 286 mature TRAIN games; original M1 selection holds on reused VAL. A separate [500-game future-deletion receipt](FULL_500_PREFIX_AUDIT_RECEIPT.json) checks all 18,292 forecast opportunities (requires author raw cache), and [fixed-bin grouped reliability CIs](CALIBRATION_FIXED_BIN_GROUPED_CI.md) characterize post-hoc calibration uncertainty. The stronger additive gold + time null and rejected TRAIN-only calibration offset are also quantified there. This is an additional post-result sensitivity, not a fresh holdout.
