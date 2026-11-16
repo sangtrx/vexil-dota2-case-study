@@ -1,0 +1,82 @@
+{
+  "dev_games": 394,
+  "dev_minute_rows": 14456,
+  "development_splits": {
+    "train": {
+      "games": 291,
+      "minutes": 10675
+    },
+    "validation": {
+      "games": 103,
+      "minutes": 3781
+    }
+  },
+  "frozen_dev_csv_gzip_sha256": "d4f91431d2c373eb772093bbf26ecb9c37c62714f95e89e0500e30b7700bd628",
+  "independent_prospective_or_blind_validation": false,
+  "maturity": {
+    "completion_proxy": "match.start_time+parsed_duration, not received_at",
+    "embargo_selected": "M1_time_value",
+    "embargo_validation_scores": {
+      "M0_gold_only": {
+        "brier": 0.18123636585795178,
+        "logloss": 0.5329400778888694
+      },
+      "M1_time_value": {
+        "brier": 0.17607442662508185,
+        "logloss": 0.5202093300554129
+      },
+      "M2_lead_fragility": {
+        "brier": 0.17801177746168761,
+        "logloss": 0.5229532442206124
+      },
+      "M3_objective_conversion": {
+        "brier": 0.18076769447309673,
+        "logloss": 0.528549618359745
+      }
+    },
+    "excluded_train_games": 5,
+    "excluded_train_match_ids": [
+      8741914801,
+      8741922328,
+      8741931257,
+      8741939284,
+      8741955597
+    ],
+    "first_validation_start_unix": 1774358915,
+    "mature_train_games": 286,
+    "max_estimated_train_result_overlap_seconds": 1606,
+    "original_selected": "M1_time_value",
+    "original_train_games": 291,
+    "original_validation_scores": {
+      "M0_gold_only": {
+        "brier": 0.1810746830906831,
+        "logloss": 0.5324900423908928
+      },
+      "M1_time_value": {
+        "brier": 0.17590168446333176,
+        "logloss": 0.5197139625814199
+      },
+      "M2_lead_fragility": {
+        "brier": 0.17779381881266196,
+        "logloss": 0.5223863883284187
+      },
+      "M3_objective_conversion": {
+        "brier": 0.1806314434272885,
+        "logloss": 0.5282050730295416
+      }
+    },
+    "validation_games": 103
+  },
+  "original_frozen_model_fingerprints": {
+    "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+    "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+  },
+  "original_notebook_or_TEST_modified": false,
+  "refit_original_frozen_TEST": false,
+  "sample_is_original_validation_previously_used_for_selection": true,
+  "scored_original_TEST": false,
+  "source_science_notebook_sha256": "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca",
+  "source_split_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "source_train_3_feature_gzip_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "status": "POST_HOC_COMPLETION_EMBARGO_DEVELOPMENT_ONLY"
+}
