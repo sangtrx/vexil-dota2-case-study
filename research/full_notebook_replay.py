@@ -29,7 +29,7 @@ EXPECTED_SPLIT_GAMES={"train":291,"validation":103,"test":106}
 EXPECTED_PATCHES={"59":250,"60":250}
 SOURCE_LINEAGE_KEYS=("model_inputs","outcome_labels","dev_item_inputs","cohort_metadata")
 ROOT=Path(__file__).resolve().parents[1]
-NB=ROOT/"live_dota2_win_probability.ipynb"
+NB=ROOT/"research/frozen_original_500_notebook.ipynb"
 COLAB=ROOT/"docs/COLAB_COLD_RUN_RECEIPT.json"
 
 

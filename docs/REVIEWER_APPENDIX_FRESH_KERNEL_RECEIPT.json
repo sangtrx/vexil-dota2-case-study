@@ -1,0 +1,25 @@
+{
+  "QA_source": "original 500 OpenDota match JSONs, author-controlled raw cache",
+  "all_18292_minute_PIT_checks_passed": true,
+  "appended_code_cells": 2,
+  "appended_markdown_cells": 1,
+  "appendix_source_sha256": {
+    "PIT": "790b443a1d9405a06097e962e9683296c7df59416b5b93b512d97041e037a933",
+    "report_crosswalk": "8df33a903a608b754bc05f5009bc4e6a9c2c94140cdb1ea0775a07340dd8b918"
+  },
+  "cached_original_matches": 500,
+  "cloud_extended_appendix_replay_verified": false,
+  "executed_total_code_cells": 16,
+  "heldout_3836_csv_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "new_reviewer_notebook_sha256": "75a717e6d47cc5c68c44640896b0cb99f0c83df10383e607ad56f568f60ba450",
+  "no_network_calls": true,
+  "no_new_original_TEST_fit_or_model_promotion": true,
+  "original_TEST_predictions_byte_parity": true,
+  "original_figures_exact_byte_parity": true,
+  "original_test_previously_inspected": true,
+  "readable_original_and_new_outputs_preserved": true,
+  "source_cells_26_bytewise_code_parity": true,
+  "source_science_notebook_sha256": "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca",
+  "status": "APPEND_ONLY_REVIEWER_NOTEBOOK_SOURCE_FROZEN_QA",
+  "unchanged_scientific_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
+}
