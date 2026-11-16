@@ -21,7 +21,7 @@ The gold-only logistic model is the required baseline. I selected M1 on validati
 
 The primary **whole-match paired** 95% bootstrap intervals for M1 minus M0 are **[-0.0304, +0.0014]** (log loss) and **[-0.0069, +0.0002]** (Brier): both cross zero. M1's minute-30+ Brier point estimate is **0.00455 worse**, paired interval **[−0.0037,+0.0109]**. One 55-row game accounts for 54.9% of the observed gain; five embargoed TRAIN-only rolling-origin folds favored M1 in only **2/5**. **Decision: M0 remains the reference; M1 is shadow-only, not proven superior.**
 
-The fixed-gold forecast contrast is not the same as a claim that gold becomes less discriminative late in a match. M1 maps +2,000 Radiant gold to 66.5% at minute 10 and 59.4% at minute 30, but a TRAIN-only series-bootstrap interval for this difference crosses zero. The report separates this fitted scenario from the held-out test.
+The fixed-gold forecast contrast is not proof that gold is intrinsically less discriminative later. M1 maps +2,000 Radiant gold to 66.5% at minute 10 and 59.4% at minute 30, but its TRAIN-only interval crosses zero. The stronger **gold + time without an interaction** model was not reliably beaten on TRAIN-only forward blocks (M1−null log loss −0.0020, 70-series CI [−0.0148,+0.0090]); this and the [reproducible maturity-label audit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) explicitly bound the creative claim.
 
 ## Where the assignment requirements are addressed
 
@@ -29,15 +29,15 @@ The fixed-gold forecast contrast is not the same as a claim that gold becomes le
 | --- | --- |
 | 500 professional OpenDota matches | Notebook collection and frozen 250/250 match IDs; setup needs no API key |
 | Gold-lead logistic baseline **and** own model | M0–M3 model comparison in notebook and [report](REPORT.pdf); M1 selected by validation |
-| Information available at the forecast time | Minute-prefix features, timestamped events, negative-time/future-feature poisoning tests; strict pre-terminal 60*t < duration |
-| Chronological split, label timing and probability evaluation | Series-disjoint **291 TRAIN / 103 VALIDATION / 106 TEST**; 5 TRAIN games may finish after first VAL start (embargo sensitivity keeps M1 selected); proper scores, grouped uncertainty and calibration diagnostics |
+| Information available at the forecast time | Minute-prefix features and timestamps; later [full 18,292-snapshot future-deletion audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) (author raw cache needed); strict pre-terminal 60*t < duration |
+| Chronological split, label timing and probability evaluation | Series-disjoint **291 TRAIN / 103 VALIDATION / 106 TEST**; [offline label-maturity refit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) verifies M1 selection after excluding 5 unfinished TRAIN games; grouped proper scores/calibration diagnostics |
 | Executable notebook with visible outputs | [Executed notebook](live_dota2_win_probability.ipynb): 14 code cells, four embedded figures; source-frozen 500-game local and fresh Colab replay receipts |
 | Setup and reproducibility | [Pinned dependencies](requirements.txt), commands below, [3-minute review guide](SUBMISSION_PACKAGE_README.md), frozen forecast CSV |
 | Separate report, at most four pages, with assistance disclosure | [REPORT.pdf](REPORT.pdf): four A4 pages, results, limitations, active-time estimate, AI/public-code disclosure |
 
 ## Reproduce
 
-**Google Colab:** Upload the notebook to a CPU runtime with Internet and choose Runtime → Run all. It requests only two public OpenDota endpoints: /proMatches and /matches/{match_id}. The 500 IDs are fixed; network rate limits are retried but never silently replaced with different matches. Saved outputs and figures are already included for review without rerunning.
+**Google Colab:** Upload the notebook to a CPU runtime with Internet and choose Runtime → Run all. It fetches **500 preselected, frozen match IDs through /matches/{match_id}**; this deterministic replay intentionally **does not call /proMatches** again. The original label-blind patch-boundary discovery/pagination logic using /proMatches is in the same notebook but is not the default replay path. Only these two OpenDota endpoints are permitted; rate limits are retried without replacing cohort IDs. Saved outputs and figures are available without rerunning.
 
 **Local Python 3.12 (verified with exact pins):**
 
@@ -54,11 +54,11 @@ Run the notebook top to bottom. For a fast no-network contract check:
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-This runs **111 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The cached-source [local full-replay receipt](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) confirms all 14 cells and the 3,836 original TEST forecasts; a [fresh Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) confirms source-code and rounded numerical parity, **not** cloud-export CSV byte parity.
+This runs **121 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The cached-source [local full-replay receipt](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) confirms all 14 cells and the 3,836 original TEST forecasts; a [fresh Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) confirms source-code and rounded numerical parity, **not** cloud-export CSV byte parity.
 
 ## Evidence boundaries and research history
 
-The training split already contains 41 patch-60 games; VALIDATION and TEST are both patch 60, **not an unseen-patch generalization result**. The notebook uses API event timestamps, which do not establish when a live consumer actually received each event. Calibration-in-the-large and ECE intervals are post-hoc, not calibration fits. The original **VALIDATION** M1 forecast-minus-outcome bias is **+0.0300** (53-series CI [−0.0436,+0.1001]); on inspected **TEST** it is **−0.0617** (54-series CI [−0.1410,+0.0250]). Neither establishes drift; the [frozen validation/TEST calibration audit](docs/CALIBRATION_BIAS_READOUT.md) is reproducible from bundled CSVs without model changes.
+The training split already contains 41 patch-60 games; VALIDATION and TEST are both patch 60, **not an unseen-patch generalization result**. The notebook uses API event timestamps, which do not establish when a live consumer actually received each event. Calibration-in-the-large and ECE intervals are post-hoc, not calibration fits. The original **VALIDATION** M1 forecast-minus-outcome bias is **+0.0300** (53-series CI [−0.0436,+0.1001]); on inspected **TEST** it is **−0.0617** (54-series CI [−0.1410,+0.0250]). Neither establishes drift; the [frozen validation/TEST calibration audit](docs/CALIBRATION_BIAS_READOUT.md) and [10-bin grouped reliability intervals](docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md) are reproducible from bundled CSVs without any calibration fit.
 
 An optional [100-game November check](docs/FORWARD_100_STRESS.md) uses the original frozen M0/M1 and has confidence intervals crossing zero; **68 of those games overlap an earlier 120-game research cohort**, so the results are not independent replications. [Frozen calibration audit](docs/CALIBRATION_BIAS_READOUT.md), [error analysis](docs/ERROR_ANALYSIS.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) preserve negative results without model promotion.
 

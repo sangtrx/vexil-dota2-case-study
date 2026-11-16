@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import importlib.util
 import io
 import json
 import math
@@ -79,6 +80,18 @@ FILES = (
     "research/train_time_effect_ci.py",
     "research/frozen_original_train_features.csv.gz",
     "research/frozen_original_split_manifest.csv",
+    "research/frozen_original_development_features.csv.gz",
+    "research/mature_label_validation_audit.py",
+    "docs/MATURE_LABEL_VALIDATION_RECEIPT.json",
+    "docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md",
+    "tests/test_mature_label_validation.py",
+    "research/full_500_prefix_audit.py",
+    "docs/FULL_500_PREFIX_AUDIT_RECEIPT.json",
+    "tests/test_full_500_prefix_audit.py",
+    "research/cluster_reliability_bands.py",
+    "docs/CALIBRATION_FIXED_BIN_GROUPED_CI_RECEIPT.json",
+    "docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md",
+    "tests/test_cluster_reliability_bands.py",
     "research/TRAIN_TIME_CONTRAST_RECEIPT.json",
     "tests/test_train_time_effect_ci.py",
     "tests/test_private_access_disclosure.py",
@@ -178,6 +191,25 @@ def verify() -> dict:
     if "no reviewer access granted" not in report:
         raise ValueError("Source-repository access boundary missing")
 
+    # Completion-time, development-only maturity audit: the reviewer ZIP
+    # must independently refit M0-M3 from exactly 394 frozen original
+    # TRAIN/VAL matches and reproduce both 291- and 286-game selections.
+    maturity_file=ROOT/"research/mature_label_validation_audit.py"
+    maturity_spec=importlib.util.spec_from_file_location(
+        "vexil_mature_label_package_verifier",maturity_file)
+    maturity_module=importlib.util.module_from_spec(maturity_spec)
+    maturity_spec.loader.exec_module(maturity_module)
+    mature=maturity_module.verify()
+    if (mature["dev_games"]!=394 or mature["dev_minute_rows"]!=14456
+            or mature["maturity"]["mature_train_games"]!=286
+            or mature["maturity"]["original_selected"]!="M1_time_value"
+            or mature["maturity"]["embargo_selected"]!="M1_time_value"
+            or mature["scored_original_TEST"]
+            or mature["independent_prospective_or_blind_validation"]
+            or "286 mature TRAIN games" not in report
+            or "[−0.0148,+0.0090]" not in report):
+        raise ValueError("Mature-label or strong-null reviewer evidence drift")
+
     # This is a separate TRAIN-only post-selection interpretation audit, not
     # a new model comparison on original TEST. Do not load later labels.
     train_bytes = (ROOT/"research/frozen_original_train_features.csv.gz").read_bytes()
@@ -206,7 +238,6 @@ def verify() -> dict:
         raise ValueError("Report must disclose that the TRAIN-only contrast interval crosses zero and is not causal")
 
     # Check post-hoc calibration-in-the-large without fitting on TEST.
-    import importlib.util
     calprogram=ROOT/"research/calibration_bias_sensitivity.py"
     calspec=importlib.util.spec_from_file_location("vexil_calibration_bias_package",calprogram)
     calmod=importlib.util.module_from_spec(calspec)
@@ -237,6 +268,36 @@ def verify() -> dict:
             or "**Retain M0; shadow-test M1" not in trail):
         raise ValueError("Curation provenance or decision-gate language missing")
 
+    # Source-audited all original 18,292 PIT snapshots from the external
+    # raw cache, without scoring TEST or fitting any new model. ZIP-only
+    # reviewers can verify the self-consistent frozen receipt and rerun
+    # the complete sweep if they independently redownload the source.
+    prefix=json.loads((ROOT/"docs/FULL_500_PREFIX_AUDIT_RECEIPT.json").read_text())
+    if (prefix["notebook_sha256"]!=EXPECTED_NOTEBOOK_SHA256
+            or prefix["original_minute_forecasts_checked"]!=18292
+            or prefix["checks_by_partition"]!={"train":10675,"validation":3781,"test":3836}
+            or prefix["match_count"]!=500
+            or prefix["eligible_minutes_with_shorter_than_five_minute_velocity_window"]!=2500
+            or prefix["any_difference"] or prefix["scored_original_test_labels"]
+            or prefix["trained_or_selected_any_model"]
+            or prefix["received_at_time_verified"]
+            or "all 18,292" not in report):
+        raise ValueError("Frozen source-feature full prefix sweep evidence missing")
+
+    # Reliability bands are fixed-bin diagnostic CIs on already opened
+    # TEST forecasts; they are NOT a calibration layer or model update.
+    bpath=ROOT/"research/cluster_reliability_bands.py"
+    bspec=importlib.util.spec_from_file_location("vexil_fixed_bin_calibration",bpath)
+    bmod=importlib.util.module_from_spec(bspec)
+    bspec.loader.exec_module(bmod)
+    bins=bmod.check()
+    if (bins["minute_rows"]!=3836 or bins["series_or_singletons"]!=54
+            or bins["draws"]!=5000 or bins["fixed_bins"]!=10
+            or not bins["test_is_already_opened"] or bins["any_test_calibration_fit"]
+            or bins["any_model_or_forecast_update"]
+            or "docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md" not in report):
+        raise ValueError("Fixed-bin grouped calibration uncertainty audit failed")
+
     # The original validation cohort was already used to select M1.
     # Reproducing its bias is diagnostic only, never a new held-out trial.
     valprogram=ROOT/"scripts/verify_validation_bias.py"
@@ -256,7 +317,6 @@ def verify() -> dict:
     # Supplemental post-TEST evaluation has its own frozen, reader-executable
     # validation path. It must never refit, adjust, or replace the main
     # 500-game experiment or claimed original TEST results.
-    import importlib.util
     program=ROOT/"scripts/verify_forward_100.py"
     spec=importlib.util.spec_from_file_location("vexil_forward_100_package_verifier",program)
     module=importlib.util.module_from_spec(spec)
@@ -272,7 +332,7 @@ def verify() -> dict:
             or overlap["archived_120_games"]!=120
             or not overlap["do_not_pool_100_and_120_scores"]):
         raise ValueError("November cohort overlap/non-independence disclosure failed")
-    if "Sixty-eight of these games" not in (ROOT/"REPORT.md").read_text():
+    if "68 games overlap" not in (ROOT/"REPORT.md").read_text():
         raise ValueError("Main report omitted material 68-game overlap disclosure")
     if (supplement["status"]!="PASS_ZIP_ONLY_100_FROZEN_FORECAST_AUDIT"
             or supplement["100_matches"]!=100
@@ -427,15 +487,16 @@ def verify() -> dict:
             raise ValueError("Reviewer PDF must identify bundled evidence: "+local_source)
     if "https://github.com/" in report:
         raise ValueError("Standalone PDF relies on inaccessible private GitHub links.")
-    for text in ("100 eligible parsed professional games",
-                 "11–15 November 2026", "4,355", "56 series/singleton",
-                 "both include zero", "not an unseen patch",
+    for text in ("100 already completed",
+                 "November 11–15", "4,355", "56 series/singletons",
+                 "both contain zero", "Patch 60 is not unseen",
                  "docs/FORWARD_100_STRESS.md"):
         if text.lower() not in report.lower():
             raise ValueError("Standalone report lacks honest later-cohort interpretation: "+text)
     if "artifacts/forward_100_predictions.csv" not in (ROOT/"docs/FORWARD_100_STRESS.md").read_text():
         raise ValueError("Supplement omits the actual frozen 4,355-row forecast source")
-    if "no reviewer access granted" not in report or "both include zero" not in report:
+    if ("no reviewer access granted" not in report
+            or "both primary paired 95% intervals cross zero" not in report):
         raise ValueError("Source-private/uncertainty limitations have been dropped")
 
     def measures(key: str) -> tuple[float, float]:
@@ -509,7 +570,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 111 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 121 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

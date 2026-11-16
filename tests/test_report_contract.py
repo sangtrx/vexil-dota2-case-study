@@ -48,8 +48,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("111 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("111 offline unit/contract checks",
+        self.assertIn("121 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("121 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -96,7 +96,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("Does the same gold lead map to the same win probability",report)
         self.assertIn("not** a claim that gold becomes less discriminative",report)
         self.assertNotIn("same gold lead equally informative",report)
-        self.assertIn("fixed-gold forecast contrast is not the same as",readme)
+        self.assertIn("fixed-gold forecast contrast is not proof",readme)
 
     def test_historical_200_game_study_is_preserved_without_crowding_report(self):
         report = (ROOT / "REPORT.md").read_text()
@@ -109,9 +109,9 @@ class ReportDeliveryContractTest(unittest.TestCase):
         for doc in (report, readme, handoff):
             self.assertIn("0.00455", doc)
             self.assertIn("−0.0037,+0.0109", doc)
-        for phrase in ("100 eligible parsed professional games",
-                       "11–15 November 2026", "56 series/singleton clusters",
-                       "85/100 games", "not an unseen patch", "both include zero"):
+        for phrase in ("100 already completed",
+                       "November 11–15", "56 series/singletons",
+                       "85 games", "Patch 60 is not unseen", "both contain zero"):
             self.assertIn(phrase.lower(), report.lower())
         self.assertIn("pre-correction", register.lower())
         self.assertIn("3,837 minute rows", register)
@@ -206,11 +206,11 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("early 0–9-minute",supplement)
         self.assertIn("The original TEST 30+ Brier point estimate",supplement)
         self.assertIn("Neither is a confirmed",supplement)
-        self.assertIn("42-game league",report)
-        self.assertIn("Sixty-eight of these games",report)
-        self.assertIn("not independent replications",report)
-        self.assertIn("not an unseen patch",report)
-        self.assertIn("both include zero",report)
+        self.assertIn("Omitting one league reverses the gain",report)
+        self.assertIn("68 games overlap",report)
+        self.assertIn("not independent confirmation",report)
+        self.assertIn("Patch 60 is not unseen",report)
+        self.assertIn("both contain zero",report)
 
     def test_reviewer_text_matches_scientific_boundaries(self):
         import json
@@ -285,7 +285,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("No new model was promoted", markdown)
         self.assertIn("**2/5**",(ROOT/"README.md").read_text())
         readme=(ROOT/"README.md").read_text()
-        self.assertIn("5 TRAIN games may finish after first VAL start",readme)
+        self.assertIn("offline label-maturity refit",readme)
         self.assertNotIn("Leakage-safe split and probability evaluation",readme)
         self.assertTrue((ROOT/"REPORT.pdf").read_bytes().startswith(b"%PDF-"))
         if shutil.which("pdfinfo"):

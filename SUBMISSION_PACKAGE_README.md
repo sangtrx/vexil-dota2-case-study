@@ -8,7 +8,7 @@ The notebook implements the required gold-lead logistic baseline M0 and the vali
 
 ## How to rerun
 
-On Google Colab: upload the notebook, select CPU runtime with Internet, and Run all. It fetches a frozen set of 500 game IDs using the public /proMatches and /matches/{match_id} endpoints; no API credentials are required. OpenDota may rate-limit requests.
+On Google Colab: upload the notebook, select CPU runtime with Internet, and Run all. The default frozen-cohort replay requests **500 /matches/{match_id} payloads**, not the moving /proMatches feed. Original /proMatches pagination/discovery code is retained in the notebook but bypassed by the fixed-ID replay for numeric reproducibility. No API credentials are required; OpenDota may rate-limit requests.
 
 On **Python 3.12 (verified)** locally:
 
@@ -27,11 +27,11 @@ For **offline** score/contract verification from the ZIP (not a fresh notebook R
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-Eleven test modules contain **111 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
+Fourteen test modules contain **121 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
 
 ## What is supplementary
 
-The report's original 500-game TEST is the core assessment. The [error audit](docs/ERROR_ANALYSIS.md), [VALIDATION/TEST calibration audit](docs/CALIBRATION_BIAS_READOUT.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) document uncertainty, failure analysis and rejected hypotheses without refitting on TEST. The validation forecast CSV, reconstruction receipt and offline verification script are included; recreating source JSON requires OpenDota or the author's external cache.
+The original 500-game TEST is the core assessment. The [offline label-maturity refit and interaction null](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md), [full original 500-match point-in-time audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) (author raw cache required), [fixed-bin grouped calibration uncertainty](docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md), [error audit](docs/ERROR_ANALYSIS.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) preserve negative evidence without refitting TEST. The validation forecast CSV, reconstruction receipt and offline verification script are included; recreating source JSON requires OpenDota or the author's external cache.
 
 The separate [November 100-game study](docs/FORWARD_100_STRESS.md) is **not** a blind second test: 68 games had been evaluated in a prior 120-game study and two leagues account for 85/100 games. Its probability CSV, per-match metadata, frozen candidate listing and independent source checks are included for audit, not pooled with the original TEST. Raw OpenDota match JSON is not included.
 

@@ -24,6 +24,8 @@
 | November sample | 100 games overlap a prior 120-game cohort by **68 IDs**; two leagues supply 85 games | Not independent replication | [Overlap receipt](NOVEMBER_COHORT_OVERLAP_RECEIPT.json) |
 | Value-of-freshness idea | Proposed headline estimator telescoped to endpoint effects | **Rejected** and preserved | [PR #15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15) |
 
+The [portable development-label audit](DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) refits the same four models on the 286 mature TRAIN games; original M1 selection holds on reused VAL. A separate [500-game future-deletion receipt](FULL_500_PREFIX_AUDIT_RECEIPT.json) checks all 18,292 forecast opportunities (requires author raw cache), and [fixed-bin grouped reliability CIs](CALIBRATION_FIXED_BIN_GROUPED_CI.md) characterize post-hoc calibration uncertainty. The stronger additive gold + time null and rejected TRAIN-only calibration offset are also quantified there. This is an additional post-result sensitivity, not a fresh holdout.
+
 The follow-ups often used **already observed** validation/TEST cohorts. A written protocol for a subsequent analysis does not make an exposed outcome newly blind.
 
 ## Three risks that control the decision

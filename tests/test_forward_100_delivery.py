@@ -34,9 +34,9 @@ class ForwardEvidenceTests(TestCase):
         report=(ROOT/"REPORT.md").read_text()
         self.assertIn("106 TEST games",report)
         self.assertIn("3,836",report)
-        self.assertIn("not an unseen patch",report)
-        self.assertIn("already completed when the rule was recorded",report.lower())
-        self.assertIn("both include zero",report.lower())
+        self.assertIn("Patch 60 is not unseen",report)
+        self.assertIn("100 already completed",report)
+        self.assertIn("both contain zero",report.lower())
 
     def test_no_calendar_prospective_or_calibration_proven_claim(self):
         narrative=(ROOT/"docs/FORWARD_100_STRESS.md").read_text().lower()
