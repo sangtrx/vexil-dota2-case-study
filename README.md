@@ -1,71 +1,67 @@
 # Live Dota 2 Win Probability
 
-A reproducible, minute-by-minute Radiant win-probability study using **500 parsed professional OpenDota matches** spanning patches 59 and 60 in March 2026. Prepared for the Vexil Capital Senior Data Scientist take-home.
+**Vexil Capital · Senior Data Scientist take-home · Truong Quang Sang**
 
-The notebook estimates the probability that Radiant eventually wins using information available by game minute t. It compares the required **gold-lead-only logistic regression** with a validation-selected, interpretable **gold-and-time challenger**. This is a retrospective forecast study, not an authenticated live feed or a betting strategy.
+A reproducible study of **500 parsed professional OpenDota matches** (patches 59 and 60, 21–26 March 2026). At each admissible game minute, the notebook estimates Radiant's probability of winning using information timestamped no later than that minute. This is a historical point-in-time exercise, not a live-feed latency or betting-profitability claim.
 
-## Results
+**Review in this order:** [four-page report](REPORT.pdf) → [notebook with saved outputs](live_dota2_win_probability.ipynb) → [research decision trail](docs/RESEARCH_DECISION_TRAIL.md) → [frozen TEST predictions](artifacts/heldout_predictions.csv). The original research Git ancestry is preserved in this repository, with exploratory branch heads mirrored for review; no separate source access is needed to audit the main numerical results.
 
-| Metric | Gold-only baseline M0 | Selected challenger M1 |
+## Results on the held-out TEST
+
+| Proper score (lower is better) | Gold-only logistic M0 | Gold + time logistic M1 |
 | --- | ---: | ---: |
-| Validation log loss (103 games) | 0.5325 | **0.5197** |
-| Held-out log loss (106 games) | 0.5164 | **0.5040** |
-| Held-out Brier score (106 games) | 0.1719 | **0.1684** |
-| Held-out Brier, minute 30+ | **0.1028** | 0.1074 |
+| Validation log loss, 103 games | 0.5325 | **0.5197** |
+| TEST log loss, 106 games | 0.5164 | **0.5040** |
+| TEST Brier, 106 games | 0.1719 | **0.1684** |
+| TEST minute-30+ Brier | **0.1028** | 0.1074 |
 
-The paired whole-game bootstrap 95% interval for held-out **M1 minus M0** log loss is **[-0.0304, +0.0014]**; for Brier it is **[-0.0069, +0.0002]**. Both include zero. The challenger improves the overall point estimates, **not a conclusive population-level result**, and its late-game Brier score worsens.
+**Evaluation boundary:** The 12 terminal-minute corrections were made after the original TEST had been inspected. These are corrected results on the same games, **not a new blind TEST**.
 
-The full results, ablations, uncertainty, calibration plots and limitations are in [REPORT.pdf](REPORT.pdf), a 3-page A4 report. **Read first:** [report](REPORT.pdf) → [notebook](live_dota2_win_probability.ipynb) → [research history](HISTORY.md).
+The gold-only logistic model is the required baseline. I selected M1 on validation log loss; M1 adds elapsed minute and gold × time interaction to that baseline. A constant **TRAIN-only** Radiant-win prior (149/291 games) has TEST log loss **0.6884** and Brier **0.2476**, so both fitted models outperform this no-skill reference.
 
-**Read-only failure audit:** [Error analysis](docs/ERROR_ANALYSIS.md) explains phase calibration, the late-game Brier reversal, 54-series sensitivity and match-level influence; a small [offline verification script](research/error_diagnostics.py) recalculates held-out phase scores, ECE and influential matches from the frozen forecast CSV without model refitting. **One 55-row game explains 54.9% of the sample log-loss gain**, another reason not to treat the M1 point estimate as a confirmed improvement.
+The primary **whole-match paired** 95% bootstrap intervals for M1 minus M0 are **[-0.0304, +0.0014]** (log loss) and **[-0.0069, +0.0002]** (Brier): both cross zero. M1's minute-30+ Brier point estimate is **0.00455 worse**, paired interval **[−0.0037,+0.0109]**. One 55-row game accounts for 54.9% of the observed gain; five embargoed TRAIN-only rolling-origin folds favored M1 in only **2/5**. **Decision: M0 remains the reference; M1 is shadow-only, not proven superior.**
 
-**Terminal-boundary correction:** Predictions now require the strict inequality 60t < duration. Twelve post-terminal snapshots across the original 500 games were removed (8 TRAIN, 3 VALIDATION, 1 TEST). The full corrected notebook was replayed locally from 500 cached match records with zero HTTP calls, 14/14 executed code cells and four figures. A **fresh Google Colab CPU Run all (15 November 2026)** fetched the 500 frozen games (514 API calls, zero cache hits), completed **14/14 code cells without error** and reproduced the selected model and held-out scores to 4 decimals. Its scientific-code SHA matches this repository; the uploaded notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise comparison. See the [Colab execution receipt](docs/COLAB_COLD_RUN_RECEIPT.json). Older Kaggle QA covered the inclusive-terminal predecessor.
+The fixed-gold forecast contrast is not the same as a claim that gold becomes less discriminative late in a match. M1 maps +2,000 Radiant gold to 66.5% at minute 10 and 59.4% at minute 30, but a TRAIN-only series-bootstrap interval for this difference crosses zero. The report separates this fitted scenario from the held-out test.
 
-**Full research history:** [Original commits and PRs](HISTORY.md) retains the branches, experiment code and negative results. [Experiment register](docs/EXPERIMENT_REGISTER.md) summarizes nine historical research workstreams and all **28 exploratory candidate scores** (log loss, Brier, multiplicity bounds, earlier folds and advancement decision), separate economic/strategic studies, a fixed gate on extra research matches, and negative tests. Research branches are not needed to run the core notebook; historical development tests were not used to promote a new model using the exposed held-out data.
+## Where the assignment requirements are addressed
 
-## Run the notebook
+| Requirement | Evidence in this package |
+| --- | --- |
+| 500 professional OpenDota matches | Notebook collection and frozen 250/250 match IDs; setup needs no API key |
+| Gold-lead logistic baseline **and** own model | M0–M3 model comparison in notebook and [report](REPORT.pdf); M1 selected by validation |
+| Information available at the forecast time | Minute-prefix features, timestamped events, negative-time/future-feature poisoning tests; strict pre-terminal 60*t < duration |
+| Chronological split, label timing and probability evaluation | Series-disjoint **291 TRAIN / 103 VALIDATION / 106 TEST**; 5 TRAIN games may finish after first VAL start (embargo sensitivity keeps M1 selected); proper scores, grouped uncertainty and calibration diagnostics |
+| Executable notebook with visible outputs | [Executed notebook](live_dota2_win_probability.ipynb): 14 code cells, four embedded figures; source-frozen 500-game local and fresh Colab replay receipts |
+| Setup and reproducibility | [Pinned dependencies](requirements.txt), commands below, [3-minute review guide](SUBMISSION_PACKAGE_README.md), frozen forecast CSV |
+| Separate report, at most four pages, with assistance disclosure | [REPORT.pdf](REPORT.pdf): four A4 pages, results, limitations, active-time estimate, AI/public-code disclosure |
 
-Use [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb). The notebook fetches its own data from the allowed OpenDota endpoints: `/api/proMatches` and `/api/matches/{match_id}`. It uses a frozen, explicit 250/250 match manifest. No credentials, uploaded datasets or other model inputs are required.
+## Reproduce
 
-**Google Colab:** With repo access, download the notebook file from GitHub and select **File → Upload notebook** in Colab, then choose a CPU runtime with Internet and **Runtime → Run all**. Direct private-GitHub import may require separately authorizing GitHub in Colab. The setup cell checks the Python environment and installs required packages when missing. OpenDota may rate-limit requests; the collector uses bounded retry and refuses to silently substitute a different match.
+**Google Colab:** Upload the notebook to a CPU runtime with Internet and choose Runtime → Run all. It requests only two public OpenDota endpoints: /proMatches and /matches/{match_id}. The 500 IDs are fixed; network rate limits are retried but never silently replaced with different matches. Saved outputs and figures are already included for review without rerunning.
 
-**Local Python 3.11+:**
+**Local Python 3.12 (verified with exact pins):**
 
-```bash
-python3 -m venv .venv
+~~~bash
+python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
-```
+~~~
 
-Run all cells, top to bottom. `requirements.txt` pins the local Python dependencies.
+Run the notebook top to bottom. For a fast no-network contract check:
 
-**Offline verification (optional):** `python -m unittest discover -s tests -p "test_*.py" -q`. This runs 54 offline checks covering point-in-time logic, frozen forecast scores and report/package contracts, without OpenDota calls. These tests are **not** a substitute for an independent hosted full notebook replay.
+~~~bash
+python -m unittest discover -s tests -p "test_*.py" -q
+~~~
 
-## Files and review order
+This runs **111 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The cached-source [local full-replay receipt](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) confirms all 14 cells and the 3,836 original TEST forecasts; a [fresh Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) confirms source-code and rounded numerical parity, **not** cloud-export CSV byte parity.
 
-| File | Purpose |
-| --- | --- |
-| [REPORT.pdf](REPORT.pdf) | Three-page assessment report with real-data figures, results, limitations and required assistance disclosure |
-| [live_dota2_win_probability.ipynb](live_dota2_win_probability.ipynb) | Self-contained data collection, point-in-time features, M0–M3, validation, held-out scoring and saved outputs |
-| [artifacts/heldout_predictions.csv](artifacts/heldout_predictions.csv) | **All 3,836** held-out predictions, one row per `(match_id, minute)`; never read as notebook input |
-| [requirements.txt](requirements.txt) | Exact dependencies for local execution |
-| [docs/figures/heldout_reliability.png](docs/figures/heldout_reliability.png) | Calibration view on actual held-out forecasts |
-| [docs/figures/time_value_scenarios.png](docs/figures/time_value_scenarios.png) | Fitted time-value hypothesis, plotted only in training-supported states |
-| [docs/figures/phase_error_audit.png](docs/figures/phase_error_audit.png) | Error diagnosis by phase, including the late-game Brier and ECE reversal; post-hoc descriptive |
-| [docs/EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) | Nine original research PRs (#3–#11) and 28 exploratory hypotheses; not a second assessment report |
-| [docs/COLAB_COLD_RUN_RECEIPT.json](docs/COLAB_COLD_RUN_RECEIPT.json) | Fresh Colab 14/14 execution receipt, science-code fingerprint, runtime versions, and explicitly unverified CSV-byte parity |
-| [docs/SERIES_CI_RECEIPT.json](docs/SERIES_CI_RECEIPT.json) | Post-hoc series-cluster uncertainty, 54 series and 10,000 resamples; [offline audit](research/series_cluster_sensitivity.py) |
-| [docs/ERROR_ANALYSIS.md](docs/ERROR_ANALYSIS.md) | Reproducible post-hoc failure diagnosis: phase ECE/Brier, match influence and model-governance boundaries |
+## Evidence boundaries and research history
 
-Running the notebook also exports eight scientific CSV tables, four PNG figures and a JSON receipt. The included forecast CSV lets a reviewer inspect all held-out predictions without re-fetching 500 matches. The downloadable submission ZIP mirrors these files and includes SHA-256 checksums; it is not a separate model or input dataset.
+The training split already contains 41 patch-60 games; VALIDATION and TEST are both patch 60, **not an unseen-patch generalization result**. The notebook uses API event timestamps, which do not establish when a live consumer actually received each event. Calibration-in-the-large and ECE intervals are post-hoc, not calibration fits. The original **VALIDATION** M1 forecast-minus-outcome bias is **+0.0300** (53-series CI [−0.0436,+0.1001]); on inspected **TEST** it is **−0.0617** (54-series CI [−0.1410,+0.0250]). Neither establishes drift; the [frozen validation/TEST calibration audit](docs/CALIBRATION_BIAS_READOUT.md) is reproducible from bundled CSVs without model changes.
 
-## Methods and boundaries
+An optional [100-game November check](docs/FORWARD_100_STRESS.md) uses the original frozen M0/M1 and has confidence intervals crossing zero; **68 of those games overlap an earlier 120-game research cohort**, so the results are not independent replications. [Frozen calibration audit](docs/CALIBRATION_BIAS_READOUT.md), [error analysis](docs/ERROR_ANALYSIS.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) preserve negative results without model promotion.
 
-- **Point in time:** economy arrays use only indices at or before minute `t`; logged events use timestamps no later than `60*t` seconds. Future/post-game feature-poisoning tests check the cutoff. A retrospective OpenDota replay does **not** prove that the same event was available to a production feed at that instant.
-- **Validation:** chronological game-level train/validation/test split, keeping professional series together: **291 / 103 / 106 games** and **10,675 / 3,781 / 3,836 minute rows**. Training already includes 41 patch-60 games; this is not an unseen-patch test.
-- **Models:** M0 is logistic regression on current gold difference. M1 adds elapsed minute and a gold-by-time interaction. M2 adds XP and five-minute velocity; M3 adds timestamped objectives and kill differential. All use the same `C=1` regularized logistic pipeline and train-only preprocessing. M1 was chosen by validation log loss.
-- **Uncertainty:** paired bootstrap by whole match, rather than treating minute rows as independent labels. Same-series and league dependencies remain and can widen uncertainty. The 30+ minute phase is especially unstable.
-- **Exploration:** the notebook includes a separate *development-only*, timestamped item-purchase hypothesis. Its validation score was not used to replace M1; it has no new held-out result and is not a deployed model.
+**Git provenance:** [HISTORY.md](HISTORY.md) and [curation provenance](docs/CURATION_PROVENANCE.md) distinguish authentic 13–15 November research commits from the 16 November reviewer curation PRs. The [decision trail](docs/RESEARCH_DECISION_TRAIL.md) links hypotheses, rejected alternatives and the deployment gate to source evidence. Original GitHub PR discussions remain in a separately private repo, but original code ancestry and selected branch heads are included here. Historical 200-game raw payloads are not bundled.
 
-Approximately **10 hours of active work** were spent, excluding unattended AI/API/cloud runs. AI assistance is disclosed in REPORT.pdf. No trade execution, market prices or realised profitability are measured.
+The report states the candidate's **approximately 10 hours of active work** estimate and details extensive AI assistance. No third-party Dota predictor was copied; no measured betting returns or verified live latency are claimed.
