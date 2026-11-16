@@ -36,7 +36,7 @@ def main() -> None:
     b.bar(x,db,color=["#2A607F" if val<=0 else "#B55A39" for val in db],width=.56)
     b.set_xticks(x,phases)
     b.set_ylabel("M1 minus M0 Brier (negative is better)")
-    b.set_title("Brier gain reverses at minute 30+",fontsize=11)
+    b.set_title("Brier difference by phase (descriptive)",fontsize=11)
     span=max(abs(q) for q in db)*1.35
     b.set_ylim(-span,span)
     for i,val in enumerate(db):

@@ -1,0 +1,35 @@
+{
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 20261115,
+  "evidence_class": "TRAIN_ONLY_POST_SELECTION_DESCRIPTIVE_SERIES_BOOTSTRAP",
+  "moment_10_probability": {
+    "95ci": [
+      0.5920135730234156,
+      0.7268596890066154
+    ],
+    "point": 0.6649891894445361
+  },
+  "moment_30_probability": {
+    "95ci": [
+      0.5007032463322434,
+      0.6836790003092009
+    ],
+    "point": 0.5940371481769021
+  },
+  "original_val_or_test_outcomes_opened_by_script": 0,
+  "selection_or_promotion_using_results": false,
+  "source_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "target": "P(Radiant win|gold_k=2,minute=10) minus P(Radiant win|gold_k=2,minute=30)",
+  "time_contrast": {
+    "95ci": [
+      -0.010760791875407993,
+      0.13792387963490257
+    ],
+    "bootstrap_share_positive": 0.951,
+    "point": 0.07095204126763399
+  },
+  "train_games": 291,
+  "train_rows": 10675,
+  "train_series_or_singleton_clusters": 171
+}
