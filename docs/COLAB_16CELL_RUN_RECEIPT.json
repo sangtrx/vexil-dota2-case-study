@@ -1,0 +1,99 @@
+{
+  "status": "FRESH_GOOGLE_COLAB_16_OF_16_RUN_ALL_PASS_NUMERIC_SOURCE_PARITY",
+  "evidence_date_utc": "2026-11-16",
+  "source": "Candidate-owned Google Colab, executed notebook downloaded through authenticated Google Drive connector after Run All",
+  "colab_notebook_url": "https://colab.research.google.com/drive/1LJko9se4jtfqhBJMK75MVBF8QHP1xxvC",
+  "drive_file_id": "1LJko9se4jtfqhBJMK75MVBF8QHP1xxvC",
+  "drive_file_modified_utc": "2026-11-16T10:12:37.650Z",
+  "cloud_executed_notebook_sha256": "0f05340ba58804e479e2af1ff5cfc37a08e845755bec1b60f5c660331fce3025",
+  "cloud_executed_notebook_bytes": 720259,
+  "repo_frozen_16cell_notebook_sha256": "466dce5d64adf081fb20642df210f903794745714675e225415c0aa8770f8304",
+  "scientific_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+  "appendix_source_sha256": {
+    "PIT": "790b443a1d9405a06097e962e9683296c7df59416b5b93b512d97041e037a933",
+    "report_crosswalk": "c1bd43c6da3a50bce21e6477a8400e77fa25b8643a5ff33c4dabebaf65ff5e36"
+  },
+  "code_cells_total": 16,
+  "code_cells_executed": 16,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "execution_errors": 0,
+  "api_calls": 510,
+  "cache_hits": 0,
+  "candidate_exclusions": 0,
+  "matches_loaded": 500,
+  "patch_match_counts": {
+    "59": 250,
+    "60": 250
+  },
+  "split_match_counts": {
+    "train": 291,
+    "validation": 103,
+    "test": 106
+  },
+  "split_minute_rows": {
+    "train": 10675,
+    "validation": 3781,
+    "test": 3836
+  },
+  "all_minute_rows": 18292,
+  "PIT_snapshots_checked": 18292,
+  "selected_model": "M1_time_value",
+  "mature_train_only_refit_still_selects_M1": true,
+  "frozen_original_TEST_predictions": 3836,
+  "scores_round6": {
+    "M0_logloss": 0.516444,
+    "M1_logloss": 0.504015,
+    "M0_Brier": 0.171912,
+    "M1_Brier": 0.168353,
+    "M0_ECE10": 0.089483,
+    "M1_ECE10": 0.075019
+  },
+  "paired_match_95ci_round6": {
+    "M1_minus_M0_logloss": [
+      -0.030371,
+      0.001413
+    ],
+    "M1_minus_M0_Brier": [
+      -0.006938,
+      0.000192
+    ]
+  },
+  "train_only_additive_null_logloss_delta_round6": -0.00202,
+  "train_only_additive_null_CI_crosses_zero": true,
+  "input_source_lineage_sha256": {
+    "model_inputs": "5d5b57ea3ec85cfa4af1519c8c568c0b79d809f071a26e08f75bca42ad9bd6e5",
+    "outcome_labels": "698a67f38bef4aaf8377255259bf94eb0a241a57cfa80b09cfa4ee1ea72316c9",
+    "dev_item_inputs": "bfc8b3b5d50f91a658838567fd18123bc7ba19fd30ee1d189c94825731b2d966",
+    "cohort_metadata": "dbe3b9f6241f8fefeb7e211c7ee921539ef3b546d76f5eaf168e77a2e5982b3d"
+  },
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.4.6",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.6.1",
+    "matplotlib": "3.10.0"
+  },
+  "cloud_csv_byte_equality_verified": false,
+  "cloud_csv_byte_equality_note": "Derived ZIP in Colab Files was not downloaded; score parity to six decimals and unchanged model/input-source hashes were verified.",
+  "source_access": "Candidate-owned private Drive notebook; employer access not granted.",
+  "test_data_was_previously_inspected": true,
+  "new_blind_TEST_claimed": false,
+  "live_received_at_verified": false
+}

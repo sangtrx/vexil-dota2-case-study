@@ -77,6 +77,7 @@ FILES = (
     "scripts/verify_validation_bias.py",
     "tests/test_validation_bias.py",
     "docs/COLAB_COLD_RUN_RECEIPT.json",
+    "docs/COLAB_16CELL_RUN_RECEIPT.json",
     "docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",
     "research/FULL_NOTEBOOK_REPLAY_PROTOCOL.md",
     "research/full_notebook_replay.py",
@@ -253,7 +254,7 @@ def verify() -> dict:
             "−0.0436,+0.1001",
             "0.5429",
             "−0.1410,+0.0250",
-            "new appendix not cloud-tested",
+            "16-cell Colab CPU Run All",
             "16/16",
             "18,292 PIT snapshots",
             "286 mature TRAIN games",
@@ -467,7 +468,34 @@ def verify() -> dict:
             or cloud_receipt["code_cells_executed"]!=14
             or cloud_receipt["test_minute_rows"]!=3836
             or cloud_receipt["cloud_csv_byte_equality_verified"]):
-        raise ValueError("Colab execution receipt conflicts with pinned scientific delivery.")
+        raise ValueError("Historical 14-cell Colab execution receipt conflicts with science.")
+
+    # A separate, private candidate-owned fresh Colab Run All on the
+    # CURRENT 16-cell notebook, inspected from the authenticated Drive file.
+    # Historical 14-cell receipt remains immutable; do not interpret score
+    # parity as proof of cloud CSV byte equality or a fresh blind TEST.
+    cloud16=json.loads((ROOT / "docs/COLAB_16CELL_RUN_RECEIPT.json").read_text())
+    if (cloud16["status"]!="FRESH_GOOGLE_COLAB_16_OF_16_RUN_ALL_PASS_NUMERIC_SOURCE_PARITY"
+            or cloud16["code_cells_total"]!=16
+            or cloud16["code_cells_executed"]!=16
+            or cloud16["execution_counts"]!=list(range(1,17))
+            or cloud16["execution_errors"]!=0
+            or cloud16["repo_frozen_16cell_notebook_sha256"]!=EXPECTED_REVIEWER_NOTEBOOK_SHA256
+            or cloud16["scientific_code_sha256"]!=MODEL_CODE_SHA256
+            or cloud16["appendix_source_sha256"]!=appendix["appendix_source_sha256"]
+            or cloud16["api_calls"]!=510 or cloud16["cache_hits"]!=0
+            or cloud16["matches_loaded"]!=500
+            or cloud16["patch_match_counts"]!={"59":250,"60":250}
+            or cloud16["split_minute_rows"]!={"train":10675,"validation":3781,"test":3836}
+            or cloud16["all_minute_rows"]!=18292
+            or cloud16["PIT_snapshots_checked"]!=18292
+            or cloud16["scores_round6"]["M1_logloss"]!=0.504015
+            or cloud16["scores_round6"]["M0_logloss"]!=0.516444
+            or cloud16["cloud_csv_byte_equality_verified"]
+            or cloud16["new_blind_TEST_claimed"]
+            or cloud16["live_received_at_verified"]
+            or "docs/COLAB_16CELL_RUN_RECEIPT.json" not in (ROOT/"REPORT.md").read_text()):
+        raise ValueError("16-cell Colab receipt or honest evidence boundary is invalid")
 
     forecasts = (ROOT / "artifacts/heldout_predictions.csv").read_bytes()
     full_replay=json.loads((ROOT / "docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json").read_text())
@@ -598,10 +626,13 @@ def verify() -> dict:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")
     for local_source in ("docs/EXPERIMENT_REGISTER.md",
                          "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
-                         "docs/COLAB_COLD_RUN_RECEIPT.json",
-                         "docs/ERROR_ANALYSIS.md"):
+                         "docs/COLAB_16CELL_RUN_RECEIPT.json"):
         if local_source not in report:
-            raise ValueError("Reviewer PDF must identify bundled evidence: "+local_source)
+            raise ValueError("Reviewer PDF must identify primary evidence: "+local_source)
+    for local_source in ("docs/COLAB_COLD_RUN_RECEIPT.json",
+                         "docs/ERROR_ANALYSIS.md"):
+        if local_source not in readme:
+            raise ValueError("README must reference archived evidence: "+local_source)
     if "https://github.com/" in report:
         raise ValueError("Standalone PDF relies on inaccessible private GitHub links.")
     for text in ("100 already completed",

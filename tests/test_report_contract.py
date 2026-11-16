@@ -149,6 +149,19 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(receipt["test_minute_rows"],3836)
         self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
         self.assertFalse(receipt["raw_notebook_sha_parity"])
+        # The candidate-owned *current* notebook also completed an actual
+        # 16/16 Google Colab run; its code and source fingerprints agree.
+        newer=json.loads((ROOT/"docs/COLAB_16CELL_RUN_RECEIPT.json").read_text())
+        self.assertEqual(newer["code_cells_executed"],16)
+        self.assertEqual(newer["execution_counts"],list(range(1,17)))
+        self.assertEqual(newer["execution_errors"],0)
+        self.assertEqual(newer["matches_loaded"],500)
+        self.assertEqual(newer["PIT_snapshots_checked"],18292)
+        self.assertEqual(newer["api_calls"],510)
+        self.assertEqual(newer["scientific_code_sha256"],receipt["scientific_code_sha256"])
+        self.assertFalse(newer["cloud_csv_byte_equality_verified"])
+        self.assertFalse(newer["new_blind_TEST_claimed"])
+        self.assertIn("16-cell Colab CPU Run All",(ROOT/"REPORT.md").read_text())
 
     def test_notebook_claim_matches_completed_cloud_receipt(self):
         import json
@@ -173,9 +186,15 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("neither paired confidence interval establishes superiority",report)
         for file_path in ("docs/EXPERIMENT_REGISTER.md",
                           "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
-                          "docs/COLAB_COLD_RUN_RECEIPT.json",
-                          "docs/ERROR_ANALYSIS.md"):
+                          "docs/COLAB_16CELL_RUN_RECEIPT.json"):
             self.assertIn(file_path,report)
+            self.assertTrue((ROOT/file_path).is_file())
+        # Historical 14-cell and expanded error receipts are referenced
+        # from README so the <=4-page report can prioritize new cloud proof.
+        readme=(ROOT/"README.md").read_text()
+        for file_path in ("docs/COLAB_COLD_RUN_RECEIPT.json",
+                          "docs/ERROR_ANALYSIS.md"):
+            self.assertIn(file_path,readme)
             self.assertTrue((ROOT/file_path).is_file())
 
     @unittest.skipUnless(shutil.which("pdftotext"),"poppler pdftotext not installed")
@@ -195,7 +214,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
             "−0.0436,+0.1001",
             "0.5429",
             "−0.1410,+0.0250",
-            "new appendix not cloud-tested",
+            "16-cell Colab CPU Run All",
             "16/16",
             "18,292 PIT snapshots",
             "No third-party Dota predictor was copied"):
