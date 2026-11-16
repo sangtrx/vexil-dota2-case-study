@@ -26,7 +26,7 @@
 
 The [portable development-label audit](DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) refits the same four models on the 286 mature TRAIN games; original M1 selection holds on reused VAL. A separate [500-game future-deletion receipt](FULL_500_PREFIX_AUDIT_RECEIPT.json) checks all 18,292 forecast opportunities (requires author raw cache), and [fixed-bin grouped reliability CIs](CALIBRATION_FIXED_BIN_GROUPED_CI.md) characterize post-hoc calibration uncertainty. The stronger additive gold + time null and rejected TRAIN-only calibration offset are also quantified there. This is an additional post-result sensitivity, not a fresh holdout.
 
-The follow-ups often used **already observed** validation/TEST cohorts. A written protocol for a subsequent analysis does not make an exposed outcome newly blind.
+The current reviewer-facing notebook additionally appends two explicitly post-TEST, **non-selecting in-memory verification cells**. These recalculate all 18,292 at-time feature snapshots, original proper losses, ECE, no-skill and the stronger additive TRAIN-only null. The exact original 14-cell notebook is archived separately with its old SHA and historical Colab receipt; reviewer appendix does not create a new blind TEST.\n\nThe follow-ups often used **already observed** validation/TEST cohorts. A written protocol for a subsequent analysis does not make an exposed outcome newly blind.
 
 ## Three risks that control the decision
 

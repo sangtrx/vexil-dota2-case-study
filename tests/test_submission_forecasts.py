@@ -20,9 +20,15 @@ class SubmissionForecastsTest(unittest.TestCase):
         file = ROOT / "artifacts/heldout_predictions.csv"
         raw = file.read_bytes()
         self.assertEqual(hashlib.sha256(raw).hexdigest(), EXPECTED_FORECAST_SHA256)
+        # Historic scientific source is immutable; only the reviewer
+        # wrapper has two post-TEST, non-selecting in-memory audit cells.
         self.assertEqual(
-            hashlib.sha256((ROOT / "live_dota2_win_probability.ipynb").read_bytes()).hexdigest(),
+            hashlib.sha256((ROOT / "research/frozen_original_500_notebook.ipynb").read_bytes()).hexdigest(),
             EXPECTED_NOTEBOOK_SHA256)
+        appendix=json.loads((ROOT/"docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json").read_text())
+        self.assertEqual(
+            hashlib.sha256((ROOT/"live_dota2_win_probability.ipynb").read_bytes()).hexdigest(),
+            appendix["new_reviewer_notebook_sha256"])
         frame = pd.read_csv(file)
         self.assertEqual(
             list(frame.columns),

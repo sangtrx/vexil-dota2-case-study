@@ -41,15 +41,15 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("No third-party Dota predictor was copied",report)
         self.assertIn("**Public code:** Standard open-source NumPy, pandas, scikit-learn, Matplotlib and Requests",report)
         self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
-        self.assertIn("docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",report)
+        self.assertIn("docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",report)
         self.assertNotIn("https://github.com/",report)
         self.assertIn("**Git provenance:**",readme)
         self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("123 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("123 offline unit/contract checks",
+        self.assertIn("127 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("127 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -125,7 +125,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("before the later strict pre-terminal notebook correction", register)
         self.assertIn("pre-correction", register)
         self.assertIn("no preregistered direct paired confidence interval", register)
-        self.assertIn("Original research commits and branches are retained here",report)
+        self.assertIn("Original research commits and branches are retained",report)
         self.assertIn("no reviewer access granted",report)
         self.assertIn("Original GitHub PR discussions remain in a separately private repo", readme)
         self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
@@ -137,7 +137,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         import hashlib
         import json
         receipt=json.loads((ROOT / "docs/COLAB_COLD_RUN_RECEIPT.json").read_text())
-        notebook=json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
+        notebook=json.loads((ROOT / "research/frozen_original_500_notebook.ipynb").read_text())
         code="".join("".join(c["source"]) for i,c in enumerate(notebook["cells"])
                      if c["cell_type"]=="code" and i!=2)
         self.assertEqual(hashlib.sha256(code.encode()).hexdigest(),
@@ -172,7 +172,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("about 0.00455 worse",report)
         self.assertIn("neither paired confidence interval establishes superiority",report)
         for file_path in ("docs/EXPERIMENT_REGISTER.md",
-                          "docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",
+                          "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
                           "docs/COLAB_COLD_RUN_RECEIPT.json",
                           "docs/ERROR_ANALYSIS.md"):
             self.assertIn(file_path,report)
@@ -195,7 +195,9 @@ class ReportDeliveryContractTest(unittest.TestCase):
             "−0.0436,+0.1001",
             "0.5429",
             "−0.1410,+0.0250",
-            "cloud-export CSV byte parity was not verified",
+            "new appendix not cloud-tested",
+            "16/16",
+            "18,292 PIT snapshots",
             "No third-party Dota predictor was copied"):
             self.assertIn(snippet,source)
             self.assertIn(snippet,pdf)
@@ -238,11 +240,13 @@ class ReportDeliveryContractTest(unittest.TestCase):
         nb=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
         cells=nb["cells"]
         code=[(i,c) for i,c in enumerate(cells) if c["cell_type"]=="code"]
-        self.assertEqual(len(code),14)
+        self.assertEqual(len(code),16)
         self.assertTrue(all(c.get("execution_count") is not None for i,c in code))
         self.assertEqual([i for i,c in code if not c.get("outputs")],[4])
-        self.assertEqual(sum(bool(c.get("outputs")) for i,c in code),13)
-        self.assertIn("13 have saved outputs",(ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
+        self.assertEqual(sum(bool(c.get("outputs")) for i,c in code),15)
+        self.assertIn("16 executed code cells",(ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
+        self.assertIn("All have saved outputs except the original",(
+            ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_trajectory_figure_matches_saved_notebook_output_byte_for_byte(self):
         import base64

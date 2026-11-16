@@ -103,7 +103,12 @@ class NotebookContractsTest(unittest.TestCase):
     def test_saved_charts_are_embedded_and_outputs_are_reviewable(self):
         """A reproducible numeric notebook without visible plots is incomplete QA."""
         import base64
-        self.assertEqual(len(NB["cells"]), 26)
+        self.assertEqual(len(NB["cells"]), 29)
+        original=json.loads((ROOT/"research/frozen_original_500_notebook.ipynb").read_text())
+        self.assertEqual(len(original["cells"]),26)
+        self.assertEqual(
+            ["".join(c["source"]) for c in NB["cells"][:26]],
+            ["".join(c["source"]) for c in original["cells"]])
         for cell_idx, expected in ((15,1), (20,2), (22,1)):
             cell = NB["cells"][cell_idx]
             self.assertIsNotNone(cell.get("execution_count"))

@@ -20,12 +20,20 @@ ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261116.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
 EXPECTED_NOTEBOOK_SHA256 = "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"
+EXPECTED_REVIEWER_NOTEBOOK_SHA256 = "75a717e6d47cc5c68c44640896b0cb99f0c83df10383e607ad56f568f60ba450"
 EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FILES = (
     "README.md",
     "SUBMISSION_PACKAGE_README.md",
     "HISTORY.md",
     "live_dota2_win_probability.ipynb",
+    "research/frozen_original_500_notebook.ipynb",
+    "research/reviewer_notebook_pit_appendix.py",
+    "research/reviewer_notebook_report_appendix.py",
+    "research/reviewer_notebook_appendix_replay.py",
+    "scripts/build_reviewer_notebook_appendix.py",
+    "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
+    "tests/test_reviewer_notebook_appendix.py",
     "requirements.txt",
     "REPORT.md",
     "REPORT.pdf",
@@ -128,30 +136,73 @@ def sha(data: bytes) -> str:
 
 
 def verify() -> dict:
+    # Preserve scientific provenance: original full notebook is byte-for-byte
+    # archived. The reviewer notebook is a separate, post-TEST APPEND-ONLY
+    # 16-code-cell version with all original 26 cells' code intact.
+    original_raw=(ROOT/"research/frozen_original_500_notebook.ipynb").read_bytes()
+    if sha(original_raw)!=EXPECTED_NOTEBOOK_SHA256:
+        raise ValueError("Original 14-cell scientific notebook archive drift")
+    original=json.loads(original_raw)
     raw = (ROOT / "live_dota2_win_probability.ipynb").read_bytes()
-    if sha(raw) != EXPECTED_NOTEBOOK_SHA256:
-        raise ValueError("Frozen, output-saved reviewer notebook has changed.")
+    if sha(raw) != EXPECTED_REVIEWER_NOTEBOOK_SHA256:
+        raise ValueError("Extended 16-cell reviewer notebook hash changed")
     notebook = json.loads(raw)
     cells = notebook["cells"]
     code = [c for c in cells if c["cell_type"] == "code"]
-    if len(cells) != 26 or len(code) != 14:
-        raise ValueError("Expected exactly 26 notebook cells, 14 executable.")
+    if (len(original["cells"])!=26 or len(cells)!=29 or len(code)!=16
+            or sum(c["cell_type"]=="code" for c in original["cells"])!=14):
+        raise ValueError("Expected original 26/14 and extended 29/16 notebook")
+    if any((a["cell_type"]!=b["cell_type"] or
+            "".join(a["source"])!="".join(b["source"]))
+            for a,b in zip(cells[:26],original["cells"])):
+        raise ValueError("Original 26 notebook cells' scientific sources changed")
+    if (cells[27]["cell_type"]!="code" or cells[28]["cell_type"]!="code"
+            or "".join(cells[27]["source"])!=(ROOT/"research/reviewer_notebook_pit_appendix.py").read_text()
+            or "".join(cells[28]["source"])!=(ROOT/"research/reviewer_notebook_report_appendix.py").read_text()):
+        raise ValueError("Auditable embedded appendix != source files")
+    appendix=json.loads((ROOT/"docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json").read_text())
+    if (appendix["new_reviewer_notebook_sha256"]!=sha(raw)
+            or appendix["source_science_notebook_sha256"]!=EXPECTED_NOTEBOOK_SHA256
+            or appendix["unchanged_scientific_code_sha256"]!=MODEL_CODE_SHA256
+            or appendix["heldout_3836_csv_sha256"]!=EXPECTED_FORECAST_SHA256
+            or appendix["executed_total_code_cells"]!=16
+            or not appendix["all_18292_minute_PIT_checks_passed"]
+            or not appendix["original_TEST_predictions_byte_parity"]
+            or not appendix["original_figures_exact_byte_parity"]
+            or not appendix["no_network_calls"]
+            or appendix["cloud_extended_appendix_replay_verified"]):
+        raise ValueError("Extended notebook independent kernel QA receipt invalid")
+    for key,filename in (("PIT","research/reviewer_notebook_pit_appendix.py"),
+                         ("report_crosswalk","research/reviewer_notebook_report_appendix.py")):
+        if appendix["appendix_source_sha256"][key]!=sha((ROOT/filename).read_bytes()):
+            raise ValueError("Extended appendix source receipt checksum changed")
     if any(c.get("execution_count") is None for c in code):
-        raise ValueError("All 14 notebook code cells must have successful execution counts.")
-    # Cell 4 declares the frozen match ID cohort and produces no output.
-    # The other 13 executed code cells retain actual reviewer-visible output.
+        raise ValueError("All 16 notebook code cells must have executed.")
+    # Cell 4 defines frozen cohort IDs; it intentionally emits no outputs.
     empty_outputs=[i for i,c in enumerate(cells)
                    if c["cell_type"]=="code" and not c.get("outputs")]
     if empty_outputs != [4]:
-        raise ValueError("Expected only the source-definition cell 4 to lack saved outputs.")
+        raise ValueError("Expected only source-definition cell 4 to lack output")
     if any(x.get("output_type") == "error" for c in code for x in c.get("outputs", [])):
         raise ValueError("Notebook contains an execution error.")
     if sum("image/png" in x.get("data", {}) for c in code for x in c.get("outputs", [])) != 4:
-        raise ValueError("Expected four real, embedded notebook figures.")
-    model_code = "".join("".join(c["source"]) for i, c in enumerate(cells)
-                         if c["cell_type"] == "code" and i != 2)
+        raise ValueError("Expected four original real, embedded notebook figures.")
+    output=" ".join(
+        "".join(x.get("text", [])) if isinstance(x.get("text"), list)
+        else str(x.get("text",""))
+        for c in cells[27:29] for x in c.get("outputs",[])
+        if x.get("output_type")=="stream")
+    for token in ("18,292/18,292", "2,500 first-five-minute",
+                  "TRAIN-only gold×time vs stronger gold+time NULL",
+                  "CI includes zero","Model decision preserved"):
+        if token not in output:
+            raise ValueError("Rendered notebook lacks a verified reviewer crosswalk: "+token)
+    # Only the original 14 scientific source cells define the original
+    # model hash. New post-hoc QA is checked separately and cannot alter it.
+    model_code = "".join("".join(c["source"]) for i,c in enumerate(cells[:26])
+                         if c["cell_type"]=="code" and i != 2)
     if sha(model_code.encode()) != MODEL_CODE_SHA256:
-        raise ValueError("Scientific code does not match the pinned and locally tested corrected source.")
+        raise ValueError("Frozen original scientific model code changed.")
     setup = "".join(cells[2]["source"])
     setup_out = "".join(
         "".join(x.get("text", "")) if isinstance(x.get("text"), list)
@@ -192,7 +243,9 @@ def verify() -> dict:
             "−0.0436,+0.1001",
             "0.5429",
             "−0.1410,+0.0250",
-            "cloud-export CSV byte parity was not verified",
+            "new appendix not cloud-tested",
+            "16/16",
+            "18,292 PIT snapshots",
             "286 mature TRAIN games",
             "all 18,292",
             "−0.0148,+0.0090",
@@ -518,7 +571,7 @@ def verify() -> dict:
     if "https://github.com/sangtrx/vexil-dota2-assessment" in report:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")
     for local_source in ("docs/EXPERIMENT_REGISTER.md",
-                         "docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",
+                         "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
                          "docs/COLAB_COLD_RUN_RECEIPT.json",
                          "docs/ERROR_ANALYSIS.md"):
         if local_source not in report:
@@ -574,7 +627,8 @@ def run() -> dict:
         "project": "Vexil Capital Senior Data Scientist Dota 2 take-home",
         "created_on": "2026-11-16",
         "report_pages": acceptance["pages"],
-        "notebook_sha256": EXPECTED_NOTEBOOK_SHA256,
+        "notebook_sha256": EXPECTED_REVIEWER_NOTEBOOK_SHA256,
+        "frozen_original_notebook_sha256": EXPECTED_NOTEBOOK_SHA256,
         "scientific_code_sha256": MODEL_CODE_SHA256,
         "files": {n: {"bytes": len(v), "sha256": sha(v)}
                   for n, v in sorted(entries.items())},
@@ -608,7 +662,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 123 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 127 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

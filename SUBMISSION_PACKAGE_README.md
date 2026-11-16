@@ -19,7 +19,7 @@ python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
 ~~~
 
-The notebook has 14 executed code cells; 13 have saved outputs, while the frozen-cohort definitions cell has no output by design. The local and fresh Colab reproduction receipts are [here](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) and [here](docs/COLAB_COLD_RUN_RECEIPT.json). The author-controlled local replay used 500 cached raw match records **not bundled in the ZIP** and reproduced the full TEST forecast CSV byte-for-byte. A new reviewer can rerun the notebook only with live OpenDota access. Colab reproduced rounded numbers and model-code hash; cloud CSV byte parity was not verified.
+The reviewer notebook has **16 executed code cells**: the original source-frozen 14 scientific cells plus two appended, clearly labeled post-hoc QA cells that compute full minute-level point-in-time checks and report numbers **without extra files**. All have saved outputs except the original frozen-cohort definitions cell. The new [16-cell cached-source fresh-kernel receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current notebook. Historical [14-cell source-frozen replay](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) and [Colab cold run](docs/COLAB_COLD_RUN_RECEIPT.json) preserve original reproducibility. Local QA used 500 original raw match JSONs **not bundled**; reviewers need live OpenDota for a new Run All. The two new appendix cells were **not separately Colab-executed**; cloud CSV byte parity has not been verified.
 
 For **offline** score/contract verification from the ZIP (not a fresh notebook Run all), without API keys or private research access:
 
@@ -27,7 +27,7 @@ For **offline** score/contract verification from the ZIP (not a fresh notebook R
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-Fifteen test modules contain **123 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
+Sixteen test modules contain **127 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
 
 ## What is supplementary
 

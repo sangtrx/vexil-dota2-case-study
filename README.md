@@ -31,7 +31,7 @@ The fixed-gold forecast contrast is not proof that gold is intrinsically less di
 | Gold-lead logistic baseline **and** own model | M0–M3 model comparison in notebook and [report](REPORT.pdf); M1 selected by validation |
 | Information available at the forecast time | Minute-prefix features and timestamps; later [full 18,292-snapshot future-deletion audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) (author raw cache needed); strict pre-terminal 60*t < duration |
 | Chronological split, label timing and probability evaluation | Series-disjoint **291 TRAIN / 103 VALIDATION / 106 TEST**; [offline label-maturity refit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) verifies M1 selection after excluding 5 unfinished TRAIN games; grouped proper scores/calibration diagnostics |
-| Executable notebook with visible outputs | [Executed notebook](live_dota2_win_probability.ipynb): 14 code cells, four embedded figures; source-frozen 500-game local and fresh Colab replay receipts |
+| Executable notebook with visible outputs | [Executed notebook](live_dota2_win_probability.ipynb): **16 saved-output code cells** (14 original source-frozen science + 2 post-hoc QA cells), four embedded figures; original 14-cell Colab and new 16-cell local replay receipts |
 | Setup and reproducibility | [Pinned dependencies](requirements.txt), commands below, [3-minute review guide](SUBMISSION_PACKAGE_README.md), frozen forecast CSV |
 | Separate report, at most four pages, with assistance disclosure | [REPORT.pdf](REPORT.pdf): four A4 pages, results, limitations, active-time estimate, AI/public-code disclosure |
 
@@ -54,7 +54,7 @@ Run the notebook top to bottom. For a fast no-network contract check:
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-This runs **123 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The cached-source [local full-replay receipt](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) confirms all 14 cells and the 3,836 original TEST forecasts; a [fresh Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) confirms source-code and rounded numerical parity, **not** cloud-export CSV byte parity.
+This runs **127 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The [16-cell fresh-kernel appendix receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current reviewer notebook from the original cached 500 games and recomputes PIT/no-skill/calibration/strong-null figures in memory, with no network. The archived [original 14-cell replay](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) and [Colab cold-run receipt](docs/COLAB_COLD_RUN_RECEIPT.json) prove the frozen 3,836 TEST predictions and rounded cloud numerical parity, **not** cloud-export CSV byte parity or a separate cloud run of the two new appendix cells.
 
 ## Evidence boundaries and research history
 
