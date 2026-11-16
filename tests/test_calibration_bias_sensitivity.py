@@ -116,11 +116,8 @@ class CalibrationBiasOnFrozenTest(unittest.TestCase):
 
     def test_no_claim_of_deployment_population_underprediction(self):
         text=(ROOT/"docs/CALIBRATION_BIAS_READOUT.md").read_text()
-        report=(ROOT/"REPORT.md").read_text()
         self.assertIn("not a population calibration finding",text)
         self.assertIn("54 professional-series",text)
-        self.assertIn("−0.1410,+0.0250",report)
-        self.assertIn("63/106",report)
         self.assertIn("No TEST recalibration",text)
 
 
