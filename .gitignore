@@ -22,7 +22,13 @@ output/
 *.joblib
 *.pyc
 *.csv
+# Reviewer-delivery CSVs: keep visible in git status without force-add.
 !artifacts/heldout_predictions.csv
+!artifacts/validation_m0_m1_predictions.csv
+!artifacts/forward_100_predictions.csv
+!artifacts/forward_100_metadata.csv
+!docs/NOVEMBER_120_RESEARCH_MANIFEST.csv
+!research/frozen_original_split_manifest.csv
 *.jsonl
 
 # Temporary execution/staging and backups
