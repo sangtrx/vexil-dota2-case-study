@@ -54,7 +54,7 @@ Run the notebook top to bottom. For a fast no-network contract check:
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-This runs **121 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The cached-source [local full-replay receipt](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) confirms all 14 cells and the 3,836 original TEST forecasts; a [fresh Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) confirms source-code and rounded numerical parity, **not** cloud-export CSV byte parity.
+This runs **123 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The cached-source [local full-replay receipt](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) confirms all 14 cells and the 3,836 original TEST forecasts; a [fresh Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) confirms source-code and rounded numerical parity, **not** cloud-export CSV byte parity.
 
 ## Evidence boundaries and research history
 

@@ -27,7 +27,7 @@ For **offline** score/contract verification from the ZIP (not a fresh notebook R
 python -m unittest discover -s tests -p "test_*.py" -q
 ~~~
 
-Fourteen test modules contain **121 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
+Fifteen test modules contain **123 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
 
 ## What is supplementary
 

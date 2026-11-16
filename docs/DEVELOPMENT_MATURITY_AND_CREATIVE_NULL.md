@@ -32,7 +32,7 @@ unverified; the maturity rule uses only estimated match completion.
 
 The ZIP includes **14,456 minute rows for the original 394 development
 games**, all four model families' at-minute inputs, and the frozen
-split/series metadata. It excludes all **106 TEST** rows and outcomes.
+split/series metadata. This **development-only derived archive** excludes all **106 TEST** rows and outcomes; the separate reviewer ZIP also intentionally includes the original frozen TEST forecast CSV required by Vexil.
 The verifier refits the four original candidates, checks the original
 M0/M1 VALIDATION probabilities, reproduces the mature-label embargo,
 and fails closed on checksum or score changes.
@@ -67,7 +67,15 @@ used four chronological later-TRAIN folds: **137 distinct games and
 **+0.000405**, CI **[−0.003059,+0.003857]**. An incremental
 out-of-sample benefit of gold-by-time interaction was **not**
 established. These are post-result TRAIN-only sensitivity analyses,
-not independent blind samples.
+not independent blind samples. The **original unmerged-Draft source and
+receipt are now bundled in this reviewer ZIP**:
+[interaction-null receipt](../research/GOLD_INTERACTION_NULL_INFLUENCE_RECEIPT.json),
+[model-check source](../research/gold_interaction_null_influence.py) and
+[readout](../research/GOLD_INTERACTION_NULL_READOUT.md). Reproduce on the
+original frozen TRAIN-only features without Internet:
+
+    python research/gold_interaction_null_influence.py --check
+
 
 The separate two-game TRAIN example with similar minute-25 gold/XP
 but different Roshan/Aegis and tower control explains why gold
@@ -85,6 +93,15 @@ reused VALIDATION, it slightly improved M1 log loss
 **0.049193 → 0.056137**. The 53-series grouped 95% interval
 for the log-loss gain **[−0.019380,+0.017395]** contains zero.
 The honest decision is **HOLD**, not to silently recalibrate on TEST.
+Original unmerged-Draft sources are bundled:
+[TRAIN-OOF calibration receipt](../research/CALIBRATION_FORWARD_RECEIPT.json),
+[readout](../research/CALIBRATION_FINDINGS.md),
+[replay script](../research/verify_calibration_offline.py) and the
+source-frozen 394-game development archive (without TEST rows).
+Reproduce offline:
+
+    python research/verify_calibration_offline.py
+
 
 A new unopened, predeclared, multi-league series cohort with an
 explicit label-maturity embargo, proper-score, calibration,

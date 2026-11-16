@@ -85,6 +85,23 @@ FILES = (
     "docs/MATURE_LABEL_VALIDATION_RECEIPT.json",
     "docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md",
     "tests/test_mature_label_validation.py",
+    # Original unmerged-HOLD research, now self-contained and runnable:
+    "research/CALIBRATION_PROTOCOL.md",
+    "research/CALIBRATION_FORWARD_RECEIPT.json",
+    "research/CALIBRATION_FINDINGS.md",
+    "research/CALIBRATION_ERRATA.md",
+    "research/calibration_development_features.csv.gz",
+    "research/calibration_development_features.sha256",
+    "research/calibration_frozen_manifest.csv",
+    "research/forward_oof_calibration.py",
+    "research/verify_calibration_offline.py",
+    "research/GOLD_INTERACTION_HOSTILE_PROTOCOL.md",
+    "research/GOLD_INTERACTION_NULL_INFLUENCE_RECEIPT.json",
+    "research/GOLD_INTERACTION_NULL_READOUT.md",
+    "research/gold_interaction_null_influence.py",
+    "research/conditional_gold_forward.py",
+    "research/conditional_gold_value.py",
+    "tests/test_original_hold_evidence.py",
     "research/full_500_prefix_audit.py",
     "docs/FULL_500_PREFIX_AUDIT_RECEIPT.json",
     "tests/test_full_500_prefix_audit.py",
@@ -176,6 +193,10 @@ def verify() -> dict:
             "0.5429",
             "−0.1410,+0.0250",
             "cloud-export CSV byte parity was not verified",
+            "286 mature TRAIN games",
+            "all 18,292",
+            "−0.0148,+0.0090",
+            "0.0492→0.0561",
             "No third-party Dota predictor was copied"):
         if statement not in pdf_content:
             raise ValueError("Stale or inconsistent REPORT.pdf rendering: "+statement)
@@ -297,6 +318,23 @@ def verify() -> dict:
             or bins["any_model_or_forecast_update"]
             or "docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md" not in report):
         raise ValueError("Fixed-bin grouped calibration uncertainty audit failed")
+
+    # The two source code experiments remain unmerged DRAFT/HOLD as
+    # candidates. Package their actual original TRAIN-only receipts and
+    # portable development-only model checkers for skeptical reviewers.
+    cal_evidence=json.loads((ROOT/"research/CALIBRATION_FORWARD_RECEIPT.json").read_text())
+    null_evidence=json.loads((ROOT/"research/GOLD_INTERACTION_NULL_INFLUENCE_RECEIPT.json").read_text())
+    cal_scores=cal_evidence["reused_validation"]
+    null_scores=null_evidence["interaction_null_bootstrap"]["M1_minus_gold_time_null_logloss"]
+    if (cal_evidence["inputs"]["test_games_read"]!=0
+            or not cal_scores["M1_offset"]["ece10"]>cal_scores["M1_original"]["ece10"]
+            or cal_scores["paired_comparison"]["series_bootstrap_95ci_logloss"][0]>=0
+            or cal_scores["paired_comparison"]["series_bootstrap_95ci_logloss"][1]<=0
+            or null_evidence["original_validation_or_test_outcomes_read"]
+            or null_evidence["model_promotion_permitted"]
+            or null_evidence["null_model"]!=["gold_k","minute10"]
+            or not null_scores["percentile_ci_95"][0]<0<null_scores["percentile_ci_95"][1]):
+        raise ValueError("Optional HOLD calibration/strong-null receipts falsely promoted")
 
     # The original validation cohort was already used to select M1.
     # Reproducing its bias is diagnostic only, never a new held-out trial.
@@ -570,7 +608,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 121 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 123 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

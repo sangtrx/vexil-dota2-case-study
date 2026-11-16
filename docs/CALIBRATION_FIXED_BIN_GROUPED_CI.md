@@ -32,7 +32,16 @@ population-level calibration advantage over M0.
 minute forecasts tended to underpredict Radiant winners. Some
 series-bootstrap intervals for individual bins are positive, but
 **these are ten post-hoc, unadjusted bin checks** with repeated
-minute outcomes. Leagues and teams are correlated *across*
+minute outcomes. In M1's **0.9–1.0** bin, all **322/322 minute rows** are
+Radiant-winning. Every nonempty grouped bootstrap resample therefore
+also has an empirical winner fraction of **1.0**; its apparent
+0.047–0.059 interval for observed-minus-predicted gap reflects only
+variation in the **average forecast** under those already-all-winning
+groups. It **does not** measure uncertainty about a future 90%-confident
+forecast's true win rate. This is a potentially degenerate,
+selection-conditioned interval, not a calibration guarantee.
+
+Leagues and teams are correlated *across*
 series; resampling 54 series does not repair that dependence
 or validate calibration in the future. There is no new data,
 no fitted TEST calibration layer, and no guarantee these intervals
@@ -48,7 +57,7 @@ To reproduce offline from the ZIP:
     python research/cluster_reliability_bands.py
 
 The original notebook calibration curves remain untouched.
-No grade can be gained by treating an already-opened TEST as
-an opportunity to tune probabilities. The correct Senior decision
+An already-opened TEST is not an independent target on which to tune
+probabilities or assert successful calibration. The correct Senior decision
 remains **M0 reference, M1 shadow-only**, with a new unopened
 series/league-diverse calibration gate required before deployment.
