@@ -1,0 +1,488 @@
+{
+  "any_model_or_forecast_update": false,
+  "any_test_calibration_fit": false,
+  "cluster_unit": "positive professional series, else single game",
+  "conditional_ci_when_bin_unsupported_in_bootstrap": true,
+  "draws": 5000,
+  "fixed_bins": 10,
+  "games": 106,
+  "minute_rows": 3836,
+  "models": {
+    "M0": {
+      "bins": [
+        {
+          "bin": 0,
+          "forecast_interval": [
+            0.0,
+            0.1
+          ],
+          "forecast_rows": 226,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 33,
+          "mean_p": 0.04439337778661151,
+          "observed_minus_predicted": 0.030827861151441593,
+          "observed_minus_predicted_ci_95_series": [
+            -0.05094337470534919,
+            0.19987199249956208
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.0,
+            0.24148299493752684
+          ],
+          "series_or_singletons": 30,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.0752212389380531
+        },
+        {
+          "bin": 1,
+          "forecast_interval": [
+            0.1,
+            0.2
+          ],
+          "forecast_rows": 112,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 44,
+          "mean_p": 0.1525929821414956,
+          "observed_minus_predicted": -0.036521553570067034,
+          "observed_minus_predicted_ci_95_series": [
+            -0.15212104691008602,
+            0.11747108668190216
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.0,
+            0.2743362831858407
+          ],
+          "series_or_singletons": 33,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.11607142857142858
+        },
+        {
+          "bin": 2,
+          "forecast_interval": [
+            0.2,
+            0.3
+          ],
+          "forecast_rows": 156,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 48,
+          "mean_p": 0.25595414059654936,
+          "observed_minus_predicted": 0.026097141454732686,
+          "observed_minus_predicted_ci_95_series": [
+            -0.12033353095172791,
+            0.18112325291145392
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.1359898305084746,
+            0.4350073529411764
+          ],
+          "series_or_singletons": 38,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.28205128205128205
+        },
+        {
+          "bin": 3,
+          "forecast_interval": [
+            0.3,
+            0.4
+          ],
+          "forecast_rows": 314,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 61,
+          "mean_p": 0.3557111165340951,
+          "observed_minus_predicted": -0.03087035220288492,
+          "observed_minus_predicted_ci_95_series": [
+            -0.1637345614804763,
+            0.10460505509262408
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.19215888031107523,
+            0.4595993491966646
+          ],
+          "series_or_singletons": 43,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.3248407643312102
+        },
+        {
+          "bin": 4,
+          "forecast_interval": [
+            0.4,
+            0.5
+          ],
+          "forecast_rows": 760,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 88,
+          "mean_p": 0.4600547379476032,
+          "observed_minus_predicted": -0.05084421163181374,
+          "observed_minus_predicted_ci_95_series": [
+            -0.17175800663072782,
+            0.0800382949260741
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.2887628887981024,
+            0.5406628307488326
+          ],
+          "series_or_singletons": 49,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.40921052631578947
+        },
+        {
+          "bin": 5,
+          "forecast_interval": [
+            0.5,
+            0.6
+          ],
+          "forecast_rows": 973,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 104,
+          "mean_p": 0.536559027837157,
+          "observed_minus_predicted": 0.13867221573941024,
+          "observed_minus_predicted_ci_95_series": [
+            0.02282878467138096,
+            0.2508257088842003
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.558822013341419,
+            0.7882987117183201
+          ],
+          "series_or_singletons": 53,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.6752312435765673
+        },
+        {
+          "bin": 6,
+          "forecast_interval": [
+            0.6,
+            0.7
+          ],
+          "forecast_rows": 379,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 79,
+          "mean_p": 0.6470341867997167,
+          "observed_minus_predicted": 0.1234143620129482,
+          "observed_minus_predicted_ci_95_series": [
+            -0.0033279455414978545,
+            0.23163867595255946
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.6437902260140698,
+            0.8798005115089513
+          ],
+          "series_or_singletons": 47,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.7704485488126649
+        },
+        {
+          "bin": 7,
+          "forecast_interval": [
+            0.7,
+            0.8
+          ],
+          "forecast_rows": 305,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 68,
+          "mean_p": 0.7503968834909964,
+          "observed_minus_predicted": 0.1807506574926101,
+          "observed_minus_predicted_ci_95_series": [
+            0.11237779328612425,
+            0.23083674556377987
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.8634291676327382,
+            0.9806456068436998
+          ],
+          "series_or_singletons": 46,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.9311475409836065
+        },
+        {
+          "bin": 8,
+          "forecast_interval": [
+            0.8,
+            0.9
+          ],
+          "forecast_rows": 252,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 59,
+          "mean_p": 0.8481902153055413,
+          "observed_minus_predicted": 0.11212724501191906,
+          "observed_minus_predicted_ci_95_series": [
+            0.04910940924980371,
+            0.1521352221904914
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.8976715825297787,
+            1.0
+          ],
+          "series_or_singletons": 39,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.9603174603174603
+        },
+        {
+          "bin": 9,
+          "forecast_interval": [
+            0.9,
+            1.0
+          ],
+          "forecast_rows": 359,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 56,
+          "mean_p": 0.9534665284680295,
+          "observed_minus_predicted": 0.040962440891301966,
+          "observed_minus_predicted_ci_95_series": [
+            0.026441440777391922,
+            0.04989382867576629
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.9798657718120806,
+            1.0
+          ],
+          "series_or_singletons": 39,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.9944289693593314
+        }
+      ],
+      "ece_10bin_descriptive": 0.0894828461403745
+    },
+    "M1": {
+      "bins": [
+        {
+          "bin": 0,
+          "forecast_interval": [
+            0.0,
+            0.1
+          ],
+          "forecast_rows": 219,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 31,
+          "mean_p": 0.0543638563877231,
+          "observed_minus_predicted": 0.014129294297208404,
+          "observed_minus_predicted_ci_95_series": [
+            -0.0568819597947252,
+            0.158809327284831
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.0,
+            0.21344130846508558
+          ],
+          "series_or_singletons": 28,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.0684931506849315
+        },
+        {
+          "bin": 1,
+          "forecast_interval": [
+            0.1,
+            0.2
+          ],
+          "forecast_rows": 146,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 43,
+          "mean_p": 0.1525904074436193,
+          "observed_minus_predicted": 0.025491784337202616,
+          "observed_minus_predicted_ci_95_series": [
+            -0.11433807827548899,
+            0.1848232682706464
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.0384433962264151,
+            0.3391384124451534
+          ],
+          "series_or_singletons": 31,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.1780821917808219
+        },
+        {
+          "bin": 2,
+          "forecast_interval": [
+            0.2,
+            0.3
+          ],
+          "forecast_rows": 239,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 53,
+          "mean_p": 0.25413645995837014,
+          "observed_minus_predicted": 0.02619826807510267,
+          "observed_minus_predicted_ci_95_series": [
+            -0.11786901634347179,
+            0.17942913857704576
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.1361161782473763,
+            0.4343074909680749
+          ],
+          "series_or_singletons": 37,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.2803347280334728
+        },
+        {
+          "bin": 3,
+          "forecast_interval": [
+            0.3,
+            0.4
+          ],
+          "forecast_rows": 347,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 65,
+          "mean_p": 0.3532124194491007,
+          "observed_minus_predicted": -0.004509249420282246,
+          "observed_minus_predicted_ci_95_series": [
+            -0.13058662503420415,
+            0.13072422687950222
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.22329695899863597,
+            0.4831910813656187
+          ],
+          "series_or_singletons": 44,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.34870317002881845
+        },
+        {
+          "bin": 4,
+          "forecast_interval": [
+            0.4,
+            0.5
+          ],
+          "forecast_rows": 625,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 88,
+          "mean_p": 0.45442983675274784,
+          "observed_minus_predicted": -0.03842983675274786,
+          "observed_minus_predicted_ci_95_series": [
+            -0.15980275221862694,
+            0.09723678307495005
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.2945570401259521,
+            0.5519939534831735
+          ],
+          "series_or_singletons": 49,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.416
+        },
+        {
+          "bin": 5,
+          "forecast_interval": [
+            0.5,
+            0.6
+          ],
+          "forecast_rows": 787,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 103,
+          "mean_p": 0.5401226398288406,
+          "observed_minus_predicted": 0.11299044784587353,
+          "observed_minus_predicted_ci_95_series": [
+            -0.009020441417500765,
+            0.2297101327453976
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.5303178066646937,
+            0.7709561833091582
+          ],
+          "series_or_singletons": 53,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.6531130876747141
+        },
+        {
+          "bin": 6,
+          "forecast_interval": [
+            0.6,
+            0.7
+          ],
+          "forecast_rows": 439,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 82,
+          "mean_p": 0.6448181311693174,
+          "observed_minus_predicted": 0.12283562737282383,
+          "observed_minus_predicted_ci_95_series": [
+            -0.008747326315639316,
+            0.23444008537015926
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.6363580108010801,
+            0.8796590312561516
+          ],
+          "series_or_singletons": 48,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.7676537585421412
+        },
+        {
+          "bin": 7,
+          "forecast_interval": [
+            0.7,
+            0.8
+          ],
+          "forecast_rows": 363,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 72,
+          "mean_p": 0.7475895302216397,
+          "observed_minus_predicted": 0.13395316950287828,
+          "observed_minus_predicted_ci_95_series": [
+            0.04856216674648727,
+            0.19746652725218383
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.7943819565115295,
+            0.9457547169811321
+          ],
+          "series_or_singletons": 47,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.8815426997245179
+        },
+        {
+          "bin": 8,
+          "forecast_interval": [
+            0.8,
+            0.9
+          ],
+          "forecast_rows": 349,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 60,
+          "mean_p": 0.8488844145687973,
+          "observed_minus_predicted": 0.1167316312764749,
+          "observed_minus_predicted_ci_95_series": [
+            0.060906782216353976,
+            0.15094596342519345
+          ],
+          "observed_win_fraction_ci_95_series": [
+            0.9101431029089772,
+            1.0
+          ],
+          "series_or_singletons": 41,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 0.9656160458452722
+        },
+        {
+          "bin": 9,
+          "forecast_interval": [
+            0.9,
+            1.0
+          ],
+          "forecast_rows": 322,
+          "fraction_bootstrap_draws_with_nonempty_bin": 1.0,
+          "games": 47,
+          "mean_p": 0.9475202320542621,
+          "observed_minus_predicted": 0.05247976794573794,
+          "observed_minus_predicted_ci_95_series": [
+            0.04693133561673666,
+            0.058530947431771674
+          ],
+          "observed_win_fraction_ci_95_series": [
+            1.0,
+            1.0
+          ],
+          "series_or_singletons": 36,
+          "thin_support_below_10_original_groups": false,
+          "win_fraction": 1.0
+        }
+      ],
+      "ece_10bin_descriptive": 0.07501877151942372
+    }
+  },
+  "original_test_prediction_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "original_test_series_map_sha256": "472db6781f6e6ad210120a07c4fb291583b75557841bbf2fa9448bafe6662383",
+  "seed": 20261116,
+  "series_or_singletons": 54,
+  "status": "FIXED_BIN_GROUPED_RELIABILITY_POSTHOC_NO_FIT",
+  "test_is_already_opened": true
+}

@@ -1,0 +1,41 @@
+{
+  "any_difference": false,
+  "checks_by_partition": {
+    "test": 3836,
+    "train": 10675,
+    "validation": 3781
+  },
+  "eligible_minutes_with_shorter_than_five_minute_velocity_window": 2500,
+  "feature_names": [
+    "barracks_delta",
+    "gold_k",
+    "gold_velocity5_k",
+    "gold_x_time",
+    "kill_delta",
+    "minute10",
+    "roshan_delta",
+    "tower_delta",
+    "xp_k",
+    "xp_velocity5_k"
+  ],
+  "future_deleted_fields": [
+    "post_cutoff_team_gold",
+    "post_cutoff_team_xp",
+    "post_cutoff_objectives",
+    "post_cutoff_kills",
+    "final_winner",
+    "final_duration"
+  ],
+  "match_count": 500,
+  "note": "Author-controlled post-result test of fixed source; no new blind or live event-time proof",
+  "notebook_sha256": "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca",
+  "original_minute_forecasts_checked": 18292,
+  "original_player_minute_clocks_validated_for_all_matches": true,
+  "original_raw_json_in_reviewer_zip": false,
+  "received_at_time_verified": false,
+  "scored_original_test_labels": false,
+  "source_500_canonical_hash": "7328f1f8df8f3925765e390f997168a084aa6bded1c1bb031da81e8e8092281b",
+  "split_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "status": "AUTHOR_CONTROLLED_ORIGINAL_500_FULL_MINUTE_PIT_AUDIT",
+  "trained_or_selected_any_model": false
+}
