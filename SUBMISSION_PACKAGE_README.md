@@ -1,48 +1,38 @@
-# Submission package | Live Dota 2 win probabilities
+# Reviewer guide | Vexil Dota 2 win-probability take-home
 
 Candidate: Truong Quang Sang
-Project: Vexil Capital Senior Data Scientist take-home
-Deadline: Thursday, 19 November 2026 (exact submission cutoff time not confirmed)
 
-## Contents and reproducibility
+**Start here (3 minutes):** read [REPORT.pdf](REPORT.pdf), then open the [executed notebook](live_dota2_win_probability.ipynb), inspect its four saved figures and the [3,836 frozen TEST forecasts](artifacts/heldout_predictions.csv). The four-page report includes model reasoning, negative results, approximate **10 active work hours** and the AI/public-code assistance disclosure.
 
-1. REPORT.pdf is the separate three-page technical report, including decisions,
-   ablations, uncertainty, limitations, approximately 10 active work hours,
-   and the assistance disclosure.
-2. live_dota2_win_probability.ipynb is one executable notebook with 14 executed
-   code cells and four embedded figures.
-3. On Colab, select a CPU runtime with Internet and Run all. The notebook uses
-   only the permitted OpenDota /proMatches and /matches/{match_id} endpoints,
-   fetching a frozen 500-game manifest. On a local machine, install exact pins
-   from requirements.txt, then run the notebook.
-4. artifacts/heldout_predictions.csv exports all 3,836 held-out forecasts.
-   It is a review artifact only; the notebook never loads it.
-5. Four test modules under tests/ run 54 offline unit/contract checks
-   (no credentials, OpenDota calls or predownloaded match data).
-6. docs/EXPERIMENT_REGISTER.md lists nine historical research PRs (#3-#11),
-   including the 28-model exploratory search with every negative result.
-   This is an index to separate research branches, not a second report,
-   and the standalone notebook does not run all those experiments.
-7. Three real-data figures used in the report, including the phase error-audit chart, are included under docs/figures.
-   The latest notebook has saved outputs and a 10-hour active-work estimate.
-   Historical Kaggle QA covered the inclusive-terminal predecessor. A fresh Google Colab CPU Run all on 15 November fetched all 500 frozen games (514 API calls, zero cache hits), completed 14/14 cells and reproduced rounded held-out scores. The scientific code SHA matches main. The hosted notebook predates later markdown-only edits and the cloud-export CSV was not recovered for bytewise SHA comparison; see docs/COLAB_COLD_RUN_RECEIPT.json.
+The notebook implements the required gold-lead logistic baseline M0 and the validation-selected gold × time challenger M1 on 500 professional OpenDota matches. Chronological, series-grouped TRAIN/VALIDATION/TEST partitions have 291/103/106 games. M1 has TEST log loss 0.5040 versus M0 0.5164; both primary whole-match confidence intervals for the difference cross zero. The original TEST minute-30+ Brier point difference is **0.00455** worse for M1, with a paired interval **[−0.0037,+0.0109]**. Keep M0 as reference and M1 shadow-only.
 
-8. docs/ERROR_ANALYSIS.md, its frozen audit receipt, and the series-cluster sensitivity receipt expose the model's
-   late-game calibration/Brier reversal and 55-row influential game.
-   research/error_diagnostics.py reproduces those results without model
-   fitting, and research/render_error_figure.py draws its optional chart.
+## How to rerun
 
-PACKAGE_MANIFEST.json contains SHA-256 checksums for every entry. The package
-contains no keys, private study notes, interview profile, or employer email.
+On Google Colab: upload the notebook, select CPU runtime with Internet, and Run all. It fetches a frozen set of 500 game IDs using the public /proMatches and /matches/{match_id} endpoints; no API credentials are required. OpenDota may rate-limit requests.
 
-## Outcome
+On **Python 3.12 (verified)** locally:
 
-Gold-only logistic baseline M0 was compared with validation-selected M1
-(gold, elapsed minute, and their interaction). On 106 held-out games,
-minute-weighted log loss changed 0.5164 to 0.5040 and Brier changed
-0.1719 to 0.1684. Both paired whole-match 95% intervals for differences
-include zero. M1's Brier at minute 30+ is worse. These historical
-OpenDota forecasts neither prove true live-feed availability nor yield
-a measured trading or betting profit.
+~~~bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+jupyter notebook live_dota2_win_probability.ipynb
+~~~
 
-**Reviewer handoff:** This is the original development repository, not a single-commit snapshot. Its main branch contains the final notebook, report and forecasts. [HISTORY.md](HISTORY.md) links to archived research PRs #3-#10 (closed without merge), merged final PR #11, and unchanged historical branches. Historical experiments are not part of notebook Run All. Candidate-only interview/study files are not included.
+The notebook has 14 executed code cells; 13 have saved outputs, while the frozen-cohort definitions cell has no output by design. The local and fresh Colab reproduction receipts are [here](docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json) and [here](docs/COLAB_COLD_RUN_RECEIPT.json). The author-controlled local replay used 500 cached raw match records **not bundled in the ZIP** and reproduced the full TEST forecast CSV byte-for-byte. A new reviewer can rerun the notebook only with live OpenDota access. Colab reproduced rounded numbers and model-code hash; cloud CSV byte parity was not verified.
+
+For **offline** score/contract verification from the ZIP (not a fresh notebook Run all), without API keys or private research access:
+
+~~~bash
+python -m unittest discover -s tests -p "test_*.py" -q
+~~~
+
+Eleven test modules contain **111 offline unit/contract checks**. The ZIP manifest lists SHA-256 checksums for every file.
+
+## What is supplementary
+
+The report's original 500-game TEST is the core assessment. The [error audit](docs/ERROR_ANALYSIS.md), [VALIDATION/TEST calibration audit](docs/CALIBRATION_BIAS_READOUT.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) document uncertainty, failure analysis and rejected hypotheses without refitting on TEST. The validation forecast CSV, reconstruction receipt and offline verification script are included; recreating source JSON requires OpenDota or the author's external cache.
+
+The separate [November 100-game study](docs/FORWARD_100_STRESS.md) is **not** a blind second test: 68 games had been evaluated in a prior 120-game study and two leagues account for 85/100 games. Its probability CSV, per-match metadata, frozen candidate listing and independent source checks are included for audit, not pooled with the original TEST. Raw OpenDota match JSON is not included.
+
+**Research history, without invented commit dates:** The included [decision trail](docs/RESEARCH_DECISION_TRAIL.md), [HISTORY.md](HISTORY.md) and [curation provenance](docs/CURATION_PROVENANCE.md) map the original research branches and decisions. This GitHub repository preserves the original source main commit ancestry and selected historical branch heads. The ZIP independently contains the report, notebook, forecast files and scoring receipts; original GitHub PR discussion comments remain in the separately private source repository. No recruiter access has been granted.

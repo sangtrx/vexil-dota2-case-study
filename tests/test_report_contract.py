@@ -32,16 +32,105 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("[-0.0304, +0.0014]",readme)
         self.assertNotIn("[-0.0303, +0.0014]",readme)
         for token in ("28-way adjusted","[−0.0169,+0.0064]","pre-correction",
-                      "reused validation","at least 38","none of the 28"):
+                      "reused validation","at least 38","0/28"):
             self.assertIn(token.lower(),report.lower())
         self.assertIn("[-0.016929,+0.006434]",register)
-        self.assertIn("Claude Sonnet/Fable provided AI reviews",report)
+        self.assertIn("Claude Sonnet and Fable AI conducted read-only critiques",report)
         self.assertIn("AI reviews are not independent human peer review",report)
         self.assertIn("10 hours of active work",report)
         self.assertIn("No third-party Dota predictor was copied",report)
+        self.assertIn("**Public code:** Standard open-source NumPy, pandas, scikit-learn, Matplotlib and Requests",report)
         self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
-        self.assertIn("vexil-dota2-win-probability/blob/main/",report)
+        self.assertIn("docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",report)
+        self.assertNotIn("https://github.com/",report)
         self.assertIn("Original commits and PRs",readme)
+
+    def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
+        self.assertIn("111 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("111 offline unit/contract checks",
+                      (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
+
+    def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
+        readme=(ROOT/"README.md").read_text()
+        package=(ROOT/"SUBMISSION_PACKAGE_README.md").read_text()
+        self.assertIn("Local Python 3.12 (verified with exact pins)",readme)
+        self.assertIn("python3.12 -m venv .venv",readme)
+        self.assertIn("Python 3.12 (verified)",package)
+        self.assertNotIn("Local Python 3.11+",readme)
+
+    def test_fresh_kernel_full_replay_has_exact_forecasts_and_report_figures(self):
+        import hashlib
+        import json
+        receipt=json.loads((ROOT/"docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json").read_text())
+        self.assertEqual(receipt["executed_code_cells"],14)
+        self.assertEqual(receipt["cell_execution_errors"],0)
+        self.assertTrue(receipt["zero_http_calls"])
+        self.assertEqual(receipt["cache_hits"],500)
+        self.assertTrue(receipt["jupyter_kernel_is_controller_python"])
+        self.assertEqual(receipt["split_minute_rows"],
+                         {"train":10675,"validation":3781,"test":3836})
+        self.assertEqual(len(receipt["validation_model_scores"]),4)
+        self.assertAlmostEqual(receipt["validation_model_scores"]["M1_time_value"]["logloss"],
+                               0.519713962581423,places=11)
+        self.assertAlmostEqual(receipt["heldout_scores"]["logloss"]["M1"],
+                               0.504014697253528,places=11)
+        self.assertTrue(receipt["local_fresh_kernel_test_csv_byte_parity_verified"])
+        self.assertTrue(receipt["report_figures_byte_equal_to_notebook_outputs"])
+        self.assertFalse(receipt["cloud_csv_byte_parity_claimed"])
+        self.assertEqual(
+            receipt["original_test_predictions_sha256"],
+            hashlib.sha256((ROOT/"artifacts/heldout_predictions.csv").read_bytes()).hexdigest())
+        for generated,asset in (
+            ("calibration.png","docs/figures/heldout_reliability.png"),
+            ("time_value_scenarios.png","docs/figures/time_value_scenarios.png"),
+            ("heldout_game_trajectory.png","docs/figures/heldout_game_trajectory.png")
+        ):
+            self.assertEqual(receipt["outputs_sha256"][generated],
+                hashlib.sha256((ROOT/asset).read_bytes()).hexdigest())
+
+    def test_research_question_does_not_conflate_gold_slope_and_information(self):
+        report=(ROOT/"REPORT.md").read_text()
+        readme=(ROOT/"README.md").read_text()
+        self.assertIn("Does the same gold lead map to the same win probability",report)
+        self.assertIn("not** a claim that gold becomes less discriminative",report)
+        self.assertNotIn("same gold lead equally informative",report)
+        self.assertIn("fixed-gold forecast contrast is not the same as",readme)
+
+    def test_historical_200_game_study_is_preserved_without_crowding_report(self):
+        report = (ROOT / "REPORT.md").read_text()
+        readme = (ROOT / "README.md").read_text()
+        register = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text()
+        handoff = (ROOT / "SUBMISSION_PACKAGE_README.md").read_text()
+        for fragment in ("200-match cohort", "0.545075", "0.533704",
+                         "0.539850", "0.18647", "secondary and descriptive"):
+            self.assertIn(fragment.lower(), register.lower())
+        for doc in (report, readme, handoff):
+            self.assertIn("0.00455", doc)
+            self.assertIn("−0.0037,+0.0109", doc)
+        for phrase in ("100 eligible parsed professional games",
+                       "11–15 November 2026", "56 series/singleton clusters",
+                       "85/100 games", "not an unseen patch", "both include zero"):
+            self.assertIn(phrase.lower(), report.lower())
+        self.assertIn("pre-correction", register.lower())
+        self.assertIn("3,837 minute rows", register)
+        self.assertNotIn("This original repository", register)
+
+    def test_historical_200_cohort_and_private_source_are_explicit(self):
+        report = (ROOT / "REPORT.md").read_text()
+        readme = (ROOT / "README.md").read_text()
+        register = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text()
+        self.assertIn("strict pre-terminal", report)
+        self.assertIn("before the later strict pre-terminal notebook correction", register)
+        self.assertIn("pre-correction", register)
+        self.assertIn("no preregistered direct paired confidence interval", register)
+        self.assertIn("original private research history", report)
+        self.assertIn("access available on request", report)
+        self.assertIn("not yet granted", report)
+        self.assertIn("Original GitHub PR discussions remain in a separately private repo", readme)
+        self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
+        self.assertIn("docs/CURATION_PROVENANCE.md",readme)
+        self.assertIn("No original commit was rewritten or backdated",(ROOT/"HISTORY.md").read_text())
+        self.assertNotIn("late-game failures", report)
 
     def test_colab_run_receipt_is_scoped_honestly(self):
         import hashlib
@@ -59,6 +148,68 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(receipt["test_minute_rows"],3836)
         self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
         self.assertFalse(receipt["raw_notebook_sha_parity"])
+
+    def test_notebook_claim_matches_completed_cloud_receipt(self):
+        import json
+        nb = json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
+        opening = "".join(nb["cells"][0]["source"])
+        closing = "".join(nb["cells"][25]["source"])
+        receipt = json.loads((ROOT / "docs/COLAB_COLD_RUN_RECEIPT.json").read_text())
+        self.assertIn("fresh Google Colab CPU Run all", opening)
+        self.assertIn("Cloud-export CSV byte equality was not verified", opening)
+        self.assertNotIn("not independently cold-run on cloud", opening)
+        self.assertIn("paired interval includes zero", closing)
+        self.assertEqual(receipt["code_cells_executed"], 14)
+        self.assertEqual(receipt["execution_errors"], 0)
+        self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
+
+    def test_pdf_cannot_mislead_on_private_links_or_posthoc_signs(self):
+        report=(ROOT/"REPORT.md").read_text()
+        self.assertNotIn("https://github.com/",report)
+        self.assertNotIn("95.1% positive bootstrap draws",report)
+        self.assertNotIn("point-score advantage recurs",report)
+        self.assertIn("about 0.00455 worse",report)
+        self.assertIn("neither paired confidence interval establishes superiority",report)
+        for file_path in ("docs/EXPERIMENT_REGISTER.md",
+                          "docs/FULL_NOTEBOOK_REPLAY_RECEIPT.json",
+                          "docs/COLAB_COLD_RUN_RECEIPT.json",
+                          "docs/ERROR_ANALYSIS.md"):
+            self.assertIn(file_path,report)
+            self.assertTrue((ROOT/file_path).is_file())
+
+    @unittest.skipUnless(shutil.which("pdftotext"),"poppler pdftotext not installed")
+    def test_pdf_contains_current_md_scientific_and_disclosure_text(self):
+        # Catch a stale PDF left after Markdown edits. This checks semantic
+        # contract anchors, not full typographic render parity.
+        source=(ROOT/"REPORT.md").read_text()
+        pdf=" ".join(subprocess.check_output(
+            ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
+        pdf=pdf.replace("cloud- export","cloud-export")
+        for snippet in (
+            "16 November 2026",
+            "access available on request",
+            "63/106 game winners",
+            "0.5174",
+            "53-series",
+            "−0.0436,+0.1001",
+            "0.5429",
+            "−0.1410,+0.0250",
+            "cloud-export CSV byte parity was not verified",
+            "No third-party Dota predictor was copied"):
+            self.assertIn(snippet,source)
+            self.assertIn(snippet,pdf)
+
+    def test_later_report_discloses_phase_and_calibration_negative_results(self):
+        report=(ROOT/"REPORT.md").read_text()
+        supplement=(ROOT/"docs/FORWARD_100_STRESS.md").read_text()
+        self.assertIn("early 0–9-minute",supplement)
+        self.assertIn("The original TEST 30+ Brier point estimate",supplement)
+        self.assertIn("Neither is a confirmed",supplement)
+        self.assertIn("42-game league",report)
+        self.assertIn("Sixty-eight of these games",report)
+        self.assertIn("not independent replications",report)
+        self.assertIn("not an unseen patch",report)
+        self.assertIn("both include zero",report)
 
     def test_reviewer_text_matches_scientific_boundaries(self):
         import json
@@ -81,11 +232,42 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("106", report)
         self.assertIn("3,836", pkg)
 
+    def test_notebook_all_executed_and_only_definitions_cell_has_no_output(self):
+        import json
+        nb=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
+        cells=nb["cells"]
+        code=[(i,c) for i,c in enumerate(cells) if c["cell_type"]=="code"]
+        self.assertEqual(len(code),14)
+        self.assertTrue(all(c.get("execution_count") is not None for i,c in code))
+        self.assertEqual([i for i,c in code if not c.get("outputs")],[4])
+        self.assertEqual(sum(bool(c.get("outputs")) for i,c in code),13)
+        self.assertIn("13 have saved outputs",(ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
+
+    def test_trajectory_figure_matches_saved_notebook_output_byte_for_byte(self):
+        import base64
+        import json
+        import hashlib
+        nb = json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
+        cell = nb["cells"][20]
+        self.assertIn('show_embedded_figure(fig, "heldout_game_trajectory.png")',
+                      "".join(cell["source"]))
+        figures = [output["data"]["image/png"] for output in cell["outputs"]
+                   if "image/png" in output.get("data", {})]
+        self.assertGreaterEqual(len(figures), 2)
+        encoded = figures[-1]
+        original = base64.b64decode("".join(encoded) if isinstance(encoded, list)
+                                    else encoded)
+        exported = (ROOT / "docs/figures/heldout_game_trajectory.png").read_bytes()
+        self.assertEqual(hashlib.sha256(original).digest(),
+                         hashlib.sha256(exported).digest())
+        self.assertEqual(original, exported)
+
     def test_report_figures_and_rendered_pdf_are_present(self):
         markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
         for relative in (
             "docs/figures/heldout_reliability.png",
             "docs/figures/time_value_scenarios.png",
+            "docs/figures/heldout_game_trajectory.png",
             "docs/figures/phase_error_audit.png",
         ):
             self.assertIn("](" + relative + ")", markdown)
@@ -98,7 +280,12 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("**Result:**", markdown)
         self.assertIn("**Assistance disclosure:**", markdown)
         self.assertIn("**Time spent:**", markdown)
-        self.assertIn("not** an independent held-out test", markdown)
+        self.assertIn("**0/28**", markdown)
+        self.assertIn("No new model was promoted", markdown)
+        self.assertIn("**2/5**",(ROOT/"README.md").read_text())
+        readme=(ROOT/"README.md").read_text()
+        self.assertIn("5 TRAIN games may finish after first VAL start",readme)
+        self.assertNotIn("Leakage-safe split and probability evaluation",readme)
         self.assertTrue((ROOT/"REPORT.pdf").read_bytes().startswith(b"%PDF-"))
         if shutil.which("pdfinfo"):
             info = subprocess.check_output(["pdfinfo", str(ROOT/"REPORT.pdf")],text=True)
@@ -109,11 +296,11 @@ class ReportDeliveryContractTest(unittest.TestCase):
         if shutil.which("pdfinfo"):
             annotations=subprocess.check_output(["pdfinfo","-url",str(ROOT/"REPORT.pdf")],text=True)
             self.assertNotIn("file:///",annotations)
-            self.assertIn("https://github.com/",annotations)
+            self.assertNotIn("github.com/sangtrx/",annotations)
         if shutil.which("pdfimages"):
             listings = subprocess.check_output(["pdfimages","-list",str(ROOT/"REPORT.pdf")],text=True)
             actual_lines = [x for x in listings.splitlines() if x.lstrip()[:1].isdigit()]
-            self.assertGreaterEqual(len(actual_lines),3)
+            self.assertGreaterEqual(len(actual_lines),4)
 
 
 if __name__ == "__main__":
