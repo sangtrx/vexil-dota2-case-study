@@ -30,6 +30,11 @@ class ErrorDiagnosticsContractTest(unittest.TestCase):
         self.assertEqual(self.audit["overall"]["matches"],106)
         self.assertEqual(self.audit["minute_zero"]["minute_rows"],106)
 
+    def test_rendered_chart_avoids_claiming_a_confirmed_phase_reversal(self):
+        source=(ROOT/"research/render_error_figure.py").read_text()
+        self.assertIn("Brier difference by phase (descriptive)",source)
+        self.assertNotIn("Brier gain reverses at minute 30+",source)
+
     def test_posthoc_late_phase_worsens_brier_and_calibration(self):
         phase=self.audit["by_phase"]
         self.assertEqual([phase[k]["minute_rows"] for k in error.PHASES],

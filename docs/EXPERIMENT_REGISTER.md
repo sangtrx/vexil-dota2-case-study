@@ -4,9 +4,9 @@
 
 **Repository experiment log, not a second applicant report.** The required deliverables are the executable 500-game notebook and the separately bounded PDF report (at most four pages). Research PRs contain experiments and integrity tests that are *not all executed by the submitted notebook*. Read these summaries as attempts and negative findings, not nine independent model improvements.
 
-**Research lineage:** This original repository contains the full executable M0-M3 notebook and preserved forecast evidence on main. Historical experiment scripts and PR discussions remain on their original research branches. See [HISTORY.md](../HISTORY.md). The recorded 28-candidate scores predate the corrected strict pre-terminal cutoff and were not rerun as new blind validation.
+**Research lineage:** This curated repository contains the executable M0-M3 notebook and frozen forecast evidence. The historical development branches, timestamps and PR discussions remain in the [separate original research repository](https://github.com/sangtrx/vexil-dota2-win-probability), indexed in [HISTORY.md](../HISTORY.md). All 28 historical candidate scores predate the strict pre-terminal correction and were not rerun as new blind validation.
 
-**Original study:** 500 professional OpenDota matches, 291 train / 103 validation / 106 held-out; selected M1 gold × game time over the required gold-only M0 on validation. Held-out log loss M0 **0.5163**, M1 **0.5039**, 95% paired M1-minus-M0 CI **[-0.0303,+0.0014]** (includes zero). Held-out Brier M0 0.1719, M1 0.1683, interval includes zero; M1 Brier is worse at minute 30+.
+**Historical pre-correction study:** 500 professional OpenDota matches, 291 train / 103 validation / 106 held-out; selected M1 gold × game time over the required gold-only M0 on validation. Held-out log loss M0 **0.5163**, M1 **0.5039**, 95% paired M1-minus-M0 CI **[-0.0303,+0.0014]** (includes zero). Held-out Brier M0 0.1719, M1 0.1683, interval includes zero; late-game M1 Brier is worse only as an **unconfirmed point estimate**. These historical scores predate the 12-row end-boundary correction.
 
 **Rules of interpretation:** Follow-up S1-S4, M4, P01-P28 and P20 item-model results were screened on **103 previously inspected validation matches**. Registering their hypotheses before *their own* finite screen does not undo earlier adaptive use of those labels. A later 200-match cohort was used for one locked stage-gate test, not to reselect 28 candidates. All scores in the 28-way table are *development outcomes*. No trading PnL, verified live packet-arrival timestamps or two-layer neural model is claimed.
 
@@ -22,11 +22,11 @@
 | [#8](https://github.com/sangtrx/vexil-dota2-win-probability/pull/8) | Timestamped item-purchase ablation integrated into main notebook as development-only | P20 point estimate improved; not promoted |
 | [#9](https://github.com/sangtrx/vexil-dota2-win-probability/pull/9) | Adversarial clock/label/fault tests, five TRAIN-only rolling folds, CPU latency and domain-support limits | Input contracts strengthened; prediction unchanged |
 | [#10](https://github.com/sangtrx/vexil-dota2-win-probability/pull/10) | Frozen source/prediction, clock audit, Colab/Kaggle parity, reproducible package | Release integrity, not a new predictor |
-| [#11](https://github.com/sangtrx/vexil-dota2-win-probability/pull/11) | Clean recruiter-facing notebook, report, artifacts, portable QA, version pins | Actual submission candidate; not employer-submitted |
+| [#11](https://github.com/sangtrx/vexil-dota2-win-probability/pull/11) | Clean recruiter-facing notebook, report, artifacts, portable QA, version pins | Saved-output assessment notebook and report; no model promotion |
 
 ## Mechanisms with exact negative and positive *point* estimates
 
-All rows below use the **same reused development validation**, reference M1 log loss **0.519346**, lower is better. These historical summaries are retained for audit; the original exploratory branch scripts are available in the research PRs listed above.
+All rows below use the **same reused development validation**, reference M1 log loss **0.519346**, lower is better. These historical summaries are retained for audit; the original exploratory scripts are preserved in the private research repository (access not yet granted); these secondary scripts are not required to verify the bundled main notebook.
 
 | Mechanism | Val. LL | Delta vs M1 | Why no promotion |
 |---|---:|---:|---|
@@ -40,7 +40,7 @@ All rows below use the **same reused development validation**, reference M1 log 
 | P15: recent lethal fights | 0.517020 | -0.002326 | Insufficient practical gain/uncertainty after multiplicity |
 | P22: raw hero-draft encoding | 1.581239 | +1.061894 | This 160-indicator, effectively underregularized model failed; not evidence all hero drafts are useless |
 
-**Real matched-game example:** At minute 25, patch-59 TRAIN matches 8739246794 and 8739992397 have Radiant gold leads +1,901 and +1,929 (only **28** apart), and XP leads +6,964 and +6,862 (**102** apart). One has an Aegis pickup at 24:39; the other has no recent Aegis and a gold-versus-structural-control mismatch. Both Radiant teams ultimately won. The contrast demonstrates missing state representation, **not incremental predictive lift or causality**. Exact case construction and event timestamps.
+**Real matched-game example:** At minute 25, patch-59 TRAIN matches 8739246794 and 8739992397 have Radiant gold leads +1,901 and +1,929 (only **28** apart), and XP leads +6,964 and +6,862 (**102** apart). One has an Aegis pickup at 24:39; the other has no recent Aegis and a gold-versus-structural-control mismatch. Both Radiant teams ultimately won. The contrast demonstrates missing state representation, **not incremental predictive lift or causality**. At minute 25 the final, frozen TRAIN-only M1 produces **0.603123** and **0.604641** Radiant-win probabilities, despite the different structure/Roshan states (tower deltas **0 vs −1**; Roshan kill deltas **+2 vs −1**). The Aegis event is source timestamp **1,479 seconds = 24:39**. The bundled TRAIN-only feature table and the matched-state regression test verify the game IDs, gold leads, outcome labels and fitted probabilities without looking at TEST; the original source JSON (kept in a private local cache) supports the Aegis/objective event details. Both Radiant teams won, so this is *not* a measured M4 advantage.
 
 ## Full 28-hypothesis screen: every candidate and negative result
 
@@ -75,29 +75,29 @@ The cards linked in each row were registered before this finite experiment. All 
 | P14 | Recent tower conversion (objectives) | 0.528961 | 0.180257 | 0.009616 | 0.027557 | 1/3 | NO |
 | P23 | Shallow nonlinear gold/time (shape) | 0.532511 | 0.179920 | 0.013165 | 0.031488 | 1/3 | NO |
 | P24 | Shallow calibrated macro-state tree (shape) | 0.539473 | 0.183276 | 0.020127 | 0.040017 | 2/3 | NO |
-| P22 | Strong-shrinkage hero draft encoding (draft) | 1.581239 | 0.368861 | 1.061894 | 1.637817 | 0/3 | NO |
+| P22 | High-dimensional hero draft encoding (draft) | 1.581239 | 0.368861 | 1.061894 | 1.637817 | 0/3 | NO |
 
 
-**All 28 have archived scores; zero were selected.** P20 is the best reused-validation point estimate, yet unstable across earlier time. The high-dimensional P22 hero model was severely underregularized relative to 291 independent TRAIN games, and says nothing decisive about *all* hero drafting architectures. Full outputs, Brier and five-phase scores.
+**All 28 have archived scores; zero were selected.** P20 is the best reused-validation point estimate, yet unstable across earlier time. The high-dimensional P22 hero model was severely underregularized relative to 291 independent TRAIN games, and says nothing decisive about *all* hero drafting architectures. Brier and candidate-level proper scores are reproduced in the table; phase breakdowns remain in the original research PRs.
 
 ## One locked stage gate on a separate third 200-game cohort
 
-A fixed, non-learned mixture uses M1 until minute 10, transitions toward M0 in 11-19 and uses M0 after minute 20. The third chronological 200-game cohort (30 March-2 April 2026; 6,827 minute rows, 97 series-or-singleton groups) was frozen and scored once for this gate. It is **not part of the assignment's original 500 games**.
+A fixed, non-learned mixture uses M1 until minute 10, transitions toward M0 in 11-19 and uses M0 after minute 20. The third chronological 200-game cohort (30 March-2 April 2026; 6,827 minute rows, 97 series-or-singleton groups) was frozen and scored once for this gate **before the later strict pre-terminal notebook correction**; these M0/M1/blend scores are historical, not a post-repair rerun. It is **not part of the assignment's original 500 games**.
 
 | Metric on separate 200 | M0 | M1 | Stage gate |
 |---|---:|---:|---:|
 | Log loss | 0.545075 | **0.533704** | 0.539850 |
 | Brier | 0.18647 | **0.18242** | 0.18430 |
 
-The gate-minus-M1 log-loss difference **+0.006146** has simultaneous series-cluster 95% CI **[-0.002836,+0.015127]**. It failed its preregistered improvement requirement against **both** M0 and M1; no thresholds were retuned on the consumed cohort. A favorable M1-minus-M0 direct interval calculated **after** the gate evaluation is a *secondary descriptive comparison*, not registered familywise confirmation. Source and gate receipt.
+The gate-minus-M1 log-loss difference **+0.006146** has simultaneous series-cluster 95% CI **[-0.002836,+0.015127]**. It failed its preregistered improvement requirement against **both** M0 and M1; no thresholds were retuned on the consumed cohort. The direct M1-minus-M0 comparison was calculated **after** gate evaluation, with no preregistered direct paired confidence interval; it is *secondary and descriptive*, not registered familywise confirmation. The phase blend departs from M1 only **after minute 10**; its observed aggregate loss disadvantage does not identify the 30+ effect. See the archived source and stage-gate receipts in [original research PR #4](https://github.com/sangtrx/vexil-dota2-win-probability/pull/4).
 
 ## Robustness evidence (not additional independent model accuracy)
 
 - A 900-game retrospective parse audit checked **9,000 player histories and 32,106 clock/gold indices**; 1,200 Roshan-to-Aegis event relationships and 876 first-blood summaries had internally consistent event clocks. This is parser-level consistency, **not live arrival certification**. PR #5.
-- PR #9 ran **12,063 deterministic adversarial assertions under each of two seeds** (24,126 case evaluations), testing future-poisoning, exact timestamp boundaries, malformed values, duplicated player slots, mocked network faults and bootstrap arithmetic. Two hosted private Kaggle QA kernels verified the 12,063-case stream and 10,683 original TRAIN snapshots. These are tests, not professional matches. QA report.
+- PR #9 ran **12,063 deterministic adversarial assertions under each of two seeds** (24,126 case evaluations), testing future-poisoning, exact timestamp boundaries, malformed values, duplicated player slots, mocked network faults and bootstrap arithmetic. Two hosted private Kaggle QA kernels verified the 12,063-case stream and 10,683 original TRAIN snapshots. These are tests, not professional matches; see the [original robustness review PR #9](https://github.com/sangtrx/vexil-dota2-win-probability/pull/9).
 - Five additional embargoed TRAIN-only rolling-origin folds gave M1 better minute-weighted loss than M0 in **2/5**; P20 beat M1 in **2/5**. These reuse development labels, not a prospective test.
-- PR #7 re-evaluated proper scores and dependence: a preferred candidate was worse than M1 in **10/20 dependent directional selections** and **51.47% of 3,000 series OOB selections**; six originally proposed time buckets had overlaps at four boundaries and were **not six genuinely chronological folds**. At least 38 known overlapping trials were recorded, an incomplete search-history estimate. **Four private Kaggle CPU verification notebooks** achieved matching fixed-input arithmetic but no fresh outcome labels. Selection-stability findings.
-- Warm, local single-snapshot CPU inference took p50 **1.74 ms**, p95 **2.09 ms**, excluding all actual source/network latency. M1's fitted gold coefficient reverses sign analytically at approximately minute **98.36**, well outside the TRAIN support (only one game still present at minute 85); a future system should abstain outside validated range. Operational model card.
+- PR #7 re-evaluated proper scores and dependence: a preferred candidate was worse than M1 in **10/20 dependent directional selections** and **51.47% of 3,000 series OOB selections**; six originally proposed time buckets had overlaps at four boundaries and were **not six genuinely chronological folds**. At least 38 known overlapping trials were recorded, an incomplete search-history estimate. **Four private Kaggle CPU verification notebooks** achieved matching fixed-input arithmetic but no fresh outcome labels. These are development-only selection diagnostics.
+- Warm, local single-snapshot CPU inference took p50 **1.74 ms**, p95 **2.09 ms**, excluding all actual source/network latency. M1's fitted gold coefficient reverses sign analytically at approximately minute **98.36**, well outside the TRAIN support (only one game still present at minute 85); a future system should abstain outside validated range. These are local CPU model-only timings, not end-to-end serving latency.
 
 ## Prior art and precise novelty boundary
 
@@ -105,7 +105,7 @@ The **specific feature hypotheses and their falsification exercises** are origin
 
 The evaluation emphasis follows established probabilistic forecasting practice: Waghmare and Ziegel, *Proper Scoring Rules for Estimation and Forecast Evaluation* (2026; [DOI](https://doi.org/10.1146/annurev-statistics-042424-050626)), and Gneiting and Raftery, *Strictly Proper Scoring Rules, Prediction, and Estimation* (2007; [DOI](https://doi.org/10.1198/016214506000001437)). These are **methods context**, not code reused or newly discovered theory. The limited **research contribution here** is a well-documented, point-in-time, series-aware *replication and failure analysis*: what additional economic/strategic signals did **not** reliably add under a finite sample. It is **not** a new estimator, causal game-mechanic identification, or publishable state-of-the-art claim.
 
-The original 106-game test contains a descriptive 10-equal-width-bin M1 ECE **0.0748** versus M0 **0.0897** (M1−M0 **−0.0148**). An explicitly *post-hoc* 10,000-repetition, 54-series paired cluster bootstrap gave **[−0.0205,+0.0020]**, including zero. These are bin-sensitive, correlated minute-level summaries; they are **not** a tuning target or proof of prospective calibration.
+The **pre-correction** 106-game TEST (3,837 minute rows) contained a descriptive 10-equal-width-bin M1 ECE **0.0748** versus M0 **0.0897** (M1−M0 **−0.0148**). An explicitly *post-hoc* 10,000-repetition, 54-series paired cluster bootstrap gave **[−0.0205,+0.0020]**, including zero. These are bin-sensitive, correlated minute-level summaries; they are **not** a tuning target or proof of prospective calibration.
 
 ## Final selection and reproducibility boundary
 

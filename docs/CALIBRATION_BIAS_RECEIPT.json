@@ -1,0 +1,39 @@
+{
+  "M0_mean_prediction_minus_outcome_equal_game": -0.053090635659962235,
+  "M0_mean_prediction_minus_outcome_equal_game_95ci_series": [
+    -0.13317762592709484,
+    0.03279449499908244
+  ],
+  "M0_mean_prediction_minus_outcome_minute": -0.062149527354278644,
+  "M0_mean_prediction_minus_outcome_minute_95ci_series": [
+    -0.14190616624848018,
+    0.02446446453356741
+  ],
+  "M1_mean_prediction_minus_outcome_equal_game": -0.05233050240395265,
+  "M1_mean_prediction_minus_outcome_equal_game_95ci_series": [
+    -0.13080045758986633,
+    0.0316255534671307
+  ],
+  "M1_mean_prediction_minus_outcome_minute": -0.06168021181175666,
+  "M1_mean_prediction_minus_outcome_minute_95ci_series": [
+    -0.1409684481976389,
+    0.025023520085119787
+  ],
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261116,
+  "calibration_on_inspected_test_only": true,
+  "ci_interpretation": "Descriptive series-cluster bootstrap on inspected TEST; not a paired model contrast, live feed, or deployment calibration proof.",
+  "games": 106,
+  "minute_forecasts": 3836,
+  "no_calibration_fit_or_model_selection": true,
+  "observed_win_rate_game_95ci_series": [
+    0.4897959183673469,
+    0.696078431372549
+  ],
+  "observed_win_rate_game_weighted": 0.5943396226415094,
+  "observed_win_rate_minute_weighted": 0.6045359749739312,
+  "series_or_singletons": 54,
+  "source_forecast_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "source_series_groups_sha256": "472db6781f6e6ad210120a07c4fb291583b75557841bbf2fa9448bafe6662383",
+  "study_status": "POSTHOC_DESCRIPTIVE_CALIBRATION_NO_MODEL_FIT"
+}
