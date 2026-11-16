@@ -1,0 +1,92 @@
+{
+  "cluster_bootstrap": {
+    "M1_minus_M0_brier": {
+      "equal_match_point": 0.00018833183736338213,
+      "percentile_ci_95": [
+        -0.002535535092704864,
+        0.00425134840766
+      ],
+      "point": 0.0009158351568613258
+    },
+    "M1_minus_M0_logloss": {
+      "equal_match_point": -0.0016231448121702145,
+      "percentile_ci_95": [
+        -0.011991030160632282,
+        0.010104495684335135
+      ],
+      "point": -0.00022688277979684128
+    },
+    "draws": 5000,
+    "groups": 70,
+    "seed": 20261115
+  },
+  "folds": [
+    {
+      "M0_brier": 0.22047225213734717,
+      "M0_logloss": 0.6460659144085127,
+      "M1_brier": 0.22263023390853623,
+      "M1_conditional_gold_logodds_delta_t10_minus_t30": 0.35231738212171215,
+      "M1_logloss": 0.652097365172538,
+      "embargoed_old_games": 0,
+      "eval_games": 22,
+      "eval_rows": 771,
+      "first_eval_start": 1774225451,
+      "old_nominal_games": 154,
+      "training_completed_games": 154
+    },
+    {
+      "M0_brier": 0.21429724232572975,
+      "M0_logloss": 0.6338525075290309,
+      "M1_brier": 0.21337375777373563,
+      "M1_conditional_gold_logodds_delta_t10_minus_t30": 0.3183483495760766,
+      "M1_logloss": 0.6218760309252694,
+      "embargoed_old_games": 0,
+      "eval_games": 44,
+      "eval_rows": 1649,
+      "first_eval_start": 1774257523,
+      "old_nominal_games": 176,
+      "training_completed_games": 176
+    },
+    {
+      "M0_brier": 0.20789422743916808,
+      "M0_logloss": 0.5882796600276079,
+      "M1_brier": 0.20985193991955364,
+      "M1_conditional_gold_logodds_delta_t10_minus_t30": 0.32680936367195557,
+      "M1_logloss": 0.5948597248521716,
+      "embargoed_old_games": 2,
+      "eval_games": 32,
+      "eval_rows": 1228,
+      "first_eval_start": 1774285689,
+      "old_nominal_games": 220,
+      "training_completed_games": 218
+    },
+    {
+      "M0_brier": 0.2077079964798157,
+      "M0_logloss": 0.5899599527350031,
+      "M1_brier": 0.20917925229750614,
+      "M1_conditional_gold_logodds_delta_t10_minus_t30": 0.29949658560948805,
+      "M1_logloss": 0.594053358437604,
+      "embargoed_old_games": 0,
+      "eval_games": 39,
+      "eval_rows": 1433,
+      "first_eval_start": 1774325706,
+      "old_nominal_games": 252,
+      "training_completed_games": 252
+    }
+  ],
+  "forward_eval_games": 137,
+  "forward_eval_rows": 5081,
+  "frozen_nominal_cutpoints": [
+    154,
+    176,
+    220,
+    252,
+    291
+  ],
+  "no_model_promotion": true,
+  "original_test_or_val_labels_read": false,
+  "scope": "POST_RESULT_TRAIN_ONLY_FORWARD_OOF_NOT_INDEPENDENT_TEST",
+  "source_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "training_match_count": 291
+}

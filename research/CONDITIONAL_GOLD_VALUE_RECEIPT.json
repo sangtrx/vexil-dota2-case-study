@@ -1,0 +1,48 @@
+{
+  "M0_time_invariant_gold_logodds_difference": 0.0,
+  "draws": 2000,
+  "evidence_class": "TRAIN_ONLY_POST_SELECTION_GOLD_EFFECT_NOT_HOLDOUT",
+  "groups": 171,
+  "identified_series": 149,
+  "interpretation": "Associational conditional-logit contrasts, not causal gold value",
+  "labels_loaded": "TRAIN outcomes only; frozen split manifest has no outcomes",
+  "model_selection_or_test_promotion": false,
+  "point": {
+    "fitted_gold_interaction": -0.20101150903224785,
+    "gold_logodds_t10": 0.678219734616464,
+    "gold_logodds_t30": 0.39955861312485896,
+    "gold_probability_uplift_t10": 0.16314213589308335,
+    "gold_probability_uplift_t30": 0.09875661154738158,
+    "logodds_difference_t10_minus_t30": 0.27866112149160505,
+    "p0_t10": 0.5018470535514526,
+    "p0_t30": 0.49528053662952054,
+    "p2k_t10": 0.664989189444536,
+    "p2k_t30": 0.5940371481769021,
+    "probability_uplift_difference_t10_minus_t30": 0.06438552434570177
+  },
+  "primary": {
+    "name": "logodds_difference_t10_minus_t30",
+    "percentile_ci_95": [
+      0.08937264713667922,
+      0.41026476566968484
+    ],
+    "point": 0.27866112149160505,
+    "positive_draw_share": 1.0
+  },
+  "protocol": "research/CONDITIONAL_GOLD_VALUE_PROTOCOL.md",
+  "secondary": {
+    "name": "probability_uplift_difference_t10_minus_t30",
+    "percentile_ci_95": [
+      0.021625443401943507,
+      0.0920419051364453
+    ],
+    "point": 0.06438552434570177,
+    "positive_draw_share": 1.0
+  },
+  "seed": 20261115,
+  "source_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "standalone_games": 22,
+  "train_games": 291,
+  "train_rows": 10675
+}
