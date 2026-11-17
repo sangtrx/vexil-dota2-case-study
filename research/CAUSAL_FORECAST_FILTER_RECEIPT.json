@@ -1,0 +1,384 @@
+{
+  "actual_received_at_timestamps_verified": false,
+  "exploratory_gate": {
+    "S1_fixed": {
+      "advance_to_future_independent_study_only": false,
+      "large_revisions_reduction_fraction": 0.3271641791044776,
+      "mean_abs_revision_reduction_fraction": 0.2487589590562601
+    },
+    "S2_event_reset": {
+      "advance_to_future_independent_study_only": false,
+      "large_revisions_reduction_fraction": 0.08895522388059707,
+      "mean_abs_revision_reduction_fraction": 0.056526116987078656
+    }
+  },
+  "folds": [
+    {
+      "M0_gold": {
+        "brier": 0.22047225213734717,
+        "late30_brier": 0.1964039251618451,
+        "logloss": 0.6460659144085127
+      },
+      "M1_interaction": {
+        "brier": 0.2226302339085362,
+        "late30_brier": 0.19418641667850556,
+        "logloss": 0.652097365172538
+      },
+      "Q1_path": {
+        "brier": 0.2162707406038997,
+        "late30_brier": 0.15948373330822,
+        "logloss": 0.6322596449952465
+      },
+      "S1_fixed": {
+        "brier": 0.22445312976601922,
+        "late30_brier": 0.20755864137600713,
+        "logloss": 0.6556173623420848
+      },
+      "S2_event_reset": {
+        "brier": 0.22298324539497422,
+        "late30_brier": 0.19432226800183844,
+        "logloss": 0.652698536606039
+      },
+      "embargoed_unmatured_games": 0,
+      "eval_games": 22,
+      "eval_rows": 771,
+      "fit_games": 154,
+      "fold": 1,
+      "revisions": {
+        "baselines": {
+          "M1_interaction": {
+            "large_revisions_gt5pp": 278,
+            "mean_abs_revision": 0.04903341263066425,
+            "total_variation_per_game": 1.6693648209257965
+          },
+          "S1_fixed": {
+            "large_revisions_gt5pp": 189,
+            "mean_abs_revision": 0.0365470899920082,
+            "total_variation_per_game": 1.244262291091552
+          },
+          "S2_event_reset": {
+            "large_revisions_gt5pp": 250,
+            "mean_abs_revision": 0.04620291848760915,
+            "total_variation_per_game": 1.5729993612372384
+          }
+        },
+        "event_reset_minutes": 496,
+        "games": 22,
+        "transitions": 749
+      }
+    },
+    {
+      "M0_gold": {
+        "brier": 0.21429724232572975,
+        "late30_brier": 0.21103601197048374,
+        "logloss": 0.6338525075290309
+      },
+      "M1_interaction": {
+        "brier": 0.2133737577737356,
+        "late30_brier": 0.2054438994346847,
+        "logloss": 0.6218760309252692
+      },
+      "Q1_path": {
+        "brier": 0.21476781058410443,
+        "late30_brier": 0.2051096047378142,
+        "logloss": 0.6282497742627099
+      },
+      "S1_fixed": {
+        "brier": 0.21495385501124034,
+        "late30_brier": 0.21158373407436964,
+        "logloss": 0.6250454105842674
+      },
+      "S2_event_reset": {
+        "brier": 0.21327829861279826,
+        "late30_brier": 0.20534330696371375,
+        "logloss": 0.6217540059609505
+      },
+      "embargoed_unmatured_games": 0,
+      "eval_games": 44,
+      "eval_rows": 1649,
+      "fit_games": 176,
+      "fold": 2,
+      "revisions": {
+        "baselines": {
+          "M1_interaction": {
+            "large_revisions_gt5pp": 543,
+            "mean_abs_revision": 0.04415588629521529,
+            "total_variation_per_game": 1.610686306905012
+          },
+          "S1_fixed": {
+            "large_revisions_gt5pp": 366,
+            "mean_abs_revision": 0.033471469352141084,
+            "total_variation_per_game": 1.220947916140601
+          },
+          "S2_event_reset": {
+            "large_revisions_gt5pp": 492,
+            "mean_abs_revision": 0.041581432534058105,
+            "total_variation_per_game": 1.5167772549355285
+          }
+        },
+        "event_reset_minutes": 1073,
+        "games": 44,
+        "transitions": 1605
+      }
+    },
+    {
+      "M0_gold": {
+        "brier": 0.20789422743916808,
+        "late30_brier": 0.16297669345729132,
+        "logloss": 0.588279660027608
+      },
+      "M1_interaction": {
+        "brier": 0.2098519399195537,
+        "late30_brier": 0.16765563520202467,
+        "logloss": 0.5948597248521718
+      },
+      "Q1_path": {
+        "brier": 0.2074248712815135,
+        "late30_brier": 0.16873846118605745,
+        "logloss": 0.5879625054713568
+      },
+      "S1_fixed": {
+        "brier": 0.21130124334033337,
+        "late30_brier": 0.1721293592235635,
+        "logloss": 0.598322887944584
+      },
+      "S2_event_reset": {
+        "brier": 0.21023003872717932,
+        "late30_brier": 0.1674073641068224,
+        "logloss": 0.595740830328855
+      },
+      "embargoed_unmatured_games": 2,
+      "eval_games": 32,
+      "eval_rows": 1228,
+      "fit_games": 218,
+      "fold": 3,
+      "revisions": {
+        "baselines": {
+          "M1_interaction": {
+            "large_revisions_gt5pp": 392,
+            "mean_abs_revision": 0.044763446370366944,
+            "total_variation_per_game": 1.6730338080924643
+          },
+          "S1_fixed": {
+            "large_revisions_gt5pp": 274,
+            "mean_abs_revision": 0.033750815262819825,
+            "total_variation_per_game": 1.2614367204478905
+          },
+          "S2_event_reset": {
+            "large_revisions_gt5pp": 354,
+            "mean_abs_revision": 0.04213331485809749,
+            "total_variation_per_game": 1.5747326428213937
+          }
+        },
+        "event_reset_minutes": 765,
+        "games": 32,
+        "transitions": 1196
+      }
+    },
+    {
+      "M0_gold": {
+        "brier": 0.20770799647981575,
+        "late30_brier": 0.1687545485687845,
+        "logloss": 0.5899599527350031
+      },
+      "M1_interaction": {
+        "brier": 0.20917925229750622,
+        "late30_brier": 0.16508819290389412,
+        "logloss": 0.5940533584376041
+      },
+      "Q1_path": {
+        "brier": 0.20352274016534716,
+        "late30_brier": 0.1499673802611154,
+        "logloss": 0.5815924259724972
+      },
+      "S1_fixed": {
+        "brier": 0.21112475389712868,
+        "late30_brier": 0.1725050428430084,
+        "logloss": 0.5986748880977912
+      },
+      "S2_event_reset": {
+        "brier": 0.20925350349942984,
+        "late30_brier": 0.16522735621603102,
+        "logloss": 0.5942089947130669
+      },
+      "embargoed_unmatured_games": 0,
+      "eval_games": 39,
+      "eval_rows": 1433,
+      "fit_games": 252,
+      "fold": 4,
+      "revisions": {
+        "baselines": {
+          "M1_interaction": {
+            "large_revisions_gt5pp": 462,
+            "mean_abs_revision": 0.04391755809377064,
+            "total_variation_per_game": 1.5697711790440072
+          },
+          "S1_fixed": {
+            "large_revisions_gt5pp": 298,
+            "mean_abs_revision": 0.03269747717159895,
+            "total_variation_per_game": 1.168725209672024
+          },
+          "S2_event_reset": {
+            "large_revisions_gt5pp": 430,
+            "mean_abs_revision": 0.04164269863361462,
+            "total_variation_per_game": 1.4884595357758659
+          }
+        },
+        "event_reset_minutes": 935,
+        "games": 39,
+        "transitions": 1394
+      }
+    }
+  ],
+  "n_oof_games": 137,
+  "n_oof_rows": 5081,
+  "n_series_clusters": 70,
+  "n_train_games": 291,
+  "overall_revisions": {
+    "baselines": {
+      "M1_interaction": {
+        "large_revisions_gt5pp": 1675,
+        "mean_abs_revision": 0.044974591708305665,
+        "total_variation_per_game": 1.623024681794622
+      },
+      "S1_fixed": {
+        "large_revisions_gt5pp": 1127,
+        "mean_abs_revision": 0.03378675909096724,
+        "total_variation_per_game": 1.219282751428774
+      },
+      "S2_event_reset": {
+        "large_revisions_gt5pp": 1526,
+        "mean_abs_revision": 0.04243235267595588,
+        "total_variation_per_game": 1.531281398758583
+      }
+    },
+    "event_reset_minutes": 3269,
+    "games": 137,
+    "transitions": 4944
+  },
+  "paired_bootstrap": {
+    "S1_fixed": {
+      "M0_gold": {
+        "brier_ci95_series": [
+          -0.00083303209248761,
+          0.006007511950131662
+        ],
+        "delta_brier": 0.00260421961734967,
+        "delta_logloss": 0.003476254625426388,
+        "folds_within_002_ll": 1,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": 0.00498777740409984,
+        "ll_ci95_series": [
+          -0.008324411694710506,
+          0.013677418758711837
+        ],
+        "ll_ci975_two_candidates": [
+          -0.01010414404039485,
+          0.014760367059669335
+        ]
+      },
+      "M1_interaction": {
+        "brier_ci95_series": [
+          0.001413601935413116,
+          0.0019633709446217084
+        ],
+        "delta_brier": 0.0016883844604883326,
+        "delta_logloss": 0.0037031374052232057,
+        "folds_within_002_ll": 0,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": 0.006874481901244906,
+        "ll_ci95_series": [
+          0.0028866458029093195,
+          0.004551956817588172
+        ],
+        "ll_ci975_two_candidates": [
+          0.0027665807269094695,
+          0.004662934221287877
+        ]
+      },
+      "Q1_path": {
+        "brier_ci95_series": [
+          0.0005048313057385347,
+          0.008296729356460312
+        ],
+        "delta_brier": 0.0043828537433999205,
+        "delta_logloss": 0.009826121289378173,
+        "folds_within_002_ll": 1,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": 0.014786233016336423,
+        "ll_ci95_series": [
+          -0.0009343745865417886,
+          0.02101093922530596
+        ],
+        "ll_ci975_two_candidates": [
+          -0.00254647715117743,
+          0.022723673183363602
+        ]
+      }
+    },
+    "S2_event_reset": {
+      "M0_gold": {
+        "brier_ci95_series": [
+          -0.002360449119774779,
+          0.0043637268072396805
+        ],
+        "delta_brier": 0.0010507430505395227,
+        "delta_logloss": 8.158175812347055e-05,
+        "folds_within_002_ll": 1,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.0019360691640877292,
+        "ll_ci95_series": [
+          -0.011529763907808062,
+          0.01029956769026593
+        ],
+        "ll_ci975_two_candidates": [
+          -0.013330048544040176,
+          0.011487311173832797
+        ]
+      },
+      "M1_interaction": {
+        "brier_ci95_series": [
+          -6.08090344565351e-05,
+          0.00033630043174773683
+        ],
+        "delta_brier": 0.00013490789367818484,
+        "delta_logloss": 0.0003084645379202902,
+        "folds_within_002_ll": 4,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -4.936466694266288e-05,
+        "ll_ci95_series": [
+          -0.00017699300049180608,
+          0.0007992060948599295
+        ],
+        "ll_ci975_two_candidates": [
+          -0.00021485977127668116,
+          0.0008651748601248279
+        ]
+      },
+      "Q1_path": {
+        "brier_ci95_series": [
+          -0.0009628504067920209,
+          0.006623907251060422
+        ],
+        "delta_brier": 0.0028293771765897733,
+        "delta_logloss": 0.006431448422075255,
+        "folds_within_002_ll": 1,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": 0.007862386448148854,
+        "ll_ci95_series": [
+          -0.004288419776347137,
+          0.017619585963320597
+        ],
+        "ll_ci975_two_candidates": [
+          -0.005846949136400742,
+          0.019447720251327485
+        ]
+      }
+    }
+  },
+  "protocol_sha256": "a6a66d2ce742d73e6a7cbf9512b6e4ec26a7d9e13e231e7574aff1bcaee46e32",
+  "scope": "historical TRAIN-only, post-result exploratory, not unseen test",
+  "source_rich_sha256": "e89526a951554e196983d8013afb378a151506f97953a8a1e6e2579c50f1da1b",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "submitted_notebook_or_test_changed": false
+}
