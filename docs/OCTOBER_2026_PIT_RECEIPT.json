@@ -1,0 +1,24 @@
+{
+  "duration_deliberately_poisoned": true,
+  "feature_comparisons": 73460,
+  "fields_checked": [
+    "barracks_delta",
+    "gold_k",
+    "gold_velocity5_k",
+    "gold_x_time",
+    "kill_delta",
+    "minute10",
+    "roshan_delta",
+    "tower_delta",
+    "xp_k",
+    "xp_velocity5_k"
+  ],
+  "future_economy_objectives_kills_clipped": true,
+  "matches": 180,
+  "not_a_live_received_at_proof": true,
+  "prefix_checked_forecasts": 7346,
+  "result_labels_deliberately_poisoned": true,
+  "source_october_listing_sha256": "b8b143b819e7aad4e0563482f4ed36680f22e8bfc5fd3635a3bda7c4c09ad1b4",
+  "source_original_feature_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+  "status": "PASS_ALL_OCTOBER_FORECASTS_PREFIX_TRUNCATION_AND_LABEL_POISON"
+}

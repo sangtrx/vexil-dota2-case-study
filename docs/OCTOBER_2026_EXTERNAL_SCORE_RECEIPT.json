@@ -1,0 +1,121 @@
+{
+  "M0": {
+    "brier": 0.16851403345678964,
+    "ece10": 0.04925487039128732,
+    "logloss": 0.49948436345328534
+  },
+  "M1": {
+    "brier": 0.16551837696547977,
+    "ece10": 0.04379719988064864,
+    "logloss": 0.49360155555707536
+  },
+  "M1_minus_M0": {
+    "brier": -0.002995656491309885,
+    "brier_ci_95_match": [
+      -0.00563435731828872,
+      -0.000344824167346168
+    ],
+    "brier_ci_95_series": [
+      -0.0056337250072721595,
+      -0.00035769322492615536
+    ],
+    "equal_game_mean_brier_delta": -0.004670248596563709,
+    "equal_game_mean_logloss_delta": -0.010886350175106837,
+    "logloss": -0.005882807896210029,
+    "logloss_ci_95_match": [
+      -0.01365767855042906,
+      0.001668916126904719
+    ],
+    "logloss_ci_95_series": [
+      -0.013480533985928382,
+      0.0015282332075821283
+    ]
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "groups": "both series/singleton and match",
+    "paired": true,
+    "seed": 20261117
+  },
+  "collection_receipt_sha256": "700ecf86ad7245cb9acf72d3a67321050c4eafa488565a7f61bdc2ce7de55bb8",
+  "dates_utc": [
+    "2026-10-20T00:43:42+00:00",
+    "2026-10-31T18:51:31+00:00"
+  ],
+  "evidence_class": "POST_ORIGINAL_TEST_LOCKED_OCTOBER_HISTORICAL_MATCH_SAMPLE; NOT LIVE RECEIVED_AT",
+  "games": 180,
+  "league_counts": {
+    "16251": 1,
+    "17508": 5,
+    "18631": 32,
+    "19944": 48,
+    "20334": 12,
+    "20395": 81,
+    "20471": 1
+  },
+  "listing_sha256": "b8b143b819e7aad4e0563482f4ed36680f22e8bfc5fd3635a3bda7c4c09ad1b4",
+  "minute_rows": 7346,
+  "most_influential_game_id": 9068910292,
+  "most_influential_ll_abs_share": 0.2487236597204255,
+  "no_forward_training": true,
+  "no_model_promotion_authorized": true,
+  "no_recalibration": true,
+  "original_500_and_previous_100_overlap": 0,
+  "original_march_test_predictions_unchanged": true,
+  "patch_counts": {
+    "60": 180
+  },
+  "phase_descriptive": {
+    "0-9": {
+      "brier_M0": 0.23750235341975393,
+      "brier_M1": 0.23217315500178107,
+      "ece10_M0": 0.06254335312398349,
+      "ece10_M1": 0.0360405872490447,
+      "games": 180,
+      "logloss_M0": 0.6678538479373182,
+      "logloss_M1": 0.656682038499364,
+      "rows": 1800
+    },
+    "10-19": {
+      "brier_M0": 0.19078630343311165,
+      "brier_M1": 0.1838931087415263,
+      "ece10_M0": 0.08888528872785695,
+      "ece10_M1": 0.057231017392018475,
+      "games": 180,
+      "logloss_M0": 0.5653811318504651,
+      "logloss_M1": 0.5472149281556382,
+      "rows": 1794
+    },
+    "20-29": {
+      "brier_M0": 0.13641574810742452,
+      "brier_M1": 0.13508795753807487,
+      "ece10_M0": 0.0665071258095874,
+      "ece10_M1": 0.05422934634696873,
+      "games": 177,
+      "logloss_M0": 0.42062492856546535,
+      "logloss_M1": 0.41485607482458975,
+      "rows": 1690
+    },
+    "30+": {
+      "brier_M0": 0.11522144081351597,
+      "brier_M1": 0.11628682486108809,
+      "ece10_M0": 0.0403524727260386,
+      "ece10_M1": 0.04861702807743244,
+      "games": 154,
+      "logloss_M0": 0.35980859739344856,
+      "logloss_M1": 0.3691362804358139,
+      "rows": 2062
+    }
+  },
+  "protocol_sha256": "ca8f4129c23db1f50a5609fa179f7e688aa2fa28d0e49cdc2f5dc29a5fb236c6",
+  "received_at_unverified": true,
+  "series_or_singleton_clusters": 107,
+  "source_model_coeff_fingerprints": {
+    "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+    "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+  },
+  "source_notebook_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "status": "EXTERNAL_HOLDOUT_REPORTED_REGARDLESS_OF_DIRECTION",
+  "underpowered_or_descriptive_only": false
+}
