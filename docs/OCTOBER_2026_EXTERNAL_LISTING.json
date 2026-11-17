@@ -1,0 +1,1035 @@
+{
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261117,
+  "candidate_ids_start_times_and_series": [
+    {
+      "match_id": 9070527945,
+      "series_id": 1162593,
+      "start_time": 1793472691
+    },
+    {
+      "match_id": 9070392472,
+      "series_id": 1162593,
+      "start_time": 1793467624
+    },
+    {
+      "match_id": 9070122200,
+      "series_id": 0,
+      "start_time": 1793457667
+    },
+    {
+      "match_id": 9070062078,
+      "series_id": 1162416,
+      "start_time": 1793455888
+    },
+    {
+      "match_id": 9070048037,
+      "series_id": 0,
+      "start_time": 1793455040
+    },
+    {
+      "match_id": 9069995494,
+      "series_id": 0,
+      "start_time": 1793453107
+    },
+    {
+      "match_id": 9069952836,
+      "series_id": 1162416,
+      "start_time": 1793451642
+    },
+    {
+      "match_id": 9069021061,
+      "series_id": 1161942,
+      "start_time": 1793390004
+    },
+    {
+      "match_id": 9068910292,
+      "series_id": 1161942,
+      "start_time": 1793385476
+    },
+    {
+      "match_id": 9068883958,
+      "series_id": 1161989,
+      "start_time": 1793384236
+    },
+    {
+      "match_id": 9068795274,
+      "series_id": 1161942,
+      "start_time": 1793381011
+    },
+    {
+      "match_id": 9068605888,
+      "series_id": 1161826,
+      "start_time": 1793373946
+    },
+    {
+      "match_id": 9068455299,
+      "series_id": 1161826,
+      "start_time": 1793368106
+    },
+    {
+      "match_id": 9068332041,
+      "series_id": 1161737,
+      "start_time": 1793362995
+    },
+    {
+      "match_id": 9068257334,
+      "series_id": 1161737,
+      "start_time": 1793359049
+    },
+    {
+      "match_id": 9068183471,
+      "series_id": 1161737,
+      "start_time": 1793354653
+    },
+    {
+      "match_id": 9067617648,
+      "series_id": 1161529,
+      "start_time": 1793304354
+    },
+    {
+      "match_id": 9067529830,
+      "series_id": 1161529,
+      "start_time": 1793300171
+    },
+    {
+      "match_id": 9067412106,
+      "series_id": 1161402,
+      "start_time": 1793295577
+    },
+    {
+      "match_id": 9067346550,
+      "series_id": 1161402,
+      "start_time": 1793292852
+    },
+    {
+      "match_id": 9067217876,
+      "series_id": 0,
+      "start_time": 1793287396
+    },
+    {
+      "match_id": 9067177642,
+      "series_id": 1161402,
+      "start_time": 1793286508
+    },
+    {
+      "match_id": 9067149165,
+      "series_id": 0,
+      "start_time": 1793284722
+    },
+    {
+      "match_id": 9067078024,
+      "series_id": 0,
+      "start_time": 1793281933
+    },
+    {
+      "match_id": 9067019772,
+      "series_id": 1161319,
+      "start_time": 1793279698
+    },
+    {
+      "match_id": 9067007060,
+      "series_id": 0,
+      "start_time": 1793279003
+    },
+    {
+      "match_id": 9066936100,
+      "series_id": 0,
+      "start_time": 1793275749
+    },
+    {
+      "match_id": 9066926114,
+      "series_id": 1161319,
+      "start_time": 1793275409
+    },
+    {
+      "match_id": 9066833957,
+      "series_id": 1161293,
+      "start_time": 1793270184
+    },
+    {
+      "match_id": 9066750920,
+      "series_id": 1161293,
+      "start_time": 1793264460
+    },
+    {
+      "match_id": 9066391707,
+      "series_id": 1161145,
+      "start_time": 1793227760
+    },
+    {
+      "match_id": 9066349307,
+      "series_id": 1161145,
+      "start_time": 1793223997
+    },
+    {
+      "match_id": 9066273901,
+      "series_id": 1161145,
+      "start_time": 1793219505
+    },
+    {
+      "match_id": 9066180509,
+      "series_id": 1161013,
+      "start_time": 1793215427
+    },
+    {
+      "match_id": 9066084051,
+      "series_id": 1161013,
+      "start_time": 1793210899
+    },
+    {
+      "match_id": 9065986613,
+      "series_id": 1161013,
+      "start_time": 1793207010
+    },
+    {
+      "match_id": 9065883621,
+      "series_id": 1160918,
+      "start_time": 1793202919
+    },
+    {
+      "match_id": 9065794389,
+      "series_id": 1160918,
+      "start_time": 1793199539
+    },
+    {
+      "match_id": 9065785447,
+      "series_id": 0,
+      "start_time": 1793198804
+    },
+    {
+      "match_id": 9065710147,
+      "series_id": 0,
+      "start_time": 1793195874
+    },
+    {
+      "match_id": 9065653541,
+      "series_id": 1160918,
+      "start_time": 1793193742
+    },
+    {
+      "match_id": 9065633656,
+      "series_id": 0,
+      "start_time": 1793192763
+    },
+    {
+      "match_id": 9065559054,
+      "series_id": 0,
+      "start_time": 1793189357
+    },
+    {
+      "match_id": 9065511384,
+      "series_id": 1160851,
+      "start_time": 1793187196
+    },
+    {
+      "match_id": 9065451128,
+      "series_id": 1160851,
+      "start_time": 1793183422
+    },
+    {
+      "match_id": 9065380598,
+      "series_id": 1160851,
+      "start_time": 1793178411
+    },
+    {
+      "match_id": 9064490683,
+      "series_id": 1160517,
+      "start_time": 1793116814
+    },
+    {
+      "match_id": 9064337890,
+      "series_id": 1160481,
+      "start_time": 1793111409
+    },
+    {
+      "match_id": 9064215798,
+      "series_id": 1160441,
+      "start_time": 1793106060
+    },
+    {
+      "match_id": 9063495955,
+      "series_id": 1160235,
+      "start_time": 1793048167
+    },
+    {
+      "match_id": 9063430462,
+      "series_id": 1160235,
+      "start_time": 1793044698
+    },
+    {
+      "match_id": 9063353533,
+      "series_id": 1160125,
+      "start_time": 1793041090
+    },
+    {
+      "match_id": 9063230342,
+      "series_id": 1160125,
+      "start_time": 1793036466
+    },
+    {
+      "match_id": 9063131170,
+      "series_id": 1160125,
+      "start_time": 1793032626
+    },
+    {
+      "match_id": 9063026856,
+      "series_id": 1160053,
+      "start_time": 1793028311
+    },
+    {
+      "match_id": 9063023867,
+      "series_id": 1160097,
+      "start_time": 1793027731
+    },
+    {
+      "match_id": 9063005774,
+      "series_id": 0,
+      "start_time": 1793027043
+    },
+    {
+      "match_id": 9062953803,
+      "series_id": 0,
+      "start_time": 1793025045
+    },
+    {
+      "match_id": 9062925621,
+      "series_id": 1160071,
+      "start_time": 1793023935
+    },
+    {
+      "match_id": 9062920598,
+      "series_id": 1160053,
+      "start_time": 1793024228
+    },
+    {
+      "match_id": 9062888136,
+      "series_id": 0,
+      "start_time": 1793022415
+    },
+    {
+      "match_id": 9062824489,
+      "series_id": 1160053,
+      "start_time": 1793019865
+    },
+    {
+      "match_id": 9062822180,
+      "series_id": 0,
+      "start_time": 1793019663
+    },
+    {
+      "match_id": 9062759703,
+      "series_id": 0,
+      "start_time": 1793016842
+    },
+    {
+      "match_id": 9062717661,
+      "series_id": 1160003,
+      "start_time": 1793015004
+    },
+    {
+      "match_id": 9062644050,
+      "series_id": 1160003,
+      "start_time": 1793010770
+    },
+    {
+      "match_id": 9062561406,
+      "series_id": 1160003,
+      "start_time": 1793005252
+    },
+    {
+      "match_id": 9061909460,
+      "series_id": 1159750,
+      "start_time": 1792954452
+    },
+    {
+      "match_id": 9061829018,
+      "series_id": 1159750,
+      "start_time": 1792951289
+    },
+    {
+      "match_id": 9061735400,
+      "series_id": 1159662,
+      "start_time": 1792947654
+    },
+    {
+      "match_id": 9061650142,
+      "series_id": 1159640,
+      "start_time": 1792945312
+    },
+    {
+      "match_id": 9061631640,
+      "series_id": 1159662,
+      "start_time": 1792944164
+    },
+    {
+      "match_id": 9061552441,
+      "series_id": 1159641,
+      "start_time": 1792941374
+    },
+    {
+      "match_id": 9061551205,
+      "series_id": 1159640,
+      "start_time": 1792941863
+    },
+    {
+      "match_id": 9061485248,
+      "series_id": 0,
+      "start_time": 1792939169
+    },
+    {
+      "match_id": 9061459911,
+      "series_id": 0,
+      "start_time": 1792938349
+    },
+    {
+      "match_id": 9061432327,
+      "series_id": 1159525,
+      "start_time": 1792937450
+    },
+    {
+      "match_id": 9061429763,
+      "series_id": 1159531,
+      "start_time": 1792937770
+    },
+    {
+      "match_id": 9061387993,
+      "series_id": 0,
+      "start_time": 1792936011
+    },
+    {
+      "match_id": 9061311690,
+      "series_id": 0,
+      "start_time": 1792933491
+    },
+    {
+      "match_id": 9061299814,
+      "series_id": 1159531,
+      "start_time": 1792933876
+    },
+    {
+      "match_id": 9061288845,
+      "series_id": 1159525,
+      "start_time": 1792933661
+    },
+    {
+      "match_id": 9061220091,
+      "series_id": 0,
+      "start_time": 1792930257
+    },
+    {
+      "match_id": 9061129248,
+      "series_id": 1159398,
+      "start_time": 1792927247
+    },
+    {
+      "match_id": 9061057026,
+      "series_id": 1159398,
+      "start_time": 1792923657
+    },
+    {
+      "match_id": 9061025665,
+      "series_id": 1159423,
+      "start_time": 1792922081
+    },
+    {
+      "match_id": 9060951574,
+      "series_id": 1159398,
+      "start_time": 1792918995
+    },
+    {
+      "match_id": 9060239199,
+      "series_id": 1159090,
+      "start_time": 1792870992
+    },
+    {
+      "match_id": 9060102490,
+      "series_id": 1159090,
+      "start_time": 1792865945
+    },
+    {
+      "match_id": 9060004236,
+      "series_id": 1159090,
+      "start_time": 1792861908
+    },
+    {
+      "match_id": 9060001403,
+      "series_id": 1159021,
+      "start_time": 1792861804
+    },
+    {
+      "match_id": 9059886075,
+      "series_id": 0,
+      "start_time": 1792857661
+    },
+    {
+      "match_id": 9059876335,
+      "series_id": 1159021,
+      "start_time": 1792857965
+    },
+    {
+      "match_id": 9059855376,
+      "series_id": 1158959,
+      "start_time": 1792857192
+    },
+    {
+      "match_id": 9059780697,
+      "series_id": 0,
+      "start_time": 1792854030
+    },
+    {
+      "match_id": 9059736174,
+      "series_id": 1158805,
+      "start_time": 1792852705
+    },
+    {
+      "match_id": 9059726836,
+      "series_id": 1158959,
+      "start_time": 1792852704
+    },
+    {
+      "match_id": 9059675967,
+      "series_id": 0,
+      "start_time": 1792850546
+    },
+    {
+      "match_id": 9059603405,
+      "series_id": 1158805,
+      "start_time": 1792848022
+    },
+    {
+      "match_id": 9059583563,
+      "series_id": 0,
+      "start_time": 1792847315
+    },
+    {
+      "match_id": 9059530192,
+      "series_id": 1158753,
+      "start_time": 1792845745
+    },
+    {
+      "match_id": 9059488065,
+      "series_id": 0,
+      "start_time": 1792843649
+    },
+    {
+      "match_id": 9059476837,
+      "series_id": 1158805,
+      "start_time": 1792843297
+    },
+    {
+      "match_id": 9059391986,
+      "series_id": 1158753,
+      "start_time": 1792840107
+    },
+    {
+      "match_id": 9059343082,
+      "series_id": 1158661,
+      "start_time": 1792837117
+    },
+    {
+      "match_id": 9059262765,
+      "series_id": 1158638,
+      "start_time": 1792833372
+    },
+    {
+      "match_id": 9059251035,
+      "series_id": 1158661,
+      "start_time": 1792832654
+    },
+    {
+      "match_id": 9059185615,
+      "series_id": 1158638,
+      "start_time": 1792829128
+    },
+    {
+      "match_id": 9058656823,
+      "series_id": 1158371,
+      "start_time": 1792787996
+    },
+    {
+      "match_id": 9058541179,
+      "series_id": 1158371,
+      "start_time": 1792782987
+    },
+    {
+      "match_id": 9058456262,
+      "series_id": 1158345,
+      "start_time": 1792780083
+    },
+    {
+      "match_id": 9058397594,
+      "series_id": 1158371,
+      "start_time": 1792778615
+    },
+    {
+      "match_id": 9058339315,
+      "series_id": 1158345,
+      "start_time": 1792776542
+    },
+    {
+      "match_id": 9058294483,
+      "series_id": 1158287,
+      "start_time": 1792773790
+    },
+    {
+      "match_id": 9058197429,
+      "series_id": 1158287,
+      "start_time": 1792770537
+    },
+    {
+      "match_id": 9058178856,
+      "series_id": 1158262,
+      "start_time": 1792769876
+    },
+    {
+      "match_id": 9058119230,
+      "series_id": 0,
+      "start_time": 1792767621
+    },
+    {
+      "match_id": 9058056916,
+      "series_id": 1158262,
+      "start_time": 1792765548
+    },
+    {
+      "match_id": 9058050797,
+      "series_id": 1158205,
+      "start_time": 1792765411
+    },
+    {
+      "match_id": 9058027772,
+      "series_id": 0,
+      "start_time": 1792764380
+    },
+    {
+      "match_id": 9057941029,
+      "series_id": 0,
+      "start_time": 1792761137
+    },
+    {
+      "match_id": 9057921918,
+      "series_id": 1158205,
+      "start_time": 1792760374
+    },
+    {
+      "match_id": 9057872455,
+      "series_id": 1158196,
+      "start_time": 1792758486
+    },
+    {
+      "match_id": 9057857953,
+      "series_id": 0,
+      "start_time": 1792757628
+    },
+    {
+      "match_id": 9057834490,
+      "series_id": 1158205,
+      "start_time": 1792756875
+    },
+    {
+      "match_id": 9057771854,
+      "series_id": 1158196,
+      "start_time": 1792753451
+    },
+    {
+      "match_id": 9057739307,
+      "series_id": 1158194,
+      "start_time": 1792751435
+    },
+    {
+      "match_id": 9057681759,
+      "series_id": 1158181,
+      "start_time": 1792747766
+    },
+    {
+      "match_id": 9057674435,
+      "series_id": 1158184,
+      "start_time": 1792747142
+    },
+    {
+      "match_id": 9057627136,
+      "series_id": 1158181,
+      "start_time": 1792743688
+    },
+    {
+      "match_id": 9057084643,
+      "series_id": 1157994,
+      "start_time": 1792696356
+    },
+    {
+      "match_id": 9057055798,
+      "series_id": 1157965,
+      "start_time": 1792695220
+    },
+    {
+      "match_id": 9056988862,
+      "series_id": 1157994,
+      "start_time": 1792692706
+    },
+    {
+      "match_id": 9056907498,
+      "series_id": 1157965,
+      "start_time": 1792689217
+    },
+    {
+      "match_id": 9056844521,
+      "series_id": 1157928,
+      "start_time": 1792686683
+    },
+    {
+      "match_id": 9056794318,
+      "series_id": 1157917,
+      "start_time": 1792684919
+    },
+    {
+      "match_id": 9056685103,
+      "series_id": 1157928,
+      "start_time": 1792681136
+    },
+    {
+      "match_id": 9056618744,
+      "series_id": 1157917,
+      "start_time": 1792678360
+    },
+    {
+      "match_id": 9056536159,
+      "series_id": 1157865,
+      "start_time": 1792675118
+    },
+    {
+      "match_id": 9056429802,
+      "series_id": 1157860,
+      "start_time": 1792671012
+    },
+    {
+      "match_id": 9056426458,
+      "series_id": 1157865,
+      "start_time": 1792670608
+    },
+    {
+      "match_id": 9056353535,
+      "series_id": 1157860,
+      "start_time": 1792666808
+    },
+    {
+      "match_id": 9056309568,
+      "series_id": 1157843,
+      "start_time": 1792663392
+    },
+    {
+      "match_id": 9056271057,
+      "series_id": 1157834,
+      "start_time": 1792660804
+    },
+    {
+      "match_id": 9056258736,
+      "series_id": 1157843,
+      "start_time": 1792660346
+    },
+    {
+      "match_id": 9056215433,
+      "series_id": 1157834,
+      "start_time": 1792656791
+    },
+    {
+      "match_id": 9055931233,
+      "series_id": 1157724,
+      "start_time": 1792625131
+    },
+    {
+      "match_id": 9055896406,
+      "series_id": 1157724,
+      "start_time": 1792621342
+    },
+    {
+      "match_id": 9055842613,
+      "series_id": 1157724,
+      "start_time": 1792617223
+    },
+    {
+      "match_id": 9055723516,
+      "series_id": 1157637,
+      "start_time": 1792610675
+    },
+    {
+      "match_id": 9055701831,
+      "series_id": 1157645,
+      "start_time": 1792609693
+    },
+    {
+      "match_id": 9055610769,
+      "series_id": 1157645,
+      "start_time": 1792605928
+    },
+    {
+      "match_id": 9055602259,
+      "series_id": 1157637,
+      "start_time": 1792606226
+    },
+    {
+      "match_id": 9055504238,
+      "series_id": 1157594,
+      "start_time": 1792601523
+    },
+    {
+      "match_id": 9055441636,
+      "series_id": 1157584,
+      "start_time": 1792599068
+    },
+    {
+      "match_id": 9055405538,
+      "series_id": 1157594,
+      "start_time": 1792597784
+    },
+    {
+      "match_id": 9055357382,
+      "series_id": 1157584,
+      "start_time": 1792596153
+    },
+    {
+      "match_id": 9055294919,
+      "series_id": 1157530,
+      "start_time": 1792593874
+    },
+    {
+      "match_id": 9055224065,
+      "series_id": 0,
+      "start_time": 1792590894
+    },
+    {
+      "match_id": 9055190480,
+      "series_id": 1157530,
+      "start_time": 1792589583
+    },
+    {
+      "match_id": 9055168282,
+      "series_id": 1157552,
+      "start_time": 1792588690
+    },
+    {
+      "match_id": 9055082162,
+      "series_id": 1157530,
+      "start_time": 1792585302
+    },
+    {
+      "match_id": 9055073641,
+      "series_id": 0,
+      "start_time": 1792584545
+    },
+    {
+      "match_id": 9054997480,
+      "series_id": 1157497,
+      "start_time": 1792581184
+    },
+    {
+      "match_id": 9054953710,
+      "series_id": 1157497,
+      "start_time": 1792577697
+    },
+    {
+      "match_id": 9054897422,
+      "series_id": 1157497,
+      "start_time": 1792573558
+    },
+    {
+      "match_id": 9054536936,
+      "series_id": 1157387,
+      "start_time": 1792535959
+    },
+    {
+      "match_id": 9054491249,
+      "series_id": 1157384,
+      "start_time": 1792531637
+    },
+    {
+      "match_id": 9054431552,
+      "series_id": 1157361,
+      "start_time": 1792528306
+    },
+    {
+      "match_id": 9054377966,
+      "series_id": 1157361,
+      "start_time": 1792524883
+    },
+    {
+      "match_id": 9054331703,
+      "series_id": 1157343,
+      "start_time": 1792522716
+    },
+    {
+      "match_id": 9054267340,
+      "series_id": 1157321,
+      "start_time": 1792520097
+    },
+    {
+      "match_id": 9054260247,
+      "series_id": 1157316,
+      "start_time": 1792519998
+    },
+    {
+      "match_id": 9054109070,
+      "series_id": 1157249,
+      "start_time": 1792513723
+    },
+    {
+      "match_id": 9053969598,
+      "series_id": 1157249,
+      "start_time": 1792508495
+    },
+    {
+      "match_id": 9053787295,
+      "series_id": 1157209,
+      "start_time": 1792501454
+    },
+    {
+      "match_id": 9053699308,
+      "series_id": 1157177,
+      "start_time": 1792497701
+    },
+    {
+      "match_id": 9053589944,
+      "series_id": 1157156,
+      "start_time": 1792491071
+    },
+    {
+      "match_id": 9053532473,
+      "series_id": 1157156,
+      "start_time": 1792487669
+    },
+    {
+      "match_id": 9053242313,
+      "series_id": 1157068,
+      "start_time": 1792457022
+    }
+  ],
+  "detail_candidate_count": 180,
+  "lower_utc_inclusive": "2026-10-01T00:00:00Z",
+  "max_detail_requests": 180,
+  "model_fingerprints": {
+    "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+    "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+  },
+  "outcome_scores_viewed_by_selection": false,
+  "page_count": 12,
+  "prior_500_100_120_union_game_count": 652,
+  "protocol_sha256": "ca8f4129c23db1f50a5609fa179f7e688aa2fa28d0e49cdc2f5dc29a5fb236c6",
+  "raw_page_receipts": [
+    {
+      "archive": "research/october2026_pro_match_pages/page_01.json.gz",
+      "archive_sha256": "731afccb53e8e30b7f5cfb7d19a63d4536799268fa7a8c0c1861d0a972354a99",
+      "canonical_sha256": "73cf29fb53110e410cff9d64ff690a6bead177cab513b7e3441f376ee793ea69",
+      "entries": 100,
+      "first_id": 9093458287,
+      "last_id": 9085960791,
+      "page": 1
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_02.json.gz",
+      "archive_sha256": "a4fa6461b36afd6a72f861d5d88972555eb157dbc834fd9216dde4397d6b09dc",
+      "canonical_sha256": "a4e68a67bc8f1241d81f10c56400d41a5c2b71aa09c7e6e8ea86bca93a040ecb",
+      "entries": 100,
+      "first_id": 9085906939,
+      "last_id": 9082838627,
+      "page": 2
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_03.json.gz",
+      "archive_sha256": "0547d90a30e962677c4b720652b8a4a9eb70e1c19834867f3ba31aed878d197c",
+      "canonical_sha256": "dc89f5f654cbf2e2182c9fc6e493950ccb7e85d47c5b38d68b86e0dd8a56e8c7",
+      "entries": 100,
+      "first_id": 9082838305,
+      "last_id": 9076476183,
+      "page": 3
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_04.json.gz",
+      "archive_sha256": "5422970563f164599b61b8a5cc7a06db4611369c8a0b0fe8b1ec06b4e4d3c2fd",
+      "canonical_sha256": "84dc48cd03717f017d24f11ed0e0da3115587d17895f0bdeb0afe67d27053d8f",
+      "entries": 100,
+      "first_id": 9076387949,
+      "last_id": 9063131170,
+      "page": 4
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_05.json.gz",
+      "archive_sha256": "d071032fb67f254c0865badb6c7822908f49ea2222107e06d1344a3c0ed1a054",
+      "canonical_sha256": "27cffbaf65c908810d7a2029e828d7db4a17835d27404c3d142b4a303cf257d0",
+      "entries": 100,
+      "first_id": 9063026856,
+      "last_id": 9055504238,
+      "page": 5
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_06.json.gz",
+      "archive_sha256": "7e0870a6cb5fb22ea463ef1445b4ae4e01b308e24da0207adfc1d6019b7cfb16",
+      "canonical_sha256": "df63c3ceebfb3cc7793224efcefa4cdb4d254dc6c3cbc7fd4c9ee30899fb312a",
+      "entries": 100,
+      "first_id": 9055441636,
+      "last_id": 9048930795,
+      "page": 6
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_07.json.gz",
+      "archive_sha256": "27a5573b29e1209115bc70f774ab11a17600d58541982d4b326d8ee0375f46a4",
+      "canonical_sha256": "d109326003b7fb0cf48c40ad9a72bc5e0bdd8b94f1f074832e06ee5ed4e3cccf",
+      "entries": 100,
+      "first_id": 9048916911,
+      "last_id": 9046074705,
+      "page": 7
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_08.json.gz",
+      "archive_sha256": "7b43ae86ad3b25ca619bd2da85d4d92087a614fcfdd11ec3440772e6665532f1",
+      "canonical_sha256": "24ed23e0a381571579a007431e13526b219067489b79df05c3b0b3bf5e6f8021",
+      "entries": 100,
+      "first_id": 9046063457,
+      "last_id": 9043918889,
+      "page": 8
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_09.json.gz",
+      "archive_sha256": "f3d1e445ad731c418204f187abd10cb0aa0e979763608fed9d2e8f11cae4209c",
+      "canonical_sha256": "267fdf803cbbbc324e1c4d1c4818f681e52bfa6a5192e92cee639739b8101342",
+      "entries": 100,
+      "first_id": 9043881158,
+      "last_id": 9040847637,
+      "page": 9
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_10.json.gz",
+      "archive_sha256": "65267be11d35dae32ae584554d3c6fc0cef0e82ff9e8b6f1bd93831dab3346b0",
+      "canonical_sha256": "3bd57edbe22ec5a0822c474ba6ef5c3787d63e2d025ebac2064ede217615b713",
+      "entries": 100,
+      "first_id": 9040846694,
+      "last_id": 9036509542,
+      "page": 10
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_11.json.gz",
+      "archive_sha256": "ef0d9b151e994b667af5730c7f00535e05e3541bb8dc6ad2004dd3bc97415392",
+      "canonical_sha256": "0498904911a323998726d34c0536e5f5c8be3166a1e865edff6666b2b04dde12",
+      "entries": 100,
+      "first_id": 9036506236,
+      "last_id": 9023210947,
+      "page": 11
+    },
+    {
+      "archive": "research/october2026_pro_match_pages/page_12.json.gz",
+      "archive_sha256": "f4e05c40ef960ab39418c523726368fb50009ccd794f7b55f274a0231d2af23c",
+      "canonical_sha256": "53d387822bed39d6c1b07f6a7640545f9a43810b4b744e988cae1e8a3c5e4c70",
+      "entries": 100,
+      "first_id": 9023195630,
+      "last_id": 9012686867,
+      "page": 12
+    }
+  ],
+  "selection_exclusion_counts": {
+    "beyond_fixed_detail_cap": 570,
+    "outside_window": 450
+  },
+  "selection_uses_winner_fields": false,
+  "source": "OpenDota /proMatches, descending match ID",
+  "source_commit_before_discovery": "736ec0c0dbbd036d005d1a6dc144cd90d5cbf6d4",
+  "upper_utc_exclusive": "2026-11-01T00:00:00Z"
+}
