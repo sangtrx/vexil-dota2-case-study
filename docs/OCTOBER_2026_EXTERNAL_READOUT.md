@@ -38,3 +38,24 @@ These four phase slices are exploratory, unadjusted for multiple comparisons and
 - A smaller log-loss difference with a CI crossing zero does not prove equivalence, nor does a favorable unadjusted Brier CI alone establish stable deployment skill. No model promotion is authorized. Source raw page outcomes could exist in the API response, but **selection code used only metadata**; do not label this human-blinded.
 
 **Source files:** `docs/OCTOBER_2026_EXTERNAL_HOLDOUT_PROTOCOL.md`, `docs/OCTOBER_2026_EXTERNAL_LISTING.json`, `docs/OCTOBER_2026_COLLECTION_RECEIPT.json`, `docs/OCTOBER_2026_EXTERNAL_SCORE_RECEIPT.json`, `artifacts/OCTOBER_2026_EXTERNAL_PREDICTIONS.csv`, `artifacts/OCTOBER_2026_EXTERNAL_METADATA.csv`, `research/october2026_accepted_raw/` and the original frozen scoring helper. `score_receipt.json` contains exact numbers, all four phases, original model fingerprints and fixed bootstrap settings.
+
+## Reproduce this optional research branch offline
+
+After installing `requirements.txt`, run the full archived-data checks from this branch's repository root; **no API calls or additional model fitting are needed**:
+
+```bash
+python -B -m unittest discover -s tests -p 'test_*.py' -q
+python -B -m research.october2026_pit_replay
+
+run_dir=$(mktemp -d)
+mkdir -p "$run_dir/accepted_raw"
+cp docs/OCTOBER_2026_COLLECTION_RECEIPT.json "$run_dir/collection_receipt.json"
+cp research/october2026_accepted_raw/*.json.gz "$run_dir/accepted_raw/"
+python -B -m research.october2026_external_holdout score --out "$run_dir"
+
+cmp "$run_dir/score_receipt.json" docs/OCTOBER_2026_EXTERNAL_SCORE_RECEIPT.json
+cmp "$run_dir/predictions.csv" artifacts/OCTOBER_2026_EXTERNAL_PREDICTIONS.csv
+cmp "$run_dir/metadata.csv" artifacts/OCTOBER_2026_EXTERNAL_METADATA.csv
+```
+
+The original 500-game `.ipynb` is unchanged. This optional historical analysis runs from archived raw data on a separate research branch; it is **not** an additional required notebook cell or a substitute for the assignment's self-contained Run All. The PIT receipt is recreated from all 7,346 minute snapshots and deliberately poisoned final labels/duration, but cannot establish actual packet arrival time.
