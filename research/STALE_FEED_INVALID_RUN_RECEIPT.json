@@ -1,0 +1,247 @@
+{
+  "do_not_use_for_decisions": true,
+  "folds": [
+    {
+      "embargoed_unfinished_games": 0,
+      "fit_completed_games": 154,
+      "fold": 1,
+      "games": 22,
+      "lag1_hold_minus_clock_logloss": -0.17547436097353342,
+      "lag1_t_below_lag_rows": 22,
+      "lag3_hold_minus_clock_logloss": -0.0835871961719854,
+      "lag3_t_below_lag_rows": 66,
+      "rows": 771,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.2813920715304647,
+          "late30_brier": 0.5013989118772247,
+          "logloss": 0.8445285591348387
+        },
+        "CLOCK3": {
+          "brier": 0.26666596478449023,
+          "late30_brier": 0.4020147578879845,
+          "logloss": 0.7808760892091873
+        },
+        "FRESH": {
+          "brier": 0.2226302339085362,
+          "logloss": 0.652097365172538
+        },
+        "HOLD1": {
+          "brier": 0.22927163026867117,
+          "late30_brier": 0.22504433370480814,
+          "logloss": 0.6690541981613053
+        },
+        "HOLD3": {
+          "brier": 0.24060691907081913,
+          "late30_brier": 0.28449906088829313,
+          "logloss": 0.6972888930372019
+        }
+      }
+    },
+    {
+      "embargoed_unfinished_games": 0,
+      "fit_completed_games": 176,
+      "fold": 2,
+      "games": 44,
+      "lag1_hold_minus_clock_logloss": -0.38237804913621976,
+      "lag1_t_below_lag_rows": 44,
+      "lag3_hold_minus_clock_logloss": -0.2982073329277881,
+      "lag3_t_below_lag_rows": 132,
+      "rows": 1649,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.30583896885910705,
+          "late30_brier": 0.5214441021640089,
+          "logloss": 1.0190517717581484
+        },
+        "CLOCK3": {
+          "brier": 0.2988459359137886,
+          "late30_brier": 0.4852019050907694,
+          "logloss": 0.958512573317221
+        },
+        "FRESH": {
+          "brier": 0.2133737577737356,
+          "logloss": 0.6218760309252692
+        },
+        "HOLD1": {
+          "brier": 0.21911298158263465,
+          "late30_brier": 0.22155089465611516,
+          "logloss": 0.6366737226219287
+        },
+        "HOLD3": {
+          "brier": 0.22830454922461996,
+          "late30_brier": 0.24335064421296998,
+          "logloss": 0.6603052403894328
+        }
+      }
+    },
+    {
+      "embargoed_unfinished_games": 2,
+      "fit_completed_games": 218,
+      "fold": 3,
+      "games": 32,
+      "lag1_hold_minus_clock_logloss": -0.5937047693401184,
+      "lag1_t_below_lag_rows": 32,
+      "lag3_hold_minus_clock_logloss": -0.45218008790296604,
+      "lag3_t_below_lag_rows": 96,
+      "rows": 1228,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.3350921057353402,
+          "late30_brier": 0.586286194492432,
+          "logloss": 1.2038745357500242
+        },
+        "CLOCK3": {
+          "brier": 0.32105657869605153,
+          "late30_brier": 0.5287526516137934,
+          "logloss": 1.087981182275686
+        },
+        "FRESH": {
+          "brier": 0.2098519399195537,
+          "logloss": 0.5948597248521718
+        },
+        "HOLD1": {
+          "brier": 0.21592986030251787,
+          "late30_brier": 0.18135966779880244,
+          "logloss": 0.6101697664099058
+        },
+        "HOLD3": {
+          "brier": 0.2263969107337609,
+          "late30_brier": 0.20558129112683937,
+          "logloss": 0.6358010943727199
+        }
+      }
+    },
+    {
+      "embargoed_unfinished_games": 0,
+      "fit_completed_games": 252,
+      "fold": 4,
+      "games": 39,
+      "lag1_hold_minus_clock_logloss": -0.4289958189392178,
+      "lag1_t_below_lag_rows": 39,
+      "lag3_hold_minus_clock_logloss": -0.32000695021330217,
+      "lag3_t_below_lag_rows": 117,
+      "rows": 1433,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.31353650538147626,
+          "late30_brier": 0.5469310625093557,
+          "logloss": 1.0393001693420254
+        },
+        "CLOCK3": {
+          "brier": 0.2992096545692614,
+          "late30_brier": 0.4785535292103807,
+          "logloss": 0.9590547818562174
+        },
+        "FRESH": {
+          "brier": 0.20917925229750622,
+          "logloss": 0.5940533584376041
+        },
+        "HOLD1": {
+          "brier": 0.21558146042935356,
+          "late30_brier": 0.18407063462243645,
+          "logloss": 0.6103043504028076
+        },
+        "HOLD3": {
+          "brier": 0.2271738661979238,
+          "late30_brier": 0.21618404390752338,
+          "logloss": 0.6390478316429152
+        }
+      }
+    }
+  ],
+  "future_mitigation_gate": true,
+  "held_vs_clock_cluster_ci": {
+    "1": {
+      "hold_minus_clock_delta_brier": -0.09248117103712722,
+      "hold_minus_clock_delta_logloss": -0.4152042118924985,
+      "late30_hold_minus_clock_delta_brier": -0.3424645928546176,
+      "series_bootstrap_95_brier": [
+        -0.12752787306703714,
+        -0.059794989050000885
+      ],
+      "series_bootstrap_95_ll": [
+        -0.5772352411922724,
+        -0.2711669271211171
+      ],
+      "series_bootstrap_975_ll_two_lags": [
+        -0.6080921102829182,
+        -0.2544784201382529
+      ]
+    },
+    "3": {
+      "hold_minus_clock_delta_brier": -0.07004204445768536,
+      "hold_minus_clock_delta_logloss": -0.3090015209303343,
+      "late30_hold_minus_clock_delta_brier": -0.2548519147156989,
+      "series_bootstrap_95_brier": [
+        -0.10593655661506794,
+        -0.036736092913506956
+      ],
+      "series_bootstrap_95_ll": [
+        -0.4611947949506068,
+        -0.17479050281802386
+      ],
+      "series_bootstrap_975_ll_two_lags": [
+        -0.4904866815525768,
+        -0.16090378288919846
+      ]
+    }
+  },
+  "invalid_code_commit": "12c11b74cbf3ab84275aee8ecad9a477f7cca295",
+  "invalid_reason": "CLOCK arms used gold_k*minute10, while the actual frozen M1 feature is gold_k*log1p(minute10), enforced in research/train_time_effect_ci.py",
+  "lags_minutes": [
+    1,
+    3
+  ],
+  "n_games_oof": 137,
+  "n_games_train": 291,
+  "n_minutes_oof": 5081,
+  "n_series_or_singletons": 70,
+  "original_employer_model_changed": false,
+  "original_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "overall_metrics": {
+    "CLOCK1": {
+      "brier": 0.3113703335668784,
+      "delta_brier_vs_fresh": 0.0986261320955322,
+      "delta_ll_vs_fresh": 0.430863238533153,
+      "late30_brier": 0.5435222542037315,
+      "logloss": 1.0429488217457783
+    },
+    "CLOCK3": {
+      "brier": 0.2994334423946432,
+      "delta_brier_vs_fresh": 0.08668924092329702,
+      "delta_ll_vs_fresh": 0.3509156158456078,
+      "late30_brier": 0.4855301799360906,
+      "logloss": 0.9630011990582331
+    },
+    "FRESH": {
+      "brier": 0.21274420147134618,
+      "late30_brier": 0.1831092828065857,
+      "logloss": 0.6120855832126253
+    },
+    "HOLD1": {
+      "brier": 0.21888916252975113,
+      "delta_brier_vs_fresh": 0.006144961058404952,
+      "delta_ll_vs_fresh": 0.01565902664065444,
+      "late30_brier": 0.2010576613491139,
+      "logloss": 0.6277446098532797
+    },
+    "HOLD3": {
+      "brier": 0.22939139793695784,
+      "delta_brier_vs_fresh": 0.016647196465611663,
+      "delta_ll_vs_fresh": 0.04191409491527376,
+      "late30_brier": 0.2306782652203917,
+      "logloss": 0.653999678127899
+    }
+  },
+  "prior_multiple_experiments_corrected": false,
+  "protected_artifact_hashes": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "protocol_sha256": "000cdbd498c2dfd61027d6495561f505439725746c6317d7394a2fba55e59505",
+  "scope": "hypothetical stale-gold perturbation on original TRAIN only",
+  "source_received_at_known": false,
+  "validity": "INVALID_P0_WRONG_FEATURE_TRANSFORMATION"
+}

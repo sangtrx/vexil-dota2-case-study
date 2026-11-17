@@ -59,11 +59,17 @@ def lagged_views(ev:pd.DataFrame,fresh:np.ndarray, lag:int)->tuple[pd.DataFrame,
     curr_time=ev.minute10.to_numpy(float)
     frame=pd.DataFrame({
         "gold_k":lagged_gold, "minute10":curr_time,
-        "gold_x_time":lagged_gold*curr_time,
+        "gold_x_time":lagged_gold*np.log1p(curr_time),
     },index=ev.index)
     if not np.isfinite(frame.to_numpy(dtype=float)).all():
         raise AssertionError("Nonfinite delayed clock-based feature")
+    if "gold_x_time" in ev:
+        original=ev.gold_k.to_numpy(float)*np.log1p(curr_time)
+        if not np.allclose(original,ev.gold_x_time.to_numpy(float),rtol=0,atol=1e-12):
+            raise AssertionError("Original M1 gold x log1p(time) feature contract violated")
     if lag==0:
+        if "gold_x_time" in ev and not np.allclose(frame.gold_x_time,ev.gold_x_time,rtol=0,atol=1e-12):
+            raise AssertionError("Zero-lag interaction parity against original M1 failed")
         if not np.allclose(frame.gold_k,ev.gold_k,rtol=0,atol=0):
             raise AssertionError("Zero-lag gold parity failed")
         if not np.array_equal(held,fresh):
