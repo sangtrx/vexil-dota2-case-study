@@ -1,0 +1,16 @@
+{
+  "actual_ingest_received_at_known": false,
+  "all_player_times_are_exact_grid_0_60_120": true,
+  "all_teams_exact_sum_of_player_gold_and_xp_at_same_index": true,
+  "independent_timestamp_witness_available": false,
+  "input_aggregate_sha256": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+  "match_count": 291,
+  "per_player_time_vectors": 2910,
+  "players": 2910,
+  "raw_snapshots": 10685,
+  "scientific_interpretation": "PASS internal parser/array consistency, NOT PROVEN actual independent event-clock/packet arrival timing",
+  "scope": "291 original TRAIN payloads only; no outcomes, VAL, TEST or new downloads",
+  "terminal_or_postterminal_array_slots": 10,
+  "verified_team_gold_array_slots": 10685,
+  "verified_team_xp_array_slots": 10685
+}

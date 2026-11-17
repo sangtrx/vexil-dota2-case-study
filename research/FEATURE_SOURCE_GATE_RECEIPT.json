@@ -1,0 +1,23 @@
+{
+  "chat_actual_received_at_verified": false,
+  "chat_as_of_new_candidate_evaluation": "BLOCKED: no independent real-time arrival; some pregame/postgame events; risk of near-terminal outcome announcements",
+  "chat_event_counts": {
+    "chat_events": 12704,
+    "chat_events_after_duration": 417,
+    "chat_events_before_game": 2166,
+    "games_with_chat": 291,
+    "upgrade_entries": 50783,
+    "upgrade_entries_with_timestamps": 0
+  },
+  "chat_type_counts": {
+    "chat": 2648,
+    "chatwheel": 10056
+  },
+  "games": 291,
+  "hero_level_up_exact_asof_timestamps_available": false,
+  "hero_upgrade_candidate_evaluation": "BLOCKED: upgrade array entries are ability identifiers, not timestamped level-up events",
+  "item_milestone_candidate": "historical purchase_log event time proxy tested separately in precommitted I family, but live arrival unverified",
+  "no_original_val_test_read": true,
+  "scope": "existing 291 original TRAIN match payloads only; no chat content retained",
+  "source_payload_sha256": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4"
+}
