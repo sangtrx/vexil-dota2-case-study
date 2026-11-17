@@ -14,6 +14,9 @@ VALIDATION game started, under the approximate completion proxy
 A model fitted at that first validation start could not know
 their final winners.
 
+**Future as-of label guardrail:**
+[`research/label_maturity_policy.py`](../research/label_maturity_policy.py) checks whether a winner label could have been known when the model was fitted. It requires observed `received_at` by default and fails closed without it. The historical sensitivity below explicitly sets `require_received_at=False` because original OpenDota payloads have no such timestamp; this enforces only estimated match completion. The original 291-game fit and already inspected TEST remain unchanged.
+
 The same **four fixed notebook specifications** were refitted using only
 the **286 TRAIN games with mature outcomes** at that cutoff. Predictions
 were evaluated **only on the originally used 103 VALIDATION games**.

@@ -36,6 +36,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from research.posttest_temporal.collect_and_score import (
     frozen_functions, models_from_frozen_train, sha,
 )
+from research.label_maturity_policy import outcome_known_by
 
 ROOT = Path(__file__).resolve().parents[1]
 TRAIN = ROOT / "research/frozen_original_train_features.csv.gz"
@@ -216,8 +217,18 @@ def compute_receipt(df):
     first_validation_start = int(va.start_time.min())
     game_meta = tr.groupby("match_id", as_index=False)[
         ["start_time", "duration", "series_id"]].first()
-    incomplete = game_meta[
-        game_meta.start_time + game_meta.duration > first_validation_start
+    # Historical source lacks outcome received-at: proxy only, not live proof.
+    mature_mask = [
+        outcome_known_by(
+            start_time=int(row.start_time),
+            duration=int(row.duration),
+            fit_time=first_validation_start,
+            require_received_at=False,
+        )
+        for row in game_meta.itertuples(index=False)
+    ]
+    incomplete = game_meta.loc[
+        [not is_mature for is_mature in mature_mask]
     ].sort_values("match_id")
     excluded_ids = [int(x) for x in incomplete.match_id]
     if len(excluded_ids) != 5:
