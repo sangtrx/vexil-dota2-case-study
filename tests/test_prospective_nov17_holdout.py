@@ -12,13 +12,13 @@ from research import prospective_nov17_holdout as h
 
 class FixedExternalCohortTest(unittest.TestCase):
     def test_frozen_date_and_original_model_contract(self):
-        self.assertEqual(h.LOWER, 1794787200)
-        self.assertEqual(h.UPPER, 1794906000)
-        self.assertEqual(h.MAX_PAGES, 10)
+        self.assertEqual(h.LOWER, 1794268800)
+        self.assertEqual(h.UPPER, 1794895200)
+        self.assertEqual(h.MAX_PAGES, 12)
         self.assertEqual(h.MAX_DETAILS, 300)
         self.assertEqual(h.SEED, 20261117)
         self.assertEqual(h.BOOTSTRAPS, 10000)
-        self.assertEqual(len(h.unique_old_ids_and_series()[0]), 600)
+        self.assertEqual(len(h.unique_old_ids_and_series()[0]), 652)
         _, _, fp = h.frozen.models_from_frozen_train()
         self.assertEqual(fp, h.FINGERPRINTS)
 

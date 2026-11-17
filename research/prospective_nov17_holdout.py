@@ -24,12 +24,12 @@ import requests
 from research.posttest_temporal import collect_and_score as frozen
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = ROOT / "docs/PROSPECTIVE_NOV17_HOLDOUT_PROTOCOL.md"
-LISTING = ROOT / "docs/PROSPECTIVE_NOV17_HOLDOUT_LISTING.json"
-PAGE_DIR = ROOT / "research/prospective_nov17_pages"
-LOWER = int(dt.datetime(2026, 11, 16, tzinfo=dt.timezone.utc).timestamp())
-UPPER = int(dt.datetime(2026, 11, 17, 9, 0, tzinfo=dt.timezone.utc).timestamp())
-MAX_PAGES = 10
+PROTOCOL = ROOT / "docs/PROSPECTIVE_NOV17_HOLDOUT_AMENDMENT.md"
+LISTING = ROOT / "docs/PROSPECTIVE_NOV17_AMENDED_LISTING.json"
+PAGE_DIR = ROOT / "research/prospective_nov17_amended_pages"
+LOWER = int(dt.datetime(2026, 11, 10, tzinfo=dt.timezone.utc).timestamp())
+UPPER = int(dt.datetime(2026, 11, 17, 6, 0, tzinfo=dt.timezone.utc).timestamp())
+MAX_PAGES = 12
 MAX_DETAILS = 300
 SEED = 20261117
 BOOTSTRAPS = 10000
@@ -54,6 +54,7 @@ def unique_old_ids_and_series() -> tuple[set[int], set[int]]:
     for rel in (
         "research/frozen_original_split_manifest.csv",
         "artifacts/forward_100_metadata.csv",
+        "research/november_120_candidate_manifest.csv",
     ):
         with (ROOT / rel).open(newline="") as stream:
             for row in csv.DictReader(stream):
@@ -61,7 +62,7 @@ def unique_old_ids_and_series() -> tuple[set[int], set[int]]:
                 sid = int(row.get("series_id") or 0)
                 if sid > 0:
                     series.add(sid)
-    assert len(mids) == 600, "Prior cohort history changed"
+    assert len(mids) == 652, "Prior 500+100+120 cohort union changed"
     return mids, series
 
 
@@ -137,7 +138,7 @@ def discover() -> None:
                              "first_id": ids[0] if ids else None,
                              "last_id": ids[-1] if ids else None,
                              "canonical_sha256": sha(raw), "archive_sha256": sha(zipped),
-                             "archive": f"research/prospective_nov17_pages/{rel}"})
+                             "archive": f"research/prospective_nov17_amended_pages/{rel}"})
             print("DISCOVERY_PAGE", page_idx, "ITEMS", len(data),
                   "START_GT_LOWER", sum(x >= LOWER for x in starts), flush=True)
             if not ids:
@@ -160,12 +161,12 @@ def discover() -> None:
         "source_commit_before_discovery": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "source": "OpenDota /proMatches, descending match ID",
-        "lower_utc_inclusive": "2026-11-16T00:00:00Z",
-        "upper_utc_exclusive": "2026-11-17T09:00:00Z",
+        "lower_utc_inclusive": "2026-11-10T00:00:00Z",
+        "upper_utc_exclusive": "2026-11-17T06:00:00Z",
         "raw_page_receipts": receipts,
         "page_count": len(pages),
         "selection_uses_winner_fields": False,
-        "previous_original_and_nov_stress_game_count": 600,
+        "prior_500_100_120_union_game_count": 652,
         "selection_exclusion_counts": counts,
         "candidate_ids_start_times_and_series": selected,
         "detail_candidate_count": len(selected),
@@ -176,7 +177,7 @@ def discover() -> None:
         "outcome_scores_viewed_by_selection": False,
     }
     LISTING.write_bytes(json.dumps(listing, indent=2, sort_keys=True).encode() + b"\n")
-    print("FROZEN_LISTING", LISTING, "CANDIDATES", len(selected),
+    print("FROZEN_AMENDED_LISTING", LISTING, "CANDIDATES", len(selected),
           "SHA", sha(LISTING.read_bytes()), flush=True)
 
 
