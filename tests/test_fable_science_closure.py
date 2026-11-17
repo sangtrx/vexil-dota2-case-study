@@ -117,7 +117,8 @@ class FableScienceRepairContract(unittest.TestCase):
         nb=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
         self.assertIn("Pre-registered original TEST",
                       "".join(nb["cells"][28]["source"]))
-        self.assertIn("not to the corrected post-inspection TEST values",self.report)
+        self.assertIn("not corrected blind TEST outcomes",self.report)
+        self.assertIn("The frozen notebook\u0027s \u0027Pre-registered\u0027 output",self.report)
         self.assertIn("not preregistered blind results",
                       (ROOT/"docs/TEAM_LEAGUE_DEPENDENCE.md").read_text())
         self.assertIn("after the original TEST was opened",self.report)

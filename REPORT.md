@@ -65,7 +65,7 @@ The target is proper loss **per admissible minute-level forecast opportunity**, 
 
 **No-skill scale:** A constant probability equal to the TRAIN game-win rate (149/291 = 0.5120) gives TEST log loss **0.6884** and Brier **0.2476** on these same 3,836 minute forecasts. Both fitted models beat that reference, although M1's gain over M0 remains uncertain.
 
-The 0–29 phase differences nominally favor M1, but **eight phase × metric comparisons are unadjusted**, so they are **exploratory**, not eight confirmed wins. The 30+ subset retains only longer games: Brier is **about 0.00455 worse** for M1, 95% interval **[−0.0037,+0.0109]**. November's 100-game check **did not replicate a material 0–9 Brier improvement** (**0.24421→0.24393**) and its ECE worsened (**0.0496→0.0812**); it overlaps prior research and is not independent confirmation. Equal-match-weighted TEST log loss was **0.5097→0.4952**, without a grouped CI. Original TEST-CI notebook wording 'Pre-registered' refers to the specified **resampling method**, not to the corrected post-inspection TEST values.
+**Phase caution:** The 0–29 differences favor M1, but **eight phase × metric comparisons are unadjusted** and exploratory. Among longer 30+ games, Brier is **about 0.00455 worse** (CI **[−0.0037,+0.0109]**). November's 100-game check **did not replicate a material 0–9 Brier improvement** (**0.24421→0.24393**) and ECE worsened (**0.0496→0.0812**); overlapping games make this **not independent confirmation**. Equal-match-weighted TEST log loss **0.5097→0.4952** lacks a grouped CI. The frozen notebook's 'Pre-registered' output describes the earlier **resampling method**, not corrected blind TEST outcomes.
 
 ![Phase-specific ECE and Brier differences from fixed TEST forecasts.](docs/figures/phase_error_audit.png)
 
@@ -73,7 +73,7 @@ The 0–29 phase differences nominally favor M1, but **eight phase × metric com
 
 **Stress tests did not settle the decision.** On **100 already completed** November 11–15 games (4,355 minutes, **56 series/singletons**, **85 games** from two leagues), M1−M0 log loss was **−0.0080**, CI **[−0.0284,+0.0087]**; Brier CI **[−0.0077,+0.0027]**; both contain zero. **Omitting one league reverses the gain**; **68 games overlap** earlier research. Patch 60 is not unseen. This is **not independent confirmation** (docs/FORWARD_100_STRESS.md).
 
-The post-hoc **54-series** resample put log-loss CI at **[−0.0283,+0.0001]** and Brier CI at **[−0.0067,−0.0004]**; match-bootstrap Brier still reaches **+0.0002**. Results sit near the decision boundary. A single 55-row game explains **54.9%** of observed log-loss gain; excluding it for diagnosis cuts the gain from **0.0124 to 0.0057** and flips remaining 30+ log-loss difference to **+0.0314 (M1 worse)**. The official TEST and scores keep that game.
+**Cluster sensitivity:** Post-hoc **54-series** log-loss CI is **[−0.0283,+0.0001]** and Brier CI **[−0.0067,−0.0004]**; the match-bootstrap Brier interval still reaches **+0.0002**. One 55-row game supplies **54.9%** of observed log-loss gain. Excluding it for diagnosis reduces the gain from **0.0124 to 0.0057** and changes remaining 30+ log-loss difference to **+0.0314 (M1 worse)**. The official TEST retains the game.
 
 ---
 

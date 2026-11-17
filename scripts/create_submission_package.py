@@ -110,11 +110,13 @@ FILES = (
     "research/frozen_original_split_manifest.csv",
     "research/frozen_original_development_features.csv.gz",
     "research/mature_label_validation_audit.py",
+    "research/label_maturity_policy.py",
     "research/validation_test_label_maturity.py",
     "docs/VAL_TEST_LABEL_MATURITY_RECEIPT.json",
     "docs/MATURE_LABEL_VALIDATION_RECEIPT.json",
     "docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md",
     "tests/test_mature_label_validation.py",
+    "tests/test_label_maturity_policy.py",
     # Original unmerged-HOLD research, now self-contained and runnable:
     "research/CALIBRATION_PROTOCOL.md",
     "research/CALIBRATION_FORWARD_RECEIPT.json",
@@ -736,7 +738,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 162 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 168 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),
