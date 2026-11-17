@@ -250,12 +250,30 @@ def evaluate()->dict:
             "ALL_minus_M0":paired_series_metric(matrix,"ALL","M0_gold",SEED),
             "Q1_minus_M1":paired_series_metric(matrix,"Q1_path","M1_interaction",SEED),
         }
+        # Predeclared (pre-score) descriptive league slices, min 10 games.
+        # No league-based feature/model selection, no conditional winner.
+        league_diagnostics={}
+        for league,league_rows in matrix.groupby("league_id",sort=True):
+            n_games=league_rows.match_id.nunique()
+            if n_games<10:
+                continue
+            league_diagnostics[str(league)]={
+                "games":int(n_games),
+                "rows":int(len(league_rows)),
+                "delta_ll_ALL_minus_Q1":float(
+                    (league_rows["ll_ALL"]-league_rows["ll_Q1_path"]).mean()),
+                "delta_ll_ALL_minus_M1":float(
+                    (league_rows["ll_ALL"]-league_rows["ll_M1_interaction"]).mean()),
+                "delta_brier_ALL_minus_Q1":float(
+                    (league_rows["br_ALL"]-league_rows["br_Q1_path"]).mean()),
+            }
         # The accepted "NO-POSTHOC-PROMOTION" rule is unconditional.
         falsified=bool(compared["ALL_minus_Q1"]["delta_ll"]>=.005)
         results[title]={
             "data_provenance":proof,
             "period_scoring":scores,
             "comparisons":compared,
+            "league_descriptive_min_10_games":league_diagnostics,
             "ALL_outperformance_robustness_refuted":falsified,
             "genuinely_blind_new_validation":False,
         }
@@ -263,6 +281,13 @@ def evaluate()->dict:
         raise AssertionError("Two reused periods overlap")
     if cohort_ids["October"]&set(fitted_train.match_id) or cohort_ids["November"]&set(fitted_train.match_id):
         raise AssertionError("Original March TRAIN contaminated future periods")
+    original_500_ids=set(pd.read_csv(
+        ROOT/"research/frozen_original_split_manifest.csv",
+        usecols=["match_id"]).match_id.astype(int))
+    if len(original_500_ids)!=500:
+        raise AssertionError("Original 500 match ID manifest changed")
+    if original_500_ids.intersection(cohort_ids["October"]) or original_500_ids.intersection(cohort_ids["November"]):
+        raise AssertionError("Previously scored later cohort overlaps original full 500")
     if verify_original_artifacts()!=artifact_hashes:
         raise AssertionError("Original employer artifacts changed")
     return {
@@ -274,6 +299,7 @@ def evaluate()->dict:
         "submission_file_hashes":artifact_hashes,
         "cohorts":results,
         "cohorts_disjoint":True,
+        "overlap_with_all_original_500_matches":0,
         "periods_held_out_from_fitting":True,
         "original_march_VAL_TEST_read":False,
         "new_external_HTTP_requests":0,
@@ -319,6 +345,16 @@ def report(receipt:dict)->str:
                     f"[{c['leave_one_series_out_ll_min']:+.6f},"
                     f"{c['leave_one_series_out_ll_max']:+.6f}] | "
                     f"{e['ALL_outperformance_robustness_refuted']} |")
+    rows+=["",
+       "## Predeclared league diagnostics (only leagues with >=10 games; not for model selection)",
+       "",
+       "| Cohort | League ID | Games | Rows | ALL-Q1 LL | ALL-M1 LL |",
+       "| --- | --- | ---: | ---: | ---: | ---: |"]
+    for cohort in ("October","November"):
+        for league,e in receipt["cohorts"][cohort]["league_descriptive_min_10_games"].items():
+            rows.append(f"| {cohort} | {league} | {e['games']} | {e['rows']} | "
+                        f"{e['delta_ll_ALL_minus_Q1']:+.6f} | "
+                        f"{e['delta_ll_ALL_minus_M1']:+.6f} |")
     rows+=["",
        "## Reproduction and scientific limitations",
        "",
