@@ -1,0 +1,2358 @@
+{
+  "accepted": [
+    {
+      "duration": 2830,
+      "match_id": 9070527945,
+      "patch": "60",
+      "raw_gzip_sha256": "9cb6a30aa27ca0bf9d4e24642e4a1e626d5c1d9b9020e69a220e9cfb98afca01",
+      "raw_json_sha256": "c743fac3becd492ec1aa0b253b1f1c0daa1836668feb856aecfd499fbf4b2f6b",
+      "series_id": 1162593,
+      "start_time": 1793472691
+    },
+    {
+      "duration": 3343,
+      "match_id": 9070392472,
+      "patch": "60",
+      "raw_gzip_sha256": "c62690299ab74dfd599837fbeabbbd1f2e1c2dfa7b4d8b47559e29a61f0ec024",
+      "raw_json_sha256": "ac40dc5ebf886b545ccfc1eda0b45b5c8608616d45f2e7ebb15f4e111c1cb0f0",
+      "series_id": 1162593,
+      "start_time": 1793467624
+    },
+    {
+      "duration": 2776,
+      "match_id": 9070122200,
+      "patch": "60",
+      "raw_gzip_sha256": "5411216c37d83bf75bcdfdc6c6fd6186e986eb1dab3b2f4328f34219cc4f7863",
+      "raw_json_sha256": "e8239553027611cb49a115d47677ecc75bbcfe0bfc16ee5e7e6099cfb4269a89",
+      "series_id": 0,
+      "start_time": 1793457667
+    },
+    {
+      "duration": 3162,
+      "match_id": 9070062078,
+      "patch": "60",
+      "raw_gzip_sha256": "833a4253ec611c89259e1553454d58ed0ebd39efdd08ed36b32eeef461033090",
+      "raw_json_sha256": "3577c43d4c672f9ec3604635eb87496ee6c293d65c7b9460a413c97356e2ad63",
+      "series_id": 1162416,
+      "start_time": 1793455888
+    },
+    {
+      "duration": 2144,
+      "match_id": 9070048037,
+      "patch": "60",
+      "raw_gzip_sha256": "c5a6887543803749c2d77694d389bceb153538da0ff540a5408074b31ed68546",
+      "raw_json_sha256": "b2c6eca6eb5b46ae8c68ccfd550c691292b4cd1493d31c8cf8e5e1baa9778b9a",
+      "series_id": 0,
+      "start_time": 1793455040
+    },
+    {
+      "duration": 1423,
+      "match_id": 9069995494,
+      "patch": "60",
+      "raw_gzip_sha256": "baac7b695b21da90c7da5c95fbc86ed0185a5e1589dce6077f07fa878a6cc431",
+      "raw_json_sha256": "a0fcb22b30853c8617eaf8462ca017e4e67f874bb612196c753b8c9d0f390427",
+      "series_id": 0,
+      "start_time": 1793453107
+    },
+    {
+      "duration": 2255,
+      "match_id": 9069952836,
+      "patch": "60",
+      "raw_gzip_sha256": "d821b9f918774bcd3dbe4798b4930a8d08ea2c15405529e981323e9902fe821d",
+      "raw_json_sha256": "73adcf1c2af69a00dd88200b57b73b62751404a43a8b14b0bac51218ebe6f9c4",
+      "series_id": 1162416,
+      "start_time": 1793451642
+    },
+    {
+      "duration": 2213,
+      "match_id": 9069021061,
+      "patch": "60",
+      "raw_gzip_sha256": "59979a5315d2709feafa36810be0e11516d7fbb89190d42ae037500396981f60",
+      "raw_json_sha256": "6ebc41f406f8e3459366d426f7747bd0584cba042a781d4ff667fdcb4611b15a",
+      "series_id": 1161942,
+      "start_time": 1793390004
+    },
+    {
+      "duration": 2793,
+      "match_id": 9068910292,
+      "patch": "60",
+      "raw_gzip_sha256": "c57e6ee2098790a6a75d0e93ccd2f22c928ec043dedd997ea3031c91768d6579",
+      "raw_json_sha256": "12022323e0dd03df849f119f09f673b39eaa7a5e85d59946802e9de1279c0559",
+      "series_id": 1161942,
+      "start_time": 1793385476
+    },
+    {
+      "duration": 2089,
+      "match_id": 9068883958,
+      "patch": "60",
+      "raw_gzip_sha256": "14bbc945c2d22cec90bc4fa53907e579590f4ea84ffe193d6ed9a73a14ff0345",
+      "raw_json_sha256": "6a02aa3e8308a8c4f215a1aca6f479143bab32108270c6ee465ad5380ab6e82f",
+      "series_id": 1161989,
+      "start_time": 1793384236
+    },
+    {
+      "duration": 2729,
+      "match_id": 9068795274,
+      "patch": "60",
+      "raw_gzip_sha256": "6057b0ebd1fb788be6d7f39bff8ed309db56a8505ce401e1460211a57a07ea85",
+      "raw_json_sha256": "1dce3203510244f21f4c21d02d9363c8c7bf61ea74694f3b3ea41c8efae966c0",
+      "series_id": 1161942,
+      "start_time": 1793381011
+    },
+    {
+      "duration": 2258,
+      "match_id": 9068605888,
+      "patch": "60",
+      "raw_gzip_sha256": "24600401535d30715809a3d98d87e1c787da30e210b63330f20fbf8dd9f98076",
+      "raw_json_sha256": "7a9a5fac574a49b5494b7c977a1682a3ef6abead6b4e04b133d88ac0c2c12365",
+      "series_id": 1161826,
+      "start_time": 1793373946
+    },
+    {
+      "duration": 3801,
+      "match_id": 9068455299,
+      "patch": "60",
+      "raw_gzip_sha256": "200731b8e8b75d682b1cdc6db95a92e7c81b86893b9b42c48854541e4f49a4ab",
+      "raw_json_sha256": "99a854269d38b5aba2404a1eaee18982e145946aa5e09fcb3f02b38b6be2d4a0",
+      "series_id": 1161826,
+      "start_time": 1793368106
+    },
+    {
+      "duration": 2919,
+      "match_id": 9068332041,
+      "patch": "60",
+      "raw_gzip_sha256": "e65c9a5e5ab553f0aed8071948e54ac46fdd5e987f400e85b48027c1948d83f3",
+      "raw_json_sha256": "b282a763170dacf53d6c1ad3d09a3f80f3be7b0f404e1c36cbdde1a52cf6f5f0",
+      "series_id": 1161737,
+      "start_time": 1793362995
+    },
+    {
+      "duration": 2276,
+      "match_id": 9068257334,
+      "patch": "60",
+      "raw_gzip_sha256": "bec3a4184cc5a17a1bc4727687f3f5f9749c555966c2245a1d893ba96f1cf9fe",
+      "raw_json_sha256": "c784862b06d23db3bee7f89d8e7b7ca7253fb0195a5e9d24fd5009eeac4906bc",
+      "series_id": 1161737,
+      "start_time": 1793359049
+    },
+    {
+      "duration": 2647,
+      "match_id": 9068183471,
+      "patch": "60",
+      "raw_gzip_sha256": "db3cb15688fef328dff4a04d3a860bdbb655ec3cb182c5326a81be970a819094",
+      "raw_json_sha256": "0a0b771f235e1f43ef02c391ad36fe118aea5dc2a0bbd9bebe67c5649c020390",
+      "series_id": 1161737,
+      "start_time": 1793354653
+    },
+    {
+      "duration": 2622,
+      "match_id": 9067617648,
+      "patch": "60",
+      "raw_gzip_sha256": "4fe275d1c1e27e140999969f2b653f81298f0ba21d2a1df9bafc4f5fb578eda6",
+      "raw_json_sha256": "e7508224e19e22c7f6cc82c1d658716131b28e17f79f3006969718fd6b3e144d",
+      "series_id": 1161529,
+      "start_time": 1793304354
+    },
+    {
+      "duration": 2288,
+      "match_id": 9067529830,
+      "patch": "60",
+      "raw_gzip_sha256": "51e6e0aef1dcfd6dd82512a712dd4b65c78e2becc9db538a71275d25b4b04f68",
+      "raw_json_sha256": "caaa3fe63ea08b1f09466b8e9dcdb3d974149e7c91780976477cac91854ce1b6",
+      "series_id": 1161529,
+      "start_time": 1793300171
+    },
+    {
+      "duration": 2539,
+      "match_id": 9067412106,
+      "patch": "60",
+      "raw_gzip_sha256": "61fa80fcfdbfe24d9bd4f8ca4263dd808edfa36994d60b700b0e26d75cbbcb99",
+      "raw_json_sha256": "598b61ff81b0aefac7ca2bf63da5303a5e1085c7429e8739abe5576b72623c1e",
+      "series_id": 1161402,
+      "start_time": 1793295577
+    },
+    {
+      "duration": 970,
+      "match_id": 9067346550,
+      "patch": "60",
+      "raw_gzip_sha256": "8ca920e23212eeeb4d19ecf2614d72eb518430361b2e33db38a1507839398ae4",
+      "raw_json_sha256": "47731d73e9381312ef9c1882bab85a1f4f31d771e59c28f07edbeb94abd45b7e",
+      "series_id": 1161402,
+      "start_time": 1793292852
+    },
+    {
+      "duration": 3154,
+      "match_id": 9067217876,
+      "patch": "60",
+      "raw_gzip_sha256": "1eb0c518ad92fb1ab356513cd66484845131af38b6ad399c19589d4b4913691e",
+      "raw_json_sha256": "8412e8e73f52dbe6ada93e84254ff10b89a2b6e7f88c13e3fc746d9c22a0a822",
+      "series_id": 0,
+      "start_time": 1793287396
+    },
+    {
+      "duration": 4346,
+      "match_id": 9067177642,
+      "patch": "60",
+      "raw_gzip_sha256": "3939e1cfcc176460623e7e3eee6f892a48e861df526a5ca8caa15779bdb854cb",
+      "raw_json_sha256": "91edef4c39bbf7d4c1f536edbe5bcbcee35ccb8702856148406fb786105f0f06",
+      "series_id": 1161402,
+      "start_time": 1793286508
+    },
+    {
+      "duration": 2009,
+      "match_id": 9067149165,
+      "patch": "60",
+      "raw_gzip_sha256": "e556ed81eefbdafc5dfa3b1cefba26ac48fc53223201a8ebb5628b28cedab204",
+      "raw_json_sha256": "03c9c425c249733d85aa29086f9608b6c9377876f75effa57250394f7eab9365",
+      "series_id": 0,
+      "start_time": 1793284722
+    },
+    {
+      "duration": 2027,
+      "match_id": 9067078024,
+      "patch": "60",
+      "raw_gzip_sha256": "f9f266ec8e10716ae1ecc3011c701c19efeec501c62e72fc8b10d02957d295c7",
+      "raw_json_sha256": "82c6cf3cd346c53df34b7140dd6de2faaf3fa768c99ca679bb5bac4ed359d33a",
+      "series_id": 0,
+      "start_time": 1793281933
+    },
+    {
+      "duration": 3790,
+      "match_id": 9067019772,
+      "patch": "60",
+      "raw_gzip_sha256": "ddb85a506af5c457b6db581e5291fd841a10a7ccbdb65d8e499111d308251390",
+      "raw_json_sha256": "7751f297524004ecf04c98791e47d90748b9a3bbbcd0d864384a323327661526",
+      "series_id": 1161319,
+      "start_time": 1793279698
+    },
+    {
+      "duration": 1720,
+      "match_id": 9067007060,
+      "patch": "60",
+      "raw_gzip_sha256": "1bc2f0ec3f530c5187db77d216c47949154339a9ac1ac520577153b6de07228f",
+      "raw_json_sha256": "5f22214ed46444b9bc4e82a0eee80d890f5b7ea9d3b79c86fab0b91c909f04f0",
+      "series_id": 0,
+      "start_time": 1793279003
+    },
+    {
+      "duration": 2346,
+      "match_id": 9066936100,
+      "patch": "60",
+      "raw_gzip_sha256": "00e494ac39ae70dd11417b45cdc0ee3e64fe34b1721a697e42f1eac3daa0fafe",
+      "raw_json_sha256": "2215f7900c148d1887bccde0d7dc05037ce65aad9284fc7f82bf1b9f23df2aa1",
+      "series_id": 0,
+      "start_time": 1793275749
+    },
+    {
+      "duration": 2529,
+      "match_id": 9066926114,
+      "patch": "60",
+      "raw_gzip_sha256": "4da9b45ac616c9efd75113016cf8a42422ff3914070907f09a8f2e996f420a19",
+      "raw_json_sha256": "f3c708761b24b71e52a68a6975c3ac0b01dc7749531c4ab5afaa3283dfb83b59",
+      "series_id": 1161319,
+      "start_time": 1793275409
+    },
+    {
+      "duration": 2580,
+      "match_id": 9066833957,
+      "patch": "60",
+      "raw_gzip_sha256": "d4aa144e2041a185f14f078273de26e880f83654de1379a5ca77511c75b7eee9",
+      "raw_json_sha256": "50668a456d87cdfad547d897f6d9e4d620bb13561d315ddf8b1181863eee6565",
+      "series_id": 1161293,
+      "start_time": 1793270184
+    },
+    {
+      "duration": 3848,
+      "match_id": 9066750920,
+      "patch": "60",
+      "raw_gzip_sha256": "7f77a96a0a232a39f7d3c55e42a24a4a4f57d9d69c334f07bda5bd012dc2fe5b",
+      "raw_json_sha256": "c23f49ab0b497f0240af336f0bdae43809bcf5439ff2688f521979810ab0cf59",
+      "series_id": 1161293,
+      "start_time": 1793264460
+    },
+    {
+      "duration": 2425,
+      "match_id": 9066391707,
+      "patch": "60",
+      "raw_gzip_sha256": "311605d812acc59176f9df0ce14cee68e7c9172bcbb633ae93949bee6b2967f8",
+      "raw_json_sha256": "e829f60700da2ca285b4b06b85fc499ca029bd779978274ec8bc0c19915948d7",
+      "series_id": 1161145,
+      "start_time": 1793227760
+    },
+    {
+      "duration": 1775,
+      "match_id": 9066349307,
+      "patch": "60",
+      "raw_gzip_sha256": "1be57c890008573d4b043eec471fbd095492f15972ed66ed0b0d95794c323698",
+      "raw_json_sha256": "03f6f8d5d6c2526292945e7c95d30ec2027509770148b86be31c31494e8d6027",
+      "series_id": 1161145,
+      "start_time": 1793223997
+    },
+    {
+      "duration": 2543,
+      "match_id": 9066273901,
+      "patch": "60",
+      "raw_gzip_sha256": "030b0d377308f8a979d3fff8c7fb717cc63fa8ffd4424bdbff9f976ade80a087",
+      "raw_json_sha256": "ec4a09b79ad6d8151d54cd6fe95e1157cb340ca15bfb0e9bb128d1ec29d3a30e",
+      "series_id": 1161145,
+      "start_time": 1793219505
+    },
+    {
+      "duration": 2192,
+      "match_id": 9066180509,
+      "patch": "60",
+      "raw_gzip_sha256": "9570bd164241e06c6b3e7c343ddfc6043845790d936419456a83dbd1d415d16b",
+      "raw_json_sha256": "76e494427fd155d7b9bb79dc34b9c9a02ea8cd8bd35659999bf3bd5db4fb92ac",
+      "series_id": 1161013,
+      "start_time": 1793215427
+    },
+    {
+      "duration": 2767,
+      "match_id": 9066084051,
+      "patch": "60",
+      "raw_gzip_sha256": "8df48943eda3866a32d8695aecea7804a1ae4e5c39864cbdfe13e854de2c19fc",
+      "raw_json_sha256": "eba55db04e081e631eb373764cb84145e20f1a7a334095bfa95247a78c612a76",
+      "series_id": 1161013,
+      "start_time": 1793210899
+    },
+    {
+      "duration": 2020,
+      "match_id": 9065986613,
+      "patch": "60",
+      "raw_gzip_sha256": "5d941c4177b1337eb3dec5deb4b20b66c326c4d8a6110ae6f972591040157bfb",
+      "raw_json_sha256": "854d5b3e307ca2d97adca69e5c81023bebad29f512e3f7ce40dd2a51ed06e1a5",
+      "series_id": 1161013,
+      "start_time": 1793207010
+    },
+    {
+      "duration": 1995,
+      "match_id": 9065883621,
+      "patch": "60",
+      "raw_gzip_sha256": "05fe525a12ca22d8206e34a486edf24d7d4f63c858578b51437bbb6f8417d85d",
+      "raw_json_sha256": "94e693d843521dc3c7dedbae3aced8c28432afef3b45970b38b9306defbe8ce7",
+      "series_id": 1160918,
+      "start_time": 1793202919
+    },
+    {
+      "duration": 1540,
+      "match_id": 9065794389,
+      "patch": "60",
+      "raw_gzip_sha256": "6a3d98a568afe407f975438724fbb9c944e9c8c08d18a295b50f4f6bb9203a4f",
+      "raw_json_sha256": "fc984775f71871aa65991053af5630336dd1f0734953186ba995d52a51b76bc6",
+      "series_id": 1160918,
+      "start_time": 1793199539
+    },
+    {
+      "duration": 2152,
+      "match_id": 9065785447,
+      "patch": "60",
+      "raw_gzip_sha256": "382d2ba5f17aaa150ed45759d93ad2e97660f536248f41f58eddaf288f54beb4",
+      "raw_json_sha256": "a713b31404cf90f49037550e998bdd01fd7886bdd92dbf41ed501ec4ee5a0aa8",
+      "series_id": 0,
+      "start_time": 1793198804
+    },
+    {
+      "duration": 2047,
+      "match_id": 9065710147,
+      "patch": "60",
+      "raw_gzip_sha256": "c02eb0fdd07761af686e84911589b7c1fce91d2ebefdf86a93de25b9b3a22b6a",
+      "raw_json_sha256": "578839129759df6cb9c68fdd093490b299a159586e986cf05198d0053f3abc23",
+      "series_id": 0,
+      "start_time": 1793195874
+    },
+    {
+      "duration": 3851,
+      "match_id": 9065653541,
+      "patch": "60",
+      "raw_gzip_sha256": "117dad1fe6b693a3f1edffac6503cdf04848ff287224a9995073a5a9e61cdc3d",
+      "raw_json_sha256": "508368406240df2cd0728ee44b1ce6eeaec62160f8bb8c9c816cde777ecdcfe0",
+      "series_id": 1160918,
+      "start_time": 1793193742
+    },
+    {
+      "duration": 2227,
+      "match_id": 9065633656,
+      "patch": "60",
+      "raw_gzip_sha256": "ffef14a76f346bd45b07228b791f08030debaeab1f69351eaa31c83c10e0a1ea",
+      "raw_json_sha256": "3f19927883144701bbd0e8f3742cff22fc111ef8112f43f176075e4a909053bd",
+      "series_id": 0,
+      "start_time": 1793192763
+    },
+    {
+      "duration": 2404,
+      "match_id": 9065559054,
+      "patch": "60",
+      "raw_gzip_sha256": "7c176db36d29691cefbaf7f36072b8b13b7dce4398ea4411127d090509b5f8f3",
+      "raw_json_sha256": "1ce2b7960e4dbe97de6e744e614dd66e62f30434bb0a3bcbf1b38472b9f4f353",
+      "series_id": 0,
+      "start_time": 1793189357
+    },
+    {
+      "duration": 3858,
+      "match_id": 9065511384,
+      "patch": "60",
+      "raw_gzip_sha256": "140da2d1c1a09e24b9c5a10dbfd5ff938f632f128288783a8593922d5aa7852e",
+      "raw_json_sha256": "1d7b584ade3880a8d27d9f12b9a75146159c1ba2e18c37e16673fe65a6b132d5",
+      "series_id": 1160851,
+      "start_time": 1793187196
+    },
+    {
+      "duration": 2069,
+      "match_id": 9065451128,
+      "patch": "60",
+      "raw_gzip_sha256": "7526f6b25a79bf2fafafcf5be20d8ee8fde572962dab4ba26966a2ffb263b145",
+      "raw_json_sha256": "9ce6eacef327c9e740ca7192e7d97b974487bf999a85f806436aea7e2c00173d",
+      "series_id": 1160851,
+      "start_time": 1793183422
+    },
+    {
+      "duration": 3021,
+      "match_id": 9065380598,
+      "patch": "60",
+      "raw_gzip_sha256": "6aa43f1e38be93255ecf4079a2cef1fb3c76b57311611cba3a9c4ee978d6eefa",
+      "raw_json_sha256": "adc2b5dd0aef71c7cc2d38fa13dd5542781f8379978092893932ee584d457453",
+      "series_id": 1160851,
+      "start_time": 1793178411
+    },
+    {
+      "duration": 2458,
+      "match_id": 9064490683,
+      "patch": "60",
+      "raw_gzip_sha256": "9ea08b68e734a4792603f91995b717fde53cb13e31e00ce5f9db7ed3af58d4cb",
+      "raw_json_sha256": "c22702bf6ef9da0722fa25b4a6ec78ffa1c69a4f9b53399f9abddb7d6e00458c",
+      "series_id": 1160517,
+      "start_time": 1793116814
+    },
+    {
+      "duration": 3112,
+      "match_id": 9064337890,
+      "patch": "60",
+      "raw_gzip_sha256": "937c4e5dea0bf0164c25525911cc3b1dbbf3dc00315101e58e6a1b7c7357cd55",
+      "raw_json_sha256": "6a9c03191b0bca0cc36dc05e3c64dfed472db96825a9bcf6cd5dc5bd6d2177d1",
+      "series_id": 1160481,
+      "start_time": 1793111409
+    },
+    {
+      "duration": 2041,
+      "match_id": 9064215798,
+      "patch": "60",
+      "raw_gzip_sha256": "f8d8a8e62d4c42be7dcb0f040fbd4c8523921155cadcec48c7ef1835fc073457",
+      "raw_json_sha256": "f501bd8a7ad15f2589d671ef1c29f5847dc7f06fdf090ad80f039a08f966de8f",
+      "series_id": 1160441,
+      "start_time": 1793106060
+    },
+    {
+      "duration": 2052,
+      "match_id": 9063495955,
+      "patch": "60",
+      "raw_gzip_sha256": "7941a5ceb2ae975d43702adec47e8e2f822d6cbcf043006de0bb97512ffc3979",
+      "raw_json_sha256": "81d5367879892e93755166c7126731e8e9e59c1cc9fd435c029cc52370f64b0c",
+      "series_id": 1160235,
+      "start_time": 1793048167
+    },
+    {
+      "duration": 1817,
+      "match_id": 9063430462,
+      "patch": "60",
+      "raw_gzip_sha256": "fde3038d40b609cb0b4ebe9723086c973ec29eb1eda1a54bb4354afe49e43a86",
+      "raw_json_sha256": "5295f4f5c62f8451532fe6b37983f3011693c466a9c766263704494560528072",
+      "series_id": 1160235,
+      "start_time": 1793044698
+    },
+    {
+      "duration": 1922,
+      "match_id": 9063353533,
+      "patch": "60",
+      "raw_gzip_sha256": "5f402d8c47dc8d689682754499bcd3b08e8a01786c5eef4bd76f66072b47ddb6",
+      "raw_json_sha256": "47a3f1c4881e9dbe4d0a8e64959f056e3ea0827c188a32f54e2407ae4b79fbbf",
+      "series_id": 1160125,
+      "start_time": 1793041090
+    },
+    {
+      "duration": 2927,
+      "match_id": 9063230342,
+      "patch": "60",
+      "raw_gzip_sha256": "bbb8443c8744b9018e28b9d9cb9fef232593bc4374c4b382d69258db82c4fcc5",
+      "raw_json_sha256": "48982aa36cbdf688a29a7a5d6fdd85172613d47b45cc14338f686c4a8658eef8",
+      "series_id": 1160125,
+      "start_time": 1793036466
+    },
+    {
+      "duration": 1948,
+      "match_id": 9063131170,
+      "patch": "60",
+      "raw_gzip_sha256": "1d8a37b218e3462f3eded9ee9f09424e97491ee44904caa843d695cae0b328a1",
+      "raw_json_sha256": "7e43dc596706d5da1361aabe0067fa32365f17a5d4a4bb5c2488e5c459aeacf7",
+      "series_id": 1160125,
+      "start_time": 1793032626
+    },
+    {
+      "duration": 1696,
+      "match_id": 9063026856,
+      "patch": "60",
+      "raw_gzip_sha256": "605a2d930dca9c6abdc8328a00d619516ca631e9f67254febf0425325913b710",
+      "raw_json_sha256": "dea008e7c07fc8eeb9cd39cceb5b35cc107530f81aaf81d401aade0a1cb4319d",
+      "series_id": 1160053,
+      "start_time": 1793028311
+    },
+    {
+      "duration": 3084,
+      "match_id": 9063023867,
+      "patch": "60",
+      "raw_gzip_sha256": "c45b6bec0ce3839a63c1583ed59eeebefca72cebaeb9a60a4596582014c0439a",
+      "raw_json_sha256": "ae4b5800a1d5b1111e1d22e973ed39f3c6ddbbbd3e53523c87d8e0f7cc637d9e",
+      "series_id": 1160097,
+      "start_time": 1793027731
+    },
+    {
+      "duration": 2179,
+      "match_id": 9063005774,
+      "patch": "60",
+      "raw_gzip_sha256": "e4dcb8da5dcbe0ae3bae2bcc0f6dd59d5a79b8fae16caf7f210c839c23bcea49",
+      "raw_json_sha256": "20bf284cdd47d09a18c7d9aad09cd7adccf676ee76106f12268c13fb30a6b7e8",
+      "series_id": 0,
+      "start_time": 1793027043
+    },
+    {
+      "duration": 1201,
+      "match_id": 9062953803,
+      "patch": "60",
+      "raw_gzip_sha256": "660deeb2986845e9981a16e14fd80bd14b91ee562322721fb8203cc6810e1180",
+      "raw_json_sha256": "efd099d458a0f2b1cd7267947b8b007b8f25bef3d94dba1fbe8c93d36cd174e3",
+      "series_id": 0,
+      "start_time": 1793025045
+    },
+    {
+      "duration": 1828,
+      "match_id": 9062925621,
+      "patch": "60",
+      "raw_gzip_sha256": "dc4a5ce17cb1817466940a7f5e150662eb05b9b33cf2ea2975b041adadbb38cd",
+      "raw_json_sha256": "1bc3af44a39737555760b6683185b4f2f56435da44027af8f702968df479b008",
+      "series_id": 1160071,
+      "start_time": 1793023935
+    },
+    {
+      "duration": 2305,
+      "match_id": 9062920598,
+      "patch": "60",
+      "raw_gzip_sha256": "5962e25cce72666cb8d2b5e97613aaaae65ab0d74d8b89f716d4a790dcd6d260",
+      "raw_json_sha256": "dd436b6c8dac37461e967cd37f854d701aee2d75dd5a04723906578a217e15a1",
+      "series_id": 1160053,
+      "start_time": 1793024228
+    },
+    {
+      "duration": 1875,
+      "match_id": 9062888136,
+      "patch": "60",
+      "raw_gzip_sha256": "21d058e251117f57dc8e1c1374b59ff47899d9d562ceae39c093a9f54c87a677",
+      "raw_json_sha256": "b44c2eed19a5b81c55ab9b01feb629777a9ee286f842839a6763588a28d17ee0",
+      "series_id": 0,
+      "start_time": 1793022415
+    },
+    {
+      "duration": 2274,
+      "match_id": 9062824489,
+      "patch": "60",
+      "raw_gzip_sha256": "8bc41c762a22dd0c360fbdf28e8bd1cc60f3a313c29f74f8b5acc52e33a3d232",
+      "raw_json_sha256": "eb07eecdbcdf3fe3f628567631c30cd287859df3dc8b80aacb1f5e0405ff88ae",
+      "series_id": 1160053,
+      "start_time": 1793019865
+    },
+    {
+      "duration": 2000,
+      "match_id": 9062822180,
+      "patch": "60",
+      "raw_gzip_sha256": "4c260e01250207cb4efee4fa3a1660ae81227ef4bd91daf810650d455216359b",
+      "raw_json_sha256": "7ab960032c1a390078a7539d47ba0604a0768fea4d2095df75096b8735c9b88e",
+      "series_id": 0,
+      "start_time": 1793019663
+    },
+    {
+      "duration": 1853,
+      "match_id": 9062759703,
+      "patch": "60",
+      "raw_gzip_sha256": "5c74d978d7864fb96cc64c6ef9a1674898c4d58440089bf7510db0e5103d54e1",
+      "raw_json_sha256": "06baa653394f7902d74a9df130b0b5ce1d3ee8cea24eb75f82fab04f98aa8b04",
+      "series_id": 0,
+      "start_time": 1793016842
+    },
+    {
+      "duration": 2549,
+      "match_id": 9062717661,
+      "patch": "60",
+      "raw_gzip_sha256": "e946a30af20114df1e0e3438b5ede76c3ca581fc6ebedd579c297c9037994774",
+      "raw_json_sha256": "84527c44d7691393b0a7861d7ef3766570c4e09604ebf05c97b082aacec731b7",
+      "series_id": 1160003,
+      "start_time": 1793015004
+    },
+    {
+      "duration": 2439,
+      "match_id": 9062644050,
+      "patch": "60",
+      "raw_gzip_sha256": "dc297daa6df0c70fcb0bcbd5dded0482058994c55310eb652eb149435941fb72",
+      "raw_json_sha256": "5f96cf3b0ec3dd5ba02b5ebffb55f6109f2e2ed49356dce62db7fa55d7bd674c",
+      "series_id": 1160003,
+      "start_time": 1793010770
+    },
+    {
+      "duration": 3645,
+      "match_id": 9062561406,
+      "patch": "60",
+      "raw_gzip_sha256": "1e307faf62f2184f2ac025156badd1f796d6223a55c8efc67a202479267e0e40",
+      "raw_json_sha256": "d45bd0f84a1587ce3132637cac88be7e950a48f4c28510649ce01fe396de84f6",
+      "series_id": 1160003,
+      "start_time": 1793005252
+    },
+    {
+      "duration": 2196,
+      "match_id": 9061909460,
+      "patch": "60",
+      "raw_gzip_sha256": "47f4e15c00ed7a00deddd7d21c2d58510a245f1e8f07b5cd11424081452945dd",
+      "raw_json_sha256": "5d98d8f075bcfd53978f5a5142737e3f367c93b07b1dac23e087278a058f8a29",
+      "series_id": 1159750,
+      "start_time": 1792954452
+    },
+    {
+      "duration": 1462,
+      "match_id": 9061829018,
+      "patch": "60",
+      "raw_gzip_sha256": "6cc98ea15b6081df0f26c8e63c8881ccafb3dd94b82ce7436984980e65b1288a",
+      "raw_json_sha256": "d09d4d6e62a7b769b70552208d2e8e91a1e176a825b2d1062f7601930b52dd08",
+      "series_id": 1159750,
+      "start_time": 1792951289
+    },
+    {
+      "duration": 3008,
+      "match_id": 9061735400,
+      "patch": "60",
+      "raw_gzip_sha256": "bede0ede71022a63d43f2dd949a602c468fa3dec55332c3444ca8ed569e6d751",
+      "raw_json_sha256": "c43d4ed45ed70aadf8bdc44a13032082e530bd4a80cf061ec22fd745d54bba02",
+      "series_id": 1159662,
+      "start_time": 1792947654
+    },
+    {
+      "duration": 3312,
+      "match_id": 9061650142,
+      "patch": "60",
+      "raw_gzip_sha256": "16e8a7e5a3f45eec177c7048944901a307d35cc4e03fbcaf7f8cb7fccdd8e0b0",
+      "raw_json_sha256": "0cea8971a43af590d28b10181babbd336e961babf9db449399e84dc7e0b1229e",
+      "series_id": 1159640,
+      "start_time": 1792945312
+    },
+    {
+      "duration": 1801,
+      "match_id": 9061631640,
+      "patch": "60",
+      "raw_gzip_sha256": "cfb8dab7fd2aba6ab95228911f55cf44562f86d185e26c6b70d193b20c66d27b",
+      "raw_json_sha256": "8a3445a3117790d2674fe672b8b02289694cbccad8ec147c63d4719e5e991eee",
+      "series_id": 1159662,
+      "start_time": 1792944164
+    },
+    {
+      "duration": 3446,
+      "match_id": 9061552441,
+      "patch": "60",
+      "raw_gzip_sha256": "d4dfb356844ba2f83f2d916086bb588926aea9412b5b4a1d6b1207167d3bb4d2",
+      "raw_json_sha256": "736eb17943ec269db381c0d7956048833a4416b661e3b87613f7941a6ddd8e58",
+      "series_id": 1159641,
+      "start_time": 1792941374
+    },
+    {
+      "duration": 1697,
+      "match_id": 9061551205,
+      "patch": "60",
+      "raw_gzip_sha256": "d9c2bbe8eb9352739c537fcf31790864472745a396871b1abc613d65b22d1e05",
+      "raw_json_sha256": "15f0e3d2974abe024bf72534cfcbf09f62e75822cdbd01f78556e1774b99a890",
+      "series_id": 1159640,
+      "start_time": 1792941863
+    },
+    {
+      "duration": 2993,
+      "match_id": 9061485248,
+      "patch": "60",
+      "raw_gzip_sha256": "4d07873cd600af1089bd463394b49c1e87b9b9112ce21b678cbd871f67a71599",
+      "raw_json_sha256": "220ff9bee14019c69784f0496957fb33e837bbf112111e0cb270dfb452ccdfdb",
+      "series_id": 0,
+      "start_time": 1792939169
+    },
+    {
+      "duration": 2129,
+      "match_id": 9061459911,
+      "patch": "60",
+      "raw_gzip_sha256": "f82ffcb152f48cfa4aafba1f835f20cb3f6653b47686584432151ce2fde1a6fc",
+      "raw_json_sha256": "dfb80c357267f82856a998e8333526605ab306113ad959a305642259948f3cfc",
+      "series_id": 0,
+      "start_time": 1792938349
+    },
+    {
+      "duration": 2696,
+      "match_id": 9061432327,
+      "patch": "60",
+      "raw_gzip_sha256": "5fa5fc6ebbe46d82df6f3463a3fd6cc6519bcb314ea41a9bc6311ce6a092ff7d",
+      "raw_json_sha256": "c9526e02885d20a5a7d0c62c28147c61657684b301daa18dc255bfc6c45339fd",
+      "series_id": 1159525,
+      "start_time": 1792937450
+    },
+    {
+      "duration": 1463,
+      "match_id": 9061429763,
+      "patch": "60",
+      "raw_gzip_sha256": "1525ed7e90baa60c5d5e27eeaed3a3510e60252903b7fba906ca6793385053db",
+      "raw_json_sha256": "57598996aefc7ab58cbcfdaa651871a0ee6a3f70f96ab5ef5231309641332ceb",
+      "series_id": 1159531,
+      "start_time": 1792937770
+    },
+    {
+      "duration": 2335,
+      "match_id": 9061387993,
+      "patch": "60",
+      "raw_gzip_sha256": "8f700356274e3394b6e57272508ae1bd65c4b4db0dfa1638cfbad36a25f86a73",
+      "raw_json_sha256": "dd166abe427312d282a5aba41d5b39ded5e3dfe8c2108b933d81024e4b61970a",
+      "series_id": 0,
+      "start_time": 1792936011
+    },
+    {
+      "duration": 1828,
+      "match_id": 9061311690,
+      "patch": "60",
+      "raw_gzip_sha256": "3fb8775f2bc1fc9144e799f6fe52a9d54860d580e207019a0f527b53a64ed516",
+      "raw_json_sha256": "aaad84175c5deb64138c8806f129e9596d79871171395422d816cb66cd241ae2",
+      "series_id": 0,
+      "start_time": 1792933491
+    },
+    {
+      "duration": 2038,
+      "match_id": 9061299814,
+      "patch": "60",
+      "raw_gzip_sha256": "fc89266d4381c8fd5d91b512872acc3b301ddc9937481557740c61bd11987a58",
+      "raw_json_sha256": "293d7fe229e801792a7f8993820b714602a0f40a0bd83966bd982d764c279152",
+      "series_id": 1159531,
+      "start_time": 1792933876
+    },
+    {
+      "duration": 2350,
+      "match_id": 9061288845,
+      "patch": "60",
+      "raw_gzip_sha256": "390bc543545d35b3df1f0a365049653598d60e52921b53be52f559654de443c2",
+      "raw_json_sha256": "2b2206cde8968eb3faa03e2d8110c8b348631d3c011de83766ffceecbe6cc045",
+      "series_id": 1159525,
+      "start_time": 1792933661
+    },
+    {
+      "duration": 2425,
+      "match_id": 9061220091,
+      "patch": "60",
+      "raw_gzip_sha256": "bdffe6554fe360f9aa2f64a1e085942ff6a31a45bed43d4050214704d7453031",
+      "raw_json_sha256": "e71ddb0e8cf329db18a271900926a9424342f9e0d9a418ca8af94041848e8c2f",
+      "series_id": 0,
+      "start_time": 1792930257
+    },
+    {
+      "duration": 4045,
+      "match_id": 9061129248,
+      "patch": "60",
+      "raw_gzip_sha256": "e40266b7ad0f263eda1d494b176ad74a379fe04249128b09b352313b754448c7",
+      "raw_json_sha256": "d6e384dac765fd171588bffe1cfa03d6cb57e89ca7a02355bdbcfb45bc8abb58",
+      "series_id": 1159398,
+      "start_time": 1792927247
+    },
+    {
+      "duration": 1965,
+      "match_id": 9061057026,
+      "patch": "60",
+      "raw_gzip_sha256": "7040bd7072606bdecadf07d8768b26caabdf7afb8fc9a6b0eb8b5175e6a0f9bd",
+      "raw_json_sha256": "b3f6a4e2c2569e0a65dd6c17e52499924530d06325d81b27c65536b0023e89d5",
+      "series_id": 1159398,
+      "start_time": 1792923657
+    },
+    {
+      "duration": 1013,
+      "match_id": 9061025665,
+      "patch": "60",
+      "raw_gzip_sha256": "d9b85976db78a8989d920810ad925705e022c22778e68527860e7e920bd8ef31",
+      "raw_json_sha256": "fd4811d01eddaf191a9a82348f4eb4a18e45bf5c3b45676d9e235f24b6a9776a",
+      "series_id": 1159423,
+      "start_time": 1792922081
+    },
+    {
+      "duration": 2865,
+      "match_id": 9060951574,
+      "patch": "60",
+      "raw_gzip_sha256": "aba00e77c0dfcefe80f0480f5e558b5908a7b90849e0e8ff2018674e8a2b8d0b",
+      "raw_json_sha256": "639b406f5de22317f079abdb5885e2bfc4c6102962684e956afe5a0e0f5112b0",
+      "series_id": 1159398,
+      "start_time": 1792918995
+    },
+    {
+      "duration": 2904,
+      "match_id": 9060239199,
+      "patch": "60",
+      "raw_gzip_sha256": "afd7a2ad49293d4a6c973c15722a1cd670cb0c257a8cee57e555683636ac7220",
+      "raw_json_sha256": "c57c88ae23f860573c92f5e354066c0911082c87fd65ee353013c9422b07e2db",
+      "series_id": 1159090,
+      "start_time": 1792870992
+    },
+    {
+      "duration": 3283,
+      "match_id": 9060102490,
+      "patch": "60",
+      "raw_gzip_sha256": "d701c52af64cd2fb4ca3d88d3bcec2685bcf03371567809e1edadea686a1d23d",
+      "raw_json_sha256": "7892ec0d9f108e193f6365a4969ea5716e6b62a9f986aff59c6381492f9e8b3e",
+      "series_id": 1159090,
+      "start_time": 1792865945
+    },
+    {
+      "duration": 2195,
+      "match_id": 9060004236,
+      "patch": "60",
+      "raw_gzip_sha256": "72f1d9a2ba0e18352a8caf352258cb23930dfcdd2d63d7c74e7d8279779db40a",
+      "raw_json_sha256": "44977e5320523b8297a424fe116729fe077beb61f1b1718a3eaa07791c10c548",
+      "series_id": 1159090,
+      "start_time": 1792861908
+    },
+    {
+      "duration": 2744,
+      "match_id": 9060001403,
+      "patch": "60",
+      "raw_gzip_sha256": "5dff495660a87ca209d9c5a054cec6fd5243f5f381eed0e3b1001c7f7a552b8c",
+      "raw_json_sha256": "7161f57d7b258e474a53db8f080c90189c5f0c4b1fe49ef33ea62a9c14cc972f",
+      "series_id": 1159021,
+      "start_time": 1792861804
+    },
+    {
+      "duration": 3054,
+      "match_id": 9059886075,
+      "patch": "60",
+      "raw_gzip_sha256": "d2a5455531dcf8f6c94811689bad7c4aefcaf216e28d433094dd2a90df5cffa9",
+      "raw_json_sha256": "f5076adea212ccc604304ac1f8fa0cd7a9178b07a05ee58989dc20bbd86301c0",
+      "series_id": 0,
+      "start_time": 1792857661
+    },
+    {
+      "duration": 1585,
+      "match_id": 9059876335,
+      "patch": "60",
+      "raw_gzip_sha256": "6639ddd4ba3d8bc31e62e291e7e319274809a3f347267b659a09fc9b8192a1c5",
+      "raw_json_sha256": "6fdb5cbc27e8afdde18554a680df3d1eca31abdc7dd55ebc6bff8a317f962da2",
+      "series_id": 1159021,
+      "start_time": 1792857965
+    },
+    {
+      "duration": 1935,
+      "match_id": 9059855376,
+      "patch": "60",
+      "raw_gzip_sha256": "63b0122f5391213aec12b89849f681151e1cde9d97a3351f0d777e36450a9a2d",
+      "raw_json_sha256": "e3b5ab139efcaacbcd679d3adaf4e087b4d4c4a149bcbb1a3b789b282b2c288f",
+      "series_id": 1158959,
+      "start_time": 1792857192
+    },
+    {
+      "duration": 1667,
+      "match_id": 9059780697,
+      "patch": "60",
+      "raw_gzip_sha256": "c5c89543e3577ae67fdadb5c4db5b6e5568e58459590b40d28774b8fb8cb075e",
+      "raw_json_sha256": "c4bcb13ff2ea9fdcd085b77b41e53917dc8fe9eb6bcdf42622a7aaf6d63aaa4e",
+      "series_id": 0,
+      "start_time": 1792854030
+    },
+    {
+      "duration": 3077,
+      "match_id": 9059736174,
+      "patch": "60",
+      "raw_gzip_sha256": "2421431a40577114873a86d3f755aaaefb99e9ee8fea7018e0cb9c8c4516af15",
+      "raw_json_sha256": "2cfde3a88ddb3485016e0c4419c8eace628e2566972e57f4a1c3403528d00b6b",
+      "series_id": 1158805,
+      "start_time": 1792852705
+    },
+    {
+      "duration": 2752,
+      "match_id": 9059726836,
+      "patch": "60",
+      "raw_gzip_sha256": "309a26b830972be38f746e3249910cf29ce3d6f2015505d282046e543291ffa8",
+      "raw_json_sha256": "2a4942a65afeae355fbfc422094ed7e5c53e91187746a37033e50bbc89f2e376",
+      "series_id": 1158959,
+      "start_time": 1792852704
+    },
+    {
+      "duration": 2780,
+      "match_id": 9059675967,
+      "patch": "60",
+      "raw_gzip_sha256": "9ebe4cf6b0f0a0d0e429011c787975938a3f524f2d2d30505854e1d281945408",
+      "raw_json_sha256": "1a746703473ae2704858df003e17340130b9e8396b419e4b69f3bbebf008963f",
+      "series_id": 0,
+      "start_time": 1792850546
+    },
+    {
+      "duration": 2821,
+      "match_id": 9059603405,
+      "patch": "60",
+      "raw_gzip_sha256": "13ce17b3baa7f76e0e0f1525805a447b8aebafed13098474bebf1e1161dda5e2",
+      "raw_json_sha256": "fd532ae1e2cc0388f7b661050ef22501bd296d5f4aca3c6ad35287773ea3daff",
+      "series_id": 1158805,
+      "start_time": 1792848022
+    },
+    {
+      "duration": 2523,
+      "match_id": 9059583563,
+      "patch": "60",
+      "raw_gzip_sha256": "cb71503789cc5dedae23163bae506523e918078e199602b0ee5b5ab8386ab09d",
+      "raw_json_sha256": "970bb72cbd310aceae2e5d9ad2ccf9f15d1f0f022d76e3f250d2049f26c17fb5",
+      "series_id": 0,
+      "start_time": 1792847315
+    },
+    {
+      "duration": 4261,
+      "match_id": 9059530192,
+      "patch": "60",
+      "raw_gzip_sha256": "0e8c15edb753851656fab3b89089610b93b64b4ffbab9564e09c43cac260ef39",
+      "raw_json_sha256": "3fba382551eba262db291bb36d2cac2c9ce76973b81ef755e5d9fbe4f169ef57",
+      "series_id": 1158753,
+      "start_time": 1792845745
+    },
+    {
+      "duration": 2472,
+      "match_id": 9059488065,
+      "patch": "60",
+      "raw_gzip_sha256": "ce56758ca15690139427697f66935b9a53b7c72adfd6da2c5c592f0432e2c6b3",
+      "raw_json_sha256": "f7e3c765136e81f239ea4e04e309fba72fc3204cb0f2b83eae17dbb27c9467c1",
+      "series_id": 0,
+      "start_time": 1792843649
+    },
+    {
+      "duration": 2466,
+      "match_id": 9059476837,
+      "patch": "60",
+      "raw_gzip_sha256": "fc7eb0a19a1db23673528e5c2cc472cedc80625166d0d6ecda486f55f215dd40",
+      "raw_json_sha256": "58fda4dbcdd3b74615c8f2a1f33f197220340b4dd10d1e9b2c454348311e321d",
+      "series_id": 1158805,
+      "start_time": 1792843297
+    },
+    {
+      "duration": 3660,
+      "match_id": 9059391986,
+      "patch": "60",
+      "raw_gzip_sha256": "586c00fe672477db01439dcd65023d0b2c8621578c1fd99227852e7d8878ead8",
+      "raw_json_sha256": "5a04751e58613f9223187daa8721ea3bdd712c6e19f8e88bae5d899a3bd19eeb",
+      "series_id": 1158753,
+      "start_time": 1792840107
+    },
+    {
+      "duration": 1673,
+      "match_id": 9059343082,
+      "patch": "60",
+      "raw_gzip_sha256": "914192388d695be4fb1a555dd1f57c7769d7175ea7e17b47c3e9348f5e28f10e",
+      "raw_json_sha256": "e91984611bad5721778dcb9ac041350bb04c0f6a5e56238d1548bc98cf457abf",
+      "series_id": 1158661,
+      "start_time": 1792837117
+    },
+    {
+      "duration": 2898,
+      "match_id": 9059262765,
+      "patch": "60",
+      "raw_gzip_sha256": "0d9b0b1b2eaef7f7e0160bda3bf9218429b74ed061b2e7e34af69d133d7f9cd6",
+      "raw_json_sha256": "2c583acc962311b4c29d0028b8ba51c74bfb408caeb90bac2c7f68799d7fc8fd",
+      "series_id": 1158638,
+      "start_time": 1792833372
+    },
+    {
+      "duration": 2848,
+      "match_id": 9059251035,
+      "patch": "60",
+      "raw_gzip_sha256": "27d6e94332ec6411129cc29e1c6038f773bda26d8b8ed2b916d695bb9eb127eb",
+      "raw_json_sha256": "6e09018286a8636984ee538ed9dd67696f7f9c27048c5a8e0ea122854b51ef19",
+      "series_id": 1158661,
+      "start_time": 1792832654
+    },
+    {
+      "duration": 2207,
+      "match_id": 9059185615,
+      "patch": "60",
+      "raw_gzip_sha256": "36044ca2b081355165e6ebf7cc5860ec777645a97ba95dd5b642374537a5da8c",
+      "raw_json_sha256": "375e57e874755f84d16f45ae43fa10438378c6b6d10a7ad0fd671a8f991a982a",
+      "series_id": 1158638,
+      "start_time": 1792829128
+    },
+    {
+      "duration": 3822,
+      "match_id": 9058656823,
+      "patch": "60",
+      "raw_gzip_sha256": "e8898899d36bb22389f6cab7f48b1a81233239083aaf0346a07164534f78d027",
+      "raw_json_sha256": "9b324c9ed99741a8fa41eb4ef83562945a0a1aae5770666083108c40aa3cf281",
+      "series_id": 1158371,
+      "start_time": 1792787996
+    },
+    {
+      "duration": 3220,
+      "match_id": 9058541179,
+      "patch": "60",
+      "raw_gzip_sha256": "51794fdb674d31a9ba8e8e0895a340c79d2fee0f2e7fb990a3dbbdb1c5e1404d",
+      "raw_json_sha256": "da310c3de35029ae127d450928dc2e9836a4d5690e149e16799f6edccd4916a0",
+      "series_id": 1158371,
+      "start_time": 1792782987
+    },
+    {
+      "duration": 2021,
+      "match_id": 9058456262,
+      "patch": "60",
+      "raw_gzip_sha256": "cde9e3be4780f674422ccc8f7b39b89cf90092e0a55d8dbd6e919bcd800e4a5d",
+      "raw_json_sha256": "aca8cc7b8c95f7ef365f211e231ed867583a11547c09387bfb4151b624850898",
+      "series_id": 1158345,
+      "start_time": 1792780083
+    },
+    {
+      "duration": 2504,
+      "match_id": 9058397594,
+      "patch": "60",
+      "raw_gzip_sha256": "d004a8f3c9988f77e37c6ea0e64a4cc387a166853696a00ddfd7af31989f6747",
+      "raw_json_sha256": "49a316986d7dc867ae7d5ce5b867b309825addf4c7ee0725ea58d3f48eb0dac8",
+      "series_id": 1158371,
+      "start_time": 1792778615
+    },
+    {
+      "duration": 1885,
+      "match_id": 9058339315,
+      "patch": "60",
+      "raw_gzip_sha256": "3d891e96b709a838337fdc56d836b7260d7faa18d4910f4c5a42126b05f60c78",
+      "raw_json_sha256": "466479723218da31d1fcef6a77cb21efa5415b5ce4d7fcda2d763daa8f4a1d21",
+      "series_id": 1158345,
+      "start_time": 1792776542
+    },
+    {
+      "duration": 2051,
+      "match_id": 9058294483,
+      "patch": "60",
+      "raw_gzip_sha256": "6613b28d8a2c8a6e2531e8b3aadffcd8d705edb017c8b1adf17259e0c69fadf6",
+      "raw_json_sha256": "50debf748a8c6e4f5e988fbfc2a668ed741a18a55fec079f436b4af5c97118bb",
+      "series_id": 1158287,
+      "start_time": 1792773790
+    },
+    {
+      "duration": 1598,
+      "match_id": 9058197429,
+      "patch": "60",
+      "raw_gzip_sha256": "237acc6078320ca5b657fcec2eeba4fe89efd3062c39197ecde4dac07f155b08",
+      "raw_json_sha256": "4de9d70e69e92713bf047fee57815ec7d500b6a4a5ab1d0195784a76925f045c",
+      "series_id": 1158287,
+      "start_time": 1792770537
+    },
+    {
+      "duration": 3537,
+      "match_id": 9058178856,
+      "patch": "60",
+      "raw_gzip_sha256": "86945afd5d5bbdde951c905f0bb39798f20c3d3a74ecab35510decf90288ac48",
+      "raw_json_sha256": "083ad653fbd8609875461005fcf491691fb5c299fab279492723a943df1ddffd",
+      "series_id": 1158262,
+      "start_time": 1792769876
+    },
+    {
+      "duration": 1790,
+      "match_id": 9058119230,
+      "patch": "60",
+      "raw_gzip_sha256": "3358010579b3ea589ca2ce35eab5f2c8529277600a65491bbf7816d24c69568b",
+      "raw_json_sha256": "14dce24e7291604405a6da156c191dc35379ee9170f3108edebd9f66ec0edea4",
+      "series_id": 0,
+      "start_time": 1792767621
+    },
+    {
+      "duration": 2377,
+      "match_id": 9058056916,
+      "patch": "60",
+      "raw_gzip_sha256": "dede33f47ccf9800e8d8ef63fd062d92e33ae5a9935c36620e9542cbe02fd89f",
+      "raw_json_sha256": "9906385f42f0d0807ff3c77d39de23100717bec1c6f1ac62c69500bef83ca8e5",
+      "series_id": 1158262,
+      "start_time": 1792765548
+    },
+    {
+      "duration": 3367,
+      "match_id": 9058050797,
+      "patch": "60",
+      "raw_gzip_sha256": "50b8c3555b39dd3be83e0142ec219ae3eb8f1e250090f94d90d6e09be422b85e",
+      "raw_json_sha256": "9c793d55562a7a856d4b12573e355cdbede59d40b6be8d575f20d0ebcde0a7e1",
+      "series_id": 1158205,
+      "start_time": 1792765411
+    },
+    {
+      "duration": 2554,
+      "match_id": 9058027772,
+      "patch": "60",
+      "raw_gzip_sha256": "2b4011a8384ae064930b31082f8224eb9892455dfa9d997d0ccb7a2365134e3f",
+      "raw_json_sha256": "93b5e9372ac69bd4b89d2194dc13578d7e1a7bb70236927d3155b21704a3125d",
+      "series_id": 0,
+      "start_time": 1792764380
+    },
+    {
+      "duration": 1965,
+      "match_id": 9057941029,
+      "patch": "60",
+      "raw_gzip_sha256": "625e18ae35c81f335894da8b71afda5b7066429f23306f0179a8bf31fe2bdb41",
+      "raw_json_sha256": "052f13f5ff30be1b1e007f8253f9e711a57b40c833e5f5002fab6629a72b8a03",
+      "series_id": 0,
+      "start_time": 1792761137
+    },
+    {
+      "duration": 3214,
+      "match_id": 9057921918,
+      "patch": "60",
+      "raw_gzip_sha256": "6e7144e92ff85c54e82d805aff2963cd745a1e421198e37b39711184241ff2f5",
+      "raw_json_sha256": "d70c35b337e1688ea1e11d6666301d4b0a6047805770e68c7ae387d5aa0cb703",
+      "series_id": 1158205,
+      "start_time": 1792760374
+    },
+    {
+      "duration": 4241,
+      "match_id": 9057872455,
+      "patch": "60",
+      "raw_gzip_sha256": "a4b4f7ab0395d18abcd79f79222fafb6906464a75baaf4aa4d6f41f44503b8b4",
+      "raw_json_sha256": "7293129a93446a991c180811cf5da84a01292099e14a63c073a3652b74a9ffbd",
+      "series_id": 1158196,
+      "start_time": 1792758486
+    },
+    {
+      "duration": 2533,
+      "match_id": 9057857953,
+      "patch": "60",
+      "raw_gzip_sha256": "a4548b99c5062dc16552549cac23a16b6b5b2cb5adf85819ffbf266343d428c7",
+      "raw_json_sha256": "7498c133b5665f44a17ffef4aeda967970c701b7e67433f859b60242405b0ce7",
+      "series_id": 0,
+      "start_time": 1792757628
+    },
+    {
+      "duration": 1914,
+      "match_id": 9057834490,
+      "patch": "60",
+      "raw_gzip_sha256": "0b4969163abe596a5c9f312f51ed6f94c911324d4532fa104be146975ed76e9e",
+      "raw_json_sha256": "2d0c45348fa8cef8cc489afc52ee7f29e0fa8419c5207942c74028c3dfc2f2c7",
+      "series_id": 1158205,
+      "start_time": 1792756875
+    },
+    {
+      "duration": 3147,
+      "match_id": 9057771854,
+      "patch": "60",
+      "raw_gzip_sha256": "e88bc245e279bca2ad6582c15fbcc3a50058fd3811b9491dafe36cd5cdfd1cd8",
+      "raw_json_sha256": "c145152b220e020d871d240233a6023b601abf7a3944bb2a94273eb18e33be0d",
+      "series_id": 1158196,
+      "start_time": 1792753451
+    },
+    {
+      "duration": 2204,
+      "match_id": 9057739307,
+      "patch": "60",
+      "raw_gzip_sha256": "f81ccee49aceb84c964469ecd3c45b509fa4872823bd90cf2d992fba9d18efff",
+      "raw_json_sha256": "1c94b6785640413290d354f941e81742c1615d3ac5728697def83e107cf87d51",
+      "series_id": 1158194,
+      "start_time": 1792751435
+    },
+    {
+      "duration": 2941,
+      "match_id": 9057681759,
+      "patch": "60",
+      "raw_gzip_sha256": "c58ac4a46dbfc765511a92cf99babd44ebeac696c99062471fabfa61eaefb1e3",
+      "raw_json_sha256": "72ef814f55646d63b38c0274f17d263c53c9e3fc99c74ce05309905dec3a31ca",
+      "series_id": 1158181,
+      "start_time": 1792747766
+    },
+    {
+      "duration": 2214,
+      "match_id": 9057674435,
+      "patch": "60",
+      "raw_gzip_sha256": "0d3769408ccc51d61ee19c2f99672a0297caf69c7b897ca632154e435fdfd2b1",
+      "raw_json_sha256": "a709d2ebdab5876de67716b519e779d61622a683190bf84e695dcfba4d874fe8",
+      "series_id": 1158184,
+      "start_time": 1792747142
+    },
+    {
+      "duration": 2259,
+      "match_id": 9057627136,
+      "patch": "60",
+      "raw_gzip_sha256": "e5ecf4563d363ca5bc463592d758f44d13e7914436cd927daaf368829a57f73a",
+      "raw_json_sha256": "7afaf8845e27af32b02a53ce666d7a5cc7a36f8bd071633d0b41788b916ec029",
+      "series_id": 1158181,
+      "start_time": 1792743688
+    },
+    {
+      "duration": 2296,
+      "match_id": 9057084643,
+      "patch": "60",
+      "raw_gzip_sha256": "983ef8480d1187d699c332b24177df4d109a3d04b8d748a4aa65f8155e8b4ed2",
+      "raw_json_sha256": "45f451c38603e327cff35fbef31535f18a892064f94c64a22389b6e0e091843e",
+      "series_id": 1157994,
+      "start_time": 1792696356
+    },
+    {
+      "duration": 1873,
+      "match_id": 9057055798,
+      "patch": "60",
+      "raw_gzip_sha256": "3da0043364d53dbdc9494d4cc6f04ab3a50508aeb17366499dcf2590bf2a1b11",
+      "raw_json_sha256": "5edd35ef22675ebd4dc0686e3ae9a2bcbf8b819494352a8725b1e0801d2a3048",
+      "series_id": 1157965,
+      "start_time": 1792695220
+    },
+    {
+      "duration": 1870,
+      "match_id": 9056988862,
+      "patch": "60",
+      "raw_gzip_sha256": "e8b331ca497f5b9eb2fdefe79247a867458d86be579a50f6f3837eac0894f9eb",
+      "raw_json_sha256": "a6dcb80589f6d6161a27ffce852f8152f3afa4ebe1960111a2340be1aa7eac9b",
+      "series_id": 1157994,
+      "start_time": 1792692706
+    },
+    {
+      "duration": 3745,
+      "match_id": 9056907498,
+      "patch": "60",
+      "raw_gzip_sha256": "80bef02473298765e68b4081ede5922df8a9e8d1f272bada2d60187a8bf9c09e",
+      "raw_json_sha256": "3d1bf9e27567f0e2ac374e3aba38787aa05e3a989946d21d314797bbaec15faa",
+      "series_id": 1157965,
+      "start_time": 1792689217
+    },
+    {
+      "duration": 1868,
+      "match_id": 9056844521,
+      "patch": "60",
+      "raw_gzip_sha256": "957a6839458248bfe8fa24b992cd3e22c4dec8228ec64cdcd69e46db97deb706",
+      "raw_json_sha256": "f8e0a646fb23ebe9204a45959b4fd2f6573e36c8cfb67322168e8b2cb0554a05",
+      "series_id": 1157928,
+      "start_time": 1792686683
+    },
+    {
+      "duration": 1595,
+      "match_id": 9056794318,
+      "patch": "60",
+      "raw_gzip_sha256": "a9582b0af0783fb697a876756499c6f924e3f661006f4360931606ca56ae850a",
+      "raw_json_sha256": "8937c7818b7c83df7d185415e24226208070f99915b05e5dcb6fa0108882d1bc",
+      "series_id": 1157917,
+      "start_time": 1792684919
+    },
+    {
+      "duration": 3016,
+      "match_id": 9056685103,
+      "patch": "60",
+      "raw_gzip_sha256": "73773744b0b364c72042b0c1ff35ec788b6de976645dbeaadc56d0c790fe8518",
+      "raw_json_sha256": "b8221cd00adc51dd63a465e58901239606fb7dbf413209b14337ad3bdb84fb0d",
+      "series_id": 1157928,
+      "start_time": 1792681136
+    },
+    {
+      "duration": 4619,
+      "match_id": 9056618744,
+      "patch": "60",
+      "raw_gzip_sha256": "195af6c2b2988146b1034611dc3709cb2177f472cc58bf42aaa00c1cf2cf7297",
+      "raw_json_sha256": "68387c37e9788e2595d83b019381594ac67bb87a03bd780ebb7353b0740d792c",
+      "series_id": 1157917,
+      "start_time": 1792678360
+    },
+    {
+      "duration": 1865,
+      "match_id": 9056536159,
+      "patch": "60",
+      "raw_gzip_sha256": "7621ddad7cb1c29b31adac64043db8f97ea65afe8d7a22d5fe1d9453545c1b12",
+      "raw_json_sha256": "b53aac18dd5a6d00eda468da980d966eacc40d621bd39e836205c0c647760f55",
+      "series_id": 1157865,
+      "start_time": 1792675118
+    },
+    {
+      "duration": 1997,
+      "match_id": 9056429802,
+      "patch": "60",
+      "raw_gzip_sha256": "0e6bd1d38a0649df258cb80633afa5b6345e4c8020c449471288996ca4ac39b6",
+      "raw_json_sha256": "8b96d40927e2d086f56e6b522374bf11c8dbf1da337ecbdf8991316140d58ac2",
+      "series_id": 1157860,
+      "start_time": 1792671012
+    },
+    {
+      "duration": 2428,
+      "match_id": 9056426458,
+      "patch": "60",
+      "raw_gzip_sha256": "9545fa7cab1fb7a5150cb2699861fc3fc4829be15831ee90fc02f6dedb0c7f03",
+      "raw_json_sha256": "fc685b01a7db7875586a7060a4dda8e441498adfeaf65648633b05bd4f557d0b",
+      "series_id": 1157865,
+      "start_time": 1792670608
+    },
+    {
+      "duration": 2496,
+      "match_id": 9056353535,
+      "patch": "60",
+      "raw_gzip_sha256": "56133812a0ffeea53bb97449f41283ba7ee4cfd4ab5691d40b5a2fa0003d872e",
+      "raw_json_sha256": "3415e8a11d35c350cb4290d6de0ec1a8384955b21a5ed29f658b19fad43b680c",
+      "series_id": 1157860,
+      "start_time": 1792666808
+    },
+    {
+      "duration": 2561,
+      "match_id": 9056309568,
+      "patch": "60",
+      "raw_gzip_sha256": "99bc71b90100a789f5aec3e427cfe4a4da2873fbea3f948073796307fb3435d5",
+      "raw_json_sha256": "085c41fe7e62088b888b503d6259627a501cf6c6a6bfbc0cd4c557d79fd26a8a",
+      "series_id": 1157843,
+      "start_time": 1792663392
+    },
+    {
+      "duration": 1988,
+      "match_id": 9056271057,
+      "patch": "60",
+      "raw_gzip_sha256": "5b1d704d9cc5147e7239afc0ec8638b199c7e6faf5904dc9b09e413ceac96274",
+      "raw_json_sha256": "ae216e763ef1f529fc79d73fe18951680f9a9949279d63e506aa3946aa23ca89",
+      "series_id": 1157834,
+      "start_time": 1792660804
+    },
+    {
+      "duration": 1381,
+      "match_id": 9056258736,
+      "patch": "60",
+      "raw_gzip_sha256": "b7302d1b89bbe6c4cbd54ba15ed50641c78108f5ce5bf1f224ad10c529efb18a",
+      "raw_json_sha256": "f129efe4a0173012081942b0e6bf18275f1f0322c43890500b210ce62519d9a1",
+      "series_id": 1157843,
+      "start_time": 1792660346
+    },
+    {
+      "duration": 2223,
+      "match_id": 9056215433,
+      "patch": "60",
+      "raw_gzip_sha256": "ef7ff1a9b35bdc8d3fa5abf9b298679d958308d06f808baa66d14dd749578f1f",
+      "raw_json_sha256": "22ebe84de73726146480013564b9a3f56736f300037fd8f153c66014d6aa083b",
+      "series_id": 1157834,
+      "start_time": 1792656791
+    },
+    {
+      "duration": 2113,
+      "match_id": 9055931233,
+      "patch": "60",
+      "raw_gzip_sha256": "36df692e8c9f76cb7b834a868c9e45bd5a51356190ee510d0d92204fce1b117a",
+      "raw_json_sha256": "d6b975e50b8bb4fbfa0f697a2c2a085f1b75697b769102555c2300e86ad14b97",
+      "series_id": 1157724,
+      "start_time": 1792625131
+    },
+    {
+      "duration": 2288,
+      "match_id": 9055896406,
+      "patch": "60",
+      "raw_gzip_sha256": "1b4b2fcef6a2de95ec00d73ed27d9e2342bc84b48c22038e414b4313e8172202",
+      "raw_json_sha256": "10621b48785f77b43d7670ac039363d6a4fc948353b7f994bc341c9337771f10",
+      "series_id": 1157724,
+      "start_time": 1792621342
+    },
+    {
+      "duration": 2024,
+      "match_id": 9055842613,
+      "patch": "60",
+      "raw_gzip_sha256": "0393a5e8bb2f077a5a961bdd1fabaafef5f0d9ec12dce9f813ccdc04094cb3de",
+      "raw_json_sha256": "db6c305577de0b4e56f4ed2c0cef77bbe63339e688797f6cb2a849cc0556b32d",
+      "series_id": 1157724,
+      "start_time": 1792617223
+    },
+    {
+      "duration": 2648,
+      "match_id": 9055723516,
+      "patch": "60",
+      "raw_gzip_sha256": "71a24f11aa8b64e16e0e391e78568b86a747003a3179e1590e7e4d9719caed14",
+      "raw_json_sha256": "0efdb7a04fb22e4d4fdeae7ae40e11c885d347f52846cc0b8ddb7aea42cbf547",
+      "series_id": 1157637,
+      "start_time": 1792610675
+    },
+    {
+      "duration": 1866,
+      "match_id": 9055701831,
+      "patch": "60",
+      "raw_gzip_sha256": "41dad91bc43a599bfbdd9e0bf7b12cd58b18033e0fc977065ca52397a921ee47",
+      "raw_json_sha256": "5c8caa8f8a83cadc1885d2ff4a4a78471e8e78c7ebdaa84f331288a549ebc5f8",
+      "series_id": 1157645,
+      "start_time": 1792609693
+    },
+    {
+      "duration": 1627,
+      "match_id": 9055610769,
+      "patch": "60",
+      "raw_gzip_sha256": "8c29a0b772af80d3bbd3b0053eef4770245e7e0065e59b094c43d625aec56a02",
+      "raw_json_sha256": "66735f7c5569672bfb5ed4e8a6e7b09fd958df9b074c20699a37a2f5b86c582c",
+      "series_id": 1157645,
+      "start_time": 1792605928
+    },
+    {
+      "duration": 2580,
+      "match_id": 9055602259,
+      "patch": "60",
+      "raw_gzip_sha256": "c46e71a5fbd696734701c7dfaa8cfc53cb480b4556c1808f216a466b27f46de9",
+      "raw_json_sha256": "2f2753a6e76ba1fff2fff1065c2e765456de12ebb7211890e1601eecfa9ddd5b",
+      "series_id": 1157637,
+      "start_time": 1792606226
+    },
+    {
+      "duration": 2641,
+      "match_id": 9055504238,
+      "patch": "60",
+      "raw_gzip_sha256": "8f1fa8f326653c9330b920d6ce0d89988d1ce4d49ee1809084d0b273caa850dd",
+      "raw_json_sha256": "2ac613414d827069b190a0be3828a474942af03b97c20ae6b57e12e2f0ac6519",
+      "series_id": 1157594,
+      "start_time": 1792601523
+    },
+    {
+      "duration": 1942,
+      "match_id": 9055441636,
+      "patch": "60",
+      "raw_gzip_sha256": "bead8b7e0128fa85323462ea7ba259a26658ff7c09963bc4619d425b7f18c3d5",
+      "raw_json_sha256": "c4d135280653e454eed39478a74e73ba767e1736bdbb2f16411eeb66e88b2cbe",
+      "series_id": 1157584,
+      "start_time": 1792599068
+    },
+    {
+      "duration": 2037,
+      "match_id": 9055405538,
+      "patch": "60",
+      "raw_gzip_sha256": "ad205c8bcedd8efd56234759f060e83f129d401c5693c310d1e6993a9f971d53",
+      "raw_json_sha256": "b7bd74ed32e0acf845de1e8f2e4599915ccccc9a7f6e5afd9fa467f326062eef",
+      "series_id": 1157594,
+      "start_time": 1792597784
+    },
+    {
+      "duration": 1525,
+      "match_id": 9055357382,
+      "patch": "60",
+      "raw_gzip_sha256": "9229518d2fa348c2499011d951e6f93bf12d146b17889a4e18e95b84eba32eb9",
+      "raw_json_sha256": "34d62bc7f2357b2a6a30bd5e01f0e44b197970a0980f273315fa4040b0e77356",
+      "series_id": 1157584,
+      "start_time": 1792596153
+    },
+    {
+      "duration": 1874,
+      "match_id": 9055294919,
+      "patch": "60",
+      "raw_gzip_sha256": "f934607e7a144fa4757c69175c3360a3558b82fb64656c5a6c603c2b6879a9a3",
+      "raw_json_sha256": "ff8315bd09d6bd4b88be285c5e3578861a139fb8a6767578738e382487c6d12c",
+      "series_id": 1157530,
+      "start_time": 1792593874
+    },
+    {
+      "duration": 2042,
+      "match_id": 9055224065,
+      "patch": "60",
+      "raw_gzip_sha256": "75c0a3480ad31f9e4db50c59d34e07ff83de242827b2f72c5b6bf6eabaaacde2",
+      "raw_json_sha256": "a057c6dbb36703570ffc87b02eee078c8292e93839b76b4c2183339b1c9dc7ed",
+      "series_id": 0,
+      "start_time": 1792590894
+    },
+    {
+      "duration": 2159,
+      "match_id": 9055190480,
+      "patch": "60",
+      "raw_gzip_sha256": "7e746b0255fc76729fad1ab2cfb907bc562de1f6f96fd14e0e8ae168f36791c4",
+      "raw_json_sha256": "ad0a660de5a26263872cc9ba2cf2cac59b8bb72d94d5cecaa6d63f87dfd38fcc",
+      "series_id": 1157530,
+      "start_time": 1792589583
+    },
+    {
+      "duration": 1141,
+      "match_id": 9055168282,
+      "patch": "60",
+      "raw_gzip_sha256": "1bb8caecae6ac04f73c0666bf78b27a1bbac0929caad2c193fb3fbd43dd115cc",
+      "raw_json_sha256": "ff2782b537eba2e752c9420185f6b3efcb4175948d9fc9ead0497eb05b06bdb9",
+      "series_id": 1157552,
+      "start_time": 1792588690
+    },
+    {
+      "duration": 2326,
+      "match_id": 9055082162,
+      "patch": "60",
+      "raw_gzip_sha256": "376b4a7c351c13e5d9144462212999c5cf531cf8afdd57eff3ce6630e5f41aaa",
+      "raw_json_sha256": "7aab1a39e29638477246c76c62eee910fb8c2a9f4ef0cd57b425cbe310d7b522",
+      "series_id": 1157530,
+      "start_time": 1792585302
+    },
+    {
+      "duration": 3226,
+      "match_id": 9055073641,
+      "patch": "60",
+      "raw_gzip_sha256": "c819abcb491f9bded77ea8628330d09ce4269a8df82c9d039293eac0a96421aa",
+      "raw_json_sha256": "6b92e4c478a226b2cdc9e6708ca4ce9ce258bbdb59c98d41174efc5f997fb338",
+      "series_id": 0,
+      "start_time": 1792584545
+    },
+    {
+      "duration": 1738,
+      "match_id": 9054997480,
+      "patch": "60",
+      "raw_gzip_sha256": "1107756905596b3b5697b0c95703d96f262441359621e3d7b25f18170b77b25a",
+      "raw_json_sha256": "2f1335675ed1ad1960c7c405b47fae971922fa72a92da41c213f2835a444f9f7",
+      "series_id": 1157497,
+      "start_time": 1792581184
+    },
+    {
+      "duration": 1974,
+      "match_id": 9054953710,
+      "patch": "60",
+      "raw_gzip_sha256": "2597942c01970dbda04eef7a69291f8342d2a352f0b31a12ffeae992dfc98815",
+      "raw_json_sha256": "e0d3ab3089d9c979450b568b6955d21933b7fa25e6846557e63dc15d3a9d68a7",
+      "series_id": 1157497,
+      "start_time": 1792577697
+    },
+    {
+      "duration": 2682,
+      "match_id": 9054897422,
+      "patch": "60",
+      "raw_gzip_sha256": "1087c52dbd8aaaa62ae506aacb2bd15e507dfa42b0201c8f0e77c7d85480be2c",
+      "raw_json_sha256": "dce72010b8f2e30b5a8803b9db881d780ee5830b3ba418e98c8d0cd777f60a48",
+      "series_id": 1157497,
+      "start_time": 1792573558
+    },
+    {
+      "duration": 2474,
+      "match_id": 9054536936,
+      "patch": "60",
+      "raw_gzip_sha256": "b78eb78b37c969fda0382a3ef77633e2411e6c4f8458a54c4cc5f2dca3218fc5",
+      "raw_json_sha256": "6da6655bb02703931c8cd53ebce9d8e56d3f7a7de347b6192897a7ae3c05350c",
+      "series_id": 1157387,
+      "start_time": 1792535959
+    },
+    {
+      "duration": 2212,
+      "match_id": 9054491249,
+      "patch": "60",
+      "raw_gzip_sha256": "866214d4f28b0903b89f495aba6633eb9e135cb695b157f3aff481f536957bc4",
+      "raw_json_sha256": "0881d911ff6dd80921a54e27cdec2cd53f28878876e864dc271e3470e2f2c820",
+      "series_id": 1157384,
+      "start_time": 1792531637
+    },
+    {
+      "duration": 2618,
+      "match_id": 9054431552,
+      "patch": "60",
+      "raw_gzip_sha256": "2ea47630ed223e6514146f3e49203d29e85010a03804fed47fced43bd2fc70d2",
+      "raw_json_sha256": "41203f2f68f077b9b77b936affbb4ec0795bf9c90f4e8624c10af1616c9cfdd5",
+      "series_id": 1157361,
+      "start_time": 1792528306
+    },
+    {
+      "duration": 1372,
+      "match_id": 9054377966,
+      "patch": "60",
+      "raw_gzip_sha256": "00efe2ec707663b4bf45a48f61e8efc329f3191b81722cd7f5f46e90da90574f",
+      "raw_json_sha256": "21ed5870f745dde9d56d2129a3647c8a6d7749bb9c68b20bc5670e2df72385d8",
+      "series_id": 1157361,
+      "start_time": 1792524883
+    },
+    {
+      "duration": 1225,
+      "match_id": 9054331703,
+      "patch": "60",
+      "raw_gzip_sha256": "c370c88b20b29e3f92a44fa13f9cb18774e8344c1b5e451accee6c1ce66c1ac4",
+      "raw_json_sha256": "42b8e5091fbfd0f757b64dbb524d84e5e18f8648487e6adb15e7e9fc4e670cab",
+      "series_id": 1157343,
+      "start_time": 1792522716
+    },
+    {
+      "duration": 3196,
+      "match_id": 9054267340,
+      "patch": "60",
+      "raw_gzip_sha256": "bebc2e6d34a30b7640707b49607b09a827cbffb2d9d7145709a7ff3c431e807b",
+      "raw_json_sha256": "002c9d5ad4060e4bd5f4899beea6c81a62a45e7e8a526b0c5020d087085c95fa",
+      "series_id": 1157321,
+      "start_time": 1792520097
+    },
+    {
+      "duration": 1415,
+      "match_id": 9054260247,
+      "patch": "60",
+      "raw_gzip_sha256": "c05219535cca2db331e6defe1b86b5e0565fe9ecfcd50c09b26e417eb99bbba1",
+      "raw_json_sha256": "9c6ab63ca9e9a0f5c85729abf66ec6d91123060633ce1f8fe7265dcb6c13da7e",
+      "series_id": 1157316,
+      "start_time": 1792519998
+    },
+    {
+      "duration": 1766,
+      "match_id": 9054109070,
+      "patch": "60",
+      "raw_gzip_sha256": "dc72dc39cb9839e85486be97bd59d943f4bc7df9dd6b447de88c2905eaa03062",
+      "raw_json_sha256": "e9fe28682637d42f220ab3a71045b013409146d8603f339f14ab73557e4c30db",
+      "series_id": 1157249,
+      "start_time": 1792513723
+    },
+    {
+      "duration": 2799,
+      "match_id": 9053969598,
+      "patch": "60",
+      "raw_gzip_sha256": "5c2d22e5e9c55bafaf8c4c7dcd45009c6df9c9cc57804c7612cffa09b613688b",
+      "raw_json_sha256": "5a2d2f35b8d306152b3cdaa4abdf1ff947bc8bf5ab15e1546464d57bf92251c8",
+      "series_id": 1157249,
+      "start_time": 1792508495
+    },
+    {
+      "duration": 2569,
+      "match_id": 9053787295,
+      "patch": "60",
+      "raw_gzip_sha256": "16e6796440b7c0cc557077362cbfdeed4f6637816fec2556a82c484af1d7bfa7",
+      "raw_json_sha256": "d2db9792803a919017c77b567d940c500b218136bc545248bbdcff72add04562",
+      "series_id": 1157209,
+      "start_time": 1792501454
+    },
+    {
+      "duration": 1939,
+      "match_id": 9053699308,
+      "patch": "60",
+      "raw_gzip_sha256": "44d687e889246b3bdfd0bb717c1a5540f25f6d3b229cf0b677bb68177b74b51d",
+      "raw_json_sha256": "a8155d1787319a41c98202670acfdaa8e097c8855b6efabba4724109e4693b36",
+      "series_id": 1157177,
+      "start_time": 1792497701
+    },
+    {
+      "duration": 2131,
+      "match_id": 9053589944,
+      "patch": "60",
+      "raw_gzip_sha256": "ccd65821ca3de8a69f5f1a10cc660c51d72d195b4da4674e4fe9d7526f9c7837",
+      "raw_json_sha256": "cecac43fc492040ca26f734138a56c5ffc92a7c8c7353f202990d08b1a400508",
+      "series_id": 1157156,
+      "start_time": 1792491071
+    },
+    {
+      "duration": 1836,
+      "match_id": 9053532473,
+      "patch": "60",
+      "raw_gzip_sha256": "352412289136e66795ddd0571ea10b84c50b32a45302679338b0a4e7a52f95dc",
+      "raw_json_sha256": "74662b07076317510d4c594956f3e7503fd9f84cce129cbd405206c6ce667469",
+      "series_id": 1157156,
+      "start_time": 1792487669
+    },
+    {
+      "duration": 2592,
+      "match_id": 9053242313,
+      "patch": "60",
+      "raw_gzip_sha256": "ca7010a92136bc0d12f83e7d598607e49e60b7c1e0a552868b8e1df84c074d24",
+      "raw_json_sha256": "0517e19177b01e0a8ecee405207d04c72bc127627d64f136bf0ddf880aded39b",
+      "series_id": 1157068,
+      "start_time": 1792457022
+    }
+  ],
+  "accepted_count": 180,
+  "audit": [
+    {
+      "match_id": 9070527945,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9070392472,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9070122200,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9070062078,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9070048037,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9069995494,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9069952836,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9069021061,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068910292,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068883958,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068795274,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068605888,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068455299,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068332041,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068257334,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9068183471,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067617648,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067529830,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067412106,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067346550,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067217876,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067177642,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067149165,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067078024,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067019772,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9067007060,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066936100,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066926114,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066833957,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066750920,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066391707,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066349307,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066273901,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066180509,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9066084051,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065986613,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065883621,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065794389,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065785447,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065710147,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065653541,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065633656,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065559054,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065511384,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065451128,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9065380598,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9064490683,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9064337890,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9064215798,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063495955,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063430462,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063353533,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063230342,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063131170,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063026856,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063023867,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9063005774,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062953803,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062925621,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062920598,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062888136,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062824489,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062822180,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062759703,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062717661,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062644050,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9062561406,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061909460,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061829018,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061735400,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061650142,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061631640,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061552441,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061551205,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061485248,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061459911,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061432327,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061429763,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061387993,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061311690,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061299814,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061288845,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061220091,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061129248,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061057026,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9061025665,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9060951574,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9060239199,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9060102490,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9060004236,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9060001403,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059886075,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059876335,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059855376,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059780697,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059736174,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059726836,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059675967,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059603405,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059583563,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059530192,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059488065,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059476837,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059391986,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059343082,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059262765,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059251035,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9059185615,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058656823,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058541179,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058456262,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058397594,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058339315,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058294483,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058197429,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058178856,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058119230,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058056916,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058050797,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9058027772,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057941029,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057921918,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057872455,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057857953,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057834490,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057771854,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057739307,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057681759,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057674435,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057627136,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057084643,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9057055798,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056988862,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056907498,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056844521,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056794318,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056685103,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056618744,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056536159,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056429802,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056426458,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056353535,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056309568,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056271057,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056258736,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9056215433,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055931233,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055896406,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055842613,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055723516,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055701831,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055610769,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055602259,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055504238,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055441636,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055405538,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055357382,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055294919,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055224065,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055190480,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055168282,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055082162,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9055073641,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054997480,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054953710,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054897422,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054536936,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054491249,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054431552,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054377966,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054331703,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054267340,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054260247,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9054109070,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9053969598,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9053787295,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9053699308,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9053589944,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9053532473,
+      "reason": "eligible"
+    },
+    {
+      "match_id": 9053242313,
+      "reason": "eligible"
+    }
+  ],
+  "candidate_count": 180,
+  "complete": true,
+  "exclusions": {},
+  "frozen_listing_sha256": "b8b143b819e7aad4e0563482f4ed36680f22e8bfc5fd3635a3bda7c4c09ad1b4",
+  "http_attempts": 182,
+  "no_model_fitting_or_scoring_in_collection": true,
+  "requested_count": 180,
+  "source_model_fingerprints": {
+    "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+    "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+  }
+}
