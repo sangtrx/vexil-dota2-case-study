@@ -1,0 +1,38 @@
+{
+  "all_samples_have_individual_verified_timestamps": false,
+  "array_length_deltas": {
+    "player_dn_t_delta_0": 2890,
+    "player_dn_t_delta_1": 20,
+    "player_gold_t_delta_0": 2890,
+    "player_gold_t_delta_1": 20,
+    "player_lh_t_delta_0": 2890,
+    "player_lh_t_delta_1": 20,
+    "player_xp_t_delta_0": 2890,
+    "player_xp_t_delta_1": 20,
+    "radiant_gold_adv_delta_0": 289,
+    "radiant_gold_adv_delta_1": 2,
+    "radiant_xp_adv_delta_0": 289,
+    "radiant_xp_adv_delta_1": 2
+  },
+  "arrays_longer_than_duration_minute_grid": 84,
+  "arrays_shorter_than_duration_minute_grid": 0,
+  "arrival_time_verified": false,
+  "duration_id_mismatches": 0,
+  "external_context": "2026 Zenodo v3 DOI 10.5281/zenodo.23166182 removed 1849 other matches because time-axis indexing was not always reliable",
+  "first_values_diagnostics": {
+    "player_lh_t_nonzero_first": 40,
+    "player_xp_t_nonzero_first": 318,
+    "radiant_gold_adv_nonzero_first": 65,
+    "radiant_gold_adv_over_1000_first": 0,
+    "radiant_xp_adv_nonzero_first": 64,
+    "radiant_xp_adv_over_1000_first": 0
+  },
+  "matches_checked": 291,
+  "per_match_player_arrays": 40,
+  "per_match_team_arrays": 2,
+  "player_streams_checked": 2910,
+  "raw_source_manifest_sha256": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+  "scientific_judgment": "INDETERMINATE: array lengths compatible with duration; no proof that array index t denotes exact observation/arrival time t",
+  "scope": "original 291 TRAIN matches; NO label or original VAL/TEST read",
+  "train_csv_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
+}
