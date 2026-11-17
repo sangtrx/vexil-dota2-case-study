@@ -1,0 +1,314 @@
+{
+  "candidate_promoted": false,
+  "cohorts": {
+    "November": {
+      "ALL_outperformance_robustness_refuted": false,
+      "comparisons": {
+        "ALL_minus_M0": {
+          "delta_brier": -0.0052463807979033035,
+          "delta_ll": -0.011086901103017825,
+          "equal_match_delta_ll": -0.01066190249700038,
+          "late30_delta_brier": -0.0023582771874714747,
+          "leave_one_series_out_ll_max": -0.0017186701940445828,
+          "leave_one_series_out_ll_min": -0.01625336479317926,
+          "most_positive_series_share": 0.865499013196343,
+          "series_bootstrap_95_brier": [
+            -0.013161186363911087,
+            0.0014167115489614375
+          ],
+          "series_bootstrap_95_ll": [
+            -0.03378462269705904,
+            0.008641356379969888
+          ]
+        },
+        "ALL_minus_M1": {
+          "delta_brier": 0.0016029526980889473,
+          "delta_ll": 0.002398079586963849,
+          "equal_match_delta_ll": 0.003524523933742284,
+          "late30_delta_brier": 0.0038506023951393937,
+          "leave_one_series_out_ll_max": 0.005330291419884702,
+          "leave_one_series_out_ll_min": -0.0026218406991430567,
+          "most_positive_series_share": null,
+          "series_bootstrap_95_brier": [
+            -0.0026883419442986028,
+            0.006557911468151919
+          ],
+          "series_bootstrap_95_ll": [
+            -0.00962431917574383,
+            0.01651651546981622
+          ]
+        },
+        "ALL_minus_Q1": {
+          "delta_brier": -0.0021793306417559055,
+          "delta_ll": -0.004290892994684267,
+          "equal_match_delta_ll": -0.002086609129970646,
+          "late30_delta_brier": -0.0039050498226430143,
+          "leave_one_series_out_ll_max": 0.003702005202973027,
+          "leave_one_series_out_ll_min": -0.009497635397798628,
+          "most_positive_series_share": 1.7485700366073333,
+          "series_bootstrap_95_brier": [
+            -0.009662253840346753,
+            0.005040579545380713
+          ],
+          "series_bootstrap_95_ll": [
+            -0.024634939825286743,
+            0.015452535940022766
+          ]
+        },
+        "Q1_minus_M1": {
+          "delta_brier": 0.0037822833398448536,
+          "delta_ll": 0.006688972581648119,
+          "equal_match_delta_ll": 0.005611133063712931,
+          "late30_delta_brier": 0.007755652217782408,
+          "leave_one_series_out_ll_max": 0.010705058238327219,
+          "leave_one_series_out_ll_min": 0.0016282862169116757,
+          "most_positive_series_share": null,
+          "series_bootstrap_95_brier": [
+            -0.002793532121327767,
+            0.010479958394641452
+          ],
+          "series_bootstrap_95_ll": [
+            -0.008594499765983228,
+            0.022300918368851657
+          ]
+        }
+      },
+      "data_provenance": {
+        "games": 22,
+        "groups": 9,
+        "max_earlier_probability_parity_M0_gold": 3.3306690738754696e-16,
+        "max_earlier_probability_parity_M1_interaction": 7.303602167496592e-13,
+        "new_raw_downloads": 0,
+        "predictor_ingress_timestamp_verified": false,
+        "raw_team_cross_array_slots_verified": 952,
+        "rows": 952,
+        "scope": "November",
+        "side_mirror_checks": 952
+      },
+      "genuinely_blind_new_validation": false,
+      "league_descriptive_min_10_games": {
+        "20486": {
+          "delta_brier_ALL_minus_Q1": -0.002600891515448361,
+          "delta_ll_ALL_minus_M1": -0.0016520087100212152,
+          "delta_ll_ALL_minus_Q1": -0.0049398628411340675,
+          "games": 15,
+          "rows": 681
+        }
+      },
+      "period_scoring": {
+        "ALL": {
+          "brier": 0.14562822149522822,
+          "equal_match_logloss": 0.43320622022196853,
+          "late30_brier": 0.08904792777842012,
+          "logloss": 0.44507998357057654
+        },
+        "M0_gold": {
+          "brier": 0.15087460229313152,
+          "equal_match_logloss": 0.44386812271896897,
+          "late30_brier": 0.0914062049658916,
+          "logloss": 0.4561668846735944
+        },
+        "M1_interaction": {
+          "brier": 0.14402526879713926,
+          "equal_match_logloss": 0.4296816962882262,
+          "late30_brier": 0.08519732538328073,
+          "logloss": 0.44268190398361273
+        },
+        "Q1_path": {
+          "brier": 0.14780755213698413,
+          "equal_match_logloss": 0.43529282935193925,
+          "late30_brier": 0.09295297760106314,
+          "logloss": 0.4493708765652608
+        }
+      }
+    },
+    "October": {
+      "ALL_outperformance_robustness_refuted": false,
+      "comparisons": {
+        "ALL_minus_M0": {
+          "delta_brier": -0.002726746081513639,
+          "delta_ll": -0.005833712075589665,
+          "equal_match_delta_ll": -0.010836425010675553,
+          "late30_delta_brier": -0.0010631680589204546,
+          "leave_one_series_out_ll_max": -0.0036694890496742393,
+          "leave_one_series_out_ll_min": -0.007562040224820415,
+          "most_positive_series_share": 0.38237393805797065,
+          "series_bootstrap_95_brier": [
+            -0.006917361904977658,
+            0.001279862185879709
+          ],
+          "series_bootstrap_95_ll": [
+            -0.016353396408933876,
+            0.003931527984621703
+          ]
+        },
+        "ALL_minus_M1": {
+          "delta_brier": 0.00026891040979938765,
+          "delta_ll": 4.909582062652573e-05,
+          "equal_match_delta_ll": 4.9925164431470644e-05,
+          "late30_delta_brier": -0.0021285521064875277,
+          "leave_one_series_out_ll_max": 0.001373819351743894,
+          "leave_one_series_out_ll_min": -0.0009373464776934198,
+          "most_positive_series_share": null,
+          "series_bootstrap_95_brier": [
+            -0.002593082886159706,
+            0.003053666874361989
+          ],
+          "series_bootstrap_95_ll": [
+            -0.006626914508569576,
+            0.006607380424403775
+          ]
+        },
+        "ALL_minus_Q1": {
+          "delta_brier": 0.001484399205645336,
+          "delta_ll": 0.004372856296285306,
+          "equal_match_delta_ll": 0.0018470672781292382,
+          "late30_delta_brier": 0.0027492533343201737,
+          "leave_one_series_out_ll_max": 0.006403275691799926,
+          "leave_one_series_out_ll_min": 0.0025690022686898025,
+          "most_positive_series_share": null,
+          "series_bootstrap_95_brier": [
+            -0.0023402194510811726,
+            0.0050124098734969525
+          ],
+          "series_bootstrap_95_ll": [
+            -0.00506072401535981,
+            0.013041686638908397
+          ]
+        },
+        "Q1_minus_M1": {
+          "delta_brier": -0.0012154887958459482,
+          "delta_ll": -0.004323760475658779,
+          "equal_match_delta_ll": -0.0017971421136977668,
+          "late30_delta_brier": -0.004877805440807702,
+          "leave_one_series_out_ll_max": -0.003341144829165791,
+          "leave_one_series_out_ll_min": -0.005457704622425746,
+          "most_positive_series_share": 0.24409022208628037,
+          "series_bootstrap_95_brier": [
+            -0.004142812186935453,
+            0.0017410450688784187
+          ],
+          "series_bootstrap_95_ll": [
+            -0.011692046821304139,
+            0.0031332617244147006
+          ]
+        }
+      },
+      "data_provenance": {
+        "games": 180,
+        "groups": 107,
+        "max_earlier_probability_parity_M0_gold": 3.3306690738754696e-16,
+        "max_earlier_probability_parity_M1_interaction": 4.57300863843102e-13,
+        "new_raw_downloads": 0,
+        "predictor_ingress_timestamp_verified": false,
+        "raw_team_cross_array_slots_verified": 7349,
+        "rows": 7346,
+        "scope": "October",
+        "side_mirror_checks": 7346
+      },
+      "genuinely_blind_new_validation": false,
+      "league_descriptive_min_10_games": {
+        "18631": {
+          "delta_brier_ALL_minus_Q1": 0.00033549975481015704,
+          "delta_ll_ALL_minus_M1": 0.0029196098325038563,
+          "delta_ll_ALL_minus_Q1": -0.002010685903354606,
+          "games": 32,
+          "rows": 1181
+        },
+        "19944": {
+          "delta_brier_ALL_minus_Q1": 0.0061437812855862734,
+          "delta_ll_ALL_minus_M1": 0.0042784741010476485,
+          "delta_ll_ALL_minus_Q1": 0.015392399850048881,
+          "games": 48,
+          "rows": 1913
+        },
+        "20334": {
+          "delta_brier_ALL_minus_Q1": 0.001112338733336516,
+          "delta_ll_ALL_minus_M1": -0.011523641702560107,
+          "delta_ll_ALL_minus_Q1": -0.0017519226127993472,
+          "games": 12,
+          "rows": 396
+        },
+        "20395": {
+          "delta_brier_ALL_minus_Q1": -0.0003436738256319119,
+          "delta_ll_ALL_minus_M1": -0.00035111643994127054,
+          "delta_ll_ALL_minus_Q1": 0.0021229985428777927,
+          "games": 81,
+          "rows": 3576
+        }
+      },
+      "period_scoring": {
+        "ALL": {
+          "brier": 0.165787287375276,
+          "equal_match_logloss": 0.4708055897473091,
+          "late30_brier": 0.11415827275459549,
+          "logloss": 0.4936506513776957
+        },
+        "M0_gold": {
+          "brier": 0.16851403345678964,
+          "equal_match_logloss": 0.4816420147579846,
+          "late30_brier": 0.11522144081351594,
+          "logloss": 0.49948436345328534
+        },
+        "M1_interaction": {
+          "brier": 0.16551837696547664,
+          "equal_match_logloss": 0.4707556645828776,
+          "late30_brier": 0.11628682486108302,
+          "logloss": 0.49360155555706914
+        },
+        "Q1_path": {
+          "brier": 0.16430288816963062,
+          "equal_match_logloss": 0.46895852246917974,
+          "late30_brier": 0.11140901942027534,
+          "logloss": 0.4892777950814104
+        }
+      }
+    }
+  },
+  "cohorts_disjoint": true,
+  "live_received_at_verified": false,
+  "march_feature_source": {
+    "actual_feed_received_at_verified": false,
+    "family_counts": {
+      "C": 2,
+      "I": 3,
+      "O": 2,
+      "R": 2
+    },
+    "features": [
+      "reg_cusum10",
+      "reg_shift3",
+      "ordinal_run_balance10",
+      "ordinal_entropy10",
+      "objective_conversion5",
+      "objective_followthrough10",
+      "item_bkb_diff",
+      "item_blink_diff",
+      "item_recent5_diff"
+    ],
+    "matches": 291,
+    "minutes": 10675,
+    "mirror_validated": 10675,
+    "patch_match_counts": {
+      "59": 250,
+      "60": 41
+    },
+    "raw_cache_digest": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+    "suffix_and_future_event_validated": 10675,
+    "used_ability_upgrade_without_timestamp": false,
+    "used_end_of_game_inventory": false
+  },
+  "new_external_HTTP_requests": 0,
+  "original_march_VAL_TEST_read": false,
+  "original_march_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "overlap_with_all_original_500_matches": 0,
+  "periods_held_out_from_fitting": true,
+  "protocol_sha256": "bb41b89322c979157e120df70105103cdf9fe318f26463d8c8d9c70ba8e5a5a3",
+  "scientific_class": "post-result and post model-search exploratory falsification",
+  "status": "202 historical matches 2 reused out-of-time periods, not blind",
+  "submission_file_hashes": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  }
+}
