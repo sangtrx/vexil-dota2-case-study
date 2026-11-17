@@ -1,0 +1,124 @@
+{
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261117,
+  "candidate_ids_start_times_and_series": [
+    {
+      "match_id": 9093458287,
+      "series_id": 1169378,
+      "start_time": 1794867942
+    },
+    {
+      "match_id": 9093401586,
+      "series_id": 1169378,
+      "start_time": 1794863435
+    },
+    {
+      "match_id": 9093340128,
+      "series_id": 1169378,
+      "start_time": 1794859834
+    },
+    {
+      "match_id": 9093259247,
+      "series_id": 1169311,
+      "start_time": 1794855702
+    },
+    {
+      "match_id": 9093255096,
+      "series_id": 1169307,
+      "start_time": 1794855255
+    },
+    {
+      "match_id": 9093175023,
+      "series_id": 1169311,
+      "start_time": 1794852186
+    },
+    {
+      "match_id": 9093145184,
+      "series_id": 1169307,
+      "start_time": 1794850516
+    },
+    {
+      "match_id": 9093051668,
+      "series_id": 1169259,
+      "start_time": 1794846524
+    },
+    {
+      "match_id": 9093041580,
+      "series_id": 1169251,
+      "start_time": 1794845769
+    },
+    {
+      "match_id": 9092956211,
+      "series_id": 1169259,
+      "start_time": 1794842198
+    },
+    {
+      "match_id": 9092923974,
+      "series_id": 1169251,
+      "start_time": 1794840788
+    },
+    {
+      "match_id": 9092843858,
+      "series_id": 1169259,
+      "start_time": 1794837757
+    },
+    {
+      "match_id": 9092818330,
+      "series_id": 1169251,
+      "start_time": 1794836610
+    },
+    {
+      "match_id": 9092706541,
+      "series_id": 1169198,
+      "start_time": 1794831604
+    },
+    {
+      "match_id": 9092641299,
+      "series_id": 1169198,
+      "start_time": 1794827790
+    },
+    {
+      "match_id": 9092574111,
+      "series_id": 1169198,
+      "start_time": 1794823301
+    }
+  ],
+  "detail_candidate_count": 16,
+  "lower_utc_inclusive": "2026-11-16T00:00:00Z",
+  "max_detail_requests": 300,
+  "model_fingerprints": {
+    "M0": "c7ca7c9fa28cfee258f37bc482f23f8d1d4e7b8df30f7c2dcb20384a2d4f9558",
+    "M1": "33c458955f3fe512b985c3d983c9349a433c97bd44b769d8897a7cc15f21d91a"
+  },
+  "outcome_scores_viewed_by_selection": false,
+  "page_count": 2,
+  "previous_original_and_nov_stress_game_count": 600,
+  "protocol_sha256": "4fb5a525fddbd1af858219ccc318915e69a605adb6e4cbb28b9cd13dc15aef3d",
+  "raw_page_receipts": [
+    {
+      "archive": "research/prospective_nov17_pages/page_01.json.gz",
+      "archive_sha256": "731afccb53e8e30b7f5cfb7d19a63d4536799268fa7a8c0c1861d0a972354a99",
+      "canonical_sha256": "73cf29fb53110e410cff9d64ff690a6bead177cab513b7e3441f376ee793ea69",
+      "entries": 100,
+      "first_id": 9093458287,
+      "last_id": 9085960791,
+      "page": 1
+    },
+    {
+      "archive": "research/prospective_nov17_pages/page_02.json.gz",
+      "archive_sha256": "a4fa6461b36afd6a72f861d5d88972555eb157dbc834fd9216dde4397d6b09dc",
+      "canonical_sha256": "a4e68a67bc8f1241d81f10c56400d41a5c2b71aa09c7e6e8ea86bca93a040ecb",
+      "entries": 100,
+      "first_id": 9085906939,
+      "last_id": 9082838627,
+      "page": 2
+    }
+  ],
+  "selection_exclusion_counts": {
+    "outside_window": 184
+  },
+  "selection_uses_winner_fields": false,
+  "source": "OpenDota /proMatches, descending match ID",
+  "source_commit_before_discovery": "40f36f915ef21addbb420292dc74b4f07634e55b",
+  "upper_utc_exclusive": "2026-11-17T09:00:00Z"
+}
