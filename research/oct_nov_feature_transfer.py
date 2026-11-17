@@ -41,7 +41,7 @@ SCOPE={
     "November":{
         "root":Path("/srv/ai/tmp/vexil-prospective-nov17-data-20261117"),
         "n_games":22, "n_rows":952, "n_series":9,
-        "collection_hash":"347729971519f1a65ad00e93c1ab739c0b2ab8db2d7864f763f4d",
+        "collection_hash":"347729971519f1a65ad00e93c1ab739c0b2ab8db2d7864f763f4f5d850285b33",
         "metadata_hash":"911d8589d0ad44948ea1ed66cf41b708c6ee565e3fbfcb3e9908936a2faa580e",
         "predictions_hash":"b8fba05d2be581c797b35dbf28506e95bf378960dd6b60dc223d1220eeda9788",
     },
