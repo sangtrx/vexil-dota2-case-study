@@ -1,0 +1,243 @@
+{
+  "folds": [
+    {
+      "embargoed_unfinished_games": 0,
+      "fit_completed_games": 154,
+      "fold": 1,
+      "games": 22,
+      "lag1_hold_minus_clock_logloss": 0.003116257636034292,
+      "lag1_t_below_lag_rows": 22,
+      "lag3_hold_minus_clock_logloss": 0.009505656103345528,
+      "lag3_t_below_lag_rows": 66,
+      "rows": 771,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.22867025903424085,
+          "late30_brier": 0.2243238946712913,
+          "logloss": 0.665937940525271
+        },
+        "CLOCK3": {
+          "brier": 0.23869194179142716,
+          "late30_brier": 0.2803200742857356,
+          "logloss": 0.6877832369338563
+        },
+        "FRESH": {
+          "brier": 0.2226302339085362,
+          "logloss": 0.652097365172538
+        },
+        "HOLD1": {
+          "brier": 0.22927163026867117,
+          "late30_brier": 0.22504433370480814,
+          "logloss": 0.6690541981613053
+        },
+        "HOLD3": {
+          "brier": 0.24060691907081913,
+          "late30_brier": 0.28449906088829313,
+          "logloss": 0.6972888930372019
+        }
+      }
+    },
+    {
+      "embargoed_unfinished_games": 0,
+      "fit_completed_games": 176,
+      "fold": 2,
+      "games": 44,
+      "lag1_hold_minus_clock_logloss": 0.002160905265579438,
+      "lag1_t_below_lag_rows": 44,
+      "lag3_hold_minus_clock_logloss": 0.006320301973508746,
+      "lag3_t_below_lag_rows": 132,
+      "rows": 1649,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.2186763018744026,
+          "late30_brier": 0.2208003742155907,
+          "logloss": 0.6345128173563492
+        },
+        "CLOCK3": {
+          "brier": 0.22703550127248215,
+          "late30_brier": 0.2406230557132426,
+          "logloss": 0.6539849384159241
+        },
+        "FRESH": {
+          "brier": 0.2133737577737356,
+          "logloss": 0.6218760309252692
+        },
+        "HOLD1": {
+          "brier": 0.21911298158263465,
+          "late30_brier": 0.22155089465611516,
+          "logloss": 0.6366737226219287
+        },
+        "HOLD3": {
+          "brier": 0.22830454922461996,
+          "late30_brier": 0.24335064421296998,
+          "logloss": 0.6603052403894328
+        }
+      }
+    },
+    {
+      "embargoed_unfinished_games": 2,
+      "fit_completed_games": 218,
+      "fold": 3,
+      "games": 32,
+      "lag1_hold_minus_clock_logloss": 0.00041168681963710263,
+      "lag1_t_below_lag_rows": 32,
+      "lag3_hold_minus_clock_logloss": 0.0017309821135761405,
+      "lag3_t_below_lag_rows": 96,
+      "rows": 1228,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.21570373788998612,
+          "late30_brier": 0.1814916002228392,
+          "logloss": 0.6097580795902687
+        },
+        "CLOCK3": {
+          "brier": 0.22559340842186018,
+          "late30_brier": 0.2050119805325603,
+          "logloss": 0.6340701122591438
+        },
+        "FRESH": {
+          "brier": 0.2098519399195537,
+          "logloss": 0.5948597248521718
+        },
+        "HOLD1": {
+          "brier": 0.21592986030251787,
+          "late30_brier": 0.18135966779880244,
+          "logloss": 0.6101697664099058
+        },
+        "HOLD3": {
+          "brier": 0.2263969107337609,
+          "late30_brier": 0.20558129112683937,
+          "logloss": 0.6358010943727199
+        }
+      }
+    },
+    {
+      "embargoed_unfinished_games": 0,
+      "fit_completed_games": 252,
+      "fold": 4,
+      "games": 39,
+      "lag1_hold_minus_clock_logloss": 0.0012727080032780558,
+      "lag1_t_below_lag_rows": 39,
+      "lag3_hold_minus_clock_logloss": 0.004130966918794332,
+      "lag3_t_below_lag_rows": 117,
+      "rows": 1433,
+      "score": {
+        "CLOCK1": {
+          "brier": 0.2150241058974877,
+          "late30_brier": 0.18334501595751415,
+          "logloss": 0.6090316423995296
+        },
+        "CLOCK3": {
+          "brier": 0.22543995207299342,
+          "late30_brier": 0.21265952689856032,
+          "logloss": 0.6349168647241209
+        },
+        "FRESH": {
+          "brier": 0.20917925229750622,
+          "logloss": 0.5940533584376041
+        },
+        "HOLD1": {
+          "brier": 0.21558146042935356,
+          "late30_brier": 0.18407063462243645,
+          "logloss": 0.6103043504028076
+        },
+        "HOLD3": {
+          "brier": 0.2271738661979238,
+          "late30_brier": 0.21618404390752338,
+          "logloss": 0.6390478316429152
+        }
+      }
+    }
+  ],
+  "future_mitigation_gate": false,
+  "held_vs_clock_cluster_ci": {
+    "1": {
+      "hold_minus_clock_delta_brier": 0.00044481586840646814,
+      "hold_minus_clock_delta_logloss": 0.0016326135413372912,
+      "late30_hold_minus_clock_delta_brier": 0.0005000132389922484,
+      "series_bootstrap_95_brier": [
+        5.0962661937002286e-05,
+        0.0008588496465247996
+      ],
+      "series_bootstrap_95_ll": [
+        0.00018103835799849073,
+        0.003217774230849114
+      ],
+      "series_bootstrap_975_ll_two_lags": [
+        -0.00010615821222290924,
+        0.0035288436639114794
+      ]
+    },
+    "3": {
+      "hold_minus_clock_delta_brier": 0.0013856538743408124,
+      "hold_minus_clock_delta_logloss": 0.00507702429444969,
+      "late30_hold_minus_clock_delta_brier": 0.002521842772925117,
+      "series_bootstrap_95_brier": [
+        0.00022702934212493178,
+        0.0025947775811272235
+      ],
+      "series_bootstrap_95_ll": [
+        0.0008801208006494184,
+        0.009680588770337875
+      ],
+      "series_bootstrap_975_ll_two_lags": [
+        5.964080802943142e-05,
+        0.010441388849313242
+      ]
+    }
+  },
+  "lags_minutes": [
+    1,
+    3
+  ],
+  "n_games_oof": 137,
+  "n_games_train": 291,
+  "n_minutes_oof": 5081,
+  "n_series_or_singletons": 70,
+  "original_employer_model_changed": false,
+  "original_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "overall_metrics": {
+    "CLOCK1": {
+      "brier": 0.21844434666134466,
+      "delta_brier_vs_fresh": 0.005700145189998479,
+      "delta_ll_vs_fresh": 0.014026413099317181,
+      "late30_brier": 0.2005576481101217,
+      "logloss": 0.6261119963119425
+    },
+    "CLOCK3": {
+      "brier": 0.22800574406261706,
+      "delta_brier_vs_fresh": 0.015261542591270882,
+      "delta_ll_vs_fresh": 0.036837070620824086,
+      "late30_brier": 0.22815642244746664,
+      "logloss": 0.6489226538334494
+    },
+    "FRESH": {
+      "brier": 0.21274420147134618,
+      "late30_brier": 0.1831092828065857,
+      "logloss": 0.6120855832126253
+    },
+    "HOLD1": {
+      "brier": 0.21888916252975113,
+      "delta_brier_vs_fresh": 0.006144961058404952,
+      "delta_ll_vs_fresh": 0.01565902664065444,
+      "late30_brier": 0.2010576613491139,
+      "logloss": 0.6277446098532797
+    },
+    "HOLD3": {
+      "brier": 0.22939139793695784,
+      "delta_brier_vs_fresh": 0.016647196465611663,
+      "delta_ll_vs_fresh": 0.04191409491527376,
+      "late30_brier": 0.2306782652203917,
+      "logloss": 0.653999678127899
+    }
+  },
+  "prior_multiple_experiments_corrected": false,
+  "protected_artifact_hashes": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "protocol_sha256": "000cdbd498c2dfd61027d6495561f505439725746c6317d7394a2fba55e59505",
+  "scope": "hypothetical stale-gold perturbation on original TRAIN only",
+  "source_received_at_known": false
+}
