@@ -13,7 +13,7 @@ from research import team_league_dependency_audit as audit
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_METADATA_SHA = "74fdc9479bd8dc4f70eac72f776d24a7708e7d7119f1ec6b18af43c954c701fe"
-EXPECTED_NOTEBOOK_SHA = "466dce5d64adf081fb20642df210f903794745714675e225415c0aa8770f8304"
+EXPECTED_NOTEBOOK_SHA = "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
 
 
 class TeamLeagueDependenceTest(unittest.TestCase):

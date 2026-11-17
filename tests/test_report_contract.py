@@ -25,25 +25,21 @@ class ReportDeliveryContractTest(unittest.TestCase):
             self.assertIn(phrase.lower(),text.lower())
 
     def test_fable_handoff_truth_and_historical_provenance(self):
-        report=(ROOT/"REPORT.md").read_text(encoding="utf8")
-        readme=(ROOT/"README.md").read_text(encoding="utf8")
-        register=(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text(encoding="utf8")
+        report=(ROOT/"REPORT.md").read_text()
+        readme=(ROOT/"README.md").read_text()
+        register=(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text()
         self.assertIn("[−0.0304,+0.0014]",report)
-        self.assertIn("[-0.0304, +0.0014]",readme)
-        self.assertNotIn("[-0.0303, +0.0014]",readme)
-        for token in ("28-way adjusted","[−0.0169,+0.0064]","pre-correction",
-                      "reused validation","at least 38","0/28"):
-            self.assertIn(token.lower(),report.lower())
-        self.assertIn("[-0.016929,+0.006434]",register)
+        self.assertIn("[−0.0304,+0.0014]",readme)
+        self.assertIn("adjusted 28-way 95% CI [-0.016929,+0.006434]",register)
+        self.assertIn("P20",register)
+        self.assertIn("docs/EXPERIMENT_REGISTER.md",report)
+        self.assertIn("**Time spent:** Approximately **10 hours of active work**",report)
+        self.assertIn("**Assistance disclosure:**",report)
         self.assertIn("Claude Sonnet and Fable AI conducted read-only critiques",report)
         self.assertIn("AI reviews are not independent human peer review",report)
-        self.assertIn("10 hours of active work",report)
         self.assertIn("No third-party Dota predictor was copied",report)
-        self.assertIn("**Public code:** Standard open-source NumPy, pandas, scikit-learn, Matplotlib and Requests",report)
-        self.assertNotIn("https://github.com/sangtrx/vexil-dota2-assessment",report)
         self.assertIn("docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",report)
         self.assertNotIn("https://github.com/",report)
-        self.assertIn("**Git provenance:**",readme)
         self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
@@ -93,45 +89,38 @@ class ReportDeliveryContractTest(unittest.TestCase):
     def test_research_question_does_not_conflate_gold_slope_and_information(self):
         report=(ROOT/"REPORT.md").read_text()
         readme=(ROOT/"README.md").read_text()
-        self.assertIn("Does the same gold lead map to the same win probability",report)
-        self.assertIn("not** a claim that gold becomes less discriminative",report)
+        self.assertIn("Does adding game time improve the probability",report)
+        self.assertIn("not an effect caused by time",report)
+        self.assertIn("no confirmed incremental benefit",report)
         self.assertNotIn("same gold lead equally informative",report)
-        self.assertIn("independent holdout or evidence of M1 lift",readme)
+        self.assertIn("not newly blind",readme)
 
     def test_historical_200_game_study_is_preserved_without_crowding_report(self):
-        report = (ROOT / "REPORT.md").read_text()
-        readme = (ROOT / "README.md").read_text()
-        register = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text()
-        handoff = (ROOT / "SUBMISSION_PACKAGE_README.md").read_text()
-        for fragment in ("200-match cohort", "0.545075", "0.533704",
-                         "0.539850", "0.18647", "secondary and descriptive"):
+        report=(ROOT/"REPORT.md").read_text()
+        register=(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text()
+        supplement=(ROOT/"docs/FORWARD_100_STRESS.md").read_text()
+        for fragment in ("200-match cohort","0.545075","0.533704","0.539850",
+                         "0.18647","secondary and descriptive"):
             self.assertIn(fragment.lower(), register.lower())
-        for doc in (report, readme, handoff):
-            self.assertIn("0.00455", doc)
-            self.assertIn("−0.0037,+0.0109", doc)
-        for phrase in ("100 already completed",
-                       "November 11–15", "56 series/singletons",
-                       "85 games", "Patch 60 is not unseen", "both contain zero"):
-            self.assertIn(phrase.lower(), report.lower())
-        self.assertIn("pre-correction", register.lower())
-        self.assertIn("3,837 minute rows", register)
-        self.assertNotIn("This original repository", register)
+        self.assertIn("0.00455 worse",report)
+        self.assertIn("[−0.0037,+0.0109]",report)
+        self.assertIn("68 games overlap",report)
+        self.assertIn("docs/FORWARD_100_STRESS.md",report)
+        self.assertIn("artifacts/forward_100_predictions.csv",supplement)
+        self.assertIn("pre-correction",register.lower())
 
     def test_historical_200_cohort_and_private_source_are_explicit(self):
-        report = (ROOT / "REPORT.md").read_text()
-        readme = (ROOT / "README.md").read_text()
-        register = (ROOT / "docs/EXPERIMENT_REGISTER.md").read_text()
-        self.assertIn("strict pre-terminal", report)
-        self.assertIn("before the later strict pre-terminal notebook correction", register)
-        self.assertIn("pre-correction", register)
-        self.assertIn("no preregistered direct paired confidence interval", register)
+        report=(ROOT/"REPORT.md").read_text()
+        readme=(ROOT/"README.md").read_text()
+        register=(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text()
+        self.assertIn("strict pre-terminal",report)
+        self.assertIn("before the later strict pre-terminal notebook correction",register)
+        self.assertIn("no preregistered direct paired confidence interval",register)
         self.assertIn("Original research commits and branches are retained",report)
-        self.assertIn("no reviewer access granted",report)
-        self.assertIn("Original GitHub PR discussions remain in a separately private repo", readme)
-        self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
-        self.assertIn("docs/CURATION_PROVENANCE.md",readme)
+        self.assertNotIn("no reviewer access granted",report)
+        self.assertIn("original github pr discussions remain in a separately private",readme.lower())
         self.assertIn("No original commit was rewritten or backdated",(ROOT/"HISTORY.md").read_text())
-        self.assertNotIn("late-game failures", report)
+        self.assertNotIn("late-game failures",report)
 
     def test_colab_run_receipt_is_scoped_honestly(self):
         import hashlib
@@ -161,7 +150,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(newer["scientific_code_sha256"],receipt["scientific_code_sha256"])
         self.assertFalse(newer["cloud_csv_byte_equality_verified"])
         self.assertFalse(newer["new_blind_TEST_claimed"])
-        self.assertIn("16-cell Colab CPU Run All",(ROOT/"REPORT.md").read_text())
+        self.assertIn("16-cell Colab Run All",(ROOT/"REPORT.md").read_text())
 
     def test_notebook_claim_matches_completed_cloud_receipt(self):
         import json
@@ -180,44 +169,31 @@ class ReportDeliveryContractTest(unittest.TestCase):
     def test_pdf_cannot_mislead_on_private_links_or_posthoc_signs(self):
         report=(ROOT/"REPORT.md").read_text()
         self.assertNotIn("https://github.com/",report)
-        self.assertNotIn("95.1% positive bootstrap draws",report)
-        self.assertNotIn("point-score advantage recurs",report)
+        self.assertNotIn("Pre-registered original TEST",report)
+        self.assertNotIn("no reviewer access granted",report)
+        self.assertIn("Both primary paired 95% confidence intervals include zero",report)
+        self.assertIn("The corrected TEST is not a fresh blind holdout",report)
         self.assertIn("about 0.00455 worse",report)
-        self.assertIn("neither paired confidence interval establishes superiority",report)
         for file_path in ("docs/EXPERIMENT_REGISTER.md",
                           "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
                           "docs/COLAB_16CELL_RUN_RECEIPT.json"):
             self.assertIn(file_path,report)
             self.assertTrue((ROOT/file_path).is_file())
-        # Historical 14-cell and expanded error receipts are referenced
-        # from README so the <=4-page report can prioritize new cloud proof.
         readme=(ROOT/"README.md").read_text()
-        for file_path in ("docs/COLAB_COLD_RUN_RECEIPT.json",
-                          "docs/ERROR_ANALYSIS.md"):
+        for file_path in ("docs/COLAB_COLD_RUN_RECEIPT.json","docs/ERROR_ANALYSIS.md"):
             self.assertIn(file_path,readme)
             self.assertTrue((ROOT/file_path).is_file())
 
     @unittest.skipUnless(shutil.which("pdftotext"),"poppler pdftotext not installed")
     def test_pdf_contains_current_md_scientific_and_disclosure_text(self):
-        # Catch a stale PDF left after Markdown edits. This checks semantic
-        # contract anchors, not full typographic render parity.
         source=(ROOT/"REPORT.md").read_text()
         pdf=" ".join(subprocess.check_output(
-            ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
-        pdf=pdf.replace("cloud- export","cloud-export")
-        for snippet in (
-            "16 November 2026",
-            "no reviewer access granted",
-            "63/106 game winners",
-            "0.5174",
-            "53-series",
-            "−0.0436,+0.1001",
-            "0.5429",
-            "−0.1410,+0.0250",
-            "16-cell Colab CPU Run All",
-            "16/16",
-            "18,292 PIT snapshots",
-            "No third-party Dota predictor was copied"):
+            ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True
+        ).split())
+        for snippet in ("17 November 2026","286 mature TRAIN games","143 seconds",
+                        "18,292","1/4 folds","[−0.0304,+0.0014]",
+                        "0.1028","0.1074 (worse)","63/106 Radiant-winning games",
+                        "16-code-cell notebook","No third-party Dota predictor was copied"):
             self.assertIn(snippet,source)
             self.assertIn(snippet,pdf)
 
@@ -227,32 +203,30 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("early 0–9-minute",supplement)
         self.assertIn("The original TEST 30+ Brier point estimate",supplement)
         self.assertIn("Neither is a confirmed",supplement)
-        self.assertIn("Omitting one league reverses the gain",report)
+        self.assertIn("removing one league reverses the gain",report)
         self.assertIn("68 games overlap",report)
-        self.assertIn("not independent confirmation",report)
-        self.assertIn("Patch 60 is not unseen",report)
-        self.assertIn("both contain zero",report)
+        self.assertIn("both intervals contain zero",report)
+        self.assertIn("not a test on an unseen patch",report)
+        self.assertIn("Brier score is about 0.00455 worse",report)
+        self.assertIn("0.0559 to 0.0680",report)
 
     def test_reviewer_text_matches_scientific_boundaries(self):
         import json
-        notebook=json.loads((ROOT / "live_dota2_win_probability.ipynb").read_text())
-        text="\n".join("".join(c["source"]) for c in notebook["cells"]
-                       if c["cell_type"]=="markdown")
-        report=(ROOT / "REPORT.md").read_text()
-        readme=(ROOT / "README.md").read_text()
-        pkg=(ROOT / "SUBMISSION_PACKAGE_README.md").read_text()
-        self.assertIn("strictly before match end", text)
-        self.assertIn("corrected terminal boundary", text)
-        self.assertNotIn("Evaluation on the untouched", text)
-        self.assertNotIn("through match end", text)
-        self.assertIn("60*t < duration", text)
-        self.assertIn("strict pre-terminal", report)
-        self.assertIn("10 hours", text)
-        self.assertIn("10 hours", report)
-        self.assertIn("10 hours", readme)
-        self.assertIn("10 active work hours", pkg)
-        self.assertIn("106", report)
-        self.assertIn("3,836", pkg)
+        nb=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
+        text="\n".join("".join(c["source"]) for c in nb["cells"] if c["cell_type"]=="markdown")
+        report=(ROOT/"REPORT.md").read_text()
+        readme=(ROOT/"README.md").read_text()
+        guide=(ROOT/"SUBMISSION_PACKAGE_README.md").read_text()
+        self.assertIn("strictly before match end",text)
+        self.assertIn("corrected terminal boundary",text)
+        self.assertIn("60*t < duration",text)
+        self.assertIn("strict pre-terminal",report)
+        self.assertIn("10 hours",text)
+        self.assertIn("10 hours",report)
+        self.assertIn("candidate's time estimate",guide)
+        self.assertIn("106",report)
+        self.assertIn("3,836",readme)
+        self.assertIn("3,836",guide)
 
     def test_notebook_all_executed_and_only_definitions_cell_has_no_output(self):
         import json
@@ -287,45 +261,37 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(original, exported)
 
     def test_report_figures_and_rendered_pdf_are_present(self):
-        markdown = (ROOT / "REPORT.md").read_text(encoding="utf8")
-        for relative in (
-            "docs/figures/heldout_reliability.png",
-            "docs/figures/time_value_scenarios.png",
-            "docs/figures/train_interaction_vs_additive_null.png",
-            "docs/figures/phase_error_audit.png",
-        ):
-            self.assertIn("](" + relative + ")", markdown)
-            source = (ROOT / relative).read_bytes()
-            self.assertEqual(source[:8], bytes([137, 80, 78, 71, 13, 10, 26, 10]))
-            width, height = struct.unpack(">II", source[16:24])
-            self.assertGreater(width, 600)
-            self.assertGreater(height, 400)
-            self.assertGreater(len(source), 25000)
-        self.assertIn("**Result:**", markdown)
-        self.assertIn("**Assistance disclosure:**", markdown)
-        self.assertIn("**Time spent:**", markdown)
-        self.assertIn("**0/28**", markdown)
-        self.assertIn("No new model was promoted", markdown)
-        self.assertIn("**2/5**",(ROOT/"README.md").read_text())
-        readme=(ROOT/"README.md").read_text()
-        self.assertIn("offline label-maturity refit",readme)
-        self.assertNotIn("Leakage-safe split and probability evaluation",readme)
+        markdown=(ROOT/"REPORT.md").read_text()
+        for relative in ("docs/figures/heldout_reliability.png",
+                         "docs/figures/time_value_scenarios.png",
+                         "docs/figures/train_interaction_vs_additive_null.png",
+                         "docs/figures/phase_error_audit.png"):
+            self.assertIn("]("+relative+")",markdown)
+            source=(ROOT/relative).read_bytes()
+            self.assertEqual(source[:8],bytes([137,80,78,71,13,10,26,10]))
+            width,height=struct.unpack(">II",source[16:24])
+            self.assertGreater(width,600)
+            self.assertGreater(height,400)
+            self.assertGreater(len(source),25000)
+        self.assertIn("**Decision.**",markdown)
+        self.assertIn("**Assistance disclosure:**",markdown)
+        self.assertIn("**Time spent:**",markdown)
+        self.assertIn("no confirmed incremental benefit",markdown)
+        self.assertIn("0/28",(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text())
         self.assertTrue((ROOT/"REPORT.pdf").read_bytes().startswith(b"%PDF-"))
         if shutil.which("pdfinfo"):
-            info = subprocess.check_output(["pdfinfo", str(ROOT/"REPORT.pdf")],text=True)
-            pages = [int(x.split(":",1)[1]) for x in info.splitlines()
-                     if x.startswith("Pages:")]
-            self.assertEqual(len(pages), 1)
+            info=subprocess.check_output(["pdfinfo",str(ROOT/"REPORT.pdf")],text=True)
+            pages=[int(x.split(":",1)[1]) for x in info.splitlines() if x.startswith("Pages:")]
+            self.assertEqual(len(pages),1)
             self.assertLessEqual(pages[0],4)
         if shutil.which("pdfinfo"):
             annotations=subprocess.check_output(["pdfinfo","-url",str(ROOT/"REPORT.pdf")],text=True)
             self.assertNotIn("file:///",annotations)
             self.assertNotIn("github.com/sangtrx/",annotations)
         if shutil.which("pdfimages"):
-            listings = subprocess.check_output(["pdfimages","-list",str(ROOT/"REPORT.pdf")],text=True)
-            actual_lines = [x for x in listings.splitlines() if x.lstrip()[:1].isdigit()]
-            self.assertGreaterEqual(len(actual_lines),4)
-
+            listings=subprocess.check_output(["pdfimages","-list",str(ROOT/"REPORT.pdf")],text=True)
+            image_lines=[x for x in listings.splitlines() if x.lstrip()[:1].isdigit()]
+            self.assertGreaterEqual(len(image_lines),4)
 
 if __name__ == "__main__":
     unittest.main()

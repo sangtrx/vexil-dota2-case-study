@@ -2,68 +2,60 @@
 
 **Vexil Capital · Senior Data Scientist take-home · Truong Quang Sang**
 
-A reproducible study of **500 parsed professional OpenDota matches** (patches 59 and 60, 21–26 March 2026). At each admissible game minute, the notebook estimates Radiant's probability of winning using information timestamped no later than that minute. This is a historical point-in-time exercise, not a live-feed latency or betting-profitability claim.
+This study estimates Radiant's win probability at a given match minute using **500 professional OpenDota games across patches 59 and 60**. The core deliverable is one executed notebook and a four-page report. Forecast features are drawn from information timestamped at or before the decision minute.
 
-**First three minutes:** Read the [four-page report](REPORT.pdf) for the question, negative tests and ship/HOLD decision; open the [one executed notebook](live_dota2_win_probability.ipynb) to inspect saved outputs; then use the [original `/proMatches` discovery provenance](docs/DISCOVERY_PROVENANCE.md) if you want to audit where the 500 games came from. [Frozen TEST forecasts](artifacts/heldout_predictions.csv) and the [research decision trail](docs/RESEARCH_DECISION_TRAIL.md) are supplementary; you do not need the private original research PR discussions to verify the reported scores.
+**Start here:** [Four-page report](REPORT.pdf) · [Executed notebook](live_dota2_win_probability.ipynb) · [Reviewer guide](SUBMISSION_PACKAGE_README.md)
 
-## Results on the held-out TEST
+## What the evidence supports
 
-| Proper score (lower is better) | Gold-only logistic M0 | Gold + time + interaction M1 |
+| TEST, 106 games / 3,836 minute forecasts | Gold-only M0 | Gold + time + interaction M1 |
 | --- | ---: | ---: |
-| Validation log loss, 103 games | 0.5325 | **0.5197** |
-| TEST log loss, 106 games | 0.5164 | **0.5040** |
-| TEST Brier, 106 games | 0.1719 | **0.1684** |
-| TEST minute-30+ Brier | **0.1028** | 0.1074 |
+| Log loss ↓ | 0.5164 | **0.5040** |
+| Brier score ↓ | 0.1719 | **0.1684** |
+| 30+ minute Brier ↓ | **0.1028** | 0.1074 |
 
-**Evaluation boundary:** The 12 terminal-minute corrections were made after the original TEST had been inspected. These are corrected results on the same games, **not a new blind TEST**. The saved appendix's 'Pre-registered' refers to a previously specified *bootstrap method*, not to a preregistered corrected TEST result; its 'pinned versions' remark applies to local verification, not Colab's preinstalled stack.
+M1 was selected on 103 validation games, but its **paired whole-match 95% log-loss CI for M1−M0 is [−0.0304,+0.0014]**; the Brier interval **[−0.0069,+0.0002]** also includes zero. M1's late-game Brier score is worse. **Decision: keep M0 as reference and evaluate M1 in shadow mode.** The report details the uncertainty and the stronger additive gold + time control; its interaction improved loss in only **1/4** TRAIN-forward folds.
 
-The gold-only logistic model is the required baseline. I selected M1 on validation log loss; M1 adds elapsed minute and gold × time interaction to that baseline. A constant **TRAIN-only** Radiant-win prior (149/291 games) has TEST log loss **0.6884** and Brier **0.2476**, so both fitted models outperform this no-skill reference.
+## Run the notebook
 
-The primary **whole-match paired** 95% bootstrap intervals for M1 minus M0 are **[-0.0304, +0.0014]** (log loss) and **[-0.0069, +0.0002]** (Brier): both cross zero. M1's minute-30+ Brier point estimate is **0.00455 worse**, paired interval **[−0.0037,+0.0109]**. One 55-row game accounts for 54.9% of the observed gain; five embargoed TRAIN-only rolling-origin folds favored M1 in only **2/5**. **Decision: M0 remains the reference; M1 is shadow-only, not proven superior.**
-
-**The most direct incremental check (post-result, TRAIN only):** The gold×time interaction beat **additive gold + time without interaction** in only **1/4 chronological TRAIN-forward folds** (137 games; mean M1−null log loss **−0.0020**, 70-series 95% CI **[−0.0148,+0.0090]**). See the [four-fold TRAIN comparison figure](docs/figures/train_interaction_vs_additive_null.png) and the [source-frozen null audit](research/GOLD_INTERACTION_NULL_READOUT.md). The TRAIN-only [leader-win observation](docs/TRAIN_LEADER_STATE_EMPIRICAL.md) is exploratory: 66/82 at 10m versus 11/25 at 30m, but only **7 matches** are common to both groups. It is not a causal effect, independent holdout or evidence of M1 lift. The [maturity audit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) and [historical experiment register](docs/EXPERIMENT_REGISTER.md) retain the negative findings.
-
-## Where the assignment requirements are addressed
-
-| Requirement | Evidence in this package |
-| --- | --- |
-| 500 professional OpenDota matches spanning a patch change | [Original `/proMatches` pagination and cohort freeze](docs/DISCOVERY_PROVENANCE.md); same 250/250 IDs fetched via `/matches/{id}` on fresh reruns, no API key |
-| Gold-lead logistic baseline **and** own model | M0–M3 model comparison in notebook and [report](REPORT.pdf); M1 selected by validation |
-| Information available at the forecast time | Minute-prefix features and timestamps; later [full 18,292-snapshot future-deletion audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) (author raw cache needed); strict pre-terminal 60*t < duration |
-| Chronological split, label timing and probability evaluation | Series-disjoint **291 TRAIN / 103 VALIDATION / 106 TEST**; [offline label-maturity refit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) verifies M1 selection after excluding 5 unfinished TRAIN games; grouped proper scores/calibration diagnostics |
-| One self-contained notebook with saved outputs | [Executed main notebook](live_dota2_win_probability.ipynb): 16 code cells (14 original science + 2 post-hoc QA), four figures, phase-wise **model-specific and paired** bootstrap intervals. Original scientific notebook is archived only as JSON source for audit, not a second reviewer notebook. |
-| Setup and reproducibility | [Pinned dependencies](requirements.txt), commands below, [3-minute review guide](SUBMISSION_PACKAGE_README.md), frozen forecast CSV |
-| Separate report, at most four pages, with assistance disclosure | [REPORT.pdf](REPORT.pdf): four A4 pages, results, limitations, active-time estimate, AI/public-code disclosure |
-
-## Reproduce
-
-**Google Colab:** Upload the notebook to a CPU runtime with Internet and select Runtime → Run all. This notebook keeps Colab's already loaded scientific libraries rather than forcibly downgrading NumPy/SciPy inside a live kernel. The independent successful 16-cell Colab run used Python 3.13 / NumPy 2.4.6 / scikit-learn 1.6.1, whereas the **exact pinned local verification** uses Python 3.12 / NumPy 2.2.6 / scikit-learn 1.7.2. Scores matched to six decimals, not bytewise across different dependency versions. For reproducibility it fetches the **original 500 fixed match IDs through `/matches/{match_id}`**, rather than resampling the moving `/proMatches` feed. The [initial `/proMatches` discovery, recorded evidence and missing raw-page limitation](docs/DISCOVERY_PROVENANCE.md) are documented separately. Both code paths are present in the notebook; the saved TEST and model remain unchanged. This reviewer replay does not call /proMatches. No key is required. OpenDota rate limits are retried; no silent match replacement is permitted.
+**Google Colab:** Upload `live_dota2_win_probability.ipynb`, use a CPU runtime with Internet, and choose Runtime → Run all. The notebook requests the same **500 frozen match IDs** through `/matches/{match_id}`, rather than resampling a changing `/proMatches` feed. It needs no API key; OpenDota rate limits can make a full run slow. Colab's preinstalled scientific libraries may differ from the pinned local versions; compare saved results within reasonable numeric precision, not CSV bytes.
 
 **Local Python 3.12 (verified with exact pins):**
 
-~~~bash
+```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
-~~~
+```
 
-Run the notebook top to bottom. For a fast no-network contract check:
+Run all notebook cells top to bottom. The **16 code cells** comprise the 14 original scientific cells and two after-TEST diagnostics. All executable cells have saved outputs except the frozen-ID definitions cell. The notebook includes whole-match bootstrap intervals for each model and their difference, overall and by match phase.
 
-~~~bash
+For a quick **offline** verification of frozen forecasts, models, figures and report contracts:
+
+```bash
 python -m unittest discover -s tests -p "test_*.py" -q
-~~~
+```
 
-This runs **168 offline checks** on immutable forecasts, point-in-time logic, numerical audits and delivery integrity. From the ZIP, reviewers can rerun the notebook **with OpenDota Internet access** or recompute/check the supplied TEST forecasts **offline**. Raw OpenDota JSON is not bundled; the cached-source full replay is an author-controlled receipt, not a locally runnable ZIP-only replay. The [16-cell fresh-kernel appendix receipt](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json) verifies the current reviewer notebook from the original cached 500 games and recomputes PIT/no-skill/calibration/strong-null figures in memory, with no network. The local QA replay now keeps the released notebook byte-for-byte unchanged and saves volatile Jupyter execution metadata only in its separate scratch run; a focused regression checks this invariant and verifies that corrupted frozen TEST hashes still fail closed. The [fresh 16-cell Colab Run All receipt](docs/COLAB_16CELL_RUN_RECEIPT.json) verifies 500 downloads, 16/16 executed code cells, scientific-code/input-source fingerprints and rounded TEST-score parity, but **NOT bytewise cloud CSV equality**. Earlier [14-cell Colab receipt](docs/COLAB_COLD_RUN_RECEIPT.json) is preserved as historical evidence.
+This runs **168 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on BigLinux, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
 
-## Evidence boundaries and research history
+## Data and interpretation boundaries
 
-The original development-label audit finds **5/291 TRAIN** outcomes not mature at first VAL start by end-time proxy; **0/103 VAL** unfinished at first TEST start with **143-second** minimum margin (see docs/VAL_TEST_LABEL_MATURITY_RECEIPT.json). These are not live received-at timestamps. The training split already contains 41 patch-60 games; VALIDATION and TEST are both patch 60, **not an unseen-patch generalization result**. The notebook uses API event timestamps, which do not establish when a live consumer actually received each event. Calibration-in-the-large and ECE intervals are post-hoc, not calibration fits. The original **VALIDATION** M1 forecast-minus-outcome bias is **+0.0300** (53-series CI [−0.0436,+0.1001]); on inspected **TEST** it is **−0.0617** (54-series CI [−0.1410,+0.0250]). Neither establishes drift; the [frozen validation/TEST calibration audit](docs/CALIBRATION_BIAS_READOUT.md) and [10-bin grouped reliability intervals](docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md) are reproducible from bundled CSVs without any calibration fit.
+The 500-game [discovery record](docs/DISCOVERY_PROVENANCE.md) explains the original `/proMatches` pagination, the 250/250 patch cohort and the frozen IDs. Raw discovery pages were not archived. The March 2026 sample spans only 5.26 days, and **TRAIN already includes 41 games from patch 60**. VALIDATION and TEST are patch 60 as well.
 
-The [offline team/league dependence audit](docs/TEAM_LEAGUE_DEPENDENCE.md) uses only frozen group IDs and unchanged TEST forecasts. It finds 52/65 TEST teams previously present in TRAIN and shows how match-versus-series resampling affects post-hoc uncertainty. This is a **non-selecting diagnostic**, not a new blind test or reason to promote M1. The [reproducible receipt](docs/TEAM_LEAGUE_DEPENDENCE_RECEIPT.json) and [audit script](research/team_league_dependency_audit.py) work without raw OpenDota payloads.
+The source 291/103/106 TRAIN/VALIDATION/TEST split is chronological and series-disjoint. A [point-in-time audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) checked 18,292 original minute snapshots against future-deleted inputs; its full rerun needs the author's raw cache. After inspecting TEST, 12 terminal rows were corrected, so the reported TEST is **not newly blind**. A [label-maturity audit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) refit on 286 TRAIN games whose outcomes had ended by the first validation start. This uses a match-end proxy; actual feed `received_at` remains unobserved.
 
-An optional [100-game November check](docs/FORWARD_100_STRESS.md) uses the original frozen M0/M1 and has confidence intervals crossing zero; **68 of those games overlap an earlier 120-game research cohort**, so the results are not independent replications. [Frozen calibration audit](docs/CALIBRATION_BIAS_READOUT.md), [error analysis](docs/ERROR_ANALYSIS.md) and [experiment register](docs/EXPERIMENT_REGISTER.md) preserve negative results without model promotion.
+An optional 100-game November check is [reported separately](docs/FORWARD_100_STRESS.md). Its overall log-loss interval includes zero and **68 games overlap** a previous 120-game research set; it is not an independent replication. More extensive out-of-time October analysis is in a separate research branch, **not** silently inserted into this required 500-game notebook.
 
-**Git provenance:** [Original 500-game discovery and commit/hash evidence](docs/DISCOVERY_PROVENANCE.md), [HISTORY.md](HISTORY.md), the [clickable branch/PR map](docs/REVIEWER_HISTORY_MAP.md) and [curation provenance](docs/CURATION_PROVENANCE.md) distinguish 13–15 November research from the 16 November reviewer curation PRs. The [decision trail](docs/RESEARCH_DECISION_TRAIL.md) links hypotheses, rejected alternatives and the deployment gate to source evidence. Original GitHub PR discussions remain in a separately private repo, but original code ancestry and selected branch heads are included here. Historical 200-game raw payloads are not bundled.
+## Evidence and source history
 
-The report states the candidate's **approximately 10 hours of active work** estimate and details extensive AI assistance. No third-party Dota predictor was copied; no measured betting returns or verified live latency are claimed.
+| Question | Where to verify |
+| --- | --- |
+| Cohort selection and timestamp limits | [Discovery provenance](docs/DISCOVERY_PROVENANCE.md), [PIT receipt](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) |
+| Why M1 was chosen, and why the interaction is unconfirmed | [Research decision trail](docs/RESEARCH_DECISION_TRAIL.md), [TRAIN additive-null check](research/GOLD_INTERACTION_NULL_READOUT.md) |
+| Rejected models and post-TEST exploration | [Experiment register](docs/EXPERIMENT_REGISTER.md) |
+| Error slices, dependence and calibration | [Error analysis](docs/ERROR_ANALYSIS.md), [Team/league audit](docs/TEAM_LEAGUE_DEPENDENCE.md), [Calibration](docs/CALIBRATION_BIAS_READOUT.md) |
+| Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
+| Authentic research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
+
+Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. Applicant-owned active hours, contributions and required AI/public-code disclosure appear in the report for final confirmation.

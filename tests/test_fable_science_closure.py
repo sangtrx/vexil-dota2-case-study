@@ -23,8 +23,8 @@ class FableScienceRepairContract(unittest.TestCase):
         nb=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
         source="".join(nb["cells"][20]["source"])
         self.assertIn("gold_k >= 2",source)
-        self.assertIn("include **all Radiant leads ≥2k**",self.report)
-        self.assertIn("not* observations near exactly +2k",self.report)
+        self.assertIn("0, ±3k and ±6k gold lead",self.report)
+        self.assertIn("Values outside observed TRAIN support are masked",self.report)
         self.assertNotIn("The +2k state appears in",self.report)
 
     def test_additive_null_forward_folds_and_patch_subfit_pinned(self):
@@ -32,7 +32,7 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertEqual(len(losses),4)
         self.assertEqual(sum(x<0 for x in losses),1)
         self.assertEqual(sum(x>0 for x in losses),3)
-        for x in ("won only **1/4**", "[−0.0148,+0.0090]",
+        for x in ("in only **1/4 folds**", "[−0.0148,+0.0090]",
                   "+0.000405 (worse)", "[−0.003059,+0.003857]"):
             self.assertIn(x, self.report)
         readout=(ROOT/"research/GOLD_INTERACTION_NULL_READOUT.md").read_text()
@@ -62,7 +62,7 @@ class FableScienceRepairContract(unittest.TestCase):
                           records[(2,30)]["games"]),(11,25))
         self.assertTrue(c["not_a_model_selection_gate"])
         self.assertTrue(c["not_causal"])
-        self.assertIn("not a causal time effect",self.report)
+        self.assertIn("not a measured within-game time effect",self.report)
         self.assertIn("docs/TRAIN_LEADER_STATE_EMPIRICAL.md",self.report)
         self.assertIn("docs/figures/train_interaction_vs_additive_null.png",self.report)
         self.assertNotIn("docs/figures/train_leader_state_empirical.png",self.report)
@@ -86,7 +86,7 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertNotIn("heldout_predictions", script)
         self.assertNotIn("validation_m0_m1_predictions", script)
         self.assertIn("docs/figures/train_interaction_vs_additive_null.png", self.report)
-        self.assertIn("M1 won only **1/4** chronological folds", self.report)
+        self.assertIn("M1 improved log loss in only **1/4 folds**", self.report)
 
     def test_train_lead_groups_are_not_within_match_time_decay(self):
         import csv
@@ -107,29 +107,38 @@ class FableScienceRepairContract(unittest.TestCase):
                 counts[minute][1] += 1
         self.assertEqual(counts, {10: [66, 82], 30: [11, 25]})
         self.assertEqual(len(mid_by_minute[10] & mid_by_minute[30]), 7)
-        self.assertIn("Only 7 matches occur in both groups", self.report)
+        self.assertIn("only 7 matches occur in both groups", self.report)
         supplemental = (ROOT/"docs/TRAIN_LEADER_STATE_EMPIRICAL.md").read_text()
         self.assertIn("only 7 match IDs qualify", supplemental)
-        self.assertIn("This is **not a causal time effect**", self.report)
+        self.assertIn("not a measured within-game time effect", self.report)
 
     def test_post_inspection_not_mislabeled_preregistered_blind(self):
         import json
         nb=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
-        self.assertIn("Pre-registered original TEST",
-                      "".join(nb["cells"][28]["source"]))
-        self.assertIn("not corrected blind TEST outcomes",self.report)
-        self.assertIn("The frozen notebook\u0027s \u0027Pre-registered\u0027 output",self.report)
+        source="".join(nb["cells"][28]["source"])
+        output="\n".join("".join(o.get("text",[]))
+                         for o in nb["cells"][28]["outputs"] if o["output_type"]=="stream")
+        for exact in ("TEST paired log-loss CI (corrected after inspection):",
+                      "TEST paired Brier CI (corrected after inspection):"):
+            self.assertIn(exact,source)
+            self.assertIn(exact,output)
+        self.assertNotIn("Pre-registered original TEST",source)
+        self.assertNotIn("Pre-registered original TEST",output)
+        self.assertIn("The corrected TEST is not a fresh blind holdout",self.report)
         self.assertIn("not preregistered blind results",
                       (ROOT/"docs/TEAM_LEAGUE_DEPENDENCE.md").read_text())
-        self.assertIn("after the original TEST was opened",self.report)
 
     def test_colab_preinstalled_stack_not_claimed_pinned(self):
+        import hashlib
         receipt=json.loads((ROOT/"docs/COLAB_16CELL_RUN_RECEIPT.json").read_text())
         self.assertEqual(receipt["runtime"]["numpy"],"2.4.6")
         self.assertEqual(receipt["runtime"]["scikit_learn"],"1.6.1")
-        self.assertIn("NumPy 2.4.6 / scikit-learn 1.6.1",self.report)
-        self.assertIn("NumPy 2.2.6 / scikit-learn 1.7.2",self.report)
-        self.assertIn("Colab\u0027s already loaded scientific libraries",self.readme)
+        self.assertEqual(receipt["repo_frozen_16cell_notebook_sha256"],
+                         "466dce5d64adf081fb20642df210f903794745714675e225415c0aa8770f8304")
+        self.assertNotEqual(receipt["repo_frozen_16cell_notebook_sha256"],
+                            hashlib.sha256((ROOT/"live_dota2_win_probability.ipynb").read_bytes()).hexdigest())
+        self.assertIn("Colab's preinstalled scientific libraries",self.readme)
+        self.assertIn("a new exact-version cloud run has **not** been verified",self.report)
         self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
 
     def test_phase_uncertainty_and_november_negative_not_hidden(self):
@@ -138,28 +147,24 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertAlmostEqual(s["brier_M1"],0.24392514896856357)
         self.assertAlmostEqual(s["ece_M0"],0.04959713082061086)
         self.assertAlmostEqual(s["ece_M1"],0.08115121989176531)
-        for term in ("eight phase × metric comparisons are unadjusted",
-                     "0.24421→0.24393","0.0496→0.0812",
-                     "not independent confirmation",
+        for term in ("phase comparisons are exploratory and unadjusted",
+                     "both intervals contain zero","68 games overlap",
                      "about 0.00455 worse"):
             self.assertIn(term,self.report)
+        self.assertIn("68 games overlap",self.report)
 
     @unittest.skipUnless(shutil.which("pdftotext") and shutil.which("pdfinfo"),
                          "Poppler pdfinfo/pdftotext unavailable; other science tests still run")
     def test_pdf_has_all_new_science_anchors_and_no_disclosure_rewrite(self):
         pdf=" ".join(subprocess.check_output(
-            ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True
-        ).split())
-        for term in ("66/82", "11/25", "1/4", "+0.000405",
-                     "0.24421→0.24393", "Colab retained",
+            ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
+        for term in ("17 November 2026","66/82","11/25","1/4 folds","+0.000405",
+                     "0.5429","0.1074 (worse)",
                      "No third-party Dota predictor was copied"):
             self.assertIn(term,pdf)
         self.assertEqual(
-            int(subprocess.check_output(
-                ["pdfinfo",str(ROOT/"REPORT.pdf")],text=True
-            ).split("Pages:")[1].split()[0]),4
-        )
-
+            int(subprocess.check_output(["pdfinfo",str(ROOT/"REPORT.pdf")],text=True
+            ).split("Pages:")[1].split()[0]),4)
 
 if __name__ == "__main__":
     unittest.main()

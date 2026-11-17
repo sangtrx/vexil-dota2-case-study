@@ -9,8 +9,9 @@ class ExternalAccessTruthfulness(unittest.TestCase):
     def test_report_does_not_claim_access_already_granted(self):
         text=(ROOT/"REPORT.md").read_text()
         self.assertIn("Original research commits and branches are retained",text)
-        self.assertIn("PR discussions remain private",text)
-        self.assertIn("no reviewer access granted",text)
+        self.assertNotIn("reviewer access granted",text.lower())
+        self.assertNotIn("no reviewer access granted",text.lower())
+        self.assertNotIn("private PR discussions",text)
         self.assertNotIn("reviewer access provided separately",text)
 
     def test_readme_does_not_claim_access_already_granted(self):

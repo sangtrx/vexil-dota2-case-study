@@ -32,11 +32,11 @@ class ForwardEvidenceTests(TestCase):
         self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(),
                          VERIFY.EXPECTED_ORIGINAL_TEST_SHA)
         report=(ROOT/"REPORT.md").read_text()
-        self.assertIn("106 TEST games",report)
+        self.assertIn("106 TEST",report)
         self.assertIn("3,836",report)
-        self.assertIn("Patch 60 is not unseen",report)
-        self.assertIn("100 already completed",report)
-        self.assertIn("both contain zero",report.lower())
+        self.assertIn("not a test on an unseen patch",report)
+        self.assertIn("100-game November",report)
+        self.assertIn("both intervals contain zero",report)
 
     def test_no_calendar_prospective_or_calibration_proven_claim(self):
         narrative=(ROOT/"docs/FORWARD_100_STRESS.md").read_text().lower()

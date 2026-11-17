@@ -65,8 +65,13 @@ def load_train() -> pd.DataFrame:
     assert not train.duplicated(["match_id", "minute"]).any()
     assert all((g["minute"].to_numpy() == np.arange(len(g))).all()
                for _, g in train.groupby("match_id"))
-    assert source_hash(ROOT / "live_dota2_win_probability.ipynb") == MODEL_SOURCE_SHA256, \
-        "Original frozen scientific notebook changed; re-audit model provenance"
+    current=json.loads((ROOT/"live_dota2_win_probability.ipynb").read_text())
+    frozen=json.loads((ROOT/"research/frozen_original_notebook_source.json").read_text())
+    assert len(current["cells"])==len(frozen["cells"])+3, "Reviewer notebook structure drift"
+    for actual, original in zip(current["cells"][:26],frozen["cells"]):
+        assert (actual["cell_type"]==original["cell_type"]
+                and "".join(actual["source"])=="".join(original["source"])), \
+            "Original scientific notebook source changed; re-audit provenance"
     return train
 
 

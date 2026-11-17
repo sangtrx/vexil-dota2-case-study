@@ -138,19 +138,18 @@ class TrainLeaderStateScienceTest(unittest.TestCase):
         self.assertNotIn("validation_m0_m1_predictions", source)
 
     def test_do_not_rewrite_frozen_science_or_applicant_disclosure(self):
-        self.assertEqual(
-            study.source_hash(ROOT/"live_dota2_win_probability.ipynb"),
-            study.MODEL_SOURCE_SHA256
-        )
-        self.assertEqual(
-            study.source_hash(ROOT/"artifacts/heldout_predictions.csv"),
-            "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
-        )
-        report = (ROOT/"REPORT.md").read_text()
-        self.assertIn("Approximately **10 hours of active work**", report)
-        self.assertIn("**Assistance disclosure:**", report)
-        self.assertIn("TRAIN-only", report)
-
+        from research.reviewer_notebook_appendix_replay import checked_sources
+        import nbformat
+        current=nbformat.read(ROOT/"live_dota2_win_probability.ipynb",as_version=4)
+        checked_sources(current)
+        self.assertEqual(study.MODEL_SOURCE_SHA256,
+         "466dce5d64adf081fb20642df210f903794745714675e225415c0aa8770f8304")
+        self.assertEqual(study.source_hash(ROOT/"artifacts/heldout_predictions.csv"),
+         "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441")
+        report=(ROOT/"REPORT.md").read_text()
+        self.assertIn("Approximately **10 hours of active work**",report)
+        self.assertIn("**Assistance disclosure:**",report)
+        self.assertIn("TRAIN-only",report)
 
 if __name__ == "__main__":
     unittest.main()

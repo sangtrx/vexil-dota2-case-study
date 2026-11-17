@@ -56,12 +56,16 @@ class MatureLabelValidationTest(unittest.TestCase):
     def test_senior_report_discloses_causal_and_calibration_nulls(self):
         report = (audit.ROOT / "REPORT.md").read_text()
         readme = (audit.ROOT / "README.md").read_text()
-        for token in ("286 mature TRAIN games", "0.5202", "0.5329",
-                      "[−0.0148,+0.0090]", "0.5197→0.5186",
-                      "0.0492→0.0561", "No TEST recalibration"):
+        for token in ("286 mature TRAIN games", "[−0.0148,+0.0090]",
+                      "The corrected TEST is not a fresh blind holdout",
+                      "not a claim of persistent drift"):
             self.assertIn(token, report)
-        self.assertIn("does not call /proMatches", readme)
-        self.assertIn("not a second blind evaluation", report)
+        maturity=(audit.ROOT/"docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md").read_text()
+        self.assertIn("0.532940",maturity)
+        self.assertIn("0.520209",maturity)
+        calibration=(audit.ROOT/"docs/CALIBRATION_BIAS_READOUT.md").read_text()
+        self.assertIn("no calibration model fit",calibration.lower().replace("\n"," "))
+        self.assertIn("rather than resampling a changing",readme)
         self.assertIn("docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md", readme)
 
     def test_notebook_still_has_frozen_default_and_optional_discovery(self):

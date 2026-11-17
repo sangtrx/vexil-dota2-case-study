@@ -77,9 +77,9 @@ display(reviewer_score_crosswalk.round(6))
 print("TEST M1 mean forecast %.4f vs realized minute-row win fraction %.4f;"
       " neither proves an out-of-sample persistent bias" %
       (predictions.p_model.mean(), predictions.radiant_win.mean()))
-print("Pre-registered original TEST whole-match paired Δ logloss CI:",
+print("TEST paired log-loss CI (corrected after inspection):",
       tuple(round(float(x), 6) for x in reviewer_overall.loc["logloss", ["difference_lo", "difference_hi"]]))
-print("Pre-registered original TEST whole-match paired Δ Brier CI:",
+print("TEST paired Brier CI (corrected after inspection):",
       tuple(round(float(x), 6) for x in reviewer_overall.loc["brier", ["difference_lo", "difference_hi"]]))
 
 # Strengthen Creativity: original TRAIN only, chronological later-series

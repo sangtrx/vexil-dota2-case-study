@@ -1,61 +1,59 @@
 # Live Dota 2 Win Probability
 
-**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 16 November 2026**
+**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 17 November 2026**
 
-**Research question:** Does the same gold lead map to the same win probability at minute 10 and minute 30? I tested the required gold-only baseline against M1, then **after reviewing the initial fitted result** checked the interaction against an additive gold + time control using TRAIN only. The goal was a reliable probability, not a favorable point estimate.
+**Decision.** Keep the gold-only logistic baseline (M0) as the reference and evaluate the time-aware model (M1) in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
 
-**Result:** On 106 TEST games, M1's minute-weighted log loss was **0.5040 vs 0.5164** for M0 (Brier **0.1684 vs 0.1719**). These are point estimates: **both primary paired 95% intervals cross zero**, one game explains **54.9%** of the log-loss gain, and 30+ Brier is **0.00455 worse**. **Decision: M0 remains the reference; M1 is shadow-only.**
+**Question.** Does adding game time improve the probability assigned to a given gold lead? I compared four models using a chronological, series-disjoint split, then checked whether M1's gold × time interaction adds anything beyond an additive gold + time model.
 
-## 1. Study design and data integrity
+## 1. Data and prediction-time validity
 
-**Why these 500 games:** Original 13 Nov collection paged `/proMatches` to an observed patch boundary near page 93 and fetched **250 eligible games per patch** from `/matches/{match_id}`. The ordered IDs were frozen in commit **3258a762** before held-out scoring. Today `Run all` refetches those same IDs, **not** the moving `/proMatches` feed; the original selection code and dated evidence are in **docs/DISCOVERY_PROVENANCE.md**. These March **21–26, 2026** games span only **5.26 days** and are not a representative sample of all leagues or future patches. Raw historical discovery pages were not archived.
+The cohort contains **500 professional OpenDota matches**, 250 on each side of a patch change, played **21–26 March 2026**. The original `/proMatches` discovery and frozen IDs are documented in **docs/DISCOVERY_PROVENANCE.md**. Raw historical discovery pages were not archived. This is a narrow five-day sample, not a representative cross-league study.
 
-The **18,292 minute-level rows are forecast opportunities, not independent outcomes**. At minute *t*, features use economy indices ≤*t* and events timestamped ≤`60*t`; winner, final totals and duration never enter the predictors. An **author-cache** future-deletion audit found zero differences across **all 18,292** feature snapshots (raw payloads not bundled). I imposed the **strict pre-terminal** condition `60*t < duration` and removed 12 exact-end rows (8 TRAIN, 3 VALIDATION, 1 TEST) **after the original TEST was opened**. The repaired scores are **not a second blind evaluation** of the TEST.
+I split entire series by match start time: **291 TRAIN / 103 VALIDATION / 106 TEST** games, or **10,675 / 3,781 / 3,836** admissible minute forecasts. TRAIN already contains **41 patch-60 games**; VALIDATION and TEST are also patch 60, so this is not a test on an unseen patch.
 
-I split by start time, keeping entire series together: **291 TRAIN / 103 VALIDATION / 106 TEST** games (**10,675 / 3,781 / 3,836** minute rows). TRAIN includes 41 patch-60 games; VAL/TEST are both patch 60, **not an unseen-patch test**. At first VAL start, five TRAIN labels had not matured by an end-time proxy. Excluding them and refitting on **286 mature TRAIN games** still favored M1 on **reused VAL** (log loss **0.5202 vs 0.5329**). At TEST start, 0/103 VAL games remained unfinished, but the minimum proxy margin was just **143 seconds**. Actual live received-at timing remains unknown.
+Each forecast uses economy snapshots through minute *t* and events timestamped at or before 60*t. The strict pre-terminal rule is `60*t < duration`. A future-deletion check found no feature changes across **18,292** snapshots in the original author-controlled raw cache (not bundled). After TEST had first been inspected, I removed **12 exact-terminal rows** (8 TRAIN, 3 VALIDATION, 1 TEST). **The corrected TEST is not a fresh blind holdout.**
 
-## 2. Model design and validation selection
+Five TRAIN labels were not complete at the first VALIDATION start under a match-end proxy. A sensitivity refit using **286 mature TRAIN games** still selected M1 on the *same* VALIDATION set. All VALIDATION games had ended by the first TEST start on that proxy, with a minimum margin of **143 seconds**. Real event and label receipt timestamps are unavailable.
 
-I fixed four interpretable candidates before TEST and trained each (including imputation/scaling) on **291 TRAIN games only**, using L2 logistic regression with fixed C=1. The **103 VAL games selected M1**. Neither VAL nor TEST refit its coefficients. Without a draft/team prior, M1 has little early signal: **101/106** minute-zero TEST forecasts sit between 45% and 55%.
+## 2. Models and selection
 
-| Model | Minute-*t* inputs | Validation log loss | Brier |
+I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN only. The **103 VALIDATION games selected M1** by log loss; neither VALIDATION nor TEST refitted its coefficients.
+
+| Model | Minute-*t* information | VAL log loss | Brier |
 | --- | --- | ---: | ---: |
-| **M0 · Required baseline** | Gold difference | 0.5325 | 0.1811 |
-| **M1 · Time value** | Gold, minute, gold × log(1 + minute/10) | **0.5197** | **0.1759** |
-| M2 · Lead fragility | M1 + XP + available ≤5-minute gold/XP change | 0.5224 | 0.1778 |
-| M3 · Objective conversion | M2 + timestamped towers, barracks, Roshan, kills | 0.5282 | 0.1806 |
+| M0 · Required baseline | Gold lead | 0.5325 | 0.1811 |
+| M1 · Time-aware | Gold, minute, gold × log(1 + minute/10) | **0.5197** | **0.1759** |
+| M2 · Lead dynamics | M1 + XP and available recent gold/XP changes | 0.5224 | 0.1778 |
+| M3 · Objectives | M2 + timestamped towers, barracks, Roshan and kills | 0.5282 | 0.1806 |
 
-M1 models a time-dependent mapping from a fixed gold lead to win probability. That is **not** a claim that gold becomes less discriminative late in a match. M2 and M3 added plausible state information but scored worse on validation; I kept the simpler M1 **for this sample**.
-
----
-
-## 3. What the fitted interaction says
-
-At fixed **+2,000 Radiant gold**, M1 predicts **66.5%** at 10m versus **59.4%** at 30m. The **+7.1 pp** post-selection TRAIN-only bootstrap contrast has 95% interval **[−1.1,+13.8] pp**, crossing zero. This is **not a causal effect** or evidence that the interaction improves forecasts. The separate TRAIN counts **60/291** (10m) and **87/214** (30m) include **all Radiant leads ≥2k**, *not* observations near exactly +2k; Figure 1 masks poorly supported scenarios.
-
-![Fixed-gold conditional M1 probability curves, masked outside original TRAIN support.](docs/figures/time_value_scenarios.png)
-
-*Figure 1. Fitted M1 scenarios at 0, ±3k and ±6k gold. The +2k uncertainty band is not drawn. These are fitted probabilities, not causal effects.*
-
-## 4. Did gold × time beat simply adding time?
-
-**The direct incremental check:** Against **additive gold + time without interaction**, M1's TRAIN-forward log-loss difference was **−0.0020** over **137 games** (70 series; 95% interval **[−0.0148,+0.0090]**). M1 won only **1/4** chronological folds (deltas **+0.0083, −0.0176, +0.0061, +0.0035**); three favored the **additive control**. M1's pooled Brier difference was **+0.000405 (worse)**, 95% interval **[−0.003059,+0.003857]**. Neither establishes an incremental benefit. This was a post-result TRAIN-only analysis, not a new blind TEST.
-
-![Four original TRAIN-forward blocks comparing M1 to the stronger additive gold-plus-time control, with pooled series-bootstrap uncertainty.](docs/figures/train_interaction_vs_additive_null.png)
-
-*Figure 2. M1 minus additive gold+time log loss (negative favors M1). Each dot is one TRAIN-forward fold; the pooled 95% series-bootstrap interval crosses zero. Individual fold dots have no confidence bands.*
-
-**Game-state caveat:** At |gold lead| **2–4k**, leaders won **66/82** at 10m versus **11/25** at 30m. **Only 7 matches occur in both groups**; survival and side/league mix differ. This is **not a causal time effect**. Full grouped uncertainty is in **docs/TRAIN_LEADER_STATE_EMPIRICAL.md**, never used for model selection.
-
-**Selection discipline:** Of **at least 38** historical checks, **0/28** follow-ups passed promotion gates on **reused validation**. Item model P20 scored VAL loss **0.5145 vs 0.5197**, but won only **1/3 pre-correction TRAIN** folds; its **pre-correction, 28-way adjusted** interval **[−0.0169,+0.0064]** included zero. No new model was promoted (docs/EXPERIMENT_REGISTER.md). Post-result patch/influence fits are kept in the research readout, not treated as validated effects.
+The additional XP and objective features did not improve validation loss. I kept M1 rather than carrying their extra complexity forward. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
 
 ---
 
-## 5. Held-out forecast quality and uncertainty
+## 3. Does the interaction earn its complexity?
 
-The target is proper loss **per admissible minute-level forecast opportunity**, weighting longer games more. The notebook gives **model-specific** and paired M1−M0 95% CIs for each phase/metric, based on **whole-match** resampling (2,000 draws), never independent minute rows. Post-hoc series resampling changes CI widths without resolving overlapping-team/league dependence; the table below shows the paired differences.
+Figure 1 shows M1's fitted probabilities at fixed gold leads. The curves are displayed only where the original TRAIN data support the corresponding game states. They describe the fitted function, not an effect caused by time.
 
-| Phase (games) | Log loss M0 → M1 | Difference 95% CI | Brier M0 → M1 | Difference 95% CI |
+![Fitted gold-time scenarios within observed training support.](docs/figures/time_value_scenarios.png)
+
+*Figure 1. M1 scenarios for 0, ±3k and ±6k gold lead. Values outside observed TRAIN support are masked.*
+
+The stronger comparison is **M1 versus additive gold + time without the interaction**. Across four chronological TRAIN-forward blocks (137 evaluation games, 70 series/singletons), M1 improved log loss in only **1/4 folds**. The pooled M1−additive log-loss difference was **−0.0020**, with a 95% grouped interval of **[−0.0148,+0.0090]**. Its pooled Brier difference was **+0.000405 (worse)**, interval **[−0.003059,+0.003857]**. There is **no confirmed incremental benefit** from the interaction. This post-result TRAIN-only check was run after the fitted result was examined; it used TRAIN only, not an additional blind TEST.
+
+![Four TRAIN-forward folds comparing interaction and additive controls.](docs/figures/train_interaction_vs_additive_null.png)
+
+*Figure 2. M1 minus additive gold + time log loss; negative favors M1. Pooled interval covers zero.*
+
+The separate TRAIN-only leader-state comparison is descriptive: among games with an absolute 2–4k gold lead, leaders eventually won **66/82** at 10 minutes and **11/25** at 30 minutes, but **only 7 matches occur in both groups**. Different surviving games, not a measured within-game time effect (docs/TRAIN_LEADER_STATE_EMPIRICAL.md).
+
+---
+
+## 4. Held-out forecast quality
+
+I score **each admissible minute forecast**, so longer games receive more weight. The paired intervals resample whole matches (2,000 draws), not individual minutes. The notebook includes model-specific intervals as well as differences.
+
+| Phase (games) | Log loss M0 → M1 | Δ 95% CI | Brier M0 → M1 | Δ 95% CI |
 | --- | --- | --- | --- | --- |
 | **All (106)** | 0.5164 → **0.5040** | **[−0.0304,+0.0014]** | 0.1719 → **0.1684** | **[−0.0069,+0.0002]** |
 | 0–9 (106) | 0.6651 → 0.6506 | [−0.0252,−0.0030] | 0.2362 → 0.2295 | [−0.0117,−0.0014] |
@@ -63,37 +61,31 @@ The target is proper loss **per admissible minute-level forecast opportunity**, 
 | 20–29 (105) | 0.4131 → 0.4065 | [−0.0111,−0.0015] | 0.1312 → 0.1293 | [−0.0036,−0.0001] |
 | **30+ (79)** | 0.3623 → 0.3555 | [−0.0947,+0.0415] | **0.1028 → 0.1074 (worse)** | [−0.0037,+0.0109] |
 
-**No-skill scale:** A constant probability equal to the TRAIN game-win rate (149/291 = 0.5120) gives TEST log loss **0.6884** and Brier **0.2476** on these same 3,836 minute forecasts. Both fitted models beat that reference, although M1's gain over M0 remains uncertain.
+A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.2476**. Both trained models beat it. However, the phase comparisons are exploratory and unadjusted; they do not establish eight separate wins. **At minute 30+, M1's Brier score is about 0.00455 worse.**
 
-**Phase caution:** The 0–29 differences favor M1, but **eight phase × metric comparisons are unadjusted** and exploratory. Among longer 30+ games, Brier is **about 0.00455 worse** (CI **[−0.0037,+0.0109]**). November's 100-game check **did not replicate a material 0–9 Brier improvement** (**0.24421→0.24393**) and ECE worsened (**0.0496→0.0812**); overlapping games make this **not independent confirmation**. Equal-match-weighted TEST log loss **0.5097→0.4952** lacks a grouped CI. The frozen notebook's 'Pre-registered' output describes the earlier **resampling method**, not corrected blind TEST outcomes.
+![Phase-specific calibration and Brier diagnostics.](docs/figures/phase_error_audit.png)
 
-![Phase-specific ECE and Brier differences from fixed TEST forecasts.](docs/figures/phase_error_audit.png)
+*Figure 3. Descriptive phase results from inspected TEST forecasts; minute rows share match outcomes.*
 
-*Figure 3. Descriptive phase Brier/ECE on the original TEST. Rows from one game share a label; bars are not independent uncertainty estimates.*
-
-**Stress tests did not settle the decision.** On **100 already completed** November 11–15 games (4,355 minutes, **56 series/singletons**, **85 games** from two leagues), M1−M0 log loss was **−0.0080**, CI **[−0.0284,+0.0087]**; Brier CI **[−0.0077,+0.0027]**; both contain zero. **Omitting one league reverses the gain**; **68 games overlap** earlier research. Patch 60 is not unseen. This is **not independent confirmation** (docs/FORWARD_100_STRESS.md).
-
-**Cluster sensitivity:** Post-hoc **54-series** log-loss CI is **[−0.0283,+0.0001]** and Brier CI **[−0.0067,−0.0004]**; the match-bootstrap Brier interval still reaches **+0.0002**. One 55-row game supplies **54.9%** of observed log-loss gain. Excluding it for diagnosis reduces the gain from **0.0124 to 0.0057** and changes remaining 30+ log-loss difference to **+0.0314 (M1 worse)**. The official TEST retains the game.
+One 55-minute match accounts for **54.9%** of M1's aggregate log-loss gain. Excluding it *for diagnosis*, not model selection, reduces the observed improvement from 0.0124 to 0.0057. A post-hoc series bootstrap still leaves log-loss uncertainty across zero (docs/SERIES_CI_RECEIPT.json). A 100-game November check likewise failed to settle the question: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** prior research (docs/FORWARD_100_STRESS.md).
 
 ---
 
-## 6. Calibration is a separate release risk
+## 5. Calibration and deployment decision
 
-M1 predicts **0.5174** on used **VALIDATION** versus **0.4874** winners; on inspected **TEST** (63/106 game winners), **0.5429** versus **0.6045**. Forecast-minus-outcome bias is **+0.0300** (post-hoc **53-series** CI **[−0.0436,+0.1001]**) versus **−0.0617** (**54-series** CI **[−0.1410,+0.0250]**). Neither interval proves drift; M0 has similar bias. TEST ECE10 is **0.0895 (M0)** versus **0.0750 (M1)**, difference CI **[−0.0203,+0.0020]**; late-30+ ECE worsens **0.0559 → 0.0680**. A TRAIN-only offset improved reused VAL log loss **0.5197→0.5186**, but worsened ECE10 **0.0492→0.0561**: **HOLD**. Fixed-bin grouped uncertainty remains post-hoc (docs/CALIBRATION_FIXED_BIN_GROUPED_CI.md). **No TEST recalibration** (docs/CALIBRATION_BIAS_READOUT.md).
+On inspected TEST, M1's ECE-10 was **0.0750**, compared with **0.0895** for M0; the grouped difference interval **[−0.0203,+0.0020]** contains zero. In the 30+ phase, ECE worsened from **0.0559 to 0.0680**. M1's average TEST forecast was **0.5429**, versus an observed minute-row win frequency of **0.6045** (63/106 Radiant-winning games). These diagnostics warrant monitoring, not a claim of persistent drift or a TEST-based recalibration.
 
-![Held-out fixed-bin reliability curves, minute rows not independent.](docs/figures/heldout_reliability.png)
+![Held-out reliability diagram.](docs/figures/heldout_reliability.png)
 
-*Figure 4. Calibration diagnostic from already inspected TEST, not a tuning target.*
+*Figure 4. Reliability curves from the inspected TEST. Repeated minute rows are not independent games.*
 
-## 7. Decision I would make in production
+**Recommendation:** Retain M0 as the reference and run M1 in shadow mode. A new promotion decision should use a *precommitted*, multi-league series cohort and require at least **0.005 lower log loss** with clustered uncertainty excluding no gain, alongside no material regression in overall or 30+ Brier. That is a future decision rule, not a threshold retrofitted to these scores.
 
-**Keep M0 as the reference; run M1 in shadow mode.** M1's aggregate TEST and November point scores are favorable, but **neither paired confidence interval establishes superiority**. League dependence, late-game Brier instability and unknown feed-arrival timing remain. I would size and preregister a fresh multi-league series cohort before a new decision. A future promotion gate is at least **0.005 lower log loss**, supported by clustered uncertainty and no material overall or 30+ Brier regression; this is **not** a retrospective significance threshold.
+For an actual live service I would log match/model version, minute, event timestamp, `received_at`, feature watermark and completeness. These historical API records cannot establish packet availability at decision time, and this study does not estimate betting profitability.
 
-A real feed would need the match/model version, minute, **event time, received-at time, feature watermark and completeness**. The archived API cannot certify live data arrival or profitable betting without executable odds, fills and costs.
+## 6. Reproduction and assistance
 
-## 8. Reproducibility and assistance
-
-Original research commits and branches are retained; model **e49e853** and cohort **3258a762** predate TEST; PR discussions remain private (**no reviewer access granted**). Two post-TEST appendix cells audit **all 18,292 PIT snapshots** without changing the frozen science. Local **Python 3.12 pinned** replay reproduced **3,836 TEST predictions and three original figures byte-for-byte** (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). A separate **16-cell Colab CPU Run All** completed **16/16** cells, 500 games/510 calls, zero errors, and six-decimal score parity. **Colab retained preinstalled Python 3.13 / NumPy 2.4.6 / scikit-learn 1.6.1**, unlike local NumPy 2.2.6 / scikit-learn 1.7.2. Notebook outputs are cached-local, not the fresh cloud run; **cloud CSV byte parity remains unverified** (docs/COLAB_16CELL_RUN_RECEIPT.json).
+The deliverable contains **one executed 16-code-cell notebook**: 14 original science cells and two post-TEST audit cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). The earlier 16-cell Colab Run All reproduced metrics to six decimals on its preinstalled stack (docs/COLAB_16CELL_RUN_RECEIPT.json). This revision changes only appendix labels; a new exact-version cloud run has **not** been verified. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
 
 **Time spent:** Approximately **10 hours of active work** (candidate estimate), excluding unattended AI, API and cloud execution.
 
