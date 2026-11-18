@@ -31,6 +31,14 @@ class ReviewerScientificIntegrityTest(unittest.TestCase):
         spec.loader.exec_module(module)
         actual = module.compute()
         module.verify(actual)
+        self.assertEqual(len(actual["audit_script_sha256"]), 64)
+        self.assertEqual(actual["source_access_manifest"], list(module.INPUTS))
+        self.assertTrue(actual["verified_environment"]["python"].startswith("3.12."))
+        # A falsified numerical receipt must fail even with float tolerance.
+        forged = json.loads(json.dumps(actual))
+        forged["asof"][4]["label_mature_val_subset_scores"]["M2_lead_fragility"]["logloss"] += .01
+        with self.assertRaisesRegex(ValueError, "Float drift"):
+            module.verify(forged)
         self.assertFalse(actual["forecast_test_records_read"])
         self.assertFalse(actual["live_received_at_verified"])
         self.assertEqual(actual["forward_pooled"]["minute_rows"], 5081)
@@ -47,8 +55,34 @@ class ReviewerScientificIntegrityTest(unittest.TestCase):
         self.assertIn("0.517823 vs 0.518090", report)
         self.assertIn("not a verified label-arrival margin", report)
         limits = (ROOT / "docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text()
-        self.assertIn("The original source commit 009f54d", limits)
-        self.assertIn("not included in the recruiter ZIP", limits)
+        self.assertIn("historical pre-correction commit 009f54d", limits)
+        self.assertIn("Both forecast CSVs are now included", limits)
+
+    def test_original_test_before_after_correction_is_independently_recomputed(self):
+        spec = importlib.util.spec_from_file_location(
+            "vexil_terminal_history",
+            ROOT / "research/verify_terminal_correction_history.py",
+        )
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        result = module.compute()
+        expected = json.loads((ROOT / "docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json").read_text())
+        module.compare(result, expected)
+        self.assertEqual((result["preterminal_forecasts"], result["corrected_forecasts"]),
+                         (3837, 3836))
+        self.assertEqual(result["test_games"], 106)
+        self.assertTrue(result["core_model_refit_after_test_inspection"])
+        self.assertFalse(result["new_blind_test_claimed"])
+        self.assertLess(result["previous"]["M1"]["logloss"],
+                        result["corrected"]["M1"]["logloss"])
+        self.assertEqual(len(result["only_removed_test_forecast_key"]), 2)
+        # Reject altered historical scores, rather than only matching a phrase.
+        corrupted = json.loads(json.dumps(result))
+        corrupted["previous"]["M1"]["logloss"] += .01
+        with self.assertRaisesRegex(ValueError, "Historical metric mismatch"):
+            module.compare(corrupted, expected)
 
     def test_every_bundled_markdown_relative_link_resolves(self):
         # Check the exact source inventory of the ZIP, not the entire

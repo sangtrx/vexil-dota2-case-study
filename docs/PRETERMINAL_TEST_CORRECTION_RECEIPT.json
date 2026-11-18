@@ -1,0 +1,37 @@
+{
+  "core_model_refit_after_test_inspection": true,
+  "corrected": {
+    "M0": {
+      "brier": 0.1719121780368728,
+      "logloss": 0.5164444241748875
+    },
+    "M1": {
+      "brier": 0.1683528340689237,
+      "logloss": 0.504014697253528
+    }
+  },
+  "corrected_file_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "corrected_forecasts": 3836,
+  "correction_git_commit": "4a77ae5",
+  "evidence_class": "POST_TEST_TERMINAL_CORRECTION_HISTORICAL_COMPARISON",
+  "historical_git_commit": "009f54d",
+  "new_blind_test_claimed": false,
+  "note": "TEST had already been viewed before the source fix. One TEST boundary forecast was removed; TRAIN also lost eight terminal rows and was refit, so shared predictions may change.",
+  "only_removed_test_forecast_key": [
+    8743945405,
+    28
+  ],
+  "preterminal_file_sha256": "e3b2c843172fdde029f5f5ec05536ea837ec023b8b860543cadedf028bb3cb32",
+  "preterminal_forecasts": 3837,
+  "previous": {
+    "M0": {
+      "brier": 0.17185915685725403,
+      "logloss": 0.5163046946798686
+    },
+    "M1": {
+      "brier": 0.16831194305994504,
+      "logloss": 0.5039056145604591
+    }
+  },
+  "test_games": 106
+}

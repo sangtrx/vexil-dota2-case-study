@@ -17,15 +17,15 @@ The reproducible development-only source is research/development_asof_robustness
 | 60 minutes | 277 | 96 | M2 (0.517823 versus M1 0.518090) |
 | 120 minutes | 272 | 90 | M1 |
 
-At +60 minutes the margin is only 0.000267 log-loss units. It is a post-result sensitivity, not evidence to reselect M2 or recalibrate on an already inspected TEST. The buffers are scenarios, not measured OpenDota delays; there is no live received_at log.
+At +60 minutes the unrounded log-loss margin is only 0.00026775 (about 0.000268). **It is driven by dropping seven later-finishing VAL games**, not by the TRAIN fit alone: with the same 277 mature TRAIN games but all 103 reused VAL games, M1 still leads (0.520133 versus M2 0.523409). On the restricted 96-game VAL subset M2 narrowly leads by log loss, while Brier **still favors M1 (0.175263 versus M2 0.175965)**. Filtering on completion time also changes match-duration mix and denominators (3,781 to 3,497 minute rows), so scores across different buffer levels are not directly comparable. No CI supports this tiny switch, and it is **not evidence to reselect M2** on already inspected data. The buffers are scenarios, not measured OpenDota delays; there is no live received_at log.
 
 ## B. The original held-out TEST was inspected before the terminal-boundary repair
 
-The original source commit 009f54d (14 November 2026, 16:16 ICT) retained 18,304 minute rows and 3,837 TEST forecasts. Historical TEST forecast CSV SHA256: e3b2c843172fdde029f5f5ec05536ea837ec023b8b860543cadedf028bb3cb32. Its M0/M1 TEST log loss was 0.516304695 / 0.503905615 and Brier was 0.171859157 / 0.168311943.
+The historical pre-correction commit 009f54d (14 November 2026, 16:16 ICT) retained 18,304 minute rows and 3,837 TEST forecasts. Historical TEST forecast CSV SHA256: e3b2c843172fdde029f5f5ec05536ea837ec023b8b860543cadedf028bb3cb32. Its M0/M1 TEST log loss was 0.516304695 / 0.503905615 and Brier was 0.171859157 / 0.168311943.
 
 Commit 4a77ae5 (14 November 2026, 20:24 ICT) applied 60*t < duration, removing 12 terminal rows across 8 TRAIN, 3 VAL and 1 TEST games; the affected TRAIN design was refitted. The corrected frozen 3,836-forecast TEST CSV SHA256 is 03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441, with M0/M1 log loss 0.516444424 / 0.504014697 and Brier 0.171912178 / 0.168352834.
 
-Both comparisons are descriptive, not two independent tests. The original commit can be inspected from Git history but the historical pre-correction CSV is not included in the recruiter ZIP. The corrected notebook has 14 core code cells (including post-TEST corrections and diagnostics) plus two appended QA cells. The 14 core cells must NOT be described as an untouched pre-TEST preregistration.
+Both comparisons are descriptive, not two independent tests. **Both forecast CSVs are now included in the ZIP**, with an independent standard-library verifier (research/verify_terminal_correction_history.py) and the machine receipt docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json. The historical commit can still be inspected in Git history, but Git access is no longer needed for this numerical comparison. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It must NOT be described as an untouched pre-TEST preregistration.
 
 ## C. TRAIN-forward M0 differs from VAL and TEST for identifiable design reasons
 
@@ -39,7 +39,7 @@ The frozen original TRAIN-forward evaluation comprises four chronological series
 | 39 games | 39 | 0.589960 | 0.594053 | 0.695323 |
 | Pooled, minute-weighted | -- | 0.612312 | 0.612086 | 0.695316 |
 
-Original full TRAIN (291 games) fit yields M0 VALIDATION log loss 0.532490 and inspected TEST log loss 0.516444. Changes in sample, fit size, opponent/league composition and patch mix can all explain some differences, but these summaries do NOT identify which mechanism caused them. This is the correct explanation boundary, not a claim of confirmed drift.
+Original full TRAIN (291 games) fit yields M0 VALIDATION log loss 0.532490 and inspected TEST log loss 0.516444. Changes in sample, fit size, opponent/league composition and patch mix can all explain some differences, but these summaries do NOT identify which mechanism caused them. In the last TRAIN-forward fold, which evaluated 39 patch-60 games, **M0 beat M1 (0.589960 vs 0.594053)**; that is a warning about stability, not a proof that patch 60 causes the difference. This is the correct explanation boundary, not a claim of confirmed drift.
 
 ## D. Multiple estimands, fragile uncertainty and a stop rule
 
@@ -52,5 +52,6 @@ The existing 28-way screen, tree models, October/November reuse and one influent
 From the ZIP root with pinned dependencies, run:
 
     python research/development_asof_robustness.py --check
+    python research/verify_terminal_correction_history.py --check
 
-This fails if the frozen source hashes, computed scores or timing outcomes differ. The archived historical 009f54d prior-TEST comparison requires Git history and is not recreated from the ZIP. An applicant must personally check the reported active-time estimate and be prepared to explain which research decisions were theirs. AI-written code/reviews are not independent human peer review.
+The development receipt records the source audit script SHA-256 and a Python/scientific-library version ledger, pins source file hashes and checks numerical outputs with 1e-9 absolute float tolerance while requiring exact labels, counts, hashes and cohort identity. The archived preterminal comparison is reproducible **without Git** from both included forecast CSVs. Active work time and author-owned decisions are applicant-provided statements, not facts verified by these scripts; AI-generated code/reviews are not independent human peer review.

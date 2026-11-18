@@ -39,7 +39,7 @@ For a quick **offline** verification of frozen forecasts, models, figures and re
 python -m unittest discover -s tests -p "test_*.py" -q
 ```
 
-This runs **174 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on BigLinux, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
+This runs **175 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on BigLinux, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
 
 ## Data and interpretation boundaries
 
@@ -60,4 +60,4 @@ Development-only lag-buffer stress and the pre/post-TEST correction history are 
 | Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
 | Authentic research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
-Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. **Repository visibility is private; without an invitation, use the attached ZIP/PDF rather than relying on GitHub links.** The report separately presents applicant-estimated active hours and the AI/public-code disclosure; neither is an independently audited work log.
+Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. **Repository visibility is private; the reviewer ZIP/PDF does not require access to private GitHub discussions.** The report separately presents applicant-estimated active hours and the AI/public-code disclosure; neither is an independently audited work log.

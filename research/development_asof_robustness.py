@@ -13,7 +13,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
+import platform
 from pathlib import Path
+
+import scipy
+import sklearn
 
 import numpy as np
 import pandas as pd
@@ -175,6 +180,15 @@ def compute() -> dict:
     return {
         "evidence_class": "POST_RESULT_DEVELOPMENT_ONLY_SENSITIVITY",
         "sources_sha256": INPUTS,
+        "audit_script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "verified_environment": {
+            "python": platform.python_version(),
+            "numpy": np.__version__,
+            "pandas": pd.__version__,
+            "scipy": scipy.__version__,
+            "sklearn": sklearn.__version__,
+        },
+        "source_access_manifest": list(INPUTS),
         "forecast_test_records_read": False,
         "original_model_or_test_scores_changed": False,
         "live_received_at_verified": False,
@@ -193,10 +207,41 @@ def compute() -> dict:
     }
 
 
+def _same_evidence(actual, expected, path="root") -> None:
+    # Hashes, identifiers, flags, labels, group counts and source versions
+    # must match EXACTLY. Numeric float outputs may vary at 1e-9 across
+    # equivalent pinned BLAS implementations; do not require bitwise parity.
+    if type(actual) is not type(expected):
+        raise ValueError("Type drift at " + path)
+    if isinstance(actual, float):
+        if not math.isfinite(actual) or not math.isclose(
+            actual, expected, rel_tol=0.0, abs_tol=1e-9
+        ):
+            raise ValueError("Float drift at " + path)
+    elif isinstance(actual, dict):
+        if set(actual) != set(expected):
+            raise ValueError("Receipt key drift at " + path)
+        for key in actual:
+            _same_evidence(actual[key], expected[key], path + "." + key)
+    elif isinstance(actual, list):
+        if len(actual) != len(expected):
+            raise ValueError("Receipt length drift at " + path)
+        for index, (left, right) in enumerate(zip(actual, expected)):
+            _same_evidence(left, right, path + "[" + str(index) + "]")
+    elif actual != expected:
+        raise ValueError("Receipt drift at " + path)
+
+
 def verify(result: dict) -> None:
     saved = json.loads(RECEIPT.read_text())
-    if result != saved:
-        raise ValueError("Frozen development-only robustness receipt changed")
+    _same_evidence(result, saved)
+    if result["forecast_test_records_read"] is not False:
+        raise ValueError("Forbidden TEST access declaration")
+    if result["original_model_or_test_scores_changed"] is not False:
+        raise ValueError("Forbidden original model change declaration")
+    if result["live_received_at_verified"] is not False:
+        raise ValueError("Unobserved live arrival incorrectly claimed")
+
     if ([x["mature_train_games"] for x in result["asof"]]
             != [286, 285, 283, 282, 277, 272]):
         raise ValueError("Mature TRAIN count mismatch")

@@ -265,6 +265,7 @@
       }
     }
   ],
+  "audit_script_sha256": "6f92ba0a4677612ea5b214548126cf50b6caacbfa2ad3ae2b929c3b71c9bf3c4",
   "evidence_class": "POST_RESULT_DEVELOPMENT_ONLY_SENSITIVITY",
   "forecast_test_records_read": false,
   "forward_fold_context": [
@@ -341,9 +342,21 @@
   ],
   "live_received_at_verified": false,
   "original_model_or_test_scores_changed": false,
+  "source_access_manifest": [
+    "research/frozen_original_development_features.csv.gz",
+    "research/frozen_original_train_features.csv.gz",
+    "research/frozen_original_split_manifest.csv"
+  ],
   "sources_sha256": {
     "research/frozen_original_development_features.csv.gz": "d4f91431d2c373eb772093bbf26ecb9c37c62714f95e89e0500e30b7700bd628",
     "research/frozen_original_split_manifest.csv": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
     "research/frozen_original_train_features.csv.gz": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
+  },
+  "verified_environment": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "python": "3.12.3",
+    "scipy": "1.16.3",
+    "sklearn": "1.7.2"
   }
 }
