@@ -1,6 +1,6 @@
 # Live Dota 2 Win Probability
 
-**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 17 November 2026**
+**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 17 November 2026; supplementary research updated 18 November 2026**
 
 **Decision.** Keep the gold-only logistic baseline (M0) as the reference and evaluate the time-aware model (M1) in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
 
@@ -29,6 +29,8 @@ I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN onl
 
 The additional XP and objective features did not improve validation loss. I kept M1 rather than carrying their extra complexity forward. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
 
+**Exploratory research beyond the required notebook:** A five-feature, gold-history path model (Q1) obtained TRAIN-forward log loss **0.605963** versus M1 **0.612086** on 137 games, but its Q1−M1 uncertainty interval includes zero. Fixed XGB3 **0.615597** and LGB3 **0.616196** did not beat Q1 on those *same* folds; nested tuning, October/November transfer, 60-second event-delay and stale-feed simulations did not justify promotion. These are **post-result TRAIN/replay studies, not a new held-out TEST**; the original notebook does not execute them. All sources are indexed in `docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md`.
+
 ---
 
 ## 3. Does the interaction earn its complexity?
@@ -46,6 +48,12 @@ The stronger comparison is **M1 versus additive gold + time without the interact
 *Figure 2. M1 minus additive gold + time log loss; negative favors M1. Pooled interval covers zero.*
 
 The separate TRAIN-only leader-state comparison is descriptive: among games with an absolute 2–4k gold lead, leaders eventually won **66/82** at 10 minutes and **11/25** at 30 minutes, but **only 7 matches occur in both groups**. Different surviving games, not a measured within-game time effect (docs/TRAIN_LEADER_STATE_EMPIRICAL.md).
+
+### Creative feature and model search (full inventory: `docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md`)
+
+**28 adaptive screens:** I tested time-shape, team-economy allocation, gold shocks, towers, Roshan/Aegis, buyback, Blink/BKB item completion and hero draft. Best historical *reused-VAL* point estimate was **P20** (LL **0.514098** vs old M1 **0.519346**), but the adjusted 28-way interval includes zero; **0/28 promoted**.
+
+**81 engineered features:** 19 gold dynamics, 13 XP, 19 player allocation, 17 objectives and 13 interactions. Two Roshan-owner columns were constant/unavailable; one was duplicate. Elastic-net and sklearn boosted-tree models failed the TRAIN-forward gate.
 
 ---
 

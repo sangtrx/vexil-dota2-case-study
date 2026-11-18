@@ -17,7 +17,7 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEST = ROOT / "delivery" / "Vexil_Dota2_Takehome_20261116.zip"
+DEST = ROOT / "delivery" / "Vexil_Dota2_Creative_Research_20261118.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
 EXPECTED_NOTEBOOK_SHA256 = "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"
 EXPECTED_REVIEWER_NOTEBOOK_SHA256 = "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
@@ -71,6 +71,27 @@ FILES = (
     "tests/test_train_leader_state_empirical.py",
     "tests/test_fable_science_closure.py",
     "docs/EXPERIMENT_REGISTER.md",
+    "docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md",
+    "tests/test_creative_atlas_contract.py",
+    "research/rich_feature_engineering.py",
+    "research/QUANT_BIBLE_PATH_READOUT.md",
+    "research/QUANT_PATH_SIGNATURES_READOUT.md",
+    "research/OCT_NOV_FEATURE_TRANSFER_READOUT.md",
+    "research/ROLE_DYNAMICS_TRANSFER_READOUT.md",
+    "research/RICH_FEATURE_DIVERSITY_AUDIT.md",
+    "research/MINIMAL_ECONOMY_SCORE_READOUT.md",
+    "research/DISAGREEMENT_RELIABILITY_READOUT.md",
+    "research/EVENT_DELAY_HOSTILE_READOUT.md",
+    "research/CROSS_ARRAY_TIME_ALIGNMENT_READOUT.md",
+    "research/FRESH_NOV17_EXTERNAL_READOUT.md",
+    "research/CAUSAL_STALE_FEED_HOSTILE_READOUT.md",
+    "research/STRICT_NODATA_TRAIN_FORWARD_REPAIR_READOUT.md",
+    "research/CAUSAL_FORECAST_FILTER_READOUT.md",
+    "research/RICH_FEATURE_MODEL_READOUT.md",
+    "research/BOOSTED_TREES_DIRECT_READOUT.md",
+    "research/BOOSTED_NESTED_FAIRNESS_READOUT.md",
+    "research/BOOSTED_TREES_HOSTILE_DECISION_20261118.md",
+    "research/POST_RESULT_EQUAL_MATCH_SENSITIVITY_NOTE_20261118.md",
     "docs/RESEARCH_DECISION_TRAIL.md",
     "docs/TEAM_LEAGUE_DEPENDENCE.md",
     "docs/TEAM_LEAGUE_DEPENDENCE_RECEIPT.json",
@@ -155,7 +176,7 @@ FILES = (
     "tests/test_submission_forecasts.py",
     "tests/test_error_diagnostics.py",
 )
-STAMP = (2026, 11, 16, 0, 0, 0)
+STAMP = (2026, 11, 18, 0, 0, 0)
 
 
 def sha(data: bytes) -> str:
@@ -708,7 +729,7 @@ def run() -> dict:
     entries = {name: (ROOT / name).read_bytes() for name in FILES}
     manifest = {
         "project": "Vexil Capital Senior Data Scientist Dota 2 take-home",
-        "created_on": "2026-11-16",
+        "created_on": "2026-11-18",
         "report_pages": acceptance["pages"],
         "notebook_sha256": EXPECTED_REVIEWER_NOTEBOOK_SHA256,
         "frozen_original_notebook_sha256": EXPECTED_NOTEBOOK_SHA256,
