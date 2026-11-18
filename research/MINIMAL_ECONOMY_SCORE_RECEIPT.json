@@ -1,0 +1,501 @@
+{
+  "all_periods_scientific_gate": {
+    "E_SHARE1": false,
+    "MATCH_EQUAL": false,
+    "SAT_ASINH3": false
+  },
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261118,
+  "candidate_models": [
+    "E_SHARE1",
+    "SAT_ASINH3",
+    "MATCH_EQUAL"
+  ],
+  "cohorts": {
+    "November": {
+      "comparisons": {
+        "E_SHARE1": {
+          "M1_interaction": {
+            "95_series_interval_ll": [
+              -0.003227733447509672,
+              0.0005390457562887088
+            ],
+            "995833_series_interval_ll": [
+              -0.003937137686829017,
+              0.0016438444617592268
+            ],
+            "delta_brier": -0.0006833339754921802,
+            "delta_logloss": -0.0014363655013728274,
+            "equal_match_95_series_interval_ll": [
+              -0.004905639356391241,
+              0.000234843030601328
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.006408956754730037,
+              0.0013907134074093656
+            ],
+            "equal_match_delta_logloss": -0.0021940651830472096,
+            "late30_delta_brier": -0.00031790108719107277,
+            "leave_one_series_out_range_ll": [
+              -0.0020484226273850947,
+              -0.0009662929294476017
+            ]
+          },
+          "Q1_path": {
+            "95_series_interval_ll": [
+              -0.023955996116544837,
+              0.007331641500950225
+            ],
+            "995833_series_interval_ll": [
+              -0.029857516594252568,
+              0.012559206327837245
+            ],
+            "delta_brier": -0.004465617315337034,
+            "delta_logloss": -0.008125338083020945,
+            "equal_match_95_series_interval_ll": [
+              -0.023405159157212065,
+              0.008037755858497812
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.030446672808892208,
+              0.013731091515920368
+            ],
+            "equal_match_delta_logloss": -0.0078051982467601385,
+            "late30_delta_brier": -0.00807355330497348,
+            "leave_one_series_out_range_ll": [
+              -0.011810298076368145,
+              -0.0029067014495478996
+            ]
+          }
+        },
+        "MATCH_EQUAL": {
+          "M1_interaction": {
+            "95_series_interval_ll": [
+              -0.01175865359894181,
+              -0.0006945570233616851
+            ],
+            "995833_series_interval_ll": [
+              -0.013659706613768152,
+              0.0019531603744473206
+            ],
+            "delta_brier": -0.0016738692546600276,
+            "delta_logloss": -0.006416839983779588,
+            "equal_match_95_series_interval_ll": [
+              -0.011813290962913576,
+              -0.0015342667223727177
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.013477177044702384,
+              0.001163402096029829
+            ],
+            "equal_match_delta_logloss": -0.00702553618793136,
+            "late30_delta_brier": -0.0029863014712714028,
+            "leave_one_series_out_range_ll": [
+              -0.009047586626232229,
+              -0.004907440506157504
+            ]
+          },
+          "Q1_path": {
+            "95_series_interval_ll": [
+              -0.030786835268483373,
+              0.005494503385087739
+            ],
+            "995833_series_interval_ll": [
+              -0.03674972655267145,
+              0.014521814584955555
+            ],
+            "delta_brier": -0.005456152594504881,
+            "delta_logloss": -0.013105812565427706,
+            "equal_match_95_series_interval_ll": [
+              -0.0304113033835963,
+              0.006383296134172181
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.0364441816771822,
+              0.01462777502979841
+            ],
+            "equal_match_delta_logloss": -0.012636669251644288,
+            "late30_delta_brier": -0.01074195368905381,
+            "leave_one_series_out_range_ll": [
+              -0.019752644864559445,
+              -0.008605044406211751
+            ]
+          }
+        },
+        "SAT_ASINH3": {
+          "M1_interaction": {
+            "95_series_interval_ll": [
+              -0.0059810903467780036,
+              0.015985759295122692
+            ],
+            "995833_series_interval_ll": [
+              -0.011085696942939491,
+              0.019819251670218935
+            ],
+            "delta_brier": 0.0001357635709232923,
+            "delta_logloss": 0.005058187017810392,
+            "equal_match_95_series_interval_ll": [
+              -0.005735380688133855,
+              0.014823773845726316
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.00954266646140366,
+              0.019193732266008477
+            ],
+            "equal_match_delta_logloss": 0.004152155738544688,
+            "late30_delta_brier": 0.0013060578052658245,
+            "leave_one_series_out_range_ll": [
+              2.1478999856184613e-05,
+              0.008499117341608292
+            ]
+          },
+          "Q1_path": {
+            "95_series_interval_ll": [
+              -0.02345390054603048,
+              0.02005968732985948
+            ],
+            "995833_series_interval_ll": [
+              -0.031671895513682866,
+              0.029535394722690466
+            ],
+            "delta_brier": -0.003646519768921562,
+            "delta_logloss": -0.0016307855638377292,
+            "equal_match_95_series_interval_ll": [
+              -0.022598739526165146,
+              0.019715302376933995
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.03011849465924823,
+              0.02830073415145846
+            ],
+            "equal_match_delta_logloss": -0.0014589773251682384,
+            "late30_delta_brier": -0.006449594412516582,
+            "leave_one_series_out_range_ll": [
+              -0.010683579238471035,
+              0.005714692907596165
+            ]
+          }
+        }
+      },
+      "earned_economy": {
+        "asof_minutes_checked": 952,
+        "march_raw_digest_if_applicable": null,
+        "side_swap_checks": 952,
+        "team_earned_gold_parity_checks": 952,
+        "true_received_at_verified": false,
+        "unique_matches": 22
+      },
+      "forecast_rows": 952,
+      "games": 22,
+      "independent_series": 9,
+      "models": {
+        "E_SHARE1": {
+          "brier": 0.14334193482164706,
+          "brier_30plus": 0.08487942429608966,
+          "equal_match_logloss": 0.4274876311051791,
+          "logloss": 0.4412455384822399
+        },
+        "M0_gold": {
+          "brier": 0.15087460229313152,
+          "brier_30plus": 0.0914062049658916,
+          "equal_match_logloss": 0.44386812271896897,
+          "logloss": 0.4561668846735944
+        },
+        "M1_interaction": {
+          "brier": 0.14402526879713926,
+          "brier_30plus": 0.08519732538328073,
+          "equal_match_logloss": 0.4296816962882262,
+          "logloss": 0.44268190398361273
+        },
+        "MATCH_EQUAL": {
+          "brier": 0.14235139954247925,
+          "brier_30plus": 0.08221102391200934,
+          "equal_match_logloss": 0.42265616010029494,
+          "logloss": 0.4362650639998331
+        },
+        "Q1_path": {
+          "brier": 0.14780755213698413,
+          "brier_30plus": 0.09295297760106314,
+          "equal_match_logloss": 0.43529282935193925,
+          "logloss": 0.4493708765652608
+        },
+        "SAT_ASINH3": {
+          "brier": 0.14416103236806257,
+          "brier_30plus": 0.08650338318854656,
+          "equal_match_logloss": 0.433833852026771,
+          "logloss": 0.44774009100142315
+        }
+      },
+      "period_gate": {
+        "E_SHARE1": false,
+        "MATCH_EQUAL": false,
+        "SAT_ASINH3": false
+      },
+      "source": {
+        "games": 22,
+        "groups": 9,
+        "max_prior_p_error_M0_gold": 3.3306690738754696e-16,
+        "max_prior_p_error_M1_interaction": 7.303602167496592e-13,
+        "new_raw_downloads": 0,
+        "predictor_ingress_timestamp_verified": false,
+        "raw_team_cross_array_slots_verified": 952,
+        "rows": 952,
+        "scope": "November",
+        "side_mirror_checks": 952
+      }
+    },
+    "October": {
+      "comparisons": {
+        "E_SHARE1": {
+          "M1_interaction": {
+            "95_series_interval_ll": [
+              -0.0016936786090764177,
+              0.0010284578864810407
+            ],
+            "995833_series_interval_ll": [
+              -0.0023314632132306725,
+              0.0016491802988835302
+            ],
+            "delta_brier": -0.0001525013725438317,
+            "delta_logloss": -0.0003473763702348231,
+            "equal_match_95_series_interval_ll": [
+              -0.0018168538455207157,
+              0.0011783404111971884
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.0024672476794957306,
+              0.001855754968815454
+            ],
+            "equal_match_delta_logloss": -0.00034505549816856617,
+            "late30_delta_brier": -0.0003914128620022789,
+            "leave_one_series_out_range_ll": [
+              -0.0005428389069443278,
+              -0.00016557706288310612
+            ]
+          },
+          "Q1_path": {
+            "95_series_interval_ll": [
+              -0.003849394221938746,
+              0.011620271214617454
+            ],
+            "995833_series_interval_ll": [
+              -0.007190060306048558,
+              0.015196588267924433
+            ],
+            "delta_brier": 0.0010629874233021163,
+            "delta_logloss": 0.003976384105423956,
+            "equal_match_95_series_interval_ll": [
+              -0.0059063861091786215,
+              0.008934874404509185
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.008817687562530301,
+              0.011933155523454024
+            ],
+            "equal_match_delta_logloss": 0.001452086615529201,
+            "late30_delta_brier": 0.0044863925788054225,
+            "leave_one_series_out_range_ll": [
+              0.0028601197851399075,
+              0.005147007220647065
+            ]
+          }
+        },
+        "MATCH_EQUAL": {
+          "M1_interaction": {
+            "95_series_interval_ll": [
+              -0.0052846886914625175,
+              0.0013388514682143803
+            ],
+            "995833_series_interval_ll": [
+              -0.0065801387709992845,
+              0.002929522778929354
+            ],
+            "delta_brier": -0.0005372972871205149,
+            "delta_logloss": -0.0020441613132122964,
+            "equal_match_95_series_interval_ll": [
+              -0.006656310912070211,
+              -0.0008806965563295762
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.007736785042156974,
+              0.0005935880764956238
+            ],
+            "equal_match_delta_logloss": -0.003802440164827997,
+            "late30_delta_brier": -0.000496563946660853,
+            "leave_one_series_out_range_ll": [
+              -0.00283594058032601,
+              -0.001800038697142002
+            ]
+          },
+          "Q1_path": {
+            "95_series_interval_ll": [
+              -0.007426633915836558,
+              0.012097144439830435
+            ],
+            "995833_series_interval_ll": [
+              -0.011378050707429591,
+              0.015728602912902002
+            ],
+            "delta_brier": 0.0006781915087254334,
+            "delta_logloss": 0.0022795991624464836,
+            "equal_match_95_series_interval_ll": [
+              -0.010947878405591457,
+              0.007228743389088746
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.014359166274363223,
+              0.01132388988574738
+            ],
+            "equal_match_delta_logloss": -0.0020052980511302307,
+            "late30_delta_brier": 0.0043812414941468494,
+            "leave_one_series_out_range_ll": [
+              0.0005052042488397806,
+              0.003463380335570698
+            ]
+          }
+        },
+        "SAT_ASINH3": {
+          "M1_interaction": {
+            "95_series_interval_ll": [
+              0.0009915306913066892,
+              0.008788079551401772
+            ],
+            "995833_series_interval_ll": [
+              -0.0009457025173668937,
+              0.010496914287471841
+            ],
+            "delta_brier": -8.405280405669522e-05,
+            "delta_logloss": 0.004935620231019745,
+            "equal_match_95_series_interval_ll": [
+              0.0013749354487280628,
+              0.008164505905200223
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.00042739748891128606,
+              0.009502032666003427
+            ],
+            "equal_match_delta_logloss": 0.004805529475671539,
+            "late30_delta_brier": 0.0005820599641803162,
+            "leave_one_series_out_range_ll": [
+              0.004212149196910435,
+              0.005854242960825653
+            ]
+          },
+          "Q1_path": {
+            "95_series_interval_ll": [
+              0.0011243155515519533,
+              0.017337628167625845
+            ],
+            "995833_series_interval_ll": [
+              -0.0023770482816884205,
+              0.02100382540401919
+            ],
+            "delta_brier": 0.001131435991789253,
+            "delta_logloss": 0.009259380706678528,
+            "equal_match_95_series_interval_ll": [
+              -0.0010861912717893697,
+              0.014261878126907383
+            ],
+            "equal_match_995833_series_interval_ll": [
+              -0.0038623732996847437,
+              0.01797258084249784
+            ],
+            "equal_match_delta_logloss": 0.006602671589369304,
+            "late30_delta_brier": 0.0054598654049880175,
+            "leave_one_series_out_range_ll": [
+              0.008175657490871308,
+              0.010600654661070729
+            ]
+          }
+        }
+      },
+      "earned_economy": {
+        "asof_minutes_checked": 7346,
+        "march_raw_digest_if_applicable": null,
+        "side_swap_checks": 7346,
+        "team_earned_gold_parity_checks": 7346,
+        "true_received_at_verified": false,
+        "unique_matches": 180
+      },
+      "forecast_rows": 7346,
+      "games": 180,
+      "independent_series": 107,
+      "models": {
+        "E_SHARE1": {
+          "brier": 0.16536587559293278,
+          "brier_30plus": 0.11589541199908075,
+          "equal_match_logloss": 0.47041060908470894,
+          "logloss": 0.4932541791868344
+        },
+        "M0_gold": {
+          "brier": 0.16851403345678964,
+          "brier_30plus": 0.11522144081351594,
+          "equal_match_logloss": 0.4816420147579846,
+          "logloss": 0.49948436345328534
+        },
+        "M1_interaction": {
+          "brier": 0.16551837696547664,
+          "brier_30plus": 0.11628682486108302,
+          "equal_match_logloss": 0.4707556645828776,
+          "logloss": 0.49360155555706914
+        },
+        "MATCH_EQUAL": {
+          "brier": 0.1649810796783561,
+          "brier_30plus": 0.11579026091442218,
+          "equal_match_logloss": 0.46695322441804954,
+          "logloss": 0.49155739424385686
+        },
+        "Q1_path": {
+          "brier": 0.16430288816963062,
+          "brier_30plus": 0.11140901942027534,
+          "equal_match_logloss": 0.46895852246917974,
+          "logloss": 0.4892777950814104
+        },
+        "SAT_ASINH3": {
+          "brier": 0.16543432416141993,
+          "brier_30plus": 0.11686888482526335,
+          "equal_match_logloss": 0.4755611940585491,
+          "logloss": 0.4985371757880889
+        }
+      },
+      "period_gate": {
+        "E_SHARE1": false,
+        "MATCH_EQUAL": false,
+        "SAT_ASINH3": false
+      },
+      "source": {
+        "games": 180,
+        "groups": 107,
+        "max_prior_p_error_M0_gold": 3.3306690738754696e-16,
+        "max_prior_p_error_M1_interaction": 4.57300863843102e-13,
+        "new_raw_downloads": 0,
+        "predictor_ingress_timestamp_verified": false,
+        "raw_team_cross_array_slots_verified": 7349,
+        "rows": 7346,
+        "scope": "October",
+        "side_mirror_checks": 7346
+      }
+    }
+  },
+  "employer_model_promoted": false,
+  "fit_source": "March 291 TRAIN games only; original March VAL/TEST untouched",
+  "new_external_api_requests": 0,
+  "new_train_source_checks": {
+    "asof_minutes_checked": 10675,
+    "march_raw_digest_if_applicable": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+    "side_swap_checks": 10675,
+    "team_earned_gold_parity_checks": 10675,
+    "true_received_at_verified": false,
+    "unique_matches": 291
+  },
+  "protected_artifacts_sha256": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "protocol_sha256": "fb15a50822d4604f6bd90604ec5e8a5baf9f8f9ddb579c2e9d68491096c8cf3f",
+  "source_ingress_time_verified": false,
+  "status": "post-result nonblind model-design screen; NOT holdout certification",
+  "training_provenance_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "training_weighting": "match-equal training only, no duration inference feature"
+}
