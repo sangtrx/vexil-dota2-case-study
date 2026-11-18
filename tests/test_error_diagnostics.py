@@ -49,6 +49,13 @@ class ErrorDiagnosticsContractTest(unittest.TestCase):
         self.assertEqual((top["match_id"],top["forecast_minutes"]), (8744971178,55))
         self.assertAlmostEqual(top["fraction_of_total_signed_gain"],.5492191868375483,places=10)
         self.assertAlmostEqual(top["all_other_matches_delta_ll"],-.005684587178237208,places=10)
+        late=self.audit["late30_top_match_leave_one_out"]
+        self.assertEqual((late["all_late30_rows"],late["remaining_late30_rows"],late["removed_late30_rows"]),(719,694,25))
+        self.assertEqual(late["excluded_match_id"],8744971178)
+        self.assertAlmostEqual(late["without_match_delta_logloss_M1_minus_M0"],.03139068,places=7)
+        self.assertAlmostEqual(late["without_match_delta_brier_M1_minus_M0"],.00747672,places=7)
+        self.assertLess(late["all_delta_logloss_M1_minus_M0"],0)
+        self.assertGreater(late["without_match_delta_logloss_M1_minus_M0"],0)
 
     def test_serialized_receipt_parity_and_source_drift(self):
         saved=json.loads((ROOT/"docs"/"ERROR_AUDIT_RECEIPT.json").read_text(encoding="utf8"))

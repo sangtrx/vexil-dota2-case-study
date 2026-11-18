@@ -20,7 +20,7 @@ M1 was selected on 103 validation games, but its **paired whole-match 95% log-lo
 
 ## Run the notebook
 
-**Google Colab:** Upload `live_dota2_win_probability.ipynb`, use a CPU runtime with Internet, and choose Runtime → Run all. The notebook requests the same **500 frozen match IDs** through `/matches/{match_id}`, rather than resampling a changing `/proMatches` feed. It needs no API key; OpenDota rate limits can make a full run slow. Colab's preinstalled scientific libraries may differ from the pinned local versions; compare saved results within reasonable numeric precision, not CSV bytes.
+**Google Colab:** Upload `live_dota2_win_probability.ipynb`, use a CPU runtime with Internet, and choose Runtime → Run all. The notebook requests the same **500 frozen match IDs** through `/matches/{match_id}`, rather than resampling a changing `/proMatches` feed. It needs no API key; OpenDota rate limits can make a full run slow. Colab's preinstalled scientific libraries may differ from the pinned local versions; compare saved results within reasonable numeric precision, not CSV bytes. The archived 16-cell Colab receipt covers an **earlier notebook revision**, not a cloud rerun of the exact shipped file.
 
 **Local Python 3.12 (verified with exact pins):**
 
@@ -60,4 +60,4 @@ An optional 100-game November check is [reported separately](docs/FORWARD_100_ST
 | Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
 | Authentic research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
-Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. **Repository visibility is private; without an invitation, use the attached ZIP/PDF rather than relying on GitHub links.** Applicant-owned active hours, contributions and required AI/public-code disclosure appear in the report for final confirmation.
+Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. **Repository visibility is private; without an invitation, use the attached ZIP/PDF rather than relying on GitHub links.** The report separately presents applicant-estimated active hours and the AI/public-code disclosure; neither is an independently audited work log.

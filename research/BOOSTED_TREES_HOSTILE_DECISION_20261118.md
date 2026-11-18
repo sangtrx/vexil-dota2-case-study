@@ -1,5 +1,5 @@
 # Senior DS hostile decision: Do XGBoost or LightGBM belong in the Vexil submission?
-18 November 2026 ICT. Research-only, independently rerun as code on BigLinux epic. No external committee reviewer was invoked.
+18 November 2026 ICT. Research-only, deterministic rerun on BigLinux epic by the same research workflow; not an external independent reviewer.
 
 ## Decisive answer
 **No direct model promotion on the available evidence.** The Vexil applicant-provided assignment asks for a gold-only logistic regression reference and applicant-developed forecast; it does **not** require XGBoost or LightGBM. Original submission correctly keeps M0 reference and M1 shadow since grouped primary held-out intervals include zero and M1 late30 Brier can regress.
@@ -38,18 +38,10 @@ Original frozen TRAIN rich CSV and 291 raw provenance hash verified against prev
 
 The initial request for xgboost 3.4.2 failed since the BigLinux pip index offered only up to 3.4.1; an explicit pre-fit amendment was committed at 7a4514d6d2637c22095181c12d3f1724434c0625. Other hyperparameters/folds/decision rules did not change. Do not represent this as 3.4.2.
 
-BigLinux epic full relevant repository suite: **292/292 tests PASS**. Both the direct fixed and nested evaluation were independently fully re-scored; each JSON and Markdown report matches the first results **byte-for-byte**:
-- Direct research JSON SHA256: 16b52b449ffdc06e30866fbf5f4bba7aa85029e9a26c270a21a6dcdd7fcc3f45
-- Direct Markdown SHA256: 78da17c5c7d9ed2669cfc46f3c3c0c49565ab1699189e306c1ea5610d0fc4ad6
-- Nested research JSON SHA256: 0d9b805543423aa9e832d01fccb840c590076f3412608fc031ece73d2d6911e7
-- Nested Markdown SHA256: 05e1a72661b6cd861bf3a0eeeb8f6878c2661c32890e9ff54b3512530e1b6e36
+Historical BigLinux **research-branch** test suite: **292/292 PASS** on 18 November (separate from the **172** offline tests in the reviewer ZIP). The direct and nested research outputs were re-scored with matching numerical summaries; their full raw JSON and markdown report hashes belong to the research branch and **are not bundled** in this reviewer ZIP. No outside committee review or fresh independent sample was performed.
 
-Applicant artifacts unchanged:
-- Original executed notebook SHA256 e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f
-- Original 3836-forecast heldout predictions SHA256 03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441
-- Original reviewer ZIP SHA256 8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3
+Frozen applicant science artifacts remain unchanged by the 19 November documentation repair:
+- Executed notebook SHA256 e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f
+- 3,836 TEST forecasts SHA256 03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441
 
-## Candidate-submission decision: separate and time-critical
-The frozen draft PR #9 and original one-notebook, 4-page report/ZIP are NOT changed. The original Vexil Gmail email remains DRAFT / not sent. Repository visibility was verified PRIVATE, and the ZIP is only 3,104,060 bytes with all 128 entries passing ZIP CRC. A private repository link alone will not give a recruiter uninvited access; the applicant should explicitly approve either granting the recruiter's GitHub username access or sending the ZIP as a Gmail attachment before 19 Nov 2026. External delivery requires applicant approval and candidate-owned attestation of personal hours/AI assistance. This research is not a justification to rewrite the 4-page report or delay submission.
-
-No future new blind cohort, received_at, external reviewer or employer submit was performed in this experiment. Keep that limitation visible.
+**Research limitation:** This is post-result TRAIN-forward falsification, not a new blind cohort or verified live-feed latency analysis; no fresh received_at observations were collected. The revised applicant report documents these negative findings and keeps the M0-reference / M1-shadow decision.

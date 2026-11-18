@@ -67,6 +67,17 @@
     "Post-hoc slice and leave-one-out analysis cannot set deployment thresholds.",
     "This CSV does not contain full match/league/patch provenance or real source receive times."
   ],
+  "late30_top_match_leave_one_out": {
+    "all_delta_brier_M1_minus_M0": 0.004548550147138952,
+    "all_delta_logloss_M1_minus_M0": -0.006782677223144962,
+    "all_late30_rows": 719,
+    "excluded_match_id": 8744971178,
+    "remaining_late30_rows": 694,
+    "removed_late30_rows": 25,
+    "scope": "POST_HOC_INFLUENCE_ONLY_NO_MODEL_SELECTION",
+    "without_match_delta_brier_M1_minus_M0": 0.0074767155750706665,
+    "without_match_delta_logloss_M1_minus_M0": 0.03139067808376478
+  },
   "minute_zero": {
     "M0_10bin_ECE": 0.09224743419968646,
     "M0_brier": 0.24875782555354017,

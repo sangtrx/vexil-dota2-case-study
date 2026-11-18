@@ -110,6 +110,24 @@ def audit(rows: list[dict]) -> dict:
             "absolute_difference_from_full_sample": abs(remaining-overall_diff_sum/len(rows)),
         })
     influence.sort(key=lambda item: item["absolute_difference_from_full_sample"], reverse=True)
+    # Diagnose the effect of one influential whole match, never delete it from
+    # the original TEST, refit, or select a model on this post-hoc slice.
+    top_mid = influence[0]["match_id"]
+    late30 = [r for r in rows if r["minute"] >= 30]
+    remaining_late30 = [r for r in late30 if r["match_id"] != top_mid]
+    late30_all = summarize(late30)
+    late30_without = summarize(remaining_late30)
+    late30_influence = {
+        "scope": "POST_HOC_INFLUENCE_ONLY_NO_MODEL_SELECTION",
+        "excluded_match_id": top_mid,
+        "removed_late30_rows": len(late30) - len(remaining_late30),
+        "all_late30_rows": late30_all["minute_rows"],
+        "remaining_late30_rows": late30_without["minute_rows"],
+        "all_delta_logloss_M1_minus_M0": late30_all["delta_log_loss_M1_minus_M0"],
+        "without_match_delta_logloss_M1_minus_M0": late30_without["delta_log_loss_M1_minus_M0"],
+        "all_delta_brier_M1_minus_M0": late30_all["delta_brier_M1_minus_M0"],
+        "without_match_delta_brier_M1_minus_M0": late30_without["delta_brier_M1_minus_M0"],
+    }
     return {
         "source_forecasts_sha256": hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
         "science_boundary": (
@@ -120,6 +138,7 @@ def audit(rows: list[dict]) -> dict:
         "by_phase": {name: summarize([r for r in rows if phase(r["minute"]) == name])
                      for name in PHASES},
         "most_influential_5_matches": influence[:5],
+        "late30_top_match_leave_one_out": late30_influence,
         "minute_zero": summarize([r for r in rows if r["minute"] == 0]),
         "caveats": [
             "Minute rows are correlated within a game and can share professional series/teams.",
@@ -156,6 +175,20 @@ def acceptance(result: dict) -> None:
     if not math.isclose(top["all_other_matches_delta_ll"], -.005684587178237208,
                         rel_tol=0, abs_tol=1e-10):
         raise ValueError("Leave-one-match-out log loss changed")
+    late = result["late30_top_match_leave_one_out"]
+    if (late["excluded_match_id"] != 8744971178
+            or late["removed_late30_rows"] != 25
+            or (late["all_late30_rows"],late["remaining_late30_rows"]) != (719,694)
+            or late["scope"] != "POST_HOC_INFLUENCE_ONLY_NO_MODEL_SELECTION"):
+        raise ValueError("Frozen late30 leave-one-match-out grouping changed")
+    for key,expected in (
+        ("all_delta_logloss_M1_minus_M0",-.006782677223144962),
+        ("without_match_delta_logloss_M1_minus_M0",.031390678),
+        ("all_delta_brier_M1_minus_M0",.004548550147138952),
+        ("without_match_delta_brier_M1_minus_M0",.00747672),
+    ):
+        if not math.isclose(late[key],expected,rel_tol=0,abs_tol=1e-7):
+            raise ValueError("Frozen late30 leave-one-out statistic changed: "+key)
     if result["by_phase"]["30+"]["M1_brier"] <= result["by_phase"]["30+"]["M0_brier"]:
         raise ValueError("Unexpected late-game Brier ordering")
     if result["by_phase"]["30+"]["M1_10bin_ECE"] <= result["by_phase"]["30+"]["M0_10bin_ECE"]:

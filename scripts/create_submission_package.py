@@ -299,6 +299,8 @@ def verify() -> dict:
             "0.1074 (worse)",
             "0.5429",
             "63/106 Radiant-winning games",
+            "+0.03139", "+0.00748", "[−0.00670,−0.00038]",
+            "291-game TRAIN fit", "XGBoost 3.4.1",
             "one executed 16-code-cell notebook",
             "No third-party Dota predictor was copied"):
         if statement not in pdf_content:
@@ -511,7 +513,7 @@ def verify() -> dict:
         raise ValueError("Historical 14-cell Colab execution receipt conflicts with science.")
 
     # A separate, private candidate-owned fresh Colab Run All on the
-    # CURRENT 16-cell notebook, inspected from the authenticated Drive file.
+    # PRE-EDITORIAL 16-cell notebook, inspected from the authenticated Drive file.
     # Historical 14-cell receipt remains immutable; do not interpret score
     # parity as proof of cloud CSV byte equality or a fresh blind TEST.
     cloud16=json.loads((ROOT / "docs/COLAB_16CELL_RUN_RECEIPT.json").read_text())

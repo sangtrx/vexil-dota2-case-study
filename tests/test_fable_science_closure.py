@@ -161,8 +161,9 @@ class FableScienceRepairContract(unittest.TestCase):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
         for term in ("17 November 2026","66/82","11/25","1/4 folds","+0.000405",
-                     "0.5429","0.1074 (worse)",
-                     "No third-party Dota predictor was copied"):
+                     "0.5429","0.1074 (worse)","+0.03139","+0.00748",
+                     "[−0.00670,−0.00038]","291-game TRAIN fit",
+                     "XGBoost 3.4.1", "No third-party Dota predictor was copied"):
             self.assertIn(term,pdf)
         self.assertEqual(
             int(subprocess.check_output(["pdfinfo",str(ROOT/"REPORT.pdf")],text=True
