@@ -58,6 +58,24 @@ class MinimalEconomyContracts(unittest.TestCase):
         self.assertAlmostEqual(float(weights.sum()),10675.,places=8)
         self.assertGreater(float(np.ptp(weights)),0.)
 
+    def test_game_average_cluster_ci_has_distinct_estimand(self):
+        df=pd.DataFrame({
+            "match_id":[10,10,20],
+            "series_id":[11,11,22],
+            "minute":[0,31,31],
+            "ll_A":[.1,.1,.3],
+            "ll_B":[.2,.2,.2],
+            "br_A":[.01,.01,.09],
+            "br_B":[.04,.04,.04],
+        })
+        draws=np.random.default_rng(20261118).integers(0,2,size=(5000,2))
+        result=grouped_delta(df,"A","B",draws)
+        self.assertAlmostEqual(result["delta_logloss"],-1/30,places=12)
+        self.assertAlmostEqual(result["equal_match_delta_logloss"],0.,places=12)
+        self.assertEqual(len(result["equal_match_95_series_interval_ll"]),2)
+        self.assertLess(result["equal_match_95_series_interval_ll"][0],0.)
+        self.assertGreater(result["equal_match_95_series_interval_ll"][1],0.)
+
     def test_invalid_negative_gold_not_permitted(self):
         with self.assertRaises(ValueError):
             relative_earned_share(np.full((5,2),-1.),np.ones((5,2)),1)

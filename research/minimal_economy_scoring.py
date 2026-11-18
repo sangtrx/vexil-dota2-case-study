@@ -188,12 +188,26 @@ def grouped_delta(df:pd.DataFrame,name:str,against:str,draws:np.ndarray)->dict:
         float((g[:,1].sum()-row[1])/(g[:,0].sum()-row[0]))
         for row in g]
     late=(df.minute.to_numpy(int)>=30)
-    match=pd.DataFrame({"match_id":df.match_id,"ll":delta}).groupby("match_id").ll.mean()
+    game=(pd.DataFrame({"match_id":df.match_id,"series_id":df.series_id,"ll":delta})
+          .groupby("match_id",sort=True,as_index=False)
+          .agg(series_id=("series_id","first"),ll=("ll","mean")))
+    game["cluster"]=cluster_ids(game[["match_id","series_id"]])
+    match=game.ll
+    grouped_games=(game.assign(n=1.)
+                   .groupby("cluster",sort=True)[["n","ll"]].sum())
+    if len(grouped_games)!=len(g):
+        raise AssertionError("Game-level and minute-level series count mismatch")
+    denom=grouped_games.to_numpy(float)[draws].sum(axis=1)
+    equal_game_draws=denom[:,1]/denom[:,0]
+    ci_match_95=np.quantile(equal_game_draws,[.025,.975])
+    ci_match_995833=np.quantile(equal_game_draws,[.05/24.,1-.05/24.])
     return {
         "delta_logloss":float(delta.mean()),
         "delta_brier":float(db.mean()),
         "late30_delta_brier":float(db[late].mean()),
         "equal_match_delta_logloss":float(match.mean()),
+        "equal_match_95_series_interval_ll":[float(t) for t in ci_match_95],
+        "equal_match_995833_series_interval_ll":[float(t) for t in ci_match_995833],
         "95_series_interval_ll":[float(lo95),float(hi95)],
         "995833_series_interval_ll":[float(lo_adj),float(hi_adj)],
         "leave_one_series_out_range_ll":[float(min(leave)),float(max(leave))],
@@ -322,8 +336,8 @@ def readout(r:dict)->str:
         "",
         "| Cohort | Candidate | vs | LL delta | 95% series CI | "
         "99.5833% within-screen interval | Brier delta | Late 30+ Brier delta | "
-        "Equal-match LL delta | Drop-one-series LL range |",
-        "| --- | --- | --- | ---: | --- | --- | ---: | ---: | ---: | --- |",
+        "Equal-match LL delta | Equal-match 95% series CI | Drop-one-series LL range |",
+        "| --- | --- | --- | ---: | --- | --- | ---: | ---: | ---: | --- | --- |",
     ]
     for period in SCOPE:
         for name in NEW:
@@ -332,11 +346,13 @@ def readout(r:dict)->str:
                 l,h=d["95_series_interval_ll"]
                 a,b=d["995833_series_interval_ll"]
                 x,y=d["leave_one_series_out_range_ll"]
+                u,v=d["equal_match_95_series_interval_ll"]
                 lines.append(f"| {period} | {name} | {comp} | "
                     f"{d['delta_logloss']:+.6f} | [{l:+.6f},{h:+.6f}] | "
                     f"[{a:+.6f},{b:+.6f}] | {d['delta_brier']:+.6f} | "
                     f"{d['late30_delta_brier']:+.6f} | "
-                    f"{d['equal_match_delta_logloss']:+.6f} | [{x:+.6f},{y:+.6f}] |")
+                    f"{d['equal_match_delta_logloss']:+.6f} | "
+                    f"[{u:+.6f},{v:+.6f}] | [{x:+.6f},{y:+.6f}] |")
     lines+=["",
         "## Decision, evidence and limits",
         "",
@@ -349,6 +365,9 @@ def readout(r:dict)->str:
         "Source as-of game clock consistency does not imply available real-time received_at.",
         "- A match-equal TRAIN objective does not mean forecasts within the same match are independent. "
         "All intervals bootstrap whole professional series/singletons.",
+        "- The equal-match cluster-bootstrap interval was added as an explicitly POST-RESULT "
+        "sensitivity after inspecting the first scoring receipt. No model, feature, "
+        "hyperparameter, population, frozen comparator or approval gate was changed.",
         "- Employer notebook, original TEST forecasts, report/PDF, ZIP, original Draft PR and main unchanged.",
         "",
     ]
