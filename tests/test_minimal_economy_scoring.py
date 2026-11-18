@@ -45,6 +45,19 @@ class MinimalEconomyContracts(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError,"Not frozen"):
             match_equal_weights(pd.DataFrame({"match_id":[1,1,2],"minute":[0,1,0]}))
 
+    def test_real_291_match_weights_same_total_and_no_test_rows(self):
+        from train_time_effect_ci import require_data
+        data=require_data()
+        self.assertEqual(set(data.partition),{"train"})
+        self.assertEqual(len(data),10675)
+        weights=match_equal_weights(data)
+        check=(pd.DataFrame({"match_id":data.match_id,"weight":weights})
+               .groupby("match_id").weight.sum().to_numpy())
+        self.assertEqual(len(check),291)
+        np.testing.assert_allclose(check,np.full(291,10675./291.),atol=1e-12,rtol=0)
+        self.assertAlmostEqual(float(weights.sum()),10675.,places=8)
+        self.assertGreater(float(np.ptp(weights)),0.)
+
     def test_invalid_negative_gold_not_permitted(self):
         with self.assertRaises(ValueError):
             relative_earned_share(np.full((5,2),-1.),np.ones((5,2)),1)
