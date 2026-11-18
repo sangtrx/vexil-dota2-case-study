@@ -1,0 +1,561 @@
+{
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261118,
+  "candidate_count": 4,
+  "cohorts": {
+    "November": {
+      "n_independent_series": 9,
+      "paired_comparisons": {
+        "CONSENSUS": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": 0.0009637202397933576,
+            "largest_positive_series_share": 26.447971330097033,
+            "late30_delta_brier": 0.0010327329436209801,
+            "leave_one_series_out_range": [
+              -0.002311408667049077,
+              0.0015210514749635705
+            ],
+            "minute_mean_delta_brier": 0.0007296270919470324,
+            "minute_mean_delta_logloss": -5.4929548159044545e-05,
+            "series_bootstrap_95_ll": [
+              -0.006220362936292555,
+              0.00628061572843332
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.008163870779510949,
+              0.008585978665682305
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": -0.00464741282391957,
+            "largest_positive_series_share": 0.7972458185875638,
+            "late30_delta_brier": -0.006722919274161428,
+            "leave_one_series_out_range": [
+              -0.009184006763363648,
+              -0.0015759338338663619
+            ],
+            "minute_mean_delta_brier": -0.003052656247897821,
+            "minute_mean_delta_logloss": -0.006743902129807163,
+            "series_bootstrap_95_ll": [
+              -0.018763479079959223,
+              0.003228054815916966
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.023526448438705314,
+              0.005681765945766705
+            ]
+          }
+        },
+        "COUPLING3": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": -0.0012086818038628594,
+            "largest_positive_series_share": 0.6302841051372841,
+            "late30_delta_brier": -0.0013164120379769574,
+            "leave_one_series_out_range": [
+              -0.0036753104068385028,
+              -0.000980033485896279
+            ],
+            "minute_mean_delta_brier": -0.0008978522683415628,
+            "minute_mean_delta_logloss": -0.0022999367444080866,
+            "series_bootstrap_95_ll": [
+              -0.006165524488447289,
+              0.0020095533185448596
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.007729893390765495,
+              0.0037387162854146186
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": -0.00681981486757579,
+            "largest_positive_series_share": 0.7482340919767965,
+            "late30_delta_brier": -0.009072064255759365,
+            "leave_one_series_out_range": [
+              -0.012773633883508502,
+              -0.0026083197028079533
+            ],
+            "minute_mean_delta_brier": -0.004680135608186416,
+            "minute_mean_delta_logloss": -0.008988909326056204,
+            "series_bootstrap_95_ll": [
+              -0.025489591122421797,
+              0.006516701403539588
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.032061255547335334,
+              0.010768952342845254
+            ]
+          }
+        },
+        "RANK3": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": 4.883252924984514e-05,
+            "largest_positive_series_share": 2.343978755969833,
+            "late30_delta_brier": 0.0005767514986884393,
+            "leave_one_series_out_range": [
+              -0.0008394218031030886,
+              0.0005077648652491467
+            ],
+            "minute_mean_delta_brier": -0.00019409025566512626,
+            "minute_mean_delta_logloss": -0.00032065990165497523,
+            "series_bootstrap_95_ll": [
+              -0.0020355145883577883,
+              0.0014263652151333191
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.0025686070792250966,
+              0.002248233325912748
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": -0.005562300534463083,
+            "largest_positive_series_share": 0.7693399054043183,
+            "late30_delta_brier": -0.007178900719093966,
+            "leave_one_series_out_range": [
+              -0.010932145261104023,
+              -0.0018634794819358722
+            ],
+            "minute_mean_delta_brier": -0.00397637359550998,
+            "minute_mean_delta_logloss": -0.007009632483303095,
+            "series_bootstrap_95_ll": [
+              -0.022407737981175332,
+              0.008363276037221418
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.027507425727963743,
+              0.01297186337105173
+            ]
+          }
+        },
+        "RANK_COUPLING6": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": -0.0007561230456930881,
+            "largest_positive_series_share": 0.7487856598816429,
+            "late30_delta_brier": -0.00029136809069342317,
+            "leave_one_series_out_range": [
+              -0.004232783081210142,
+              -0.0007463246384836785
+            ],
+            "minute_mean_delta_brier": -0.0010468231216282605,
+            "minute_mean_delta_logloss": -0.0025776648626141823,
+            "series_bootstrap_95_ll": [
+              -0.008272636621063248,
+              0.004329513810435378
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.009963352696014281,
+              0.006717009494230238
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": -0.006367256109406019,
+            "largest_positive_series_share": 0.7776621631172252,
+            "late30_delta_brier": -0.00804702030847583,
+            "leave_one_series_out_range": [
+              -0.01380999683000641,
+              -0.002374610855395354
+            ],
+            "minute_mean_delta_brier": -0.0048291064614731155,
+            "minute_mean_delta_logloss": -0.009266637444262302,
+            "series_bootstrap_95_ll": [
+              -0.02614496732620749,
+              0.0074419896915815
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.032667684901120105,
+              0.012670085733039725
+            ]
+          }
+        }
+      },
+      "per_cohort_strict_research_gate": {
+        "CONSENSUS": false,
+        "COUPLING3": false,
+        "RANK3": false,
+        "RANK_COUPLING6": false
+      },
+      "scores": {
+        "ALL": {
+          "brier": 0.14562822149522822,
+          "equal_match_logloss": 0.43320622022196853,
+          "late30_brier": 0.08904792777842012,
+          "logloss": 0.44507998357057654
+        },
+        "CONSENSUS": {
+          "brier": 0.1447548958890863,
+          "equal_match_logloss": 0.4306454165280197,
+          "late30_brier": 0.0862300583269017,
+          "logloss": 0.44262697443545373
+        },
+        "COUPLING3": {
+          "brier": 0.1431274165287977,
+          "equal_match_logloss": 0.4284730144843634,
+          "late30_brier": 0.08388091334530379,
+          "logloss": 0.44038196723920464
+        },
+        "M0_gold": {
+          "brier": 0.15087460229313152,
+          "equal_match_logloss": 0.44386812271896897,
+          "late30_brier": 0.0914062049658916,
+          "logloss": 0.4561668846735944
+        },
+        "M1_interaction": {
+          "brier": 0.14402526879713926,
+          "equal_match_logloss": 0.4296816962882262,
+          "late30_brier": 0.08519732538328073,
+          "logloss": 0.44268190398361273
+        },
+        "Q1_path": {
+          "brier": 0.14780755213698413,
+          "equal_match_logloss": 0.43529282935193925,
+          "late30_brier": 0.09295297760106314,
+          "logloss": 0.4493708765652608
+        },
+        "RANK3": {
+          "brier": 0.14383117854147415,
+          "equal_match_logloss": 0.42973052881747614,
+          "late30_brier": 0.08577407688196918,
+          "logloss": 0.44236124408195776
+        },
+        "RANK_COUPLING6": {
+          "brier": 0.142978445675511,
+          "equal_match_logloss": 0.42892557324253316,
+          "late30_brier": 0.0849059572925873,
+          "logloss": 0.4401042391209986
+        }
+      },
+      "source_checks": {
+        "asof_minute_rows": 952,
+        "games": 22,
+        "groups": 9,
+        "matches_checked": 22,
+        "new_raw_downloads": 0,
+        "no_new_network_calls": true,
+        "predictor_ingress_timestamp_verified": false,
+        "raw_team_cross_array_slots_verified": 952,
+        "rows": 952,
+        "scope": "November",
+        "side_mirror_checks": 952
+      }
+    },
+    "October": {
+      "n_independent_series": 107,
+      "paired_comparisons": {
+        "CONSENSUS": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": -0.0022306738121522364,
+            "largest_positive_series_share": 0.16564979030190674,
+            "late30_delta_brier": -0.004050077027211982,
+            "leave_one_series_out_range": [
+              -0.004289737531669775,
+              -0.0031914308889553207
+            ],
+            "minute_mean_delta_brier": -0.0013292891187695762,
+            "minute_mean_delta_logloss": -0.0037417378194359134,
+            "series_bootstrap_95_ll": [
+              -0.007421236055704606,
+              -7.2221060999048955e-06
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.008648684523007252,
+              0.00109125716871166
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": -0.0004335316984544689,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.0008277284135957202,
+            "leave_one_series_out_range": [
+              0.00014129772057288855,
+              0.001167967090755972
+            ],
+            "minute_mean_delta_brier": -0.00011380032292362794,
+            "minute_mean_delta_logloss": 0.0005820226562228663,
+            "series_bootstrap_95_ll": [
+              -0.0032011970338009996,
+              0.004227323398497629
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.004629065272084764,
+              0.005625177110791436
+            ]
+          }
+        },
+        "COUPLING3": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": 0.000574450292879044,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.00021868424916562286,
+            "leave_one_series_out_range": [
+              0.00016647561358438642,
+              0.0007313120774557457
+            ],
+            "minute_mean_delta_brier": 0.00041671991877543563,
+            "minute_mean_delta_logloss": 0.0004885149626038052,
+            "series_bootstrap_95_ll": [
+              -0.0012432063047948551,
+              0.0021856451425449406
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.0018346779586387652,
+              0.0028158249143624818
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": 0.002371592406576811,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.005096489689973325,
+            "leave_one_series_out_range": [
+              0.003570252188006801,
+              0.005781729202515858
+            ],
+            "minute_mean_delta_brier": 0.0016322087146213842,
+            "minute_mean_delta_logloss": 0.0048122754382625855,
+            "series_bootstrap_95_ll": [
+              -0.0026554899822589587,
+              0.012168600968392876
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.005067127603144417,
+              0.014885370576602183
+            ]
+          }
+        },
+        "RANK3": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": -0.00014598876077053275,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.000535263017232321,
+            "leave_one_series_out_range": [
+              -6.893675207307452e-05,
+              0.0002450681308467694
+            ],
+            "minute_mean_delta_brier": 2.0487377254813847e-05,
+            "minute_mean_delta_logloss": 0.00014198871124918716,
+            "series_bootstrap_95_ll": [
+              -0.0008161006792242522,
+              0.0011589055126187116
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.001210728921596754,
+              0.0015057216973707087
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": 0.0016511533529272346,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.0054130684580400235,
+            "leave_one_series_out_range": [
+              0.0035078263534712765,
+              0.00565981086546225
+            ],
+            "minute_mean_delta_brier": 0.0012359761731007622,
+            "minute_mean_delta_logloss": 0.004465749186907968,
+            "series_bootstrap_95_ll": [
+              -0.0030817949762525485,
+              0.0118024871923108
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.005790476375501365,
+              0.014202367000671857
+            ]
+          }
+        },
+        "RANK_COUPLING6": {
+          "M1_interaction": {
+            "equal_match_delta_logloss": 0.000867958047593343,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.0012487289060190737,
+            "leave_one_series_out_range": [
+              0.0007645497324940475,
+              0.0014372064517992659
+            ],
+            "minute_mean_delta_brier": 0.0007189167231673971,
+            "minute_mean_delta_logloss": 0.0011776792096423738,
+            "series_bootstrap_95_ll": [
+              -0.0010628519882574655,
+              0.0033699100228512307
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.001846495282121712,
+              0.004244293273259154
+            ]
+          },
+          "Q1_path": {
+            "equal_match_delta_logloss": 0.00266510016129111,
+            "largest_positive_series_share": null,
+            "late30_delta_brier": 0.006126534346826776,
+            "leave_one_series_out_range": [
+              0.004213104864591903,
+              0.006555739764406616
+            ],
+            "minute_mean_delta_brier": 0.0019344055190133455,
+            "minute_mean_delta_logloss": 0.005501439685301153,
+            "series_bootstrap_95_ll": [
+              -0.0022202064878766472,
+              0.012924092859116491
+            ],
+            "series_bootstrap_99375_ll": [
+              -0.004670931878794441,
+              0.015822804994201446
+            ]
+          }
+        }
+      },
+      "per_cohort_strict_research_gate": {
+        "CONSENSUS": false,
+        "COUPLING3": false,
+        "RANK3": false,
+        "RANK_COUPLING6": false
+      },
+      "scores": {
+        "ALL": {
+          "brier": 0.165787287375276,
+          "equal_match_logloss": 0.4708055897473091,
+          "late30_brier": 0.11415827275459549,
+          "logloss": 0.4936506513776957
+        },
+        "CONSENSUS": {
+          "brier": 0.16418908784670702,
+          "equal_match_logloss": 0.4685249907707254,
+          "late30_brier": 0.11223674783387104,
+          "logloss": 0.48985981773763326
+        },
+        "COUPLING3": {
+          "brier": 0.16593509688425206,
+          "equal_match_logloss": 0.4713301148757566,
+          "late30_brier": 0.11650550911024866,
+          "logloss": 0.49409007051967296
+        },
+        "M0_gold": {
+          "brier": 0.16851403345678964,
+          "equal_match_logloss": 0.4816420147579846,
+          "late30_brier": 0.11522144081351594,
+          "logloss": 0.49948436345328534
+        },
+        "M1_interaction": {
+          "brier": 0.16551837696547664,
+          "equal_match_logloss": 0.4707556645828776,
+          "late30_brier": 0.11628682486108302,
+          "logloss": 0.49360155555706914
+        },
+        "Q1_path": {
+          "brier": 0.16430288816963062,
+          "equal_match_logloss": 0.46895852246917974,
+          "late30_brier": 0.11140901942027534,
+          "logloss": 0.4892777950814104
+        },
+        "RANK3": {
+          "brier": 0.1655388643427314,
+          "equal_match_logloss": 0.470609675822107,
+          "late30_brier": 0.11682208787831536,
+          "logloss": 0.4937435442683184
+        },
+        "RANK_COUPLING6": {
+          "brier": 0.166237293688644,
+          "equal_match_logloss": 0.4716236226304709,
+          "late30_brier": 0.1175355537671021,
+          "logloss": 0.49477923476671154
+        }
+      },
+      "source_checks": {
+        "asof_minute_rows": 7346,
+        "games": 180,
+        "groups": 107,
+        "matches_checked": 180,
+        "new_raw_downloads": 0,
+        "no_new_network_calls": true,
+        "predictor_ingress_timestamp_verified": false,
+        "raw_team_cross_array_slots_verified": 7349,
+        "rows": 7346,
+        "scope": "October",
+        "side_mirror_checks": 7346
+      }
+    }
+  },
+  "comparisons_per_period": 8,
+  "employer_submission_unchanged": true,
+  "march_new_role_source": {
+    "all_features_side_mirror_tested": 10675,
+    "games": 291,
+    "minute_features": 10675,
+    "source_aggregate_sha256": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4"
+  },
+  "march_original_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "march_prior_source": {
+    "actual_feed_received_at_verified": false,
+    "family_counts": {
+      "C": 2,
+      "I": 3,
+      "O": 2,
+      "R": 2
+    },
+    "features": [
+      "reg_cusum10",
+      "reg_shift3",
+      "ordinal_run_balance10",
+      "ordinal_entropy10",
+      "objective_conversion5",
+      "objective_followthrough10",
+      "item_bkb_diff",
+      "item_blink_diff",
+      "item_recent5_diff"
+    ],
+    "matches": 291,
+    "minutes": 10675,
+    "mirror_validated": 10675,
+    "patch_match_counts": {
+      "59": 250,
+      "60": 41
+    },
+    "raw_cache_digest": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+    "suffix_and_future_event_validated": 10675,
+    "used_ability_upgrade_without_timestamp": false,
+    "used_end_of_game_inventory": false
+  },
+  "models": {
+    "CONSENSUS": "0.5 M1 + 0.5 Q1 (unfitted)",
+    "COUPLING3": [
+      "gold_k",
+      "minute10",
+      "gold_x_time",
+      "star_xp_share_gap",
+      "gold_xp_rank_alignment_gap",
+      "leader_flow_funnel"
+    ],
+    "RANK3": [
+      "gold_k",
+      "minute10",
+      "gold_x_time",
+      "role_rank_turnover5",
+      "flow_hhi5_gap",
+      "flow_funnel_shift5_gap"
+    ],
+    "RANK_COUPLING6": [
+      "gold_k",
+      "minute10",
+      "gold_x_time",
+      "role_rank_turnover5",
+      "flow_hhi5_gap",
+      "flow_funnel_shift5_gap",
+      "star_xp_share_gap",
+      "gold_xp_rank_alignment_gap",
+      "leader_flow_funnel"
+    ]
+  },
+  "never_inspected_test": false,
+  "no_external_api_calls": true,
+  "protected_file_hashes": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "protocol_sha256": "04188d8d6f6444b0090148f3281870457fbd3a45159e2c27b122e55dc5166a24",
+  "received_at_verified": false,
+  "scientific_class": "historical after extensive model search; not blind",
+  "strict_future_research_gate_both_periods": {
+    "CONSENSUS": false,
+    "COUPLING3": false,
+    "RANK3": false,
+    "RANK_COUPLING6": false
+  }
+}
