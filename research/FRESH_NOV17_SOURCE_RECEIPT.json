@@ -1,0 +1,321 @@
+{
+  "accepted": [
+    {
+      "duration": 1803,
+      "leagueid": 20486,
+      "match_id": 9093871938,
+      "series_id": 1169494,
+      "sha256_raw_exact": "3009f5485dd5118bcb909ba2ddbdcdc65045f3840e729f8a91303ef75c0ae53d",
+      "sha256_raw_gzip": "ac75e6f77d1bc88e6f3260b65a9ae5cc1ec46a43debff32d6bf35f5a038dad2f",
+      "source_http_sha256": "391e909af9a8f1f0206f3a3c730b8f2ae49b0bcde748e192ec64aedc34285337",
+      "source_slots_checked": 31,
+      "start_time": 1794909885,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 1970,
+      "leagueid": 20486,
+      "match_id": 9093927215,
+      "series_id": 1169494,
+      "sha256_raw_exact": "78957dd32764133518b247cbb666d3595f4f2a825114ce4c49f6d9ace7e7f79f",
+      "sha256_raw_gzip": "523ae0c4e65d29e9cb10856aeeeb0c622e9787a16408d445f1604ca4d9d3c214",
+      "source_http_sha256": "0246fe29e93befc3380d45eda8cfe7239ed9c22538be8fe5e0a766df1ae5bb3c",
+      "source_slots_checked": 33,
+      "start_time": 1794913322,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 1979,
+      "leagueid": 18631,
+      "match_id": 9093999184,
+      "series_id": 0,
+      "sha256_raw_exact": "1c96a5cf7ad4928c304cba740df11f4a547b8a2a2e7daaa394a44e057749c199",
+      "sha256_raw_gzip": "59e2ee3be9fc8eec339414024367a3c3358248737e16cad8e9405b2856060edf",
+      "source_http_sha256": "4e4626422e74a981972ec5396da4a7a60cada7a954abdeb486bc1b2babca051d",
+      "source_slots_checked": 34,
+      "start_time": 1794917145,
+      "terminal_or_postterminal_array_slots": 1
+    },
+    {
+      "duration": 2846,
+      "leagueid": 18631,
+      "match_id": 9094062387,
+      "series_id": 0,
+      "sha256_raw_exact": "91b591269e5e201926a883e96645c9c4274dbb4129102e3a4462b75f5f444fae",
+      "sha256_raw_gzip": "b18a80d93550effcb0fc6efc9df1d65303586245974713abdb01c93f3d5b38b3",
+      "source_http_sha256": "26bcd5e3c14b5b19bd741897dffb0a9912e6f12e1001ed9fe4a7825137bd2405",
+      "source_slots_checked": 48,
+      "start_time": 1794920186,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 2074,
+      "leagueid": 20486,
+      "match_id": 9094055565,
+      "series_id": 1169538,
+      "sha256_raw_exact": "0024dff54968b1d924468a3f2fa9b746b18263b31b44546f2da3642edb36b519",
+      "sha256_raw_gzip": "40dcd05c61052c98a127b4bbd6040c4d2456b23df26f2afed7348bd2ac31061f",
+      "source_http_sha256": "8839e548369e02a9be1c870fa0871a52c6bc6117e6eed6aaaeb70954795bc819",
+      "source_slots_checked": 35,
+      "start_time": 1794920537,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 3683,
+      "leagueid": 19066,
+      "match_id": 9094077408,
+      "series_id": 0,
+      "sha256_raw_exact": "ca1f5c5b54b6bb9fff6117acdcff6b4c08dcd5dae25480fe2282f0461e8547f6",
+      "sha256_raw_gzip": "6cb8dc77bd1d45056ad975685612e114b5e323b3261fda104a26f3285d0d1b33",
+      "source_http_sha256": "aaaa76709fe5ed6ac595d0785f7fe12de308669161d730fc15ca083445eb4a78",
+      "source_slots_checked": 62,
+      "start_time": 1794920950,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 2549,
+      "leagueid": 20511,
+      "match_id": 9094100803,
+      "series_id": 1169563,
+      "sha256_raw_exact": "65e3e1190c4fd5f6abebe6ce2142f2922a1b37638e147344d1e5010e008098b9",
+      "sha256_raw_gzip": "94d5f76ec9f9a5528a5a30fa89041cf823cca359665e6b999e2dbf234574ba8c",
+      "source_http_sha256": "0b4a70a699fafbbdb80eb0a1849b483b32e7d0531304a8677ec4e803972643f9",
+      "source_slots_checked": 43,
+      "start_time": 1794921939,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 1953,
+      "leagueid": 20486,
+      "match_id": 9094149032,
+      "series_id": 1169538,
+      "sha256_raw_exact": "5b1ee78d7000c24f3d715bcd1bbbce24292febcabf35e3e822f953d27a7e56bb",
+      "sha256_raw_gzip": "22a3649ba2599361c3ba5f30d7abe23cfa751de136ce44cf0350b900727b92e6",
+      "source_http_sha256": "289c5a3f446c1127d73e2b79e911b18a30c63f0c32b4d95933d7d2f193e034fb",
+      "source_slots_checked": 33,
+      "start_time": 1794924249,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 2362,
+      "leagueid": 20511,
+      "match_id": 9094196499,
+      "series_id": 1169563,
+      "sha256_raw_exact": "ee686709f503ce124c8376a14abad355290213bdde5b6e023f216f0d842b4984",
+      "sha256_raw_gzip": "e4f27214cdbce43b8657636084e09c512392eebb39ac7a24b5adc730868a0183",
+      "source_http_sha256": "401c6d77e5506a6bd9006fa9369843e00d67a569b977babe80f7f7caab3fea63",
+      "source_slots_checked": 40,
+      "start_time": 1794925894,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 1884,
+      "leagueid": 19066,
+      "match_id": 9094204021,
+      "series_id": 0,
+      "sha256_raw_exact": "06c0a21c17e2d966afaed2ce94c54fb16fe154790f9b15413f40ced81f1457fa",
+      "sha256_raw_gzip": "7b6ed4483af166a1c39ba935f4d5013573c132f31fbaaf10cd2f65351583efbc",
+      "source_http_sha256": "65a4c95eb1b2779fd9d01fe5e83e979b179b0e3e59bfe9acb6cfb4c727b4a0b9",
+      "source_slots_checked": 32,
+      "start_time": 1794926207,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 2954,
+      "leagueid": 20486,
+      "match_id": 9094241558,
+      "series_id": 1169538,
+      "sha256_raw_exact": "e2c38eb731e23a917aa4f489abc275eab1638c09957fae5138bb20481f94588e",
+      "sha256_raw_gzip": "22c0961e67278abb56a6fbee9cca920315be195b3db2d13949962133b3348730",
+      "source_http_sha256": "f10386311673c1d5a215f5f43285992fe1268559aa7835c3cdff7d763e5e3cfd",
+      "source_slots_checked": 50,
+      "start_time": 1794927912,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 2468,
+      "leagueid": 20486,
+      "match_id": 9094375739,
+      "series_id": 1169618,
+      "sha256_raw_exact": "dba7f79e9309007b4374c6a62b81a851df4ee9d05bf3689d5c31ad5bd2bf2ee6",
+      "sha256_raw_gzip": "4847c101bbdb31d4661bb86e7897057a9040f941e946a3f26ef333b0e2be08be",
+      "source_http_sha256": "da91fdd32193148924994ba1355071b18b717eb4f86b65262413934c7ad3dbfa",
+      "source_slots_checked": 42,
+      "start_time": 1794933433,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 4204,
+      "leagueid": 20511,
+      "match_id": 9094406087,
+      "series_id": 1169625,
+      "sha256_raw_exact": "46db7416f07013b265e92f0b5e9ba8065a7928ebf5b4bea649ddb2b36486ff34",
+      "sha256_raw_gzip": "9aad4fcde11c401069433d9cdb8261e370d12360bc4201d3b5971fc245515b2b",
+      "source_http_sha256": "5d784f1b9cf5926c7d13762b3309f7deab0c8efc38c1b796a28d6d6009df296c",
+      "source_slots_checked": 71,
+      "start_time": 1794934765,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 2513,
+      "leagueid": 20486,
+      "match_id": 9094461999,
+      "series_id": 1169618,
+      "sha256_raw_exact": "f44a1725db4e6d0bfe6d1521fa1738a5a252733b125b39a1335257bdd7261e23",
+      "sha256_raw_gzip": "77dfccb13069e2093d29002b8036400b90decce9760692eb21662778db48e39f",
+      "source_http_sha256": "db63fb5fc7cfd873bc34017ed5496e8b0e57cd36a687cbcfdd3df46b00f4a881",
+      "source_slots_checked": 42,
+      "start_time": 1794937465,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 3115,
+      "leagueid": 20511,
+      "match_id": 9094544970,
+      "series_id": 1169625,
+      "sha256_raw_exact": "7d38c9a2431851bd67790131cddded886124927fdf3d9ef70fd5adde203ef7b5",
+      "sha256_raw_gzip": "93824621b7ae5c2a536e3cf87d88068da232ec48f16c76e0e10814a5c504fdf5",
+      "source_http_sha256": "101702e11201ff706d6e12d3acbbf4e4865816732344fa52664d2ea3affdb81d",
+      "source_slots_checked": 52,
+      "start_time": 1794941001,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 1880,
+      "leagueid": 20486,
+      "match_id": 9094562824,
+      "series_id": 1169685,
+      "sha256_raw_exact": "3fa279ffab00b34f1ff12f87fc1fc38b6dfe3d0e48e756887475958db3c385e8",
+      "sha256_raw_gzip": "ab7bb62cbed82b7e2551479860c06e4f2e9603bc45fbea07355cf3c958a77aae",
+      "source_http_sha256": "ab409861bb3af43ff23e33539217fa0636d17f1de72582eff9e0dbe22ddb9b5e",
+      "source_slots_checked": 32,
+      "start_time": 1794942331,
+      "terminal_or_postterminal_array_slots": 0
+    },
+    {
+      "duration": 1893,
+      "leagueid": 20486,
+      "match_id": 9094639003,
+      "series_id": 1169685,
+      "sha256_raw_exact": "6a25fd9add33e61d266c64c7ffa2e86c2c95dbefed575ceec35052c6ee83a9ae",
+      "sha256_raw_gzip": "63b18a8eabb6422fc9e9e3d2f6c2b264abb0b34715ec7f050db686a71f547fe8",
+      "source_http_sha256": "d5ebf4faead4127c68a6303c4f5e47f183e35eb7d723ce0f907427432036f021",
+      "source_slots_checked": 32,
+      "start_time": 1794945826,
+      "terminal_or_postterminal_array_slots": 0
+    }
+  ],
+  "accepted_count": 17,
+  "all_exclusions_source_only": true,
+  "audit": [
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9093871938,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9093927215,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9093999184,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094062387,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094055565,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094077408,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094100803,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094149032,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094196499,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094204021,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094241558,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094375739,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094406087,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094461999,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094544970,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094562824,
+      "source_request_attempts": 1
+    },
+    {
+      "accepted": true,
+      "exclusion_reason": null,
+      "match_id": 9094639003,
+      "source_request_attempts": 1
+    }
+  ],
+  "model_lock_sha256": "f5bdf611d04bd86fdb9e05eedcc0f0a6eae936ba438e408eeffb0e271ed47d9f",
+  "new_http_requests_bounded": true,
+  "outcome_preselection": false,
+  "selected_count": 17,
+  "selection_sha256": "e1210f3cdb80590cfe84cdf9cb86efacfb3c48be3e7a03817befcc6dfc2bb9b1",
+  "source_games_collected_without_model_scoring": true,
+  "true_received_at_verified": false
+}
