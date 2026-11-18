@@ -14,9 +14,9 @@ This study estimates Radiant's win probability at a given match minute using **5
 | Brier score ↓ | 0.1719 | **0.1684** |
 | 30+ minute Brier ↓ | **0.1028** | 0.1074 |
 
-M1 was selected on 103 validation games, but its **paired whole-match 95% log-loss CI for M1−M0 is [−0.0304,+0.0014]**; the Brier interval **[−0.0069,+0.0002]** also includes zero. M1's late-game Brier score is worse. **Decision: keep M0 as reference and evaluate M1 in shadow mode.** The report details the uncertainty and the stronger additive gold + time control; its interaction improved loss in only **1/4** TRAIN-forward folds.
+M1 was selected on 103 validation games, but its **paired whole-match 95% log-loss CI for M1−M0 is [−0.0304,+0.0014]**; the Brier interval **[−0.0069,+0.0002]** also includes zero. M1's late-game Brier score is worse. **Decision: keep M0 as reference and evaluate M1 in shadow mode.** The report details both match/series uncertainty and the stronger additive gold + time control; the interaction improved loss in only **1/4** TRAIN-forward folds. A separate TRAIN-forward M0−M1 comparison has almost zero log-loss gain and worse M1 Brier; one held-out match drives most observed late-game log-loss benefit.
 
-**Current reviewer ZIP:** delivery/Vexil_Dota2_Creative_Research_20261118.zip (includes optional creativity atlas; no new model promoted). The 16 November ZIP is an archived earlier revision.
+**Current reviewer ZIP:** delivery/Vexil_Dota2_Creative_Research_20261119.zip (includes optional creativity atlas; no new model promoted). Earlier ZIPs remain accessible from Git history but are not in this delivery directory.
 
 ## Run the notebook
 
@@ -60,4 +60,4 @@ An optional 100-game November check is [reported separately](docs/FORWARD_100_ST
 | Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
 | Authentic research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
-Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. Applicant-owned active hours, contributions and required AI/public-code disclosure appear in the report for final confirmation.
+Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. **Repository visibility is private; without an invitation, use the attached ZIP/PDF rather than relying on GitHub links.** Applicant-owned active hours, contributions and required AI/public-code disclosure appear in the report for final confirmation.

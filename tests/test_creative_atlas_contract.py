@@ -68,6 +68,12 @@ class CreativeAtlasContract(unittest.TestCase):
             if x=="not a new unseen dataset":
                 continue
             self.assertIn(x.lower(),t.lower())
+        self.assertIn("some audits are reproducible offline",t.lower())
+        self.assertNotIn("independent-within-train",t.lower())
+        self.assertIn("not notebook dependencies",report.lower())
+        for package in ("NumPy", "pandas", "SciPy", "tqdm", "XGBoost 3.4.1", "LightGBM 4.7.0", "Narwhals 2.21.2"):
+            self.assertIn(package,report)
+        self.assertIn("not preregistered",(ROOT/"research/BOOSTED_TREES_HOSTILE_DECISION_20261118.md").read_text())
         for name in READOUTS:
             self.assertTrue((ROOT/"research"/name).is_file(),name)
             self.assertIn(chr(96)+"research/"+name+chr(96),t)

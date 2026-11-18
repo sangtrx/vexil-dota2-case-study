@@ -25,7 +25,7 @@ python -m unittest discover -s tests -p "test_*.py" -q
 
 There are **172 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
 
-**Submission archive:** delivery/Vexil_Dota2_Creative_Research_20261118.zip (research expanded 18 November; prior 16 November ZIP retained only as historical snapshot).
+**Submission archive:** delivery/Vexil_Dota2_Creative_Research_20261119.zip (scientific repair 19 November; outdated archives are preserved in Git history, not here).
 
 ## What is included
 
@@ -37,4 +37,4 @@ There are **172 offline unit/contract checks**. They do **not** replace a fresh 
 
 **Interpretation:** M1 has lower point log loss than the required gold-only M0, but the main paired 95% interval includes zero; minute-30+ Brier is worse. Keep M0 as reference and M1 shadow-only. Corrected TEST scores were produced after the original TEST was inspected and are **not** a new blind evaluation. Raw 500-match JSON is not shipped; the notebook can refetch the public match IDs.
 
-The [report](REPORT.pdf) contains the candidate's time estimate and AI/public-code assistance disclosure. Original research history is retained in [HISTORY.md](HISTORY.md). Private PR discussions and reviewer access are handled separately from the scientific files.
+The [report](REPORT.pdf) contains the candidate's time estimate (approximately 10 active hours) and AI/public-code assistance disclosure, including separate XGBoost/LightGBM/Narwhals tooling. The estimate and applicant's own contribution still require **candidate confirmation before sending**. Original research history is in [HISTORY.md](HISTORY.md). The GitHub repo is private: **provide this ZIP/PDF directly unless reviewer access has actually been confirmed**; private PR discussions are not needed.

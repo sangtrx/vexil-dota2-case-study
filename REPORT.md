@@ -1,6 +1,6 @@
 # Live Dota 2 Win Probability
 
-**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 17 November 2026; supplementary research updated 18 November 2026**
+**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 17 November 2026; supplementary research updated 18 November; evidence/disclosure repaired 19 November 2026**
 
 **Decision.** Keep the gold-only logistic baseline (M0) as the reference and evaluate the time-aware model (M1) in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
 
@@ -14,7 +14,7 @@ I split entire series by match start time: **291 TRAIN / 103 VALIDATION / 106 TE
 
 Each forecast uses economy snapshots through minute *t* and events timestamped at or before 60*t. The strict pre-terminal rule is `60*t < duration`. A future-deletion check found no feature changes across **18,292** snapshots in the original author-controlled raw cache (not bundled). After TEST had first been inspected, I removed **12 exact-terminal rows** (8 TRAIN, 3 VALIDATION, 1 TEST). **The corrected TEST is not a fresh blind holdout.**
 
-Five TRAIN labels were not complete at the first VALIDATION start under a match-end proxy. A sensitivity refit using **286 mature TRAIN games** still selected M1 on the *same* VALIDATION set. All VALIDATION games had ended by the first TEST start on that proxy, with a minimum margin of **143 seconds**. Real event and label receipt timestamps are unavailable.
+Five TRAIN labels were not complete at the first VALIDATION start under a match-end proxy. A separate sensitivity refit using **286 mature TRAIN games** still selected M1 on the same VALIDATION set; **headline TEST scores use the original 291-game TRAIN fit**, not that refit. All VALIDATION games had ended by the first TEST start on that proxy, with a minimum margin of **143 seconds**. Real event and label receipt timestamps are unavailable.
 
 ## 2. Models and selection
 
@@ -69,19 +69,21 @@ I score **each admissible minute forecast**, so longer games receive more weight
 | 20–29 (105) | 0.4131 → 0.4065 | [−0.0111,−0.0015] | 0.1312 → 0.1293 | [−0.0036,−0.0001] |
 | **30+ (79)** | 0.3623 → 0.3555 | [−0.0947,+0.0415] | **0.1028 → 0.1074 (worse)** | [−0.0037,+0.0109] |
 
-A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.2476**. Both trained models beat it. However, the phase comparisons are exploratory and unadjusted; they do not establish eight separate wins. **At minute 30+, M1's Brier score is about 0.00455 worse.**
+A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.2476**. Both trained models beat it. The phase comparisons are exploratory and unadjusted; they do not establish eight separate wins. **At minute 30+, M1's Brier score is about 0.00455 worse.** A separate, post-result **137-game TRAIN-forward** comparison finds M0 vs M1 log loss **0.612312 vs 0.612086** (difference only −0.000226) and Brier **0.211828 vs 0.212744 (M1 worse)**. Thus the TEST point improvement was not stable across development folds.
 
 ![Phase-specific calibration and Brier diagnostics.](docs/figures/phase_error_audit.png)
 
 *Figure 3. Descriptive phase results from inspected TEST forecasts; minute rows share match outcomes.*
 
-One 55-minute match accounts for **54.9%** of M1's aggregate log-loss gain. Excluding it *for diagnosis*, not model selection, reduces the observed improvement from 0.0124 to 0.0057. A post-hoc series bootstrap still leaves log-loss uncertainty across zero (docs/SERIES_CI_RECEIPT.json). A 100-game November check likewise failed to settle the question: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** prior research (docs/FORWARD_100_STRESS.md).
+One 55-minute match (8744971178) accounts for **54.9%** of M1's aggregate log-loss gain. Removing it for *influence diagnosis only* reduces the overall gain from 0.0124 to 0.0057; in the minute-30+ slice, M1−M0 log loss **flips from −0.00678 to +0.03139** (719 vs 694 forecasts), and Brier worsens from **+0.00455 to +0.00748**. No model was retuned on this observation.
+
+Whole-match bootstrap CIs include zero for both scores. In a **post-hoc 54-series bootstrap**, log-loss CI **[−0.02828,+0.00012]** straddles zero, while Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Resampling unit and near-zero endpoints change the inference; shared teams/leagues remain. A separate 100-game November check is inconclusive: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** earlier research (docs/SERIES_CI_RECEIPT.json; docs/FORWARD_100_STRESS.md).
 
 ---
 
 ## 5. Calibration and deployment decision
 
-On inspected TEST, M1's ECE-10 was **0.0750**, compared with **0.0895** for M0; the grouped difference interval **[−0.0203,+0.0020]** contains zero. In the 30+ phase, ECE worsened from **0.0559 to 0.0680**. M1's average TEST forecast was **0.5429**, versus an observed minute-row win frequency of **0.6045** (63/106 Radiant-winning games). These diagnostics warrant monitoring, not a claim of persistent drift or a TEST-based recalibration.
+On inspected TEST, M1's ECE-10 was **0.0750**, compared with **0.0895** for M0; the grouped difference interval **[−0.0203,+0.0020]** contains zero. In the 30+ phase, ECE worsened from **0.0559 to 0.0680**. M1's average TEST forecast was **0.5429**, versus a **minute-weighted** observed win frequency of **0.6045**; the distinct **game-weighted** win fraction is **63/106 Radiant-winning games = 0.5943**. These are different estimands: the observed gap is not a claim of persistent drift or evidence supporting TEST-based recalibration.
 
 ![Held-out reliability diagram.](docs/figures/heldout_reliability.png)
 
@@ -93,8 +95,8 @@ For an actual live service I would log match/model version, minute, event timest
 
 ## 6. Reproduction and assistance
 
-The deliverable contains **one executed 16-code-cell notebook**: 14 original science cells and two post-TEST audit cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). The earlier 16-cell Colab Run All reproduced metrics to six decimals on its preinstalled stack (docs/COLAB_16CELL_RUN_RECEIPT.json). This revision changes only appendix labels; a new exact-version cloud run has **not** been verified. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
+The deliverable contains **one executed 16-code-cell notebook**: 14 original science cells and two post-TEST audit cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). The earlier 16-cell Colab Run All reproduced metrics to six decimals on its preinstalled stack (docs/COLAB_16CELL_RUN_RECEIPT.json). The recorded Colab run used an earlier 16-cell notebook revision; a new exact-version cloud run has **not** been verified, although the shipped notebook's saved outputs and source-frozen local replay were checked. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
 
 **Time spent:** Approximately **10 hours of active work** (candidate estimate), excluding unattended AI, API and cloud execution.
 
-**Assistance disclosure:** ChatGPT Web generated and revised much of the notebook code, tests and report under my research direction; **Claude Sonnet and Fable AI conducted read-only critiques**. BigLinux/Colab scripts checked numeric outputs; I retained negative results. **Public code:** Standard open-source NumPy, pandas, scikit-learn, Matplotlib and Requests, with versions pinned in requirements.txt. **No third-party Dota predictor was copied. AI reviews are not independent human peer review.**
+**Assistance disclosure:** ChatGPT Web generated and revised much of the notebook code, tests and report under my research direction; **Claude Sonnet and Fable AI conducted read-only critiques**. Scripts run on BigLinux/Colab checked numerical outputs; I retained negative results. **Public code/tools:** The submitted notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook (top-level versions pinned in requirements.txt). Separate *supplementary research* used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; they are **not notebook dependencies** and their versions are recorded in research/BOOSTED_TREES_DIRECT_READOUT.md. **No third-party Dota predictor was copied. AI reviews are not independent human peer review.**

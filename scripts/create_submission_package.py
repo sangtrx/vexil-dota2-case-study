@@ -17,7 +17,7 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEST = ROOT / "delivery" / "Vexil_Dota2_Creative_Research_20261118.zip"
+DEST = ROOT / "delivery" / "Vexil_Dota2_Creative_Research_20261119.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
 EXPECTED_NOTEBOOK_SHA256 = "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"
 EXPECTED_REVIEWER_NOTEBOOK_SHA256 = "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
@@ -176,7 +176,7 @@ FILES = (
     "tests/test_submission_forecasts.py",
     "tests/test_error_diagnostics.py",
 )
-STAMP = (2026, 11, 18, 0, 0, 0)
+STAMP = (2026, 11, 19, 0, 0, 0)
 
 
 def sha(data: bytes) -> str:
@@ -729,7 +729,7 @@ def run() -> dict:
     entries = {name: (ROOT / name).read_bytes() for name in FILES}
     manifest = {
         "project": "Vexil Capital Senior Data Scientist Dota 2 take-home",
-        "created_on": "2026-11-18",
+        "created_on": "2026-11-19",
         "report_pages": acceptance["pages"],
         "notebook_sha256": EXPECTED_REVIEWER_NOTEBOOK_SHA256,
         "frozen_original_notebook_sha256": EXPECTED_NOTEBOOK_SHA256,
