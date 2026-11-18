@@ -34,6 +34,15 @@ class ReviewerScientificIntegrityTest(unittest.TestCase):
         self.assertEqual(len(actual["audit_script_sha256"]), 64)
         self.assertEqual(actual["source_access_manifest"], list(module.INPUTS))
         self.assertTrue(actual["verified_environment"]["python"].startswith("3.12."))
+        # A reviewer using Python 3.12.4 (or later 3.12.x) must not
+        # get a false positive drift; 3.13 is a materially new runtime.
+        compatible = json.loads(json.dumps(actual))
+        compatible["verified_environment"]["python"] = "3.12.4"
+        module.verify(compatible)
+        incompatible = json.loads(json.dumps(actual))
+        incompatible["verified_environment"]["python"] = "3.13.0"
+        with self.assertRaisesRegex(ValueError, "Python major/minor"):
+            module.verify(incompatible)
         # A falsified numerical receipt must fail even with float tolerance.
         forged = json.loads(json.dumps(actual))
         forged["asof"][4]["label_mature_val_subset_scores"]["M2_lead_fragility"]["logloss"] += .01

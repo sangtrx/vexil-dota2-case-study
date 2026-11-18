@@ -213,6 +213,17 @@ def _same_evidence(actual, expected, path="root") -> None:
     # equivalent pinned BLAS implementations; do not require bitwise parity.
     if type(actual) is not type(expected):
         raise ValueError("Type drift at " + path)
+    if path == "root.verified_environment.python":
+        # Preserve the exact executing interpreter in the receipt, but allow
+        # compatible Python 3.12 patch versions. Reject minor/major changes.
+        def minor_version(value):
+            parts = value.split(".")
+            if len(parts) != 3 or not all(part.isdecimal() for part in parts):
+                raise ValueError("Malformed Python version at " + path)
+            return tuple(map(int, parts[:2]))
+        if minor_version(actual) != minor_version(expected):
+            raise ValueError("Python major/minor version mismatch at " + path)
+        return
     if isinstance(actual, float):
         if not math.isfinite(actual) or not math.isclose(
             actual, expected, rel_tol=0.0, abs_tol=1e-9
