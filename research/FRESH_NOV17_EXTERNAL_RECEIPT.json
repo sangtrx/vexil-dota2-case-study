@@ -1,0 +1,129 @@
+{
+  "employer_model_promotion_allowed": false,
+  "model_lock_sha256": "f5bdf611d04bd86fdb9e05eedcc0f0a6eae936ba438e408eeffb0e271ed47d9f",
+  "model_scores": {
+    "M0_gold": {
+      "equal_match_logloss": 0.4121866700690435,
+      "late30_brier": 0.07860457598916595,
+      "minute_brier": 0.13890274309675382,
+      "minute_logloss": 0.4293278374341413,
+      "range_p": [
+        0.0009896379239797888,
+        0.9979765092855282
+      ]
+    },
+    "M1_interaction": {
+      "equal_match_logloss": 0.3980114593769377,
+      "late30_brier": 0.0918158800319337,
+      "minute_brier": 0.13487487211629606,
+      "minute_logloss": 0.4230542983076613,
+      "range_p": [
+        0.0016079429798883669,
+        0.9879856961115886
+      ]
+    },
+    "MATCH_EQUAL": {
+      "equal_match_logloss": 0.3893165377062205,
+      "late30_brier": 0.09002385285204445,
+      "minute_brier": 0.13306931078514567,
+      "minute_logloss": 0.41542292528811703,
+      "range_p": [
+        0.0009417649017885658,
+        0.9913440488312016
+      ]
+    },
+    "Q1_path": {
+      "equal_match_logloss": 0.40641530563179756,
+      "late30_brier": 0.0891949110943868,
+      "minute_brier": 0.13852142829838693,
+      "minute_logloss": 0.4284885102527579,
+      "range_p": [
+        0.001410488430370128,
+        0.9968738864829604
+      ]
+    }
+  },
+  "models_predeclared": [
+    "M0_gold",
+    "M1_interaction",
+    "Q1_path",
+    "MATCH_EQUAL"
+  ],
+  "original_applicant_artifact_hashes": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "paired_match_equal_comparisons": {
+    "M1_interaction": {
+      "delta_brier": -0.0018055613311503717,
+      "equal_match_95_ci": [
+        -0.01174024705098124,
+        -0.005220350695511822
+      ],
+      "equal_match_9875_ci": [
+        -0.012325949762047924,
+        -0.004112808032942918
+      ],
+      "equal_match_delta_logloss": -0.008694921670717217,
+      "late30_delta_brier": -0.001792027179889226,
+      "leave_one_series_out_equal_match": [
+        -0.010206608330311983,
+        -0.007824034619280143
+      ],
+      "minute_95_ci": [
+        -0.011781385074638025,
+        -0.003244182856247061
+      ],
+      "minute_9875_ci": [
+        -0.012518777471201175,
+        -0.0021384284802115562
+      ],
+      "minute_delta_logloss": -0.00763137301954414
+    },
+    "Q1_path": {
+      "delta_brier": -0.0054521175132412865,
+      "equal_match_95_ci": [
+        -0.03259257184567228,
+        -0.0023246058954788248
+      ],
+      "equal_match_9875_ci": [
+        -0.03668138058354937,
+        0.002497097036412466
+      ],
+      "equal_match_delta_logloss": -0.017098767925577064,
+      "late30_delta_brier": 0.0008289417576576609,
+      "leave_one_series_out_equal_match": [
+        -0.02381867723750713,
+        -0.014130449567125596
+      ],
+      "minute_95_ci": [
+        -0.03432059208596293,
+        0.005183407066656475
+      ],
+      "minute_9875_ci": [
+        -0.03960064963889147,
+        0.009966665604754541
+      ],
+      "minute_delta_logloss": -0.013065584964640827
+    }
+  },
+  "prospectively_collected_in_game_time": false,
+  "protocol_sha256": "9254a89c42303ab854d7e5dba11afed511f7d896bc9b1baac82805f9384c10ed",
+  "research_gate_evidence_sufficient": false,
+  "research_gate_passed": false,
+  "selection_sha256": "e1210f3cdb80590cfe84cdf9cb86efacfb3c48be3e7a03817befcc6dfc2bb9b1",
+  "source_ingress_received_at_verified": false,
+  "source_receipt_sha256": "73bc560ef4aafa1f2a4968128b9a62d22768f0d1b3aa34878d607b9a73a47ae4",
+  "source_stats": {
+    "accepted": 17,
+    "leagues": 4,
+    "minute_rows": 711,
+    "selected": 17,
+    "series": 10,
+    "start_time_max": 1794945826,
+    "start_time_min": 1794909885
+  },
+  "study_status": "NOV17 new source, model post-selected earlier; NOT LIVE validation",
+  "unseen_cohort_since_previous_scoring": true
+}
