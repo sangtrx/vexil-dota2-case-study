@@ -31,7 +31,7 @@ python -m pip install -r requirements.txt
 jupyter notebook live_dota2_win_probability.ipynb
 ```
 
-Run all notebook cells top to bottom. The **16 code cells** comprise the 14 original scientific cells and two after-TEST diagnostics. All executable cells have saved outputs except the frozen-ID definitions cell. The notebook includes whole-match bootstrap intervals for each model and their difference, overall and by match phase.
+Run all notebook cells top to bottom. The **16 code cells** comprise 14 core science/diagnostic cells (some amended after initial TEST inspection) and two appended reviewer QA cells. All executable cells have saved outputs except the frozen-ID definitions cell. The notebook includes whole-match bootstrap intervals for each model and their difference, overall and by match phase.
 
 For a quick **offline** verification of frozen forecasts, models, figures and report contracts:
 
@@ -39,7 +39,7 @@ For a quick **offline** verification of frozen forecasts, models, figures and re
 python -m unittest discover -s tests -p "test_*.py" -q
 ```
 
-This runs **172 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on BigLinux, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
+This runs **174 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on BigLinux, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
 
 ## Data and interpretation boundaries
 
@@ -47,7 +47,7 @@ The 500-game [discovery record](docs/DISCOVERY_PROVENANCE.md) explains the origi
 
 The source 291/103/106 TRAIN/VALIDATION/TEST split is chronological and series-disjoint. A [point-in-time audit](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) checked 18,292 original minute snapshots against future-deleted inputs; its full rerun needs the author's raw cache. After inspecting TEST, 12 terminal rows were corrected, so the reported TEST is **not newly blind**. A [label-maturity audit](docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md) refit on 286 TRAIN games whose outcomes had ended by the first validation start. This uses a match-end proxy; actual feed `received_at` remains unobserved.
 
-An optional 100-game November check is [reported separately](docs/FORWARD_100_STRESS.md). Its overall log-loss interval includes zero and **68 games overlap** a previous 120-game research set; it is not an independent replication. More extensive out-of-time October analysis is in a separate research branch, **not** silently inserted into this required 500-game notebook.
+Development-only lag-buffer stress and the pre/post-TEST correction history are in [Reviewer scientific limits](docs/REVIEWER_SCIENTIFIC_LIMITS.md). An optional 100-game November check is [reported separately](docs/FORWARD_100_STRESS.md). Its overall log-loss interval includes zero and **68 games overlap** a previous 120-game research set; it is not an independent replication. More extensive out-of-time October analysis is in a separate research branch, **not** silently inserted into this required 500-game notebook.
 
 ## Evidence and source history
 

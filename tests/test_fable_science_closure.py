@@ -152,6 +152,8 @@ class FableScienceRepairContract(unittest.TestCase):
                      "about 0.00455 worse"):
             self.assertIn(term,self.report)
         self.assertIn("68 games overlap",self.report)
+        self.assertIn("0.517823 vs 0.518090",self.report)
+        self.assertIn("not a verified label-arrival margin",self.report)
         for anchor in ("0.612312 vs 0.612086", "0.211828 vs 0.212744", "+0.03139", "+0.00748", "[−0.02828,+0.00012]", "[−0.00670,−0.00038]", "0.5943", "headline TEST scores use the original 291-game TRAIN fit"):
             self.assertIn(anchor,self.report)
 

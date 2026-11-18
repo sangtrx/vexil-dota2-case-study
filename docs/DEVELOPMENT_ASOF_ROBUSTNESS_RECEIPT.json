@@ -1,0 +1,349 @@
+{
+  "asof": [
+    {
+      "assumed_extra_label_lag_minutes": 0,
+      "label_mature_val_subset_scores": {
+        "M0_gold_only": {
+          "brier": 0.18123636585795178,
+          "logloss": 0.5329400778888694
+        },
+        "M1_time_value": {
+          "brier": 0.17607442662508185,
+          "logloss": 0.5202093300554129
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17801177746168761,
+          "logloss": 0.5229532442206124
+        },
+        "M3_objective_conversion": {
+          "brier": 0.18076769447309673,
+          "logloss": 0.528549618359745
+        }
+      },
+      "lowest_loss_on_mature_val_subset": "M1_time_value",
+      "mature_train_games": 286,
+      "mature_val_games_at_first_test": 103,
+      "mature_val_minute_rows": 3781,
+      "selection_is_post_result_sensitivity_not_new_model": true,
+      "validation_103_scores_with_mature_train_only": {
+        "M0_gold_only": {
+          "brier": 0.18123636585795178,
+          "logloss": 0.5329400778888694
+        },
+        "M1_time_value": {
+          "brier": 0.17607442662508185,
+          "logloss": 0.5202093300554129
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17801177746168761,
+          "logloss": 0.5229532442206124
+        },
+        "M3_objective_conversion": {
+          "brier": 0.18076769447309673,
+          "logloss": 0.528549618359745
+        }
+      }
+    },
+    {
+      "assumed_extra_label_lag_minutes": 3,
+      "label_mature_val_subset_scores": {
+        "M0_gold_only": {
+          "brier": 0.1775339042398921,
+          "logloss": 0.5243333356313785
+        },
+        "M1_time_value": {
+          "brier": 0.17191062077864955,
+          "logloss": 0.510193723624326
+        },
+        "M2_lead_fragility": {
+          "brier": 0.1737106244342673,
+          "logloss": 0.5122253855659366
+        },
+        "M3_objective_conversion": {
+          "brier": 0.17592445902273815,
+          "logloss": 0.5156721152653414
+        }
+      },
+      "lowest_loss_on_mature_val_subset": "M1_time_value",
+      "mature_train_games": 285,
+      "mature_val_games_at_first_test": 102,
+      "mature_val_minute_rows": 3723,
+      "selection_is_post_result_sensitivity_not_new_model": true,
+      "validation_103_scores_with_mature_train_only": {
+        "M0_gold_only": {
+          "brier": 0.18076967804480065,
+          "logloss": 0.5316293726725942
+        },
+        "M1_time_value": {
+          "brier": 0.17554983765947876,
+          "logloss": 0.5186291838869342
+        },
+        "M2_lead_fragility": {
+          "brier": 0.1775956811593472,
+          "logloss": 0.5216868984041279
+        },
+        "M3_objective_conversion": {
+          "brier": 0.18042903719493056,
+          "logloss": 0.5276729741782099
+        }
+      }
+    },
+    {
+      "assumed_extra_label_lag_minutes": 15,
+      "label_mature_val_subset_scores": {
+        "M0_gold_only": {
+          "brier": 0.1777717414597109,
+          "logloss": 0.524789413442655
+        },
+        "M1_time_value": {
+          "brier": 0.17225587325534436,
+          "logloss": 0.5108194012817997
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17398033194348284,
+          "logloss": 0.5127471196815356
+        },
+        "M3_objective_conversion": {
+          "brier": 0.1762060893854557,
+          "logloss": 0.515889515808575
+        }
+      },
+      "lowest_loss_on_mature_val_subset": "M1_time_value",
+      "mature_train_games": 283,
+      "mature_val_games_at_first_test": 101,
+      "mature_val_minute_rows": 3690,
+      "selection_is_post_result_sensitivity_not_new_model": true,
+      "validation_103_scores_with_mature_train_only": {
+        "M0_gold_only": {
+          "brier": 0.18096164934072245,
+          "logloss": 0.5321003785051595
+        },
+        "M1_time_value": {
+          "brier": 0.17574930483128778,
+          "logloss": 0.5190600869826014
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17794010372822158,
+          "logloss": 0.52251637856706
+        },
+        "M3_objective_conversion": {
+          "brier": 0.181012095961937,
+          "logloss": 0.5288227748144015
+        }
+      }
+    },
+    {
+      "assumed_extra_label_lag_minutes": 30,
+      "label_mature_val_subset_scores": {
+        "M0_gold_only": {
+          "brier": 0.17908970235970156,
+          "logloss": 0.5280739123510076
+        },
+        "M1_time_value": {
+          "brier": 0.17352156714675643,
+          "logloss": 0.5137003364449397
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17464277979761406,
+          "logloss": 0.5142947783504743
+        },
+        "M3_objective_conversion": {
+          "brier": 0.1762652715185181,
+          "logloss": 0.515999059268119
+        }
+      },
+      "lowest_loss_on_mature_val_subset": "M1_time_value",
+      "mature_train_games": 282,
+      "mature_val_games_at_first_test": 100,
+      "mature_val_minute_rows": 3632,
+      "selection_is_post_result_sensitivity_not_new_model": true,
+      "validation_103_scores_with_mature_train_only": {
+        "M0_gold_only": {
+          "brier": 0.18110880859302594,
+          "logloss": 0.5324977089671715
+        },
+        "M1_time_value": {
+          "brier": 0.17588460799953276,
+          "logloss": 0.5194583244495483
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17802370203151496,
+          "logloss": 0.5227658805627751
+        },
+        "M3_objective_conversion": {
+          "brier": 0.18107894956742318,
+          "logloss": 0.5290134476805652
+        }
+      }
+    },
+    {
+      "assumed_extra_label_lag_minutes": 60,
+      "label_mature_val_subset_scores": {
+        "M0_gold_only": {
+          "brier": 0.1805589461815145,
+          "logloss": 0.5317545601295329
+        },
+        "M1_time_value": {
+          "brier": 0.1752633894668189,
+          "logloss": 0.5180902529085754
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17596545014210435,
+          "logloss": 0.5178225019658798
+        },
+        "M3_objective_conversion": {
+          "brier": 0.17786603457432684,
+          "logloss": 0.5201374795519209
+        }
+      },
+      "lowest_loss_on_mature_val_subset": "M2_lead_fragility",
+      "mature_train_games": 277,
+      "mature_val_games_at_first_test": 96,
+      "mature_val_minute_rows": 3497,
+      "selection_is_post_result_sensitivity_not_new_model": true,
+      "validation_103_scores_with_mature_train_only": {
+        "M0_gold_only": {
+          "brier": 0.1813210299201085,
+          "logloss": 0.533108373634293
+        },
+        "M1_time_value": {
+          "brier": 0.1760855123288263,
+          "logloss": 0.5201326605777553
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17823011425556987,
+          "logloss": 0.5234087586701983
+        },
+        "M3_objective_conversion": {
+          "brier": 0.1816838812204452,
+          "logloss": 0.5306523705285149
+        }
+      }
+    },
+    {
+      "assumed_extra_label_lag_minutes": 120,
+      "label_mature_val_subset_scores": {
+        "M0_gold_only": {
+          "brier": 0.1834593786910206,
+          "logloss": 0.5392918708386915
+        },
+        "M1_time_value": {
+          "brier": 0.1780152369104179,
+          "logloss": 0.525213518284582
+        },
+        "M2_lead_fragility": {
+          "brier": 0.17908106904254936,
+          "logloss": 0.5258286455718976
+        },
+        "M3_objective_conversion": {
+          "brier": 0.18089973410262036,
+          "logloss": 0.5278376654420887
+        }
+      },
+      "lowest_loss_on_mature_val_subset": "M1_time_value",
+      "mature_train_games": 272,
+      "mature_val_games_at_first_test": 90,
+      "mature_val_minute_rows": 3289,
+      "selection_is_post_result_sensitivity_not_new_model": true,
+      "validation_103_scores_with_mature_train_only": {
+        "M0_gold_only": {
+          "brier": 0.18135781220752703,
+          "logloss": 0.5331829286907975
+        },
+        "M1_time_value": {
+          "brier": 0.17603367349294036,
+          "logloss": 0.5199490196860951
+        },
+        "M2_lead_fragility": {
+          "brier": 0.1781796463817075,
+          "logloss": 0.5232576193700808
+        },
+        "M3_objective_conversion": {
+          "brier": 0.18140745875438657,
+          "logloss": 0.529870434728068
+        }
+      }
+    }
+  ],
+  "evidence_class": "POST_RESULT_DEVELOPMENT_ONLY_SENSITIVITY",
+  "forecast_test_records_read": false,
+  "forward_fold_context": [
+    {
+      "M0_logloss": 0.6460659144085127,
+      "M1_logloss": 0.652097365172538,
+      "constant_train_prevalence_logloss": 0.6882640972537047,
+      "eval_minute_win_fraction": 0.562905317769131,
+      "eval_patch60_games": 0,
+      "fit_games": 154,
+      "fit_minute_win_fraction": 0.5239542366821595,
+      "fit_patch60_games": 0,
+      "later_eval_games": 22,
+      "later_eval_minute_rows": 771
+    },
+    {
+      "M0_logloss": 0.6338525075290309,
+      "M1_logloss": 0.6218760309252692,
+      "constant_train_prevalence_logloss": 0.6960125866014995,
+      "eval_minute_win_fraction": 0.4893875075803517,
+      "eval_patch60_games": 0,
+      "fit_games": 176,
+      "fit_minute_win_fraction": 0.5286724273369993,
+      "fit_patch60_games": 0,
+      "later_eval_games": 44,
+      "later_eval_minute_rows": 1649
+    },
+    {
+      "M0_logloss": 0.588279660027608,
+      "M1_logloss": 0.5948597248521718,
+      "constant_train_prevalence_logloss": 0.6987973964631408,
+      "eval_minute_win_fraction": 0.44788273615635177,
+      "eval_patch60_games": 2,
+      "fit_games": 218,
+      "fit_minute_win_fraction": 0.5223090496596925,
+      "fit_patch60_games": 0,
+      "later_eval_games": 32,
+      "later_eval_minute_rows": 1228
+    },
+    {
+      "M0_logloss": 0.5899599527350031,
+      "M1_logloss": 0.5940533584376041,
+      "constant_train_prevalence_logloss": 0.6953234641259688,
+      "eval_minute_win_fraction": 0.4556873691556176,
+      "eval_patch60_games": 39,
+      "fit_games": 252,
+      "fit_minute_win_fraction": 0.5109283704825796,
+      "fit_patch60_games": 2,
+      "later_eval_games": 39,
+      "later_eval_minute_rows": 1433
+    }
+  ],
+  "forward_fold_cuts": [
+    154,
+    176,
+    220,
+    252,
+    291
+  ],
+  "forward_pooled": {
+    "M0_logloss": 0.6123124659924222,
+    "M1_logloss": 0.6120855832126253,
+    "constant_logloss": 0.695315509001718,
+    "minute_rows": 5081
+  },
+  "label_end_proxy_note": "start_time+game_duration omits pause/pregame/postgame and real arrival time; lag values are hypothetical, not measured",
+  "lag_grid_minutes": [
+    0,
+    3,
+    15,
+    30,
+    60,
+    120
+  ],
+  "live_received_at_verified": false,
+  "original_model_or_test_scores_changed": false,
+  "sources_sha256": {
+    "research/frozen_original_development_features.csv.gz": "d4f91431d2c373eb772093bbf26ecb9c37c62714f95e89e0500e30b7700bd628",
+    "research/frozen_original_split_manifest.csv": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+    "research/frozen_original_train_features.csv.gz": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
+  }
+}

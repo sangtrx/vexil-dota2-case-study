@@ -38,7 +38,7 @@ Original frozen TRAIN rich CSV and 291 raw provenance hash verified against prev
 
 The initial request for xgboost 3.4.2 failed since the BigLinux pip index offered only up to 3.4.1; an explicit pre-fit amendment was committed at 7a4514d6d2637c22095181c12d3f1724434c0625. Other hyperparameters/folds/decision rules did not change. Do not represent this as 3.4.2.
 
-Historical BigLinux **research-branch** test suite: **292/292 PASS** on 18 November (separate from the **172** offline tests in the reviewer ZIP). The direct and nested research outputs were re-scored with matching numerical summaries; their full raw JSON and markdown report hashes belong to the research branch and **are not bundled** in this reviewer ZIP. No outside committee review or fresh independent sample was performed.
+Historical BigLinux **research-branch** test suite: **292/292 PASS** on 18 November (separate from the **174** offline tests in the reviewer ZIP). The direct and nested research outputs were re-scored with matching numerical summaries; their full raw JSON and markdown report hashes belong to the research branch and **are not bundled** in this reviewer ZIP. No outside committee review or fresh independent sample was performed.
 
 Frozen applicant science artifacts remain unchanged by the 19 November documentation repair:
 - Executed notebook SHA256 e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f

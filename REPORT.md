@@ -1,6 +1,6 @@
 # Live Dota 2 Win Probability
 
-**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 17 November 2026; supplementary research updated 18 November; evidence/disclosure repaired 19 November 2026**
+**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 19 November 2026 (original study 17 November 2026)**
 
 **Decision.** Keep the gold-only logistic baseline (M0) as the reference and evaluate the time-aware model (M1) in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
 
@@ -14,11 +14,11 @@ I split entire series by match start time: **291 TRAIN / 103 VALIDATION / 106 TE
 
 Each forecast uses economy snapshots through minute *t* and events timestamped at or before 60*t. The strict pre-terminal rule is `60*t < duration`. A future-deletion check found no feature changes across **18,292** snapshots in the original author-controlled raw cache (not bundled). After TEST had first been inspected, I removed **12 exact-terminal rows** (8 TRAIN, 3 VALIDATION, 1 TEST). **The corrected TEST is not a fresh blind holdout.**
 
-Five TRAIN labels were not complete at the first VALIDATION start under a match-end proxy. A separate sensitivity refit using **286 mature TRAIN games** still selected M1 on the same VALIDATION set; **headline TEST scores use the original 291-game TRAIN fit**, not that refit. All VALIDATION games had ended by the first TEST start on that proxy, with a minimum margin of **143 seconds**. Real event and label receipt timestamps are unavailable.
+Five TRAIN labels were incomplete at the first VALIDATION start under a **game-duration end proxy**. A sensitivity using **286 mature TRAIN games** retained M1, but **headline TEST scores use the original 291-game TRAIN fit**. The **143 seconds** between estimated last VAL end and first TEST start is **not a verified label-arrival margin**. Under hypothetical +60-minute delay, only 277 TRAIN and 96 VAL outcomes qualify; M2 narrowly beats M1 on reused mature VAL (**0.517823 vs 0.518090** log loss). No model or TEST score was changed (docs/REVIEWER_SCIENTIFIC_LIMITS.md).
 
 ## 2. Models and selection
 
-I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN only. The **103 VALIDATION games selected M1** by log loss; neither VALIDATION nor TEST refitted its coefficients.
+I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN only. The **103 VALIDATION games selected M1** by log loss. However, the terminal-row correction occurred after initial TEST inspection and required refitting on corrected TRAIN; this remains a retrospective comparison, **not a newly blind TEST**.
 
 | Model | Minute-*t* information | VAL log loss | Brier |
 | --- | --- | ---: | ---: |
@@ -29,7 +29,7 @@ I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN onl
 
 The additional XP and objective features did not improve validation loss. I kept M1 rather than carrying their extra complexity forward. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
 
-**Exploratory research beyond the required notebook:** A five-feature, gold-history path model (Q1) obtained TRAIN-forward log loss **0.605963** versus M1 **0.612086** on 137 games, but its Q1−M1 uncertainty interval includes zero. Fixed XGB3 **0.615597** and LGB3 **0.616196** did not beat Q1 on those *same* folds; nested tuning, October/November transfer, 60-second event-delay and stale-feed simulations did not justify promotion. These are **post-result TRAIN/replay studies, not a new held-out TEST**; the original notebook does not execute them. All sources are indexed in `docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md`.
+**Supplementary, non-promoted research:** Q1 scored **0.605963** vs M1 **0.612086** on reused TRAIN-forward folds, but its uncertainty includes zero; XGB3 **0.615597** / LGB3 **0.616196** did not beat Q1. Later tuning, transfer and feed-delay tests also failed their gates. These are **post-result TRAIN/replay studies, not a new held-out TEST**; see docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md.
 
 ---
 
@@ -69,7 +69,7 @@ I score **each admissible minute forecast**, so longer games receive more weight
 | 20–29 (105) | 0.4131 → 0.4065 | [−0.0111,−0.0015] | 0.1312 → 0.1293 | [−0.0036,−0.0001] |
 | **30+ (79)** | 0.3623 → 0.3555 | [−0.0947,+0.0415] | **0.1028 → 0.1074 (worse)** | [−0.0037,+0.0109] |
 
-A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.2476**. Both trained models beat it. The phase comparisons are exploratory and unadjusted; they do not establish eight separate wins. **At minute 30+, M1's Brier score is about 0.00455 worse.** A separate, post-result **137-game TRAIN-forward** comparison finds M0 vs M1 log loss **0.612312 vs 0.612086** (difference only −0.000226) and Brier **0.211828 vs 0.212744 (M1 worse)**. Thus the TEST point improvement was not stable across development folds. Conversely, TRAIN-forward minute-30+ Brier **favored M1 (0.183109 vs M0 0.184996)**, opposite to the TEST late30 Brier point difference: even the phase-specific direction is unstable.
+A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.2476**. Both trained models beat it. The phase comparisons are exploratory and unadjusted; they do not establish eight separate wins. **At minute 30+, M1's Brier score is about 0.00455 worse.** A separate, post-result **137-game TRAIN-forward** comparison finds M0 vs M1 log loss **0.612312 vs 0.612086** (difference only −0.000226) and Brier **0.211828 vs 0.212744 (M1 worse)**. Its four smaller rolling-prefix fits and mixed patches differ from full-fit VAL (M0 LL 0.5325) and TEST (0.5164), so these levels do not establish drift. Thus the TEST point improvement was not stable across development folds. Conversely, TRAIN-forward minute-30+ Brier **favored M1 (0.183109 vs M0 0.184996)**, opposite to the TEST late30 Brier point difference: even the phase-specific direction is unstable.
 
 ![Phase-specific calibration and Brier diagnostics.](docs/figures/phase_error_audit.png)
 
@@ -95,8 +95,8 @@ For an actual live service I would log match/model version, minute, event timest
 
 ## 6. Reproduction and assistance
 
-The deliverable contains **one executed 16-code-cell notebook**: 14 original science cells and two post-TEST audit cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). The earlier 16-cell Colab Run All reproduced metrics to six decimals on its preinstalled stack (docs/COLAB_16CELL_RUN_RECEIPT.json). The recorded Colab run used an earlier 16-cell notebook revision; a new exact-version cloud run has **not** been verified, although the shipped notebook's saved outputs and source-frozen local replay were checked. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
+The deliverable contains **one executed 16-code-cell notebook**: 14 core study cells (including edits and diagnostics after initial TEST inspection) and two appended reviewer QA cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). The earlier 16-cell Colab Run All reproduced metrics to six decimals on its preinstalled stack (docs/COLAB_16CELL_RUN_RECEIPT.json). The recorded Colab run used an earlier 16-cell notebook revision; a new exact-version cloud run has **not** been verified, although the shipped notebook's saved outputs and source-frozen local replay were checked. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
 
 **Time spent:** Approximately **10 hours of active work** (candidate estimate), excluding unattended AI, API and cloud execution.
 
-**Assistance disclosure:** ChatGPT Web generated and revised much of the notebook code, tests and report under my research direction; **Claude Sonnet and Fable AI conducted read-only critiques**. Scripts run on BigLinux/Colab checked numerical outputs; I retained negative results. **Public code/tools:** The submitted notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook (top-level versions pinned in requirements.txt). Separate *supplementary research* used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; they are **not notebook dependencies** and their versions are recorded in research/BOOSTED_TREES_DIRECT_READOUT.md. **No third-party Dota predictor was copied. AI reviews are not independent human peer review.**
+**Assistance disclosure:** ChatGPT Web generated and revised much of the notebook code, tests and report under my research direction; **Claude Sonnet and Fable AI conducted read-only critiques**. Their feedback informed later corrections and uncertainty analysis, **not independent human verification**. Scripts run on BigLinux/Colab checked numerical outputs; I retained negative results. **Public code/tools:** The submitted notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook (top-level versions pinned in requirements.txt). Separate *supplementary research* used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; they are **not notebook dependencies** and their versions are recorded in research/BOOSTED_TREES_DIRECT_READOUT.md. **No third-party Dota predictor was copied. AI reviews are not independent human peer review.**

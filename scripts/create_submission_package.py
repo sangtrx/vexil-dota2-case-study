@@ -139,6 +139,10 @@ FILES = (
     "docs/VAL_TEST_LABEL_MATURITY_RECEIPT.json",
     "docs/MATURE_LABEL_VALIDATION_RECEIPT.json",
     "docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md",
+    "docs/DEVELOPMENT_ASOF_ROBUSTNESS_RECEIPT.json",
+    "docs/REVIEWER_SCIENTIFIC_LIMITS.md",
+    "research/development_asof_robustness.py",
+    "tests/test_reviewer_scientific_integrity.py",
     "tests/test_mature_label_validation.py",
     "tests/test_label_maturity_policy.py",
     # Original unmerged-HOLD research, now self-contained and runnable:
@@ -168,6 +172,7 @@ FILES = (
     "research/TRAIN_TIME_CONTRAST_RECEIPT.json",
     "tests/test_train_time_effect_ci.py",
     "tests/test_private_access_disclosure.py",
+    "scripts/create_submission_package.py",
     "scripts/render_report.py",
     "scripts/render_report_weasyprint.py",
     "scripts/report.css",
