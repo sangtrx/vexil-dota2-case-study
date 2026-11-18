@@ -24,7 +24,7 @@ The existing 81-feature rich study ALREADY included gold Gini, top-one share, to
 
 **CONSENSUS**: **unfitted** arithmetic probability pool `0.5*p_M1 + 0.5*p_Q1` with strictly frozen coefficient 0.5, applied only after both original March-trained forecasts. No outcome-based or phase-based gate.
 
-All six new features must be finite, bounded and precisely side-odd under team swap, invariant to within-team player permutations, and unchanged by future appended player-statistic suffix. Construct from 10 per-player [0,60,120,..] arrays only through t, with source hash and clock length checks already enforced by prior source auditor. No final player gold, last-hits final, winner, patch, player ID, opponent, hero, result or death timestamp is allowed in predictors.
+For flow statistics with no previous minute, report zero flow evidence (zero HHI, zero flow-funnel shift and zero leader funnel). For t>0 with 1–4 prior minutes, use the available partial window. All six new features must be finite, bounded and precisely side-odd under team swap, invariant to within-team player permutations, and unchanged by future appended player-statistic suffix. Construct from 10 per-player [0,60,120,..] arrays only through t, with source hash and clock length checks already enforced by prior source auditor. No final player gold, last-hits final, winner, patch, player ID, opponent, hero, result or death timestamp is allowed in predictors.
 
 ## Data frozen
 
