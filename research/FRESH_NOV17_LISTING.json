@@ -1,0 +1,146 @@
+{
+  "max_pages": 4,
+  "max_selected": 45,
+  "model_lock_sha256": "f5bdf611d04bd86fdb9e05eedcc0f0a6eae936ba438e408eeffb0e271ed47d9f",
+  "overlap_with_previous_scored_games": 0,
+  "pages": [
+    {
+      "attempts": 1,
+      "page": 1,
+      "raw_http_body_sha256": "905fad427c47a13d071fd7cff5e5e921c30dee01f99fa6ff4280ac469b4b06a6",
+      "response_items": 100
+    }
+  ],
+  "previous_scored_game_ids_checked": 854,
+  "protocol_sha256": "9254a89c42303ab854d7e5dba11afed511f7d896bc9b1baac82805f9384c10ed",
+  "reached_start_boundary": true,
+  "selected": [
+    {
+      "duration": 1803,
+      "leagueid": 20486,
+      "match_id": 9093871938,
+      "series_id": 1169494,
+      "start_time": 1794909885
+    },
+    {
+      "duration": 1970,
+      "leagueid": 20486,
+      "match_id": 9093927215,
+      "series_id": 1169494,
+      "start_time": 1794913322
+    },
+    {
+      "duration": 1979,
+      "leagueid": 18631,
+      "match_id": 9093999184,
+      "series_id": 0,
+      "start_time": 1794917145
+    },
+    {
+      "duration": 2846,
+      "leagueid": 18631,
+      "match_id": 9094062387,
+      "series_id": 0,
+      "start_time": 1794920186
+    },
+    {
+      "duration": 2074,
+      "leagueid": 20486,
+      "match_id": 9094055565,
+      "series_id": 1169538,
+      "start_time": 1794920537
+    },
+    {
+      "duration": 3683,
+      "leagueid": 19066,
+      "match_id": 9094077408,
+      "series_id": 0,
+      "start_time": 1794920950
+    },
+    {
+      "duration": 2549,
+      "leagueid": 20511,
+      "match_id": 9094100803,
+      "series_id": 1169563,
+      "start_time": 1794921939
+    },
+    {
+      "duration": 1953,
+      "leagueid": 20486,
+      "match_id": 9094149032,
+      "series_id": 1169538,
+      "start_time": 1794924249
+    },
+    {
+      "duration": 2362,
+      "leagueid": 20511,
+      "match_id": 9094196499,
+      "series_id": 1169563,
+      "start_time": 1794925894
+    },
+    {
+      "duration": 1884,
+      "leagueid": 19066,
+      "match_id": 9094204021,
+      "series_id": 0,
+      "start_time": 1794926207
+    },
+    {
+      "duration": 2954,
+      "leagueid": 20486,
+      "match_id": 9094241558,
+      "series_id": 1169538,
+      "start_time": 1794927912
+    },
+    {
+      "duration": 2468,
+      "leagueid": 20486,
+      "match_id": 9094375739,
+      "series_id": 1169618,
+      "start_time": 1794933433
+    },
+    {
+      "duration": 4204,
+      "leagueid": 20511,
+      "match_id": 9094406087,
+      "series_id": 1169625,
+      "start_time": 1794934765
+    },
+    {
+      "duration": 2513,
+      "leagueid": 20486,
+      "match_id": 9094461999,
+      "series_id": 1169618,
+      "start_time": 1794937465
+    },
+    {
+      "duration": 3115,
+      "leagueid": 20511,
+      "match_id": 9094544970,
+      "series_id": 1169625,
+      "start_time": 1794941001
+    },
+    {
+      "duration": 1880,
+      "leagueid": 20486,
+      "match_id": 9094562824,
+      "series_id": 1169685,
+      "start_time": 1794942331
+    },
+    {
+      "duration": 1893,
+      "leagueid": 20486,
+      "match_id": 9094639003,
+      "series_id": 1169685,
+      "start_time": 1794945826
+    }
+  ],
+  "selected_games": 17,
+  "selection_rule": "chronological earliest 45 valid pro listings in fixed UTC day; no replacement after raw exclusions",
+  "valid_candidates_in_window": 17,
+  "window_utc": [
+    "2026-11-17T00:00:00Z",
+    "2026-11-18T00:00:00Z"
+  ],
+  "winner_or_score_fields_read_for_selection": false
+}
