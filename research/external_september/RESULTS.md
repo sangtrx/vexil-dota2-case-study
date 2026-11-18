@@ -47,3 +47,41 @@ Recompute all frozen cohort/denominator checks, strict preterminal minute constr
     python research/external_september/verify_external_results.py
 
 If Long disallows extra matches, simply leave this branch out of the email and deliver only the canonical 500-game ZIP. No revert or reset of the reviewer branch or main is necessary; preserve scientific history.
+
+## Additional hostile checks, performed AFTER seeing September scores (18 Nov)
+
+These checks are **post-hoc falsifications**, not original selection criteria or a second independent TEST. The original preregistered PASS result and frozen predictions are retained without modification.
+
+### Stronger additive logistic comparator
+
+A two-input gold_k + minute10 L2 logistic model was fit on **the same original 291 March TRAIN games** with the same pipeline/C=1/seed. It was assessed after the September M0-versus-M1 result was already known. The original frozen M0/M1 outputs were reconstructed from the raw source with max absolute parity below 1e-10.
+
+| Frozen-on-March comparison, September 199 games | Minute log loss |
+| --- | ---: |
+| M0 gold-only | 0.584431 |
+| Additive gold + time | 0.586152 |
+| Original M1 gold + time + gold-time interaction | **0.544803** |
+
+Post-hoc M1-minus-additive difference **-0.041349**; paired 95% series-group bootstrap **[-0.076263,-0.012239]**. Within this retrospective sample, the M1 interaction performed better than the additive strong null. **Because the null was tested after seeing September scores, this is exploratory and must never be marketed as preregistered independent confirmation.** See posthoc_additive_null_receipt.json and posthoc_additive_null.py.
+
+### Most-favorable matches, teams and league dependence
+
+| Sensitivity check AFTER outcomes | Remaining games | M1 - M0 minute LL | Group bootstrap 95% CI |
+| --- | ---: | ---: | --- |
+| All original 199 accepted matches | 199 | -0.039628 | [-0.074261,-0.010790] |
+| Drop most favorable one match | 198 | -0.030163 | [-0.059320,-0.006071] |
+| Drop top 2 most favorable matches | 197 | -0.020651 | [-0.042120,-0.002775] |
+| Drop top 5 most favorable matches | 194 | -0.006077 | **[-0.016201,+0.003372]** |
+| Drop top 10 most favorable matches | 189 | +0.000798 | **[-0.007227,+0.008932]** |
+
+The single most favorable match contributes **24.6%** of the total M0-M1 log-loss improvement. Removing favorable matches is **intentionally biased**, not a valid revised benchmark; the test reveals influence fragility and cannot reclassify the predeclared PASS.
+
+All **33 distinct teams** were identifiable from raw September match metadata. A team appeared in up to **29 games**. Leaving each team out in turn preserved negative pooled M1-M0 log-loss differences (range **-0.046080 to -0.024472**), but this is a post-hoc influence check and cannot validate independence.
+
+The match-versus-team graph has **only three connected components of sizes 20, 11 and 2**. The three leagues have 16, 11, 16 distinct participating teams; two leagues share **10 team IDs** while the third shares none. Series IDs alone therefore do **not** make 104 bootstrap groups genuinely independent; three league clusters would be **far too few** for a reliable league-cluster confidence interval. Do not interpret the reported series-bootstrap interval as a population-robust confidence bound across independent leagues/teams.
+
+Leave-one-league-out pooled deltas remain negative (**-0.030987**, **-0.030502**, **-0.067817**) with three nonrandom and imbalanced leagues. Those are descriptive and *not* sufficient to remove the dependence concern.
+
+**Post-hoc decision:** The precommitted September sample passes its explicitly limited internal gate, with a meaningful loss improvement for these 199 games. Broader model superiority, robustness to a few influential games, a live-serving claim and league-generalization all remain **UNVERIFIED**. Further tuning or new data mining on these consumed outcomes would harm credibility.
+
+Reproduce: python research/external_september/posthoc_influence.py (requires author-owned raw-cache team IDs) and python research/external_september/posthoc_additive_null.py (requires author-owned raw match payload cache). Source and generated receipts are retained in this *research-only* branch. The original employer ZIP remains unchanged.

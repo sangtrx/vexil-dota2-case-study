@@ -1,0 +1,25 @@
+{
+  "additive_gold_time_logloss": 0.5861522887952553,
+  "additive_m1_brier": {
+    "additive": 0.19317135553621118,
+    "m1": 0.18644975561943283
+  },
+  "additive_minus_m0_ll": 0.0017208188425208882,
+  "fit_source": "original March 291 TRAIN games only; logistic C=1, gold_k + minute10; fixed 20261113 seed",
+  "m0_gold_only_logloss": 0.5844314699527343,
+  "m1_gold_time_interaction_logloss": 0.5448031475825401,
+  "m1_minus_additive_by_league": {
+    "19102": -0.08630363511449785,
+    "20176": -0.06349521676738665,
+    "20279": -0.014747618972871777
+  },
+  "m1_minus_additive_group_ci95": [
+    -0.07626326488537713,
+    -0.012239152106159132
+  ],
+  "m1_minus_additive_ll": -0.04134914121271521,
+  "minute_rows": 8740,
+  "parity_of_m0_m1_against_saved_predictions": "max_abs < 1e-10",
+  "scope": "POST-HOC strong-null sensitivity, after original March TEST and September M0-M1 result were viewed; no model promotion",
+  "sept_match_count": 199
+}
