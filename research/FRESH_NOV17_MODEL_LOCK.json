@@ -1,0 +1,87 @@
+{
+  "employer_artifacts": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "model_family": "Original March-TRAIN-only C1 logistic; MATCH_EQUAL match-weighted only",
+  "model_selection_origin": "Earlier inspected Oct/Nov research; new cohort is POST-SELECTION",
+  "models": {
+    "M0_gold": {
+      "coefficient_preprocessor_sha256": "cebc49a4ac00a720cc39a234e99b626b3d792c037eb8a14883498011bef3d57b",
+      "coefficients": [
+        1.5489715775377688
+      ],
+      "inputs": [
+        "gold_k"
+      ],
+      "intercept": [
+        -0.0014561936923229647
+      ],
+      "train_games": 291,
+      "train_rows": 10675
+    },
+    "M1_interaction": {
+      "coefficient_preprocessor_sha256": "065567779d0d28ce9d9973e92026f366ce15f9727e5e7f3d899778dbe7e1f56f",
+      "coefficients": [
+        3.5219366946733768,
+        -0.01715647797522314,
+        -2.111704549862009
+      ],
+      "inputs": [
+        "gold_k",
+        "minute10",
+        "gold_x_time"
+      ],
+      "intercept": [
+        0.0045948754808827
+      ],
+      "train_games": 291,
+      "train_rows": 10675
+    },
+    "MATCH_EQUAL": {
+      "coefficient_preprocessor_sha256": "9542076c197a4bf1c6701726066e927d0d2eacc46ee586ec6cfbdf3ce5e8f508",
+      "coefficients": [
+        3.8807704873925393,
+        -0.025796370953419936,
+        -2.3527194461082717
+      ],
+      "inputs": [
+        "gold_k",
+        "minute10",
+        "gold_x_time"
+      ],
+      "intercept": [
+        0.01694962594662915
+      ],
+      "train_games": 291,
+      "train_rows": 10675
+    },
+    "Q1_path": {
+      "coefficient_preprocessor_sha256": "f3425644fb499f854fd0931dcac2eaa44efa3039faa9273d8fafe92e6e5166cf",
+      "coefficients": [
+        1.306642093486177,
+        -0.04408526688895378,
+        -0.2057403370923779,
+        0.1332474511017434,
+        0.2132029884555459
+      ],
+      "inputs": [
+        "gold_k",
+        "minute10",
+        "adverse_excursion10_k",
+        "signed_realized_vol10_k",
+        "directional_efficiency10"
+      ],
+      "intercept": [
+        -0.008812693784805014
+      ],
+      "train_games": 291,
+      "train_rows": 10675
+    }
+  },
+  "new_cohort_observed": false,
+  "original_validation_or_test_read": false,
+  "preselection_protocol_sha256": "9254a89c42303ab854d7e5dba11afed511f7d896bc9b1baac82805f9384c10ed",
+  "source_training_hash": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
+}
