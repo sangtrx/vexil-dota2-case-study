@@ -1,0 +1,254 @@
+{
+  "folds": [
+    {
+      "fold": 1,
+      "games": 22,
+      "metrics": {
+        "CLOCK1": {
+          "brier": 0.22878388833981503,
+          "late30_brier": 0.2243238946712913,
+          "logloss": 0.6661637109544792
+        },
+        "CLOCK3": {
+          "brier": 0.23903844613286537,
+          "late30_brier": 0.2803200742857356,
+          "logloss": 0.6884722711643325
+        },
+        "FRESH": {
+          "brier": 0.2226302339085362,
+          "logloss": 0.652097365172538
+        },
+        "HOLD1": {
+          "brier": 0.22938525957424538,
+          "late30_brier": 0.22504433370480814,
+          "logloss": 0.6692799685905134
+        },
+        "HOLD3": {
+          "brier": 0.24094780698754173,
+          "late30_brier": 0.28449906088829313,
+          "logloss": 0.697966204324826
+        }
+      },
+      "minute_rows": 771,
+      "no_data_rows": {
+        "1": 22,
+        "3": 66
+      }
+    },
+    {
+      "fold": 2,
+      "games": 44,
+      "metrics": {
+        "CLOCK1": {
+          "brier": 0.21873925112421946,
+          "late30_brier": 0.2208003742155907,
+          "logloss": 0.6346434406705996
+        },
+        "CLOCK3": {
+          "brier": 0.2272161340447148,
+          "late30_brier": 0.2406230557132426,
+          "logloss": 0.654359214925793
+        },
+        "FRESH": {
+          "brier": 0.2133737577737356,
+          "logloss": 0.6218760309252692
+        },
+        "HOLD1": {
+          "brier": 0.21917593083245154,
+          "late30_brier": 0.22155089465611516,
+          "logloss": 0.6368043459361793
+        },
+        "HOLD3": {
+          "brier": 0.22849339697407062,
+          "late30_brier": 0.24335064421296998,
+          "logloss": 0.6606971103321843
+        }
+      },
+      "minute_rows": 1649,
+      "no_data_rows": {
+        "1": 44,
+        "3": 132
+      }
+    },
+    {
+      "fold": 3,
+      "games": 32,
+      "metrics": {
+        "CLOCK1": {
+          "brier": 0.215689848633254,
+          "late30_brier": 0.1814916002228392,
+          "logloss": 0.6097302935307833
+        },
+        "CLOCK3": {
+          "brier": 0.22554412980404046,
+          "late30_brier": 0.2050119805325603,
+          "logloss": 0.6339714881914188
+        },
+        "FRESH": {
+          "brier": 0.2098519399195537,
+          "logloss": 0.5948597248521718
+        },
+        "HOLD1": {
+          "brier": 0.2159159710457858,
+          "late30_brier": 0.18135966779880244,
+          "logloss": 0.6101419803504206
+        },
+        "HOLD3": {
+          "brier": 0.22635524296356455,
+          "late30_brier": 0.20558129112683937,
+          "logloss": 0.6357177361942637
+        }
+      },
+      "minute_rows": 1228,
+      "no_data_rows": {
+        "1": 32,
+        "3": 96
+      }
+    },
+    {
+      "fold": 4,
+      "games": 39,
+      "metrics": {
+        "CLOCK1": {
+          "brier": 0.21485703218684313,
+          "late30_brier": 0.18334501595751415,
+          "logloss": 0.6086946908779108
+        },
+        "CLOCK3": {
+          "brier": 0.22496017535669408,
+          "late30_brier": 0.21265952689856032,
+          "logloss": 0.633949860427951
+        },
+        "FRESH": {
+          "brier": 0.20917925229750622,
+          "logloss": 0.5940533584376041
+        },
+        "HOLD1": {
+          "brier": 0.21541438671870894,
+          "late30_brier": 0.18407063462243645,
+          "logloss": 0.6099673988811889
+        },
+        "HOLD3": {
+          "brier": 0.22667264506599008,
+          "late30_brier": 0.21618404390752338,
+          "logloss": 0.6380369770780591
+        }
+      },
+      "minute_rows": 1433,
+      "no_data_rows": {
+        "1": 39,
+        "3": 117
+      }
+    }
+  ],
+  "games_oof": 137,
+  "independent_series": 70,
+  "input_received_at_known": false,
+  "minute_rows": 5081,
+  "models_fitted": "M1 original C1 logistic, mature March TRAIN folds only",
+  "no_data_state_policy": "p=0.5 before snapshot arrives; no model inference at t<lag",
+  "old_bug": "t<lag was clamped to gold[0],p[0] before valid availability",
+  "original_old_receipt_sha256": "732af37ba1bb4b7e78367ef6decbd57d39b8348b94a2661d105a6440db99d69c",
+  "original_train_source_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915",
+  "paired_grouped_series_corrected": {
+    "1": {
+      "hold_minus_clock_delta_brier": 0.00044481586840646814,
+      "hold_minus_clock_delta_logloss": 0.0016326135413372912,
+      "late30_hold_minus_clock_delta_brier": 0.0005000132389922484,
+      "series_bootstrap_95_brier": [
+        5.0962661937002286e-05,
+        0.0008588496465247996
+      ],
+      "series_bootstrap_95_ll": [
+        0.00018103835799849073,
+        0.003217774230849114
+      ],
+      "series_bootstrap_975_ll_two_lags": [
+        -0.00010615821222290924,
+        0.0035288436639114794
+      ]
+    },
+    "3": {
+      "hold_minus_clock_delta_brier": 0.0013832591700019537,
+      "hold_minus_clock_delta_logloss": 0.005072277641995348,
+      "late30_hold_minus_clock_delta_brier": 0.002521842772925117,
+      "series_bootstrap_95_brier": [
+        0.00022649662251275976,
+        0.002582261251286866
+      ],
+      "series_bootstrap_95_ll": [
+        0.0008894300219261992,
+        0.009660980087246338
+      ],
+      "series_bootstrap_975_ll_two_lags": [
+        6.455103033178053e-05,
+        0.010413827970771604
+      ]
+    }
+  },
+  "preserved_original_applicant_sha": {
+    "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+    "delivery/Vexil_Dota2_Takehome_20261116.zip": "8c97c9041a249ce5f7f540d461de30d41e4fe8423964f92b95c1717529ec02a3",
+    "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
+  },
+  "previous_submitted_report_unchanged": true,
+  "protocol_sha256": "6a757b5c96d1efde348b20203600481280a42f397bd5d8f25d2974b7e6ffdec2",
+  "repeated_model_search_corrected": false,
+  "scores_old_vs_fixed": {
+    "CLOCK1": {
+      "brier": 0.2184315418734929,
+      "delta_brier_corrected_minus_old": -1.2804787851761201e-05,
+      "delta_ll_corrected_minus_old": -2.509465959643631e-05,
+      "late30_brier": 0.2005576481101217,
+      "logloss": 0.626086901652346,
+      "old_brier": 0.21844434666134466,
+      "old_late30_brier": 0.2005576481101217,
+      "old_logloss": 0.6261119963119425
+    },
+    "CLOCK3": {
+      "brier": 0.22796972440340055,
+      "delta_brier_corrected_minus_old": -3.6019659216512956e-05,
+      "delta_ll_corrected_minus_old": -7.053732633477416e-05,
+      "late30_brier": 0.22815642244746664,
+      "logloss": 0.6488521165071146,
+      "old_brier": 0.22800574406261706,
+      "old_late30_brier": 0.22815642244746664,
+      "old_logloss": 0.6489226538334494
+    },
+    "FRESH": {
+      "brier": 0.21274420147134618,
+      "delta_brier_corrected_minus_old": 0.0,
+      "delta_ll_corrected_minus_old": 0.0,
+      "late30_brier": 0.1831092828065857,
+      "logloss": 0.6120855832126253,
+      "old_brier": 0.21274420147134618,
+      "old_late30_brier": 0.1831092828065857,
+      "old_logloss": 0.6120855832126253
+    },
+    "HOLD1": {
+      "brier": 0.21887635774189934,
+      "delta_brier_corrected_minus_old": -1.2804787851788957e-05,
+      "delta_ll_corrected_minus_old": -2.509465959643631e-05,
+      "late30_brier": 0.2010576613491139,
+      "logloss": 0.6277195151936833,
+      "old_brier": 0.21888916252975113,
+      "old_late30_brier": 0.2010576613491139,
+      "old_logloss": 0.6277446098532797
+    },
+    "HOLD3": {
+      "brier": 0.22935298357340253,
+      "delta_brier_corrected_minus_old": -3.841436355531136e-05,
+      "delta_ll_corrected_minus_old": -7.528397878908688e-05,
+      "late30_brier": 0.2306782652203917,
+      "logloss": 0.65392439414911,
+      "old_brier": 0.22939139793695784,
+      "old_late30_brier": 0.2306782652203917,
+      "old_logloss": 0.653999678127899
+    }
+  },
+  "status": "Corrective post-result retrospective TRAIN-only; not live measurement",
+  "total_no_data_rows": {
+    "1": 137,
+    "3": 411
+  }
+}
