@@ -16,7 +16,7 @@ I tested whether match time adds useful information beyond gold lead when predic
 
 M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for 54.9% of the **overall** observed log-loss gain. **I recommend M0 as the reference and M1 only for future shadow evaluation.** The report shows the uncertainty by match and series.
 
-**Reviewer ZIP:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip). This concise bundle contains the one executed notebook, four-page report, dependencies, frozen VAL/TEST forecasts, a short experiment appendix and statistical receipts. The wider scripts, historical protocols and 181 offline tests remain in this private research repository rather than the email attachment.
+**Reviewer ZIP:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip). This concise bundle contains the one executed notebook, four-page report, dependencies, frozen VAL/TEST forecasts, a short experiment appendix and statistical receipts. The wider scripts, historical protocols and 188 offline tests remain in this private research repository rather than the email attachment.
 
 ## Run the notebook
 

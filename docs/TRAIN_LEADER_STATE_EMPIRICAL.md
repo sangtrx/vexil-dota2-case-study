@@ -8,8 +8,8 @@ The question is not whether gold matters (it does); it is whether a lead of the 
 
 | | **10 min** | **20 min** | **30 min** |
 | --- | --- | --- | --- |
-| **|Gold| 2–4k** | **66/82 = 80.5%** (68 series) | **46/69 = 66.7%** (60 series) | **11/25 = 44.0%** (24 series) |
-| **|Gold| 5–7k** | **8/9 = 88.9%** (9 series) | **25/35 = 71.4%** (33 series) | **24/30 = 80.0%** (28 series) |
+| **\|Gold\| 2–4k** | **66/82 = 80.5%** (68 series) | **46/69 = 66.7%** (60 series) | **11/25 = 44.0%** (24 series) |
+| **\|Gold\| 5–7k** | **8/9 = 88.9%** (9 series) | **25/35 = 71.4%** (33 series) | **24/30 = 80.0%** (28 series) |
 
 ![Fixed original TRAIN-only leader-win outcomes with series-cluster uncertainty and fitted M0/M1 probabilities.](figures/train_leader_state_empirical.png)
 
