@@ -169,23 +169,23 @@ Bạn phải chỉ được trong notebook đường gọi `fit` và `predict_pr
 
 ## 12. Nếu là Senior Data Scientist Vexil, mình sẽ hỏi gì?
 
-**Q1 — Why logistic baseline?** Đề yêu cầu; dễ đọc, ít tham số, hỗ trợ xác suất và phù hợp số trận độc lập nhỏ.
+**Q1: Why logistic baseline?** Đề yêu cầu; dễ đọc, ít tham số, hỗ trợ xác suất và phù hợp số trận độc lập nhỏ.
 
-**Q2 — What was creative?** Nhóm cơ chế: time interaction, gold momentum/drawdown/volatility, XP divergence, player allocation Gini, tower/Roshan/Aegis, buyback, Blink/BKB timing, draft, path risk, 81-feature signals, boosting; nhiều ý tưởng không được giữ vì thiếu out-of-sample evidence.
+**Q2: What was creative?** Nhóm cơ chế: time interaction, gold momentum/drawdown/volatility, XP divergence, player allocation Gini, tower/Roshan/Aegis, buyback, Blink/BKB timing, draft, path risk, 81-feature signals, boosting; nhiều ý tưởng không được giữ vì thiếu out-of-sample evidence.
 
-**Q3 — Why didn't your best P20 win?** LL historical reused-VAL thấp nhất nhưng adjusted interval qua 28 comparisons chứa zero và chỉ tốt hơn ở 1/3 forward TRAIN folds. Nó đã được search trên reused VAL, không phải fresh validation.
+**Q3: Why didn't your best P20 win?** LL historical reused-VAL thấp nhất nhưng adjusted interval qua 28 comparisons chứa zero và chỉ tốt hơn ở 1/3 forward TRAIN folds. Nó đã được search trên reused VAL, không phải fresh validation.
 
-**Q4 — Why not just XGBoost with more features?** Strong baselines first. XGB84 0.621809 vs Q1 0.605963 on fixed TRAIN-forward sample; nested tuning không cứu. Tăng feature còn rủi ro trùng và thiếu dữ liệu Roshan owner.
+**Q4: Why not just XGBoost with more features?** Strong baselines first. XGB84 0.621809 vs Q1 0.605963 on fixed TRAIN-forward sample; nested tuning không cứu. Tăng feature còn rủi ro trùng và thiếu dữ liệu Roshan owner.
 
-**Q5 — What exactly is Q1's novelty?** Không phải phát minh state-of-the-art. Đó là một hypothesis về path-dependent drawdown/volatility/efficiency trên gold history, được kiểm tra theo prefix, group-forward và rejected by a strong M1 comparison interval.
+**Q5: What exactly is Q1's novelty?** Không phải phát minh state-of-the-art. Đó là một hypothesis về path-dependent drawdown/volatility/efficiency trên gold history, được kiểm tra theo prefix, group-forward và rejected by a strong M1 comparison interval.
 
-**Q6 — Why not promote M1?** TEST point estimates tốt, grouped CI chứa 0, 30+ Brier xấu hơn, một match 55 phút đóng góp 54.9% LL gain, nên shadow-only.
+**Q6: Why not promote M1?** TEST point estimates tốt, grouped CI chứa 0, 30+ Brier xấu hơn, một match 55 phút đóng góp 54.9% LL gain, nên shadow-only.
 
-**Q7 — Did you solve live forecasting?** Không. Historical OpenDota event timestamps không thay bằng receive timestamps. Pipeline có time-safe historical features; cần source watermark, completeness và actual live data collector trước khi production.
+**Q7: Did you solve live forecasting?** Không. Historical OpenDota event timestamps không thay bằng receive timestamps. Pipeline có time-safe historical features; cần source watermark, completeness và actual live data collector trước khi production.
 
-**Q8 — Did you do all coding manually?** Không nói sai. AI assistance đã khai báo trong report. Trình bày chính xác những việc bản thân thực sự định hướng, kiểm tra, quyết định và hiểu; không tự nhận mình viết độc lập mọi dòng hoặc tự bịa số giờ làm.
+**Q8: Did you do all coding manually?** Không nói sai. AI assistance đã khai báo trong report. Trình bày chính xác những việc bản thân thực sự định hướng, kiểm tra, quyết định và hiểu; không tự nhận mình viết độc lập mọi dòng hoặc tự bịa số giờ làm.
 
-**Q9 — What's the one next experiment?** Chốt candidate + decision gate **trước khi thấy kết quả**, thu một cohort mới đủ independent professional series/league với `received_at`, primary minute LL improvement meaningful (e.g. >=0.005), group-CI excludes zero, late30 Brier non-regression, then decide again.
+**Q9: What's the one next experiment?** Chốt candidate + decision gate **trước khi thấy kết quả**, thu một cohort mới đủ independent professional series/league với `received_at`, primary minute LL improvement meaningful (e.g. >=0.005), group-CI excludes zero, late30 Brier non-regression, then decide again.
 
 ## 13. Bài tập tự kiểm tra
 

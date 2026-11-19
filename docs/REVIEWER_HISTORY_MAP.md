@@ -1,6 +1,6 @@
-# Review the actual research sequence
+# Source branches and research history
 
-**All fourteen original PR #3–#16 head branches are mirrored here under their authentic source commit IDs; this is a map, not a backdated experiment diary.** Original research
+**All fourteen original PR #3–#16 head branches** are preserved here with their source commit IDs. Original research
 Git objects are preserved without rewriting their author/committer
 dates. Original source main commits are in the ancestry of this
 repository's main. The following historical branch heads are mirrored

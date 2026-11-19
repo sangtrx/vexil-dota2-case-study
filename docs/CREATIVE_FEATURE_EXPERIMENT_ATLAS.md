@@ -1,14 +1,16 @@
-# Creative Feature Engineering & Experiment Atlas
+# Feature engineering and model experiments
 
 **Truong Quang Sang | Vexil Capital Senior Data Scientist take-home | supplementary research inventory | 18 November 2026**
 
-**Read this after the FOUR-PAGE `REPORT.pdf`.** This is an optional, full scientific experiment ledger rather than another required report or a second executable notebook. It enumerates the original modelling and subsequent creative investigations, including discarded ideas, source limitations and failures. Not all studies below are executed by the submitted notebook. The single 16-code-cell notebook remains the only required executable study; it fits M0-M3 (plus a development-only item diagnostic). The ZIP **does include selected research source and audit scripts** (including research/rich_feature_engineering.py), frozen forecast/metadata tables and readouts. Other historical experiment implementations, isolated package environments and the original 500-match JSON cache remain outside the ZIP on private research branches / author infrastructure. Therefore **some audits are reproducible offline from the ZIP; the full supplementary model search is not**. These are post-result studies, not independent validation.
+This appendix records the models and features I tried, including the ones I rejected. The four-page report contains the main decision. The submitted 16-code-cell notebook fits M0-M3 and includes a development-only item diagnostic; it does not execute every experiment listed here.
 
-## One-minute decision
+The ZIP includes selected research scripts, frozen forecasts, metadata and readouts. Some audits are reproducible offline from the ZIP; the full supplementary model search is not, because additional research code, environments and original match JSONs remain outside it. These are post-result studies, not independent validation.
 
-The original 500-game point-in-time observational study finds TEST minute-log-loss M0 gold baseline **0.516444** versus M1 time-aware **0.504015** on 106 games / 3,836 predictions. The paired 95% match bootstrap for M1−M0 **[-0.0304,+0.0014]** includes zero, and M1 worsens minute-30+ Brier **0.1028→0.1074**. So the defensible recommendation remains **M0 reference, M1 shadow only**. This is not a negative result on the candidate's creativity; it is evidence-led model selection.
+## Main finding
 
-### Evidence tiers — never mix these scores as if they were one TEST
+The original 500-game point-in-time observational study finds TEST minute-log-loss M0 gold baseline **0.516444** versus M1 time-aware **0.504015** on 106 games / 3,836 predictions. The paired 95% match bootstrap for M1−M0 **[-0.0304,+0.0014]** includes zero, and M1 worsens minute-30+ Brier **0.1028→0.1074**. I kept **M0 as the reference and M1 in shadow mode**. The extra modelling work did not provide enough evidence to replace the simpler model.
+
+### Which data support each result
 
 | Tier | Data/decision stage | What may be concluded |
 | --- | --- | --- |
@@ -42,7 +44,7 @@ Pipeline: `SimpleImputer(median)` → `StandardScaler` → L2 `LogisticRegressio
 
 P20 was creative but did **not** earn selection. The exact historical register preserves a real matched example: two March patch-59 games at minute 25 with gold leads only **28** apart and XP leads **102** apart, but different Aegis/structural states. Both Radiant teams won, so that example illustrates state aliasing, **not** evidence that Roshan or item features improved probability accuracy.
 
-## 3. COMPLETE adaptive screen — all P01-P28 (tier B)
+## 3. COMPLETE adaptive screen: P01-P28 (tier B)
 
 **These values belong to an older 18,304-row version before a 12-row terminal-boundary correctness repair.** The M1 reference in this *historical* screen is **0.519346**, not the corrected applicant VAL score 0.5197. All 103 VAL games had already been inspected; none of 28 passed the joint promotion gate. The 28-way interval only controls those 28 within-screen comparisons, **not prior adaptive research**. **0/28 candidates were promoted; this is not a new held-out TEST.**
 

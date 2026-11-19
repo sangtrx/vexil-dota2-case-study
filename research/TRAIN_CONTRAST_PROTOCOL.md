@@ -1,4 +1,4 @@
-# Training-only effect contrast uncertainty — protocol
+# TRAIN-only effect contrast: protocol
 
 Date: 15 Nov 2026. Design is saved and committed **before** running the new series bootstrap. Not a new independent experiment and not an uncertainty interval on unseen performance.
 

@@ -1,4 +1,4 @@
-# Team/league dependence: post-TEST scientific stress audit
+# Team and league dependence in TEST
 
 **Status: NON-SELECTING, POST-HOC.** This is an audit of the **unchanged** 500-game cohort and the **unchanged** 3,836 held-out predictions. It cannot create a second blind TEST, prove the time interaction adds value, rescue an invalid confidence interval, or justify tuning/promoting M1. Keep the historically specified whole-match bootstrap **method** as the primary reported uncertainty. The original TEST was already inspected before terminal-boundary corrections, so its corrected intervals are **not preregistered blind results**.
 

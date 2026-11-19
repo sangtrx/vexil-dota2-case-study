@@ -415,7 +415,7 @@ def verify() -> dict:
         raise ValueError("Reviewer timeline must show original and rejected-branch proofs")
     if ("No commits are backdated" not in provenance
             or "retains the **authentic Git ancestry**" not in provenance
-            or "not** an invented" not in trail
+            or "This index was written on 16 November 2026, after the experiments" not in trail
             or "**Retain M0; shadow-test M1" not in trail):
         raise ValueError("Curation provenance or decision-gate language missing")
 

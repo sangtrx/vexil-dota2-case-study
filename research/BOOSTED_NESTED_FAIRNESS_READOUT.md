@@ -1,4 +1,4 @@
-# Nested XGB/LightGBM sensitivity — honest post-result, TRAIN-only
+# Nested XGBoost/LightGBM sensitivity on TRAIN
 
 **Designed after frozen 4 candidate outer-fold failure; this is a fairness stress test, NOT a new blind model comparison.** Two series-group chronological inner folds select one of three fixed hyperparameter profiles per model family inside each original outer fit; no outer/eval label enters tuning.
 

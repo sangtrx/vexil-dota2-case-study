@@ -1,4 +1,4 @@
-# Feature diversity and Roshan ownership audit — 17 November 2026
+# Feature diversity and Roshan-owner availability (17 November 2026)
 
 This is an explicit post-execution **quality audit**, not a third model variant or a new performance test. It does not change either locked model, the training input CSV, or the already reported score receipt.
 

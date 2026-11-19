@@ -1,4 +1,4 @@
-# Senior review: label maturity and what the interaction adds
+# Label maturity and the value of the time interaction
 
 **Audit dated 16 November 2026. Retrospective analysis of reused
 development data, not an unseen TEST.** The original 500-game notebook and

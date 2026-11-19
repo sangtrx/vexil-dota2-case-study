@@ -1,4 +1,4 @@
-# Hostile stress: What if tower/item events arrive 60 seconds late?
+# Event delay: tower and item updates arriving 60 seconds late
 
 Only original 291 TRAIN games, unchanged four chronological, series-disjoint 137-game / 5,081-minute OOF split; this is **not** an unseen independent test.
 Original feature code and applicant deliverable untouched.

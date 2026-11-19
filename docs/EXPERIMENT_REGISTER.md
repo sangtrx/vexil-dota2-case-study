@@ -1,4 +1,4 @@
-# Vexil Dota 2 — Full experiment register
+# Vexil Dota 2: experiment register
 
 **Version lineage and scoring boundary (14 Nov 2026):** The 28 exploratory screens below preserve the historical 18,304-row run. A correctness review removed 12 exact-at-match-end observations (8 TRAIN, 3 VAL, 1 TEST). The corrected recruiter notebook was refitted on 18,292 rows and exports 3,836 TEST forecasts; the old 28 candidate models were NOT re-screened or promoted after this fix. Their validation scores remain historical research evidence.
 

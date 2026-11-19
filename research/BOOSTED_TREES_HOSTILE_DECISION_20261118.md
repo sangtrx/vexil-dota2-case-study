@@ -1,4 +1,4 @@
-# Senior DS hostile decision: Do XGBoost or LightGBM belong in the Vexil submission?
+# XGBoost and LightGBM: do they improve on the logistic models?
 18 November 2026 ICT. Research-only, deterministic rerun on BigLinux epic by the same research workflow; not an external independent reviewer.
 
 ## Decisive answer

@@ -2,9 +2,9 @@
 
 **Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 19 November 2026 (original study 17 November 2026)**
 
-**Decision.** Keep the gold-only logistic baseline (M0) as the reference and evaluate the time-aware model (M1) in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
+**Decision.** I kept the gold-only logistic baseline (M0) as the reference and M1 in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
 
-**Question.** Does adding game time improve the probability assigned to a given gold lead? I compared four models using a chronological, series-disjoint split, then checked whether M1's gold × time interaction adds anything beyond an additive gold + time model.
+**Question.** Does adding game time improve the probability assigned to a given gold lead? I compared four models with a chronological, series-disjoint split and tested the interaction against a simpler additive gold + time model.
 
 ## 1. Data and prediction-time validity
 
@@ -27,9 +27,9 @@ I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN onl
 | M2 · Lead dynamics | M1 + XP and available recent gold/XP changes | 0.5224 | 0.1778 |
 | M3 · Objectives | M2 + timestamped towers, barracks, Roshan and kills | 0.5282 | 0.1806 |
 
-The additional XP and objective features did not improve validation loss. I kept M1 rather than carrying their extra complexity forward. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
+XP and objective features added complexity without lowering validation loss, so I kept M1. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
 
-**Supplementary, non-promoted research:** Q1 scored **0.605963** vs M1 **0.612086** on reused TRAIN-forward folds, but its uncertainty includes zero; XGB3 **0.615597** / LGB3 **0.616196** did not beat Q1. Later tuning, transfer and feed-delay tests also failed their gates. These are **post-result TRAIN/replay studies, not a new held-out TEST**; see docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md.
+**Additional models:** On reused TRAIN-forward folds, Q1 scored **0.605963** against M1's **0.612086**, but its uncertainty includes zero. XGB3 (**0.615597**) and LGB3 (**0.616196**) did not beat Q1. Tuning, transfer and feed-delay checks gave me no reason to change the model decision. These are **post-result TRAIN/replay studies, not a new held-out TEST**; see docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md.
 
 ---
 
@@ -89,7 +89,7 @@ On inspected TEST, M1's ECE-10 was **0.0750**, compared with **0.0895** for M0; 
 
 *Figure 4. Reliability curves from the inspected TEST. Repeated minute rows are not independent games.*
 
-**Recommendation:** Retain M0 as the reference and run M1 in shadow mode. A new promotion decision should use a *precommitted*, multi-league series cohort and require at least **0.005 lower log loss** with clustered uncertainty excluding no gain, alongside no material regression in overall or 30+ Brier. That is a future decision rule, not a threshold retrofitted to these scores.
+**Recommendation:** Keep M0 as the reference and run M1 in shadow mode. A new promotion decision should use a *precommitted*, multi-league series cohort and require at least **0.005 lower log loss** with clustered uncertainty excluding no gain, alongside no material regression in overall or 30+ Brier. That is a future decision rule, not a threshold retrofitted to these scores.
 
 For an actual live service I would log match/model version, minute, event timestamp, `received_at`, feature watermark and completeness. These historical API records cannot establish packet availability at decision time, and this study does not estimate betting profitability.
 
@@ -97,6 +97,6 @@ For an actual live service I would log match/model version, minute, event timest
 
 The deliverable contains **one executed 16-code-cell notebook**: 14 core study cells (including edits and diagnostics after initial TEST inspection) and two appended reviewer QA cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). The earlier 16-cell Colab Run All reproduced metrics to six decimals on its preinstalled stack (docs/COLAB_16CELL_RUN_RECEIPT.json). The recorded Colab run used an earlier 16-cell notebook revision; a new exact-version cloud run has **not** been verified, although the shipped notebook's saved outputs and source-frozen local replay were checked. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
 
-**Time spent:** Approximately **10 hours of active work** (candidate estimate), excluding unattended AI, API and cloud execution.
+**Time spent:** Approximately **10 hours of active work** on the study design, reviewing model results and failure cases, and checking the final submission. Unattended runs are excluded.
 
-**Assistance disclosure:** ChatGPT Web generated and revised much of the notebook code, tests and report under my research direction; **Claude Sonnet and Fable AI conducted read-only critiques**. Their feedback informed later corrections and uncertainty analysis, **not independent human verification**. Scripts run on BigLinux/Colab checked numerical outputs; I retained negative results. **Public code/tools:** The submitted notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook (top-level versions pinned in requirements.txt). Separate *supplementary research* used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; they are **not notebook dependencies** and their versions are recorded in research/BOOSTED_TREES_DIRECT_READOUT.md. **No third-party Dota predictor was copied. AI reviews are not independent human peer review.**
+**Assistance disclosure:** I directed the research and took responsibility for the model choice, evaluation and final conclusions. ChatGPT Web drafted and revised much of the notebook code, tests and report. Claude Sonnet and Fable AI conducted read-only critiques; their feedback led to further source and uncertainty checks. AI reviews are not independent human peer review. **Public code/tools:** The notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook, with top-level versions pinned in requirements.txt. Separate research used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; these are **not notebook dependencies** (versions in research/BOOSTED_TREES_DIRECT_READOUT.md). **No third-party Dota predictor was copied.**

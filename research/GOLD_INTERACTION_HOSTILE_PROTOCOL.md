@@ -1,4 +1,4 @@
-# Hostile falsification of post-selected gold-by-time effect (TRAIN only)
+# Gold-by-time interaction: TRAIN-only falsification
 
 15 November 2026, authored AFTER initial conditional D>0 was seen and
 AFTER read-only Sonnet HIGH hostile review. No claim of an original

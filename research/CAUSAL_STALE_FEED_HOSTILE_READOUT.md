@@ -1,4 +1,4 @@
-# Hostile review: missing live snapshot at first minutes, and lag stress
+# Missing live snapshots and stale-feed sensitivity
 
 **Hypothetical stale-gold counterfactual on an ALREADY SCORED 17-game Nov17 cohort.** Not a live latency measurement or independent candidate confirmation.
 

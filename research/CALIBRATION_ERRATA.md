@@ -1,4 +1,4 @@
-# Hostile Fable 5.2 XHIGH review: append-only errata
+# Calibration review: corrections and limitations
 
 This note corrects the original chronology and interpretation. We do **not** rewrite the 15 November protocol commits, claim an unrun review or make the original TEST a new holdout.
 

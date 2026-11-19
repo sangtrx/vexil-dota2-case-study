@@ -1,4 +1,4 @@
-# Reviewer guide · Vexil Dota 2
+# Reproducing the Dota 2 take-home
 
 **Truong Quang Sang · Senior Data Scientist take-home**
 
@@ -25,12 +25,12 @@ python -m unittest discover -s tests -p "test_*.py" -q
 
 There are **175 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
 
-**Submission archive:** delivery/Vexil_Dota2_Creative_Research_20261119.zip (scientific repair 19 November; outdated archives are preserved in Git history, not here).
+**Package:** Vexil_Dota2_Creative_Research_20261119.zip (19 November 2026). This guide is inside the extracted ZIP.
 
 ## What is included
 
 - [Frozen 3,836 TEST forecasts](artifacts/heldout_predictions.csv), with overall and phase-wise proper-score comparisons in the notebook and report.
-- [Complete creative-feature and model-search atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md): all P01–P28, S1–S4/M4, all 81 engineered column names, Q1, 84-input elastic-net/trees, direct XGBoost/LightGBM, nested tuning, transfer and stale-feed tests. The research readouts are **optional, post-result supplements** and not a second mandatory notebook or a new blind test.
+- [Additional model experiments](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md): P01–P28, S1–S4/M4, 81 engineered features, Q1, elastic-net/trees, XGBoost/LightGBM, nested tuning, transfer and stale-feed checks. These results are **post-result supplements**, not another notebook or blind test.
 - [Original cohort/discovery provenance](docs/DISCOVERY_PROVENANCE.md), including the unarchived raw discovery-page limitation.
 - [TRAIN-only additive gold+time control](research/GOLD_INTERACTION_NULL_READOUT.md), [rejected-model register](docs/EXPERIMENT_REGISTER.md) and [independent-unit sensitivity](docs/TEAM_LEAGUE_DEPENDENCE.md).
 - [Development-only timing and model-selection sensitivity](docs/REVIEWER_SCIENTIFIC_LIMITS.md), plus the reproducible [historical TEST correction receipt](docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json) from both frozen forecast CSVs.
@@ -38,4 +38,4 @@ There are **175 offline unit/contract checks**. They do **not** replace a fresh 
 
 **Interpretation:** M1 has lower point log loss than the required gold-only M0, but the main paired 95% interval includes zero; minute-30+ Brier is worse. Keep M0 as reference and M1 shadow-only. Corrected TEST scores were produced after the original TEST was inspected and are **not** a new blind evaluation. Raw 500-match JSON is not shipped; the notebook can refetch the public match IDs.
 
-The [report](REPORT.pdf) contains the candidate's time estimate (approximately 10 active hours) and AI/public-code assistance disclosure, including separate XGBoost/LightGBM/Narwhals tooling. This is an **applicant estimate**, not an independently recorded time log. Original research history is in [HISTORY.md](HISTORY.md). The GitHub repo is private; the **reviewer ZIP and PDF are readable without repository permissions**, and private PR discussions are not needed.
+The [report](REPORT.pdf) includes the candidate's time estimate of approximately **10 hours of active work** and explains where AI and open-source tools were used. Research provenance is in [HISTORY.md](HISTORY.md). This ZIP and PDF can be read without access to the private GitHub repository.

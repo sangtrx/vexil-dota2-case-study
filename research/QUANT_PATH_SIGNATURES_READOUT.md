@@ -1,4 +1,4 @@
-# Quant Bible-inspired gold/XP path geometry and durability — TRAIN-only
+# Gold and XP path features: TRAIN-only evaluation
 
 This is one **pre-scoring committed exploratory** candidate, not new blind validation. Data from original VAL/TEST were not used for this evaluation. Prior search multiplicity remains.
 

@@ -1,4 +1,4 @@
-# Evidence boundaries and development-only falsification
+# Timing assumptions, TEST history and interpretation limits
 
 This note supports the FOUR-PAGE REPORT.pdf. It adds no new candidate model or blind TEST. The shipped notebook and original 3,836 held-out probabilities have not changed.
 
@@ -25,7 +25,7 @@ The historical pre-correction commit 009f54d (14 November 2026, 16:16 ICT) retai
 
 Commit 4a77ae5 (14 November 2026, 20:24 ICT) applied 60*t < duration, removing 12 terminal rows across 8 TRAIN, 3 VAL and 1 TEST games; the affected TRAIN design was refitted. The corrected frozen 3,836-forecast TEST CSV SHA256 is 03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441, with M0/M1 log loss 0.516444424 / 0.504014697 and Brier 0.171912178 / 0.168352834.
 
-Both comparisons are descriptive, not two independent tests. **Both forecast CSVs are now included in the ZIP**, with an independent standard-library verifier (research/verify_terminal_correction_history.py) and the machine receipt docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json. The historical commit can still be inspected in Git history, but Git access is no longer needed for this numerical comparison. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It must NOT be described as an untouched pre-TEST preregistration.
+Both comparisons are descriptive, not two independent tests. **Both forecast CSVs are now included in the ZIP**, with an independent standard-library verifier (research/verify_terminal_correction_history.py) and the machine receipt docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json. The historical commit can still be inspected in Git history, but Git access is no longer needed for this numerical comparison. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It therefore does not represent an untouched pre-TEST preregistration.
 
 ## C. TRAIN-forward M0 differs from VAL and TEST for identifiable design reasons
 
@@ -39,13 +39,13 @@ The frozen original TRAIN-forward evaluation comprises four chronological series
 | 39 games | 39 | 0.589960 | 0.594053 | 0.695323 |
 | Pooled, minute-weighted | -- | 0.612312 | 0.612086 | 0.695316 |
 
-Original full TRAIN (291 games) fit yields M0 VALIDATION log loss 0.532490 and inspected TEST log loss 0.516444. Changes in sample, fit size, opponent/league composition and patch mix can all explain some differences, but these summaries do NOT identify which mechanism caused them. In the last TRAIN-forward fold, which evaluated 39 patch-60 games, **M0 beat M1 (0.589960 vs 0.594053)**; that is a warning about stability, not a proof that patch 60 causes the difference. This is the correct explanation boundary, not a claim of confirmed drift.
+Original full TRAIN (291 games) fit yields M0 VALIDATION log loss 0.532490 and inspected TEST log loss 0.516444. Changes in sample, fit size, opponent/league composition and patch mix can all explain some differences, but these summaries do NOT identify which mechanism caused them. In the last TRAIN-forward fold, which evaluated 39 patch-60 games, **M0 beat M1 (0.589960 vs 0.594053)**; that is a warning about stability, not a proof that patch 60 causes the difference. These summaries do not isolate drift from the other changes.
 
 ## D. Multiple estimands, fragile uncertainty and a stop rule
 
 The primary TEST estimand weights every admissible forecast minute equally, so longer games count more. Equal-game means constitute a different, post-result descriptive estimand. Match- and series-bootstrap percentile intervals have different cluster assumptions. The post-hoc 54-series minute-weighted 95% log-loss upper endpoint is close to zero: +0.000120 at 10,000 draws, +0.000085 at 30,000 draws (another seed), +0.000238 at 100,000 draws (third seed). Those are Monte Carlo sensitivities, not independent replications; with 54 clusters and shared league/team membership, neither a claim of robust model superiority nor a universal significance threshold follows.
 
-The existing 28-way screen, tree models, October/November reuse and one influential TEST match are all multiple-look evidence. Do not tune/reselect models or presentation claims to force significance. The defensible operational choice remains M0 reference, M1 shadow only, requiring fresh series/league data with real receipt-time instrumentation before promotion.
+The existing 28-way screen, tree models, October/November reuse and one influential TEST match are all multiple-look evidence. I did not use these post-result findings to retune or reselect a model. The defensible operational choice remains M0 reference, M1 shadow only, requiring fresh series/league data with real receipt-time instrumentation before promotion.
 
 ## Reproducibility and responsibility
 
@@ -54,4 +54,4 @@ From the ZIP root with pinned dependencies, run:
     python research/development_asof_robustness.py --check
     python research/verify_terminal_correction_history.py --check
 
-The development receipt records the source audit script SHA-256 and a Python/scientific-library version ledger, pins source file hashes and checks numerical outputs with 1e-9 absolute float tolerance while requiring exact labels, counts, hashes and cohort identity. The archived preterminal comparison is reproducible **without Git** from both included forecast CSVs. Active work time and author-owned decisions are applicant-provided statements, not facts verified by these scripts; AI-generated code/reviews are not independent human peer review.
+The development receipt records the source audit script SHA-256 and a Python/scientific-library version ledger, pins source file hashes and checks numerical outputs with 1e-9 absolute float tolerance while requiring exact labels, counts, hashes and cohort identity. The archived preterminal comparison is reproducible **without Git** from both included forecast CSVs. The 10-hour estimate and research decisions are self-reported; these scripts check calculations, not authorship or working time. AI-generated code and reviews are not independent human peer review.

@@ -1,6 +1,6 @@
 # Research decision trail
 
-**Reader's map, written on 16 November 2026.** This is a retrospective index of real research artifacts and decisions, **not** an invented day-by-day diary or a claim that these paragraphs preceded the experiments. Original commit times are retained. See [curation provenance](CURATION_PROVENANCE.md).
+This index was written on 16 November 2026, after the experiments. It links the research decisions to their original commits and results. See [curation provenance](CURATION_PROVENANCE.md) for the original history.
 
 ## Decision, not model complexity
 

@@ -1,4 +1,4 @@
-# Error analysis | Why M1 is a challenger, not a release decision
+# Error analysis: why M1 remains a challenger
 
 **Evidence class: post-hoc diagnostics on an already inspected TEST cohort.**
 The model choice (M1) was frozen before TEST; no fitting, feature selection, recalibration, or new thresholds are based on these diagnostics.

@@ -1,4 +1,4 @@
-# One Quant Bible path-dependence idea — actually tested on TRAIN
+# Path-dependence feature on TRAIN
 
 **Verdict:** FAILED predeclared gate; do not add Q1 to Vexil employer notebook.
 

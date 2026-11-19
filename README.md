@@ -2,9 +2,9 @@
 
 **Vexil Capital · Senior Data Scientist take-home · Truong Quang Sang**
 
-This study estimates Radiant's win probability at a given match minute using **500 professional OpenDota games across patches 59 and 60**. The core deliverable is one executed notebook and a four-page report. Forecast features are drawn from information timestamped at or before the decision minute.
+I tested whether match time adds useful information beyond gold lead when predicting Radiant's win probability. The study uses **500 professional OpenDota games across patches 59 and 60** and only features timestamped at or before each forecast minute. The deliverables are one executed notebook and a four-page report.
 
-**Start here:** [Four-page report](REPORT.pdf) · [Executed notebook](live_dota2_win_probability.ipynb) · [Reviewer guide](SUBMISSION_PACKAGE_README.md) · [Full creative-feature and model-search atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md)
+**Start with:** [Report](REPORT.pdf) · [Executed notebook](live_dota2_win_probability.ipynb) · [Run instructions](SUBMISSION_PACKAGE_README.md) · [Additional experiments](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md)
 
 ## What the evidence supports
 
@@ -14,9 +14,9 @@ This study estimates Radiant's win probability at a given match minute using **5
 | Brier score ↓ | 0.1719 | **0.1684** |
 | 30+ minute Brier ↓ | **0.1028** | 0.1074 |
 
-M1 was selected on 103 validation games, but its **paired whole-match 95% log-loss CI for M1−M0 is [−0.0304,+0.0014]**; the Brier interval **[−0.0069,+0.0002]** also includes zero. M1's late-game Brier score is worse. **Decision: keep M0 as reference and evaluate M1 in shadow mode.** The report details both match/series uncertainty and the stronger additive gold + time control; the interaction improved loss in only **1/4** TRAIN-forward folds. A separate TRAIN-forward M0−M1 comparison has almost zero log-loss gain and worse M1 Brier; one held-out match drives most observed late-game log-loss benefit.
+M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for much of the observed late-game gain. **I kept M0 as the reference and M1 in shadow mode.** The report shows the uncertainty by match and series.
 
-**Current reviewer ZIP:** delivery/Vexil_Dota2_Creative_Research_20261119.zip (includes optional creativity atlas; no new model promoted). Earlier ZIPs remain accessible from Git history but are not in this delivery directory.
+**Current reviewer ZIP (repository path):** delivery/Vexil_Dota2_Creative_Research_20261119.zip. It includes supplementary experiments; none changed the selected model.
 
 ## Run the notebook
 
@@ -60,4 +60,4 @@ Development-only lag-buffer stress and the pre/post-TEST correction history are 
 | Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
 | Authentic research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
-Original GitHub PR discussions remain in a separately private repo. The notebook, report and frozen TEST predictions are included in this package; a reviewer does **not** need those private discussions to inspect the scientific results. **Repository visibility is private; the reviewer ZIP/PDF does not require access to private GitHub discussions.** The report separately presents applicant-estimated active hours and the AI/public-code disclosure; neither is an independently audited work log.
+Original GitHub PR discussions remain in a separately private repo; they are not required to review the ZIP. The package contains the notebook, report, frozen TEST predictions and offline checks. The report states the **10-hour active-work estimate** and discloses AI and open-source tools.

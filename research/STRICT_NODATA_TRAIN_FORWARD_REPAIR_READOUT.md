@@ -1,4 +1,4 @@
-# Corrective early-NO_DATA simulation on original 137 TRAIN-forward games
+# Early missing-data simulation on 137 TRAIN-forward games
 
 **Post-result corrective sensitivity**, not independent confirmation or measured live latency. Old frozen receipt retained. The old function's earliest-lag source substitution was wrong.
 

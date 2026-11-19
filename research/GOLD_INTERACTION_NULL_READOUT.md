@@ -1,4 +1,4 @@
-# Correct interaction null, patch split and series influence — hostile audit
+# Gold-by-time interaction: additive null, patch and series effects
 
 This is an author-controlled, **post-result TRAIN-only** sensitivity,
 conducted after seeing the originally favorable fitted conditional

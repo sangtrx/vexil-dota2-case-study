@@ -1,4 +1,4 @@
-# Authentic research and reviewer curation
+# Research history and submission curation
 
 **Two histories, neither fabricated.** This repository inherits the real 13–15 November original research Git commit ancestry, including main at SHA 5bff687 before review curation. All fourteen original PR #3–#16 head branches are [linked in the branch/PR map](docs/REVIEWER_HISTORY_MAP.md), under history/actual-* refs, so a reader can inspect original code, diffs and recorded dates. The original [private source repository](https://github.com/sangtrx/vexil-dota2-win-probability) holds GitHub PR discussions; access to its comments remains separate and has not been granted to Vexil.
 
@@ -85,7 +85,7 @@ A Git author identifies a commit's recorded author, not the specific tools used 
 
 ## Dated reviewer curation (16 November 2026)
 
-- [Curation PR #1](https://github.com/sangtrx/vexil-dota2-case-study/pull/1): preserve the exact already-selected 500-game experiment, 3,836 original TEST probabilities, TRAIN-only model and VALIDATION evidence.
+- [Curation PR #1](https://github.com/sangtrx/vexil-dota2-case-study/pull/1): preserve the selected 500-game experiment, corrected 3,836 TEST forecasts, TRAIN-only model and VALIDATION evidence.
 - [Curation PR #2](https://github.com/sangtrx/vexil-dota2-case-study/pull/2): retain real rejected hypotheses, 68/100 overlapping games, uncertainty and decision gates.
 - [Curation PR #3](https://github.com/sangtrx/vexil-dota2-case-study/pull/3): assemble the four-page report, honest assistance disclosure, deterministic self-testing reviewer archive and transparent history.
 - Unmerged research drafts deliberately remain DRAFT/HOLD; they do not strengthen the original TEST or add independent confirmation.
