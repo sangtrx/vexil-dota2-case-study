@@ -29,7 +29,7 @@ I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN onl
 
 XP and objective features added complexity without lowering validation loss, so I kept M1. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
 
-**Additional models after inspecting TEST:** I tested Q1, a five-input logistic model with gold-path features, on TRAIN-forward folds only. Its log loss was **0.6060** versus M1's **0.6121** (Q1−M1 95% series interval **[−0.0174,+0.0047]**). XGBoost and LightGBM using M1's three inputs scored **0.6156** and **0.6162**. Q1 was not evaluated on the original VAL or TEST, and these TRAIN losses cannot be compared with TEST log loss. Wider-feature transfer, delay and nested-tuning studies used the old Roshan parser and were not rerun after its correction (docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md).
+**Additional models after inspecting TEST:** I tested Q1, a five-input logistic model with gold-path features, on TRAIN-forward folds. Its log loss was **0.6060** versus M1's **0.6121** (Q1−M1 95% series interval **[−0.0174,+0.0047]**). XGBoost and LightGBM using M1's three inputs scored **0.6156** and **0.6162**. Q1 was not evaluated on the original VAL or TEST, and these TRAIN losses cannot be compared with TEST log loss. Wider-feature transfer, delay and nested-tuning studies used the old Roshan parser and were not rerun after its correction (docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md).
 
 ---
 
@@ -53,7 +53,7 @@ In a separate TRAIN-only comparison of 2–4k gold leads, the leading side event
 
 **28 adaptive screens:** I tested time-shape, team-economy allocation, gold shocks, towers, Roshan/Aegis, buyback, Blink/BKB item completion and hero draft. Best historical *reused-VAL* point estimate was **P20** (LL **0.514098** vs old M1 **0.519346**), but the adjusted 28-way interval includes zero; **0/28 promoted**.
 
-**81 engineered features:** 19 gold dynamics, 13 XP, 19 player allocation, 17 objectives and 13 interactions. The original parser missed Roshan team attribution; one other feature was duplicated. After repairing Roshan, the fixed 84-input Q2 and Q3 models still had worse TRAIN-forward log loss than M1 (**+0.0177** and **+0.0101**). Neither was promoted; the original TEST was not used for the repair.
+**81 engineered features:** 19 gold dynamics, 13 XP, 19 player allocation, 17 objectives and 13 interactions. The original parser missed Roshan team attribution; one other feature was duplicated. After repairing Roshan, the fixed 84-input Q2 (elastic-net logistic) and Q3 (shallow boosted tree) models still had worse TRAIN-forward log loss than M1 (**+0.0177** and **+0.0101**). Neither was promoted; the original TEST was not used for the repair.
 
 ---
 

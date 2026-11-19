@@ -1,6 +1,6 @@
 # Feature engineering and model experiments
 
-**Truong Quang Sang | Vexil Capital Senior Data Scientist take-home | supplementary research inventory | 18 November 2026**
+**Truong Quang Sang | Vexil Capital Senior Data Scientist take-home | supplementary research inventory updated 19 November 2026**
 
 This appendix records the models and features I tried, including the ones I rejected. The four-page report contains the main decision. The submitted 16-code-cell notebook fits M0-M3 and includes a development-only item diagnostic; it does not execute every experiment listed here.
 
@@ -8,7 +8,7 @@ The ZIP includes selected research scripts, frozen forecasts, metadata and reado
 
 ## Main finding
 
-The original 500-game point-in-time observational study finds TEST minute-log-loss M0 gold baseline **0.516444** versus M1 time-aware **0.504015** on 106 games / 3,836 predictions. The paired 95% match bootstrap for M1−M0 **[-0.0304,+0.0014]** includes zero, and M1 worsens minute-30+ Brier **0.1028→0.1074**. I kept **M0 as the reference and M1 in shadow mode**. The extra modelling work did not provide enough evidence to replace the simpler model.
+The original 500-game point-in-time observational study finds TEST minute-log-loss M0 gold baseline **0.516444** versus M1 time-aware **0.504015** on 106 games / 3,836 predictions. The paired 95% match bootstrap for M1−M0 **[-0.0304,+0.0014]** includes zero, and M1 worsens minute-30+ Brier **0.1028→0.1074**. I recommend **M0 as the reference**, with M1 considered for future shadow evaluation. The extra modelling work did not provide enough evidence to replace the simpler model.
 
 ### Which data support each result
 
@@ -116,12 +116,12 @@ Here **positive** loss difference means worse. A favorable late30 slice does not
 | Can we weight **each game equally** rather than minute-count? | MATCH_EQUAL M1 | March TRAIN-forward minute LL **0.618253**, M1 **0.612086**; Oct equal-game LL **0.466953**, Q1 **0.468959**; Nov17 equal-game LL **0.389317** vs M1 **0.398011** | Estimand changes and period inconsistency; no single winner across primary and late30 slices |
 | Can we use saturated economic representation? | E_SHARE1 / SAT_ASINH3 | Oct E_SHARE1 LL **0.493254** vs Q1 **0.489278** | Exploratory failure vs strong baseline |
 | Do dozens of rich inputs transfer out of time? | ALL rich-features March-fitted model | Oct 180 games: ALL LL **0.493651** vs Q1 **0.489278**; Nov 22 games: ALL **0.445080** vs Q1 **0.449371**, grouped interval includes zero | Apparent advantage flips by period, not a robust lift |
-| Can fixed **event lag** protect causal timing? | ALL60 = structural model with 60s delayed event fields | ALL60−Q1 ΔLL **-0.001947**, 95% [-0.011426,+0.007177]; stability gate FAIL | Not compelling and not real received-at |
+| Can fixed **event lag** protect causal timing? | ALL60 = structural model with 60s delayed event fields | ALL60−M1 ΔLL **−0.008070**, 95% **[−0.015267,−0.001393]**, favorable **4/4** TRAIN folds; versus stronger Q1 **−0.001947**, CI **[−0.011426,+0.007177]** | Better than M1 on reused TRAIN folds, not confirmed against Q1. Historical Roshan parser was flawed, this study was not rerun and no live arrival time was measured; no promotion |
 | Does smoother **probability output** reduce loss? | S1_fixed / S2_event_reset | S1_fixed−M1 ΔLL **+0.003703** and late30 Brier +0.006874; S2_event_reset ΔLL +0.000308 | Smoothing can worsen proper scores; NO-GO |
 | Can corrected stale observations be used? | FRESH vs CLOCK/HOLD lag1/lag3 with NO_DATA initial policy | Nov17 M1 FRESH LL **0.423054**, CLOCK3 **0.474476**, HOLD3 **0.465932** | Hypothetical lag stress on 17 already scored games; **not** measured live latency |
 | Is the clock of parsed arrays self-consistent? | Player vs team gold/XP alignment | 2,910 player vectors; 10,685 raw snapshot indices; no aggregate mismatch | Parser consistency check, **not** actual event arrival assurance |
 
-The earlier stale feed research had a **P0 code bug**: for lag d and minute t<d, it reused minute-zero data that had not arrived. The corrected policy emits NO_DATA p=0.5 without calling any model until a lagged snapshot genuinely exists; both the old invalid and corrected simulations remain archived, do not quietly substitute old scores.
+The earlier stale feed research had a **P0 code bug**: for lag d and minute t<d, it reused minute-zero data that had not arrived. The corrected policy emits NO_DATA p=0.5 without calling any model until a lagged snapshot genuinely exists; both the old invalid and corrected simulations remain archived separately.
 
 **Correction scope for the previous comparisons:** The ALL/ALL60 and October/November rich-feature results used the historical parser that dropped Roshan kills. Those transfer and delay studies were **not rerun** after the repair. Their scores are historical and cannot establish performance for the corrected 81-feature matrix. The core M0/M1/Q1 and 3-input models do not use those Roshan columns. See [the correction](../research/ROSHAN_CORRECTION_20261119.md).
 
@@ -151,7 +151,7 @@ The first XGBoost version pin `3.4.2` did **not** exist in BigLinux's package in
 - Original March TEST: 106 games, 3,836 forecasts. M1 vs M0 LL **0.504015 vs 0.516444**, paired 95% **[-0.0304,+0.0014]**. A single 55-minute game produced **54.9%** of the estimated improvement; late30 Brier **worsened**.
 - Original separate historical 200-game stage-gate (30 Mar–2 Apr, 6,827 minutes, 97 series): phase-blend LL **0.539850**, worse than M1 **0.533704**; no promotion. Historical pre-correction evidence, not one of the original 500.
 - November original 100-game check: overall LL CI includes zero, dropping one league reverses apparent improvement; **68 games overlap** an earlier 120-game research collection. Not independent replication.
-- October 180-game research: Q1 **0.489278** vs M1 **0.493602** LL. The Oct and Nov comparisons were viewed during earlier candidate search; do not label subsequent tests independent.
+- October 180-game research: Q1 **0.489278** vs M1 **0.493602** LL. The Oct and Nov comparisons were viewed during earlier candidate search; subsequent tests are not independent.
 - November22 study: small independent count (22 games/9 groups), insufficient to generalize, outcomes previously inspected; economic/rank/coupling advantage does not establish promotion.
 - Fresh November17: 17 retrospective professional games, 711 minutes, 10 groups. M1 LL **0.423054**, MATCH_EQUAL **0.415423**, Q1 **0.428489**; MATCH_EQUAL−Q1 equal-match LL CI **98.75% [-0.036681,+0.002497]** includes zero. Minimum protocol required at least 30 games / 15 series, among other gates. NO-GO.
 - Original historical robustness: 900-game parse checks / 9,000 player histories, 32,106 clock/gold indices and a 12,063-case adversarial assertion suite per two seeds. These are parser/tests evidence **not** 900 extra independent modelling games.
@@ -159,7 +159,7 @@ The first XGBoost version pin `3.4.2` did **not** exist in BigLinux's package in
 
 ## 8. Why the negative results are useful
 
-The hypothesis path was substantive: economic advantage might hide allocation (carry vs support), path history, tower/Roshan control, item completion, draft synergies, phase-specific shifts and delivery delay. Many of these structures are genuinely meaningful in Dota 2. However, a prediction feature must improve **out-of-sample proper scores** after multiplicity and dependence checks; an interesting mechanism alone is not a statistically validated improvement. I retained the failed ablations, sensitivity results, nulls and software faults.
+The hypotheses asked whether economic advantage might hide allocation (carry vs support), path history, tower/Roshan control, item completion, draft synergies, phase-specific shifts and delivery delay. They are plausible game mechanisms but need predictive validation. However, a prediction feature must improve **out-of-sample proper scores** after multiplicity and dependence checks; an interesting mechanism alone is not a statistically validated improvement. I retained the failed ablations, sensitivity results, nulls and software faults.
 
 **Model choice is a decision under uncertainty:** M0 is the required reference; M1 is the originally selected challenger, with meaningful but uncertain point advantage. The justified next test is a *genuinely new, precommitted, diverse professional-series cohort with real source receipt timestamps*, a primary minute-weighted log-loss difference threshold and independent group confidence intervals, plus non-regression in 30+ Brier. No new model was refitted on original TEST in any supplementary experiment.
 

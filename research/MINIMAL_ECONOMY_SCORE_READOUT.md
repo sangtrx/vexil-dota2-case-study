@@ -41,4 +41,4 @@
 - Source player gold_t is *cumulative earned gold*, NOT actual inventory net worth. Source as-of game clock consistency does not imply available real-time received_at.
 - A match-equal TRAIN objective does not mean forecasts within the same match are independent. All intervals bootstrap whole professional series/singletons.
 - The equal-match cluster-bootstrap interval was added as an explicitly POST-RESULT sensitivity after inspecting the first scoring receipt. No model, feature, hyperparameter, population, frozen comparator or approval gate was changed.
-- Employer notebook, original TEST forecasts, report/PDF, ZIP, original Draft PR and main unchanged.
+- At the time of this historical experiment, the original notebook and 3,836 TEST forecasts were unchanged. The report and reviewer ZIP were rebuilt on 19 November to document later corrections.

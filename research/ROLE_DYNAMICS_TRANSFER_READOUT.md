@@ -49,6 +49,6 @@
 - All 291 March TRAIN matches used to fit each fixed logistic model. October and November outcomes never used in feature fitting, scaling or calibration. CONSENSUS is a fixed 0.5/0.5 probability average, no fitted gate.
 - Per-player earned-gold and XP arrays must be source-aligned, as-of current minute, roster/side symmetric, group-invariant. They are NOT actual current item net worth.
 - The two later cohorts and raw source manifest were previously verified; no new HTTP. True feature receipt timestamp is not available. No claims of live model reliability.
-- The employer notebook, 4-page report, reviewer ZIP, original March TEST and Draft PR #9 were not changed.
+- At the time of this historical experiment, the original notebook and 3,836 TEST forecasts were unchanged. The report and reviewer ZIP were rebuilt on 19 November to document later corrections.
 
 **Decision:** These additional mechanisms may inform later prospective science; no changes to the employer-ready required gold-only baseline or prior model decisions.

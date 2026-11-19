@@ -14,7 +14,7 @@ I tested whether match time adds useful information beyond gold lead when predic
 | Brier score ↓ | 0.1719 | **0.1684** |
 | 30+ minute Brier ↓ | **0.1028** | 0.1074 |
 
-M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for 54.9% of the **overall** observed log-loss gain. **I kept M0 as the reference and M1 in shadow mode.** The report shows the uncertainty by match and series.
+M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for 54.9% of the **overall** observed log-loss gain. **I recommend M0 as the reference and M1 only for future shadow evaluation.** The report shows the uncertainty by match and series.
 
 **Current reviewer ZIP (repository path):** delivery/Vexil_Dota2_Creative_Research_20261119.zip. It includes supplementary experiments; none changed the selected model.
 
@@ -58,6 +58,6 @@ Development-only lag-buffer stress and the pre/post-TEST correction history are 
 | Feature research, including the Roshan parser correction | [Research atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md), [Roshan correction](research/ROSHAN_CORRECTION_20261119.md), [P01–P28 register](docs/EXPERIMENT_REGISTER.md) |
 | Error slices, dependence and calibration | [Error analysis](docs/ERROR_ANALYSIS.md), [Team/league audit](docs/TEAM_LEAGUE_DEPENDENCE.md), [Calibration](docs/CALIBRATION_BIAS_READOUT.md) |
 | Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
-| Authentic research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
+| Research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
 Original GitHub PR discussions remain in a separately private repo; they are not required to review the ZIP. The package contains the notebook, report, frozen TEST predictions and offline checks. The report states the **10-hour active-work estimate** and discloses AI and open-source tools.

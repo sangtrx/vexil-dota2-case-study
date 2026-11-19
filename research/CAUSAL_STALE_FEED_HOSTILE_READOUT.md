@@ -78,4 +78,4 @@ One-minute **future** MATCH_EQUAL economic lead on 694 nonterminal rows changed 
 - The original 137-game delayed-gold study's early-minute availability assumption was not valid; preserve prior receipt but avoid using it to assert real live performance.
 - Historical raw replay arrays are internally aligned; no independently observed received_at or serving-feed net-worth/earned-gold parity. Real-time GO is blocked.
 - This cohort's labels have already been used in previous model research. All new CIs are descriptive and do NOT adjust for previous model searching.
-- Original applicant report, notebook, TEST predictions, ZIP and draft PR unchanged.
+- At the time of this historical experiment, the original notebook and 3,836 TEST forecasts were unchanged. The report and reviewer ZIP were rebuilt on 19 November to document later corrections.

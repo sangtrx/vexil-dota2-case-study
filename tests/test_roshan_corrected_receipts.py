@@ -73,6 +73,28 @@ class CorrectedRoshanReceiptTest(unittest.TestCase):
         self.assertIn("0.0177", report)
         self.assertIn("0.0101", report)
         self.assertIn("**Assistance disclosure:**", report)
+        for name in (
+            "QUANT_BIBLE_PATH_READOUT.md",
+            "MINIMAL_ECONOMY_SCORE_READOUT.md",
+            "ROLE_DYNAMICS_TRANSFER_READOUT.md",
+            "CAUSAL_STALE_FEED_HOSTILE_READOUT.md",
+        ):
+            historical=(R/name).read_text().replace("\n"," ").lower()
+            self.assertIn("report and reviewer zip were rebuilt",historical,name)
+            self.assertNotIn("user-owned",historical,name)
+            self.assertNotIn("draft pr #9",historical,name)
+        atlas=(ROOT/"docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md").read_text()
+        self.assertIn("ALL60−M1",atlas)
+        self.assertIn("−0.008070",atlas)
+        self.assertIn("not rerun",atlas)
+        self.assertIn("updated 19 November 2026",atlas)
+        readme=(ROOT/"README.md").read_text()
+        self.assertIn("future shadow evaluation",readme)
+        report=(ROOT/"REPORT.md").read_text()
+        self.assertIn("Q2 (elastic-net logistic)",report)
+        self.assertIn("Q3 (shallow boosted tree)",report)
+        self.assertIn("Q1 was not evaluated on the original VAL or TEST",report)
+        self.assertNotIn("TRAIN-forward folds only",report)
         current=(R/"RICH_FEATURE_MODEL_ROSHAN_CORRECTED_READOUT.md").read_text()
         self.assertIn("report and reviewer ZIP were rebuilt", current)
         self.assertNotIn("No applicant submission update", current)

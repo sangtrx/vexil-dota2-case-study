@@ -245,13 +245,14 @@ def markdown_receipt(data: dict) -> str:
         else f"| {name} | {c[name]['brier']['point']:+.6f} | "
              f"{c[name]['late30_delta_brier']:+.6f} | n/a |"
         for name in ("M0_gold", "A_additive", "M1_interaction"))
-    return f"""# One Quant Bible path-dependence idea — actually tested on TRAIN
+    return f"""# Q1 gold-path features: TRAIN-forward results
 
 **Verdict:** {"MET exploratory predeclared gate (still no new blind TEST)" if data["predeclared_gate_met"] else "FAILED predeclared gate; do not add Q1 to Vexil employer notebook"}.
 
 This is a **post-original-TEST, 291-game TRAIN-only** sensitivity,
 not an independent replication. The required notebook, M0/M1 selection,
-TEST predictions and user-owned disclosure are unchanged.
+3,836 TEST forecasts were unchanged. The report and reviewer ZIP were
+rebuilt on 19 November to document later corrections.
 The motivating question is whether recent drawdown, volatility and
 directionality of gold lead add information after controlling for the
 current lead and elapsed game time. Section 8 of the Quant Research
@@ -297,7 +298,7 @@ Q1 was tested once using the frozen window/features and regularization.
 
 **Decision:** {"Q1 earns only a future, genuinely blind replication test." if data["predeclared_gate_met"] else "Q1 passes the directional and Brier point-estimate checks but fails the predeclared superiority condition versus M1: the 95% log-loss CI still includes zero. Do not promote it."} A discarded
 hypothesis with a clear negative control is evidence of scientific
-creativity, not proof of predictive improvement or 10/10 from Vexil.
+work worth checking on new data, not proof of predictive improvement.
 """
 
 
