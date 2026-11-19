@@ -139,7 +139,9 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertNotEqual(receipt["repo_frozen_16cell_notebook_sha256"],
                             hashlib.sha256((ROOT/"live_dota2_win_probability.ipynb").read_bytes()).hexdigest())
         self.assertIn("Colab's preinstalled scientific libraries",self.readme)
-        self.assertIn("shipped notebook revision has **not** been rerun in the cloud",self.report)
+        self.assertIn("new Colab CPU Run All on 19 November",self.report)
+        self.assertIn("16/16 cells, zero errors",self.report)
+        self.assertIn("docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",self.report)
         self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
 
     def test_phase_uncertainty_and_november_negative_not_hidden(self):

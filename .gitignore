@@ -35,3 +35,4 @@ output/
 .local/
 *.bak.*
 *.log
+.internal-review/

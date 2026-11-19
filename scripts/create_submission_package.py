@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and verify a deterministic reviewer-facing Vexil submission archive."""
+"""Build the full internal research archive; not the minimal recruiter ZIP."""
 from __future__ import annotations
 
 import csv
@@ -17,7 +17,7 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DEST = ROOT / "delivery" / "Vexil_Dota2_Creative_Research_20261119.zip"
+DEST = ROOT / ".internal-review" / "Vexil_Dota2_FullResearch_20261119.zip"
 MODEL_CODE_SHA256 = "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b"
 EXPECTED_NOTEBOOK_SHA256 = "5e016e61badc3f28bce50f5a692da4a143f8255dc586ad7f429d07e42726ecca"
 EXPECTED_REVIEWER_NOTEBOOK_SHA256 = "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
@@ -27,6 +27,11 @@ PRE_EDITORIAL_CLOUD_NOTEBOOK_SHA256 = "466dce5d64adf081fb20642df210f903794745714
 EXPECTED_FORECAST_SHA256 = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FILES = (
     "README.md",
+    "delivery/REVIEWER_README.md",
+    "delivery/SUPPLEMENTARY_EXPERIMENTS.md",
+    "delivery/Vexil_Dota2_Takehome_20261119.zip",
+    "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",
+    "scripts/build_reviewer_package.py",
     "SUBMISSION_PACKAGE_README.md",
     "HISTORY.md",
     "live_dota2_win_probability.ipynb",
@@ -560,7 +565,7 @@ def verify() -> dict:
             or cloud16["cloud_csv_byte_equality_verified"]
             or cloud16["new_blind_TEST_claimed"]
             or cloud16["live_received_at_verified"]
-            or "docs/COLAB_16CELL_RUN_RECEIPT.json" not in (ROOT/"REPORT.md").read_text()):
+            or "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json" not in (ROOT/"REPORT.md").read_text()):
         raise ValueError("16-cell Colab receipt or honest evidence boundary is invalid")
 
     forecasts = (ROOT / "artifacts/heldout_predictions.csv").read_bytes()
@@ -697,7 +702,7 @@ def verify() -> dict:
     for local_source in ("docs/EXPERIMENT_REGISTER.md",
                          "docs/DISCOVERY_PROVENANCE.md",
                          "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
-                         "docs/COLAB_16CELL_RUN_RECEIPT.json"):
+                         "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json"):
         if local_source not in report:
             raise ValueError("Reviewer PDF must identify primary evidence: "+local_source)
     for local_source in ("docs/COLAB_COLD_RUN_RECEIPT.json",

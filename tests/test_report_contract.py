@@ -35,12 +35,29 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/EXPERIMENT_REGISTER.md",report)
         self.assertIn("**Time spent:** About **10 active hours**, as self-reported",report)
         self.assertIn("**Assistance disclosure:**",report)
-        self.assertIn("Claude Sonnet and Claude Fable conducted read-only critiques",report)
+        self.assertIn("Claude Sonnet and Claude Fable supplied read-only critiques",report)
+        self.assertIn("Automated scripts and remote-agent tools helped run",report)
         self.assertIn("AI reviews are not independent human peer review",report)
         self.assertIn("AI reviews are not independent human peer review",report)
         self.assertIn("**Public code/tools:**",report)
         self.assertIn("docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",report)
         self.assertNotIn("https://github.com/",report)
+        import hashlib
+        import json
+        receipt=json.loads((ROOT/"docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json").read_text())
+        notebook=(ROOT/"live_dota2_win_probability.ipynb").read_bytes()
+        self.assertEqual(receipt["execution_status"],"PASS_CURRENT_CLOUD_RUN_ALL")
+        self.assertEqual(receipt["original_uploaded_notebook_sha256"],
+                         hashlib.sha256(notebook).hexdigest())
+        self.assertEqual(receipt["executed_code_cells"],16)
+        self.assertEqual(receipt["execution_counts"],list(range(1,17)))
+        self.assertEqual(receipt["error_cells"],0)
+        self.assertEqual(receipt["match_count"],500)
+        self.assertEqual(receipt["test_rows"],3836)
+        self.assertEqual(receipt["scientific_code_sha256"],
+                         "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b")
+        self.assertIn("19 November",report)
+        self.assertIn("Colab CPU Run All",report)
         self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
@@ -151,7 +168,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(newer["scientific_code_sha256"],receipt["scientific_code_sha256"])
         self.assertFalse(newer["cloud_csv_byte_equality_verified"])
         self.assertFalse(newer["new_blind_TEST_claimed"])
-        self.assertIn("16-cell Colab Run All",(ROOT/"REPORT.md").read_text())
+        self.assertIn("Colab CPU Run All on 19 November",(ROOT/"REPORT.md").read_text())
 
     def test_notebook_claim_matches_completed_cloud_receipt(self):
         import json
@@ -177,7 +194,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("about 0.00455 worse",report)
         for file_path in ("docs/EXPERIMENT_REGISTER.md",
                           "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
-                          "docs/COLAB_16CELL_RUN_RECEIPT.json"):
+                          "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json"):
             self.assertIn(file_path,report)
             self.assertTrue((ROOT/file_path).is_file())
         readme=(ROOT/"README.md").read_text()

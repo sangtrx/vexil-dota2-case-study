@@ -25,7 +25,7 @@ python -m unittest discover -s tests -p "test_*.py" -q
 
 There are **181 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
 
-**Package:** Vexil_Dota2_Creative_Research_20261119.zip (19 November 2026). This guide is inside the extracted ZIP.
+**Reviewer package:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip) (19 November 2026). Its extracted [README](delivery/REVIEWER_README.md) is intentionally short; the full source research archive and offline test suite remain available in this repository.
 
 ## What is included
 
@@ -34,7 +34,7 @@ There are **181 offline unit/contract checks**. They do **not** replace a fresh 
 - [Original cohort/discovery provenance](docs/DISCOVERY_PROVENANCE.md), including the unarchived raw discovery-page limitation.
 - [TRAIN-only additive gold+time control](research/GOLD_INTERACTION_NULL_READOUT.md), [rejected-model register](docs/EXPERIMENT_REGISTER.md) and [independent-unit sensitivity](docs/TEAM_LEAGUE_DEPENDENCE.md).
 - [Development-only timing and model-selection sensitivity](docs/REVIEWER_SCIENTIFIC_LIMITS.md), plus the reproducible [historical TEST correction receipt](docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json) from both frozen forecast CSVs.
-- [Reproduction evidence](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), including the exact-source 16-cell BigLinux local replay and an [earlier-revision Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), **not** a verified cloud Run All of the current notebook bytes.
+- [Reproduction evidence](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), including the exact-source local replay, historical [earlier-revision Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), and a [19 November fresh Colab Run All](docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json) of the current notebook's source (16/16 cells, zero errors). Colab's exported notebook bytes differ due to output metadata, not source-code edits.
 
 **Interpretation:** M1 has lower point log loss than the required gold-only M0, but the main paired 95% interval includes zero; minute-30+ Brier is worse. Keep M0 as reference and M1 shadow-only. Corrected TEST scores were produced after the original TEST was inspected and are **not** a new blind evaluation. Raw 500-match JSON is not shipped; the notebook can refetch the public match IDs.
 

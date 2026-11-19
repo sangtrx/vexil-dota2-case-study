@@ -1,0 +1,80 @@
+{
+  "status": "PASS_CURRENT_CLOUD_RUN_ALL",
+  "execution_status": "PASS_CURRENT_CLOUD_RUN_ALL",
+  "executed_date_utc": "2026-11-19",
+  "environment": "Authenticated Google Colab CPU, new notebook uploaded from locally SHA-checked source",
+  "source_provenance": "Uploaded exact frozen notebook bytes via authenticated browser UI, then downloaded fully executed notebook through Google Drive connector",
+  "original_uploaded_notebook_sha256": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f",
+  "cloud_export_executed_notebook_sha256": "054cda8fc000c0eab3825a4360c81ad8806f2ccc2bd0e52a8cf0524080405612",
+  "cloud_export_size_bytes": 720229,
+  "cloud_modified_utc": "2026-11-19T11:48:03.953Z",
+  "scientific_code_sha256": "e9225bc9b270f7d1ae50352822b49930af39a8664fbbd749b05218411d707f7b",
+  "executed_code_cells": 16,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "error_cells": 0,
+  "match_count": 500,
+  "patch_counts": {
+    "59": 250,
+    "60": 250
+  },
+  "api_calls": 508,
+  "cache_hits": 0,
+  "excluded_matches": 0,
+  "minute_rows_total": 18292,
+  "split_minute_rows": {
+    "train": 10675,
+    "validation": 3781,
+    "test": 3836
+  },
+  "test_games": 106,
+  "test_rows": 3836,
+  "selected_model": "M1_time_value",
+  "scores_round6": {
+    "M0_logloss": 0.516444,
+    "M1_logloss": 0.504015,
+    "M0_brier": 0.171912,
+    "M1_brier": 0.168353,
+    "M0_ECE10": 0.089483,
+    "M1_ECE10": 0.075019
+  },
+  "paired_match_difference_95ci_round6": {
+    "M1_minus_M0_logloss": [
+      -0.030371,
+      0.001413
+    ],
+    "M1_minus_M0_brier": [
+      -0.006938,
+      0.000192
+    ]
+  },
+  "pit_prefixes_checked": 18292,
+  "pit_prefixes_changed_by_future_deletion": 0,
+  "frozen_original_heldout_csv_sha256": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
+  "source_code_parity_verified": true,
+  "original_test_was_previously_inspected": true,
+  "new_blind_test_claimed": false,
+  "live_received_at_verified": false,
+  "cloud_export_csv_byte_equality_verified": false,
+  "cloud_execution_notebook_bytes_differ_due_to_outputs": true,
+  "ai_assistance_disclosed_in_report": true,
+  "candidate_confirmed_active_hours": 10,
+  "hours_note": "Applicant confirmed 10 active hours; unattended AI/API/cloud runs excluded.",
+  "source_file_access": "Original uploaded Colab notebook is private; reviewer can independently run the shipped notebook on their own Colab account."
+}
