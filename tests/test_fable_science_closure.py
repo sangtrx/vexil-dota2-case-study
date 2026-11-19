@@ -62,7 +62,7 @@ class FableScienceRepairContract(unittest.TestCase):
                           records[(2,30)]["games"]),(11,25))
         self.assertTrue(c["not_a_model_selection_gate"])
         self.assertTrue(c["not_causal"])
-        self.assertIn("not a measured within-game time effect",self.report)
+        self.assertIn("not evidence of a within-game time effect",self.report)
         self.assertIn("docs/TRAIN_LEADER_STATE_EMPIRICAL.md",self.report)
         self.assertIn("docs/figures/train_interaction_vs_additive_null.png",self.report)
         self.assertNotIn("docs/figures/train_leader_state_empirical.png",self.report)
@@ -107,10 +107,10 @@ class FableScienceRepairContract(unittest.TestCase):
                 counts[minute][1] += 1
         self.assertEqual(counts, {10: [66, 82], 30: [11, 25]})
         self.assertEqual(len(mid_by_minute[10] & mid_by_minute[30]), 7)
-        self.assertIn("only 7 matches occur in both groups", self.report)
+        self.assertIn("Only **7 games** were in both groups", self.report)
         supplemental = (ROOT/"docs/TRAIN_LEADER_STATE_EMPIRICAL.md").read_text()
         self.assertIn("only 7 match IDs qualify", supplemental)
-        self.assertIn("not a measured within-game time effect", self.report)
+        self.assertIn("not evidence of a within-game time effect", self.report)
 
     def test_post_inspection_not_mislabeled_preregistered_blind(self):
         import json
@@ -139,7 +139,7 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertNotEqual(receipt["repo_frozen_16cell_notebook_sha256"],
                             hashlib.sha256((ROOT/"live_dota2_win_probability.ipynb").read_bytes()).hexdigest())
         self.assertIn("Colab's preinstalled scientific libraries",self.readme)
-        self.assertIn("a new exact-version cloud run has **not** been verified",self.report)
+        self.assertIn("shipped notebook revision has **not** been rerun in the cloud",self.report)
         self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
 
     def test_phase_uncertainty_and_november_negative_not_hidden(self):
@@ -148,7 +148,8 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertAlmostEqual(s["brier_M1"],0.24392514896856357)
         self.assertAlmostEqual(s["ece_M0"],0.04959713082061086)
         self.assertAlmostEqual(s["ece_M1"],0.08115121989176531)
-        for term in ("phase comparisons are exploratory and unadjusted",
+        for term in ("Six of the eight phase intervals favour M1",
+                     "unadjusted and use the same games",
                      "both intervals contain zero","68 games overlap",
                      "about 0.00455 worse"):
             self.assertIn(term,self.report)
@@ -166,7 +167,7 @@ class FableScienceRepairContract(unittest.TestCase):
         for term in ("19 November 2026","66/82","11/25","1/4 folds","+0.000405",
                      "0.5429","0.1074 (worse)","+0.03139","+0.00748",
                      "[−0.00670,−0.00038]","291-game TRAIN fit",
-                     "XGBoost 3.4.1", "No third-party Dota predictor was copied"):
+                     "XGBoost 3.4.1", "AI reviews are not independent human peer review"):
             self.assertIn(term,pdf)
         self.assertEqual(
             int(subprocess.check_output(["pdfinfo",str(ROOT/"REPORT.pdf")],text=True

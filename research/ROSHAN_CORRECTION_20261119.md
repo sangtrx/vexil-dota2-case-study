@@ -26,10 +26,10 @@ The correction was discovered after previous outcomes had been inspected. This i
 | Q1 path | 0.605963 | 0.605963 | −0.006123 |
 | Q2 sparse elastic-net (84 inputs) | 0.629397 | 0.629819 | +0.017733 |
 | Q3 shallow boosted tree (84 inputs) | 0.621266 | 0.622214 | +0.010129 |
-| XGB84 | 0.621809 | 0.621254 | +0.009168 |
+| XGB84 | 0.621809 | 0.621254 | +0.009169 |
 | LGB84 | 0.622936 | 0.624856 | +0.012770 |
 
-Positive Δ means a higher (worse) log loss than M1. With the repaired inputs, Q2 and Q3 still win only **1/4** forward blocks against M1. Their two-candidate-adjusted series-bootstrap intervals still include zero: Q2 **[−0.012136,+0.053563]**, Q3 **[−0.012449,+0.033903]**. The XGB84/LGB84 studies used their previously fixed 90-round configurations and were not retuned. **None of the repaired candidates is promoted.** These comparisons also do not undo the many-model search carried out before this correction.
+Positive Δ means a higher (worse) log loss than M1. With the repaired inputs, Q2 and Q3 still win only **1/4** forward blocks against M1. Their two-candidate-adjusted series-bootstrap intervals still include zero: Q2 **[−0.012136,+0.053563]**, Q3 **[−0.012449,+0.033904]**. The XGB84/LGB84 studies used their previously fixed 90-round configurations and were not retuned. **None of the repaired candidates is promoted.** These comparisons also do not undo the many-model search carried out before this correction.
 
 ## Reproducing the post-result correction
 

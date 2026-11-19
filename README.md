@@ -39,7 +39,7 @@ For a quick **offline** verification of frozen forecasts, models, figures and re
 python -m unittest discover -s tests -p "test_*.py" -q
 ```
 
-This runs **181 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on BigLinux, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
+This runs **181 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on a local Linux machine, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
 
 ## Data and interpretation boundaries
 

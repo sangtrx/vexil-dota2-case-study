@@ -1,6 +1,6 @@
 # Research history and submission curation
 
-The original research commits date from 13–15 November 2026, including main at SHA 5bff687 before reviewer curation. All fourteen original PR #3–#16 head branches are [linked in the branch/PR map](docs/REVIEWER_HISTORY_MAP.md), under history/actual-* refs, so a reader can inspect original code, diffs and recorded dates. The original [private source repository](https://github.com/sangtrx/vexil-dota2-win-probability) holds GitHub PR discussions; access to its comments remains separate and has not been granted to Vexil.
+The original research commits date from 13–15 November 2026, including main at SHA 5bff687 before reviewer curation. All fourteen original PR #3–#16 head branches are [linked in the branch/PR map](docs/REVIEWER_HISTORY_MAP.md), under history/actual-* refs, so a reader can inspect original code, diffs and recorded dates. The original [private source repository](https://github.com/sangtrx/vexil-dota2-win-probability) holds GitHub PR discussions; access to its private comments is separate from this repository.
 
 **The curation/01, curation/02 and curation/03 PRs are new work dated 16 November 2026**, arranging frozen results and reviewer QA. They are not backdated experiments. Begin with [REPORT.pdf](REPORT.pdf), [the executed notebook](live_dota2_win_probability.ipynb) and the concise [research decision trail](docs/RESEARCH_DECISION_TRAIL.md). The [provenance contract](docs/CURATION_PROVENANCE.md) distinguishes archival work from new integration commits.
 
@@ -31,7 +31,7 @@ Original GitHub PR discussions are in a **different private repository**. They m
 | [#13](https://github.com/sangtrx/vexil-dota2-win-probability/pull/13) | Merged | fix/vexil-colab-receipt-20261115 | Fresh 14-cell Colab cold-run receipt, source hash, numeric parity and unverified cloud-export CSV parity |
 | [#14](https://github.com/sangtrx/vexil-dota2-win-probability/pull/14) | Merged post-hoc audit | research/vexil-series-ci-20261115 | 54-series grouped bootstrap from unchanged TEST forecasts; CI still crosses zero for log loss |
 | [#15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15) | Rejected/closed | research/vexil-quant-bible-freshness-20261115 | Proposed freshness headline telescoped; explicitly withdrawn |
-| [#16](https://github.com/sangtrx/vexil-dota2-win-probability/pull/16) | Draft/unmerged | review/vexil-senior-submission-20261115 | Separate four-page reviewer proposal, no employer submission |
+| [#16](https://github.com/sangtrx/vexil-dota2-win-probability/pull/16) | Draft/unmerged | review/vexil-senior-submission-20261115 | Separate historical four-page reviewer proposal, not merged into the original research main |
 
 ## Key original commits
 
@@ -64,8 +64,8 @@ original private research history, not the optional TRAIN-only contrast.
 Its raw payloads and separate replay code are not part of this ZIP.
 The original PR discussion links may require separate access.
 Original research code and selected branch heads are mirrored into
-this repository for reviewers of this repository alone; external
-recruiter access has not yet been granted.
+this repository for reviewers of this repository alone; read access to this
+repository is managed separately.
 
 ## Separate Nov 2026 post-TEST temporal check
 
@@ -98,4 +98,4 @@ A Git author identifies a commit's recorded author, not the specific tools used 
 - [Curation PR #3](https://github.com/sangtrx/vexil-dota2-case-study/pull/3): assemble the four-page report, honest assistance disclosure, deterministic self-testing reviewer archive and transparent history.
 - Unmerged research drafts deliberately remain DRAFT/HOLD; they do not strengthen the original TEST or add independent confirmation.
 
-These are genuine GitHub PR events in this new repository on 16 November, not reconstructed earlier timestamps. No original commit was rewritten or backdated, and no employer delivery has been authorized.
+These PRs were opened here on 16 November; original commits and their timestamps were preserved.

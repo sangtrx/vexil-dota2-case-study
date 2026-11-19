@@ -1,6 +1,6 @@
 # Rich feature lab: 81 as-of Dota 2 state features
 
-**Editorial correction (19 November 2026):** This is a historical result, calculated before a bug in the 81-feature Roshan parser was discovered. Roshan events had valid `team` values but the old parser tried `player_slot`, making two Roshan fields zero. These scores describe the old matrix only. The corrected fixed-model TRAIN-forward rerun is in [Roshan correction](ROSHAN_CORRECTION_20261119.md); this nested sensitivity was not rerun. No model was promoted.
+**Editorial correction (19 November 2026):** This is a historical result, calculated before a bug in the 81-feature Roshan parser was discovered. Roshan events had valid `team` values but the old parser tried `player_slot`, making two Roshan fields zero. These scores describe the old matrix only. The fixed models were rerun on corrected TRAIN features; see [Roshan correction](ROSHAN_CORRECTION_20261119.md). The scores below are historical. The separate nested sensitivity was not rerun. No model was promoted.
 
 
 **Scope:** Post-result TRAIN-only exploration. Already-viewed original TEST and VALIDATION results never enter this evaluation. The predeclared two-model correction does NOT correct the previous 28+ research-model screens.

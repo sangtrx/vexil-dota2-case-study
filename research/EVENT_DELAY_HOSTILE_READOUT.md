@@ -24,4 +24,4 @@ Only original 291 TRAIN games, unchanged four chronological, series-disjoint 137
 - Original ALL0−Q1 LL: -0.001637; the previously registered ALL0 score is reconstructed from scratch.
 - Frozen event-lag stability gate: FAIL / NO-GO.
 
-This is simulated event source delay. Live timestamp arrival has NOT been measured. The user-owned 4-page submission, notebook, original TEST predictions, ZIP, original draft PR and main are unchanged. This historical 4-day TRAIN-window result cannot establish cross-patch or cross-league transport; original TEST is not blind anymore.
+This is simulated event source delay. Live timestamp arrival has NOT been measured. At the time of this experiment, the original notebook and TEST forecasts were unchanged. The report and ZIP were rebuilt on 19 November to document the Roshan repair. This historical 4-day TRAIN-window result cannot establish cross-patch or cross-league transport; original TEST is not blind anymore.

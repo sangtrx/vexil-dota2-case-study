@@ -32,4 +32,4 @@
 - M0/M1 predictions independently re-created against earlier saved probabilities within 1e-7; all held-out source rows exact (match_id,minute) match.
 - Even an ALL improvement in both periods cannot repair prior broad March feature search or the fact these October/November outcomes were already observed for M0/M1.
 - True live per-source ingress timestamps remain unverified. OpenDota post-game parser coherence does not prove fresh live availability.
-- Original notebook, heldout TEST CSV, report, reviewer ZIP and Draft PR #9 unchanged.
+- At the time of this historical experiment, the notebook and 3,836 TEST forecasts were unchanged. The report and ZIP were rebuilt on 19 November to document the Roshan repair.

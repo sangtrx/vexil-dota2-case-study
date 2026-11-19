@@ -58,9 +58,11 @@ class CreativeAtlasContract(unittest.TestCase):
     def test_all_readouts_and_correct_scope_disclosures(self):
         t=ATLAS.read_text()
         report=(ROOT/"REPORT.md").read_text()
-        for x in ("P20","Q1","XGB3","LGB3","81","28","0/28",
-                  "0.605963","0.615597","0.616196"):
+        for x in ("P20","Q1","XGBoost","LightGBM","81","28","0/28",
+                  "0.6060","0.6156","0.6162","+0.0177","+0.0101"):
             self.assertIn(x,report)
+        for exact in ("0.605963","0.615597","0.616196"):
+            self.assertIn(exact,t)
         for x in ("reused development","TRAIN-only","received_at",
                   "not a new held-out TEST","not a new unseen dataset"):
             # The first three are in source-specific case; false future claims
@@ -90,7 +92,7 @@ class CreativeAtlasContract(unittest.TestCase):
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],
             text=True).split()).lower()
         for phrase in ("28 adaptive screens","0/28 promoted","81 engineered features",
-                      "xgb3","lgb3","q1","0.605963","0.615597",
+                      "xgboost","lightgbm","q1","0.6060","0.6156",
                       "the corrected test is not a fresh blind holdout"):
             self.assertIn(phrase,pdf)
 

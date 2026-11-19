@@ -54,6 +54,25 @@ class CorrectedRoshanReceiptTest(unittest.TestCase):
             text=(R/name).read_text()
             self.assertIn("19 November",text,name)
             self.assertIn("Roshan",text,name)
+        for name in ("RICH_FEATURE_MODEL_READOUT.md",
+                     "BOOSTED_TREES_DIRECT_READOUT.md"):
+            historical=(R/name).read_text()
+            self.assertIn("fixed models were rerun on corrected TRAIN features", historical)
+            self.assertIn("separate nested sensitivity was not rerun", historical)
+            self.assertNotIn("this nested sensitivity was not rerun", historical)
+        for name in ("OCT_NOV_FEATURE_TRANSFER_READOUT.md",
+                     "EVENT_DELAY_HOSTILE_READOUT.md"):
+            historical=(R/name).read_text()
+            self.assertIn("report and ZIP were rebuilt", historical)
+            self.assertNotIn("user-owned", historical)
+            self.assertNotIn("Draft PR #9 unchanged", historical)
+        report=(ROOT/"REPORT.md").read_text()
+        self.assertIn("Additional models after inspecting TEST", report)
+        self.assertIn("Q1 was not evaluated on the original VAL or TEST", report)
+        self.assertIn("Six of the eight phase intervals favour M1", report)
+        self.assertIn("0.0177", report)
+        self.assertIn("0.0101", report)
+        self.assertIn("**Assistance disclosure:**", report)
         current=(R/"RICH_FEATURE_MODEL_ROSHAN_CORRECTED_READOUT.md").read_text()
         self.assertIn("report and reviewer ZIP were rebuilt", current)
         self.assertNotIn("No applicant submission update", current)

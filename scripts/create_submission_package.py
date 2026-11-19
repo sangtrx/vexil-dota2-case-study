@@ -321,11 +321,11 @@ def verify() -> dict:
             "0.1028",
             "0.1074 (worse)",
             "0.5429",
-            "63/106 Radiant-winning games",
+            "63/106 = 0.5943",
             "+0.03139", "+0.00748", "[−0.00670,−0.00038]",
             "291-game TRAIN fit", "XGBoost 3.4.1",
             "one executed 16-code-cell notebook",
-            "No third-party Dota predictor was copied"):
+            "AI reviews are not independent human peer review"):
         if statement not in pdf_content:
             raise ValueError("Stale or inconsistent REPORT.pdf rendering: "+statement)
     images = subprocess.check_output(["pdfimages", "-list", str(ROOT / "REPORT.pdf")], text=True)
@@ -400,7 +400,7 @@ def verify() -> dict:
     # the four-page reader report should explain model interpretation
     # without reproducing every post-hoc contrast.
     if ("not an effect caused by time" not in report
-            or "not a measured within-game time effect" not in report):
+            or "not evidence of a within-game time effect" not in report):
         raise ValueError("Figure 1 or empirical time comparison is misrepresented")
 
     # Check post-hoc calibration-in-the-large without fitting on TEST.

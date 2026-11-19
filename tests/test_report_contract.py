@@ -33,11 +33,12 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("adjusted 28-way 95% CI [-0.016929,+0.006434]",register)
         self.assertIn("P20",register)
         self.assertIn("docs/EXPERIMENT_REGISTER.md",report)
-        self.assertIn("**Time spent:** Approximately **10 hours of active work**",report)
+        self.assertIn("**Time spent:** About **10 active hours**, as self-reported",report)
         self.assertIn("**Assistance disclosure:**",report)
-        self.assertIn("Claude Sonnet and Fable AI conducted read-only critiques",report)
+        self.assertIn("Claude Sonnet and Claude Fable conducted read-only critiques",report)
         self.assertIn("AI reviews are not independent human peer review",report)
-        self.assertIn("No third-party Dota predictor was copied",report)
+        self.assertIn("AI reviews are not independent human peer review",report)
+        self.assertIn("**Public code/tools:**",report)
         self.assertIn("docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",report)
         self.assertNotIn("https://github.com/",report)
         self.assertIn("docs/RESEARCH_DECISION_TRAIL.md",readme)
@@ -119,7 +120,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("Original research commits and branches are retained",report)
         self.assertNotIn("no reviewer access granted",report)
         self.assertIn("original github pr discussions remain in a separately private",readme.lower())
-        self.assertIn("No original commit was rewritten or backdated",(ROOT/"HISTORY.md").read_text())
+        self.assertIn("original commits and their timestamps were preserved",(ROOT/"HISTORY.md").read_text().lower())
         self.assertNotIn("late-game failures",report)
 
     def test_colab_run_receipt_is_scoped_honestly(self):
@@ -192,8 +193,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         ).split())
         for snippet in ("19 November 2026","286 mature TRAIN games","143 seconds",
                         "18,292","1/4 folds","[−0.0304,+0.0014]",
-                        "0.1028","0.1074 (worse)","63/106 Radiant-winning games",
-                        "16-code-cell notebook","No third-party Dota predictor was copied"):
+                        "0.1028","0.1074 (worse)","63/106 = 0.5943",
+                        "16-code-cell notebook","AI reviews are not independent human peer review"):
             self.assertIn(snippet,source)
             self.assertIn(snippet,pdf)
 
@@ -222,7 +223,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("60*t < duration",text)
         self.assertIn("strict pre-terminal",report)
         self.assertIn("10 hours",text)
-        self.assertIn("10 hours",report)
+        self.assertIn("10 active hours",report)
         self.assertIn("candidate's time estimate",guide)
         self.assertIn("106",report)
         self.assertIn("3,836",readme)

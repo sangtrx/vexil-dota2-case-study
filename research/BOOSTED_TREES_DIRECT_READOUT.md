@@ -1,6 +1,6 @@
 # Direct fixed XGBoost vs LightGBM on March TRAIN-only forward folds
 
-**Editorial correction (19 November 2026):** This is a historical result, calculated before a bug in the 81-feature Roshan parser was discovered. Roshan events had valid `team` values but the old parser tried `player_slot`, making two Roshan fields zero. These scores describe the old matrix only. The corrected fixed-model TRAIN-forward rerun is in [Roshan correction](ROSHAN_CORRECTION_20261119.md); this nested sensitivity was not rerun. No model was promoted.
+**Editorial correction (19 November 2026):** This is a historical result, calculated before a bug in the 81-feature Roshan parser was discovered. Roshan events had valid `team` values but the old parser tried `player_slot`, making two Roshan fields zero. These scores describe the old matrix only. The fixed models were rerun on corrected TRAIN features; see [Roshan correction](ROSHAN_CORRECTION_20261119.md). The scores below are historical. The separate nested sensitivity was not rerun. No model was promoted.
 
 
 **Post-selection exploratory model family test. Original March TEST and VAL are not accessed. No new blinded evidence or real-live receipt timestamps.**

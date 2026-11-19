@@ -58,7 +58,7 @@ class MatureLabelValidationTest(unittest.TestCase):
         readme = (audit.ROOT / "README.md").read_text()
         for token in ("286 mature TRAIN games", "[−0.0148,+0.0090]",
                       "The corrected TEST is not a fresh blind holdout",
-                      "not a claim of persistent drift"):
+                      "did not interpret the gap as drift or recalibrate on TEST"):
             self.assertIn(token, report)
         maturity=(audit.ROOT/"docs/DEVELOPMENT_MATURITY_AND_CREATIVE_NULL.md").read_text()
         self.assertIn("0.532940",maturity)
