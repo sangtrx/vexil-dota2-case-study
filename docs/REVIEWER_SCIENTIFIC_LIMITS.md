@@ -25,7 +25,7 @@ The historical pre-correction commit 009f54d (14 November 2026, 16:16 ICT) retai
 
 Commit 4a77ae5 (14 November 2026, 20:24 ICT) applied 60*t < duration, removing 12 terminal rows across 8 TRAIN, 3 VAL and 1 TEST games; the affected TRAIN design was refitted. The corrected frozen 3,836-forecast TEST CSV SHA256 is 03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441, with M0/M1 log loss 0.516444424 / 0.504014697 and Brier 0.171912178 / 0.168352834.
 
-Both comparisons are descriptive, not two independent tests. **Both forecast CSVs are now included in the ZIP**, with an independent standard-library verifier (research/verify_terminal_correction_history.py) and the machine receipt docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json. The historical commit can still be inspected in Git history, but Git access is no longer needed for this numerical comparison. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It therefore does not represent an untouched pre-TEST preregistration.
+Both comparisons are descriptive, not two independent tests. **The reviewer ZIP includes only the corrected 3,836-row TEST forecast CSV.** The historical pre-correction CSV, its numeric receipt (docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json), and the standard-library verification script (research/verify_terminal_correction_history.py) remain in the private source repository. They are **not reproducible from this ZIP alone**; the original correction can be inspected once repository access is available. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It therefore does not represent an untouched pre-TEST preregistration.
 
 ## C. TRAIN-forward M0 differs from VAL and TEST for identifiable design reasons
 
@@ -49,9 +49,6 @@ The existing 28-way screen, tree models, October/November reuse and one influent
 
 ## Reproducibility and responsibility
 
-From the ZIP root with pinned dependencies, run:
+From the reviewer ZIP root, use the included `live_dota2_win_probability.ipynb`, `requirements.txt` and `artifacts/heldout_predictions.csv` to reproduce and check current 500-game model results. A fresh notebook run requires OpenDota network access. The **source-repository-only** checks `research/development_asof_robustness.py --check` and `research/verify_terminal_correction_history.py --check` require development data and a historical pre-correction file not shipped in this concise ZIP.
 
-    python research/development_asof_robustness.py --check
-    python research/verify_terminal_correction_history.py --check
-
-The development receipt records the source audit script SHA-256 and a Python/scientific-library version ledger, pins source file hashes and checks numerical outputs with 1e-9 absolute float tolerance while requiring exact labels, counts, hashes and cohort identity. The archived preterminal comparison is reproducible **without Git** from both included forecast CSVs. The 10-hour estimate and research decisions are self-reported; these scripts check calculations, not authorship or working time. AI-generated code and reviews are not independent human peer review.
+The development receipts in the private source repository pin script/data fingerprints, versions and numeric tolerances. The linked historical comparison is not reproducible from the reviewer ZIP alone. I spent approximately 10 active hours, excluding unattended runs; this is not an audited time log. Scripts do not validate personal authorship. AI-generated code and critiques are disclosed in REPORT.pdf and do not constitute human peer review.

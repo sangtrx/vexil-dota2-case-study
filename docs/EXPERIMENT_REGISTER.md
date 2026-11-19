@@ -12,7 +12,7 @@ The linked PR discussions belong to a separate private repository; they are hist
 
 **Rules of interpretation:** Follow-up S1-S4, M4, P01-P28 and P20 item-model results were screened on **103 previously inspected validation matches**. Registering their hypotheses before *their own* finite screen does not undo earlier adaptive use of those labels. A later 200-match cohort was used for one locked stage-gate test, not to reselect 28 candidates. All scores in the 28-way table are *development outcomes*. No trading PnL, verified live packet-arrival timestamps or two-layer neural model is claimed.
 
-## Complete PR inventory and disposition
+## Selected historical PR #3–#11 inventory and disposition
 
 | PR | Executed research / engineering scope | What survived |
 |---|---|---|
@@ -42,9 +42,9 @@ All rows below use the **same reused development validation**, reference M1 log 
 | P15: recent lethal fights | 0.517020 | -0.002326 | Insufficient practical gain/uncertainty after multiplicity |
 | P22: raw hero-draft encoding | 1.581239 | +1.061894 | This 160-indicator, effectively underregularized model failed; not evidence all hero drafts are useless |
 
-**Real matched-game example:** At minute 25, patch-59 TRAIN matches 8739246794 and 8739992397 have Radiant gold leads +1,901 and +1,929 (only **28** apart), and XP leads +6,964 and +6,862 (**102** apart). One has an Aegis pickup at 24:39; the other has no recent Aegis and a gold-versus-structural-control mismatch. Both Radiant teams ultimately won. The contrast demonstrates missing state representation, **not incremental predictive lift or causality**. At minute 25 the final, frozen TRAIN-only M1 produces **0.603123** and **0.604641** Radiant-win probabilities, despite the different structure/Roshan states (tower deltas **0 vs −1**; Roshan kill deltas **+2 vs −1**). The Aegis event is source timestamp **1,479 seconds = 24:39**. The bundled TRAIN-only feature table and the matched-state regression test verify the game IDs, gold leads, outcome labels and fitted probabilities without looking at TEST; the original source JSON (kept in a private local cache) supports the Aegis/objective event details. Both Radiant teams won, so this is *not* a measured M4 advantage.
+**Real matched-game example:** At minute 25, patch-59 TRAIN matches 8739246794 and 8739992397 have Radiant gold leads +1,901 and +1,929 (only **28** apart), and XP leads +6,964 and +6,862 (**102** apart). One has an Aegis pickup at 24:39; the other has no recent Aegis and a gold-versus-structural-control mismatch. Both Radiant teams ultimately won. The contrast demonstrates missing state representation, **not incremental predictive lift or causality**. At minute 25 the final, frozen TRAIN-only M1 produces **0.603123** and **0.604641** Radiant-win probabilities, despite the different structure/Roshan states (tower deltas **0 vs −1**; Roshan kill deltas **+2 vs −1**). The Aegis event is source timestamp **1,479 seconds = 24:39**. The private source repository contains a frozen TRAIN-only feature table and matched-state regression test verifying the game IDs, gold leads, outcome labels and fitted probabilities without looking at TEST; the original source JSON (kept in a private local cache) supports the Aegis/objective event details. Both Radiant teams won, so this is *not* a measured M4 advantage.
 
-## Full 28-hypothesis screen: every candidate and negative result
+## Recorded 28-hypothesis screen: every candidate and negative result
 
 The cards linked in each row were registered before this finite experiment. All 103 validation games and 53 series had already been accessed in earlier development. A simultaneous approximate max-T correction covers the **28 comparisons within this screen only**, not every overlapping prior experiment. Favorable fold counts come from three separate earlier TRAIN-only chronological checks. MAX-T upper = upper 95% interval for candidate-minus-M1 log loss; positive means insufficient evidence. Every candidate failed the joint promotion gate.
 

@@ -44,11 +44,13 @@ keeping M0 as the reference.
 The corrected TEST was assessed after an earlier terminal-row audit; it is
 **not a newly blind holdout**. True live packet arrival times are not
 available. Supplementary experiments and their negative results are
-summarized in **SUPPLEMENTARY_EXPERIMENTS.md**. These do not constitute a
+summarized in **SUPPLEMENTARY_EXPERIMENTS.md**. The complete historical
+P01–P28 numerical screen and additional feature inventory are in
+`docs/EXPERIMENT_REGISTER.md` and `docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md`. These do not constitute a
 second independent evaluation of the original TEST.
 
-AI/code-tool assistance and about 10 active hours, confirmed by the applicant,
-are disclosed in the report.
+I spent about 10 active hours, excluding unattended runs. The report
+discloses how AI and public software tools assisted the work.
 
 This ZIP is intentionally concise. The wider research history and raw
 verification protocols remain in the private source repository, available

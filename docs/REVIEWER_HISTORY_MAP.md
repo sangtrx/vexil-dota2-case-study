@@ -55,7 +55,9 @@ for the requested submission-length summary.
 ## Submission boundary
 
 This repository is **private**. Merely creating these commits/PRs
-is not delivering the assignment to Vexil or granting recruiter
-permissions. Candidate identity, individual contributions, active
-human hours and assistance disclosure still need applicant signoff.
+does not deliver the assignment to Vexil or grant recruiter
+permissions. The applicant has confirmed approximately 10 hours
+of active work, excluding unattended execution. His final report
+discloses AI assistance and responsibility for the scientific decision;
+commit author metadata alone does not establish manual authorship.
 No main model was changed based on exposed TEST outcomes.

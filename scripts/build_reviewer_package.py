@@ -32,6 +32,28 @@ FROZEN_SOURCES = {
     "docs/ERROR_AUDIT_RECEIPT.json": "docs/ERROR_AUDIT_RECEIPT.json",
     "docs/SERIES_CI_RECEIPT.json": "docs/SERIES_CI_RECEIPT.json",
     "docs/REVIEWER_SCIENTIFIC_LIMITS.md": "docs/REVIEWER_SCIENTIFIC_LIMITS.md",
+    "docs/DISCOVERY_PROVENANCE.md": "docs/DISCOVERY_PROVENANCE.md",
+    "docs/EXPERIMENT_REGISTER.md": "docs/EXPERIMENT_REGISTER.md",
+    "docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md":
+        "docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md",
+    "docs/TRAIN_LEADER_STATE_EMPIRICAL.md":
+        "docs/TRAIN_LEADER_STATE_EMPIRICAL.md",
+    "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json":
+        "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
+    "research/BOOSTED_TREES_DIRECT_READOUT.md":
+        "research/BOOSTED_TREES_DIRECT_READOUT.md",
+    "research/ROSHAN_CORRECTION_20261119.md":
+        "research/ROSHAN_CORRECTION_20261119.md",
+    "research/error_diagnostics.py": "research/error_diagnostics.py",
+    "docs/TRAIN_LEADER_STATE_EMPIRICAL_RECEIPT.json":
+        "docs/TRAIN_LEADER_STATE_EMPIRICAL_RECEIPT.json",
+    "docs/figures/train_leader_state_empirical.png":
+        "docs/figures/train_leader_state_empirical.png",
+    "docs/figures/time_value_scenarios.png": "docs/figures/time_value_scenarios.png",
+    "docs/figures/train_interaction_vs_additive_null.png":
+        "docs/figures/train_interaction_vs_additive_null.png",
+    "docs/figures/phase_error_audit.png": "docs/figures/phase_error_audit.png",
+    "docs/figures/heldout_reliability.png": "docs/figures/heldout_reliability.png",
 }
 COLAB_RECEIPT = "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json"
 STAMP = (2026, 11, 19, 0, 0, 0)
@@ -107,6 +129,55 @@ def verify_sources() -> dict:
             "M0_brier": expected[0][1], "M1_brier": expected[1][1]}
 
 
+def reviewer_safe_text(name: str, raw: bytes) -> bytes:
+    if name not in {
+        "docs/EXPERIMENT_REGISTER.md",
+        "docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md",
+        "docs/DISCOVERY_PROVENANCE.md",
+        "docs/TRAIN_LEADER_STATE_EMPIRICAL.md",
+        "research/BOOSTED_TREES_DIRECT_READOUT.md",
+        "research/ROSHAN_CORRECTION_20261119.md",
+    }:
+        return raw
+    content = raw.decode("utf-8")
+    # Preserve every reported numerical value. Only remove links to private
+    # commit/PR pages that would be inaccessible to a ZIP-only reviewer.
+    content = re.sub(
+        r"\[([^\]]+)\]\(https://github\.com/sangtrx/(?:vexil-dota2-win-probability|vexil-dota2-case-study)/[^)]+\)",
+        r"\1 (private Git history; access not part of this ZIP)",
+        content,
+    )
+    content = re.sub(
+        r"\[([^\]]+)\]\(https://github\.com/sangtrx/vexil-dota2-win-probability\)",
+        r"\1 (private original research repository; access not included)",
+        content,
+    )
+    # Every local link must resolve inside the final archive or become
+    # plainly marked source-repository-only text, never a dangling ZIP link.
+    import posixpath
+    def fix_local(match):
+        label, target = match.group(1), match.group(2)
+        if target.startswith(("https://","http://","mailto:","#")):
+            return match.group(0)
+        if target.startswith("/"):
+            raise ValueError("Absolute reviewer Markdown link: "+name)
+        rel = target.split("#",1)[0].split("?",1)[0]
+        loc = posixpath.normpath(posixpath.join(
+            posixpath.dirname(name), rel))
+        if loc in FROZEN_SOURCES or loc == COLAB_RECEIPT:
+            return match.group(0)
+        return label + " (private source repository only; not included in this ZIP)"
+    content = re.sub(r"\[([^\]]+)\]\(([^)\n]+)\)", fix_local, content)
+    return content.encode("utf-8")
+
+
+def assert_report_references_shipped(files: set[str]) -> None:
+    report=(ROOT / "REPORT.md").read_text()
+    for ref in re.findall(r"(?<![A-Za-z0-9_])(?:docs|research)/[A-Za-z0-9_./-]+\.(?:json|md|png)",report):
+        if ref not in files:
+            raise ValueError(f"REPORT references unavailable reviewer attachment: {ref}")
+
+
 def run() -> dict:
     scores = verify_sources()
     sources = dict(FROZEN_SOURCES)
@@ -124,12 +195,13 @@ def run() -> dict:
                 raise ValueError("Colab claim is unsupported by full output proof")
             sources[COLAB_RECEIPT] = COLAB_RECEIPT
             colab_verified = True
-    data = {n: (ROOT / p).read_bytes() for n, p in sources.items()}
-    # Deliver a single notebook, four-page report and a compact result record.
+    data = {n: reviewer_safe_text(n, (ROOT / p).read_bytes()) for n, p in sources.items()}
+    assert_report_references_shipped(set(data))
+    # Deliver one executable notebook plus checkable results, hypotheses and figures.
     if sum(x.endswith(".ipynb") for x in data) != 1:
         raise ValueError("Only one notebook can be shipped")
-    if len(data) > 11:
-        raise ValueError("Reviewer package unexpectedly grew")
+    if len(data) != 25:
+        raise ValueError("Reviewer package membership changed without review")
     for name, b in data.items():
         if Path(name).suffix not in TEXT_EXTENSIONS:
             continue
@@ -145,8 +217,10 @@ def run() -> dict:
         "heldout_predictions_sha256": PRED_SHA,
         "source_scores": scores,
         "exact_current_notebook_colab_run_verified": colab_verified,
-        "notes": ("This is the minimal reviewer package, not the internal "
-                  "research/protocol archive. Original TEST was previously inspected."),
+        "notes": ("This is a focused reviewer package with the full recorded "
+                  "P01-P28 failure table and selected source receipts/figures. "
+                  "Additional research scripts and cohorts are private. "
+                  "Original TEST was previously inspected."),
         "files": {n: {"bytes": len(b), "sha256": sha(b)}
                   for n, b in sorted(data.items())},
     }

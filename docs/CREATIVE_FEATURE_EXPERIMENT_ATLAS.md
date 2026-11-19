@@ -4,7 +4,7 @@
 
 This appendix records the models and features I tried, including the ones I rejected. The four-page report contains the main decision. The submitted 16-code-cell notebook fits M0-M3 and includes a development-only item diagnostic; it does not execute every experiment listed here.
 
-The ZIP includes selected research scripts, frozen forecasts, metadata and readouts. Some audits are reproducible offline from the ZIP; the full supplementary model search is not, because additional research code, environments and original match JSONs remain outside it. These are post-result studies, not independent validation.
+The **concise reviewer ZIP** includes this inventory, the recorded P01–P28 table, selected numerical readouts, frozen VAL/TEST forecasts and the one executable 500-game notebook. It does **not** include every supplementary research script, research-branch raw match JSON cache or external cohort. The private repository retains implementation and provenance. Post-result comparisons are descriptive, not independent validation.
 
 ## Main finding
 
@@ -46,7 +46,7 @@ P20 was creative but did **not** earn selection. The exact historical register p
 
 ## 3. COMPLETE adaptive screen: P01-P28 (tier B)
 
-**These values belong to an older 18,304-row version before a 12-row terminal-boundary correctness repair.** The M1 reference in this *historical* screen is **0.519346**, not the corrected applicant VAL score 0.5197. All 103 VAL games had already been inspected; none of 28 passed the joint promotion gate. The 28-way interval only controls those 28 within-screen comparisons, **not prior adaptive research**. **0/28 candidates were promoted; this is not a new held-out TEST.**
+**These values belong to an older 18,304-row version before a 12-row terminal-boundary correctness repair.** The M1 reference in this *historical* screen is **0.519346**, not the corrected applicant VAL score 0.5197. All 103 VAL games had already been inspected; none of 28 passed the joint promotion gate. The 28-way interval only controls those 28 within-screen comparisons, **not prior adaptive research**. **0/28 candidates were promoted; this is not a new held-out TEST.** The 28-way procedure cannot exclude small effects or adjust for the entire earlier search history. No global detectable-effect/power calculation was predeclared.
 
 | ID | Proposed and tested hypothesis | Val. LL | Val. Brier | Delta vs M1 | 95% max-T upper | Earlier TRAIN folds favorable | Advance? |
 |---|---|---:|---:|---:|---:|---:|---|
@@ -165,7 +165,7 @@ The hypotheses asked whether economic advantage might hide allocation (carry vs 
 
 ## 9. Where to inspect everything
 
-The original `docs/EXPERIMENT_REGISTER.md` contains the 28-hypothesis ledger and original private PR map. The following evidence files are included in the optional reviewer ZIP as text-only research appendices. They are NOT extra executable notebooks:
+The `docs/EXPERIMENT_REGISTER.md` in the reviewer ZIP contains the 28-hypothesis ledger, with private original PR links omitted. The **following detailed readouts live in the private source repository**, not in the concise ZIP except where explicitly listed in its manifest. They are not extra executable notebooks:
 
 - `research/QUANT_BIBLE_PATH_READOUT.md`
 - `research/QUANT_PATH_SIGNATURES_READOUT.md`
@@ -186,6 +186,6 @@ The original `docs/EXPERIMENT_REGISTER.md` contains the 28-hypothesis ledger and
 - `research/BOOSTED_TREES_HOSTILE_DECISION_20261118.md`
 - `research/POST_RESULT_EQUAL_MATCH_SENSITIVITY_NOTE_20261118.md`
 
-Reproduction boundaries: the historical original 500-game notebook can refetch frozen match IDs from OpenDota and has saved figures/outputs. Many later experiments depended on the author's historical raw-cache snapshot, isolated XGBoost/LightGBM packages and frozen research-branch scripts; those raw payloads are **not bundled** in the reviewer ZIP. Numeric readouts are retained with original GitHub source-branch histories and are not passed off as new independent employer scores.
+Reproduction boundaries: the original 500-game notebook can refetch frozen match IDs from OpenDota and has saved figures/outputs. Many later experiments depended on historical raw-cache snapshots, isolated XGBoost/LightGBM environments and research-branch scripts; those raw payloads are **not bundled** in the reviewer ZIP. Numeric readouts are retained with original GitHub source-branch histories and are not passed off as new independent employer scores.
 
 **Disclosure:** `REPORT.pdf` states the AI/public-code assistance and active-hours estimate. Active time is explicitly marked as a candidate estimate rather than an independently audited work log. AI-written code and review are not independent human peer review.

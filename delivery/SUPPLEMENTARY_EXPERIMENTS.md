@@ -17,7 +17,7 @@ comparisons below are on chronological, reused TRAIN-forward folds and
 | Q3 shallow boosted tree, repaired 84-input features | TRAIN-forward Δ LL vs M1 **+0.010129** | Worse after fixing Roshan; no promotion |
 | Fixed XGB84 / LGB84 with repaired Roshan attribution | TRAIN-forward LL **0.621254 / 0.624856** | Neither earned promotion |
 | M1 versus additive gold + time without interaction | Difference **−0.002020**; 95% grouped CI **[−0.0148,+0.0090]**, favourable **1/4** folds | No confirmed incremental benefit from the interaction |
-| 60-second event-lag stress (ALL60) | Historical reused TRAIN-forward Δ LL vs M1 **−0.008070**; Δ vs Q1 **−0.001947** with CI crossing zero | Better than M1 in this historic sample, not confirmed against the stronger Q1 reference or live packet arrival time |
+| 60-second event-lag stress (ALL60) | Historical reused TRAIN-forward Δ LL vs M1 **−0.008070**, CI **[−0.015267,−0.001393]**; Δ vs stronger Q1 **−0.001947**, CI **[−0.011426,+0.007177]** | Better than M1 here, not reliably better than Q1; old Roshan parser, no verified live packet times |
 
 ## A source bug was found
 
@@ -44,3 +44,10 @@ log-loss difference intervals include zero.
 These experiments add evidence about model sensitivity and failure
 modes, not proof of a new predictive edge. Full scripts, historical
 receipts and additional cohort notes remain in the source repository.
+
+Different rich-feature estimators (ALL0/ALL60 versus Q2/Q3) and the unrerun
+Roshan correction prevent treating these results as a single confirmed gain.
+The 28-way adjustment only covers that screen, not all adaptive trials;
+small real improvements remain possible without enough statistical power.
+External cohorts, including September, remain research-only and outside
+the 500-game employer deliverable.

@@ -33,7 +33,7 @@ Positive Δ means a higher (worse) log loss than M1. With the repaired inputs, Q
 
 ## Reproducing the post-result correction
 
-The ZIP contains the corrected TRAIN-only engineered feature table, raw-input hash ledger, model receipts and source. With the main pinned Python environment from `requirements.txt`:
+The **full internal research archive**, not the concise reviewer ZIP, retains the corrected TRAIN-only feature table, raw-input hash ledger, model receipts and source. To reproduce the repaired model scores, clone the private source repository and use its pinned Python environment:
 
 ```bash
 python research/roshan_corrected_rich_models.py --check
@@ -45,7 +45,7 @@ To rerun the optional XGBoost/LightGBM sensitivity in a separate environment, in
 python research/roshan_corrected_boosted_models.py --check
 ```
 
-The boosted run's exact software versions and model parameters are in its JSON receipt. The raw 291-match JSON cache is not bundled; rebuilding the engineered table from raw source requires the original match IDs and public OpenDota responses. The included frozen corrected feature table permits **offline re-evaluation of Q2/Q3 and the optional boosted models** without that raw cache. The corrected scripts verify the frozen original notebook/TEST hashes but do not fit on or score their labels.
+The boosted run's exact software versions and model parameters are in its JSON receipt. The raw 291-match JSON cache is not bundled; rebuilding the engineered table from raw source requires the original match IDs and public OpenDota responses. The frozen corrected feature table in the **private research repository** permits offline re-evaluation of Q2/Q3 and the optional boosted models without the raw JSON cache. The reviewer ZIP provides this correction summary and reported intervals, not runnable repaired-model scripts. The corrected scripts verify the frozen original notebook/TEST hashes but do not fit on or score their labels.
 
 Other model checks that used the old rich-feature parser were **not rerun** after the fix: October/November ALL transfer, ALL60 lag sensitivity and nested XGB84/LGB84. The historical readouts now carry dated errata. The three-input boosters, M0/M1 and Q1 are not affected. No new prospective model claim follows from this repair.
 

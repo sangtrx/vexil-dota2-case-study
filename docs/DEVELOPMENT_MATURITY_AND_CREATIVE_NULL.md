@@ -33,10 +33,10 @@ quantifies risk but **does not repair the original training fit**, create
 a new TEST or prove live feed readiness. Actual received-at time is
 unverified; the maturity rule uses only estimated match completion.
 
-The ZIP includes **14,456 minute rows for the original 394 development
+The **full internal research archive**, not the concise reviewer ZIP, includes **14,456 minute rows for the original 394 development
 games**, all four model families' at-minute inputs, and the frozen
-split/series metadata. This **development-only derived archive** excludes all **106 TEST** rows and outcomes; the separate reviewer ZIP also intentionally includes the original frozen TEST forecast CSV required by Vexil.
-The verifier refits the four original candidates, checks the original
+split/series metadata. This derived archive excludes all **106 TEST** rows and outcomes; the reviewer ZIP contains only the corrected frozen TEST forecast CSV required by Vexil.
+The internal verifier refits the four original candidates, checks the original
 M0/M1 VALIDATION probabilities, reproduces the mature-label embargo,
 and fails closed on checksum or score changes.
 

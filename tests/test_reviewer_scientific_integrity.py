@@ -65,7 +65,8 @@ class ReviewerScientificIntegrityTest(unittest.TestCase):
         self.assertIn("not a verified label-arrival margin", report)
         limits = (ROOT / "docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text()
         self.assertIn("historical pre-correction commit 009f54d", limits)
-        self.assertIn("Both forecast CSVs are now included", limits)
+        self.assertIn("The reviewer ZIP includes only the corrected 3,836-row TEST forecast CSV", limits)
+        self.assertIn("not reproducible from this ZIP alone", limits)
 
     def test_original_test_before_after_correction_is_independently_recomputed(self):
         spec = importlib.util.spec_from_file_location(

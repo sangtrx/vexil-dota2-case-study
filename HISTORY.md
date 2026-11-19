@@ -79,7 +79,7 @@ intervals include zero, and omitting one large league reverses the
 log-loss point advantage. A separate 120-game November
 study has its [frozen match manifest](docs/NOVEMBER_120_RESEARCH_MANIFEST.csv)
 and [68-game overlap receipt](docs/NOVEMBER_COHORT_OVERLAP_RECEIPT.json)
-included in this ZIP. These checks are not independent replications;
+retained in the full private research archive, not the concise reviewer ZIP. These checks are not independent replications;
 no pooled test or model promotion is claimed. The original 500-game
 notebook, TEST rows, historical research and model weights remain unchanged. This is
 optional evidence in docs/FORWARD_100_STRESS.md and the frozen

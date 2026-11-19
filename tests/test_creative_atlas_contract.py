@@ -70,7 +70,7 @@ class CreativeAtlasContract(unittest.TestCase):
             if x=="not a new unseen dataset":
                 continue
             self.assertIn(x.lower(),t.lower())
-        self.assertIn("some audits are reproducible offline",t.lower())
+        self.assertIn("does **not** include every supplementary research script",t.lower())
         self.assertNotIn("independent-within-train",t.lower())
         self.assertIn("not notebook dependencies",report.lower())
         for package in ("NumPy", "pandas", "SciPy", "tqdm", "XGBoost 3.4.1", "LightGBM 4.7.0", "Narwhals 2.21.2"):

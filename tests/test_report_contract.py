@@ -33,7 +33,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("adjusted 28-way 95% CI [-0.016929,+0.006434]",register)
         self.assertIn("P20",register)
         self.assertIn("docs/EXPERIMENT_REGISTER.md",report)
-        self.assertIn("**Time spent:** About **10 active hours**, as self-reported",report)
+        self.assertIn("**Time spent:** I spent about **10 active hours**",report)
         self.assertIn("**Assistance disclosure:**",report)
         self.assertIn("Claude Sonnet and Claude Fable supplied read-only critiques",report)
         self.assertIn("Automated scripts and remote-agent tools helped run",report)
@@ -62,8 +62,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("181 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("181 offline unit/contract checks",
+        self.assertIn("188 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("188 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -123,7 +123,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("0.00455 worse",report)
         self.assertIn("[−0.0037,+0.0109]",report)
         self.assertIn("68 games overlap",report)
-        self.assertIn("docs/FORWARD_100_STRESS.md",report)
+        self.assertIn("docs/FORWARD_100_STRESS.md",(ROOT/"README.md").read_text())
+        self.assertIn("further study details are in the private source repository, not the ZIP",report)
         self.assertIn("artifacts/forward_100_predictions.csv",supplement)
         self.assertIn("pre-correction",register.lower())
 

@@ -27,9 +27,9 @@ I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN onl
 | M2 · Lead dynamics | M1 + XP and available recent gold/XP changes | 0.5224 | 0.1778 |
 | M3 · Objectives | M2 + timestamped towers, barracks, Roshan and kills | 0.5282 | 0.1806 |
 
-XP and objective features added complexity without lowering validation loss, so I kept M1. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
+XP and objectives did not improve validation, so I kept M1. All **28 recorded candidate results** are in **docs/EXPERIMENT_REGISTER.md** (in the ZIP).
 
-**Additional models after inspecting TEST:** I tested Q1, a five-input logistic model with gold-path features, on TRAIN-forward folds. Its log loss was **0.6060** versus M1's **0.6121** (Q1−M1 95% series interval **[−0.0174,+0.0047]**). XGBoost and LightGBM using M1's three inputs scored **0.6156** and **0.6162**. Q1 was not evaluated on the original VAL or TEST, and these TRAIN losses cannot be compared with TEST log loss. Wider-feature transfer, delay and nested-tuning studies used the old Roshan parser and were not rerun after its correction (docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md).
+**Additional models after inspecting TEST:** I tested Q1, a five-input logistic model with gold-path features, on TRAIN-forward folds. Its log loss was **0.6060** versus M1's **0.6121** (Q1−M1 95% series interval **[−0.0174,+0.0047]**). XGBoost and LightGBM using M1's three inputs scored **0.6156** and **0.6162**. Q1 was not evaluated on the original VAL or TEST, and these TRAIN losses cannot be compared with TEST log loss. Other rich-feature and lag studies used the old Roshan parser and were not rerun (docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md, in the ZIP).
 
 ---
 
@@ -49,11 +49,11 @@ The stronger comparison is **M1 versus additive gold + time without the interact
 
 In a separate TRAIN-only comparison of 2–4k gold leads, the leading side eventually won **66/82** games at minute 10 and **11/25** at minute 30. Only **7 games** were in both groups, so this is not evidence of a within-game time effect (docs/TRAIN_LEADER_STATE_EMPIRICAL.md).
 
-### Additional feature and model experiments (full inventory: `docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md`)
+### Additional feature and model experiments (recorded inventory in the ZIP)
 
 **28 adaptive screens:** I tested time-shape, team-economy allocation, gold shocks, towers, Roshan/Aegis, buyback, Blink/BKB item completion and hero draft. Best historical *reused-VAL* point estimate was **P20** (LL **0.514098** vs old M1 **0.519346**), but the adjusted 28-way interval includes zero; **0/28 promoted**.
 
-**81 engineered features:** 19 gold dynamics, 13 XP, 19 player allocation, 17 objectives and 13 interactions. The original parser missed Roshan team attribution; one other feature was duplicated. After repairing Roshan, the fixed 84-input Q2 (elastic-net logistic) and Q3 (shallow boosted tree) models still had worse TRAIN-forward log loss than M1 (**+0.0177** and **+0.0101**). Neither was promoted; the original TEST was not used for the repair.
+**81 engineered features:** 19 gold, 13 XP, 19 player-allocation, 17 objectives and 13 interactions. Roshan attribution and a duplicate field needed repair; corrected Q2/Q3 still worsened TRAIN-forward log loss by **+0.0177/+0.0101** versus M1. An earlier 60-second lag variant ALL60 improved on M1 (**−0.00807**, CI **[−0.01527,−0.00139]**) but not decisively on Q1; it used the old parser and was not rerun. **No supplementary model was promoted using TEST.** The ZIP records the other failures.
 
 ---
 
@@ -75,9 +75,9 @@ A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.
 
 *Figure 3. Descriptive phase results from inspected TEST forecasts; minute rows share match outcomes.*
 
-One 55-minute match (8744971178) accounts for **54.9%** of M1's aggregate log-loss gain. Removing it for *influence diagnosis only* reduces the overall gain from 0.0124 to 0.0057; in the minute-30+ slice, M1−M0 log loss **flips from −0.00678 to +0.03139** (719 vs 694 forecasts), and Brier worsens from **+0.00455 to +0.00748**. No model was retuned on this observation. The exact calculation is preserved in docs/ERROR_AUDIT_RECEIPT.json and recomputed by the offline error-audit test.
+One 55-minute match (8744971178) accounts for **54.9%** of M1's aggregate log-loss gain. Removing it for *influence diagnosis only* reduces the overall gain from 0.0124 to 0.0057; in the minute-30+ slice, M1−M0 log loss **flips from −0.00678 to +0.03139** (719 vs 694 forecasts), and Brier worsens from **+0.00455 to +0.00748**. No model was retuned on this observation. The exact calculation is preserved in docs/ERROR_AUDIT_RECEIPT.json and can be checked using the bundled research/error_diagnostics.py script.
 
-Whole-match bootstrap CIs include zero for both scores. In a **post-hoc 54-series bootstrap**, log-loss CI **[−0.02828,+0.00012]** straddles zero, while Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Resampling unit and near-zero endpoints change the inference; shared teams/leagues remain. A separate 100-game November check is inconclusive: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** earlier research (docs/SERIES_CI_RECEIPT.json; docs/FORWARD_100_STRESS.md).
+Whole-match bootstrap CIs include zero for both scores. In a **post-hoc 54-series bootstrap**, log-loss CI **[−0.02828,+0.00012]** straddles zero, while Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Resampling unit and near-zero endpoints change the inference; shared teams/leagues remain. A separate 100-game November check is inconclusive: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** earlier research (docs/SERIES_CI_RECEIPT.json; further study details are in the private source repository, not the ZIP).
 
 ---
 
@@ -95,8 +95,8 @@ For an actual live service I would log match/model version, minute, event timest
 
 ## 6. Reproduction and assistance
 
-The deliverable contains **one executed 16-code-cell notebook**: 14 core study cells (including edits and diagnostics after initial TEST inspection) and two appended reviewer QA cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). A **new Colab CPU Run All on 19 November** executed the exact shipped notebook source (16/16 cells, zero errors), downloaded 500 matches and reproduced the 3,836 TEST forecasts and scores to six decimals (docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json). The Colab-exported notebook bytes differ because outputs/metadata were rewritten; the scientific code hash matches. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
+The deliverable contains **one executed 16-code-cell notebook**: 14 core study cells (including edits and diagnostics after initial TEST inspection) and two appended reviewer QA cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). A **new Colab CPU Run All on 19 November** executed the exact shipped notebook source (16/16 cells, zero errors), downloaded 500 matches and reproduced the 3,836 TEST-row count and headline scores to six decimals (docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json). The Colab-exported notebook bytes differ because outputs/metadata were rewritten; the scientific code hash matches. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
 
-**Time spent:** About **10 active hours**, as self-reported, designing the study, reviewing results and failures, and checking the submission. Unattended runs are excluded.
+**Time spent:** I spent about **10 active hours** framing the study, reviewing results and failures, and checking the submission. Unattended model/API runs are excluded.
 
-**Assistance disclosure:** I directed the study and take responsibility for the model choice, evaluation and conclusions. ChatGPT Web drafted and revised much of the notebook code, tests and report; Claude Sonnet and Claude Fable supplied read-only critiques. Automated scripts and remote-agent tools helped run data collection, cloud experiments and verification checks. I evaluated the resulting evidence; AI reviews are not independent human peer review. **Public code/tools:** The notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook, with top-level versions pinned in requirements.txt. Separate research used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; these are **not notebook dependencies** (versions in research/BOOSTED_TREES_DIRECT_READOUT.md).
+**Assistance disclosure:** I directed the study and take responsibility for the model choice, evaluation and conclusions. ChatGPT Web drafted and revised much of the notebook code, tests and report and helped generate candidate feature ideas; Claude Sonnet and Claude Fable supplied read-only critiques. Automated scripts and remote-agent tools helped run data collection, cloud experiments and verification checks. I evaluated the resulting evidence; AI reviews are not independent human peer review. **Public code/tools:** The notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook, with top-level versions pinned in requirements.txt. Separate research used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; these are **not notebook dependencies** (research/BOOSTED_TREES_DIRECT_READOUT.md, in the ZIP).

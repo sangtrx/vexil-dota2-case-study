@@ -77,7 +77,9 @@ FILES = (
     "tests/test_fable_science_closure.py",
     "docs/EXPERIMENT_REGISTER.md",
     "docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md",
+    "docs/RECORDED_RESEARCH_BRANCHES.md",
     "tests/test_creative_atlas_contract.py",
+    "tests/test_concise_reviewer_bundle.py",
     "research/rich_feature_engineering.py",
     "tests/test_roshan_team_attribution.py",
     "tests/test_roshan_corrected_receipts.py",
@@ -716,7 +718,8 @@ def verify() -> dict:
     if ("68 games overlap" not in report
             or "both intervals contain zero" not in report
             or "not a test on an unseen patch" not in report
-            or "docs/FORWARD_100_STRESS.md" not in report):
+            or "further study details are in the private source repository, not the ZIP" not in report
+            or "docs/FORWARD_100_STRESS.md" not in readme):
         raise ValueError("Report omitted material uncertainty or cohort scope")
     if "artifacts/forward_100_predictions.csv" not in (ROOT/"docs/FORWARD_100_STRESS.md").read_text():
         raise ValueError("Supplement omits the actual frozen 4,355-row forecast source")
@@ -796,7 +799,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 181 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 188 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),
