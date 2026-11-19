@@ -4,7 +4,7 @@
 
 I tested whether match time adds useful information beyond gold lead when predicting Radiant's win probability. The study uses **500 professional OpenDota games across patches 59 and 60** and only features timestamped at or before each forecast minute. The deliverables are one executed notebook and a four-page report.
 
-**Start with:** [Report](REPORT.pdf) · [Executed notebook](live_dota2_win_probability.ipynb) · [Run instructions](SUBMISSION_PACKAGE_README.md) · [Additional experiments](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md)
+**Start with:** [Report](REPORT.pdf) · [Executed notebook](live_dota2_win_probability.ipynb) · [Reviewer ZIP](delivery/Vexil_Dota2_Takehome_20261119.zip) · [Full feature/failed-experiment atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md) · [Cross-cohort evidence](docs/CROSS_COHORT_EVIDENCE.md)
 
 ## What the evidence supports
 
@@ -14,9 +14,9 @@ I tested whether match time adds useful information beyond gold lead when predic
 | Brier score ↓ | 0.1719 | **0.1684** |
 | 30+ minute Brier ↓ | **0.1028** | 0.1074 |
 
-M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for 54.9% of the **overall** observed log-loss gain. **I recommend M0 as the reference and M1 only for future shadow evaluation.** The report shows the uncertainty by match and series.
+M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for 54.9% of the **overall** observed log-loss gain. **M0 stays the required benchmark; M1 is the selected research challenger and the priority for source-timestamped shadow testing**, not an asserted live deployment. A separate September cohort (199 of 200 preselected games) passed its limited M1-support gate, but it had only three leagues and dependent teams. See [the cross-cohort record](docs/CROSS_COHORT_EVIDENCE.md) and [the original September study](research/september_external/README.md).
 
-**Reviewer ZIP:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip). This concise bundle contains the one executed notebook, four-page report, dependencies, frozen VAL/TEST forecasts, a short experiment appendix and statistical receipts. The wider scripts, historical protocols and 181 offline tests remain in this private research repository rather than the email attachment.
+**Reviewer ZIP:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip). This concise bundle contains one executed notebook, the four-page report, dependencies, frozen VAL/TEST forecasts, the full P01–P28 table, feature families, a concise study summary and statistical receipts. The wider scripts, historical protocols and 181 offline tests remain in this private research repository rather than the email attachment.
 
 ## Run the notebook
 
@@ -39,7 +39,7 @@ For a quick **offline** verification of frozen forecasts, models, figures and re
 python -m unittest discover -s tests -p "test_*.py" -q
 ```
 
-This runs **181 offline checks** without downloading raw matches. A full local fresh-kernel replay of the original 500 raw match payloads was performed on a local Linux machine, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
+This runs the offline checks in **this repository**, not in the concise ZIP; the original checkpoint had 181 checks before the additional September and package tests. A full local fresh-kernel replay of the original 500 raw match payloads was performed on a local Linux machine, but that cache is **not bundled**. Running the notebook anew requires public OpenDota access; offline tests are not a substitute for that Run all.
 
 ## Data and interpretation boundaries
 
@@ -55,9 +55,9 @@ Development-only lag-buffer stress and the pre/post-TEST correction history are 
 | --- | --- |
 | Cohort selection and timestamp limits | [Discovery provenance](docs/DISCOVERY_PROVENANCE.md), [PIT receipt](docs/FULL_500_PREFIX_AUDIT_RECEIPT.json) |
 | Why M1 was chosen, and why the interaction is unconfirmed | [Research decision trail](docs/RESEARCH_DECISION_TRAIL.md), [TRAIN additive-null check](research/GOLD_INTERACTION_NULL_READOUT.md) |
-| Feature research, including the Roshan parser correction | [Research atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md), [Roshan correction](research/ROSHAN_CORRECTION_20261119.md), [P01–P28 register](docs/EXPERIMENT_REGISTER.md) |
+| Feature research, Roshan correction, and the 28 failed screens | [Research atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md), [Roshan correction](research/ROSHAN_CORRECTION_20261119.md), [P01–P28 register](docs/EXPERIMENT_REGISTER.md), [ZIP feature map](delivery/FEATURE_SCREEN_AND_FAILURES.md) |
 | Error slices, dependence and calibration | [Error analysis](docs/ERROR_ANALYSIS.md), [Team/league audit](docs/TEAM_LEAGUE_DEPENDENCE.md), [Calibration](docs/CALIBRATION_BIAS_READOUT.md) |
-| Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
-| Research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
+| Reproduction evidence and environment differences | [Current 16-cell Colab run](docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json), [local replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [historical cloud receipts](docs/COLAB_16CELL_RUN_RECEIPT.json) |
+| Research and curation history, including the positive September result | [HISTORY.md](HISTORY.md), [September 199-game research](research/september_external/README.md), [Cross-cohort comparison](docs/CROSS_COHORT_EVIDENCE.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
-Original GitHub PR discussions remain in a separately private repo; they are not required to review the ZIP. The package contains the notebook, report, frozen TEST predictions and offline checks. The report states the **10-hour active-work estimate** and discloses AI and open-source tools.
+Original GitHub PR discussions remain in a separately private repo; they are not required to review the ZIP. The ZIP includes the runnable notebook and frozen forecasts but **not** the full repository test suite or historical research scripts. The applicant confirmed **10 active human hours**, excluding unattended runs. AI and tool assistance are disclosed in the report.

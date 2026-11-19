@@ -33,14 +33,14 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("adjusted 28-way 95% CI [-0.016929,+0.006434]",register)
         self.assertIn("P20",register)
         self.assertIn("docs/EXPERIMENT_REGISTER.md",report)
-        self.assertIn("**Time spent:** About **10 active hours**, as self-reported",report)
+        self.assertIn("**Time spent:** **10 active human hours**, confirmed by the applicant",report)
         self.assertIn("**Assistance disclosure:**",report)
-        self.assertIn("Claude Sonnet and Claude Fable supplied read-only critiques",report)
-        self.assertIn("Automated scripts and remote-agent tools helped run",report)
+        self.assertIn("Claude Sonnet/Fable provided read-only critiques",report)
+        self.assertIn("remote agents ran much of the post-TEST experimentation",report)
         self.assertIn("AI reviews are not independent human peer review",report)
         self.assertIn("AI reviews are not independent human peer review",report)
-        self.assertIn("**Public code/tools:**",report)
-        self.assertIn("docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",report)
+        self.assertIn("requirements.txt",report)
+        self.assertIn("docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",report)
         self.assertNotIn("https://github.com/",report)
         import hashlib
         import json
@@ -62,8 +62,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("181 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("181 offline unit/contract checks",
+        self.assertIn("original checkpoint had 181 checks",(ROOT/"README.md").read_text())
+        self.assertIn("181 at the prior checkpoint",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -109,7 +109,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         readme=(ROOT/"README.md").read_text()
         self.assertIn("Does adding game time improve the probability",report)
         self.assertIn("not an effect caused by time",report)
-        self.assertIn("no confirmed incremental benefit",report)
+        self.assertIn("inconclusive *within March TRAIN*",report)
         self.assertNotIn("same gold lead equally informative",report)
         self.assertIn("not newly blind",readme)
 
@@ -120,7 +120,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         for fragment in ("200-match cohort","0.545075","0.533704","0.539850",
                          "0.18647","secondary and descriptive"):
             self.assertIn(fragment.lower(), register.lower())
-        self.assertIn("0.00455 worse",report)
+        self.assertIn("worsens **+0.00455**",report)
         self.assertIn("[−0.0037,+0.0109]",report)
         self.assertIn("68 games overlap",report)
         self.assertIn("docs/FORWARD_100_STRESS.md",report)
@@ -134,7 +134,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("strict pre-terminal",report)
         self.assertIn("before the later strict pre-terminal notebook correction",register)
         self.assertIn("no preregistered direct paired confidence interval",register)
-        self.assertIn("Original research commits and branches are retained",report)
+        self.assertIn("original research commits",(ROOT/"HISTORY.md").read_text().lower())
         self.assertNotIn("no reviewer access granted",report)
         self.assertIn("original github pr discussions remain in a separately private",readme.lower())
         self.assertIn("original commits and their timestamps were preserved",(ROOT/"HISTORY.md").read_text().lower())
@@ -168,7 +168,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertEqual(newer["scientific_code_sha256"],receipt["scientific_code_sha256"])
         self.assertFalse(newer["cloud_csv_byte_equality_verified"])
         self.assertFalse(newer["new_blind_TEST_claimed"])
-        self.assertIn("Colab CPU Run All on 19 November",(ROOT/"REPORT.md").read_text())
+        self.assertIn("19 November Colab CPU Run All",(ROOT/"REPORT.md").read_text())
 
     def test_notebook_claim_matches_completed_cloud_receipt(self):
         import json
@@ -189,16 +189,18 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertNotIn("https://github.com/",report)
         self.assertNotIn("Pre-registered original TEST",report)
         self.assertNotIn("no reviewer access granted",report)
-        self.assertIn("Both primary paired 95% confidence intervals include zero",report)
+        self.assertIn("both match-paired intervals include zero",report)
         self.assertIn("The corrected TEST is not a fresh blind holdout",report)
-        self.assertIn("about 0.00455 worse",report)
+        self.assertIn("worsens **+0.00455**",report)
         for file_path in ("docs/EXPERIMENT_REGISTER.md",
-                          "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
-                          "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json"):
+                          "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",
+                          "docs/CROSS_COHORT_EVIDENCE.md"):
             self.assertIn(file_path,report)
             self.assertTrue((ROOT/file_path).is_file())
+        self.assertIn("docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
+                      (ROOT/"README.md").read_text())
         readme=(ROOT/"README.md").read_text()
-        for file_path in ("docs/COLAB_COLD_RUN_RECEIPT.json","docs/ERROR_ANALYSIS.md"):
+        for file_path in ("docs/COLAB_16CELL_RUN_RECEIPT.json","docs/ERROR_ANALYSIS.md"):
             self.assertIn(file_path,readme)
             self.assertTrue((ROOT/file_path).is_file())
 
@@ -208,10 +210,10 @@ class ReportDeliveryContractTest(unittest.TestCase):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True
         ).split())
-        for snippet in ("19 November 2026","286 mature TRAIN games","143 seconds",
-                        "18,292","1/4 folds","[−0.0304,+0.0014]",
+        for snippet in ("19 November 2026","286 mature TRAIN games","199-game September",
+                        "18,292","1/4 TRAIN-forward folds","[−0.0304,+0.0014]",
                         "0.1028","0.1074 (worse)","63/106 = 0.5943",
-                        "16-code-cell notebook","AI reviews are not independent human peer review"):
+                        "16-cell notebook","AI reviews are not independent human peer review"):
             self.assertIn(snippet,source)
             self.assertIn(snippet,pdf)
 
@@ -221,11 +223,11 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("early 0–9-minute",supplement)
         self.assertIn("The original TEST 30+ Brier point estimate",supplement)
         self.assertIn("Neither is a confirmed",supplement)
-        self.assertIn("removing one league reverses the gain",report)
+        self.assertIn("would reverse the overall delta",(ROOT/"docs/FORWARD_100_STRESS.md").read_text())
         self.assertIn("68 games overlap",report)
-        self.assertIn("both intervals contain zero",report)
+        self.assertIn("Both intervals include zero",(ROOT/"docs/FORWARD_100_STRESS.md").read_text())
         self.assertIn("not a test on an unseen patch",report)
-        self.assertIn("Brier score is about 0.00455 worse",report)
+        self.assertIn("worsens **+0.00455**",report)
         self.assertIn("0.0559 to 0.0680",report)
 
     def test_reviewer_text_matches_scientific_boundaries(self):
@@ -240,8 +242,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("60*t < duration",text)
         self.assertIn("strict pre-terminal",report)
         self.assertIn("10 hours",text)
-        self.assertIn("10 active hours",report)
-        self.assertIn("candidate's time estimate",guide)
+        self.assertIn("10 active human hours",report)
+        self.assertIn("candidate-confirmed **10 hours",guide)
         self.assertIn("106",report)
         self.assertIn("3,836",readme)
         self.assertIn("3,836",guide)
@@ -294,7 +296,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("**Decision.**",markdown)
         self.assertIn("**Assistance disclosure:**",markdown)
         self.assertIn("**Time spent:**",markdown)
-        self.assertIn("no confirmed incremental benefit",markdown)
+        self.assertIn("inconclusive *within March TRAIN*",markdown)
         self.assertIn("0/28",(ROOT/"docs/EXPERIMENT_REGISTER.md").read_text())
         self.assertTrue((ROOT/"REPORT.pdf").read_bytes().startswith(b"%PDF-"))
         if shutil.which("pdfinfo"):

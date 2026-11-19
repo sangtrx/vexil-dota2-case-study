@@ -90,9 +90,9 @@ frozen 120-match manifest with this later 100-game cohort shows
 These are **not two independent temporal replications**. I report
 both results separately rather than pooling scores or choosing the
 more favorable one. Both analyses
-retain their original estimates and limitations. The earlier
-120-game manuscript is not being silently merged or reinterpreted
-as an independent replication of this 100-game cohort.
+retain their original estimates and limitations. The earlier 120-game cohort and the later 100-game cohort retain
+their original estimates; their 68-game overlap precludes treating them
+as two independent confirmations.
 
 The complete original 120-ID manifest, the 100-to-120 overlap IDs,
 an SHA-pinned result receipt and a standalone Python verifier are

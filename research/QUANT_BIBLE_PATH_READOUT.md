@@ -8,8 +8,8 @@ not an independent replication. The required notebook, M0/M1 selection,
 rebuilt on 19 November to document later corrections.
 The motivating question is whether recent drawdown, volatility and
 directionality of gold lead add information after controlling for the
-current lead and elapsed game time. Section 8 of the Quant Research
-Bible treats transforms as additional models subject to selection risk.
+current lead and elapsed game time. Any new path transform counts as another candidate and therefore
+requires a separate forward comparison and multiplicity accounting.
 
 **Predefined model:** five-feature Q1 = gold, time, signed ten-minute
 adverse excursion, signed ten-minute lead realized volatility and

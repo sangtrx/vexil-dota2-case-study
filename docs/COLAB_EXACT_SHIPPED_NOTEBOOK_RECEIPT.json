@@ -74,7 +74,5 @@
   "cloud_export_csv_byte_equality_verified": false,
   "cloud_execution_notebook_bytes_differ_due_to_outputs": true,
   "ai_assistance_disclosed_in_report": true,
-  "candidate_confirmed_active_hours": 10,
-  "hours_note": "Applicant confirmed 10 active hours; unattended AI/API/cloud runs excluded.",
   "source_file_access": "Original uploaded Colab notebook is private; reviewer can independently run the shipped notebook on their own Colab account."
 }

@@ -18,6 +18,17 @@ comparisons below are on chronological, reused TRAIN-forward folds and
 | Fixed XGB84 / LGB84 with repaired Roshan attribution | TRAIN-forward LL **0.621254 / 0.624856** | Neither earned promotion |
 | M1 versus additive gold + time without interaction | Difference **−0.002020**; 95% grouped CI **[−0.0148,+0.0090]**, favourable **1/4** folds | No confirmed incremental benefit from the interaction |
 | 60-second event-lag stress (ALL60) | Historical reused TRAIN-forward Δ LL vs M1 **−0.008070**; Δ vs Q1 **−0.001947** with CI crossing zero | Better than M1 in this historic sample, not confirmed against the stronger Q1 reference or live packet arrival time |
+| Structural S1–S4 and Aegis/buyback M4 | Reused-VAL LL S1 **0.518253**, S2 **0.517384**, S3 **0.524593**, S4 **0.520049**, M4 **0.520596**; old M1 **0.519346** | No confirmed improvement; S1 corresponds to screened P05 |
+| Separate 200-game phase blend | LL blend **0.539850**, M1 **0.533704**, M0 **0.545075** | Blend failed against M1 |
+| Disagreement for wrong-side predictions | AUROC **0.51856** vs M1-confidence uncertainty **0.66576** | Worse than simpler uncertainty |
+| September locked external | 199 usable of 200 preselected games; LL M0 **0.584431**, M1 **0.544803**; series CI for M1−M0 **[−0.074261,−0.010790]** | **Limited study gate PASS**, outside the required 500 matches; only 3 leagues and repeated teams |
+
+`FEATURE_SCREEN_AND_FAILURES.md` in this ZIP lists all
+**28 screened feature candidates** and all five wide-feature groups, with
+the original result and failure decision. The private repository keeps
+dated source branches, additional readouts and September frozen predictions.
+The **positive September M1 result is preserved** without retraining or
+changing the original 500-game notebook.
 
 ## A source bug was found
 

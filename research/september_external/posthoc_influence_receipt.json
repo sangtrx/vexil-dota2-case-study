@@ -1,0 +1,125 @@
+{
+  "contribution_of_most_favorable_match": 0.24643524414245535,
+  "interpretation": "Series bootstrap conditions on within-series dependence; shared teams and only 3 leagues prevent broader independent-tournament inference. Top-5 favorable-match deletion crosses zero; this is a stress test, not a revised primary gate.",
+  "leave_one_league": {
+    "19102": {
+      "excluded_games": 30,
+      "leave_out": {
+        "cluster_CI95": [
+          -0.06421235724383186,
+          -0.0033924799904364407
+        ],
+        "delta_logloss": -0.03098725659284098,
+        "games": 169,
+        "groups": 91,
+        "minutes": 7476
+      },
+      "own_delta": -0.09073639812295828
+    },
+    "20176": {
+      "excluded_games": 63,
+      "leave_out": {
+        "cluster_CI95": [
+          -0.06626042033470103,
+          -0.0034859075962654605
+        ],
+        "delta_logloss": -0.030502010040000242,
+        "games": 136,
+        "groups": 59,
+        "minutes": 5826
+      },
+      "own_delta": -0.05787468326096672
+    },
+    "20279": {
+      "excluded_games": 106,
+      "leave_out": {
+        "cluster_CI95": [
+          -0.1308520485438409,
+          -0.013162397322561898
+        ],
+        "delta_logloss": -0.06781657114645197,
+        "games": 93,
+        "groups": 58,
+        "minutes": 4178
+      },
+      "own_delta": -0.01381278019851428
+    }
+  },
+  "matches_where_m0_better": 76,
+  "matches_where_m1_better": 123,
+  "original": {
+    "cluster_CI95": [
+      -0.07426108485146404,
+      -0.010789504736618624
+    ],
+    "delta_logloss": -0.03962832237019433,
+    "games": 199,
+    "groups": 104,
+    "minutes": 8740
+  },
+  "original_september_results_unchanged": true,
+  "predictions_sha256": "d1dc95422399ee3d95ddc95a86aec7aaf5f545ae71d1d93938f14db3f72c1fb8",
+  "remove_most_favorable_matches": {
+    "1": {
+      "cluster_CI95": [
+        -0.05931952458376557,
+        -0.0060713941761535205
+      ],
+      "delta_logloss": -0.030162754167196548,
+      "games": 198,
+      "groups": 104,
+      "minutes": 8653
+    },
+    "10": {
+      "cluster_CI95": [
+        -0.007227320920075169,
+        0.008932426438757197
+      ],
+      "delta_logloss": 0.0007979984324842935,
+      "games": 189,
+      "groups": 101,
+      "minutes": 8036
+    },
+    "2": {
+      "cluster_CI95": [
+        -0.04211991458139363,
+        -0.0027753065703534567
+      ],
+      "delta_logloss": -0.020650599095458428,
+      "games": 197,
+      "groups": 103,
+      "minutes": 8572
+    },
+    "5": {
+      "cluster_CI95": [
+        -0.01620100282215009,
+        0.0033722487887298653
+      ],
+      "delta_logloss": -0.006076675621189649,
+      "games": 194,
+      "groups": 102,
+      "minutes": 8358
+    }
+  },
+  "scope": "post-hoc influence diagnostics, NOT any precommitted model selection or new blind test",
+  "teams": {
+    "all_leave_one_team_deltas_negative": true,
+    "distinct_teams": 33,
+    "league_team_overlap_counts": {
+      "19102_20176": 0,
+      "19102_20279": 10,
+      "20176_20279": 0
+    },
+    "leave_one_team_delta_range": [
+      -0.04607961621624054,
+      -0.024471660753119767
+    ],
+    "max_games_same_team": 29,
+    "team_component_sizes": [
+      20,
+      11,
+      2
+    ],
+    "team_match_graph_components": 3
+  }
+}

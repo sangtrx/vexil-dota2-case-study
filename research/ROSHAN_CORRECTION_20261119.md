@@ -33,7 +33,7 @@ Positive Δ means a higher (worse) log loss than M1. With the repaired inputs, Q
 
 ## Reproducing the post-result correction
 
-The ZIP contains the corrected TRAIN-only engineered feature table, raw-input hash ledger, model receipts and source. With the main pinned Python environment from `requirements.txt`:
+The **private research repository** retains the corrected TRAIN-only engineered feature table, raw-input hash ledger, model receipts and source. These large data/code files are **not** in the concise reviewer ZIP. With the main pinned Python environment from `requirements.txt`:
 
 ```bash
 python research/roshan_corrected_rich_models.py --check

@@ -32,10 +32,11 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertEqual(len(losses),4)
         self.assertEqual(sum(x<0 for x in losses),1)
         self.assertEqual(sum(x>0 for x in losses),3)
-        for x in ("in only **1/4 folds**", "[−0.0148,+0.0090]",
-                  "+0.000405 (worse)", "[−0.003059,+0.003857]"):
+        for x in ("only **1/4 TRAIN-forward folds**", "[−0.0148,+0.0090]",
+                  "+0.000405 (worse)"):
             self.assertIn(x, self.report)
         readout=(ROOT/"research/GOLD_INTERACTION_NULL_READOUT.md").read_text()
+        self.assertIn("[−0.003059,+0.003857]", readout)
         self.assertIn("**NOT VERIFIED**", readout)
         self.assertIn("Only C1–C3", readout)
         self.assertIn("+0.300675", readout)
@@ -86,7 +87,7 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertNotIn("heldout_predictions", script)
         self.assertNotIn("validation_m0_m1_predictions", script)
         self.assertIn("docs/figures/train_interaction_vs_additive_null.png", self.report)
-        self.assertIn("M1 improved log loss in only **1/4 folds**", self.report)
+        self.assertIn("M1 helped in only **1/4 TRAIN-forward folds**", self.report)
 
     def test_train_lead_groups_are_not_within_match_time_decay(self):
         import csv
@@ -139,8 +140,8 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertNotEqual(receipt["repo_frozen_16cell_notebook_sha256"],
                             hashlib.sha256((ROOT/"live_dota2_win_probability.ipynb").read_bytes()).hexdigest())
         self.assertIn("Colab's preinstalled scientific libraries",self.readme)
-        self.assertIn("new Colab CPU Run All on 19 November",self.report)
-        self.assertIn("16/16 cells, zero errors",self.report)
+        self.assertIn("19 November Colab CPU Run All",self.report)
+        self.assertIn("16/16 cells",self.report)
         self.assertIn("docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",self.report)
         self.assertFalse(receipt["cloud_csv_byte_equality_verified"])
 
@@ -150,15 +151,15 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertAlmostEqual(s["brier_M1"],0.24392514896856357)
         self.assertAlmostEqual(s["ece_M0"],0.04959713082061086)
         self.assertAlmostEqual(s["ece_M1"],0.08115121989176531)
-        for term in ("Six of the eight phase intervals favour M1",
-                     "unadjusted and use the same games",
-                     "both intervals contain zero","68 games overlap",
-                     "about 0.00455 worse"):
+        for term in ("Six of eight phase intervals favour M1",
+                     "overlap in games and are unadjusted",
+                     "check is inconclusive","68 games overlap",
+                     "worsens **+0.00455**"):
             self.assertIn(term,self.report)
         self.assertIn("68 games overlap",self.report)
-        self.assertIn("0.517823 vs 0.518090",self.report)
-        self.assertIn("not a verified label-arrival margin",self.report)
-        for anchor in ("0.612312 vs 0.612086", "0.211828 vs 0.212744", "+0.03139", "+0.00748", "[−0.02828,+0.00012]", "[−0.00670,−0.00038]", "0.5943", "headline TEST scores use the original 291-game TRAIN fit"):
+        self.assertIn("0.517823 versus M1 0.518090",(ROOT/"docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text())
+        self.assertIn("NOT a minimum verified real-world lag margin",(ROOT/"docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text())
+        for anchor in ("0.000226", "0.212744 vs 0.211828", "+0.03139", "+0.00748", "[−0.02828,+0.00012]", "[−0.00670,−0.00038]", "0.5943", "The original March TEST remains previously inspected"):
             self.assertIn(anchor,self.report)
 
     @unittest.skipUnless(shutil.which("pdftotext") and shutil.which("pdfinfo"),
@@ -166,9 +167,9 @@ class FableScienceRepairContract(unittest.TestCase):
     def test_pdf_has_all_new_science_anchors_and_no_disclosure_rewrite(self):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
-        for term in ("19 November 2026","66/82","11/25","1/4 folds","+0.000405",
+        for term in ("19 November 2026","66/82","11/25","1/4 TRAIN-forward folds","+0.000405",
                      "0.5429","0.1074 (worse)","+0.03139","+0.00748",
-                     "[−0.00670,−0.00038]","291-game TRAIN fit",
+                     "[−0.00670,−0.00038]","291 TRAIN",
                      "XGBoost 3.4.1", "AI reviews are not independent human peer review"):
             self.assertIn(term,pdf)
         self.assertEqual(

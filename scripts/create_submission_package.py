@@ -29,6 +29,14 @@ FILES = (
     "README.md",
     "delivery/REVIEWER_README.md",
     "delivery/SUPPLEMENTARY_EXPERIMENTS.md",
+    "delivery/FEATURE_SCREEN_AND_FAILURES.md",
+    "docs/CROSS_COHORT_EVIDENCE.md",
+    "research/september_external/README.md",
+    "research/september_external/external_september_predictions.csv",
+    "research/september_external/external_september_scores.json",
+    "research/september_external/selected_metadata.json",
+    "research/september_external/verify_external_results.py",
+    "research/verify_heldout_scores.py",
     "delivery/Vexil_Dota2_Takehome_20261119.zip",
     "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",
     "scripts/build_reviewer_package.py",
@@ -315,21 +323,18 @@ def verify() -> dict:
         ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
     # PDF line-wrap may insert whitespace into a hyphenated compound.
     pdf_content=pdf_content.replace("cloud- export","cloud-export")
+    # These are substantive report claims visible in the PDF, rather than
+    # exact phrases from an older prose revision. Numerics are independently
+    # checked from frozen CSVs later in this function.
     for statement in (
-            "19 November 2026",
-            "106 held-out games",
-            "286 mature TRAIN games",
-            "143 seconds",
-            "18,292",
-            "−0.0148,+0.0090",
-            "[−0.0304,+0.0014]",
-            "0.1028",
-            "0.1074 (worse)",
-            "0.5429",
-            "63/106 = 0.5943",
-            "+0.03139", "+0.00748", "[−0.00670,−0.00038]",
-            "291-game TRAIN fit", "XGBoost 3.4.1",
-            "one executed 16-code-cell notebook",
+            "19 November 2026", "500 professional OpenDota matches",
+            "286 mature TRAIN games", "18,292",
+            "−0.0148,+0.0090", "[−0.0304,+0.0014]",
+            "0.1028", "0.1074 (worse)", "0.5429",
+            "63/106 = 0.5943", "+0.03139", "+0.00748",
+            "[−0.00670,−0.00038]", "XGBoost 3.4.1",
+            "September locked external", "0.5448",
+            "10 active human hours", "16/16 cells",
             "AI reviews are not independent human peer review"):
         if statement not in pdf_content:
             raise ValueError("Stale or inconsistent REPORT.pdf rendering: "+statement)
@@ -358,7 +363,8 @@ def verify() -> dict:
             or vt["models_fit_or_reselected"]
             or vt["original_TEST_features_or_outcomes_scored"]
             or vt["proof_of_real_received_at"]
-            or "143 seconds" not in report):
+            or "143-second" not in (ROOT/"docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text()
+            and "143-second" not in (ROOT/"README.md").read_text()):
         raise ValueError("VAL to TEST source-label maturity audit inconsistent")
 
     # Completion-time, development-only maturity audit: the reviewer ZIP
@@ -436,7 +442,8 @@ def verify() -> dict:
     if ("No commits are backdated" not in provenance
             or "retains the **authentic Git ancestry**" not in provenance
             or "This index was written on 16 November 2026, after the experiments" not in trail
-            or "**Retain M0; shadow-test M1" not in trail):
+            or "September locked external" not in trail
+            or "shadow" not in trail.lower()):
         raise ValueError("Curation provenance or decision-gate language missing")
 
     # Source-audited all original 18,292 PIT snapshots from the external
@@ -701,11 +708,11 @@ def verify() -> dict:
         raise ValueError("Reviewer PDF links to retired snapshot repository.")
     for local_source in ("docs/EXPERIMENT_REGISTER.md",
                          "docs/DISCOVERY_PROVENANCE.md",
-                         "docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json",
-                         "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json"):
+                         "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json",
+                         "docs/CROSS_COHORT_EVIDENCE.md"):
         if local_source not in report:
             raise ValueError("Reviewer PDF must identify primary evidence: "+local_source)
-    for local_source in ("docs/COLAB_COLD_RUN_RECEIPT.json",
+    for local_source in ("docs/COLAB_16CELL_RUN_RECEIPT.json",
                          "docs/ERROR_ANALYSIS.md"):
         if local_source not in readme:
             raise ValueError("README must reference archived evidence: "+local_source)
@@ -714,13 +721,14 @@ def verify() -> dict:
     # Detailed secondary November stress metrics belong in the supplement.
     # The main report still needs the overlap/uncertainty boundary.
     if ("68 games overlap" not in report
-            or "both intervals contain zero" not in report
+            or "check is inconclusive" not in report
             or "not a test on an unseen patch" not in report
-            or "docs/FORWARD_100_STRESS.md" not in report):
+            or "docs/FORWARD_100_STRESS.md" not in report
+            or "September" not in report):
         raise ValueError("Report omitted material uncertainty or cohort scope")
     if "artifacts/forward_100_predictions.csv" not in (ROOT/"docs/FORWARD_100_STRESS.md").read_text():
         raise ValueError("Supplement omits the actual frozen 4,355-row forecast source")
-    if ("Both primary paired 95% confidence intervals include zero" not in report
+    if ("both match-paired intervals include zero" not in report
             or "The corrected TEST is not a fresh blind holdout" not in report):
         raise ValueError("Main paired uncertainty / already-opened TEST boundary omitted")
 

@@ -2,7 +2,7 @@
 
 **Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 19 November 2026**
 
-**Decision.** I recommend keeping the gold-only logistic baseline (M0) as the reference. M1 adds game time and a gold-by-time interaction; it is a candidate for future shadow evaluation, not a deployed model. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. I would not replace M0 on these point estimates alone.
+**Decision.** M1 is the validation-selected challenger. On the required 500-game study it lowered TEST log loss **0.5164 to 0.5040** and Brier **0.1719 to 0.1684**, but both match-paired intervals include zero and late-game Brier worsened. A separate, prescored 199-game September evaluation favors M1 more strongly, albeit across only three leagues. I would retain M0 as the baseline and prioritize M1 for live-timestamped shadow evaluation, not make a production claim.
 
 **Question.** Does adding game time improve the probability assigned to a given gold lead? I compared four models with a chronological, series-disjoint split and tested the interaction against a simpler additive gold + time model.
 
@@ -14,7 +14,7 @@ I split entire series by match start time: **291 TRAIN / 103 VALIDATION / 106 TE
 
 Each forecast uses economy snapshots through minute *t* and events timestamped at or before 60*t. The strict pre-terminal rule is `60*t < duration`. A future-deletion check found no feature changes across **18,292** snapshots in the original author-controlled raw cache (not bundled). After TEST had first been inspected, I removed **12 exact-terminal rows** (8 TRAIN, 3 VALIDATION, 1 TEST). **The corrected TEST is not a fresh blind holdout.**
 
-Five TRAIN labels were incomplete at the first VALIDATION start under a **game-duration end proxy**. A sensitivity using **286 mature TRAIN games** retained M1, but **headline TEST scores use the original 291-game TRAIN fit**. The **143 seconds** between estimated last VAL end and first TEST start is **not a verified label-arrival margin**. Under hypothetical +60-minute delay, only 277 TRAIN and 96 VAL outcomes qualify; M2 narrowly beats M1 on reused mature VAL (**0.517823 vs 0.518090** log loss). No model or TEST score was changed (docs/REVIEWER_SCIENTIFIC_LIMITS.md).
+Five TRAIN outcomes were unfinished at the first VALIDATION start under a game-end proxy. Refitting on **286 mature TRAIN games** still selected M1. A hypothetical 60-minute result delay changes a reused-VAL M1/M2 ranking by only **0.000268** after excluding seven later-finishing games; no model was changed. Neither proxy measures real feed arrival (docs/REVIEWER_SCIENTIFIC_LIMITS.md).
 
 ## 2. Models and selection
 
@@ -29,7 +29,7 @@ I used L2 logistic regression (C=1), fitting imputation and scaling on TRAIN onl
 
 XP and objective features added complexity without lowering validation loss, so I kept M1. The full register of later, non-promoted experiments is in **docs/EXPERIMENT_REGISTER.md**.
 
-**Additional models after inspecting TEST:** I tested Q1, a five-input logistic model with gold-path features, on TRAIN-forward folds. Its log loss was **0.6060** versus M1's **0.6121** (Q1−M1 95% series interval **[−0.0174,+0.0047]**). XGBoost and LightGBM using M1's three inputs scored **0.6156** and **0.6162**. Q1 was not evaluated on the original VAL or TEST, and these TRAIN losses cannot be compared with TEST log loss. Wider-feature transfer, delay and nested-tuning studies used the old Roshan parser and were not rerun after its correction (docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md).
+**Further models (after TEST inspection):** On chronological TRAIN-forward folds, a five-input gold-path logistic model Q1 scored **0.6060** versus M1 **0.6121**, but its series CI for the difference **[-0.0174,+0.0047]** includes zero. Three-input XGBoost and LightGBM scored **0.6156** and **0.6162**. Wider-feature and delay studies are exploratory; several used a Roshan parser later corrected on TRAIN only (docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md).
 
 ---
 
@@ -41,7 +41,7 @@ Figure 1 shows M1's fitted probabilities at fixed gold leads. The curves are dis
 
 *Figure 1. M1 scenarios for 0, ±3k and ±6k gold lead. Values outside observed TRAIN support are masked.*
 
-The stronger comparison is **M1 versus additive gold + time without the interaction**. Across four chronological TRAIN-forward blocks (137 evaluation games, 70 series/singletons), M1 improved log loss in only **1/4 folds**. The pooled M1−additive log-loss difference was **−0.0020**, with a 95% grouped interval of **[−0.0148,+0.0090]**. Its pooled Brier difference was **+0.000405 (worse)**, interval **[−0.003059,+0.003857]**. There is **no confirmed incremental benefit** from the interaction. I ran this check on TRAIN only, after seeing the original TEST result.
+The stronger March comparator is **additive gold + time without interaction**. M1 helped in only **1/4 TRAIN-forward folds** (137 games); pooled difference **−0.0020** log loss, grouped 95% CI **[−0.0148,+0.0090]**, Brier difference **+0.000405 (worse)**. This is inconclusive *within March TRAIN*. A separate September external M0-versus-M1 evaluation was locked before scoring and favored M1. A September **post-hoc** additive comparison also favored the interaction (−0.04135, CI [−0.07626,−0.01224]); it is exploratory, with only three leagues and repeated teams.
 
 ![Four TRAIN-forward folds comparing interaction and additive controls.](docs/figures/train_interaction_vs_additive_null.png)
 
@@ -69,34 +69,44 @@ I score **each admissible minute forecast**, so longer games receive more weight
 | 20–29 (105) | 0.4131 → 0.4065 | [−0.0111,−0.0015] | 0.1312 → 0.1293 | [−0.0036,−0.0001] |
 | **30+ (79)** | 0.3623 → 0.3555 | [−0.0947,+0.0415] | **0.1028 → 0.1074 (worse)** | [−0.0037,+0.0109] |
 
-A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.2476**. Both trained models beat it. Six of the eight phase intervals favour M1 and exclude zero, but they are unadjusted and use the same games, not six independent confirmations. **At minute 30+, M1's Brier score is about 0.00455 worse.** A separate, post-result **137-game TRAIN-forward** comparison finds M0 vs M1 log loss **0.612312 vs 0.612086** (difference only −0.000226) and Brier **0.211828 vs 0.212744 (M1 worse)**. Its four smaller rolling-prefix fits and mixed patches differ from full-fit VAL (M0 LL 0.5325) and TEST (0.5164), so these levels do not establish drift. Thus the TEST point improvement was not stable across development folds. Conversely, TRAIN-forward minute-30+ Brier **favored M1 (0.183109 vs M0 0.184996)**, opposite to the TEST late30 Brier point difference: even the phase-specific direction is unstable.
+The constant TRAIN-win-rate forecast has TEST log loss **0.6884** and Brier **0.2476**. Six of eight phase intervals favour M1 but overlap in games and are unadjusted. TEST minute-30+ Brier worsens **+0.00455**. Across 137 TRAIN-forward games, M1's log-loss edge was only **0.000226** and its overall Brier was worse (**0.212744 vs 0.211828**); its TRAIN-forward late30 Brier favored M1 instead. These are different model fits and time slices, not a clean drift estimate.
 
 ![Phase-specific calibration and Brier diagnostics.](docs/figures/phase_error_audit.png)
 
 *Figure 3. Descriptive phase results from inspected TEST forecasts; minute rows share match outcomes.*
 
-One 55-minute match (8744971178) accounts for **54.9%** of M1's aggregate log-loss gain. Removing it for *influence diagnosis only* reduces the overall gain from 0.0124 to 0.0057; in the minute-30+ slice, M1−M0 log loss **flips from −0.00678 to +0.03139** (719 vs 694 forecasts), and Brier worsens from **+0.00455 to +0.00748**. No model was retuned on this observation. The exact calculation is preserved in docs/ERROR_AUDIT_RECEIPT.json and recomputed by the offline error-audit test.
+One 55-minute TEST match provides **54.9%** of M1's aggregate log-loss gain. Deleting it *for influence diagnosis only* cuts the overall difference from **−0.0124 to −0.0057**; minute-30+ M1−M0 log loss switches **−0.00678 to +0.03139** and Brier worsens **+0.00455 to +0.00748**. No model was refitted (docs/ERROR_AUDIT_RECEIPT.json).
 
-Whole-match bootstrap CIs include zero for both scores. In a **post-hoc 54-series bootstrap**, log-loss CI **[−0.02828,+0.00012]** straddles zero, while Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Resampling unit and near-zero endpoints change the inference; shared teams/leagues remain. A separate 100-game November check is inconclusive: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** earlier research (docs/SERIES_CI_RECEIPT.json; docs/FORWARD_100_STRESS.md).
+The primary whole-match intervals for both scores include zero. Post-hoc 54-series bootstrap: log-loss CI **[−0.02828,+0.00012]** still crosses zero; Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Shared teams/leagues remain. A November 100-game check is inconclusive; **68 games overlap** an earlier cohort (docs/SERIES_CI_RECEIPT.json; docs/FORWARD_100_STRESS.md).
+
+**Other time cohorts, evaluated outside the required 500 games:** See docs/CROSS_COHORT_EVIDENCE.md for complete cohort selection and overlap details.
+
+| Period (study) | Games | M0 log loss | M1 log loss | Evidence boundary |
+| --- | ---: | ---: | ---: | --- |
+| March original TEST | 106 | 0.5164 | **0.5040** | Match CI crosses zero |
+| 30 Mar–2 Apr stage | 200 | 0.5451 | **0.5337** | Phase blend failed; retrospective |
+| September locked external | 199 | 0.5844 | **0.5448** | 95% series CI [−0.0743,−0.0108] |
+| October transfer | 180 | 0.4995 | **0.4936** | Outcomes reused in model search |
+| November later | 100 | 0.5411 | **0.5331** | CI crosses zero; 68 overlaps |
 
 ---
 
 ## 5. Calibration and recommendation
 
-On inspected TEST, M1's ECE-10 was **0.0750**, compared with **0.0895** for M0; the grouped difference interval **[−0.0203,+0.0020]** contains zero. In the 30+ phase, ECE worsened from **0.0559 to 0.0680**. M1's average TEST forecast was **0.5429**, versus a **minute-weighted** observed win frequency of **0.6045**; the distinct **game-weighted** win fraction is **63/106 = 0.5943**. These are different estimands. I did not interpret the gap as drift or recalibrate on TEST.
+On inspected TEST, ECE-10 was **0.0750** for M1 versus **0.0895** for M0 (grouped difference CI **[−0.0203,+0.0020]**, includes zero). At minute 30+, ECE worsened **0.0559 to 0.0680**. M1's mean forecast was **0.5429**, versus observed win rates **0.6045** minute-weighted and **63/106 = 0.5943** game-weighted. No TEST recalibration.
 
 ![Held-out reliability diagram.](docs/figures/heldout_reliability.png)
 
 *Figure 4. Reliability curves from the inspected TEST. Repeated minute rows are not independent games.*
 
-**Recommendation:** Keep M0 as the reference. Given a live feed with verified arrival timestamps, M1 could be scored alongside it without affecting decisions. Reconsider M1 only on a new, *precommitted* multi-league series cohort, requiring at least **0.005 lower log loss** with a series-clustered 95% interval entirely below zero and no material regression in overall or 30+ Brier. That is a future decision rule, not a threshold retrofitted to these scores.
+**Recommendation:** M1 merits priority for shadow testing, while M0 stays the required baseline. September **passed its predeclared limited-support gate**, but its three leagues and heavily shared teams, influential games and unmeasured packet arrival prevent a general production claim. I would request new, diverse league-level evidence, verified `received_at` and no late-game Brier regression before enabling live decisions.
 
 For an actual live service I would log match/model version, minute, event timestamp, `received_at`, feature watermark and completeness. These historical API records cannot establish packet availability at decision time, and this study does not estimate betting profitability.
 
 ## 6. Reproduction and assistance
 
-The deliverable contains **one executed 16-code-cell notebook**: 14 core study cells (including edits and diagnostics after initial TEST inspection) and two appended reviewer QA cells. A pinned **Python 3.12** local replay reproduces the 3,836 TEST forecasts and original figures byte-for-byte from the author-controlled cache (docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json). A **new Colab CPU Run All on 19 November** executed the exact shipped notebook source (16/16 cells, zero errors), downloaded 500 matches and reproduced the 3,836 TEST forecasts and scores to six decimals (docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json). The Colab-exported notebook bytes differ because outputs/metadata were rewritten; the scientific code hash matches. The notebook's post-inspection appendix is diagnostic and does not create a new blind TEST. Original research commits and branches are retained; PR discussions remain private.
+**Reproduction:** The 16-cell notebook covers the original 500 games and two post-TEST QA cells. A fresh **19 November Colab CPU Run All** completed **16/16 cells**, fetched 500 games and matched aggregate TEST scores to six decimals over **3,836 rows**; per-forecast cloud equality was **not** checked (docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json). The original March TEST remains previously inspected.
 
-**Time spent:** About **10 active hours**, as self-reported, designing the study, reviewing results and failures, and checking the submission. Unattended runs are excluded.
+**Time spent:** **10 active human hours**, confirmed by the applicant; unattended agent, API and cloud runs excluded.
 
-**Assistance disclosure:** I directed the study and take responsibility for the model choice, evaluation and conclusions. ChatGPT Web drafted and revised much of the notebook code, tests and report; Claude Sonnet and Claude Fable supplied read-only critiques. Automated scripts and remote-agent tools helped run data collection, cloud experiments and verification checks. I evaluated the resulting evidence; AI reviews are not independent human peer review. **Public code/tools:** The notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter Notebook, with top-level versions pinned in requirements.txt. Separate research used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2; these are **not notebook dependencies** (versions in research/BOOSTED_TREES_DIRECT_READOUT.md).
+**Assistance disclosure:** I reviewed the evidence and take responsibility for the modelling choices and final conclusions. ChatGPT Web drafted and revised much of the notebook, tests and report. Claude Sonnet/Fable provided read-only critiques; remote agents ran much of the post-TEST experimentation and verification. AI reviews are not independent human peer review. The notebook uses NumPy, pandas, SciPy, scikit-learn, Matplotlib, Requests, tqdm and Jupyter (pinned in requirements.txt); supplementary research used XGBoost 3.4.1, LightGBM 4.7.0 and Narwhals 2.21.2.

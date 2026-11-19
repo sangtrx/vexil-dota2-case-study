@@ -10,7 +10,8 @@ The original research commits date from 13–15 November 2026, including main at
 
 - **17 November:** Reviewed the notebook, provenance and saved evaluation results. The original TEST forecast CSV was not changed.
 - **18 November:** Recorded additional feature and model comparisons as exploratory, post-result work; none replaced the selected model.
-- **19 November:** Fixed Roshan team attribution in the separate 81-feature study, reran the same fixed Q2/Q3 and XGBoost/LightGBM models on TRAIN-forward only, and rebuilt the report and ZIP. The original 500-game notebook and 3,836 TEST forecasts stayed unchanged. [Correction and limits](research/ROSHAN_CORRECTION_20261119.md).
+- **18 November, 23:09–23:45 ICT:** A separate September cohort was locked in three Git commits before scoring. Of 200 selected professional matches, 199 parsed; M1 beat M0 (log loss 0.544803 vs 0.584431) and passed the limited study gate, while league/team dependence and concentration remained. This result is recorded in [the September research archive](research/september_external/README.md), not mixed into the 500-game notebook.
+- **19 November:** Fixed Roshan team attribution in the separate 81-feature study, reran fixed Q2/Q3 and XGBoost/LightGBM models on TRAIN-forward only, and rebuilt the report and ZIP. The 17 November audit had wrongly called team attribution unavailable; that original conclusion remains in its archived branch. The original 500-game notebook and 3,836 TEST forecasts stayed unchanged. [Correction and limits](research/ROSHAN_CORRECTION_20261119.md).
 
 Original GitHub PR discussions are in a **different private repository**. They may return 404 without separate access. This repository preserves mirrored source branches, the principal readouts and the original commit timestamps. Git author metadata records commits, not individual manual authorship; AI assistance is disclosed in the report.
 
@@ -79,7 +80,7 @@ intervals include zero, and omitting one large league reverses the
 log-loss point advantage. A separate 120-game November
 study has its [frozen match manifest](docs/NOVEMBER_120_RESEARCH_MANIFEST.csv)
 and [68-game overlap receipt](docs/NOVEMBER_COHORT_OVERLAP_RECEIPT.json)
-included in this ZIP. These checks are not independent replications;
+included in the **private research repository**, not the concise reviewer ZIP. These checks are not independent replications;
 no pooled test or model promotion is claimed. The original 500-game
 notebook, TEST rows, historical research and model weights remain unchanged. This is
 optional evidence in docs/FORWARD_100_STRESS.md and the frozen
@@ -87,7 +88,7 @@ artifacts/forward_100_predictions.csv, not a replacement assessment.
 
 ## Reading historical results
 
-The 28-model research screen used previously inspected development-validation games and predates the removal of 12 exact-at-game-end rows. It was NOT rerun as a blind test or used to promote another model. [EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) contains every recorded candidate result and the negatives. On the corrected 106-game TEST, the original M1-minus-M0 primary intervals include zero. M1's late-game Brier/ECE are worse as **descriptive point estimates** (30+ Brier difference +0.0046, paired 95% interval [−0.0037,+0.0109] crosses zero). The separate later 200-game development cohort favors M1 on **aggregate point scores**, not a confirmatory 30+ effect. M0 remains the recommended reference. M1 could be evaluated alongside it in a future shadow study after live data-arrival timing is verified.
+The 28-model research screen used previously inspected development-validation games and predates the removal of 12 exact-at-game-end rows. It was NOT rerun as a blind test or used to promote another model. [EXPERIMENT_REGISTER.md](docs/EXPERIMENT_REGISTER.md) contains every recorded candidate result and the negatives. On the corrected 106-game TEST, the original M1-minus-M0 primary intervals include zero. M1's late-game Brier/ECE are worse as **descriptive point estimates** (30+ Brier difference +0.0046, paired 95% interval [−0.0037,+0.0109] crosses zero). The separate later 200-game development cohort favors M1 on **aggregate point scores**, not a confirmatory 30+ effect. M0 remains the required comparison baseline. The separately locked September result provides real further support for M1, making it the priority challenger for a future timestamped shadow study, not a verified live production model.
 
 A Git author identifies a commit's recorded author, not the specific tools used to produce its contents. AI assistance is disclosed in the report. Historical Git authorship and timestamps are not altered.
 

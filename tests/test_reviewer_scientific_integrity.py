@@ -61,11 +61,11 @@ class ReviewerScientificIntegrityTest(unittest.TestCase):
         self.assertAlmostEqual(m1, .518090, places=6)
         self.assertLess(m2, m1)
         report = (ROOT / "REPORT.md").read_text()
-        self.assertIn("0.517823 vs 0.518090", report)
-        self.assertIn("not a verified label-arrival margin", report)
+        self.assertIn("0.517823 versus M1 0.518090", (ROOT/"docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text())
+        self.assertIn("NOT a minimum verified real-world lag margin", (ROOT/"docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text())
         limits = (ROOT / "docs/REVIEWER_SCIENTIFIC_LIMITS.md").read_text()
         self.assertIn("historical pre-correction commit 009f54d", limits)
-        self.assertIn("Both forecast CSVs are now included", limits)
+        self.assertIn("only the corrected 3,836-row TEST CSV", limits)
 
     def test_original_test_before_after_correction_is_independently_recomputed(self):
         spec = importlib.util.spec_from_file_location(

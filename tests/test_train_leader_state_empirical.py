@@ -147,7 +147,7 @@ class TrainLeaderStateScienceTest(unittest.TestCase):
         self.assertEqual(study.source_hash(ROOT/"artifacts/heldout_predictions.csv"),
          "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441")
         report=(ROOT/"REPORT.md").read_text()
-        self.assertIn("About **10 active hours**, as self-reported",report)
+        self.assertIn("**10 active human hours**, confirmed by the applicant",report)
         self.assertIn("**Assistance disclosure:**",report)
         self.assertIn("TRAIN-only",report)
 

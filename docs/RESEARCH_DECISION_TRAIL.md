@@ -24,6 +24,7 @@ The original PR discussion links below are private and are provided only as hist
 | Red team and rolling folds | Parsing, support and label-maturity hazards exposed; M1 favored in 2/5 folds under an earlier baseline comparison (the later interaction-versus-additive check favors M1 in 1/4) | Correct implementation and disclose fragility | [PR #9](https://github.com/sangtrx/vexil-dota2-win-probability/pull/9) |
 | Grouped uncertainty | Post-hoc 54-series bootstrap LL difference still crosses zero, Brier boundary differs by resampling unit | Prioritize the prespecified match CI; do not cherry-pick | [PR #14](https://github.com/sangtrx/vexil-dota2-win-probability/pull/14) |
 | November sample | 100 games overlap a prior 120-game cohort by **68 IDs**; two leagues supply 85 games | Not independent replication | [Overlap receipt](NOVEMBER_COHORT_OVERLAP_RECEIPT.json) |
+| September locked external | 199/200 games; M1−M0 LL −0.039628, series CI [−0.074261,−0.010790] | **Limited gate PASS**; three leagues and repeated teams, not production confirmation | [September archive](../research/september_external/README.md) |
 | Value-of-freshness idea | Proposed headline estimator telescoped to endpoint effects | **Rejected** and preserved | [PR #15](https://github.com/sangtrx/vexil-dota2-win-probability/pull/15) |
 
 The [report's interaction-vs-additive-null figure](figures/train_interaction_vs_additive_null.png) renders the four chronological TRAIN-only forward-fold differences directly from the frozen [stronger-null receipt](../research/GOLD_INTERACTION_NULL_INFLUENCE_RECEIPT.json), with the 70-series pooled interval crossing zero. This is the *primary non-confirmatory TRAIN-only check* on incremental interaction skill, not a new holdout or model promotion. The [supplementary TRAIN-only empirical leader-win audit](TRAIN_LEADER_STATE_EMPIRICAL.md) asks whether similarly sized gold leads in surviving matches at different minutes correspond to similar eventual win fractions. This post-hoc descriptive chart uses fixed source-frozen TRAIN data, series-resampled uncertainty and in-sample M0/M1 probabilities; it neither selects models nor makes a causal time claim. The prior two-match objective-state illustration remains supplementary.
@@ -46,7 +47,9 @@ The follow-ups often used **already observed** validation/TEST cohorts. A writte
 
 **Pre-game information.** Without a trusted draft/team-strength prior, **101/106** M1 TEST minute-zero forecasts lie between 45% and 55%. This is a genuine representation limitation, not an invitation to tune on opened TEST.
 
-## New evidence required for promotion
+## New evidence required for deployment-grade claims
+
+A separate September evaluation **already passed its limited preregistered M1 support gate** (see [cross-cohort evidence](CROSS_COHORT_EVIDENCE.md)). This makes M1 worth shadow evaluation rather than grounds for discarding it based only on the fragile March TEST. The gate was retrospective, comprised three leagues with repeated teams, and lacked true live source-receipt logs; it was not a production deployment gate.
 
 Freeze the models and an explicit forward-data protocol before observing new outcomes. Collect genuinely unopened **multi-league and series-level** games; choose loss, calibration, phase and promotion gates before seeing them. Measure event-to-received-at delay and feature watermark/completeness, track fallbacks and run M1 in shadow against M0. Require a material proper-score gain and supported uncertainty without unacceptable late-phase deterioration. No measured betting alpha or real-trading return follows from this study.
 

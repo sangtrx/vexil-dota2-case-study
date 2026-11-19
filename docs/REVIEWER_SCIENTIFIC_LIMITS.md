@@ -1,6 +1,6 @@
 # Timing assumptions, TEST history and interpretation limits
 
-This note supports the FOUR-PAGE REPORT.pdf. It adds no new candidate model or blind TEST. The shipped notebook and original 3,836 held-out probabilities have not changed.
+This note supplements the four-page report. It adds no new candidate model or blind TEST. The shipped notebook and original 3,836 held-out probabilities have not changed.
 
 ## A. Label availability is not the OpenDota game clock
 
@@ -25,7 +25,7 @@ The historical pre-correction commit 009f54d (14 November 2026, 16:16 ICT) retai
 
 Commit 4a77ae5 (14 November 2026, 20:24 ICT) applied 60*t < duration, removing 12 terminal rows across 8 TRAIN, 3 VAL and 1 TEST games; the affected TRAIN design was refitted. The corrected frozen 3,836-forecast TEST CSV SHA256 is 03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441, with M0/M1 log loss 0.516444424 / 0.504014697 and Brier 0.171912178 / 0.168352834.
 
-Both comparisons are descriptive, not two independent tests. **Both forecast CSVs are now included in the ZIP**, with an independent standard-library verifier (research/verify_terminal_correction_history.py) and the machine receipt docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json. The historical commit can still be inspected in Git history, but Git access is no longer needed for this numerical comparison. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It therefore does not represent an untouched pre-TEST preregistration.
+Both comparisons are descriptive, not two independent tests. **The concise reviewer ZIP has only the corrected 3,836-row TEST CSV.** The historical pre-correction CSV, terminal-correction verifier and detailed receipt are in this **private research repository**, not the ZIP. This numerical comparison requires repository access or obtaining those historical files separately. The files named frozen_original_* refer to the **corrected 14-core-cell science snapshot**, not untouched pre-inspection code. The corrected reviewer notebook has those 14 core cells (including post-TEST corrections and diagnostics) plus two appended QA cells. It therefore does not represent an untouched pre-TEST preregistration.
 
 ## C. TRAIN-forward M0 differs from VAL and TEST for identifiable design reasons
 
@@ -49,7 +49,7 @@ The existing 28-way screen, tree models, October/November reuse and one influent
 
 ## Reproducibility and responsibility
 
-From the ZIP root with pinned dependencies, run:
+From the **private research repository root** with pinned dependencies, run (these scripts are **not** shipped inside the concise reviewer ZIP):
 
     python research/development_asof_robustness.py --check
     python research/verify_terminal_correction_history.py --check

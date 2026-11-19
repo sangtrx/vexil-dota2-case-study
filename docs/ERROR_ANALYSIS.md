@@ -37,7 +37,7 @@ The corrected TEST contains **106 games and 3,836 forecast opportunities**. M1â€
 
 Late-game M1 Brier has a worse **point estimate** even though its log-loss point estimate improves slightly; neither establishes a late-game population ranking. Excluding that influential match's 25 late-minute rows reverses the remaining **719 to 694** late-phase forecast log-loss delta from **âˆ’0.00678 to +0.03139** (M1 worse); Brier delta also worsens from **+0.00455 to +0.00748**. Both figures are computed directly from the frozen CSV and written into ERROR_AUDIT_RECEIPT.json, with a deterministic source-level regression test. This is not a new primary metric or a license to delete inconvenient games.
 
-This illustrates why a single overall proper score is not an adequate model-governance decision. Match-group and series-group dependence remain; a leave-one-out sign check is not a confidence interval.
+The 55-minute game's influence matters because longer matches contribute more forecast rows. The leave-one-out calculation is diagnostic rather than a new confidence interval; series and team dependence remain.
 
 ## Check the base rate before interpreting calibration
 

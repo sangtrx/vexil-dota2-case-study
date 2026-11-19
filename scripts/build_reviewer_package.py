@@ -23,6 +23,7 @@ PRED_SHA = "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441"
 FROZEN_SOURCES = {
     "README.md": "delivery/REVIEWER_README.md",
     "SUPPLEMENTARY_EXPERIMENTS.md": "delivery/SUPPLEMENTARY_EXPERIMENTS.md",
+    "FEATURE_SCREEN_AND_FAILURES.md": "delivery/FEATURE_SCREEN_AND_FAILURES.md",
     "REPORT.pdf": "REPORT.pdf",
     "live_dota2_win_probability.ipynb": "live_dota2_win_probability.ipynb",
     "requirements.txt": "requirements.txt",
@@ -31,6 +32,9 @@ FROZEN_SOURCES = {
         "artifacts/validation_m0_m1_predictions.csv",
     "docs/ERROR_AUDIT_RECEIPT.json": "docs/ERROR_AUDIT_RECEIPT.json",
     "docs/SERIES_CI_RECEIPT.json": "docs/SERIES_CI_RECEIPT.json",
+    "docs/SERIES_GROUPS_TEST.json": "docs/SERIES_GROUPS_TEST.json",
+    "docs/CROSS_COHORT_EVIDENCE.md": "docs/CROSS_COHORT_EVIDENCE.md",
+    "research/verify_heldout_scores.py": "research/verify_heldout_scores.py",
     "docs/REVIEWER_SCIENTIFIC_LIMITS.md": "docs/REVIEWER_SCIENTIFIC_LIMITS.md",
 }
 COLAB_RECEIPT = "docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json"
@@ -97,7 +101,7 @@ def verify_sources() -> dict:
         raise ValueError("PDF must be exactly four pages")
     text = " ".join(subprocess.check_output(
         ["pdftotext", str(pdf), "-"], text=True).split())
-    for fact in ("10 active hours", "AI reviews are not independent human peer review",
+    for fact in ("10 active human hours", "AI reviews are not independent human peer review",
                  "0.5164", "0.5040", "0.1028", "0.1074"):
         if fact not in text:
             raise ValueError("Missing PDF fact: "+fact)
@@ -128,7 +132,7 @@ def run() -> dict:
     # Deliver a single notebook, four-page report and a compact result record.
     if sum(x.endswith(".ipynb") for x in data) != 1:
         raise ValueError("Only one notebook can be shipped")
-    if len(data) > 11:
+    if len(data) > 15:
         raise ValueError("Reviewer package unexpectedly grew")
     for name, b in data.items():
         if Path(name).suffix not in TEXT_EXTENSIONS:

@@ -52,10 +52,23 @@ for the scientific "why," [curation provenance](CURATION_PROVENANCE.md)
 for author-date boundaries and the [four-page report](../REPORT.pdf)
 for the requested submission-length summary.
 
+## Separate September 2026 evaluation
+
+The original September source was locked before scoring on branch
+[research/vexil-september-external-20261118](https://github.com/sangtrx/vexil-dota2-case-study/tree/research/vexil-september-external-20261118):
+protocol/model lock [90203d7](https://github.com/sangtrx/vexil-dota2-case-study/commit/90203d7596ef4279bf4f7c16c1f20e50045d02e7),
+200 IDs [5b9c96e](https://github.com/sangtrx/vexil-dota2-case-study/commit/5b9c96e3042943af56ca8eb2b2fb6e9cabf947b1),
+scoring code [fb5aadc](https://github.com/sangtrx/vexil-dota2-case-study/commit/fb5aadc09a5c6659155e82e358189b8b3dacd8d3),
+results [7ac654d](https://github.com/sangtrx/vexil-dota2-case-study/commit/7ac654d044f0af4825ff09b7d347b432cb3378aa).
+The fixed-output CSV and an offline verifier are now mirrored under
+[research/september_external](../research/september_external/README.md).
+This research is **outside** the 500-game employer model-selection exercise.
+
 ## Submission boundary
 
 This repository is **private**. Merely creating these commits/PRs
 is not delivering the assignment to Vexil or granting recruiter
-permissions. Candidate identity, individual contributions, active
-human hours and assistance disclosure still need applicant signoff.
+permissions. The candidate has confirmed **10 active human hours** (excluding unattended runs).
+The assistant-authored code and automated experiments are disclosed in the report;
+Git commit author metadata alone is not proof of manual authorship.
 No main model was changed based on exposed TEST outcomes.

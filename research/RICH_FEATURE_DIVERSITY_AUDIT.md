@@ -1,4 +1,15 @@
-# Feature diversity and Roshan-owner availability (17 November 2026)
+# Feature diversity and Roshan ownership audit (17 November; corrected 19 November 2026)
+
+**Correction history:** The 17 November version asserted that raw Roshan-kill
+events did not supply an attributable team. That conclusion was **wrong**:
+all 486 TRAIN Roshan-kill events had `team=2/3`, while the old parser
+incorrectly searched for player slots. The unmodified 17 November text
+is preserved at Git branch `research/vexil-rich-feature-lab-20261117`.
+This main-branch readout is explicitly the **19 November correction**, not
+a claim that the correct attribution was known on 17 November.
+The original defective Q2/Q3 scores remain in the research record,
+alongside corrected TRAIN-only evaluations.
+
 
 This is an explicit post-execution **quality audit**, not a third model variant or a new performance test. It does not change either locked model, the training input CSV, or the already reported score receipt.
 

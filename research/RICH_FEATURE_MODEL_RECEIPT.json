@@ -1,0 +1,534 @@
+{
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261115,
+  "comparisons": {
+    "Q2_sparse": {
+      "A_additive": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.006903538775651115,
+          0.010582710284926152
+        ],
+        "delta_brier": 0.0018162575118319962,
+        "delta_logloss": 0.015291172131577003,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.01289275534548192,
+        "ll_ci95_series": [
+          -0.00940394563701053,
+          0.040346827843846064
+        ],
+        "ll_ci975_two_candidates": [
+          -0.012428491499168455,
+          0.044020462071307886
+        ]
+      },
+      "M0_gold": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.006265843992931148,
+          0.010897854464625939
+        ],
+        "delta_brier": 0.002326711894512955,
+        "delta_logloss": 0.017084363334868388,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.011464739558768726,
+        "ll_ci95_series": [
+          -0.007808378369215936,
+          0.04207756608858332
+        ],
+        "ll_ci975_two_candidates": [
+          -0.010681616754371098,
+          0.04573050291446919
+        ]
+      },
+      "M1_interaction": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.00732113102993717,
+          0.00993548231936764
+        ],
+        "delta_brier": 0.0014108767376516168,
+        "delta_logloss": 0.017311246114665203,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.009578035061623656,
+        "ll_ci95_series": [
+          -0.009647349173113912,
+          0.04803400513318082
+        ],
+        "ll_ci975_two_candidates": [
+          -0.012718411940822967,
+          0.05299933115815702
+        ]
+      },
+      "Q1_path": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.0046946496871842535,
+          0.012881151468871385
+        ],
+        "delta_brier": 0.004105346020563205,
+        "delta_logloss": 0.02343422999882017,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.0016662839465321467,
+        "ll_ci95_series": [
+          -0.003796694937243163,
+          0.051965807259088746
+        ],
+        "ll_ci975_two_candidates": [
+          -0.006888733564794316,
+          0.05642568758810174
+        ]
+      }
+    },
+    "Q3_tree": {
+      "A_additive": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.003797071727265321,
+          0.012908465195872267
+        ],
+        "delta_brier": 0.004278551690585952,
+        "delta_logloss": 0.0071603223764256,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.005757523657245095,
+        "ll_ci95_series": [
+          -0.017293388788996267,
+          0.030917316704622128
+        ],
+        "ll_ci975_two_candidates": [
+          -0.02076318612292265,
+          0.03475516992233634
+        ]
+      },
+      "M0_gold": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.003245453008900584,
+          0.013370189623975738
+        ],
+        "delta_brier": 0.00478900607326691,
+        "delta_logloss": 0.008953513579716983,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.004329507870531902,
+        "ll_ci95_series": [
+          -0.014586183598981428,
+          0.03205036506770975
+        ],
+        "ll_ci975_two_candidates": [
+          -0.017643260281853413,
+          0.035443423687232
+        ]
+      },
+      "M1_interaction": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.00399446649723764,
+          0.012193053197809898
+        ],
+        "delta_brier": 0.0038731709164055717,
+        "delta_logloss": 0.009180396359513801,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": -0.002442803373386833,
+        "ll_ci95_series": [
+          -0.010908625467337736,
+          0.02994737586332759
+        ],
+        "ll_ci975_two_candidates": [
+          -0.013371086988439793,
+          0.03302175982074847
+        ]
+      },
+      "Q1_path": {
+        "better_forward_folds": 1,
+        "brier_ci95_series": [
+          -0.00152519357056359,
+          0.015265601788950377
+        ],
+        "delta_brier": 0.006567640199317162,
+        "delta_logloss": 0.015303380243668768,
+        "largest_positive_series_share": null,
+        "late30_delta_brier": 0.005468947741704685,
+        "ll_ci95_series": [
+          -0.006085455570438354,
+          0.03714727983554337
+        ],
+        "ll_ci975_two_candidates": [
+          -0.008716983425019306,
+          0.04077702142661357
+        ]
+      }
+    }
+  },
+  "engineered_train_sha256": "e89526a951554e196983d8013afb378a151506f97953a8a1e6e2579c50f1da1b",
+  "feature_family_sizes": {
+    "gold": 19,
+    "interactions": 13,
+    "objectives": 17,
+    "players": 19,
+    "xp": 13
+  },
+  "folds": [
+    {
+      "A_additive": {
+        "brier": 0.21981377195539273,
+        "logloss": 0.6437688074491413
+      },
+      "M0_gold": {
+        "brier": 0.22047225213734717,
+        "logloss": 0.6460659144085127
+      },
+      "M1_interaction": {
+        "brier": 0.2226302339085362,
+        "logloss": 0.652097365172538
+      },
+      "Q1_path": {
+        "brier": 0.2162707406038997,
+        "logloss": 0.6322596449952465
+      },
+      "Q2_sparse": {
+        "brier": 0.23766608624345897,
+        "logloss": 0.7048894736426728,
+        "nonzero_families": {
+          "gold": 5,
+          "interactions": 5,
+          "objectives": 10,
+          "players": 13,
+          "xp": 6
+        },
+        "nonzero_features": 40
+      },
+      "Q3_tree": {
+        "brier": 0.2432050434144483,
+        "logloss": 0.6953446842939534
+      },
+      "completed_fit_games": 154,
+      "eval_games": 22,
+      "eval_rows": 771,
+      "fold": 1,
+      "maturity_embargo_games": 0
+    },
+    {
+      "A_additive": {
+        "brier": 0.21591551388100583,
+        "logloss": 0.6395184457396911
+      },
+      "M0_gold": {
+        "brier": 0.21429724232572975,
+        "logloss": 0.6338525075290309
+      },
+      "M1_interaction": {
+        "brier": 0.2133737577737356,
+        "logloss": 0.6218760309252692
+      },
+      "Q1_path": {
+        "brier": 0.21476781058410443,
+        "logloss": 0.6282497742627099
+      },
+      "Q2_sparse": {
+        "brier": 0.2195433208238495,
+        "logloss": 0.6673360009970938,
+        "nonzero_families": {
+          "gold": 7,
+          "interactions": 4,
+          "objectives": 9,
+          "players": 14,
+          "xp": 5
+        },
+        "nonzero_features": 40
+      },
+      "Q3_tree": {
+        "brier": 0.20786958593307797,
+        "logloss": 0.600752077092206
+      },
+      "completed_fit_games": 176,
+      "eval_games": 44,
+      "eval_rows": 1649,
+      "fold": 2,
+      "maturity_embargo_games": 0
+    },
+    {
+      "A_additive": {
+        "brier": 0.20807950646829218,
+        "logloss": 0.588787336001348
+      },
+      "M0_gold": {
+        "brier": 0.20789422743916808,
+        "logloss": 0.588279660027608
+      },
+      "M1_interaction": {
+        "brier": 0.2098519399195537,
+        "logloss": 0.5948597248521718
+      },
+      "Q1_path": {
+        "brier": 0.2074248712815135,
+        "logloss": 0.5879625054713568
+      },
+      "Q2_sparse": {
+        "brier": 0.19478357178679148,
+        "logloss": 0.5596424674855791,
+        "nonzero_families": {
+          "gold": 9,
+          "interactions": 6,
+          "objectives": 11,
+          "players": 11,
+          "xp": 6
+        },
+        "nonzero_features": 44
+      },
+      "Q3_tree": {
+        "brier": 0.20970449242082748,
+        "logloss": 0.600793493377399
+      },
+      "completed_fit_games": 218,
+      "eval_games": 32,
+      "eval_rows": 1228,
+      "fold": 3,
+      "maturity_embargo_games": 2
+    },
+    {
+      "A_additive": {
+        "brier": 0.20785123060143065,
+        "logloss": 0.5905989728079041
+      },
+      "M0_gold": {
+        "brier": 0.20770799647981575,
+        "logloss": 0.5899599527350031
+      },
+      "M1_interaction": {
+        "brier": 0.20917925229750622,
+        "logloss": 0.5940533584376041
+      },
+      "Q1_path": {
+        "brier": 0.20352274016534716,
+        "logloss": 0.5815924259724972
+      },
+      "Q2_sparse": {
+        "brier": 0.21190526007920651,
+        "logloss": 0.6048970620495212,
+        "nonzero_families": {
+          "gold": 10,
+          "interactions": 6,
+          "objectives": 10,
+          "players": 13,
+          "xp": 7
+        },
+        "nonzero_features": 47
+      },
+      "Q3_tree": {
+        "brier": 0.21830266345652832,
+        "logloss": 0.6225590409092167
+      },
+      "completed_fit_games": 252,
+      "eval_games": 39,
+      "eval_rows": 1433,
+      "fold": 4,
+      "maturity_embargo_games": 0
+    }
+  ],
+  "future_candidate_gate": {
+    "Q2_sparse": false,
+    "Q3_tree": false
+  },
+  "games_evaluated": 137,
+  "group_count": 70,
+  "models": {
+    "A_additive": [
+      "gold_k",
+      "minute10"
+    ],
+    "M0_gold": [
+      "gold_k"
+    ],
+    "M1_interaction": [
+      "gold_k",
+      "minute10",
+      "gold_x_time"
+    ],
+    "Q1_path": [
+      "gold_k",
+      "minute10",
+      "adverse_excursion10_k",
+      "signed_realized_vol10_k",
+      "directional_efficiency10"
+    ],
+    "Q2_sparse": [
+      "gold_k",
+      "minute10",
+      "gold_x_time",
+      "gold_d1",
+      "gold_d3",
+      "gold_d5",
+      "gold_d10",
+      "gold_acc3",
+      "gold_acc5",
+      "gold_vol3",
+      "gold_vol5",
+      "gold_vol10",
+      "gold_range5",
+      "gold_range10",
+      "gold_retreat5",
+      "gold_retreat10",
+      "gold_eff5",
+      "gold_eff10",
+      "gold_flips10",
+      "gold_peak_age10",
+      "gold_slope5",
+      "gold_ewma_gap10",
+      "xp_level",
+      "xp_d3",
+      "xp_d5",
+      "xp_d10",
+      "xp_acc5",
+      "xp_vol5",
+      "xp_vol10",
+      "xp_retreat10",
+      "xp_eff10",
+      "xp_flips10",
+      "xp_slope5",
+      "gold_xp_gap",
+      "gold_xp_flow_gap",
+      "p_gold_top1_diff",
+      "p_gold_top2_diff",
+      "p_gold_bottom2_diff",
+      "p_gold_median_diff",
+      "p_gold_std_diff",
+      "p_gold_gini_diff",
+      "p_gold_top1_share_diff",
+      "p_gold_top2_share_diff",
+      "p_gold_bottom2_share_diff",
+      "p_gold_growth3_top2_diff",
+      "p_gold_growth5_bottom2_diff",
+      "p_xp_top2_share_diff",
+      "p_xp_gini_diff",
+      "p_lh_total_diff",
+      "p_lh_top2_diff",
+      "p_lh_growth3_diff",
+      "p_dn_total_diff",
+      "p_lh_balance_diff",
+      "p_concentration_gap",
+      "o_tower_delta",
+      "o_rax_delta",
+      "o_roshan_delta",
+      "o_kills_delta",
+      "o_tower5_delta",
+      "o_tower10_delta",
+      "o_kill3_delta",
+      "o_kill5_delta",
+      "o_last_tower_age_diff",
+      "o_last_kill_age_diff",
+      "o_roshan10_delta",
+      "o_aegis5_delta",
+      "o_tower_weighted",
+      "o_rax10_delta",
+      "o_firstblood_side",
+      "o_highground_delta",
+      "o_objective_tempo",
+      "x_gold_per_sqrt_time",
+      "x_xp_per_sqrt_time",
+      "x_economy_gap",
+      "x_gold_vol_adj",
+      "x_opp_kill_mismatch",
+      "x_gold_tower_mismatch",
+      "x_xp_tower_mismatch",
+      "x_gold_early",
+      "x_gold_late",
+      "x_gold_times_abs_tower",
+      "x_tower_times_abs_gold",
+      "x_gold_times_abs_kill",
+      "x_volatile_retreat"
+    ],
+    "Q3_tree": [
+      "gold_k",
+      "minute10",
+      "gold_x_time",
+      "gold_d1",
+      "gold_d3",
+      "gold_d5",
+      "gold_d10",
+      "gold_acc3",
+      "gold_acc5",
+      "gold_vol3",
+      "gold_vol5",
+      "gold_vol10",
+      "gold_range5",
+      "gold_range10",
+      "gold_retreat5",
+      "gold_retreat10",
+      "gold_eff5",
+      "gold_eff10",
+      "gold_flips10",
+      "gold_peak_age10",
+      "gold_slope5",
+      "gold_ewma_gap10",
+      "xp_level",
+      "xp_d3",
+      "xp_d5",
+      "xp_d10",
+      "xp_acc5",
+      "xp_vol5",
+      "xp_vol10",
+      "xp_retreat10",
+      "xp_eff10",
+      "xp_flips10",
+      "xp_slope5",
+      "gold_xp_gap",
+      "gold_xp_flow_gap",
+      "p_gold_top1_diff",
+      "p_gold_top2_diff",
+      "p_gold_bottom2_diff",
+      "p_gold_median_diff",
+      "p_gold_std_diff",
+      "p_gold_gini_diff",
+      "p_gold_top1_share_diff",
+      "p_gold_top2_share_diff",
+      "p_gold_bottom2_share_diff",
+      "p_gold_growth3_top2_diff",
+      "p_gold_growth5_bottom2_diff",
+      "p_xp_top2_share_diff",
+      "p_xp_gini_diff",
+      "p_lh_total_diff",
+      "p_lh_top2_diff",
+      "p_lh_growth3_diff",
+      "p_dn_total_diff",
+      "p_lh_balance_diff",
+      "p_concentration_gap",
+      "o_tower_delta",
+      "o_rax_delta",
+      "o_roshan_delta",
+      "o_kills_delta",
+      "o_tower5_delta",
+      "o_tower10_delta",
+      "o_kill3_delta",
+      "o_kill5_delta",
+      "o_last_tower_age_diff",
+      "o_last_kill_age_diff",
+      "o_roshan10_delta",
+      "o_aegis5_delta",
+      "o_tower_weighted",
+      "o_rax10_delta",
+      "o_firstblood_side",
+      "o_highground_delta",
+      "o_objective_tempo",
+      "x_gold_per_sqrt_time",
+      "x_xp_per_sqrt_time",
+      "x_economy_gap",
+      "x_gold_vol_adj",
+      "x_opp_kill_mismatch",
+      "x_gold_tower_mismatch",
+      "x_xp_tower_mismatch",
+      "x_gold_early",
+      "x_gold_late",
+      "x_gold_times_abs_tower",
+      "x_tower_times_abs_gold",
+      "x_gold_times_abs_kill",
+      "x_volatile_retreat"
+    ]
+  },
+  "new_feature_count": 81,
+  "original_VAL_or_TEST_labels_loaded": false,
+  "original_submission_changed": false,
+  "raw_payload_manifest_sha256": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+  "rows_evaluated": 5081,
+  "scope": "POST_RESULT_TRAIN_ONLY_NOT_FRESH_TEST",
+  "wide_input_count": 84
+}

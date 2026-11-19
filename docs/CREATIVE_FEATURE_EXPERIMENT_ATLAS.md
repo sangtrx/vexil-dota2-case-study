@@ -4,11 +4,11 @@
 
 This appendix records the models and features I tried, including the ones I rejected. The four-page report contains the main decision. The submitted 16-code-cell notebook fits M0-M3 and includes a development-only item diagnostic; it does not execute every experiment listed here.
 
-The ZIP includes selected research scripts, frozen forecasts, metadata and readouts. Some audits are reproducible offline from the ZIP; the full supplementary model search is not, because additional research code, environments and original match JSONs remain outside it. These are post-result studies, not independent validation.
+The concise reviewer ZIP has only the main notebook, frozen VAL/TEST forecasts, statistical receipts and a readable feature/negative-results table. The source repository retains research code, readouts and the separately frozen September external study; several historical raw caches are not committed. Supplementary comparisons are not interchangeable with independent confirmation.
 
 ## Main finding
 
-The original 500-game point-in-time observational study finds TEST minute-log-loss M0 gold baseline **0.516444** versus M1 time-aware **0.504015** on 106 games / 3,836 predictions. The paired 95% match bootstrap for M1−M0 **[-0.0304,+0.0014]** includes zero, and M1 worsens minute-30+ Brier **0.1028→0.1074**. I recommend **M0 as the reference**, with M1 considered for future shadow evaluation. The extra modelling work did not provide enough evidence to replace the simpler model.
+The original 500-game point-in-time observational study finds TEST minute-log-loss M0 gold baseline **0.516444** versus M1 time-aware **0.504015** on 106 games / 3,836 predictions. The paired 95% match bootstrap for M1−M0 **[-0.0304,+0.0014]** includes zero, and M1 worsens minute-30+ Brier **0.1028→0.1074**. I recommend **M0 as the reference**, with M1 considered for future shadow evaluation. The separate **September 199-game preregistered external check, outside the required 500 games,** favored M1 and passed its limited support gate, but covered only three leagues with repeated teams. I keep M0 as the benchmark and prioritize M1 for timestamped shadow evaluation, not production promotion (see [cross-cohort results](CROSS_COHORT_EVIDENCE.md)).
 
 ### Which data support each result
 
@@ -17,7 +17,7 @@ The original 500-game point-in-time observational study finds TEST minute-log-lo
 | **A: original applicant evaluation** | 500 March games; 291 TRAIN / 103 VAL / 106 TEST; 18,292 decisions; point-in-time filtered | Main M0-M3 notebook evidence, with corrected-after-inspection TEST boundary made explicit |
 | **B: reused development labels** | P01-P28, S1-S4, M4 and historical pre-correction scores on the already-inspected 103 VAL games | Creative attempted hypotheses and **failures**, not a new validation or model-promotion claim |
 | **C: March TRAIN-only forward** | Four original chronological mature-label folds; 137 games, 5,081 forecast minutes, 70 series/singletons | TRAIN-only forward-fold *descriptive* comparisons on reused labels, after many candidate searches; **not a fresh independent test** |
-| **D: later October/November retrospective replays** | October 180 games; Nov 22 or Nov 17 distinct sources; some overlaps with earlier research | Stress for drift and feature transfer, **not new prospective live receipts**, sometimes source labels had been inspected |
+| **D: external retrospective replays** | Separate September 200 IDs / 199 valid, October 180 and November 100/120/22/17 (overlap disclosed) | September selection/model lock precedes scoring; limited gate PASS but 3 leagues and team dependence. Others reused outcomes or overlapping cohorts. No live receipts |
 | **E: operational/fault simulation** | Artificial 1/3-minute delays, event lag, abstain/smoothing, malformed inputs | Risk discovery, not measured network/stream packet availability or betting profit |
 
 ## 1. The original four executable models (tier A)
@@ -94,7 +94,7 @@ Five families were **implemented** to represent lead history, player-role topolo
 | **objectives** | 17 | Timestamped tower/rax/kills, structural recency, Roshan/Aegis availability, high-ground and objective pace; Roshan team (2/3) available; historical parser ignored it | `o_tower_delta`, `o_rax_delta`, `o_roshan_delta`, `o_kills_delta`, `o_tower5_delta`, `o_tower10_delta`, `o_kill3_delta`, `o_kill5_delta`, `o_last_tower_age_diff`, `o_last_kill_age_diff`, `o_roshan10_delta`, `o_aegis5_delta`, `o_tower_weighted`, `o_rax10_delta`, `o_firstblood_side`, `o_highground_delta`, `o_objective_tempo` |
 | **interactions** | 13 | Regime/shape terms: gold per square-root time, volatility-adjusted lead, gold vs towers/kills discrepancies, early/late terms, high volatility + retreat | `x_gold_per_sqrt_time`, `x_xp_per_sqrt_time`, `x_economy_gap`, `x_gold_vol_adj`, `x_opp_kill_mismatch`, `x_gold_tower_mismatch`, `x_xp_tower_mismatch`, `x_gold_early`, `x_gold_late`, `x_gold_times_abs_tower`, `x_tower_times_abs_gold`, `x_gold_times_abs_kill`, `x_volatile_retreat` |
 
-**19 November correction:** The historical 84-input evaluation had **78 distinct varying** engineered fields: `o_roshan_delta` and `o_roshan10_delta` were constant zero, and `x_economy_gap` duplicated `gold_xp_gap`. This was a **parser bug**, not missing data. All **486** TRAIN Roshan-kill events have valid `team` (2 = Radiant, 3 = Dire), but not `player_slot`/`slot`; the old extractor dropped them. The corrected TRAIN-only rebuild has **80 distinct varying** engineered fields. The affected columns are the two Roshan fields and `o_objective_tempo`. Historical model scores remain below. The separate [post-result repair](../research/ROSHAN_CORRECTION_20261119.md) reruns the unchanged models on TRAIN-forward folds, without using VAL/TEST to select a model.
+**19 November correction:** The 17 November audit had incorrectly claimed Roshan ownership was unavailable; original wording survives in the historical branch. The historical 84-input evaluation had **78 distinct varying** engineered fields: `o_roshan_delta` and `o_roshan10_delta` were constant zero, and `x_economy_gap` duplicated `gold_xp_gap`. This was a **parser bug**, not missing data. All **486** TRAIN Roshan-kill events have valid `team` (2 = Radiant, 3 = Dire), but not `player_slot`/`slot`; the old extractor dropped them. The corrected TRAIN-only rebuild has **80 distinct varying** engineered fields. The affected columns are the two Roshan fields and `o_objective_tempo`. Historical model scores remain below. The separate [post-result repair](../research/ROSHAN_CORRECTION_20261119.md) reruns the unchanged models on TRAIN-forward folds, without using VAL/TEST to select a model.
 
 ### Historical TRAIN-forward evaluation (before Roshan repair)
 
@@ -157,15 +157,15 @@ The first XGBoost version pin `3.4.2` did **not** exist in BigLinux's package in
 - Original historical robustness: 900-game parse checks / 9,000 player histories, 32,106 clock/gold indices and a 12,063-case adversarial assertion suite per two seeds. These are parser/tests evidence **not** 900 extra independent modelling games.
 - Real-time operational claim remains **UNVERIFIED**: parser alignment, event timestamps and hypothetical stale-feed simulation cannot establish actual system `received_at` or source watermark. No betting ROI, trading profit, real-user uplift or causal interpretation is claimed.
 
-## 8. Why the negative results are useful
+## 8. Why the negative results matter
 
-The hypotheses asked whether economic advantage might hide allocation (carry vs support), path history, tower/Roshan control, item completion, draft synergies, phase-specific shifts and delivery delay. They are plausible game mechanisms but need predictive validation. However, a prediction feature must improve **out-of-sample proper scores** after multiplicity and dependence checks; an interesting mechanism alone is not a statistically validated improvement. I retained the failed ablations, sensitivity results, nulls and software faults.
+The hypotheses asked whether economic advantage might hide allocation (carry vs support), path history, tower/Roshan control, item completion, draft synergies, phase-specific shifts and delivery delay. Items, objectives and player allocation had plausible game explanations, but their best development gains did not survive dependence and multiple-testing checks. The 81-field Roshan bug was repaired before interpreting its TRAIN-forward results. These failures and the successful but limited September comparison are kept rather than promoting whichever number looks best.
 
-**Model choice is a decision under uncertainty:** M0 is the required reference; M1 is the originally selected challenger, with meaningful but uncertain point advantage. The justified next test is a *genuinely new, precommitted, diverse professional-series cohort with real source receipt timestamps*, a primary minute-weighted log-loss difference threshold and independent group confidence intervals, plus non-regression in 30+ Brier. No new model was refitted on original TEST in any supplementary experiment.
+**Model choice is a decision under uncertainty:** M0 is the required reference; M1 is the originally selected challenger, with meaningful but uncertain point advantage. The September gate has **already** been run and passed in three leagues; the next step is a distinct, more diverse live-feed shadow study with actual packet receipt timestamps, better team/league independence, a fixed primary log-loss comparison and a late-game Brier guardrail. No new model was refitted on original TEST in any supplementary experiment.
 
 ## 9. Where to inspect everything
 
-The original `docs/EXPERIMENT_REGISTER.md` contains the 28-hypothesis ledger and original private PR map. The following evidence files are included in the optional reviewer ZIP as text-only research appendices. They are NOT extra executable notebooks:
+The original `docs/EXPERIMENT_REGISTER.md` contains the 28-hypothesis ledger and original private PR map. The following evidence files are indexed in the **private source repository**, not included in the concise reviewer ZIP. They are separate research readouts, not executable notebooks:
 
 - `research/QUANT_BIBLE_PATH_READOUT.md`
 - `research/QUANT_PATH_SIGNATURES_READOUT.md`
@@ -188,4 +188,4 @@ The original `docs/EXPERIMENT_REGISTER.md` contains the 28-hypothesis ledger and
 
 Reproduction boundaries: the historical original 500-game notebook can refetch frozen match IDs from OpenDota and has saved figures/outputs. Many later experiments depended on the author's historical raw-cache snapshot, isolated XGBoost/LightGBM packages and frozen research-branch scripts; those raw payloads are **not bundled** in the reviewer ZIP. Numeric readouts are retained with original GitHub source-branch histories and are not passed off as new independent employer scores.
 
-**Disclosure:** `REPORT.pdf` states the AI/public-code assistance and active-hours estimate. Active time is explicitly marked as a candidate estimate rather than an independently audited work log. AI-written code and review are not independent human peer review.
+**Disclosure:** `REPORT.pdf` records **10 human hours confirmed by the applicant**, excluding unattended runs, and discloses AI/code-agent assistance. Source code and scientific evidence remain open to critique; AI model reviews are not human peer review.

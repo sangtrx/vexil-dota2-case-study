@@ -35,8 +35,8 @@ class ForwardEvidenceTests(TestCase):
         self.assertIn("106 TEST",report)
         self.assertIn("3,836",report)
         self.assertIn("not a test on an unseen patch",report)
-        self.assertIn("100-game November",report)
-        self.assertIn("both intervals contain zero",report)
+        self.assertIn("November 100-game",report)
+        self.assertIn("Both intervals include zero",(ROOT/"docs/FORWARD_100_STRESS.md").read_text())
 
     def test_no_calendar_prospective_or_calibration_proven_claim(self):
         narrative=(ROOT/"docs/FORWARD_100_STRESS.md").read_text().lower()
