@@ -44,8 +44,8 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("docs/CURATION_PROVENANCE.md",readme)
 
     def test_handoff_test_scope_does_not_have_a_stale_exact_count(self):
-        self.assertIn("175 offline checks",(ROOT/"README.md").read_text())
-        self.assertIn("175 offline unit/contract checks",
+        self.assertIn("180 offline checks",(ROOT/"README.md").read_text())
+        self.assertIn("180 offline unit/contract checks",
                       (ROOT/"SUBMISSION_PACKAGE_README.md").read_text())
 
     def test_local_setup_does_not_promise_unsupported_future_python_versions(self):
@@ -190,7 +190,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True
         ).split())
-        for snippet in ("17 November 2026","286 mature TRAIN games","143 seconds",
+        for snippet in ("19 November 2026","286 mature TRAIN games","143 seconds",
                         "18,292","1/4 folds","[−0.0304,+0.0014]",
                         "0.1028","0.1074 (worse)","63/106 Radiant-winning games",
                         "16-code-cell notebook","No third-party Dota predictor was copied"):

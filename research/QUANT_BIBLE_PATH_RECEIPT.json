@@ -1,0 +1,248 @@
+{
+  "feature_prefix_audit": {
+    "audited_prefixes": 10675,
+    "feature_names": [
+      "adverse_excursion10_k",
+      "signed_realized_vol10_k",
+      "directional_efficiency10"
+    ],
+    "mirror_symmetry_pass": 10675,
+    "window": "last 10 past minute increments"
+  },
+  "folds": [
+    {
+      "A_additive": {
+        "brier": 0.21981377195539273,
+        "late30_brier": 0.1935319063327149,
+        "logloss": 0.6437688074491413
+      },
+      "M0_gold": {
+        "brier": 0.22047225213734717,
+        "late30_brier": 0.1964039251618451,
+        "logloss": 0.6460659144085127
+      },
+      "M1_interaction": {
+        "brier": 0.22263023390853623,
+        "late30_brier": 0.19418641667850559,
+        "logloss": 0.6520973651725381
+      },
+      "Q1_minus_A_additive_brier": -0.0035430313514930086,
+      "Q1_minus_A_additive_logloss": -0.011509162453894977,
+      "Q1_minus_M0_gold_brier": -0.004201511533447461,
+      "Q1_minus_M0_gold_logloss": -0.0138062694132663,
+      "Q1_minus_M1_interaction_brier": -0.0063594933046365165,
+      "Q1_minus_M1_interaction_logloss": -0.01983772017729176,
+      "Q1_path": {
+        "brier": 0.2162707406038997,
+        "late30_brier": 0.15948373330822,
+        "logloss": 0.6322596449952465
+      },
+      "embargoed_unfinished_labels": 0,
+      "eval_games": 22,
+      "eval_rows": 771,
+      "fit_completed_games": 154,
+      "fold": 1,
+      "patch": "train-only original chronology"
+    },
+    {
+      "A_additive": {
+        "brier": 0.21591551388100583,
+        "late30_brier": 0.21604618433371525,
+        "logloss": 0.6395184457396911
+      },
+      "M0_gold": {
+        "brier": 0.21429724232572975,
+        "late30_brier": 0.21103601197048374,
+        "logloss": 0.6338525075290309
+      },
+      "M1_interaction": {
+        "brier": 0.2133737577737356,
+        "late30_brier": 0.2054438994346847,
+        "logloss": 0.6218760309252691
+      },
+      "Q1_minus_A_additive_brier": -0.0011477032969013762,
+      "Q1_minus_A_additive_logloss": -0.011268671476981278,
+      "Q1_minus_M0_gold_brier": 0.0004705682583747054,
+      "Q1_minus_M0_gold_logloss": -0.005602733266321012,
+      "Q1_minus_M1_interaction_brier": 0.0013940528103688567,
+      "Q1_minus_M1_interaction_logloss": 0.006373743337440655,
+      "Q1_path": {
+        "brier": 0.21476781058410443,
+        "late30_brier": 0.2051096047378142,
+        "logloss": 0.6282497742627099
+      },
+      "embargoed_unfinished_labels": 0,
+      "eval_games": 44,
+      "eval_rows": 1649,
+      "fit_completed_games": 176,
+      "fold": 2,
+      "patch": "train-only original chronology"
+    },
+    {
+      "A_additive": {
+        "brier": 0.20807950646829218,
+        "late30_brier": 0.16380236409163657,
+        "logloss": 0.588787336001348
+      },
+      "M0_gold": {
+        "brier": 0.20789422743916808,
+        "late30_brier": 0.16297669345729132,
+        "logloss": 0.588279660027608
+      },
+      "M1_interaction": {
+        "brier": 0.2098519399195537,
+        "late30_brier": 0.1676556352020246,
+        "logloss": 0.5948597248521718
+      },
+      "Q1_minus_A_additive_brier": -0.0006546351867786821,
+      "Q1_minus_A_additive_logloss": -0.0008248305299912041,
+      "Q1_minus_M0_gold_brier": -0.0004693561576545856,
+      "Q1_minus_M0_gold_logloss": -0.00031715455625119484,
+      "Q1_minus_M1_interaction_brier": -0.0024270686380402006,
+      "Q1_minus_M1_interaction_logloss": -0.0068972193808149885,
+      "Q1_path": {
+        "brier": 0.2074248712815135,
+        "late30_brier": 0.16873846118605745,
+        "logloss": 0.5879625054713568
+      },
+      "embargoed_unfinished_labels": 2,
+      "eval_games": 32,
+      "eval_rows": 1228,
+      "fit_completed_games": 218,
+      "fold": 3,
+      "patch": "train-only original chronology"
+    },
+    {
+      "A_additive": {
+        "brier": 0.20785123060143065,
+        "late30_brier": 0.16805450582962628,
+        "logloss": 0.5905989728079041
+      },
+      "M0_gold": {
+        "brier": 0.20770799647981575,
+        "late30_brier": 0.1687545485687845,
+        "logloss": 0.5899599527350031
+      },
+      "M1_interaction": {
+        "brier": 0.20917925229750617,
+        "late30_brier": 0.16508819290389407,
+        "logloss": 0.5940533584376041
+      },
+      "Q1_minus_A_additive_brier": -0.004328490436083443,
+      "Q1_minus_A_additive_logloss": -0.00900654683540696,
+      "Q1_minus_M0_gold_brier": -0.00418525631446852,
+      "Q1_minus_M0_gold_logloss": -0.008367526762505855,
+      "Q1_minus_M1_interaction_brier": -0.005656512132158999,
+      "Q1_minus_M1_interaction_logloss": -0.012460932465106834,
+      "Q1_path": {
+        "brier": 0.20352274016534716,
+        "late30_brier": 0.1499673802611154,
+        "logloss": 0.5815924259724972
+      },
+      "embargoed_unfinished_labels": 0,
+      "eval_games": 39,
+      "eval_rows": 1433,
+      "fit_completed_games": 252,
+      "fold": 4,
+      "patch": "train-only original chronology"
+    }
+  ],
+  "models": {
+    "A_additive": [
+      "gold_k",
+      "minute10"
+    ],
+    "M0_gold": [
+      "gold_k"
+    ],
+    "M1_interaction": [
+      "gold_k",
+      "minute10",
+      "gold_x_time"
+    ],
+    "Q1_path": [
+      "gold_k",
+      "minute10",
+      "adverse_excursion10_k",
+      "signed_realized_vol10_k",
+      "directional_efficiency10"
+    ]
+  },
+  "no_new_model_selected_on_TEST": true,
+  "oof_games": 137,
+  "oof_rows": 5081,
+  "oof_series_or_singletons": 70,
+  "original_VAL_or_TEST_loaded": false,
+  "predeclared_gate_met": false,
+  "promote_into_original_submission": false,
+  "protocol": "research/QUANT_BIBLE_PATH_PROTOCOL.md",
+  "q1_comparison": {
+    "A_additive": {
+      "brier": {
+        "equal_match_point": -0.002514367047921606,
+        "percentile_ci_95": [
+          -0.004658082798180269,
+          0.00013561054507788757
+        ],
+        "point": -0.002289088508731209
+      },
+      "forward_fold_wins": 4,
+      "late30_delta_brier": -0.011226471398949778,
+      "logloss": {
+        "equal_match_point": -0.007877304255623016,
+        "percentile_ci_95": [
+          -0.016304737334720418,
+          -0.0007442250902844943
+        ],
+        "point": -0.008143057867243165
+      },
+      "max_positive_group_gain_share": 0.31303326826239986
+    },
+    "M0_gold": {
+      "brier": {
+        "equal_match_point": -0.002114567308431278,
+        "percentile_ci_95": [
+          -0.00432635947486667,
+          0.0007864577120640867
+        ],
+        "point": -0.0017786341260502506
+      },
+      "forward_fold_wins": 4,
+      "late30_delta_brier": -0.009798455612236582,
+      "logloss": {
+        "equal_match_point": -0.006549243417376119,
+        "percentile_ci_95": [
+          -0.013631932122572722,
+          0.0005608449996980177
+        ],
+        "point": -0.006349866663951784
+      },
+      "max_positive_group_gain_share": 0.2959322003070038
+    },
+    "M1_interaction": {
+      "brier": {
+        "equal_match_point": -0.0023028991457946565,
+        "percentile_ci_95": [
+          -0.006465907733756315,
+          0.0011242599195311462
+        ],
+        "point": -0.002694469282911577
+      },
+      "forward_fold_wins": 3,
+      "late30_delta_brier": -0.00791175111509147,
+      "logloss": {
+        "equal_match_point": -0.004926098605205887,
+        "percentile_ci_95": [
+          -0.017362390524325685,
+          0.004679693242437469
+        ],
+        "point": -0.006122983884154931
+      },
+      "max_positive_group_gain_share": 0.44384397731861724
+    }
+  },
+  "quant_bible_git_commit": "a9e2a4fcee068bff3956bba2066e3848b5bfe4c1",
+  "scope": "POST_RESULT_TRAIN_ONLY_EXPLORATORY_NONBLIND",
+  "source_manifest_sha256": "8b91d5f740beea214c66d4e4c396edc3dfa39b931ebf5f5fef8566b19cdd3216",
+  "source_train_sha256": "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
+}

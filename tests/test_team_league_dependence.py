@@ -117,8 +117,8 @@ class TeamLeagueDependenceTest(unittest.TestCase):
         self.assertFalse(self.receipt["raw_match_json_included"])
         self.assertIn("Only nine selected", " ".join(self.receipt["limitations"]))
         readout = (ROOT / "docs/TEAM_LEAGUE_DEPENDENCE.md").read_text()
-        self.assertIn("POST-HOC", readout)
-        self.assertIn("cannot create a second blind TEST", readout)
+        self.assertIn("This post-result analysis", readout)
+        self.assertIn("does not create a second blind TEST", readout)
         self.assertIn("not proof of test leakage", readout)
         self.assertIn("MacKinnon", readout)
 

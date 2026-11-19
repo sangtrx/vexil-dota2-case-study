@@ -23,14 +23,14 @@ For offline contract checks against the supplied predictions and figures:
 python -m unittest discover -s tests -p "test_*.py" -q
 ```
 
-There are **175 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
+There are **180 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
 
 **Package:** Vexil_Dota2_Creative_Research_20261119.zip (19 November 2026). This guide is inside the extracted ZIP.
 
 ## What is included
 
 - [Frozen 3,836 TEST forecasts](artifacts/heldout_predictions.csv), with overall and phase-wise proper-score comparisons in the notebook and report.
-- [Additional model experiments](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md): P01–P28, S1–S4/M4, 81 engineered features, Q1, elastic-net/trees, XGBoost/LightGBM, nested tuning, transfer and stale-feed checks. These results are **post-result supplements**, not another notebook or blind test.
+- [Additional experiments](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md) and the [Roshan parser correction](research/ROSHAN_CORRECTION_20261119.md): 28 adaptive screens, 81 engineered features, Q1 and fixed linear/tree models. These are post-result supplements, not another blind test.
 - [Original cohort/discovery provenance](docs/DISCOVERY_PROVENANCE.md), including the unarchived raw discovery-page limitation.
 - [TRAIN-only additive gold+time control](research/GOLD_INTERACTION_NULL_READOUT.md), [rejected-model register](docs/EXPERIMENT_REGISTER.md) and [independent-unit sensitivity](docs/TEAM_LEAGUE_DEPENDENCE.md).
 - [Development-only timing and model-selection sensitivity](docs/REVIEWER_SCIENTIFIC_LIMITS.md), plus the reproducible [historical TEST correction receipt](docs/PRETERMINAL_TEST_CORRECTION_RECEIPT.json) from both frozen forecast CSVs.

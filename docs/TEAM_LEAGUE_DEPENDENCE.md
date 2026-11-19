@@ -1,6 +1,6 @@
 # Team and league dependence in TEST
 
-**Status: NON-SELECTING, POST-HOC.** This is an audit of the **unchanged** 500-game cohort and the **unchanged** 3,836 held-out predictions. It cannot create a second blind TEST, prove the time interaction adds value, rescue an invalid confidence interval, or justify tuning/promoting M1. Keep the historically specified whole-match bootstrap **method** as the primary reported uncertainty. The original TEST was already inspected before terminal-boundary corrections, so its corrected intervals are **not preregistered blind results**.
+This post-result analysis uses the same 500 games and the unchanged 3,836 corrected held-out forecasts. It does not create a second blind TEST or justify changing M1. The original whole-match bootstrap remains the primary uncertainty analysis. The terminal-boundary correction followed initial TEST inspection, so even the corrected TEST intervals are not blind results.
 
 ## Research question
 

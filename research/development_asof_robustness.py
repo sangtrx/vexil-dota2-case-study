@@ -3,7 +3,7 @@
 
 FROZEN source: 394 TRAIN/VALIDATION games from the original 500-game study.
 Only metadata start_time for TEST is read, never TEST labels or predictions.
-Outputs cannot be used to change the original TEST-selected challenger.
+Outputs cannot be used to replace M1, which was selected using VALIDATION before TEST inspection.
 Usage:
   python research/development_asof_robustness.py --write
   python research/development_asof_robustness.py --check

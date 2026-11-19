@@ -125,8 +125,9 @@ class FableScienceRepairContract(unittest.TestCase):
         self.assertNotIn("Pre-registered original TEST",source)
         self.assertNotIn("Pre-registered original TEST",output)
         self.assertIn("The corrected TEST is not a fresh blind holdout",self.report)
-        self.assertIn("not preregistered blind results",
-                      (ROOT/"docs/TEAM_LEAGUE_DEPENDENCE.md").read_text())
+        note=(ROOT/"docs/TEAM_LEAGUE_DEPENDENCE.md").read_text()
+        self.assertIn("not blind results",note)
+        self.assertIn("terminal-boundary correction followed initial TEST inspection",note)
 
     def test_colab_preinstalled_stack_not_claimed_pinned(self):
         import hashlib
@@ -162,7 +163,7 @@ class FableScienceRepairContract(unittest.TestCase):
     def test_pdf_has_all_new_science_anchors_and_no_disclosure_rewrite(self):
         pdf=" ".join(subprocess.check_output(
             ["pdftotext","-layout",str(ROOT/"REPORT.pdf"),"-"],text=True).split())
-        for term in ("17 November 2026","66/82","11/25","1/4 folds","+0.000405",
+        for term in ("19 November 2026","66/82","11/25","1/4 folds","+0.000405",
                      "0.5429","0.1074 (worse)","+0.03139","+0.00748",
                      "[−0.00670,−0.00038]","291-game TRAIN fit",
                      "XGBoost 3.4.1", "No third-party Dota predictor was copied"):

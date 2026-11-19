@@ -74,6 +74,21 @@ FILES = (
     "docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md",
     "tests/test_creative_atlas_contract.py",
     "research/rich_feature_engineering.py",
+    "tests/test_roshan_team_attribution.py",
+    "tests/test_roshan_corrected_receipts.py",
+    "research/ROSHAN_CORRECTION_20261119.md",
+    "research/RICH_FEATURE_TRAIN_ONLY_ROSHAN_CORRECTED.csv.gz",
+    "research/RICH_FEATURE_RAW_PROVENANCE_ROSHAN_CORRECTED.json",
+    "research/RICH_FEATURE_MODEL_ROSHAN_CORRECTED_RECEIPT.json",
+    "research/RICH_FEATURE_MODEL_ROSHAN_CORRECTED_READOUT.md",
+    "research/roshan_corrected_rich_models.py",
+    "research/quant_bible_path_risk_train_only.py",
+    "research/QUANT_BIBLE_PATH_RECEIPT.json",
+    "research/ROSHAN_CORRECTED_BOOSTED_RECEIPT.json",
+    "research/ROSHAN_CORRECTED_BOOSTED_READOUT.md",
+    "research/roshan_corrected_boosted_models.py",
+    "research/BOOSTED_TREES_LOCKED_PROTOCOL_20261118.md",
+    "research/BOOSTED_TREES_PRE_SCORE_DEPENDENCY_AMENDMENT_20261118.md",
     "research/QUANT_BIBLE_PATH_READOUT.md",
     "research/QUANT_PATH_SIGNATURES_READOUT.md",
     "research/OCT_NOV_FEATURE_TRANSFER_READOUT.md",
@@ -296,7 +311,7 @@ def verify() -> dict:
     # PDF line-wrap may insert whitespace into a hyphenated compound.
     pdf_content=pdf_content.replace("cloud- export","cloud-export")
     for statement in (
-            "17 November 2026",
+            "19 November 2026",
             "106 held-out games",
             "286 mature TRAIN games",
             "143 seconds",
@@ -776,7 +791,7 @@ def run() -> dict:
             raise ValueError("Shipped ZIP fails reviewer-only offline tests: "+
                              (result.stdout+chr(10)+result.stderr)[-4500:])
         count=re.search(r"Ran\s+(\d+)\s+tests?\s+in\s+",result.stderr)
-        if not count or int(count.group(1)) < 175 or "OK" not in result.stderr:
+        if not count or int(count.group(1)) < 180 or "OK" not in result.stderr:
             raise ValueError("Extracted ZIP test suite incomplete or not PASS: "+
                              result.stderr[-1500:])
     return {"path": str(DEST), "zip_sha256": sha(DEST.read_bytes()),

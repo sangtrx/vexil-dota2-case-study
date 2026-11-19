@@ -20,8 +20,9 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "research/frozen_original_train_features.csv.gz"
-FEATURES = ROOT / "research/RICH_FEATURE_TRAIN_ONLY.csv.gz"
-PROVENANCE = ROOT / "research/RICH_FEATURE_RAW_PROVENANCE.json"
+# New post-result artifact. Never overwrite the historic 84-input experiment.
+FEATURES = ROOT / "research/RICH_FEATURE_TRAIN_ONLY_ROSHAN_CORRECTED.csv.gz"
+PROVENANCE = ROOT / "research/RICH_FEATURE_RAW_PROVENANCE_ROSHAN_CORRECTED.json"
 TRAIN_SHA = "066a03d21b673dcd2d9cd82d027c38ba789489a32b8bb3f2de8271b3f6280915"
 BASE = ["gold_k", "minute10", "gold_x_time"]
 FAMILIES = {
@@ -310,15 +311,24 @@ def features_from_asof(view: dict) -> dict[str, float]:
             elif "rax" in key or "barracks" in key:
                 events["rax"].append((tm,side))
                 highground+=side
-        else:
-            side=side_from_slot(e.get("player_slot") if e.get("player_slot") is not None else e.get("slot"))
-            if not side: continue
-            if typ=="CHAT_MESSAGE_ROSHAN_KILL":
+        elif typ=="CHAT_MESSAGE_ROSHAN_KILL":
+            # OpenDota attributes Roshan kills to Dota team 2 (Radiant)
+            # or 3 (Dire). Roshan kill events do not carry player slots.
+            team=e.get("team")
+            side=1 if type(team) is int and team==2 else (
+                -1 if type(team) is int and team==3 else 0
+            )
+            if side:
                 events["roshan"].append((tm,side))
-            elif typ=="CHAT_MESSAGE_AEGIS":
-                events["aegis"].append((tm,side))
-            elif typ=="CHAT_MESSAGE_FIRSTBLOOD":
-                events["firstblood"].append((tm,side))
+        elif typ in ("CHAT_MESSAGE_AEGIS","CHAT_MESSAGE_FIRSTBLOOD"):
+            # Item pickup/first-blood events carry player_slot (or slot),
+            # unlike Roshan kills. Do not infer the Roshan winner from Aegis.
+            side=side_from_slot(
+                e.get("player_slot") if e.get("player_slot") is not None else e.get("slot")
+            )
+            if side:
+                category="aegis" if typ=="CHAT_MESSAGE_AEGIS" else "firstblood"
+                events[category].append((tm,side))
     for side, team in player_teams.items():
         for p in team:
             for e in p["kills_log"]:
@@ -450,6 +460,10 @@ def mirror_view(v:dict) -> dict:
         slot=e.get("slot")
         if side_from_slot(slot):
             e["slot"]=slot+128 if slot<5 else slot-128
+        team=e.get("team")
+        if e.get("type")=="CHAT_MESSAGE_ROSHAN_KILL" and type(team) is int:
+            if team in (2,3):
+                e["team"]=5-team
         key=e.get("key")
         if isinstance(key,str):
             e["key"]=key.replace("badguys","__swap__").replace("goodguys","badguys").replace("__swap__","goodguys")

@@ -1,6 +1,6 @@
 # Live Dota 2 Win Probability
 
-**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 19 November 2026 (original study 17 November 2026)**
+**Truong Quang Sang · Vexil Capital · Senior Data Scientist take-home · 19 November 2026**
 
 **Decision.** I kept the gold-only logistic baseline (M0) as the reference and M1 in shadow mode. On 106 held-out games, M1 reduced minute-weighted log loss from **0.5164 to 0.5040** and Brier score from **0.1719 to 0.1684**. Both primary paired 95% confidence intervals include zero. That point-estimate improvement is not enough to promote M1.
 
@@ -53,7 +53,7 @@ The separate TRAIN-only leader-state comparison is descriptive: among games with
 
 **28 adaptive screens:** I tested time-shape, team-economy allocation, gold shocks, towers, Roshan/Aegis, buyback, Blink/BKB item completion and hero draft. Best historical *reused-VAL* point estimate was **P20** (LL **0.514098** vs old M1 **0.519346**), but the adjusted 28-way interval includes zero; **0/28 promoted**.
 
-**81 engineered features:** 19 gold dynamics, 13 XP, 19 player allocation, 17 objectives and 13 interactions. Two Roshan-owner columns were constant/unavailable; one was duplicate. Elastic-net and sklearn boosted-tree models failed the TRAIN-forward gate.
+**81 engineered features:** 19 gold dynamics, 13 XP, 19 player allocation, 17 objectives and 13 interactions. An event-team parsing bug made two Roshan columns zero in the original supplementary study; one other column was duplicated. The corrected parser is evaluated separately on TRAIN, without revisiting TEST.
 
 ---
 

@@ -46,7 +46,7 @@ Feature engineering nghĩa là biến raw events thành tín hiệu kiểm chứ
 
 **Nhóm player role**: một đội +5k vì một carry giữ gần hết tài nguyên có thể khác đội +5k phân bổ đều. Top1, top2, bottom2, median, Gini concentration, last hits, denies, growth của role. `p_gold_top2_share_diff` là khác biệt share tài nguyên top2 giữa hai đội. **Gini** đo bất bình đẳng phân bổ, không phải “đội mạnh hơn”.
 
-**Nhóm objective**: kill, tower, rax, Roshan, Aegis, high-ground, tempo, recency. Phá tower có thể chuyển hóa vàng thành kiểm soát bản đồ. Rủi ro dữ liệu: event Roshan kill chưa có owner side; không được gán phe qua đoán mò từ Aegis.
+**Nhóm objective**: kill, tower, rax, Roshan, Aegis, high-ground, tempo, recency. Phá tower có thể chuyển hóa vàng thành kiểm soát bản đồ. Roshan kill có trường `team` (2/3). Bộ parser cũ bỏ sót vì đọc `player_slot`; không được suy winner từ Aegis.
 
 **Nhóm item**: item hoàn thành, Blink Dagger/BKB và thời điểm mua, trạng thái buyback. Item completion có thể thay đổi mạnh khả năng giao tranh. **P20** là ý tưởng tốt nhất về development point estimate, nhưng chưa qua gate.
 
@@ -96,9 +96,9 @@ Riêng P22 có LL 1.581239, tệ bất thường: 160 hero indicators quá nhi�
 81 cột mới chia theo gold 19, XP 13, players 19, objectives 17, interactions 13. Thêm 3 cột M1 thành 84 model inputs. Bảng liệt kê **tên của từng cột** ở Research Atlas, và mã định nghĩa ở `research/rich_feature_engineering.py` nằm trong reviewer branch.
 
 Một phép audit đã thấy:
-- `o_roshan_delta` và `o_roshan10_delta` luôn 0. Lý do **không có nguồn phân biệt phe Roshan kill**; 486 event nguồn không có `player_slot/slot`. Không gán bừa owner side từ Aegis.
-- `x_economy_gap` trùng `gold_xp_gap`.
-- Vậy 78 cột engineered là **distinct, varying** trong cohort này; không phải 78 nguồn độc lập hay có ý nghĩa causal.
+- Ở bản **cũ**, `o_roshan_delta` và `o_roshan10_delta` luôn 0 do lỗi parser. Cả 486 Roshan kills TRAIN có `team` 2/3 nhưng không có player slot. Bản sửa gán theo `team` và tính lại các model chỉ trên TRAIN-forward.
+- `x_economy_gap` trùng `gold_xp_gap` ở cả hai phiên bản.
+- Bản cũ có **78** engineered fields khác nhau và có biến thiên; bản sửa có **80**. Chi tiết ở `research/ROSHAN_CORRECTION_20261119.md`.
 
 Q2 dùng elastic-net 84 cột; Q3 dùng HistGradientBoosting với 84 cột. Trên TRAIN-forward 137 trận/70 groups: Q2−M1 LL +0.017311, Q3−M1 +0.009180; cả hai không qua gate. Vì sao? có thể nhiễu, trùng lặp, correlated minutes, drift hoặc hyperparameters. Không thể suy ra chính xác nguyên nhân chỉ từ hai chênh lệch số.
 
@@ -175,7 +175,7 @@ Bạn phải chỉ được trong notebook đường gọi `fit` và `predict_pr
 
 **Q3: Why didn't your best P20 win?** LL historical reused-VAL thấp nhất nhưng adjusted interval qua 28 comparisons chứa zero và chỉ tốt hơn ở 1/3 forward TRAIN folds. Nó đã được search trên reused VAL, không phải fresh validation.
 
-**Q4: Why not just XGBoost with more features?** Strong baselines first. XGB84 0.621809 vs Q1 0.605963 on fixed TRAIN-forward sample; nested tuning không cứu. Tăng feature còn rủi ro trùng và thiếu dữ liệu Roshan owner.
+**Q4: Why not just XGBoost with more features?** Strong baselines first. XGB84 trước sửa 0.621809, sau sửa Roshan 0.621254, vẫn kém Q1 0.605963 trên TRAIN-forward. Thêm feature không thay được yêu cầu kiểm định độc lập.
 
 **Q5: What exactly is Q1's novelty?** Không phải phát minh state-of-the-art. Đó là một hypothesis về path-dependent drawdown/volatility/efficiency trên gold history, được kiểm tra theo prefix, group-forward và rejected by a strong M1 comparison interval.
 

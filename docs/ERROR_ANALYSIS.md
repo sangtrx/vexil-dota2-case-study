@@ -1,7 +1,7 @@
 # Error analysis: why M1 remains a challenger
 
 **Evidence class: post-hoc diagnostics on an already inspected TEST cohort.**
-The model choice (M1) was frozen before TEST; no fitting, feature selection, recalibration, or new thresholds are based on these diagnostics.
+M1 was chosen using VALIDATION before the first TEST inspection. The later correction of 12 terminal rows required refitting the same model specification on corrected TRAIN; consequently, the reported TEST is no longer blind. These diagnostics perform no fitting and prompted no additional model choice or recalibration.
 
 The corrected Vexil submission is one executable notebook plus the four-page REPORT.pdf. This additional document makes the *failure cases* independently inspectable. For the full search history, including negative results, see [EXPERIMENT_REGISTER.md](EXPERIMENT_REGISTER.md).
 
@@ -45,7 +45,7 @@ The saved 500-game notebook reports Radiant winning **51.2% of 291 TRAIN games**
 
 ## What else could make the result fail in deployment?
 
-The 500 selected games span **5.26 days** across one patch boundary (250 patch 59, 250 patch 60). Validation and TEST are entirely patch 60; the study does not establish unseen-patch performance. TRAIN/VALIDATION/TEST Radiant game-win fractions are **51.2% / 48.5% / 59.4%**. On TEST M1 predicts an average Radiant win probability of **0.5429**, versus an actual row-weighted win share **0.6045**. Such misalignment may combine model error, side prevalence variation, league/team composition and sampling noise. We cannot separate those mechanisms with this small cohort.
+The 500 selected games span **5.26 days** across one patch boundary (250 patch 59, 250 patch 60). Validation and TEST are entirely patch 60; the study does not establish unseen-patch performance. TRAIN/VALIDATION/TEST Radiant game-win fractions are **51.2% / 48.5% / 59.4%**. On TEST M1 predicts an average Radiant win probability of **0.5429**, versus an actual row-weighted win share **0.6045**. Such misalignment may combine model error, side prevalence variation, league/team composition and sampling noise. This small cohort does not separate those mechanisms.
 
 The OpenDota endpoint returns a *parsed, completed match*. Its event time is retrospective game time, **not** the timestamp when a live consumer actually received an event. The forecast code demonstrates correctness under the brief's event-time cutoff; reliable production scoring would additionally need a received-at clock, input watermark, feature-staleness controls, label maturity and future-state replay assertions.
 
@@ -55,7 +55,7 @@ The OpenDota endpoint returns a *parsed, completed match*. Its event time is ret
 
 ### Reproduction (no API, no model fitting)
 
-From repository root, using Python 3.11+:
+From repository root, using the pinned Python 3.12 environment:
 
     python research/error_diagnostics.py --check --json docs/ERROR_AUDIT_RECEIPT.json
 
