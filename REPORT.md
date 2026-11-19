@@ -77,7 +77,7 @@ A constant TRAIN-win-rate forecast gives TEST log loss **0.6884** and Brier **0.
 
 One 55-minute match (8744971178) accounts for **54.9%** of M1's aggregate log-loss gain. Removing it for *influence diagnosis only* reduces the overall gain from 0.0124 to 0.0057; in the minute-30+ slice, M1−M0 log loss **flips from −0.00678 to +0.03139** (719 vs 694 forecasts), and Brier worsens from **+0.00455 to +0.00748**. No model was retuned on this observation. The exact calculation is preserved in docs/ERROR_AUDIT_RECEIPT.json and can be checked using the bundled research/error_diagnostics.py script.
 
-Whole-match bootstrap CIs include zero for both scores. In a **post-hoc 54-series bootstrap**, log-loss CI **[−0.02828,+0.00012]** straddles zero, while Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Resampling unit and near-zero endpoints change the inference; shared teams/leagues remain. A separate 100-game November check is inconclusive: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** earlier research (docs/SERIES_CI_RECEIPT.json; further study details are in the private source repository, not the ZIP).
+Whole-match bootstrap CIs include zero for both scores. In a **post-hoc 54-series bootstrap**, log-loss CI **[−0.02828,+0.00012]** straddles zero, while Brier CI **[−0.00670,−0.00038]** narrowly excludes it. Resampling unit and near-zero endpoints change the inference; shared teams/leagues remain. A separate 100-game November check is inconclusive: **both intervals contain zero**, removing one league reverses the gain, and **68 games overlap** earlier research (docs/SERIES_CI_RECEIPT.json; further study details are in the public source repository, not the ZIP).
 
 ---
 

@@ -1,6 +1,6 @@
 # Recorded research branches and delivery boundary
 
-This is a map of recorded branches, not a claim that every idea or attempt was logged. It distinguishes the **500-game March Vexil submission** from exploratory research. The one submitted notebook executes M0-M3 and a development-only item diagnostic. The reviewer ZIP also includes the P01-P28 numerical register; those 28 adaptive screens are historical, use previously inspected validation labels and predate a terminal-row correction.
+This index covers the 18 published research branches on GitHub as of 19 November 2026, not every idea or attempt ever considered. It distinguishes the **500-game March Vexil submission** from exploratory research. The one submitted notebook executes M0-M3 and a development-only item diagnostic. The reviewer ZIP also includes the P01-P28 numerical register; those 28 adaptive screens are historical, use previously inspected validation labels and predate a terminal-row correction.
 
 | Branch under `research/` | Tested question | Recorded outcome and limitation |
 | --- | --- | --- |
@@ -12,6 +12,8 @@ This is a map of recorded branches, not a claim that every idea or attempt was l
 | `vexil-role-dynamics-and-robust-consensus-20261118` | Role allocation and rank | October worse than Q1; November small and inconclusive |
 | `vexil-disagreement-reliability-20261118` | Multi-model disagreement | Weaker failure ranking than M1 uncertainty |
 | `vexil-oct-nov-external-feature-falsification-20261118` | October/November transfer | Results differ by cohort; post-selection |
+| `vexil-october-historical-holdout-20261117` | 180 October games (out-of-time historical) | M1−M0 LL −0.005883, 95% series CI [−0.013481,+0.001528] includes zero; minute-30+ worse. Seven leagues, no live receipt times; research-only, not a new 500-game TEST |
+| `vexil-prospective-holdout-20261117` | 22 newly selected November games | M1 LL 0.442682 vs M0 0.456167, but only 9 series groups versus 30 required; ECE worse and match-bootstrap LL CI includes zero. Underpowered retrospective study, not a prospective live-feed validation |
 | `vexil-event-delay-hostile-20261118` | ALL/ALL60 with artificial delay | ALL60 beats M1 in old TRAIN folds but not Q1 convincingly; pre-Roshan fix |
 | `vexil-stale-feed-reliability-20261118` | Delayed feed and missing data | Actual receipt timestamps not available |
 | `vexil-hostile-stale-feed-20261118` | Clock/HOLD stale-source stress | Initial NO_DATA handling bug found |
@@ -23,4 +25,4 @@ This is a map of recorded branches, not a claim that every idea or attempt was l
 
 **September provenance and scope.** March-trained models were frozen in commit `90203d7` before outcomes, match IDs in `5b9c96e` and scoring code in `fb5aadc`; the results and post-hoc influence audit are on the separate research branch. The procedure and scores are retrospective, not prospective live results or permission to expand the 500-game assignment. The original selected M0/M1 notebook and TEST forecast CSV remained untouched.
 
-The original private research PR #3-#16 heads are mapped in [HISTORY.md](../HISTORY.md) and [REVIEWER_HISTORY_MAP.md](REVIEWER_HISTORY_MAP.md). PR comments live in another private repository and require separate access. Some raw match caches and code needed to replay supplementary trials are not in the recruiter ZIP. A failed promotion gate means **insufficient evidence**, not proven uselessness. No global multiplicity/power guarantee covers every adaptive experiment. This repository should remain private without a separate permission and full-history review.
+The original private research PR #3-#16 heads are mapped in [HISTORY.md](../HISTORY.md) and [REVIEWER_HISTORY_MAP.md](REVIEWER_HISTORY_MAP.md). PR comments live in another private repository and require separate access. Some raw match caches and code needed to replay supplementary trials are not in the recruiter ZIP. A failed promotion gate means **insufficient evidence**, not proven uselessness. No global multiplicity/power guarantee covers every adaptive experiment. This repository is public, as permitted by the take-home brief. Original private PR discussions and unbundled raw caches are separate; public visibility does not make these extra studies independent validation.

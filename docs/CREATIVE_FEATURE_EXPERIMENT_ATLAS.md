@@ -4,7 +4,7 @@
 
 This appendix records the models and features I tried, including the ones I rejected. The four-page report contains the main decision. The submitted 16-code-cell notebook fits M0-M3 and includes a development-only item diagnostic; it does not execute every experiment listed here.
 
-The **concise reviewer ZIP** includes this inventory, the recorded P01–P28 table, selected numerical readouts, frozen VAL/TEST forecasts and the one executable 500-game notebook. It does **not** include every supplementary research script, research-branch raw match JSON cache or external cohort. The private repository retains implementation and provenance. Post-result comparisons are descriptive, not independent validation.
+The **concise reviewer ZIP** includes this inventory, the recorded P01–P28 table, selected numerical readouts, frozen VAL/TEST forecasts and the one executable 500-game notebook. It does **not** include every supplementary research script, research-branch raw match JSON cache or external cohort. The public source repository retains additional implementation and provenance, some on separate research branches. Post-result comparisons are descriptive, not independent validation.
 
 ## Main finding
 
@@ -165,7 +165,7 @@ The hypotheses asked whether economic advantage might hide allocation (carry vs 
 
 ## 9. Where to inspect everything
 
-The `docs/EXPERIMENT_REGISTER.md` in the reviewer ZIP contains the 28-hypothesis ledger, with private original PR links omitted. The **following detailed readouts live in the private source repository**, not in the concise ZIP except where explicitly listed in its manifest. They are not extra executable notebooks:
+The `docs/EXPERIMENT_REGISTER.md` in the reviewer ZIP contains the 28-hypothesis ledger, with private original PR links omitted. The **following detailed readouts are available in the public source repository**, but not in the concise ZIP except where explicitly listed in its manifest. They are not extra executable notebooks:
 
 - `research/QUANT_BIBLE_PATH_READOUT.md`
 - `research/QUANT_PATH_SIGNATURES_READOUT.md`

@@ -72,6 +72,9 @@ class ConciseSubmissionContract(unittest.TestCase):
         self.assertIn("−0.015267,−0.001393",supplement)
         self.assertIn("excluded",supplement.lower()) if False else None
         self.assertIn("outside",supplement.lower())
+        reviewer_readme=self.contents["README.md"].decode("utf-8")
+        self.assertIn("public GitHub repository",reviewer_readme)
+        self.assertNotIn("access is arranged",reviewer_readme)
 
     def test_all_relative_markdown_links_point_into_actual_zip(self):
         import posixpath
@@ -94,6 +97,8 @@ class ConciseSubmissionContract(unittest.TestCase):
         self.assertIn("[−0.012136,+0.053563]",text)
         self.assertIn("Q3 shallow boosted tree",text)
         self.assertIn("full internal research archive",text)
+        self.assertIn("this public repository",text)
+        self.assertNotIn("clone the private source repository",text)
         self.assertIn("research/error_diagnostics.py",self.contents)
         self.assertIn("docs/TRAIN_LEADER_STATE_EMPIRICAL_RECEIPT.json",self.contents)
         self.assertIn("docs/figures/train_leader_state_empirical.png",self.contents)

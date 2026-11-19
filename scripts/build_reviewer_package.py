@@ -166,7 +166,7 @@ def reviewer_safe_text(name: str, raw: bytes) -> bytes:
             posixpath.dirname(name), rel))
         if loc in FROZEN_SOURCES or loc == COLAB_RECEIPT:
             return match.group(0)
-        return label + " (private source repository only; not included in this ZIP)"
+        return label + " (not in this ZIP; see the source repository where available)"
     content = re.sub(r"\[([^\]]+)\]\(([^)\n]+)\)", fix_local, content)
     return content.encode("utf-8")
 
@@ -219,7 +219,7 @@ def run() -> dict:
         "exact_current_notebook_colab_run_verified": colab_verified,
         "notes": ("This is a focused reviewer package with the full recorded "
                   "P01-P28 failure table and selected source receipts/figures. "
-                  "Additional research scripts and cohorts are private. "
+                  "Additional studies remain in source/history; original raw caches are not bundled. "
                   "Original TEST was previously inspected."),
         "files": {n: {"bytes": len(b), "sha256": sha(b)}
                   for n, b in sorted(data.items())},

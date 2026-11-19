@@ -16,7 +16,7 @@ I tested whether match time adds useful information beyond gold lead when predic
 
 M1 had lower validation loss on 103 games. On TEST, though, the paired whole-match 95% intervals for M1−M0 include zero: **log loss [−0.0304,+0.0014]** and **Brier [−0.0069,+0.0002]**. Late-game Brier is worse, the interaction helps in only **1/4** TRAIN-forward folds against additive gold + time, and one game accounts for 54.9% of the **overall** observed log-loss gain. **I recommend M0 as the reference and M1 only for future shadow evaluation.** The report shows the uncertainty by match and series.
 
-**Reviewer ZIP:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip). This concise bundle contains the one executed notebook, four-page report, dependencies, frozen VAL/TEST forecasts, a short experiment appendix and statistical receipts. The wider scripts, historical protocols and 188 offline tests remain in this private research repository rather than the email attachment.
+**Reviewer ZIP:** [delivery/Vexil_Dota2_Takehome_20261119.zip](delivery/Vexil_Dota2_Takehome_20261119.zip). This concise bundle contains the one executed notebook, four-page report, dependencies, frozen VAL/TEST forecasts, a short experiment appendix and statistical receipts. The wider scripts, historical protocols and 188 offline tests are available in this public GitHub repository, including its research branches, but are not all in the email attachment.
 
 ## Run the notebook
 
@@ -57,7 +57,7 @@ Development-only lag-buffer stress and the pre/post-TEST correction history are 
 | Why M1 was chosen, and why the interaction is unconfirmed | [Research decision trail](docs/RESEARCH_DECISION_TRAIL.md), [TRAIN additive-null check](research/GOLD_INTERACTION_NULL_READOUT.md) |
 | Feature research, including the Roshan parser correction | [Research atlas](docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md), [Roshan correction](research/ROSHAN_CORRECTION_20261119.md), [P01–P28 register](docs/EXPERIMENT_REGISTER.md), [research-only branch map](docs/RECORDED_RESEARCH_BRANCHES.md) |
 | Error slices, dependence and calibration | [Error analysis](docs/ERROR_ANALYSIS.md), [Team/league audit](docs/TEAM_LEAGUE_DEPENDENCE.md), [Calibration](docs/CALIBRATION_BIAS_READOUT.md) |
-| Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [16-cell Colab receipt](docs/COLAB_16CELL_RUN_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
+| Reproduction evidence and environment differences | [16-cell BigLinux replay](docs/REVIEWER_APPENDIX_FRESH_KERNEL_RECEIPT.json), [current-source 16-cell Colab receipt](docs/COLAB_EXACT_SHIPPED_NOTEBOOK_RECEIPT.json), [historical 14-cell cloud receipt](docs/COLAB_COLD_RUN_RECEIPT.json) |
 | Research and curation history | [HISTORY.md](HISTORY.md), [Branch/PR map](docs/REVIEWER_HISTORY_MAP.md), [Curation provenance](docs/CURATION_PROVENANCE.md) |
 
 Original GitHub PR discussions remain in a separately private repo; they are not required to review the ZIP. The package contains the notebook, report, frozen TEST predictions and offline checks. The report states the **10-hour active-work estimate** and discloses AI and open-source tools.

@@ -52,6 +52,7 @@ second independent evaluation of the original TEST.
 I spent about 10 active hours, excluding unattended runs. The report
 discloses how AI and public software tools assisted the work.
 
-This ZIP is intentionally concise. The wider research history and raw
-verification protocols remain in the private source repository, available
-for deeper review when access is arranged.
+This ZIP is intentionally concise. Further research scripts and the
+recorded branch history can be read in the public GitHub repository:
+https://github.com/sangtrx/vexil-dota2-case-study
+Some raw caches and original PR discussions are not public.

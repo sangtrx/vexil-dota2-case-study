@@ -8,7 +8,7 @@ as Git refs in **this repository**, and can be viewed without access
 to the separate source repository once the viewer is granted access
 to this one.
 
-The current reviewer package is on this repository's `main` branch. The links to original PR conversations point to a **separate private repository** and may be unavailable to a reviewer. The mirrored historical branches listed below can be inspected with access to this repository, without access to those PR discussions.
+The current reviewer package is on this repository's `main` branch. The links to original PR conversations point to a **separate private repository** and may be unavailable to a reviewer. The mirrored historical branches listed below are publicly accessible here without access to those separate PR discussions.
 
 ## Original code branches, original dates
 
@@ -54,9 +54,10 @@ for the requested submission-length summary.
 
 ## Submission boundary
 
-This repository is **private**. Merely creating these commits/PRs
-does not deliver the assignment to Vexil or grant recruiter
-permissions. The applicant has confirmed approximately 10 hours
+This repository is **public**, and its mirrored historical branches
+are readable without an invitation. Original PR discussion threads
+remain in a separate private repository. Publishing these commits
+does not submit the assignment to Vexil. The applicant has confirmed approximately 10 hours
 of active work, excluding unattended execution. His final report
 discloses AI assistance and responsibility for the scientific decision;
 commit author metadata alone does not establish manual authorship.

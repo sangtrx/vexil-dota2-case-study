@@ -124,7 +124,7 @@ class ReportDeliveryContractTest(unittest.TestCase):
         self.assertIn("[−0.0037,+0.0109]",report)
         self.assertIn("68 games overlap",report)
         self.assertIn("docs/FORWARD_100_STRESS.md",(ROOT/"README.md").read_text())
-        self.assertIn("further study details are in the private source repository, not the ZIP",report)
+        self.assertIn("further study details are in the public source repository, not the ZIP",report)
         self.assertIn("artifacts/forward_100_predictions.csv",supplement)
         self.assertIn("pre-correction",register.lower())
 

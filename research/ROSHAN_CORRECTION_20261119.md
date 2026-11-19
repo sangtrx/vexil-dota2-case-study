@@ -33,7 +33,7 @@ Positive Δ means a higher (worse) log loss than M1. With the repaired inputs, Q
 
 ## Reproducing the post-result correction
 
-The **full internal research archive**, not the concise reviewer ZIP, retains the corrected TRAIN-only feature table, raw-input hash ledger, model receipts and source. To reproduce the repaired model scores, clone the private source repository and use its pinned Python environment:
+The **full internal research archive**, not the concise reviewer ZIP, retains the corrected TRAIN-only feature table, raw-input hash ledger, model receipts and source. The scripts are in this public repository, but reproducing the full corrected scores also requires those retained derived inputs. With those inputs and a checkout, use the pinned Python environment:
 
 ```bash
 python research/roshan_corrected_rich_models.py --check

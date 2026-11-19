@@ -38,4 +38,4 @@ There are **188 offline unit/contract checks**. They do **not** replace a fresh 
 
 **Interpretation:** M1 has lower point log loss than the required gold-only M0, but the main paired 95% interval includes zero; minute-30+ Brier is worse. Keep M0 as reference and M1 shadow-only. Corrected TEST scores were produced after the original TEST was inspected and are **not** a new blind evaluation. Raw 500-match JSON is not shipped; the notebook can refetch the public match IDs.
 
-The [report](REPORT.pdf) includes the candidate's time estimate of approximately **10 hours of active work** and explains where AI and open-source tools were used. Research provenance is in [HISTORY.md](HISTORY.md). This ZIP and PDF can be read without access to the private GitHub repository.
+The [report](REPORT.pdf) includes the candidate's time estimate of approximately **10 hours of active work** and explains where AI and open-source tools were used. Research provenance is in [HISTORY.md](HISTORY.md). This ZIP and PDF can be reviewed without cloning the public GitHub repository.

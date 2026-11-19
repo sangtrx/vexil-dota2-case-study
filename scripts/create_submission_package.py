@@ -718,7 +718,7 @@ def verify() -> dict:
     if ("68 games overlap" not in report
             or "both intervals contain zero" not in report
             or "not a test on an unseen patch" not in report
-            or "further study details are in the private source repository, not the ZIP" not in report
+            or "further study details are in the public source repository, not the ZIP" not in report
             or "docs/FORWARD_100_STRESS.md" not in readme):
         raise ValueError("Report omitted material uncertainty or cohort scope")
     if "artifacts/forward_100_predictions.csv" not in (ROOT/"docs/FORWARD_100_STRESS.md").read_text():

@@ -18,6 +18,8 @@ class ExternalAccessTruthfulness(unittest.TestCase):
         text=(ROOT/"README.md").read_text()
         self.assertIn("Original GitHub PR discussions remain in a separately private repo",text)
         self.assertNotIn("reviewer access granted separately",text)
+        self.assertIn("this public GitHub repository",text)
+        self.assertNotIn("this private research repository",text)
 
     def test_curated_source_history_is_kept_not_rewritten(self):
         text=(ROOT/"HISTORY.md").read_text()
@@ -42,6 +44,15 @@ class ExternalAccessTruthfulness(unittest.TestCase):
         for n in range(3,17):
             self.assertIn(f"Actual PR #{n}",branch_index)
         self.assertIn("DRAFT / HOLD",branch_index)
+        self.assertIn("This repository is **public**",branch_index)
+        self.assertNotIn("This repository is **private**",branch_index)
+        research_index=(ROOT/"docs/RECORDED_RESEARCH_BRANCHES.md").read_text()
+        branch_rows=[line for line in research_index.splitlines()
+                     if line.startswith("| "+chr(96))]
+        self.assertEqual(len(branch_rows),18)
+        self.assertIn("vexil-october-historical-holdout-20261117",research_index)
+        self.assertIn("vexil-prospective-holdout-20261117",research_index)
+        self.assertNotIn("This repository should remain private",research_index)
 
 
 if __name__=="__main__":
