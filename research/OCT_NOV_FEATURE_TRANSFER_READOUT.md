@@ -1,6 +1,8 @@
 # Fixed March-trained rich-features on October and November reused cohorts
 
-**Research-only transfer falsification. Earlier M0/M1 October and November outcomes had already been scored. Not a blind independent validation and never model promotion.**
+**Research-only transfer check.** Earlier October/November outcomes had already been scored. This is not a blind independent validation.
+
+**19 November correction:** The ALL model used the historical 81-feature extractor with missing Roshan attribution due to the parser error. The October/November transfer experiment was **not rerun** with corrected Roshan fields. Interpret its scores as historical only; see [Roshan correction](ROSHAN_CORRECTION_20261119.md).
 
 | Cohort | Games / rows / series | M0 log loss | M1 log loss | Q1 log loss | ALL log loss | ALL−Q1 LL (95% series bootstrap) | ALL−Q1 equal-match LL |
 | --- | --- | ---: | ---: | ---: | ---: | --- | ---: |

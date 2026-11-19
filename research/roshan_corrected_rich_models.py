@@ -232,7 +232,8 @@ def evaluate() -> dict:
     return {
         "scope":"POST_RESULT_TRAIN_ONLY_NOT_FRESH_TEST",
         "original_VAL_or_TEST_labels_loaded":False,
-        "original_submission_changed":False,
+        "original_notebook_and_test_predictions_changed":False,
+        "report_and_zip_rebuilt_after_correction":True,
         "raw_payload_manifest_sha256":provenance["source_payload_bytes_sha256"],
         "engineered_train_sha256":provenance["frozen_feature_csv_sha256"],
         "feature_family_sizes":provenance["families"],
@@ -252,7 +253,7 @@ def evaluate() -> dict:
 
 def make_readout(receipt:dict)->str:
     lines=[
-        "# Rich feature lab: 81 as-of Dota 2 state features",
+        "# Roshan-corrected 84-input models: TRAIN-only sensitivity",
         "",
         "**Scope:** Post-result TRAIN-only exploration. Already-viewed original"
         " TEST and VALIDATION results never enter this evaluation. The"
@@ -328,9 +329,9 @@ def make_readout(receipt:dict)->str:
         " influence. The real-time feed receipt timestamp is unknown;"
         " a historical replay cannot establish true received-at time.",
         "",
-        "**No applicant submission update.** The untouched Vexil notebook,"
-        " original 3,836 TEST rows, 4-page PDF, private AI disclosure,"
-        " existing Colab verification and reviewer ZIP are preserved.",
+        "The submitted notebook and original 3,836 TEST predictions were"
+        " unchanged. The report and reviewer ZIP were rebuilt on 19 November"
+        " to disclose this parser correction; no newly blind TEST is claimed.",
         "",
     ])
     return "\n".join(lines)

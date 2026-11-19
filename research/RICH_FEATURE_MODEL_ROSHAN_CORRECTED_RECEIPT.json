@@ -526,8 +526,9 @@
   },
   "new_feature_count": 81,
   "original_VAL_or_TEST_labels_loaded": false,
-  "original_submission_changed": false,
+  "original_notebook_and_test_predictions_changed": false,
   "raw_payload_manifest_sha256": "b3d350a20aeea293fdb186f82efc996eabfd77ac528c87f9360485ed75ef9ce4",
+  "report_and_zip_rebuilt_after_correction": true,
   "rows_evaluated": 5081,
   "scope": "POST_RESULT_TRAIN_ONLY_NOT_FRESH_TEST",
   "wide_input_count": 84

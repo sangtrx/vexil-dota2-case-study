@@ -123,6 +123,8 @@ Here **positive** loss difference means worse. A favorable late30 slice does not
 
 The earlier stale feed research had a **P0 code bug**: for lag d and minute t<d, it reused minute-zero data that had not arrived. The corrected policy emits NO_DATA p=0.5 without calling any model until a lagged snapshot genuinely exists; both the old invalid and corrected simulations remain archived, do not quietly substitute old scores.
 
+**Correction scope for the previous comparisons:** The ALL/ALL60 and October/November rich-feature results used the historical parser that dropped Roshan kills. Those transfer and delay studies were **not rerun** after the repair. Their scores are historical and cannot establish performance for the corrected 81-feature matrix. The core M0/M1/Q1 and 3-input models do not use those Roshan columns. See [the correction](../research/ROSHAN_CORRECTION_20261119.md).
+
 ## 6. Direct XGBoost and LightGBM versus simpler models (tier C; 18 Nov)
 
 Exactly **four** fixed CPU candidates were declared in a dedicated protocol prior to scoring: each of XGBoost and LightGBM on **3** and **84** inputs. Their original March TRAIN-forward evaluation used 137 games / 5,081 forecasting rows / 70 professional groups. A distinct post-result *nested sensitivity* chose among three predeclared complexity profiles within training-only inner folds, without using outer evaluation labels for tuning. **All 16 family×outer selections chose conservative**.
@@ -139,6 +141,8 @@ Exactly **four** fixed CPU candidates were declared in a dedicated protocol prio
 | LGB84 | 84 | 0.622936 | 0.217009 | 0.179798 | FAIL |
 
 XGB3−Q1 ΔLL **+0.009634**, 95% grouped series CI **[+0.002548,+0.017021]**. LGB3−Q1 ΔLL **+0.010233**, 95% **[+0.003146,+0.018082]**. Every candidate won vs Q1 in only **1/4** folds, failed the research gate and was not incorporated into the employer notebook. Neither tree implementation was present in the original applicant requirements; they were tested in a separate isolated Python environment. The 99.375% within-screen intervals and complete fold scores are in the included readouts.
+
+The original nested XGB84/LGB84 hyperparameter sweep also used the faulty Roshan columns and **has not been rerun**. Only the fixed-model XGB84/LGB84 configurations were re-evaluated using the corrected TRAIN features. The repaired numbers appear in [the correction record](../research/ROSHAN_CORRECTION_20261119.md). The 3-input boosters are unaffected.
 
 The first XGBoost version pin `3.4.2` did **not** exist in BigLinux's package index; a **pre-score committed amendment** pinned `3.4.1` with LightGBM `4.7.0`, not a hidden substitution. Different model families may perform better on genuinely new data: this screen does **not** prove universal logistic superiority.
 

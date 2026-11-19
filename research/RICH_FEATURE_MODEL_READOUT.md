@@ -1,5 +1,8 @@
 # Rich feature lab: 81 as-of Dota 2 state features
 
+**Editorial correction (19 November 2026):** This is a historical result, calculated before a bug in the 81-feature Roshan parser was discovered. Roshan events had valid `team` values but the old parser tried `player_slot`, making two Roshan fields zero. These scores describe the old matrix only. The corrected fixed-model TRAIN-forward rerun is in [Roshan correction](ROSHAN_CORRECTION_20261119.md); this nested sensitivity was not rerun. No model was promoted.
+
+
 **Scope:** Post-result TRAIN-only exploration. Already-viewed original TEST and VALIDATION results never enter this evaluation. The predeclared two-model correction does NOT correct the previous 28+ research-model screens.
 
 291 TRAIN games supplied 10,675 minute snapshots; the frozen forward evaluation uses 137 games, 5,081 rows and 70 professional series/singleton groups.
@@ -49,4 +52,4 @@ Negative Q-minus-baseline score means candidate wins. All intervals are paired b
 
 Important: model feature importance is diagnostic only. Correlated engineered signals are not evidence of causal influence. The real-time feed receipt timestamp is unknown; a historical replay cannot establish true received-at time.
 
-**No applicant submission update.** The untouched Vexil notebook, original 3,836 TEST rows, 4-page PDF, private AI disclosure, existing Colab verification and reviewer ZIP are preserved.
+At the time of this historical experiment, the original notebook and TEST forecasts were unchanged. The report and reviewer ZIP were subsequently rebuilt to document the Roshan correction.

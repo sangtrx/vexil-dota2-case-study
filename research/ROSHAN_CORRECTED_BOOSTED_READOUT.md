@@ -1,4 +1,4 @@
-# Direct fixed XGBoost vs LightGBM on March TRAIN-only forward folds
+# Roshan-corrected XGBoost/LightGBM: TRAIN-only sensitivity
 
 **Post-selection exploratory model family test. Original March TEST and VAL are not accessed. No new blinded evidence or real-live receipt timestamps.**
 
@@ -50,4 +50,4 @@ Versions: XGBoost 3.4.1, LightGBM 4.7.0, Narwhals 2.21.2, sklearn 1.7.2. All tre
 
 Each simultaneous interval only corrects eight comparisons within THIS screen; earlier many candidate searches and viewed March VALIDATION/TEST, Oct/Nov labels make all winner claims exploratory. 70 series are the meaningful independent units, not 5,081 IID observations. No source receive_at means no actual real-time PIT proof.
 The apparent feature importances and ECE are descriptive; no automated post-TEST calibration or tuned model selection.
-Original applicant notebook, 3,836 TEST predictions, PDF, ZIP and draft PR are untouched.
+The original notebook and 3,836 TEST predictions were unchanged; the report and reviewer ZIP were rebuilt to disclose the parser correction.

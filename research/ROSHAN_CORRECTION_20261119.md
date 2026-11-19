@@ -47,4 +47,6 @@ python research/roshan_corrected_boosted_models.py --check
 
 The boosted run's exact software versions and model parameters are in its JSON receipt. The raw 291-match JSON cache is not bundled; rebuilding the engineered table from raw source requires the original match IDs and public OpenDota responses. The included frozen corrected feature table permits **offline re-evaluation of Q2/Q3 and the optional boosted models** without that raw cache. The corrected scripts verify the frozen original notebook/TEST hashes but do not fit on or score their labels.
 
+Other model checks that used the old rich-feature parser were **not rerun** after the fix: October/November ALL transfer, ALL60 lag sensitivity and nested XGB84/LGB84. The historical readouts now carry dated errata. The three-input boosters, M0/M1 and Q1 are not affected. No new prospective model claim follows from this repair.
+
 The historical model scores remain in `research/RICH_FEATURE_MODEL_READOUT.md` and `research/BOOSTED_TREES_DIRECT_READOUT.md`. The corrected readouts are `research/RICH_FEATURE_MODEL_ROSHAN_CORRECTED_READOUT.md` and `research/ROSHAN_CORRECTED_BOOSTED_READOUT.md`. This fix changes the interpretation of the older rich-feature studies, **not the primary 500-match result**.

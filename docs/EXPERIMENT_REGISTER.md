@@ -6,6 +6,8 @@
 
 **Research lineage:** This curated repository contains the executable M0-M3 notebook and frozen forecast evidence. The historical development branches, timestamps and PR discussions remain in the [separate original research repository](https://github.com/sangtrx/vexil-dota2-win-probability), indexed in [HISTORY.md](../HISTORY.md). All 28 historical candidate scores predate the strict pre-terminal correction and were not rerun as new blind validation.
 
+The linked PR discussions belong to a separate private repository; they are historical pointers, not necessary for reading the saved scores. The curated repository includes source branches and the relevant numerical readouts.
+
 **Historical pre-correction study:** 500 professional OpenDota matches, 291 train / 103 validation / 106 held-out; selected M1 gold × game time over the required gold-only M0 on validation. Held-out log loss M0 **0.5163**, M1 **0.5039**, 95% paired M1-minus-M0 CI **[-0.0303,+0.0014]** (includes zero). Held-out Brier M0 0.1719, M1 0.1683, interval includes zero; late-game M1 Brier is worse only as an **unconfirmed point estimate**. These historical scores predate the 12-row end-boundary correction.
 
 **Rules of interpretation:** Follow-up S1-S4, M4, P01-P28 and P20 item-model results were screened on **103 previously inspected validation matches**. Registering their hypotheses before *their own* finite screen does not undo earlier adaptive use of those labels. A later 200-match cohort was used for one locked stage-gate test, not to reselect 28 candidates. All scores in the 28-way table are *development outcomes*. No trading PnL, verified live packet-arrival timestamps or two-layer neural model is claimed.

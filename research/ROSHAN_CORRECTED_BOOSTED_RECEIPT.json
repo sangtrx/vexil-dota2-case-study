@@ -1,5 +1,4 @@
 {
-  "applicant_notebook_or_report_changed": false,
   "bootstrap_draws": 5000,
   "bootstrap_seed": 20261118,
   "candidate_features": {
@@ -628,7 +627,8 @@
     "artifacts/heldout_predictions.csv": "03b4f6d67e7cb5b7af8097be145fc8cfdd510beefbe85e052bb0445ba7a0c441",
     "live_dota2_win_probability.ipynb": "e4318f15a0b34e5900cff1fcaa741d953046b74add4e5f95472d025facf7d61f"
   },
-  "original_rich_prior_receipt_sha256": "b20ca35992260eb0969c634da0421f0cd8c4df1616df67e58a1888617637bb71",
+  "original_notebook_and_test_predictions_changed": false,
+  "original_rich_prior_receipt_sha256": "a45429991b92b4a4d1564aa5323ba40a4aab388e28b231f62df58880bc7d85af",
   "original_val_or_test_loaded": false,
   "packages": {
     "lightgbm": "4.7.0",
@@ -643,6 +643,7 @@
   "pre_score_package_amendment_sha256": "22d7a4c53e3819d320ed7659f0ae7c36e68fbe12f3fc4b8582b25d5797692053",
   "prospective_new_cohort": false,
   "protocol_sha256": "682e2418d3e44c8ed9510dc75a14b1db58aa198fe060815bcedd6e70cc55f50e",
+  "report_and_zip_rebuilt_after_correction": true,
   "scope": "POST_SEARCH_MARCH_TRAIN_ONLY_FOUR_FIXED_BOOSTERS_NOT_BLIND",
   "scores": {
     "A_additive": {

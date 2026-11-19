@@ -23,7 +23,7 @@ For offline contract checks against the supplied predictions and figures:
 python -m unittest discover -s tests -p "test_*.py" -q
 ```
 
-There are **180 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
+There are **181 offline unit/contract checks**. They do **not** replace a fresh notebook Run all.
 
 **Package:** Vexil_Dota2_Creative_Research_20261119.zip (19 November 2026). This guide is inside the extracted ZIP.
 

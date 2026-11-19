@@ -6,6 +6,14 @@ The original research commits date from 13–15 November 2026, including main at
 
 **PR disposition (15 November 2026):** #3-#10 are closed without merge as completed research archives; #11 merged the final notebook/report, #12 corrected the handoff, #13 records the fresh Colab execution, and #14 adds a post-hoc series-dependence sensitivity without changing the model. Closing a PR does not delete its branch, commits or experiment receipts. For a quick technical audit, read #3 → #6 → #9 → #11 → #12; the other PRs document separate negative experiments and QA.
 
+## Reviewer package updates (17–19 November 2026)
+
+- **17 November:** Reviewed the notebook, provenance and saved evaluation results. The original TEST forecast CSV was not changed.
+- **18 November:** Recorded additional feature and model comparisons as exploratory, post-result work; none replaced the selected model.
+- **19 November:** Fixed Roshan team attribution in the separate 81-feature study, reran the same fixed Q2/Q3 and XGBoost/LightGBM models on TRAIN-forward only, and rebuilt the report and ZIP. The original 500-game notebook and 3,836 TEST forecasts stayed unchanged. [Correction and limits](research/ROSHAN_CORRECTION_20261119.md).
+
+Original GitHub PR discussions are in a **different private repository**. They may return 404 without separate access. This repository preserves mirrored source branches, the principal readouts and the original commit timestamps. Git author metadata records commits, not individual manual authorship; AI assistance is disclosed in the report.
+
 ## Actual research PRs
 
 | PR | Status | Research branch | Work / conclusion |

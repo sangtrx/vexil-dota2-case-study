@@ -2,6 +2,8 @@
 
 This index was written on 16 November 2026, after the experiments. It links the research decisions to their original commits and results. See [curation provenance](CURATION_PROVENANCE.md) for the original history.
 
+The original PR discussion links below are private and are provided only as historical references. The numerical results and source evidence needed to assess the submission are in this repository and the downloadable ZIP.
+
 ## Decision, not model complexity
 
 **Question.** Does the same gold advantage imply the same Radiant win probability at minute 10 and minute 30?

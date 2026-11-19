@@ -1,5 +1,8 @@
 # Direct fixed XGBoost vs LightGBM on March TRAIN-only forward folds
 
+**Editorial correction (19 November 2026):** This is a historical result, calculated before a bug in the 81-feature Roshan parser was discovered. Roshan events had valid `team` values but the old parser tried `player_slot`, making two Roshan fields zero. These scores describe the old matrix only. The corrected fixed-model TRAIN-forward rerun is in [Roshan correction](ROSHAN_CORRECTION_20261119.md); this nested sensitivity was not rerun. No model was promoted.
+
+
 **Post-selection exploratory model family test. Original March TEST and VAL are not accessed. No new blinded evidence or real-live receipt timestamps.**
 
 Data: 291 TRAIN games / 10,675 minute rows; four mature-label chronological series-disjoint evaluation blocks, 137 games, 5,081 rows and 70 groups.
@@ -50,4 +53,4 @@ Versions: XGBoost 3.4.1, LightGBM 4.7.0, Narwhals 2.21.2, sklearn 1.7.2. All tre
 
 Each simultaneous interval only corrects eight comparisons within THIS screen; earlier many candidate searches and viewed March VALIDATION/TEST, Oct/Nov labels make all winner claims exploratory. 70 series are the meaningful independent units, not 5,081 IID observations. No source receive_at means no actual real-time PIT proof.
 The apparent feature importances and ECE are descriptive; no automated post-TEST calibration or tuned model selection.
-Original applicant notebook, 3,836 TEST predictions, PDF, ZIP and draft PR are untouched.
+At the time of this historical experiment, the notebook and 3,836 TEST forecasts were unchanged. The report and reviewer ZIP were later rebuilt to disclose the parser correction.

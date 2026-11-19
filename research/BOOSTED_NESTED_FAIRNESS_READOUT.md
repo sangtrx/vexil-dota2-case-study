@@ -1,6 +1,8 @@
 # Nested XGBoost/LightGBM sensitivity on TRAIN
 
-**Designed after frozen 4 candidate outer-fold failure; this is a fairness stress test, NOT a new blind model comparison.** Two series-group chronological inner folds select one of three fixed hyperparameter profiles per model family inside each original outer fit; no outer/eval label enters tuning.
+**19 November correction:** The nested XGB84/LGB84 search used the old 81-feature Roshan parser and has not been rerun after that bug was fixed. Its scores are historical, not estimates for corrected inputs. XGB3/LGB3 did not use Roshan features. See [Roshan correction](ROSHAN_CORRECTION_20261119.md).
+
+**Designed after the original four-candidate outer-fold failure; this is a post-result sensitivity test, not a fresh blind comparison.** Two series-group chronological inner folds select one of three fixed hyperparameter profiles per model family inside each original outer fit; no outer/eval label enters tuning.
 
 March original TRAIN: 291 games / 10,675 minutes. Nested outer checks: 137 matches, 5,081 decisions, 70 professional groups, four existing outer folds.
 
@@ -49,4 +51,4 @@ March original TRAIN: 291 games / 10,675 minutes. Nested outer checks: 137 match
 - LGB84: **FAILED**
 
 Nested tuning avoids consuming the same outer fold for parameter choice, but experiment design followed inspection of prior screens, and 70 outer groups are correlated by league/time; no familywise adjustment covers those prior searches. Bootstrap CIs are descriptive and real received_at is unavailable.
-The employer notebook, report, TEST and reviewer ZIP are still unchanged. No tree can be promoted merely from a winning reused-fold experiment.
+The original notebook and 3,836 TEST forecasts were unchanged. The report and ZIP were later rebuilt to disclose the correction. This reused-fold result does not justify replacing M1.

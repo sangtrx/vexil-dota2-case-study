@@ -364,14 +364,15 @@ def evaluate()->dict:
         "bootstrap_seed":SEED,
         "multiple_past_searches_corrected":False,
         "original_applicant_files":original_files,
-        "applicant_notebook_or_report_changed":False,
+        "original_notebook_and_test_predictions_changed":False,
+        "report_and_zip_rebuilt_after_correction":True,
         "employer_promotion_authorized":False,
     }
 
 
 def readout(r:dict)->str:
     lines=[
-        "# Direct fixed XGBoost vs LightGBM on March TRAIN-only forward folds",
+        "# Roshan-corrected XGBoost/LightGBM: TRAIN-only sensitivity",
         "",
         "**Post-selection exploratory model family test. Original March TEST and VAL "
         "are not accessed. No new blinded evidence or real-live receipt timestamps.**",
@@ -429,7 +430,7 @@ def readout(r:dict)->str:
        "not 5,081 IID observations. No source receive_at means no actual real-time PIT proof.",
        "The apparent feature importances and ECE are descriptive; no automated "
        "post-TEST calibration or tuned model selection.",
-       "Original applicant notebook, 3,836 TEST predictions, PDF, ZIP and draft PR are untouched.",
+       "The original notebook and 3,836 TEST predictions were unchanged; the report and reviewer ZIP were rebuilt to disclose the parser correction.",
        ""]
     return "\n".join(lines)
 

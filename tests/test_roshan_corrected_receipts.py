@@ -43,6 +43,27 @@ class CorrectedRoshanReceiptTest(unittest.TestCase):
         self.assertGreater(int(b.o_roshan_delta.nunique()), 2)
         np.testing.assert_allclose(b.x_economy_gap, b.gold_xp_gap, atol=1e-12, rtol=0)
 
+    def test_historical_readouts_label_pre_repair_evidence(self):
+        for name in (
+            "RICH_FEATURE_MODEL_READOUT.md",
+            "BOOSTED_TREES_DIRECT_READOUT.md",
+            "BOOSTED_NESTED_FAIRNESS_READOUT.md",
+            "OCT_NOV_FEATURE_TRANSFER_READOUT.md",
+            "EVENT_DELAY_HOSTILE_READOUT.md",
+        ):
+            text=(R/name).read_text()
+            self.assertIn("19 November",text,name)
+            self.assertIn("Roshan",text,name)
+        current=(R/"RICH_FEATURE_MODEL_ROSHAN_CORRECTED_READOUT.md").read_text()
+        self.assertIn("report and reviewer ZIP were rebuilt", current)
+        self.assertNotIn("No applicant submission update", current)
+        boosted=json.loads(BRECEIPT.read_text())
+        self.assertTrue(boosted["report_and_zip_rebuilt_after_correction"])
+        self.assertFalse(boosted["original_notebook_and_test_predictions_changed"])
+        atlas=(ROOT/"docs/CREATIVE_FEATURE_EXPERIMENT_ATLAS.md").read_text()
+        self.assertIn("nested XGB84/LGB84", atlas)
+        self.assertIn("not rerun", atlas.lower())
+
     def test_corrected_models_are_train_only_and_not_promoted(self):
         q = json.loads(QRECEIPT.read_text())
         b = json.loads(BRECEIPT.read_text())
@@ -50,7 +71,10 @@ class CorrectedRoshanReceiptTest(unittest.TestCase):
         corrected_sha = digest(CORRECTED)
         self.assertEqual(q["scope"], "POST_RESULT_TRAIN_ONLY_NOT_FRESH_TEST")
         self.assertFalse(q["original_VAL_or_TEST_labels_loaded"])
-        self.assertFalse(q["original_submission_changed"])
+        self.assertFalse(q["original_notebook_and_test_predictions_changed"])
+        self.assertTrue(q["report_and_zip_rebuilt_after_correction"])
+        self.assertFalse(b["original_notebook_and_test_predictions_changed"])
+        self.assertTrue(b["report_and_zip_rebuilt_after_correction"])
         self.assertFalse(b["original_val_or_test_loaded"])
         self.assertFalse(b["prospective_new_cohort"])
         self.assertFalse(b["employer_promotion_authorized"])

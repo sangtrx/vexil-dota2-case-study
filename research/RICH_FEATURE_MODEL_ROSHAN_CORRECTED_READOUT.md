@@ -1,4 +1,4 @@
-# Rich feature lab: 81 as-of Dota 2 state features
+# Roshan-corrected 84-input models: TRAIN-only sensitivity
 
 **Scope:** Post-result TRAIN-only exploration. Already-viewed original TEST and VALIDATION results never enter this evaluation. The predeclared two-model correction does NOT correct the previous 28+ research-model screens.
 
@@ -49,4 +49,4 @@ Negative Q-minus-baseline score means candidate wins. All intervals are paired b
 
 Important: model feature importance is diagnostic only. Correlated engineered signals are not evidence of causal influence. The real-time feed receipt timestamp is unknown; a historical replay cannot establish true received-at time.
 
-**No applicant submission update.** The untouched Vexil notebook, original 3,836 TEST rows, 4-page PDF, private AI disclosure, existing Colab verification and reviewer ZIP are preserved.
+The submitted notebook and original 3,836 TEST predictions were unchanged. The report and reviewer ZIP were rebuilt on 19 November to disclose this parser correction; no newly blind TEST is claimed.

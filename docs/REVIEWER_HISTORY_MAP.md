@@ -8,6 +8,8 @@ as Git refs in **this repository**, and can be viewed without access
 to the separate source repository once the viewer is granted access
 to this one.
 
+The current reviewer package is on this repository's `main` branch. The links to original PR conversations point to a **separate private repository** and may be unavailable to a reviewer. The mirrored historical branches listed below can be inspected with access to this repository, without access to those PR discussions.
+
 ## Original code branches, original dates
 
 | Research question / evidence | Original head, date (ICT) | Preserved branch in this repository |

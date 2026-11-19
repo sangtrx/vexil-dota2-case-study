@@ -1,7 +1,7 @@
 # Event delay: tower and item updates arriving 60 seconds late
 
 Only original 291 TRAIN games, unchanged four chronological, series-disjoint 137-game / 5,081-minute OOF split; this is **not** an unseen independent test.
-Original feature code and applicant deliverable untouched.
+**19 November correction:** ALL and ALL60 used the earlier rich-feature extraction that discarded Roshan kills. This delay sensitivity was **not rerun** on corrected Roshan inputs, and its numbers should not be applied to the corrected model. The main notebook and TEST forecasts remain unchanged. See [Roshan correction](ROSHAN_CORRECTION_20261119.md).
 
 | Comparison (ALL60 minus ...) | Δ LL | 95% grouped CI | 97.5% two-primary CI | Δ Brier | 30+ Δ Brier | Equal-match Δ LL | Fold wins |
 | --- | ---: | --- | --- | ---: | ---: | ---: | ---: |
